@@ -1,0 +1,6 @@
+# Temp assemble artifacts from generate.sh
+.combined-handbook.md
+.combined-handbook.html
+.combined-mdpdf.md
+.combined-mdpdf.pdf
+node_modules/

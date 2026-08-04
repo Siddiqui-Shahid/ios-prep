@@ -1,0 +1,167 @@
+Front,Back,Tags
+struct vs class,Value vs reference · Trap: class for all models · Prod: BMS ad DTOs as structs,swift
+COW,Share buffer until write · Trap: assume A sees B’s mutation · Prod: listing arrays,swift
+actor (1-liner),Isolated reference type · Trap: use for all UI · Prod: modernize sync dicts,swift
+enum state machine,Exhaustive states · Trap: boolean flags · Prod: payment popup,swift
+`===`,Referential identity · Trap: use for structs · Prod: VC identity,swift
+indirect enum,Heap box for recursion · Trap: forget indirect · Prod: nested domain trees,swift
+Prefer values when,No identity needed · Trap: premature class · Prod: Clean models,swift
+Nested class in struct copy,Reference shared · Trap: think deep copy · Prod: mixed graphs,swift
+`@MainActor` vs actor,UI affinity vs general isolation · Trap: conflate · Prod: VM on main,swift
+LoadState\<T\>,idle/loading/loaded/failed · Trap: isLoading+optional · Prod: search MVVM,swift
+POP,Compose protocols · Trap: deep inheritance · Prod: Ads pipeline,swift
+associatedtype,Conformer picks type · Trap: use as easy existential · Prod: AdRenderable,swift
+some vs any,Opaque vs existential · Trap: synonym · Prod: View returns,swift
+Type erasure,Box PAT · Trap: free · Prod: heterogeneous ads list,swift
+Protocol extension dispatch,Defaults may be static · Trap: expect override · Prod: shared track(),swift
+Generics benefit,Specialize + safety · Trap: Any everywhere · Prod: HeroWidget,swift
+AnyObject protocol,Class-bound · Trap: struct conform · Prod: weak delegate,swift
+Conditional conformance,where on extension · Trap: always free · Prod: model arrays,swift
+Composition A & B,Multi-capability · Trap: multiple inheritance myth · Prod: Render+Track,swift
+Open vs closed SDUI,Registry vs enum · Trap: enum forever · Prod: BMS header,swift
+Serial queue,Mutex via queue · Trap: sync re-entry · Prod: S2 dicts,concurrency
+Concurrent + barrier,RW pattern · Trap: write without barrier · Prod: read-heavy caches,concurrency
+sync deadlock,Wait on current queue · Trap: only main · Prod: UI hops use async,concurrency
+DispatchGroup,Join parallel work · Trap: forget leave · Prod: prefetch,concurrency
+QoS,Priority/energy · Trap: always userInteractive · Prod: analytics batch,concurrency
+Race,Unsynchronized share · Trap: intermittent ignore · Prod: BMS crashes,concurrency
+Safe dict API,Hide storage · Trap: return mutable ref · Prod: S2,concurrency
+Semaphore,Limit concurrency · Trap: deadlock wait · Prefer TaskGroup later,concurrency
+Main UI rule,UI on main · Trap: parse JSON on main · Prod: search bind,concurrency
+async write / sync read,Common serial pattern · Trap: return unsafely · Prod: S2,concurrency
+Reader-writer,Parallel reads · Trap: writer starve · Prod: optional upgrade,concurrency
+Actor vs GCD,Language isolation · Trap: rewrite all now · Prod: new code actors,concurrency
+Structured concurrency,Parent owns children · Trap: detached everywhere · Prod: search tasks,concurrency
+Actor,Isolated mutable state · Trap: no reentrancy · Prod: S2 future,concurrency
+Reentrancy,State may change after await · Trap: assume continuity · Prod: token refresh,concurrency
+Sendable,Cross-domain safe · Trap: @unchecked casually · Prod: Swift 6,concurrency
+@MainActor,UI isolation · Trap: heavy work on main · Prod: VM,concurrency
+Task cancel,Cooperative · Trap: kill thread · Prod: debounce,concurrency
+MVVM one-liner,View renders state; VM presentation + async; Model domain · Trap: networking in View · Prod: BMS search VM,architecture
+Clean one-liner,UseCases/entities independent of UI · Trap: Clean everywhere · Prod: District Free Parking rules,architecture
+MVI one-liner,Intent → reduce → State → View · Trap: boilerplate for CRUD · Prod: payment/live state cousins,architecture
+Where debounce lives,VM/UseCase presentation policy · Trap: only in URLSession · Prod: BMS search,architecture
+DI default,Protocol + constructor injection · Trap: service locator for domain · Prod: testable VMs,architecture
+Repository duty,Cache/remote + DTO map · Trap: business rules in repo · Prod: search repository,architecture
+Fat VM smell,Networking + routing + rules · Fix: UseCase + Router · Prod: S9 extract,architecture
+AI in migration,Accelerate inside envelope + review · Trap: “AI wrote it” · Prod: S9 Context Engineering,architecture
+Navigation ownership,Events from VM; Coordinator for cross-feature · Trap: UIKit in UseCase · Prod: S13 deeplinks,architecture
+Fail-soft UI states,loading/empty/error/success · Trap: spinner forever · Prod: BMS search,architecture
+When not Clean,"Trivial UI, no shared domain · Trap: resume padding · Prod: judgment call",architecture
+Test pyramid tip,UseCase unit tests cheapest · Trap: only UITests · Prod: District XCTest,architecture
+Strangler migration,"Incremental extract, flags · Trap: rewrite · Prod: District",architecture
+Protocol boundary,Network/Search/Analytics · Trap: protocol every struct · Prod: S1/S10,architecture
+Scale link,Clear layers reduce blast radius · Trap: architecture = crash-free alone · Prod: 30L DAU + S8,architecture
+Pause video where,willDisappear / offscreen · Trap: only deinit · Prod: S1 HeroWidget,swift architecture
+prepareForReuse,Reset async + UI · Trap: stale images · Prod: lists,swift architecture
+Prefetch cancel,cancelPrefetching… · Trap: unbounded downloads · Prod: data budget,swift architecture
+SwiftUI in UIKit,UIHostingController · Trap: sizing/safeArea · Prod: S13,swift architecture
+UIKit in SwiftUI,Representable + Coordinator · Trap: recreate storms · Prod: S13,swift architecture
+Deeplink owner,App-edge router → intent · Trap: dual stacks · Prod: S13,swift architecture
+Bottom sheet win,Context kept; fewer pushes · Trap: deep flows in sheet · Prod: S6 30%+,swift architecture
+Diffable benefit,Identity diffs · Trap: unstable IDs · Prod: fewer reload bugs,swift architecture
+Appear vs load,Refresh vs once · Trap: network only in didLoad · Prod: tabs,swift architecture
+Cell retain cycle,weak self + clear handlers · Trap: strong VC in cell · Prod: leaks,swift architecture
+Airship tap path,Same deeplink router · Trap: parallel nav · Prod: S13,swift architecture
+Hybrid cost,Lifecycle + identity · Trap: bolt hosting · Prod: S13 lesson,swift architecture
+Estimated size,Close to real · Trap: 1pt estimates · Prod: jank,swift architecture
+Networking SDK core,Endpoint → build → intercept → session → decode · Trap: UI in client · Prod: Ads URLSession,networking
+Single-flight refresh,One refresh Task; waiters share · Trap: N refreshes · Prod: auth storms,networking
+Cancel search,Cancel Task on new query · Trap: show cancel as error · Prod: S3,networking
+Retry safe?,Idempotent GET + backoff · Trap: POST payments · Prod: S7,networking
+URLCache vs app cache,Headers vs domain/offline · Trap: cache private unkeyed · Prod: SDUI Day 10,networking
+SSL pinning,SPKI pin; MITM ↓ · Trap: no rotation = outage · Prod: S4,networking
+Domain whitelist,Only approved hosts · Trap: CMS open fetch · Prod: S4,networking
+Why leave Alamofire,Control + deps + pinning · Trap: hate libraries · Prod: S4 Ads,networking
+NetworkError kinds,Transport/HTTP/decode/cancel/auth · Trap: raw strings to UI · Prod: S3 states,networking
+Interceptor order,Auth → log/trace → send · Trap: log tokens · Prod: hygiene,networking
+Test strategy,Fake session + fixtures · Trap: live network CI · Prod: migration parity,networking
+Idempotency key,Safe payment retries · Trap: client-only duplicate POST · Prod: checkout,networking
+p90 networking,Trace spans; optimize tail · Trap: mean latency · Prod: S5,networking
+Break-glass pin,Monitored failover plan · Trap: silent disable forever · Prod: S4 lesson,networking
+SDUI definition,Schema → native registry render · Trap: JS eval · Prod: BMS header,sdui
+Unknown component,Skip + metric · Trap: crash · Prod: 99.95% mindset,sdui
+Schema major bump,Dual-publish + fallback · Trap: force upgrade only · Prod: contracts,sdui
+FallbackEngine,Last-known-good disk · Trap: blank on offline · Prod: S12 splash,sdui
+Action allowlist,No arbitrary code · Trap: open any URL · Prod: security,sdui
+Hybrid SDUI,CMS slots + native chrome · Trap: 100% dynamic · Prod: most apps,sdui
+Capability matrix,Client declares support · Trap: assume parity · Prod: iOS/Android,sdui
+Cold start splash,Cache + timeout default · Trap: block on network · Prod: S12,sdui
+BMS header win,Iterate without release · Trap: new types need app · Prod: S3,sdui
+SDUI vs Ads native,Config dynamic; media native · Trap: SDUI video lifecycle · Prod: S1,sdui
+Cache keying,Per user for personalised · Trap: shared cache leak · Prod: privacy,sdui
+Analytics in SDUI,Validate server events · Trap: trust PII · Prod: hygiene,sdui
+Canary schema,% rollout payloads · Trap: 100% push · Prod: S8 culture,sdui
+Empty root policy,Hard fallback required · Trap: skip all → blank · Prod: splash rules,sdui
+CFS,Crash-free sessions; BMS 99.95%+ · Trap: vanity without process · Prod: S8,security bms
+Signal safety,No alloc/lock/ObjC in handler · Trap: log normally · Prod: mmap writer,security bms
+dSYM,Symbolicate UUID-matched builds · Trap: forget CI upload · Prod: unreadable stacks,security bms
+Breadcrumbs,"Last N events, scrub PII · Trap: log tokens · Prod: ring buffer",security bms
+OOM vs crash,Jetsam heuristics vs fatal signal · Trap: one bucket · Prod: memory tools,security bms
+IMOC,"Owner, blast radius, mitigate, comms · Trap: hero debug only · Prod: S8 P0/P1",security bms
+Mitigate first,Flag/pause rollout · Trap: wait for perfect RCA · Prod: peak events,security bms
+Sync dictionaries,Serialise shared map access · Trap: sprinkle locks · Prod: S2,security bms
+Non-fatals,Useful ≠ CFS · Trap: alert on all · Prod: sample/group,security bms
+Launch order,Crash SDK early + fast · Trap: after all analytics · Prod: launch crashes,security bms
+Postmortem,Blameless actions · Trap: finger-point · Prod: S8 write-up,security bms
+Hang gap,CFS can look fine · Trap: ignore freezes · Prod: MetricKit hangs,security bms
+Upload timing,"Next launch, not in-signal · Trap: network in handler · Prod: crash SDK",security bms
+Severity matrix,Rare×critical still P0 · Trap: % only · Prod: payments,security bms
+Symbolicate fail,Missing dSYM · Trap: “Swift bug” · Prod: fix pipeline,security bms
+30L DAU,Scale context for reliability · Trap: startup metrics only · Prod: resume,security bms
+ATS,HTTPS/TLS baseline · Trap: equals pinning · Prod: no cleartext,security
+SPKI pin,Hash public key · Trap: pin leaf cert only · Prod: S4,security
+Pin rotation,Dual pins + ship early · Trap: rotate server first · Prod: S4 lesson,security
+Domain allowlist,Only known hosts · Trap: pin world · Prod: BMS Ads,security
+Two pointers opposite,Sorted pair / palindrome · O(n),dsa
+Sliding window variable,Longest with constraint · expand/shrink,dsa
+Kadane,Max subarray · running reset,dsa
+Prefix sum,Range sum O(1) after O(n),dsa
+Frequency map,Anagram / counts,dsa
+Say first,Clarify→brute→opt→edges,dsa
+Swift String index,Not random O(1) · use Array,dsa
+Write pointer,In-place filter/dedup,dsa
+Two Sum map,value→index · O(n),dsa
+Container water,Ends inward · O(n),dsa
+Stack use,LIFO matching/undo · Trap: use for BFS · Prod: nav nested,dsa
+Queue use,FIFO BFS / waiters · Trap: Array.removeFirst hot · Prod: refresh waiters,dsa
+Monotonic stack,Next greater O(n) · Trap: O(n²) scan · Prod: —,dsa
+Two-stack queue,Amortized O(1) · Trap: claim strict O(1) always · Prod: —,dsa
+Floyd cycle,Slow/fast O(1) space · Trap: only hash set · Prod: —,dsa
+Reverse list,Iterative 3 pointers · Trap: lose next · Prod: —,dsa
+Merge lists,Dummy head · Trap: null edges · Prod: —,dsa
+Array as queue cost,removeFirst O(n) · Trap: ignore · Prod: Swift,dsa
+Coding agenda,Restate→edges→complexity→code · Trap: code immediately · Prod: interviews,dsa
+Deque window max,Maintain mono deque · Trap: heap each slide only · Prod: —,dsa
+Min stack,Aux mins · Trap: O(n) scan · Prod: —,dsa
+LL in Swift apps,Rare vs Array · Trap: force LL UI · Prod: honesty,dsa
+On-device RAG,Local retrieve → prompt → generate · Trap: “fine-tune on user data” · Prod: FinTrack BM25,ai
+Fail-soft AI,Rules/TF-IDF/capability flags · Trap: blank error only · Prod: S15/S16,ai
+Quantization why,Fit RAM/ANE; INT8/INT4 · Trap: ignore quality · Prod: GymFlow MiniLM,ai
+Hybrid router inputs,"Thermal, battery, tokens, capability · Trap: cloud always · Prod: doc HybridAIRouter",ai
+Privacy script,Local-first; minimize; consent cloud · Trap: HTTPS = privacy · Prod: FinTrack no sync,ai
+BM25 vs MiniLM,Lexical vs semantic · Trap: one-size · Prod: FinTrack vs GymFlow,ai
+Hallucinated money,DB is source of truth · Trap: trust tokens · Prod: FinTrack,ai
+KV-cache,Faster decode; RAM cost; drop on warning · Trap: ignore Jetsam · Prod: doc model manager,ai
+Token stream UI,Background + main append + cancel · Trap: sync main inference · Prod: —,ai
+AI tooling vs product AI,Accelerator ≠ on-device architecture · Trap: tool worship · Prod: District vs FinTrack,ai
+30L DAU caution,"Kill switch, sample, budgets · Trap: run LLM on all sessions · Prod: BMS judgment",ai
+Empty retrieval,No invent; generic + CTA · Trap: hallucinate · Prod: coach empty state,ai
+Mock agenda opener,“Defs → concurrency deep dive → story → feed HLD”,behavioral
+S2 time box,≤3 min STAR,behavioral
+Score 5 means,On time + trade-off + prod proof,behavioral
+Weak topic rule,Re-drill before Week 2,behavioral
+SD clarify first,"DAU, offline, pagination",behavioral
+No new topics,Revision only today,behavioral
+Week 2 one-liner,Layers→network→SDUI→UI identity · Trap: isolated facts · Prod: narrative,behavioral
+Ads 5-min agenda,POP·lifecycle·URLSession pin · Trap: no agenda · Prod: S1/S4,behavioral
+SDUI 5-min agenda,Schema·registry·fallback·prod · Trap: skip fail-soft · Prod: S3/S12,behavioral
+Refresh stampede,Single-flight · Trap: N refreshes · Prod: Day 09,behavioral
+Pin outage,Rotation/runbook · Trap: pinning only · Prod: S4,behavioral
+Unknown SDUI node,Skip+metric · Trap: crash · Prod: crash-free,behavioral
+Dual nav stacks,One owner · Trap: sync forever · Prod: S13,behavioral
+UUID in body,Resets state · Trap: SwiftUI bug · Prod: Day 12,behavioral
+Sheet metric,30%+ fewer pushes · Trap: vague UX · Prod: S6,behavioral
+AI seniority,Envelope+review · Trap: AI wrote app · Prod: S9,behavioral
+Search cancel,Task cancel silent · Trap: error toast · Prod: S3,behavioral
+HeroWidget,Pause on invisible · Trap: play forever · Prod: S1,behavioral

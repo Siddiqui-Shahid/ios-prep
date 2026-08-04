@@ -1,0 +1,24 @@
+stories:
+  S1: { company: BookMyShow, label: verified, topics: [POP, generics, ads, video-lifecycle] }
+  S2: { company: BookMyShow, label: verified, topics: [GCD, concurrency, races] }
+  S3: { company: BookMyShow, label: verified, topics: [SDUI, search, MVVM] }
+  S4: { company: BookMyShow, label: verified, topics: [URLSession, SSL-pinning, HTTPS] }
+  S5: { company: BookMyShow, label: verified, topics: [Firebase-Performance, p50, p90] }
+  S6: { company: BookMyShow, label: verified, topics: [bottom-sheet, UX], metrics: ["30%+ nav reduction"] }
+  S7: { company: BookMyShow, label: verified, topics: [payments, popup] }
+  S8: { company: BookMyShow, label: verified, topics: [IMOC, Crashlytics], metrics: ["30L+ DAU", "99.95%+ CFS"] }
+  S9: { company: District, label: verified, topics: [Clean, MVVM, Free-Parking] }
+  S10: { company: Raw, label: verified, topics: [Stories-SDK, modularity] }
+  S11: { company: Raw, label: verified, topics: [live-scoreboard] }
+  S12: { company: Raw, label: verified, topics: [audio, server-driven-splash] }
+  S13: { company: Raw, label: verified, topics: [SwiftUI-UIKit, deeplinks, Airship] }
+  S14: { company: Raw, label: verified, topics: [Xcode-15-migration] }
+  S15: { company: Personal, label: verified, topics: [on-device-AI, BM25, FinTrack] }
+  S16: { company: Personal, label: verified, topics: [TFLite, GymFlow] }
+
+applied:
+  S2-A1: { extends: S2, claim: "Migrate sync dict to actor for greenfield modules" }
+  S4-A1: { extends: S4, claim: "Pin rotation + backup pins + break-glass as design" }
+  S7-A1: { extends: S7, claim: "Enum state machine for payment processing UI" }
+  S3-A1: { extends: S3, claim: "SDUI schema versioning + unknown component fallback" }
+  S5-A1: { extends: S5, claim: "Journey traces vs per-request interceptor spans" }

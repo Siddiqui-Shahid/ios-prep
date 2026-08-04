@@ -1,0 +1,555 @@
+# 04 — Questions (two-layer Q&A)
+
+> **How to practice:** Cover **Full spoken answer**. Speak from **Answer points** only. Uncover and compare.  
+> Timing: Normal ≈ 30–45s (some 45–60s) · Tricky ≈ 90–120s.  
+> Every question uses the same shape.
+
+---
+
+## Normal questions
+
+### Q1. Struct vs class — when do you choose each? `(30–45s)`
+
+**Answer points (frame first):**
+- Value semantics (struct/enum) vs reference semantics (class)
+- Shared mutation only with references
+- Prefer struct for models/DTOs; class for identity, UIKit, ObjC
+- One production hook: ads/listing models value-friendly
+
+**Agenda opener:**  
+> “Semantics → shared mutation → when I pick each.”
+
+**Full spoken answer:**  
+> “Structs and enums have value semantics — assignment gives you an independent copy, so mutating one variable doesn’t surprise another. Classes have reference semantics — multiple names can point at the same instance, so mutation is shared. I default to structs for models and DTOs, and reach for classes when I need identity, UIKit objects, or Objective-C interop. On the BookMyShow ads side, keeping render models value-friendly fits a type-safe pipeline so accidental shared mutation doesn’t corrupt revenue UI.”
+
+**Common wrong answer:**  
+> “Structs are always faster / always stack-allocated, so always use structs.” (Semantics first; large structs can be costly; classes aren’t “wrong.”)
+
+**Follow-up ladder:**
+- **L1:** When is a class mandatory?
+- **L2:** What if a struct contains a class property?
+- **L3:** Would you make a ViewModel a struct or a class/`@MainActor` type — why?
+
+**Provenance:** Verified · S1 · BookMyShow · type-safe ads / listing models
+
+---
+
+### Q2. What is copy-on-write? `(30–45s)`
+
+**Answer points (frame first):**
+- Collections share a buffer on assign
+- Mutation checks uniqueness
+- Unique → in place; shared → copy then write
+- Array / Dictionary / Set / String
+
+**Agenda opener:**  
+> “Cheap share until write — then unique copy.”
+
+**Full spoken answer:**  
+> “Copy-on-write means value-typed collections like Array can share their storage after assignment so the assign is cheap. When you mutate, the runtime checks whether that buffer is uniquely referenced. If it is, it mutates in place; if not, it copies the buffer first and then mutates. That preserves value semantics without paying a full element copy on every assignment.”
+
+**Common wrong answer:**  
+> “Assigning an array always deep-copies every element” or “arrays are reference types so A always sees B’s append.”
+
+**Follow-up ladder:**
+- **L1:** Does `let a = b` on arrays copy elements immediately?
+- **L2:** How would you implement COW on your own type?
+- **L3:** What does Instruments look like when COW thrash happens on a hot path?
+
+**Provenance:** How I would apply it · S1 · listing arrays — avoid defensive copies in hot paths
+
+---
+
+### Q3. Why prefer enums over booleans for UI state? `(30–45s)`
+
+**Answer points (frame first):**
+- Booleans allow impossible combinations
+- Associated values carry per-state payloads
+- Switch exhaustiveness forces handling
+- Payment popup as state machine example
+
+**Agenda opener:**  
+> “Impossible states out → exhaustiveness in.”
+
+**Full spoken answer:**  
+> “Boolean flags like `isLoading` plus optional `data` and `error` can represent illegal combinations — loading and failed at once, for example. An associated-value enum makes each mode explicit and attaches only the data that mode needs. Switches stay exhaustive when you add cases. For the payment processing popup, I’d model processing, success, failure, and timeout as cases so the UI can’t enter a nonsense state.”
+
+**Common wrong answer:**  
+> “Enums are just nicer syntax; booleans are fine if you’re careful.” (Carefulness doesn’t scale; types do.)
+
+**Follow-up ladder:**
+- **L1:** How do you map `Result` into UI state?
+- **L2:** How do you version new cases if the backend adds modes?
+- **L3:** Show a transition function vs scattering `if` updates.
+
+**Provenance:** How I would apply it · S7-A1 · enum state machine for payment UI (Verified intent · S7)
+
+---
+
+### Q4. What is an actor at a high level? `(30–45s)`
+
+**Answer points (frame first):**
+- Reference type with isolated mutable state
+- Cross-isolation access uses `await`
+- Prevents data races at the boundary
+- Bridge: serial queue around dictionaries → actor for new code
+
+**Agenda opener:**  
+> “Isolated reference type — modern serial queue.”
+
+**Full spoken answer:**  
+> “An actor is a reference type whose mutable state is isolated. You interact with it asynchronously — typically with await — and the system serializes access so you don’t get data races on that state. At BookMyShow we used GCD serial queues around shared dictionaries for the same kind of problem; for greenfield code I’d evaluate a Swift actor as the language-native equivalent.”
+
+**Common wrong answer:**  
+> “Actors are value types” or “actors replace DispatchQueue for everything including UI timers.”
+
+**Follow-up ladder:**
+- **L1:** Are actors value or reference types?
+- **L2:** Actor vs `@MainActor` ViewModel?
+- **L3:** What is actor reentrancy at a high level?
+
+**Provenance:** Verified · S2 · synchronised dictionaries; How I would apply it · S2-A1
+
+---
+
+### Q5. Value type containing a class — what happens on copy? `(45s)`
+
+**Answer points (frame first):**
+- Struct stored properties are copied
+- Class properties copy the *reference*
+- Nested object still shared
+- Deep copy only if you build it
+
+**Agenda opener:**  
+> “Shallow value copy — nested references still shared.”
+
+**Full spoken answer:**  
+> “When you assign a struct, Swift copies its stored properties. Value-typed fields become independent; class-typed fields copy the reference, so both structs point at the same object. Mutating that nested object through either copy is visible to both. If you need a deep copy, you have to implement it explicitly — value semantics don’t recursively deep-copy the graph.”
+
+**Common wrong answer:**  
+> “Structs always deep-copy everything, including nested classes.”
+
+**Follow-up ladder:**
+- **L1:** Give a UIKit cell-model example of this bug.
+- **L2:** How do you redesign to avoid it?
+- **L3:** Interaction with COW arrays stored inside a class property?
+
+**Provenance:** How I would apply it · S1 · mixed model graphs in listing/ad UI
+
+---
+
+### Q6. `===` vs `==`? `(30s)`
+
+**Answer points (frame first):**
+- `==` is equality (`Equatable`)
+- `===` is object identity (classes)
+- Structs: equality only, no `===`
+- Use identity for “same instance,” equality for “same data”
+
+**Agenda opener:**  
+> “Identity versus equality.”
+
+**Full spoken answer:**  
+> “Double equals asks whether two values are equal according to Equatable. Triple equals asks whether two class instances are the exact same object. Structs don’t have triple equals because they aren’t identities — you compare their values. I use identity for things like the same view controller instance, and equality for model data.”
+
+**Common wrong answer:**  
+> Using `===` on structs, or assuming `==` on classes compares identity by default without implementing Equatable carefully.
+
+**Follow-up ladder:**
+- **L1:** Should ViewModels use identity or equality in tests?
+- **L2:** Hashing a class by identity vs by fields?
+- **L3:** Equatable enums with associated `Error` — pitfalls?
+
+**Provenance:** How I would apply it · S1 · VC / widget identity vs model equality
+
+---
+
+### Q7. When would you use a class for a model? `(45s)`
+
+**Answer points (frame first):**
+- Intentional shared mutable identity
+- ObjC / UIKit / KVO constraints
+- Shared session-like object everyone must observe
+- Still ask: could a store + values replace it?
+
+**Agenda opener:**  
+> “When identity is the requirement, not convenience.”
+
+**Full spoken answer:**  
+> “I’d use a class for a model when shared identity is intentional — one session object many screens must see mutate — or when UIKit/ObjC interop forces it. For ordinary DTOs I still prefer structs. If the real need is safe concurrent mutation of shared storage, I’d consider an actor rather than an unsynchronized class.”
+
+**Common wrong answer:**  
+> “I use classes for all models because that’s what I’m used to from Java/UIKit tutorials.”
+
+**Follow-up ladder:**
+- **L1:** Could an actor replace that class?
+- **L2:** How do you test shared mutable models safely?
+- **L3:** Reference cycles between model and observers?
+
+**Provenance:** How I would apply it · S2-A1 · shared mutable store → actor evaluation
+
+---
+
+### Q8. Recursive enums — why `indirect`? `(45s)`
+
+**Answer points (frame first):**
+- Enums need fixed-size layout
+- Recursive associated values need a heap box
+- `indirect` inserts that indirection
+- Examples: AST, nested comments, nested feed sections
+
+**Agenda opener:**  
+> “Fixed layout → heap box for recursion.”
+
+**Full spoken answer:**  
+> “Swift enums have a size the compiler needs to know. If a case contains another value of the same enum, that would be infinite size unless you introduce indirection. Marking the enum or case `indirect` stores the associated value behind a reference so the layout stays finite. You see this with nested comment threads or tree-shaped feed nodes.”
+
+**Common wrong answer:**  
+> “`indirect` is only for performance” or forgetting it and being confused by the compiler error.
+
+**Follow-up ladder:**
+- **L1:** `indirect` on whole enum vs one case?
+- **L2:** How does this compare to a class-based tree?
+- **L3:** Equatable/Hashable synthesis with recursive enums?
+
+**Provenance:** How I would apply it · S1 · nested domain trees in listing/feed-like UI
+
+---
+
+### Q9. Are actors value or reference types? `(30s)`
+
+**Answer points (frame first):**
+- Reference types
+- Plus isolation
+- Assignment shares the actor instance
+- Mutation only through isolated interface
+
+**Agenda opener:**  
+> “Reference type with isolation.”
+
+**Full spoken answer:**  
+> “Actors are reference types — assigning an actor shares the same instance — but unlike a plain class, their mutable state is isolated. You don’t freely mutate from arbitrary threads; you go through the actor’s interface, usually with await.”
+
+**Common wrong answer:**  
+> “Actors are value types like structs, so they copy.”
+
+**Follow-up ladder:**
+- **L1:** What happens if two tasks call the same actor method?
+- **L2:** Can actors inherit from classes freely?
+- **L3:** Actor vs lock vs serial queue trade-offs?
+
+**Provenance:** How I would apply it · S2-A1
+
+---
+
+### Q10. Explain COW in one sentence to a junior. `(30s)`
+
+**Answer points (frame first):**
+- Share until write
+- Then copy if needed
+- Keeps value feel with cheap assigns
+
+**Agenda opener:**  
+> “One sentence, then a tiny example.”
+
+**Full spoken answer:**  
+> “Arrays act like values, but they cheaply share memory until somebody writes — then they copy if they’re not the only owner. So `var b = a` is cheap, and `b.append` won’t change `a`.”
+
+**Common wrong answer:**  
+> A long digression into retain counts without the share-until-write punchline.
+
+**Follow-up ladder:**
+- **L1:** Which stdlib types use COW?
+- **L2:** Why doesn’t every struct get COW automatically?
+- **L3:** Implement `ensureUnique` with `isKnownUniquelyReferenced`.
+
+**Provenance:** How I would apply it · S1 · teaching listing-array behavior on the team
+
+---
+
+### Q11. `let` on a class vs `let` on a struct? `(30–45s)`
+
+**Answer points (frame first):**
+- `let` binds the name
+- Struct: no property mutation through that binding
+- Class: reference fixed, object properties may still mutate
+- Separate binding mutability from type semantics
+
+**Agenda opener:**  
+> “Binding versus object mutability.”
+
+**Full spoken answer:**  
+> “`let` means the name can’t be reassigned. For a struct, that also blocks mutating properties because mutation is really replacing the value. For a class, `let` only fixes which instance you point at — you can still change the instance’s properties. That’s why `let` doesn’t mean ‘immutable object’ for reference types.”
+
+**Common wrong answer:**  
+> “`let` always means deep immutability.”
+
+**Follow-up ladder:**
+- **L1:** How do you make a class’s properties immutable?
+- **L2:** `private(set)` on structs vs classes?
+- **L3:** Actors and mutation from outside?
+
+**Provenance:** How I would apply it · S1 · clarifying model API for junior reviewers
+
+---
+
+### Q12. How do you explain preferring values for ads/listing models? `(45s)`
+
+**Answer points (frame first):**
+- Independent copies across cells/widgets
+- Fewer cross-screen mutation bugs
+- Type-safe pipeline mindset from ads refactor
+- Classes reserved for lifecycle/identity (HeroWidget)
+
+**Agenda opener:**  
+> “Revenue UI → independent data → identity only where needed.”
+
+**Full spoken answer:**  
+> “For ad and listing render data I prefer value semantics so one surface’s mutation doesn’t leak into another. That sits well with the type-safe ads pipeline we built with protocols and generics. Where identity and lifecycle matter — like HeroWidget pause/play tied to visibility — that’s a reference-type concern. So values for data, classes for identity boundaries.”
+
+**Common wrong answer:**  
+> Inventing fill-rate or revenue percentage claims.
+
+**Follow-up ladder:**
+- **L1:** How do generics fit that pipeline?
+- **L2:** What breaks if an ad DTO secretly holds a shared cache object?
+- **L3:** Testing strategy for value models vs singleton services?
+
+**Provenance:** Verified · S1 · BookMyShow · Ads type-safe models / HeroWidget
+
+---
+
+## Tricky questions
+
+### T1. You mutate `arrayB` after `let arrayA = arrayB` — does A change? `(90s)`
+
+**Answer points (frame first):**
+- Trap: always-shared vs always-copied
+- COW: share until write
+- Mutating B copies if not unique → A unchanged
+- If both wrapped in same class box, different story
+- Mental model: uniqueness at mutation time
+
+**Agenda opener:**  
+> “I’ll separate assignment sharing from mutation uniqueness — then the class-wrapper trap.”
+
+**Full spoken answer:**  
+> “With Array, assignment can share a buffer. When you mutate B, if that buffer isn’t uniquely referenced, Swift copies first, then mutates B’s copy — so A stays the same. People wrongly say either ‘A always changes’ or ‘assignment always deep-copied.’ The truth depends on uniqueness at mutation time. If A and B are two variables of a class that holds an array, mutating through the shared class instance *will* show up on both names — that’s identity sharing, not Array COW across independent values.”
+
+**Common wrong answer:**  
+> Absolute “yes A changes” or absolute “no, assign always copies elements.”
+
+**Follow-up ladder:**
+- **L1:** What if you mutate A instead of B?
+- **L2:** How does `isKnownUniquelyReferenced` relate?
+- **L3:** How would you demo this in a playground without relying on print myths?
+
+**Provenance:** How I would apply it · S1 · listing arrays mental model
+
+---
+
+### T2. Large struct passed through many functions — performance? `(90–120s)`
+
+**Answer points (frame first):**
+- Trap: “structs always faster”
+- Small structs win; large stored props may copy often
+- Mitigations: COW wrapper, `inout`, reference/actor boundary
+- Measure with Allocations — don’t guess
+- Semantics still often worth it until proven hot
+
+**Agenda opener:**  
+> “Semantics first, then copy cost, then mitigations.”
+
+**Full spoken answer:**  
+> “I wouldn’t claim structs are always faster. Small models are cheap and safer. A large struct with many non-COW stored properties can get expensive if you pass and assign it everywhere. Mitigations include keeping bulky buffers behind COW, using inout for in-place updates, or placing a reference or actor at the boundary for truly shared heavy state. I’d confirm with Instruments Allocations before rewriting architecture. For listing rows I still bias to values unless profiling says otherwise.”
+
+**Common wrong answer:**  
+> Prematurely converting all models to classes “for performance” without evidence.
+
+**Follow-up ladder:**
+- **L1:** Where do you look in Instruments?
+- **L2:** When is a class the right perf boundary?
+- **L3:** How does COW change the analysis for arrays of large structs?
+
+**Provenance:** How I would apply it · S1 / S5 mindset · measure before rewriting (no invented ms)
+
+---
+
+### T3. Enum with associated `Error` vs `Result` for ViewModel state `(90s)`
+
+**Answer points (frame first):**
+- Trap: one true way
+- `Result` = one-shot success/failure
+- UI needs idle/loading too → domain `LoadState`
+- Map at the boundary
+- Payment popup: domain enum communicates screen semantics
+
+**Agenda opener:**  
+> “Boundary types versus screen types.”
+
+**Full spoken answer:**  
+> “There’s no single winner. `Result` is excellent for a finished async attempt. A ViewModel usually also needs idle and loading, so I prefer a domain enum like LoadState with idle, loading, loaded, and failed. Internally I may still use Result from the client, then map at the boundary. For payment UI I’d go further with explicit processing, success, failure, and timeout cases — that’s screen language, not just Result.”
+
+**Common wrong answer:**  
+> “Always use Result in the ViewModel” or “never use Result.”
+
+**Follow-up ladder:**
+- **L1:** How do you unit-test transitions?
+- **L2:** Equatable with `Error` associated values?
+- **L3:** Cancellation mid-loading — new case or event?
+
+**Provenance:** How I would apply it · S7-A1; Verified intent · S7
+
+---
+
+### T4. Why not make every ViewModel an actor? `(90s)`
+
+**Answer points (frame first):**
+- Trap: actors solve all threading
+- UI needs main-actor affinity
+- Extra await hops and API friction
+- Isolate shared mutable stores, not every VM
+- Bridge from serial-queue discipline
+
+**Agenda opener:**  
+> “Isolate the shared mutable core — don’t actor-wrap the world.”
+
+**Full spoken answer:**  
+> “Actors are for protecting shared mutable state across concurrency. ViewModels that drive UI usually belong on the main actor so updates are UI-safe without sprinkling await on every property bind. Making every ViewModel a custom actor adds hop latency and awkward call sites without buying much if the VM isn’t the race boundary. I’d keep `@MainActor` view models and put an actor — or a serial queue, as we did historically — around the shared dictionaries or caches that multiple tasks touch.”
+
+**Common wrong answer:**  
+> “Actors are the new best practice, so everything is an actor.”
+
+**Follow-up ladder:**
+- **L1:** `@MainActor` class vs `actor` type differences?
+- **L2:** How do you call an actor from a MainActor VM?
+- **L3:** Reentrancy bug example after await?
+
+**Provenance:** Verified · S2; How I would apply it · S2-A1
+
+---
+
+### T5. Class instances in a `Set` — what’s required? `(90s)`
+
+**Answer points (frame first):**
+- Need `Hashable` / `Equatable`
+- Prefer stable ID or `ObjectIdentifier`
+- Don’t mutate hashed fields while inserted
+- Identity vs field equality choice is product-driven
+
+**Agenda opener:**  
+> “Hashable contract first — then mutation hazards.”
+
+**Full spoken answer:**  
+> “Class instances can live in a Set if they conform to Hashable. You typically hash a stable ID or use object identity. The critical trap is mutating fields that participate in the hash while the object is in the set — you can lose the object for lookups. So either hash identity, or treat hashed fields as immutable for the membership lifetime.”
+
+**Common wrong answer:**  
+> “Classes can’t go in Sets” or hashing mutable `isSelected` flags.
+
+**Follow-up ladder:**
+- **L1:** Dictionary keys with classes — same rules?
+- **L2:** `NSObject` subclasses hashing pitfalls?
+- **L3:** Value-type keys vs reference-type keys in API design?
+
+**Provenance:** How I would apply it · S1 · seat/selection style models (design)
+
+---
+
+### T6. How would you model the payment processing popup as a state machine? `(90–120s)`
+
+**Answer points (frame first):**
+- Product intent: no silent waiting (S7)
+- Cases: hidden / processing / success / failure / timeout
+- Associated payloads per case
+- Events drive pure transitions
+- Design label S7-A1 — don’t overclaim shipped enums
+
+**Agenda opener:**  
+> “Product states first, then Swift enum + events.”
+
+**Full spoken answer:**  
+> “At BookMyShow the problem was checkout delays with unclear status — we designed a processing popup with clear processing, success, failure, and timeout messaging so users weren’t abandoned. In Swift I’d model that as an associated-value enum and apply payment events through a transition function: start checkout enters processing, backend success carries a booking ID, failures and timeouts carry messages, dismiss returns to hidden. That design keeps illegal UI states unrepresentable. I present the enum machine as how I’d apply it — the resume-backed piece is the popup and the state intent.”
+
+**Common wrong answer:**  
+> Inventing conversion metrics, or claiming “we shipped Swift enums” as a verified fact.
+
+**Follow-up ladder:**
+- **L1:** Where does timeout fire — client timer vs backend?
+- **L2:** How do you test illegal transitions?
+- **L3:** Multi-step payment (3DS) — extend enum or nested state?
+
+**Provenance:** Verified · S7; How I would apply it · S7-A1
+
+---
+
+### T7. Struct with two large arrays — when do copies get expensive? `(90s)`
+
+**Answer points (frame first):**
+- Arrays themselves COW
+- Assigning the struct shares array buffers until write
+- Mutating either array may copy that buffer
+- Multiple mutations with aliases → copy churn
+- Still usually better than careless class sharing
+
+**Agenda opener:**  
+> “Struct copy versus buffer copy — COW still helps.”
+
+**Full spoken answer:**  
+> “A struct that stores two arrays will copy its storage references on struct assignment, but the array buffers can still be shared thanks to COW. Cost shows up when you mutate while aliases exist — each mutated array may uniquely copy its buffer. If you repeatedly fork and mutate large collections, you can churn memory. I’d avoid unnecessary defensive copies, keep mutations localized, and profile before introducing a class wrapper that might accidentally share identity across UI.”
+
+**Common wrong answer:**  
+> “Any struct with arrays is expensive on every assign because arrays deep-copy immediately.”
+
+**Follow-up ladder:**
+- **L1:** `inout` mutation of one array field?
+- **L2:** Hand-rolled COW for a custom buffer type?
+- **L3:** Threading: is Array COW enough for concurrent mutation? (No — need isolation.)
+
+**Provenance:** How I would apply it · S1 · listing payloads; concurrency caution → S2
+
+---
+
+### T8. Compare GCD serial queue isolation vs a Swift actor for a shared map. `(90–120s)`
+
+**Answer points (frame first):**
+- Same problem: shared mutable dictionary
+- Queue: proven, older OS, easy deadlock with sync
+- Actor: compile-time isolation, await API
+- S2 verified queues; S2-A1 actors as design for new code
+- Choose based on codebase concurrency maturity
+
+**Agenda opener:**  
+> “Same mutual exclusion goal — different enforcement.”
+
+**Full spoken answer:**  
+> “Both protect a shared map. With a GCD serial queue you funnel reads and writes onto one executor; it works well and is what we used to stop races on synchronised dictionaries, but sync-from-same-queue deadlocks and isolation isn’t compiler-checked. A Swift actor makes that isolation part of the type system and call sites use await. For new modules I’d lean actor if the codebase has adopted concurrency; for existing queue-based APIs I wouldn’t rewrite blindly. The lesson from production was serialize at the boundary — the tool can evolve.”
+
+**Common wrong answer:**  
+> “Actors make GCD obsolete overnight” or “queues are outdated so our old fix was wrong.”
+
+**Follow-up ladder:**
+- **L1:** Reader-writer locks vs actor for read-heavy maps?
+- **L2:** How do you keep the same API surface during migration?
+- **L3:** Testing concurrency regressions?
+
+**Provenance:** Verified · S2; How I would apply it · S2-A1
+
+---
+
+## Drill set (pick per session)
+
+| Session | Speak aloud |
+|---|---|
+| A (definitions) | Q1, Q2, Q3, Q4, Q10 |
+| B (edges) | Q5, Q6, Q8, Q11, Q12 |
+| C (tricky) | T1, T2, T4, T6 |
+| D (concurrency bridge) | Q4, Q9, T4, T8 |
+
+Score with [`../../../timing/answer-timing-guide.md`](../../../timing/answer-timing-guide.md). Log misses in gotchas.
+
+---
+
+## Optional citations (appendix only — not required to study)
+
+- Swift book: Classes and Structures; Enumerations; Concurrency (Actors)
+- Chapter code: [`code/LoadState.swift`](code/LoadState.swift), [`code/COWDemo.swift`](code/COWDemo.swift)
