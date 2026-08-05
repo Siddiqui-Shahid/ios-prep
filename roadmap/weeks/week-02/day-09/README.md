@@ -31,6 +31,7 @@ By end of day, without notes, you can:
 | Foundations | [01-foundations.md](01-foundations.md) |
 | Deep dive | [02-deep-dive.md](02-deep-dive.md) |
 | Production bridge | [03-production-bridge.md](03-production-bridge.md) |
+| Sample Q&A | [sample/README.md](sample/README.md) |
 | Questions | [04-questions.md](04-questions.md) |
 | Exercises | [05-exercises.md](05-exercises.md) |
 | Code | [code/SingleFlightRefresh.swift](code/SingleFlightRefresh.swift) |

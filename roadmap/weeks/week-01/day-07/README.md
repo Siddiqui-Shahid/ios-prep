@@ -32,6 +32,7 @@ By end of day:
 | Questions | [04-questions.md](04-questions.md) |
 | Exercises / scorecard | [05-exercises.md](05-exercises.md) |
 | Code | [code/MockScorecard.md](code/MockScorecard.md) |
+| Sample Q&A (guided) | [sample/](sample/README.md) — concept teaching; does not replace modules above |
 
 ## Provenance spine today
 

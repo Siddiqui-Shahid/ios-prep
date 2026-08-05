@@ -1,6 +1,6 @@
 # 03 — Production Bridge
 
-> Turn Day 02 concepts into resume-honest interview lines.  
+> Turn Day 02 ideas into honest interview lines.  
 > Labels: **Verified** = resume-backed · **How I would apply it** = design extension · **Learning-lab** = demo code.
 
 ---
@@ -24,36 +24,41 @@ Full STAR: [`../../../stories/story-bank.md`](../../../stories/story-bank.md) (S
 
 ### What you can say (safe)
 
-- Highest-revenue Ads module needed a safer, reusable rendering path  
-- Refactored around **protocol-oriented** ad component contracts + **generics** for a **type-safe** pipeline  
-- New ad types plug into the pipeline without forking the revenue path  
-- Built reusable **HeroWidget** with explicit pause/play tied to visibility / VC lifecycle  
-- Coordinated behavior with stakeholders without breaking fill behavior (qualitative — no invented %)  
-- Lesson: for revenue-critical UI, prefer POP + generics over inheritance trees; lifecycle is part of the product contract  
+- The Ads module was highest-revenue and needed a safer, reusable rendering path.
+- You refactored around **protocol** contracts and **generics** so the pipeline stayed **type-safe**.
+- New ad types plugged into the pipeline instead of forking the revenue path.
+- You built reusable **HeroWidget** with explicit pause/play tied to visibility / view-controller lifecycle.
+- Stakeholder coordination mattered because behavior changes on a revenue surface are not casual.
+- Lesson: for revenue-critical UI, prefer POP + generics over inheritance trees; lifecycle is part of the product contract.
 
 ### What you must **not** invent
 
-- Fill-rate percentages, revenue deltas, CTR, exact crash rates for ads  
-- “We type-erased every renderer” (unless personally true — prefer Learning-lab for erasure demos)  
-- “Every creative was a struct”  
-- Fake team size, sprint counts, or App Store rankings  
+- Fill-rate percentages, revenue deltas, CTR, exact crash rates for ads
+- “We type-erased every renderer” (unless personally true — prefer Learning-lab for erasure demos)
+- “Every creative was a struct”
+- Fake team size, sprint counts, or App Store rankings
 
 ### Interview lines
 
-**≤20s pitch:**  
+**≤20s pitch:**
+
 > “We made ad rendering a generic protocol pipeline so new creatives plugged in without forking the revenue path — and HeroWidget tied video playback to visibility.”
 
-**Architecture talk opener (5–10s):**  
+**Architecture talk opener (5–10s):**
+
 > “I’ll walk through our highest-revenue Ads refactor — protocols, generics, and video lifecycle.”
 
-**≈90s Action slice (STAR):**  
-> “The Ads module was highest-revenue and needed a safer reusable rendering path. I refactored rendering around protocol-oriented contracts and generics so the pipeline stayed type-safe as creatives grew — new types conformed and plugged in instead of forking bind code. Separately, video inside HeroWidget needed correct pause and play against visibility and view-controller lifecycle, so we made that lifecycle explicit on the widget. Stakeholder coordination mattered because behavior changes on a revenue surface aren’t casual. The result was a maintainable type-safe pipeline and fewer playback glitches on video creatives.”
+**≈90s Action slice (STAR):**
 
-**Result (honest):**  
+> “The Ads module was highest-revenue and needed a safer reusable rendering path. I refactored rendering around protocol contracts and generics so the pipeline stayed type-safe as creatives grew — new types conformed and plugged in instead of forking bind code. Separately, video inside HeroWidget needed correct pause and play against visibility and view-controller lifecycle, so we made that lifecycle explicit on the widget. Stakeholder coordination mattered because behavior changes on a revenue surface aren’t casual. The result was a maintainable type-safe pipeline and fewer playback glitches on video creatives.”
+
+**Result (honest):**
+
 > “Shipped a maintainable, type-safe ads pipeline; lifecycle-correct video reduced wasted playback and UI glitches on a module that mattered for revenue.”
 
-**Trade-off to volunteer:**  
-> “Generics inside the pipeline for safety and specialization; I’d only type-erase at a heterogeneous list or module boundary — erasure isn’t free.”
+**Trade-off to volunteer:**
+
+> “Generics inside the pipeline for safety and specialization; I’d only type-erase at a mixed list or module boundary — erasure isn’t free.”
 
 > **Provenance:** Verified · S1 · BookMyShow · Ads POP + Generics / HeroWidget
 
@@ -61,11 +66,11 @@ Full STAR: [`../../../stories/story-bank.md`](../../../stories/story-bank.md) (S
 
 ## 3. Mapping concepts → S1 lines
 
-| Question flavor | Lead with | Support with |
+| If they ask… | Lead with… | Support with… |
 |---|---|---|
 | What is POP? | Capability composition | S1 pipeline contracts |
 | Why generics? | Compile-time safety vs `Any` casts | Revenue path correctness |
-| associatedtype pain | Keep generic / erase at edge | Learning-lab eraser if asked “how” |
+| Associated-type pain | Keep generic / erase at the edge | Learning-lab eraser if asked “how” |
 | Inheritance vs POP | Fragile base on ad variants | S1 lesson line |
 | Video lifecycle | HeroWidget pause/play | Class identity + protocol capability |
 | `some` vs `any` | Opaque vs existential | Prefer generics in hot bind |
@@ -77,16 +82,17 @@ Full STAR: [`../../../stories/story-bank.md`](../../../stories/story-bank.md) (S
 
 ### What you can say (safe)
 
-- Built a Stories SDK reused across a portfolio of apps  
-- Reusable surfaces / modularity mattered  
-- Same instinct: **contracts at the boundary**, concretes inside  
+- Built a Stories SDK reused across a portfolio of apps
+- Reusable surfaces / modularity mattered
+- Same instinct: **contracts at the boundary**, concretes inside
 
 ### What you must **not** invent
 
-- Number of client apps as a precise metric unless you know it  
-- Latency / engagement % for stories  
+- Number of client apps as a precise metric unless you know it
+- Latency / engagement % for stories
 
-**≤20s bridge:**  
+**≤20s bridge:**
+
 > “Same POP instinct showed up later in a Stories SDK — reusable protocol-oriented surfaces across brands rather than copy-pasted concretes.”
 
 > **Provenance:** Verified · S10 · Raw / Miami Heat · Stories SDK portfolio reuse
@@ -97,14 +103,15 @@ Use S10 when asked “Have you designed reusable module APIs?” — not as a re
 
 ## 5. Soft · S3 / S3-A1 — open registries
 
-Only if interviewer pivots to SDUI / CMS components:
+Only if the interviewer pivots to SDUI / CMS components:
 
-**Verified · S3:** backend-driven header; generalised protocol-driven main-screen implementation.  
+**Verified · S3:** backend-driven header; generalised protocol-driven main-screen implementation.
 
 **Applied · S3-A1:** how you’d handle unknown component types (fallback + versioning) — say it is design, not a shipped claim.
 
-**One liner:**  
-> “An open protocol registry matches CMS growth better than an forever-closed enum — with an explicit unknown fallback. That’s the design I’d apply for versioning (S3-A1); the shipped header work was protocol-driven (S3).”
+**One liner:**
+
+> “An open protocol registry matches CMS growth better than a forever-closed enum — with an explicit unknown fallback. That’s the design I’d apply for versioning (S3-A1); the shipped header work was protocol-driven (S3).”
 
 Do not let this hijack Day 02 — keep S1 as the spine.
 
@@ -117,7 +124,8 @@ Do not let this hijack Day 02 — keep S1 as the spine.
 | [`code/AdsPipeline.swift`](code/AdsPipeline.swift) | Teaching sketch of S1 shape — **not** shipped BMS source |
 | [`code/TypeErasureDemo.swift`](code/TypeErasureDemo.swift) | Erasure mechanics demo |
 
-If asked “Did you write it like this?”:  
+If asked “Did you write it like this?”:
+
 > “This is the teaching shape of the contracts we used — protocol + generic pipeline. I’m not claiming this file is production source.”
 
 ---
@@ -137,11 +145,12 @@ If asked “Did you write it like this?”:
 
 ## 8. Flash “map to your work” card
 
-**Company / feature:** BookMyShow — Ads module / HeroWidget  
+**Company / feature:** BookMyShow — Ads module / HeroWidget
 
-**What you did:** Refactored highest-revenue module with POP + Generics for type-safe rendering; video pause/play lifecycle on HeroWidget.  
+**What you did:** Refactored highest-revenue module with POP + Generics for type-safe rendering; video pause/play lifecycle on HeroWidget.
 
-**Interview line (≤20s):**  
+**Interview line (≤20s):**
+
 > “We made ad rendering a generic protocol pipeline so new creatives plugged in without forking the revenue path.”
 
 → STAR: [S1](../../../stories/story-bank.md#s1--ads-module-refactor--herowidget-bookmyshow) · optional [S10](../../../stories/story-bank.md#s10--stories-sdk-raw--miami-heat)

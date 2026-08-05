@@ -1,0 +1,30 @@
+# Audio script — Sample 04 — Production S9 and S3 (Q&A)
+> Listen-only sample Q&A from `04-production-s9-s3.md`. Spoken answers and follow-ups.
+
+## §0 Q1. What can you claim under Verified · S9?
+
+Next. Q1. What can you claim under Verified · S9? Answer. Verified S9 is District Free Parking billing adjustments shipped while migrating M V V M↔Clean incrementally; Context Engineering with Cursor/Claude/Copilot inside boundaries you owned; AI-assisted reviews and XCTest/XCUITest drafts with human review; structured logging for on-call production fixes. You may not say “AI wrote our architecture,” claim the entire District app was Clean-ified, or invent velocity or billing savings percentages. Follow-ups. 60s S9 version?: Free Parking ship → incremental M V V M/Clean → AI inside envelope + tests → owned regressions.. On-call ownership?: Yes — you handled production fixes when issues surfaced; that is part of S9.. Forbidden phrase?: “We Clean Architecture’d the entire District app.”.
+
+## §1 Q2. How do you speak about AI tooling without sounding like you outsourced design?
+
+Next. Q2. How do you speak about AI tooling without sounding like you outsourced design? Answer. Say AI was an accelerator inside a strict architectural envelope: you fed layering rules, exemplar PRs, and acceptance intent; AI drafted scaffolding and tests; you reviewed for boundary violations, races, and naming. Tests were a gate, not a substitute for judgment. You are author of record — the tool is not. Context Engineering is the control plane, not “the model designed Free Parking.” Follow-ups. Safe script fragment?: “AI drafted migrations/tests; I owned boundaries and regressions.”. What review checklist catches?: UseCase importing UIKit, VM building URLRequest, missing cancellation, theater tests.. Concrete AI miss to mention?: Billing rules placed in repository — moved to UseCase + unit test..
+
+## §2 Q3. What is the S9 STAR story in plain steps?
+
+Next. Q3. What is the S9 STAR story in plain steps? Answer. Situation: Ship Free Parking billing adjustments while moving patterns across M V V M and Clean without a regression cliff. Action: Deliver the feature; extract UseCase boundaries where domain rules lived; leave simple U I as M V V M; use Context Engineering so AI stayed inside protocols; accelerate test drafts with review; use structured logging on-call. Result: Feature shipped; migration progressed with velocity and discipline — not “AI shipped it.” Lesson: Boundaries first; AI accelerates typing once the envelope is clear. Follow-ups. Strangler vs big-bang?: Strangler — new Free Parking on new boundaries; old screens call new UseCase over time.. MVI/TCA at District?: Discuss as pattern judgment only — not a verified adoption claim.. Tie search in 3 min S9?: Mention S3 only if asked — keep S9 primary for architecture behavioral questions..
+
+## §3 Q4. What can you claim under Verified · S3 for search?
+
+Next. Q4. What can you claim under Verified · S3 for search? Answer. Verified S3 for today’s beat: BMS search used M V V M with debounce, in-flight cancellation, and explicit loading/empty/error (plus idle/results) states — race-safer UX on a high-traffic surface. Repository hid networking; View bound state only. Backend-driven header S D U I is a sibling story on Day 10 — don’t claim deep header mechanics as today’s only proof. Follow-ups. ≤20s S3 line?: “Debounced search with explicit states and cancellation so stale responses can’t win.”. Presentation vs transport?: Debounce in VM; transport cancels tasks but doesn’t own keystroke timing.. Learning-lab code?: SearchViewModel.swift illustrates shape — exact class names aren’t resume bullets..
+
+## §4 Q5. How do you answer “Isn’t Clean overengineering?”
+
+Next. Q5. How do you answer “Isn’t Clean overengineering?” Answer. Scope it — UseCases where rules and migration risk live; M V V M for simple U I. At District you extracted where billing rules hurt, not ceremony on every toggle. Counterexample: a settings switch stays M V V M. Clean here means dependency rule and testable policy, not folder theater or a DI-container religion. Follow-ups. “Whole app Clean?”: No — strangler with selective UseCases.. “Show me DI container.”: Constructor + protocols + feature assembler; container optional until graph pain.. “How do you test?”: UseCase unit tests cheapest; VM with fakes; UITests for critical paths only..
+
+## §5 Q6. What must you never blur between S9 and learning-lab code?
+
+Next. Q6. What must you never blur between S9 and learning-lab code? Answer. You may say you shipped Free Parking and incremental M V V M/Clean migration (S9). You may not present illustrative AdjustFreeParkingBilling or FeatureAssembler class names as exact production types unless you later verify them. Exact folder layout, invented AI velocity %, and “AI never needed review” are all forbidden. Label learning-lab when walking whiteboard code. Follow-ups. Provenance tag for S9?: Verified · S9 · District · Free Parking; M V V M/Clean migration; Context Engineering.. Adjacent S 1 hook?: Ads protocols / testable pipelines — separate verified story, don’t invent memory tickets.. S 10 Stories S D K DI?: Injectable host deps — related DI theme, different product..
+
+## §6 Q7. What should you be able to say after Day 08 sample + modules?
+
+Next. Q7. What should you be able to say after Day 08 sample + modules? Answer. “I default to M V V M for feature U I, add UseCases where domain or migration risk demands, and inject dependencies with protocols and constructors. At District I shipped Free Parking while migrating incrementally — AI accelerated inside an envelope I owned. On BMS search, debounce and cancel live in the ViewModel with explicit states so races don’t win.” Follow-ups. Decision rule in one breath?: M V V M default → UseCase for rules → MVI if async fights → protocol DI → strangler migration.. Where debounce does not go?: URLSession / repository transport layer.. Next study beat?: Day 09 networking layer; Day 10 S D U I header sibling to S3.. Back to: README.md · Main questions:../04-questions.md.

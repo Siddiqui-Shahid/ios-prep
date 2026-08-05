@@ -6,7 +6,7 @@
 
 ## Exercise 1 — `LoadState` fluency `(20–25 min)`
 
-**Prompt:** Using [`code/LoadState.swift`](code/LoadState.swift) as a base (or rewrite from memory):
+**Prompt:** Using `[code/LoadState.swift](code/LoadState.swift)` as a base (or rewrite from memory):
 
 1. Implement `LoadState<T>` with `idle | loading | loaded(T) | failed(Error)`.
 2. Add `static func from(result: Result<T, Error>) -> LoadState<T>`.
@@ -20,6 +20,7 @@ func reduce(state: LoadState<[String]>, event: SearchEvent) -> LoadState<[String
 Define `SearchEvent` as `startSearch | succeed([String]) | fail(Error) | reset`.
 
 **Agenda to say before coding (30s):**  
+
 > “I’ll define the enum, map Result at the boundary, then a pure reduce for events.”
 
 **Done when:** You can explain why `Result` alone is insufficient for UI.
@@ -28,19 +29,23 @@ Define `SearchEvent` as `startSearch | succeed([String]) | fail(Error) | reset`.
 
 ---
 
+
+
 ## Exercise 2 — Payment state machine `(20–30 min)`
 
 **Prompt:** Implement `PaymentPopupState` + `PaymentEvent` + `apply` from the Applied · S7-A1 sketch.
 
 Required transitions:
 
-| From | Event | To |
-|---|---|---|
-| hidden | userStartedCheckout | processing |
-| processing | backendSuccess | success(bookingID) |
-| processing | backendFailure | failure |
-| processing | timeout | timedOut |
-| success/failure/timedOut/processing | dismiss | hidden |
+
+| From                                | Event               | To                 |
+| ----------------------------------- | ------------------- | ------------------ |
+| hidden                              | userStartedCheckout | processing         |
+| processing                          | backendSuccess      | success(bookingID) |
+| processing                          | backendFailure      | failure            |
+| processing                          | timeout             | timedOut           |
+| success/failure/timedOut/processing | dismiss             | hidden             |
+
 
 **Speak (≤90s) after coding:**  
 Product intent (Verified · S7) → why enum beats booleans → one illegal state you eliminated.
@@ -49,20 +54,25 @@ Product intent (Verified · S7) → why enum beats booleans → one illegal stat
 
 ---
 
+
+
 ## Exercise 3 — COW playground `(15–20 min)`
 
-**Prompt:** Run or mentally simulate [`code/COWDemo.swift`](code/COWDemo.swift).
+**Prompt:** Run or mentally simulate `[code/COWDemo.swift](code/COWDemo.swift)`.
 
-1. Two `Array` vars — assign, mutate one, predict prints.  
-2. `ArrayBox` class wrapper — predict shared mutation.  
+1. Two `Array` vars — assign, mutate one, predict prints.
+2. `ArrayBox` class wrapper — predict shared mutation.
 3. Implement or read `COWList` with `isKnownUniquelyReferenced`.
 
 **Speak (30s):**  
+
 > “Share until write; class boxes share identity; handmade COW is a value façade over a buffer class.”
 
 **Trap to avoid:** Claiming assignment always deep-copies elements.
 
 ---
+
+
 
 ## Exercise 4 — Nested reference audit `(15 min)`
 
@@ -86,6 +96,7 @@ b.metrics.taps.append("click")
 ```
 
 **Write:**
+
 - Observed behavior  
 - Root cause (one sentence)  
 - Two redesigns (prefer values / don’t store shared services in DTOs)
@@ -93,6 +104,8 @@ b.metrics.taps.append("click")
 **Story hook:** Why value-friendly ads models matter (Verified · S1) without inventing metrics.
 
 ---
+
+
 
 ## Exercise 5 — Actor intro sketch `(15–20 min)`
 
@@ -108,36 +121,42 @@ final class SyncedMap {
 }
 ```
 
-1. Fill in serial-queue implementations (sync/async choices — speak trade-offs).  
-2. Rewrite as `actor SyncedMap` with the same method names.  
+1. Fill in serial-queue implementations (sync/async choices — speak trade-offs).
+2. Rewrite as `actor SyncedMap` with the same method names.
 3. Speak the S2 → S2-A1 bridge in ≤45s.
 
 **Do not claim** you rewrote production dictionaries as actors.
 
 ---
 
+
+
 ## Exercise 6 — Timed speaking drill `(25–35 min)`
 
 Record (phone voice memo is fine):
 
-1. Q1 struct vs class  
-2. Q2 COW  
-3. Q3 enums vs booleans  
-4. T1 array mutate after assign  
-5. T6 payment state machine  
+1. Q1 struct vs class
+2. Q2 COW
+3. Q3 enums vs booleans
+4. T1 array mutate after assign
+5. T6 payment state machine
 
-Score with [`../../../timing/answer-timing-guide.md`](../../../timing/answer-timing-guide.md):
+Score with `[../../../timing/answer-timing-guide.md](../../../timing/answer-timing-guide.md)`:
 
-| Check | Pass? |
-|---|---|
-| Agenda in first 10s | |
-| Trade-off mentioned | |
-| Production hook without invented metrics | |
-| Finished inside budget | |
+
+| Check                                    | Pass? |
+| ---------------------------------------- | ----- |
+| Agenda in first 10s                      |       |
+| Trade-off mentioned                      |       |
+| Production hook without invented metrics |       |
+| Finished inside budget                   |       |
+
 
 Log misses → gotchas file / notes.
 
 ---
+
+
 
 ## Exercise 7 — Social Feed clarifying questions `(20–30 min)`
 
@@ -157,18 +176,24 @@ Keep this as questions only — full SD is later weeks.
 
 ---
 
+
+
 ## Solutions pointers (don’t spoil yourself)
 
-| Exercise | Look at |
-|---|---|
-| 1–2 | [`code/LoadState.swift`](code/LoadState.swift) |
-| 3 | [`code/COWDemo.swift`](code/COWDemo.swift) |
-| 4 | Deep dive §3 nested references |
-| 5 | Deep dive §6; production bridge §5 |
-| 6 | [`04-questions.md`](04-questions.md) full answers |
-| 7 | Your notes; Week 1 SD spine later |
+
+| Exercise | Look at                                           |
+| -------- | ------------------------------------------------- |
+| 1–2      | `[code/LoadState.swift](code/LoadState.swift)`    |
+| 3        | `[code/COWDemo.swift](code/COWDemo.swift)`        |
+| 4        | Deep dive §3 nested references                    |
+| 5        | Deep dive §6; production bridge §5                |
+| 6        | `[04-questions.md](04-questions.md)` full answers |
+| 7        | Your notes; Week 1 SD spine later                 |
+
 
 ---
+
+
 
 ## Exit criteria
 
@@ -182,4 +207,4 @@ You may mark Day 01 complete when you can, **without notes**:
 - [ ] ≤45s S2 → actor bridge without overclaiming  
 
 Then use the revision twin for spaced drills:  
-[`../../../revision/weeks/week-01/day-01.md`](../../../revision/weeks/week-01/day-01.md)
+`[../../../revision/weeks/week-01/day-01.md](../../../revision/weeks/week-01/day-01.md)`

@@ -33,6 +33,7 @@ By end of day, without notes, you can:
 | Questions | [04-questions.md](04-questions.md) | Two-layer Q&A (12N + 8T) |
 | Exercises | [05-exercises.md](05-exercises.md) | Whiteboard + speaking drills |
 | Code | [code/JourneyTrace.swift](code/JourneyTrace.swift), [code/InstrumentsToolMap.swift](code/InstrumentsToolMap.swift) | Teaching sketches |
+| Sample Q&A | [sample/README.md](sample/README.md) |
 
 ## Critical correctness (memorize)
 

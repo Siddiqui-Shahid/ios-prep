@@ -39,7 +39,7 @@
 **Answer points (frame first):**
 - Generic parameter: caller chooses
 - associatedtype: conforming type chooses
-- PATs complicate simple existentials / arrays
+- Protocols with associated types complicate simple existentials / arrays
 - Pipeline stays generic to avoid that pain
 
 **Agenda opener:**  
@@ -52,11 +52,11 @@
 > “They’re the same thing” or “just write `var x: [AdRenderable]` with associated types and move on.”
 
 **Follow-up ladder:**
-- **L1:** Can you put a PAT in an array?
+- **L1:** Can you put a protocol with associated types in an array?
 - **L2:** What are primary associated types helping with?
 - **L3:** Show `where` constraining an associated type.
 
-**Provenance:** Learning-lab · PAT mental model; Verified · S1 pipeline shape
+**Provenance:** Learning-lab · associated-type mental model; Verified · S1 pipeline shape
 
 ---
 

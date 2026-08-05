@@ -33,6 +33,7 @@ By end of day, without notes, you can:
 | Questions | [04-questions.md](04-questions.md) |
 | Exercises | [05-exercises.md](05-exercises.md) |
 | Code | [code/RetainCycleDemo.swift](code/RetainCycleDemo.swift) |
+| Sample Q&A (guided) | [sample/](sample/README.md) — concept teaching; does not replace modules above |
 
 ## Critical correctness (memorize)
 

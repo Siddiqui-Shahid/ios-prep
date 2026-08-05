@@ -19,6 +19,13 @@
 5. [`05-exercises.md`](05-exercises.md) — record reps (no coding day)
 6. No `code/` — voice memos are the artifact
 
+
+## Module map
+
+| Module | Path |
+|---|---|
+| Sample Q&A | [sample/README.md](sample/README.md) |
+
 ## Provenance
 
 Only resume-backed metrics. S9 = tooling judgment ≠ S15/S16 product AI.

@@ -19,6 +19,13 @@
 5. [`05-exercises.md`](05-exercises.md) — run the mock + debrief (adapted)
 6. No new topics; no `code/` kit — fresh DSA problem day-of
 
+
+## Module map
+
+| Module | Path |
+|---|---|
+| Sample Q&A | [sample/README.md](sample/README.md) |
+
 ## Expert briefing (paste)
 
 > Muhammed is targeting senior iOS. Coding 45 (Medium, unlabeled pattern), iOS deep dive 45 (concurrency, architecture, networking/SDUI, perf/crashes — push trade-offs), System design 45 (SDUI **or** networking+pinning **or** on-device AI). Score communication and timing. Metrics allowed: 30L+ DAU, 99.95% crash-free, 30%+ nav reduction.

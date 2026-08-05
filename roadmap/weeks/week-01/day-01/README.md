@@ -33,6 +33,7 @@ By end of day, without notes, you can:
 | Questions | [04-questions.md](04-questions.md) | Two-layer Q&A (normal + tricky) |
 | Exercises | [05-exercises.md](05-exercises.md) | Coding + speaking drills |
 | Code | [code/LoadState.swift](code/LoadState.swift), [code/COWDemo.swift](code/COWDemo.swift) | Runnable mental models |
+| Sample Q&A | [sample/](sample/) | Guided question → answer cards (app uses these only) |
 
 ## Time budget (suggested)
 

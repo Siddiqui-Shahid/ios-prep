@@ -33,6 +33,7 @@ By end of day, without notes, you can:
 | **S4** Verified | HTTPS + pinning + domain whitelist on Ads URLSession migration |
 | **S4-A1** | Rotation / backup / break-glass = **design judgment** |
 | Tokens | **Keychain only** — never UserDefaults |
+| Sample Q&A | [sample/README.md](sample/README.md) |
 
 ## Provenance
 

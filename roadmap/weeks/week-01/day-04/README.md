@@ -35,6 +35,7 @@ By end of day, without notes, you can:
 | Questions | [04-questions.md](04-questions.md) | Two-layer Q&A |
 | Exercises | [05-exercises.md](05-exercises.md) | Coding + speaking |
 | Code | [code/SafeDict.swift](code/SafeDict.swift), [code/BarrierDict.swift](code/BarrierDict.swift) | Learning-lab |
+| Sample Q&A | [sample/README.md](sample/README.md) | Guided teaching cards |
 
 ## Time budget (suggested)
 

@@ -42,6 +42,7 @@ By end of day, without notes, you can:
 | Questions | [04-questions.md](04-questions.md) |
 | Exercises | [05-exercises.md](05-exercises.md) |
 | Code | [code/DeepLinkQueue.swift](code/DeepLinkQueue.swift) |
+| Sample Q&A | [sample/README.md](sample/README.md) |
 
 ## Agenda opener
 

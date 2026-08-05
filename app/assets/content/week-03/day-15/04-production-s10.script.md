@@ -1,0 +1,30 @@
+# Audio script — Sample 04 — Production S10 (Q&A)
+> Listen-only sample Q&A from `04-production-s10.md`. Spoken answers and follow-ups.
+
+## §0 Q1. What can you claim under Verified · S10?
+
+Next. Q1. What can you claim under Verified · S10? Answer. You designed a standalone reusable Stories S D K with a deliberate public A P I surface. You kept isolation from app-specific networking shortcuts — hosts inject content, analytics, and loaders. You drove adoption across portfolio apps (NBA/WNBA) so feature parity did not mean copy-paste forks. You may not invent “N apps × M% faster build” without evidence, claim Needle open-source unless true, or collapse S 10 and S11 (scoreboard) into one careless claim. Follow-ups. 20-second Verified line?: “I shipped Stories as a standalone S D K with a clear public A P I and injected host dependencies — one module, multiple apps, no copy-paste forks.”. What is S11 adjacent?: Live scoreboard Raw ownership — separate story.. Learning-lab vs Verified?: code/ Package + DI sketches are illustrative — not portfolio metrics..
+
+## §1 Q2. Walk the S10 STAR spine in under three minutes
+
+Next. Q2. Walk the S10 STAR spine in under three minutes Answer. Opener: Standalone Stories S D K for portfolio reuse. S/T: Instagram-style fan Stories across NBA/WNBA apps — not one-off U I per app. Action: Public A P I; host-injected deps; hidden internals; portfolio adoption; versioning as quality. Result: One implementation leveraged by multiple apps → faster feature parity. Lesson: S D K quality = A P I + versioning + independence from host shortcuts. Follow-ups. Provenance tag to say aloud?: Verified · S 10 · Raw / Miami Heat · Stories S D K portfolio reuse.. What not to invent in Result?: Percent faster builds or adoption timelines without data.. Action item interviewers probe?: How hosts inject theme and ImageLoading..
+
+## §2 Q3. How do Applied extensions extend S10 without overclaiming?
+
+Next. Q3. How do Applied extensions extend S10 without overclaiming? Answer. Label How I would apply it when describing design detail beyond Verified facts. Examples: host injects ImageLoading for shared cache policy (Day 16); UIHostingController façade for UIKit hosts (S13 soft); protocolised theme tokens instead of hardcoded Heat colors. These extend boundaries — they are not substitute proof for portfolio adoption. Follow-ups. Image loader line?: Host injects loader so portfolio shares one cache policy — design detail, not a separate Verified story.. Theming line?: Protocolised tokens — don’t hardcode brand colors in S D K.. When say “Applied” aloud?: Any detail you cannot tie to shipped S 10 evidence..
+
+## §3 Q4. How do S1 and S4 hook softly without stealing S10?
+
+Next. Q4. How do S1 and S4 hook softly without stealing S10? Answer. S 1 soft: Ads as revenue module with P O P+Generics A P I — modularization of behavior even if packaging was pod-era. S4 soft: Packaging vs architecture — Ads networking ownership lived behind a module boundary; CocoaPods vs SPM is not the same question as “is the boundary clean?” S9 soft: Independently testable modules. Keep S 10 as the hero modularization proof; use soft hooks only when the interviewer pivots. Follow-ups. Lead with S 1 on modularization question?: No — lead S 10; mention S 1 if ads/module boundary comes up.. S4 one-liner?: Clean boundary can exist in legacy packaging — measure the graph, not the tool fad.. S9 one-liner?: Module boundaries enable test doubles and keep AI inside architecture..
+
+## §4 Q5. What must you never say about Stories modularization?
+
+Next. Q5. What must you never say about Stories modularization? Answer. Do not invent build-time or adoption percentages. Do not claim you open-sourced an internal Needle fork unless true. Do not merge S 10 Stories S D K with S11 scoreboard as one undifferentiated “Raw modules” story. Do not describe Learning-lab Package.swift as “what we shipped to production” without labeling it. Follow-ups. Checklist before speaking?: Verified vs Applied labeled? Public A P I named? Host injection mentioned? Safe Learning-lab phrasing?: “In the lab I sketch Package + composition root — production proof is S 10.”. If asked “how much faster?”: Honest: parity and reuse — measure build if you have Build Timing data..
+
+## §5 Q6. How does S10 answer “design a reusable feature module”?
+
+Next. Q6. How does S10 answer “design a reusable feature module”? Answer. Whiteboard: standalone package → public entry + callbacks + errors → inject theme, analytics, content provider, image loader → demo host → second production host → semver. Tie to Verified: you did this for Stories across portfolio apps. Emphasize what crosses the boundary (protocols) vs what stays internal (VCs, SwiftUI, networking shortcuts). Follow-ups. Public vs internal rule?: If a host needs it, protocol or public type; else hide.. Cross-feature navigation?: Host router handles deeplink exit — S D K does not import Checkout Impl.. Testability hook?: Injected deps → mock content and loaders in demo host tests..
+
+## §6 Q7. Give a full honest answer mixing architecture and S10
+
+Next. Q7. Give a full honest answer mixing architecture and S10 Answer. “Features depend on peer Interfaces, never Impls — App is the composition root. For portfolio reuse I shipped Stories as a standalone S D K (Verified S 10): public A P I, host-injected theme/analytics/loaders, adoption across NBA/WNBA apps. I’d extend that boundary with injected ImageLoading and protocolised theming (Applied) — S D K quality is A P I stability and host independence, not folder moves.” Follow-ups. Where is Verified?: Standalone S D K, public A P I, portfolio adoption.. Where is Applied?: Image loader and theme injection design detail.. After this sample?:../code/, then../04-questions.md.. After this sample 1. Skim../code/Package.swift and../code/StoriesPublicAPI.swift. 2. Speak S 10 STAR timed from Answer points in../04-questions.md. 3. Whiteboard Interface/Impl + composition root in../05-exercises.md.

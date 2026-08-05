@@ -34,6 +34,7 @@ By end of day, without notes, you can:
 | **Verified · S9** | Contrast only — AI *tooling* / context engineering ≠ product on-device AI |
 | **Verified · S8** | Soft — kill switch / crash-free judgment at consumer scale |
 | **Learning-lab** | `code/` sketches — teaching, not production Flutter/Dart paste |
+| Sample Q&A | [sample/README.md](sample/README.md) |
 
 Do **not** invent model latency ms, accuracy %, or “we fine-tuned on user ledgers.”
 

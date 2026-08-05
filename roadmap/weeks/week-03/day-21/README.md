@@ -29,6 +29,7 @@ By end of day you can:
 | **A · SDUI** | S3 header/search; S12 splash; optional S6 30%+ flows as UX beat |
 | **B · Networking+pin** | S4 URLSession/HTTPS/pin/whitelist; S5 p50/p90; S2 path races if token cache; **S4-A1 rotation as design** |
 | **Ops both** | S8 99.95% CFS / IMOC pause; 30L+ DAU scale context |
+| Sample Q&A | [sample/README.md](sample/README.md) |
 
 Do **not**: invent QPS; claim S2 alone caused CFS; claim S4-A1 runbook shipped; claim SecKey bytes are SPKI.
 

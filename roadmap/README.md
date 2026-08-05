@@ -12,6 +12,7 @@ Personalized 4-week senior iOS system. **Full chapters are self-contained in Cur
 |---|---|---|
 | **Full study** | [`weeks/week-XX/day-YY/README.md`](weeks/week-01/day-01/README.md) | First time learning a topic |
 | **Revision** | [`revision/weeks/`](revision/README.md) | After full study — timed drills only |
+| **Audiobook app** | [`../app/README.md`](../app/README.md) | Listen + read Week 1 offline (iOS & Android) |
 
 ### How to study a day
 

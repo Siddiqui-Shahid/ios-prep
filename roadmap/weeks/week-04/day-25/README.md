@@ -27,6 +27,7 @@
 | **Verified · S9** | Clean/MVVM + AI-assisted tests **judgment** |
 | **Verified · S12** | Server-driven splash awareness |
 | **Learning-lab** | Whatever you build in the 3hr window |
+| Sample Q&A | [sample/README.md](sample/README.md) |
 
 ## Proctor opener (0:15)
 

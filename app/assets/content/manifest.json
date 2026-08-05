@@ -1,0 +1,868 @@
+{
+  "weeks": [
+    {
+      "id": "week-01",
+      "title": "Week 1 \u2014 Foundations",
+      "days": [
+        {
+          "id": "day-01",
+          "title": "Day 01 \u2014 Sample Q&A: Value vs Reference, COW, Enums, Actors Intro",
+          "chapters": [
+            {
+              "id": "01-value-types",
+              "title": "01 Value Types (Q&A)",
+              "markdown": "assets/content/week-01/day-01/01-value-types.md",
+              "script": "assets/content/week-01/day-01/01-value-types.script.md"
+            },
+            {
+              "id": "02-cow-enums",
+              "title": "02 COW Enums (Q&A)",
+              "markdown": "assets/content/week-01/day-01/02-cow-enums.md",
+              "script": "assets/content/week-01/day-01/02-cow-enums.script.md"
+            },
+            {
+              "id": "03-actors-classes",
+              "title": "03 Actors Classes (Q&A)",
+              "markdown": "assets/content/week-01/day-01/03-actors-classes.md",
+              "script": "assets/content/week-01/day-01/03-actors-classes.script.md"
+            },
+            {
+              "id": "04-production-s1-s7",
+              "title": "04 Production S1 S7 (Q&A)",
+              "markdown": "assets/content/week-01/day-01/04-production-s1-s7.md",
+              "script": "assets/content/week-01/day-01/04-production-s1-s7.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-02",
+          "title": "Day 02 \u2014 Sample Q&A: Protocols, POP, Generics, Associated Types, Type Erasure",
+          "chapters": [
+            {
+              "id": "01-pop-and-generics",
+              "title": "01 POP And Generics (Q&A)",
+              "markdown": "assets/content/week-01/day-02/01-pop-and-generics.md",
+              "script": "assets/content/week-01/day-02/01-pop-and-generics.script.md"
+            },
+            {
+              "id": "02-associated-types-erasure",
+              "title": "02 Associated Types Erasure (Q&A)",
+              "markdown": "assets/content/week-01/day-02/02-associated-types-erasure.md",
+              "script": "assets/content/week-01/day-02/02-associated-types-erasure.script.md"
+            },
+            {
+              "id": "03-pipeline-and-code",
+              "title": "03 Pipeline And Code (Q&A)",
+              "markdown": "assets/content/week-01/day-02/03-pipeline-and-code.md",
+              "script": "assets/content/week-01/day-02/03-pipeline-and-code.script.md"
+            },
+            {
+              "id": "04-production-s1",
+              "title": "04 Production S1 (Q&A)",
+              "markdown": "assets/content/week-01/day-02/04-production-s1.md",
+              "script": "assets/content/week-01/day-02/04-production-s1.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-03",
+          "title": "Day 03 \u2014 Sample Q&A: ARC, Retain Cycles, weak/unowned, Instruments",
+          "chapters": [
+            {
+              "id": "01-arc-basics",
+              "title": "01 ARC Basics (Q&A)",
+              "markdown": "assets/content/week-01/day-03/01-arc-basics.md",
+              "script": "assets/content/week-01/day-03/01-arc-basics.script.md"
+            },
+            {
+              "id": "02-retain-cycles",
+              "title": "02 Retain Cycles (Q&A)",
+              "markdown": "assets/content/week-01/day-03/02-retain-cycles.md",
+              "script": "assets/content/week-01/day-03/02-retain-cycles.script.md"
+            },
+            {
+              "id": "03-tools-and-leaks",
+              "title": "03 Tools And Leaks (Q&A)",
+              "markdown": "assets/content/week-01/day-03/03-tools-and-leaks.md",
+              "script": "assets/content/week-01/day-03/03-tools-and-leaks.script.md"
+            },
+            {
+              "id": "04-production-s8",
+              "title": "04 Production S8 (Q&A)",
+              "markdown": "assets/content/week-01/day-03/04-production-s8.md",
+              "script": "assets/content/week-01/day-03/04-production-s8.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-04",
+          "title": "Day 04 \u2014 Sample Q&A: GCD Queues, sync/async, Barriers, Thread-Safe Dictionary",
+          "chapters": [
+            {
+              "id": "01-queues-sync-async",
+              "title": "01 Queues Sync Async (Q&A)",
+              "markdown": "assets/content/week-01/day-04/01-queues-sync-async.md",
+              "script": "assets/content/week-01/day-04/01-queues-sync-async.script.md"
+            },
+            {
+              "id": "02-thread-safe-dict",
+              "title": "02 Thread Safe Dict (Q&A)",
+              "markdown": "assets/content/week-01/day-04/02-thread-safe-dict.md",
+              "script": "assets/content/week-01/day-04/02-thread-safe-dict.script.md"
+            },
+            {
+              "id": "03-groups-races",
+              "title": "03 Groups Races (Q&A)",
+              "markdown": "assets/content/week-01/day-04/03-groups-races.md",
+              "script": "assets/content/week-01/day-04/03-groups-races.script.md"
+            },
+            {
+              "id": "04-production-s2",
+              "title": "04 Production S2 (Q&A)",
+              "markdown": "assets/content/week-01/day-04/04-production-s2.md",
+              "script": "assets/content/week-01/day-04/04-production-s2.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-05",
+          "title": "Day 05 \u2014 Sample Q&A: async/await, Structured Concurrency, Actors, Sendable",
+          "chapters": [
+            {
+              "id": "01-async-await",
+              "title": "01 Async Await (Q&A)",
+              "markdown": "assets/content/week-01/day-05/01-async-await.md",
+              "script": "assets/content/week-01/day-05/01-async-await.script.md"
+            },
+            {
+              "id": "02-structured-concurrency",
+              "title": "02 Structured Concurrency (Q&A)",
+              "markdown": "assets/content/week-01/day-05/02-structured-concurrency.md",
+              "script": "assets/content/week-01/day-05/02-structured-concurrency.script.md"
+            },
+            {
+              "id": "03-actors-sendable",
+              "title": "03 Actors Sendable (Q&A)",
+              "markdown": "assets/content/week-01/day-05/03-actors-sendable.md",
+              "script": "assets/content/week-01/day-05/03-actors-sendable.script.md"
+            },
+            {
+              "id": "04-production-s2",
+              "title": "04 Production S2 (Q&A)",
+              "markdown": "assets/content/week-01/day-05/04-production-s2.md",
+              "script": "assets/content/week-01/day-05/04-production-s2.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-06",
+          "title": "Day 06 \u2014 Sample Q&A: DSA: Arrays, Strings, Two Pointers, Sliding Window",
+          "chapters": [
+            {
+              "id": "01-approach-scripts",
+              "title": "01 Approach Scripts (Q&A)",
+              "markdown": "assets/content/week-01/day-06/01-approach-scripts.md",
+              "script": "assets/content/week-01/day-06/01-approach-scripts.script.md"
+            },
+            {
+              "id": "02-two-pointers-window",
+              "title": "02 Two Pointers Window (Q&A)",
+              "markdown": "assets/content/week-01/day-06/02-two-pointers-window.md",
+              "script": "assets/content/week-01/day-06/02-two-pointers-window.script.md"
+            },
+            {
+              "id": "03-strings-swift",
+              "title": "03 Strings Swift (Q&A)",
+              "markdown": "assets/content/week-01/day-06/03-strings-swift.md",
+              "script": "assets/content/week-01/day-06/03-strings-swift.script.md"
+            },
+            {
+              "id": "04-patterns-drills",
+              "title": "04 Patterns Drills (Q&A)",
+              "markdown": "assets/content/week-01/day-06/04-patterns-drills.md",
+              "script": "assets/content/week-01/day-06/04-patterns-drills.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-07",
+          "title": "Day 07 \u2014 Sample Q&A: Week 1 Revision + Mock Interview #1",
+          "chapters": [
+            {
+              "id": "01-week1-recall",
+              "title": "01 Week1 Recall (Q&A)",
+              "markdown": "assets/content/week-01/day-07/01-week1-recall.md",
+              "script": "assets/content/week-01/day-07/01-week1-recall.script.md"
+            },
+            {
+              "id": "02-story-s2",
+              "title": "02 Story S2 (Q&A)",
+              "markdown": "assets/content/week-01/day-07/02-story-s2.md",
+              "script": "assets/content/week-01/day-07/02-story-s2.script.md"
+            },
+            {
+              "id": "03-mock-interview",
+              "title": "03 Mock Interview (Q&A)",
+              "markdown": "assets/content/week-01/day-07/03-mock-interview.md",
+              "script": "assets/content/week-01/day-07/03-mock-interview.script.md"
+            },
+            {
+              "id": "04-warmup-hld",
+              "title": "04 Warmup HLD (Q&A)",
+              "markdown": "assets/content/week-01/day-07/04-warmup-hld.md",
+              "script": "assets/content/week-01/day-07/04-warmup-hld.script.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "week-02",
+      "title": "Week 2 \u2014 Architecture & UI",
+      "days": [
+        {
+          "id": "day-08",
+          "title": "Day 08 \u2014 Sample Q&A: MVVM / Clean / MVI \u00b7 Layering \u00b7 DI",
+          "chapters": [
+            {
+              "id": "01-layer-stack-di",
+              "title": "01 Layer Stack DI (Q&A)",
+              "markdown": "assets/content/week-02/day-08/01-layer-stack-di.md",
+              "script": "assets/content/week-02/day-08/01-layer-stack-di.script.md"
+            },
+            {
+              "id": "02-mvvm-clean-mvi",
+              "title": "02 MVVM Clean MVI (Q&A)",
+              "markdown": "assets/content/week-02/day-08/02-mvvm-clean-mvi.md",
+              "script": "assets/content/week-02/day-08/02-mvvm-clean-mvi.script.md"
+            },
+            {
+              "id": "03-search-cancel-states",
+              "title": "03 Search Cancel States (Q&A)",
+              "markdown": "assets/content/week-02/day-08/03-search-cancel-states.md",
+              "script": "assets/content/week-02/day-08/03-search-cancel-states.script.md"
+            },
+            {
+              "id": "04-production-s9-s3",
+              "title": "04 Production S9 S3 (Q&A)",
+              "markdown": "assets/content/week-02/day-08/04-production-s9-s3.md",
+              "script": "assets/content/week-02/day-08/04-production-s9-s3.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-09",
+          "title": "Day 09 \u2014 Sample Q&A: URLSession Networking Layer",
+          "chapters": [
+            {
+              "id": "01-networking-layer",
+              "title": "01 Networking Layer (Q&A)",
+              "markdown": "assets/content/week-02/day-09/01-networking-layer.md",
+              "script": "assets/content/week-02/day-09/01-networking-layer.script.md"
+            },
+            {
+              "id": "02-refresh-and-cancel",
+              "title": "02 Refresh And Cancel (Q&A)",
+              "markdown": "assets/content/week-02/day-09/02-refresh-and-cancel.md",
+              "script": "assets/content/week-02/day-09/02-refresh-and-cancel.script.md"
+            },
+            {
+              "id": "03-pinning-security",
+              "title": "03 Pinning Security (Q&A)",
+              "markdown": "assets/content/week-02/day-09/03-pinning-security.md",
+              "script": "assets/content/week-02/day-09/03-pinning-security.script.md"
+            },
+            {
+              "id": "04-production-s4",
+              "title": "04 Production S4 (Q&A)",
+              "markdown": "assets/content/week-02/day-09/04-production-s4.md",
+              "script": "assets/content/week-02/day-09/04-production-s4.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-10",
+          "title": "Day 10 \u2014 Sample Q&A: SDUI / CMS \u00b7 Schema Versioning \u00b7 Fallbacks",
+          "chapters": [
+            {
+              "id": "01-sdui-foundations",
+              "title": "01 SDUI Foundations (Q&A)",
+              "markdown": "assets/content/week-02/day-10/01-sdui-foundations.md",
+              "script": "assets/content/week-02/day-10/01-sdui-foundations.script.md"
+            },
+            {
+              "id": "02-schema-version-fallbacks",
+              "title": "02 Schema Version Fallbacks (Q&A)",
+              "markdown": "assets/content/week-02/day-10/02-schema-version-fallbacks.md",
+              "script": "assets/content/week-02/day-10/02-schema-version-fallbacks.script.md"
+            },
+            {
+              "id": "03-registry-actions-splash",
+              "title": "03 Registry Actions Splash (Q&A)",
+              "markdown": "assets/content/week-02/day-10/03-registry-actions-splash.md",
+              "script": "assets/content/week-02/day-10/03-registry-actions-splash.script.md"
+            },
+            {
+              "id": "04-production-s3-s12",
+              "title": "04 Production S3 S12 (Q&A)",
+              "markdown": "assets/content/week-02/day-10/04-production-s3-s12.md",
+              "script": "assets/content/week-02/day-10/04-production-s3-s12.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-11",
+          "title": "Day 11 \u2014 Sample Q&A: UIKit Lifecycle, Cells, Prefetch \u00b7 Hybrid UIKit \u2194 SwiftUI",
+          "chapters": [
+            {
+              "id": "01-lifecycle-hooks",
+              "title": "01 Lifecycle Hooks (Q&A)",
+              "markdown": "assets/content/week-02/day-11/01-lifecycle-hooks.md",
+              "script": "assets/content/week-02/day-11/01-lifecycle-hooks.script.md"
+            },
+            {
+              "id": "02-cells-reuse-prefetch",
+              "title": "02 Cells Reuse Prefetch (Q&A)",
+              "markdown": "assets/content/week-02/day-11/02-cells-reuse-prefetch.md",
+              "script": "assets/content/week-02/day-11/02-cells-reuse-prefetch.script.md"
+            },
+            {
+              "id": "03-hybrid-interop",
+              "title": "03 Hybrid Interop (Q&A)",
+              "markdown": "assets/content/week-02/day-11/03-hybrid-interop.md",
+              "script": "assets/content/week-02/day-11/03-hybrid-interop.script.md"
+            },
+            {
+              "id": "04-production-s13-s6",
+              "title": "04 Production S13 S6 (Q&A)",
+              "markdown": "assets/content/week-02/day-11/04-production-s13-s6.md",
+              "script": "assets/content/week-02/day-11/04-production-s13-s6.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-12",
+          "title": "Day 12 \u2014 Sample Q&A: SwiftUI State, Identity, @Observable, Lists, Performance",
+          "chapters": [
+            {
+              "id": "01-state-ownership",
+              "title": "01 State Ownership (Q&A)",
+              "markdown": "assets/content/week-02/day-12/01-state-ownership.md",
+              "script": "assets/content/week-02/day-12/01-state-ownership.script.md"
+            },
+            {
+              "id": "02-identity-traps",
+              "title": "02 Identity Traps (Q&A)",
+              "markdown": "assets/content/week-02/day-12/02-identity-traps.md",
+              "script": "assets/content/week-02/day-12/02-identity-traps.script.md"
+            },
+            {
+              "id": "03-lists-performance",
+              "title": "03 Lists Performance (Q&A)",
+              "markdown": "assets/content/week-02/day-12/03-lists-performance.md",
+              "script": "assets/content/week-02/day-12/03-lists-performance.script.md"
+            },
+            {
+              "id": "04-production-s10",
+              "title": "04 Production S10 (Q&A)",
+              "markdown": "assets/content/week-02/day-12/04-production-s10.md",
+              "script": "assets/content/week-02/day-12/04-production-s10.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-13",
+          "title": "Day 13 \u2014 Sample Q&A: DSA: Stack / Queue / Linked List",
+          "chapters": [
+            {
+              "id": "01-stack-queue-basics",
+              "title": "01 Stack Queue Basics (Q&A)",
+              "markdown": "assets/content/week-02/day-13/01-stack-queue-basics.md",
+              "script": "assets/content/week-02/day-13/01-stack-queue-basics.script.md"
+            },
+            {
+              "id": "02-monotonic-patterns",
+              "title": "02 Monotonic Patterns (Q&A)",
+              "markdown": "assets/content/week-02/day-13/02-monotonic-patterns.md",
+              "script": "assets/content/week-02/day-13/02-monotonic-patterns.script.md"
+            },
+            {
+              "id": "03-linked-list-algos",
+              "title": "03 Linked List Algos (Q&A)",
+              "markdown": "assets/content/week-02/day-13/03-linked-list-algos.md",
+              "script": "assets/content/week-02/day-13/03-linked-list-algos.script.md"
+            },
+            {
+              "id": "04-production-bridges",
+              "title": "04 Production Bridges (Q&A)",
+              "markdown": "assets/content/week-02/day-13/04-production-bridges.md",
+              "script": "assets/content/week-02/day-13/04-production-bridges.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-14",
+          "title": "Day 14 \u2014 Sample Q&A: Week 2 Revision + Mock #2 (Ads or SDUI)",
+          "chapters": [
+            {
+              "id": "01-week2-synthesis",
+              "title": "01 Week2 Synthesis (Q&A)",
+              "markdown": "assets/content/week-02/day-14/01-week2-synthesis.md",
+              "script": "assets/content/week-02/day-14/01-week2-synthesis.script.md"
+            },
+            {
+              "id": "02-mock-format",
+              "title": "02 Mock Format (Q&A)",
+              "markdown": "assets/content/week-02/day-14/02-mock-format.md",
+              "script": "assets/content/week-02/day-14/02-mock-format.script.md"
+            },
+            {
+              "id": "03-ads-architecture",
+              "title": "03 Ads Architecture (Q&A)",
+              "markdown": "assets/content/week-02/day-14/03-ads-architecture.md",
+              "script": "assets/content/week-02/day-14/03-ads-architecture.script.md"
+            },
+            {
+              "id": "04-sdui-architecture",
+              "title": "04 SDUI Architecture (Q&A)",
+              "markdown": "assets/content/week-02/day-14/04-sdui-architecture.md",
+              "script": "assets/content/week-02/day-14/04-sdui-architecture.script.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "week-03",
+      "title": "Week 3 \u2014 Systems & Reliability",
+      "days": [
+        {
+          "id": "day-15",
+          "title": "Day 15 \u2014 Sample Q&A: App Modularization, SPM & DI Graphs",
+          "chapters": [
+            {
+              "id": "01-modularization-basics",
+              "title": "01 Modularization Basics (Q&A)",
+              "markdown": "assets/content/week-03/day-15/01-modularization-basics.md",
+              "script": "assets/content/week-03/day-15/01-modularization-basics.script.md"
+            },
+            {
+              "id": "02-spm-di-graphs",
+              "title": "02 SPM DI Graphs (Q&A)",
+              "markdown": "assets/content/week-03/day-15/02-spm-di-graphs.md",
+              "script": "assets/content/week-03/day-15/02-spm-di-graphs.script.md"
+            },
+            {
+              "id": "03-stories-sdk",
+              "title": "03 Stories Sdk (Q&A)",
+              "markdown": "assets/content/week-03/day-15/03-stories-sdk.md",
+              "script": "assets/content/week-03/day-15/03-stories-sdk.script.md"
+            },
+            {
+              "id": "04-production-s10",
+              "title": "04 Production S10 (Q&A)",
+              "markdown": "assets/content/week-03/day-15/04-production-s10.md",
+              "script": "assets/content/week-03/day-15/04-production-s10.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-16",
+          "title": "Day 16 \u2014 Sample Q&A: Image/Video Pipelines, Caching & Memory Pressure",
+          "chapters": [
+            {
+              "id": "01-cache-tiers",
+              "title": "01 Cache Tiers (Q&A)",
+              "markdown": "assets/content/week-03/day-16/01-cache-tiers.md",
+              "script": "assets/content/week-03/day-16/01-cache-tiers.script.md"
+            },
+            {
+              "id": "02-image-pipeline",
+              "title": "02 Image Pipeline (Q&A)",
+              "markdown": "assets/content/week-03/day-16/02-image-pipeline.md",
+              "script": "assets/content/week-03/day-16/02-image-pipeline.script.md"
+            },
+            {
+              "id": "03-video-audio-media",
+              "title": "03 Video Audio Media (Q&A)",
+              "markdown": "assets/content/week-03/day-16/03-video-audio-media.md",
+              "script": "assets/content/week-03/day-16/03-video-audio-media.script.md"
+            },
+            {
+              "id": "04-production-s1-s12",
+              "title": "04 Production S1 S12 (Q&A)",
+              "markdown": "assets/content/week-03/day-16/04-production-s1-s12.md",
+              "script": "assets/content/week-03/day-16/04-production-s1-s12.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-17",
+          "title": "Day 17 \u2014 Sample Q&A: Performance: Instruments, MetricKit, Startup & Scrolling (p50/p90)",
+          "chapters": [
+            {
+              "id": "01-perf-loop-tools",
+              "title": "01 Perf Loop Tools (Q&A)",
+              "markdown": "assets/content/week-03/day-17/01-perf-loop-tools.md",
+              "script": "assets/content/week-03/day-17/01-perf-loop-tools.script.md"
+            },
+            {
+              "id": "02-instruments-metrickit",
+              "title": "02 Instruments Metrickit (Q&A)",
+              "markdown": "assets/content/week-03/day-17/02-instruments-metrickit.md",
+              "script": "assets/content/week-03/day-17/02-instruments-metrickit.script.md"
+            },
+            {
+              "id": "03-startup-scrolling",
+              "title": "03 Startup Scrolling (Q&A)",
+              "markdown": "assets/content/week-03/day-17/03-startup-scrolling.md",
+              "script": "assets/content/week-03/day-17/03-startup-scrolling.script.md"
+            },
+            {
+              "id": "04-production-s5",
+              "title": "04 Production S5 (Q&A)",
+              "markdown": "assets/content/week-03/day-17/04-production-s5.md",
+              "script": "assets/content/week-03/day-17/04-production-s5.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-18",
+          "title": "Day 18 \u2014 Sample Q&A: Crash Reporting, Observability & Incident Response (IMOC)",
+          "chapters": [
+            {
+              "id": "01-crash-pipeline-cfs",
+              "title": "01 Crash Pipeline Cfs (Q&A)",
+              "markdown": "assets/content/week-03/day-18/01-crash-pipeline-cfs.md",
+              "script": "assets/content/week-03/day-18/01-crash-pipeline-cfs.script.md"
+            },
+            {
+              "id": "02-signal-safety-oom",
+              "title": "02 Signal Safety Oom (Q&A)",
+              "markdown": "assets/content/week-03/day-18/02-signal-safety-oom.md",
+              "script": "assets/content/week-03/day-18/02-signal-safety-oom.script.md"
+            },
+            {
+              "id": "03-imoc-triage",
+              "title": "03 IMOC Triage (Q&A)",
+              "markdown": "assets/content/week-03/day-18/03-imoc-triage.md",
+              "script": "assets/content/week-03/day-18/03-imoc-triage.script.md"
+            },
+            {
+              "id": "04-production-s8-s2",
+              "title": "04 Production S8 S2 (Q&A)",
+              "markdown": "assets/content/week-03/day-18/04-production-s8-s2.md",
+              "script": "assets/content/week-03/day-18/04-production-s8-s2.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-19",
+          "title": "Day 19 \u2014 Sample Q&A: Security: ATS, SSL Pinning, Keychain & Persistence",
+          "chapters": [
+            {
+              "id": "01-ats-baseline",
+              "title": "01 ATS Baseline (Q&A)",
+              "markdown": "assets/content/week-03/day-19/01-ats-baseline.md",
+              "script": "assets/content/week-03/day-19/01-ats-baseline.script.md"
+            },
+            {
+              "id": "02-ssl-pinning-spki",
+              "title": "02 SSL Pinning SPKI (Q&A)",
+              "markdown": "assets/content/week-03/day-19/02-ssl-pinning-spki.md",
+              "script": "assets/content/week-03/day-19/02-ssl-pinning-spki.script.md"
+            },
+            {
+              "id": "03-keychain-secrets",
+              "title": "03 Keychain Secrets (Q&A)",
+              "markdown": "assets/content/week-03/day-19/03-keychain-secrets.md",
+              "script": "assets/content/week-03/day-19/03-keychain-secrets.script.md"
+            },
+            {
+              "id": "04-persistence-tree",
+              "title": "04 Persistence Tree (Q&A)",
+              "markdown": "assets/content/week-03/day-19/04-persistence-tree.md",
+              "script": "assets/content/week-03/day-19/04-persistence-tree.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-20",
+          "title": "Day 20 \u2014 Sample Q&A: Deep Links, Push Notifications & CI/CD Release Trains",
+          "chapters": [
+            {
+              "id": "01-deep-links",
+              "title": "01 Deep Links (Q&A)",
+              "markdown": "assets/content/week-03/day-20/01-deep-links.md",
+              "script": "assets/content/week-03/day-20/01-deep-links.script.md"
+            },
+            {
+              "id": "02-push-notifications",
+              "title": "02 Push Notifications (Q&A)",
+              "markdown": "assets/content/week-03/day-20/02-push-notifications.md",
+              "script": "assets/content/week-03/day-20/02-push-notifications.script.md"
+            },
+            {
+              "id": "03-ci-cd-actions",
+              "title": "03 CI CD Actions (Q&A)",
+              "markdown": "assets/content/week-03/day-20/03-ci-cd-actions.md",
+              "script": "assets/content/week-03/day-20/03-ci-cd-actions.script.md"
+            },
+            {
+              "id": "04-release-trains",
+              "title": "04 Release Trains (Q&A)",
+              "markdown": "assets/content/week-03/day-20/04-release-trains.md",
+              "script": "assets/content/week-03/day-20/04-release-trains.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-21",
+          "title": "Day 21 \u2014 Sample Q&A: System-Design Mock #3 (45 min)",
+          "chapters": [
+            {
+              "id": "01-running-the-mock",
+              "title": "01 Running The Mock (Q&A)",
+              "markdown": "assets/content/week-03/day-21/01-running-the-mock.md",
+              "script": "assets/content/week-03/day-21/01-running-the-mock.script.md"
+            },
+            {
+              "id": "02-clarify-phase",
+              "title": "02 Clarify Phase (Q&A)",
+              "markdown": "assets/content/week-03/day-21/02-clarify-phase.md",
+              "script": "assets/content/week-03/day-21/02-clarify-phase.script.md"
+            },
+            {
+              "id": "03-cache-scroll",
+              "title": "03 Cache Scroll (Q&A)",
+              "markdown": "assets/content/week-03/day-21/03-cache-scroll.md",
+              "script": "assets/content/week-03/day-21/03-cache-scroll.script.md"
+            },
+            {
+              "id": "04-scoring-rubric",
+              "title": "04 Scoring Rubric (Q&A)",
+              "markdown": "assets/content/week-03/day-21/04-scoring-rubric.md",
+              "script": "assets/content/week-03/day-21/04-scoring-rubric.script.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "week-04",
+      "title": "Week 4 \u2014 DSA, AI & Mocks",
+      "days": [
+        {
+          "id": "day-22",
+          "title": "Day 22 \u2014 Sample Q&A: DSA Trees: BFS / DFS Patterns",
+          "chapters": [
+            {
+              "id": "01-bfs-dfs-basics",
+              "title": "01 BFS DFS Basics (Q&A)",
+              "markdown": "assets/content/week-04/day-22/01-bfs-dfs-basics.md",
+              "script": "assets/content/week-04/day-22/01-bfs-dfs-basics.script.md"
+            },
+            {
+              "id": "02-tree-patterns-skeletons",
+              "title": "02 Tree Patterns Skeletons (Q&A)",
+              "markdown": "assets/content/week-04/day-22/02-tree-patterns-skeletons.md",
+              "script": "assets/content/week-04/day-22/02-tree-patterns-skeletons.script.md"
+            },
+            {
+              "id": "03-approach-complexity",
+              "title": "03 Approach Complexity (Q&A)",
+              "markdown": "assets/content/week-04/day-22/03-approach-complexity.md",
+              "script": "assets/content/week-04/day-22/03-approach-complexity.script.md"
+            },
+            {
+              "id": "04-production-trees",
+              "title": "04 Production Trees (Q&A)",
+              "markdown": "assets/content/week-04/day-22/04-production-trees.md",
+              "script": "assets/content/week-04/day-22/04-production-trees.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-23",
+          "title": "Day 23 \u2014 Sample Q&A: DSA HashMap / Heap + Mixed Unknown-Pattern",
+          "chapters": [
+            {
+              "id": "01-hashmap-patterns",
+              "title": "01 Hashmap Patterns (Q&A)",
+              "markdown": "assets/content/week-04/day-23/01-hashmap-patterns.md",
+              "script": "assets/content/week-04/day-23/01-hashmap-patterns.script.md"
+            },
+            {
+              "id": "02-heap-patterns",
+              "title": "02 Heap Patterns (Q&A)",
+              "markdown": "assets/content/week-04/day-23/02-heap-patterns.md",
+              "script": "assets/content/week-04/day-23/02-heap-patterns.script.md"
+            },
+            {
+              "id": "03-mixed-unknown-pattern",
+              "title": "03 Mixed Unknown Pattern (Q&A)",
+              "markdown": "assets/content/week-04/day-23/03-mixed-unknown-pattern.md",
+              "script": "assets/content/week-04/day-23/03-mixed-unknown-pattern.script.md"
+            },
+            {
+              "id": "04-production-maps-topk",
+              "title": "04 Production Maps Topk (Q&A)",
+              "markdown": "assets/content/week-04/day-23/04-production-maps-topk.md",
+              "script": "assets/content/week-04/day-23/04-production-maps-topk.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-24",
+          "title": "Day 24 \u2014 Sample Q&A: On-Device AI (FinTrack / GymFlow)",
+          "chapters": [
+            {
+              "id": "01-on-device-primer",
+              "title": "01 On Device Primer (Q&A)",
+              "markdown": "assets/content/week-04/day-24/01-on-device-primer.md",
+              "script": "assets/content/week-04/day-24/01-on-device-primer.script.md"
+            },
+            {
+              "id": "02-fintrack-rag",
+              "title": "02 Fintrack RAG (Q&A)",
+              "markdown": "assets/content/week-04/day-24/02-fintrack-rag.md",
+              "script": "assets/content/week-04/day-24/02-fintrack-rag.script.md"
+            },
+            {
+              "id": "03-gymflow-embeddings",
+              "title": "03 Gymflow Embeddings (Q&A)",
+              "markdown": "assets/content/week-04/day-24/03-gymflow-embeddings.md",
+              "script": "assets/content/week-04/day-24/03-gymflow-embeddings.script.md"
+            },
+            {
+              "id": "04-production-s15-s16",
+              "title": "04 Production S15 S16 (Q&A)",
+              "markdown": "assets/content/week-04/day-24/04-production-s15-s16.md",
+              "script": "assets/content/week-04/day-24/04-production-s15-s16.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-25",
+          "title": "Day 25 \u2014 Sample Q&A: Machine Round 3hr (Briefs A & B)",
+          "chapters": [
+            {
+              "id": "01-machine-round-os",
+              "title": "01 Machine Round Os (Q&A)",
+              "markdown": "assets/content/week-04/day-25/01-machine-round-os.md",
+              "script": "assets/content/week-04/day-25/01-machine-round-os.script.md"
+            },
+            {
+              "id": "02-brief-a-pagination",
+              "title": "02 Brief A Pagination (Q&A)",
+              "markdown": "assets/content/week-04/day-25/02-brief-a-pagination.md",
+              "script": "assets/content/week-04/day-25/02-brief-a-pagination.script.md"
+            },
+            {
+              "id": "03-brief-b-sdui",
+              "title": "03 Brief B SDUI (Q&A)",
+              "markdown": "assets/content/week-04/day-25/03-brief-b-sdui.md",
+              "script": "assets/content/week-04/day-25/03-brief-b-sdui.script.md"
+            },
+            {
+              "id": "04-debrief-structure",
+              "title": "04 Debrief Structure (Q&A)",
+              "markdown": "assets/content/week-04/day-25/04-debrief-structure.md",
+              "script": "assets/content/week-04/day-25/04-debrief-structure.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-26",
+          "title": "Day 26 \u2014 Sample Q&A: Behavioral Leadership STAR",
+          "chapters": [
+            {
+              "id": "01-star-rhythm",
+              "title": "01 Star Rhythm (Q&A)",
+              "markdown": "assets/content/week-04/day-26/01-star-rhythm.md",
+              "script": "assets/content/week-04/day-26/01-star-rhythm.script.md"
+            },
+            {
+              "id": "02-conflict-incident",
+              "title": "02 Conflict Incident (Q&A)",
+              "markdown": "assets/content/week-04/day-26/02-conflict-incident.md",
+              "script": "assets/content/week-04/day-26/02-conflict-incident.script.md"
+            },
+            {
+              "id": "03-mentorship-ai",
+              "title": "03 Mentorship Ai (Q&A)",
+              "markdown": "assets/content/week-04/day-26/03-mentorship-ai.md",
+              "script": "assets/content/week-04/day-26/03-mentorship-ai.script.md"
+            },
+            {
+              "id": "04-production-provenance",
+              "title": "04 Production Provenance (Q&A)",
+              "markdown": "assets/content/week-04/day-26/04-production-provenance.md",
+              "script": "assets/content/week-04/day-26/04-production-provenance.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-27",
+          "title": "Day 27 \u2014 Sample Q&A: Expert Mock #4 (Full Loop)",
+          "chapters": [
+            {
+              "id": "01-mock-schedule",
+              "title": "01 Mock Schedule (Q&A)",
+              "markdown": "assets/content/week-04/day-27/01-mock-schedule.md",
+              "script": "assets/content/week-04/day-27/01-mock-schedule.script.md"
+            },
+            {
+              "id": "02-segment-scorecards",
+              "title": "02 Segment Scorecards (Q&A)",
+              "markdown": "assets/content/week-04/day-27/02-segment-scorecards.md",
+              "script": "assets/content/week-04/day-27/02-segment-scorecards.script.md"
+            },
+            {
+              "id": "03-warmup-recovery",
+              "title": "03 Warmup Recovery (Q&A)",
+              "markdown": "assets/content/week-04/day-27/03-warmup-recovery.md",
+              "script": "assets/content/week-04/day-27/03-warmup-recovery.script.md"
+            },
+            {
+              "id": "04-fix-forwards",
+              "title": "04 Fix Forwards (Q&A)",
+              "markdown": "assets/content/week-04/day-27/04-fix-forwards.md",
+              "script": "assets/content/week-04/day-27/04-fix-forwards.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-28",
+          "title": "Day 28 \u2014 Sample Q&A: Game Day Taper",
+          "chapters": [
+            {
+              "id": "01-taper-rules",
+              "title": "01 Taper Rules (Q&A)",
+              "markdown": "assets/content/week-04/day-28/01-taper-rules.md",
+              "script": "assets/content/week-04/day-28/01-taper-rules.script.md"
+            },
+            {
+              "id": "02-checklist-openers",
+              "title": "02 Checklist Openers (Q&A)",
+              "markdown": "assets/content/week-04/day-28/02-checklist-openers.md",
+              "script": "assets/content/week-04/day-28/02-checklist-openers.script.md"
+            },
+            {
+              "id": "03-story-retrieval",
+              "title": "03 Story Retrieval (Q&A)",
+              "markdown": "assets/content/week-04/day-28/03-story-retrieval.md",
+              "script": "assets/content/week-04/day-28/03-story-retrieval.script.md"
+            },
+            {
+              "id": "04-calm-prep",
+              "title": "04 Calm Prep (Q&A)",
+              "markdown": "assets/content/week-04/day-28/04-calm-prep.md",
+              "script": "assets/content/week-04/day-28/04-calm-prep.script.md"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -23,6 +23,13 @@
 5. [`05-exercises.md`](05-exercises.md) — timed taper protocol + **story run-through scripts**
 6. No `code/`
 
+
+## Module map
+
+| Module | Path |
+|---|---|
+| Sample Q&A | [sample/README.md](sample/README.md) |
+
 ## Forbidden
 
 Entire Anki binge · rewriting STARs from scratch · “just one more Medium” · new SD HLD · caffeine experiments · all-nighter

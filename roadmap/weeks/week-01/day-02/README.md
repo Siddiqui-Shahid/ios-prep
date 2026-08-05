@@ -34,6 +34,7 @@ By end of day, without notes, you can:
 | Questions | [04-questions.md](04-questions.md) | Two-layer Q&A (normal + tricky) |
 | Exercises | [05-exercises.md](05-exercises.md) | Coding + speaking drills |
 | Code | [code/AdsPipeline.swift](code/AdsPipeline.swift), [code/TypeErasureDemo.swift](code/TypeErasureDemo.swift) | Runnable mental models |
+| Sample Q&A (guided) | [sample/](sample/README.md) | Concept teaching; does not replace modules above |
 
 ## Time budget (suggested)
 

@@ -33,6 +33,7 @@ By end of day, without notes, you can:
 | Questions | [04-questions.md](04-questions.md) |
 | Exercises | [05-exercises.md](05-exercises.md) |
 | Code | [code/StoriesPlayerModel.swift](code/StoriesPlayerModel.swift), [code/IdentityTraps.swift](code/IdentityTraps.swift), [code/LazyListNotes.swift](code/LazyListNotes.swift) |
+| Sample Q&A | [sample/README.md](sample/README.md) |
 
 ## Provenance reminder
 
