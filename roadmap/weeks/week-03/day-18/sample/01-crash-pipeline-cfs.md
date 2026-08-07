@@ -1,12 +1,10 @@
 # Sample 01 — Crash pipeline and CFS (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is the crash SDK pipeline end to end?
-
-**Points to:** [Foundations · §1 Crash SDK pipeline](../01-foundations.md#1-crash-sdk-pipeline)
 
 **Answer:**
 
@@ -20,15 +18,16 @@
 | sigaction role? | POSIX fatals — SEGV, ABRT, etc. |
 | try/catch covers this? | No — signals and many fatals bypass Swift error handling. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What is crash-free sessions (CFS)?
 
-**Points to:** [Foundations · §2 What crash-free sessions means](../01-foundations.md#2-what-crash-free-sessions-cfs-means)
-
 **Answer:**
 
-> **CFS:** sessions without a **fatal crash** (vendor definitions vary slightly — say Crashlytics sessions). **Verified S8:** sustained **99.95%+** at **30+ lakh DAU**. Non-fatals ≠ crashes — still triage if user-impacting. **OOM/jetsam** often lacks clean client stack. **Hangs** may not count against CFS — users still churn.
+> **CFS:** sessions without a **fatal crash** (vendor definitions vary slightly — say Crashlytics sessions). **BookMyShow IMOC + crash-free at scale:** sustained **99.95%+** at **30+ lakh DAU**. Non-fatals ≠ crashes — still triage if user-impacting. **OOM/jetsam** often lacks clean client stack. **Hangs** may not count against CFS — users still churn.
 
 **Follow-ups:**
 
@@ -38,15 +37,19 @@
 | OOM vs crash in CFS? | Vendor-dependent — often separate from clean fatal crashes. |
 | Non-fatals on payment path? | Promote to P1 even if CFS unchanged. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
+
 ---
 
-### Q3. Why must S2 and S8 stay separate in speech?
-
-**Points to:** [Foundations · Honesty bound](../01-foundations.md#honesty-bound-memorize) · [Production bridge · §4 S2 coupling](../03-production-bridge.md#4-s2-as-technical-add-on-90s--correct-coupling)
+### Q3. Why must BookMyShow synchronised dictionaries and BookMyShow IMOC + crash-free at scale stay separate in speech?
 
 **Answer:**
 
-> **S8** = CFS + Crashlytics triage + **IMOC** (system of reliability at scale). **S2** = synchronised dictionaries fixed **races on a shared-state path** — one engineering input among many. **S2 ⊂ reliability work, but S2 ⇏ “I alone made 99.95% CFS.”** Say: dictionaries removed intermittent race crashes on that path; CFS was sustained by triage, incident process, and many fixes.
+> **BookMyShow IMOC + crash-free at scale** = CFS + Crashlytics triage + **IMOC** (system of reliability at scale). **BookMyShow synchronised dictionaries** = synchronised dictionaries fixed **races on a shared-state path** — one engineering input among many. **BookMyShow synchronised dictionaries ⊂ reliability work, but BookMyShow synchronised dictionaries ⇏ “I alone made 99.95% CFS.”** Say: dictionaries removed intermittent race crashes on that path; CFS was sustained by triage, incident process, and many fixes.
 
 **Follow-ups:**
 
@@ -54,13 +57,17 @@
 |---|---|
 | Forbidden script? | “We hit 99.95% CFS because I synchronised the dictionaries.” |
 | OK script add-on? | “That path fix contributed; CFS was the operational system.” |
-| One-minute drill? | Foundations §9 — speak CFS + IMOC + S2 path without collapsing causality. |
+| One-minute drill? | Foundations §9 — speak CFS + IMOC + BookMyShow synchronised dictionaries path without collapsing causality. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Do not steal BookMyShow IMOC / crash-free culture credit for a path-specific dictionary race fix — keep scopes separate.
 
 ---
 
 ### Q4. Crash vs OOM vs hang — compare briefly
-
-**Points to:** [Foundations · §6 Crash vs OOM vs hang](../01-foundations.md#6-crash-vs-oom-vs-hang)
 
 **Answer:**
 
@@ -74,11 +81,12 @@
 | Lab for OOM suspicion? | Memory Graph + Allocations — cycles ≠ Leaks (Day 17). |
 | Hang vs watchdog? | Hang observed; OS may kill if unresponsive long enough. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. What is the triage workflow in six steps?
-
-**Points to:** [Foundations · §3 Triage workflow](../01-foundations.md#3-triage-workflow)
 
 **Answer:**
 
@@ -92,11 +100,12 @@
 | Unsymbolicated spike? | Check dSYM CI break before blaming new code. |
 | Journey tags? | Breadcrumbs / custom keys — which screen flow. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What is IMOC in one breath?
-
-**Points to:** [Foundations · §4 IMOC](../01-foundations.md#4-imoc-leadership-proof)
 
 **Answer:**
 
@@ -110,15 +119,16 @@
 | vs lone-hero debugging? | IMOC = owner + comms + mitigate — not only stack reading. |
 | Peak sale pressure? | Cadence updates on a clock — stakeholders need predictability. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. What should the teach-back checklist cover?
 
-**Points to:** [Foundations · §8 Teach-back checklist](../01-foundations.md#8-teach-back-checklist)
-
 **Answer:**
 
-> Pipeline: capture → persist → upload → symbolicate. Async-signal-safe one-liner. CFS definition + 99.95% / 30L context (S8). **S2 contributes; does not solely cause CFS.** IMOC pillars. Hang gap vs CFS. Next: signal safety and OOM honesty in sample 02.
+> Pipeline: capture → persist → upload → symbolicate. Async-signal-safe one-liner. CFS definition + 99.95% / 30L context (BookMyShow IMOC + crash-free at scale). **BookMyShow synchronised dictionaries contributes; does not solely cause CFS.** IMOC pillars. Hang gap vs CFS. Next: signal safety and OOM honesty in sample 02.
 
 **Follow-ups:**
 
@@ -128,6 +138,13 @@
 | Breadcrumb keyword? | Last-N event trail — filled on happy path. |
 | Next sample? | [02-signal-safety-oom.md](02-signal-safety-oom.md) |
 
----
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Do not steal BookMyShow IMOC / crash-free culture credit for a path-specific dictionary race fix — keep scopes separate.
 
 Next: [02-signal-safety-oom.md](02-signal-safety-oom.md)
+
+---
+

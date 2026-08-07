@@ -97,6 +97,62 @@ flutter:
     - assets/content/week-04/day-26/
     - assets/content/week-04/day-27/
     - assets/content/week-04/day-28/
+    - assets/content/revision/week-01/day-01/
+    - assets/content/revision/week-01/day-02/
+    - assets/content/revision/week-01/day-03/
+    - assets/content/revision/week-01/day-04/
+    - assets/content/revision/week-01/day-05/
+    - assets/content/revision/week-01/day-06/
+    - assets/content/revision/week-01/day-07/
+    - assets/content/revision/week-02/day-08/
+    - assets/content/revision/week-02/day-09/
+    - assets/content/revision/week-02/day-10/
+    - assets/content/revision/week-02/day-11/
+    - assets/content/revision/week-02/day-12/
+    - assets/content/revision/week-02/day-13/
+    - assets/content/revision/week-02/day-14/
+    - assets/content/revision/week-03/day-15/
+    - assets/content/revision/week-03/day-16/
+    - assets/content/revision/week-03/day-17/
+    - assets/content/revision/week-03/day-18/
+    - assets/content/revision/week-03/day-19/
+    - assets/content/revision/week-03/day-20/
+    - assets/content/revision/week-03/day-21/
+    - assets/content/revision/week-04/day-22/
+    - assets/content/revision/week-04/day-23/
+    - assets/content/revision/week-04/day-24/
+    - assets/content/revision/week-04/day-25/
+    - assets/content/revision/week-04/day-26/
+    - assets/content/revision/week-04/day-27/
+    - assets/content/revision/week-04/day-28/
+    - assets/content/flashcards/week-01/day-01/
+    - assets/content/flashcards/week-01/day-02/
+    - assets/content/flashcards/week-01/day-03/
+    - assets/content/flashcards/week-01/day-04/
+    - assets/content/flashcards/week-01/day-05/
+    - assets/content/flashcards/week-01/day-06/
+    - assets/content/flashcards/week-01/day-07/
+    - assets/content/flashcards/week-02/day-08/
+    - assets/content/flashcards/week-02/day-09/
+    - assets/content/flashcards/week-02/day-10/
+    - assets/content/flashcards/week-02/day-11/
+    - assets/content/flashcards/week-02/day-12/
+    - assets/content/flashcards/week-02/day-13/
+    - assets/content/flashcards/week-02/day-14/
+    - assets/content/flashcards/week-03/day-15/
+    - assets/content/flashcards/week-03/day-16/
+    - assets/content/flashcards/week-03/day-17/
+    - assets/content/flashcards/week-03/day-18/
+    - assets/content/flashcards/week-03/day-19/
+    - assets/content/flashcards/week-03/day-20/
+    - assets/content/flashcards/week-03/day-21/
+    - assets/content/flashcards/week-04/day-22/
+    - assets/content/flashcards/week-04/day-23/
+    - assets/content/flashcards/week-04/day-24/
+    - assets/content/flashcards/week-04/day-25/
+    - assets/content/flashcards/week-04/day-26/
+    - assets/content/flashcards/week-04/day-27/
+    - assets/content/flashcards/week-04/day-28/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

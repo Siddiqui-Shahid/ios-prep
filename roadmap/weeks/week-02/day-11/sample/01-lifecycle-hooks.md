@@ -1,12 +1,10 @@
 # Sample 01 — Lifecycle hooks (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is the UIViewController lifecycle order?
-
-**Points to:** [Foundations · §3 Lifecycle order](../01-foundations.md#3-lifecycle-order-say-aloud) · [Deep dive · §1 Lifecycle ownership matrix](../02-deep-dive.md#1-lifecycle-ownership-matrix)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | When is `deinit` useful in DEBUG? | Logging to prove no retain cycle — not for critical production cleanup. |
 | Custom container VC risk? | Must forward appearance transitions or child hooks never fire. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What belongs in `viewDidLoad` vs appear hooks?
-
-**Points to:** [Foundations · §3 hook table](../01-foundations.md#3-lifecycle-order-say-aloud) · [Deep dive · §1 Lifecycle ownership matrix](../02-deep-dive.md#1-lifecycle-ownership-matrix)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | Analytics on `viewDidLoad` for tabs? | Wrong — tab may load off-screen; fire on didAppear when visible. |
 | Layout-dependent snap? | `viewDidLayoutSubviews` when bounds are ready — use carefully to avoid loops. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. What is the tab bar “load once, appear many” trap?
-
-**Points to:** [Foundations · §11 Appearance vs load](../01-foundations.md#11-appearance-vs-load--tab-example) · [Deep dive · Tab bar trap](../02-deep-dive.md#tab-bar-trap)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | Is missing `viewDidLoad` recall a bug? | Often **feature** — VC retained in nav stack; repeatable work belongs in appear. |
 | Background refresh while tab hidden? | Possible with policy, but UI bind should respect appear/disappear for players. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
-### Q4. Where should HeroWidget pause/play tie in? (S1)
-
-**Points to:** [Foundations · §3 Ads link](../01-foundations.md#3-lifecycle-order-say-aloud) · [Deep dive · §2 Ads / video visibility](../02-deep-dive.md#2-ads--video-visibility-s1)
+### Q4. Where should HeroWidget pause/play tie in? (BookMyShow Ads pipeline + HeroWidget lifecycle)
 
 **Answer:**
 
@@ -74,11 +75,15 @@
 | In-feed vs full-screen? | Full-screen: VC hooks. In-feed: visibility threshold on scroll. |
 | Background without disappear? | App background notification still pauses — user left the app. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
+
 ---
 
 ### Q5. What work should never wait for `deinit`?
-
-**Points to:** [Foundations · §3 hook table](../01-foundations.md#3-lifecycle-order-say-aloud) · [Deep dive · §1 deinit logging](../02-deep-dive.md#1-lifecycle-ownership-matrix)
 
 **Answer:**
 
@@ -92,11 +97,12 @@
 | NotificationCenter block API? | Store token; remove on disappear/deinit path. |
 | `deinit` never runs — always a cycle? | No — VC may still be on stack, in cache, or presented. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. How do custom containers break lifecycle?
-
-**Points to:** [Deep dive · §17 Appearance forwarding](../02-deep-dive.md#17-appearance-forwarding-in-custom-containers)
 
 **Answer:**
 
@@ -110,11 +116,12 @@
 | UIHostingController child? | Parent appear/disappear should inform nested player pause policies. |
 | Fix? | Forward appearance like Apple’s container VCs, or use standard containers. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. What should I be able to say after lifecycle foundations?
-
-**Points to:** [Foundations · §15 90-second teaching script](../01-foundations.md#15-90-second-teaching-script) · [Deep dive · §14 Decision rule card](../02-deep-dive.md#14-decision-rule-card)
 
 **Answer:**
 
@@ -125,9 +132,16 @@
 | Follow-up | Answer |
 |---|---|
 | One-time vs every-show rule? | Setup in didLoad; refresh and analytics on appear; teardown on disappear. |
-| S1 provenance? | Verified · HeroWidget pause/play tied to visibility / VC lifecycle. |
+| BookMyShow Ads pipeline + HeroWidget lifecycle provenance? | HeroWidget pause/play tied to visibility / VC lifecycle. |
 | Next topic? | Cells — reuse and prefetch — [02-cells-reuse-prefetch.md](02-cells-reuse-prefetch.md). |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
+
+Next: [02-cells-reuse-prefetch.md](02-cells-reuse-prefetch.md)
 
 ---
 
-Next: [02-cells-reuse-prefetch.md](02-cells-reuse-prefetch.md)

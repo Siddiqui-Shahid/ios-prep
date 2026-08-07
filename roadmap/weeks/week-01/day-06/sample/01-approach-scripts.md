@@ -1,12 +1,10 @@
 # Sample 01 — Approach scripts (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is the 60–90s “say this first” script?
-
-**Points to:** [Foundations · §1 Master “say this first”](../01-foundations.md#1-master-say-this-first-6090s--memorize) · [Deep dive · §1 Two Sum](../02-deep-dive.md#1-two-sum)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | What if constraints change mid-problem? | Restate the new plan out loud — never silently rewrite for ten minutes. |
 | Minimum time box? | About 60–90 seconds. Longer means you are stalling; shorter means you skipped edges. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What should I clarify before choosing a pattern?
-
-**Points to:** [Foundations · §2 Pattern cheatsheet](../01-foundations.md#2-pattern-cheatsheet-embedded--no-external-read-required) · [Deep dive · §13 When interviewer changes constraints](../02-deep-dive.md#13-when-interviewer-changes-constraints-mid-flight)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | “Mutate in place?” | Changes whether write-pointer patterns are allowed. |
 | Duplicates matter how? | Two Sum needs distinct indices; 3Sum needs skip logic after sort. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. How do I present brute force without sounding weak?
-
-**Points to:** [Foundations · §7 Communication > clever](../01-foundations.md#7-communication--clever) · [Deep dive · §16 Brute → optimal comparison table](../02-deep-dive.md#16-brute--optimal-comparison-table)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | When is brute the answer? | Tiny n, or when asked to compare approaches before coding. |
 | Example one-liner? | “All pairs is O(n²); one hash pass is O(n) time, O(n) space.” |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. What edge cases should I mention every time?
-
-**Points to:** [Deep dive · §17 Edge-case bank](../02-deep-dive.md#17-edge-case-bank-quiz-yourself) · [Foundations · §1 Master “say this first”](../01-foundations.md#1-master-say-this-first-6090s--memorize)
 
 **Answer:**
 
@@ -74,11 +75,12 @@
 | Empty string palindrome? | Usually true — confirm with interviewer. |
 | Two Sum no solution? | Return empty or [-1,-1] per prompt — clarify. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. When must I state time and space complexity?
-
-**Points to:** [Foundations · §3 Complexity fluency](../01-foundations.md#3-complexity-fluency) · [Foundations · §9 Complexity cheat sheet](../01-foundations.md#9-complexity-cheat-sheet-say-out-loud)
 
 **Answer:**
 
@@ -92,11 +94,12 @@
 | Sort then two pointers? | O(n log n) time from sort + O(n) scan — state both. |
 | Hash map space? | O(n) worst case for stored entries. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What senior phrases signal good communication?
-
-**Points to:** [Foundations · §7 Communication > clever](../01-foundations.md#7-communication--clever) · [Deep dive · §18 Narration anti-patterns](../02-deep-dive.md#18-narration-anti-patterns)
 
 **Answer:**
 
@@ -110,11 +113,12 @@
 | Dry-run when? | After stating approach, before or during early coding. |
 | Constraint change? | Restate plan — do not pretend the old code still fits. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. Walk through say-this-first on Two Sum.
-
-**Points to:** [Deep dive · §1 Two Sum](../02-deep-dive.md#1-two-sum) · [code/TwoSum.swift](../code/TwoSum.swift)
 
 **Answer:**
 
@@ -128,6 +132,86 @@
 | Trap? | Returning values instead of indices; using same element twice. |
 | Dry-run? | `[2,7,11,15], target 9` → at 7 find 2 → `[0,1]`. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
+### Q8. Walk through say-this-first on Container With Most Water.
+
+**Answer:**
+
+> “Area is min of the two heights times the distance between indices. Brute checks all pairs O(n²). I’ll start at both ends for maximum width and move the shorter pointer inward, because width always shrinks and only a taller short side can improve the min height. Time O(n), space O(1). Edges: exactly two lines; all heights equal. Coding that.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Why move shorter? | Width shrinks by 1 always; height limited by min. Moving taller can’t increase min; moving shorter might. |
+| Trap? | Moving the taller pointer; off-by-one width. |
+| Dry-run shape? | `[1,8,6,2,5,4,8,3,7]` — ends inward, track max area. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
+---
+
+### Q9. Walk through say-this-first on Move Zeroes.
+
+**Answer:**
+
+> “I’ll keep a write index. Scan left to right, and whenever I see a non-zero I write it at the write index and advance. Then fill the tail with zeroes. That keeps relative order and uses O(1) extra space. Edges: no zeroes, all zeroes, already compacted.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Trap? | Removing during for-in; careless swap that scrambles relative order. |
+| Move zeroes to front? | Same write-pointer idea — write zeros forward or mirror the compact. |
+| Why not `removeAll` / `removeFirst` in a loop? | Each remove is O(n) → O(n²) total. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
+---
+
+### Q10. Walk through say-this-first on Min Size Subarray Sum.
+
+**Answer:**
+
+> “Assuming positive numbers, I’ll expand a right pointer adding to a running sum; while the sum is at least target I’ll shrink from the left and track the minimum window length. If I never reach the target, return zero. Each pointer moves at most n times so O(n), space O(1). If negatives were allowed, this shrink logic would break and I’d switch strategies.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Trap? | Using this window with negatives; off-by-one length. |
+| Impossible case? | Never hit target → return 0. |
+| Pattern name? | Variable sliding window (shortest subarray with constraint). |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
+---
+
+### Q11. Walk through say-this-first on Group Anagrams.
+
+**Answer:**
+
+> “Anagrams share a sorted character key or a 26-length count signature. I’ll map key to a list of strings and return the buckets. Sorted keys are O(n·k log k); count signatures are O(n·k). Edges: empty strings, single characters, already identical inputs.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Key choice? | Sorted string (simple) vs char-frequency signature (faster for long strings). |
+| Space? | O(n·k) for storing all strings in buckets. |
+| Pattern? | Hash map — group by signature, not two pointers. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 Next: [02-two-pointers-window.md](02-two-pointers-window.md)
+
+---
+

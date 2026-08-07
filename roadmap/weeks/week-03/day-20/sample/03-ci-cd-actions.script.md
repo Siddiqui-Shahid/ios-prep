@@ -7,7 +7,7 @@ Next. Q1. What is the BMS CI/CD pipeline shape? Answer. PR → GitHub Actions (l
 
 ## §1 Q2. What runs on every PR?
 
-Next. Q2. What runs on every PR? Answer. Lint + build + unit tests on macOS runners. With modularization: selective test targets when safe. Quarantine flakes — don’t train team to ignore red CI. Green PR is merge gate; not optional “best effort.” Follow-ups. U I tests every PR?: Often nightly or selective — cost/time trade-off.. Flaky test policy?: Quarantine + fix ticket — never silent retry forever.. AI on PRs?: S9: assist only — humans own architecture/security..
+Next. Q2. What runs on every PR? Answer. Lint + build + unit tests on macOS runners. With modularization: selective test targets when safe. Quarantine flakes — don’t train team to ignore red CI. Green PR is merge gate; not optional “best effort.” Follow-ups. U I tests every PR?: Often nightly or selective — cost/time trade-off.. Flaky test policy?: Quarantine + fix ticket — never silent retry forever.. AI on PRs?: District Free Parking + Clean/M V V M + AI tooling: assist only — humans own architecture/security..
 
 ## §2 Q3. How do you handle signing in CI?
 
@@ -21,10 +21,10 @@ Next. Q4. Why upload dSYM on every user-facing build? Answer. Day 18 triage depe
 
 Next. Q5. TestFlight workflow — internal vs external? Answer. Internal smoke first (team, fast feedback) → external beta when stable → then App Store phased %. TF crash-loop while CI green? Check release flags, entitlements, environment — smoke TF before wide phased. Follow-ups. TF vs prod config?: Different A P I keys/endpoints — common crash source.. External beta review?: Apple beta review for external groups.. Feature flags in TF?: Decouple binary ship from exposure..
 
-## §5 Q6. How does AI-assisted PR review fit (S9)?
+## §5 Q6. How does AI-assisted PR review fit (District Free Parking + Clean/MVVM + AI tooling)?
 
-Next. Q6. How does AI-assisted PR review fit (S9)? Answer. “AI accelerates review for obvious regressions; humans still own architecture, security, and product trade-offs. I never say ‘AI approved so it’s fine.’” Verified S9 judgment — assist, don’t own. Forbidden: “AI approved the release.” Follow-ups. What AI catches well?: Style, obvious nil crashes, duplicate code.. What humans must own?: Threat model, pinning, router design, rollout.. Context Engineering?: S9 family — tooling augments, doesn’t replace..
+Next. Q6. How does AI-assisted PR review fit (District Free Parking + Clean/MVVM + AI tooling)? Answer. “AI accelerates review for obvious regressions; humans still own architecture, security, and product trade-offs. I never say ‘AI approved so it’s fine.’” District Free Parking + Clean/M V V M + AI tooling judgment — assist, don’t own. Forbidden: “AI approved the release.” Follow-ups. What AI catches well?: Style, obvious nil crashes, duplicate code.. What humans must own?: Threat model, pinning, router design, rollout.. Context Engineering?: District Free Parking + Clean/M V V M + AI tooling family — tooling augments, doesn’t replace..
 
 ## §6 Q7. CI failure modes?
 
-Next. Q7. CI failure modes? Answer. | Mode | Response | TF crash-loop, CI green: Release flags / entitlements / env — smoke TF. Secrets in git: Rotate; CI secrets store. crash free sessions drop at 10% phased: Pause — I M O C (S 8). No dSYM: Fix upload step before widening rollout. Flaky CI ignored: Culture problem — quarantine and fix. Follow-ups. macOS runner cost?: Parallelize; cache DerivedData.. Manual release overhead?: What BMS CI automation removed.. Next topic?: Release trains — 04-release-trains.md. Next: 04-release-trains.md.
+Next. Q7. CI failure modes? Answer. | Mode | Response | TF crash-loop, CI green: Release flags / entitlements / env — smoke TF. Secrets in git: Rotate; CI secrets store. crash free sessions drop at 10% phased: Pause — I M O C (BookMyShow I M O C + crash-free at scale). No dSYM: Fix upload step before widening rollout. Flaky CI ignored: Culture problem — quarantine and fix. Follow-ups. macOS runner cost?: Parallelize; cache DerivedData.. Manual release overhead?: What BMS CI automation removed.. Next topic?: Release trains — 04-release-trains.md.

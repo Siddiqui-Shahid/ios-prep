@@ -1,12 +1,10 @@
 # Sample 03 — Stories SDK extraction (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. Why treat Stories as a product SDK, not a copied folder?
-
-**Points to:** [Deep dive · §5 Stories SDK](../02-deep-dive.md#5-stories-sdk-as-reusable-module-deep)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | What SDK must not own? | Host-specific networking shortcuts, hardcoded branding, permanent third-party loader lock-in. |
 | Public API sketch? | [`../code/StoriesPublicAPI.swift`](../code/StoriesPublicAPI.swift) |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What is the extraction sequence you can whiteboard?
-
-**Points to:** [Deep dive · Extraction sequence](../02-deep-dive.md#5-stories-sdk-as-reusable-module-deep)
 
 **Answer:**
 
@@ -36,13 +35,17 @@
 |---|---|
 | Why demo app host first? | Proves SDK runs without the original app’s hidden shortcuts. |
 | Versioning rule of thumb? | Additive minor; breaking = major + release notes. |
-| S11 adjacent note? | Live scoreboard is separate Raw ownership — don’t collapse with S10 carelessly. |
+| Live in-arena scoreboard (Raw) adjacent note? | Live scoreboard is separate Raw ownership — don’t collapse with Stories SDK (Raw / Miami Heat) carelessly. |
+
+**How can I relate to my case:**
+- **Shipped:** Stories SDK (Raw / Miami Heat); Live in-arena scoreboard (Raw)
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q3. Should the Stories SDK own the image pipeline?
-
-**Points to:** [Deep dive · §9 Failure modes](../02-deep-dive.md#9-failure-modes) · Day 16 bridge in deep dive §5
 
 **Answer:**
 
@@ -54,13 +57,17 @@
 |---|---|
 | Day 16 connection? | L1/L2/L3 tiers and downsample math live in the host loader. |
 | SDK without injection? | Each app forks cache behavior — parity breaks under memory pressure. |
-| UIKit host for SwiftUI internals? | UIHostingController façade; deeplink exits via host router (S13 soft). |
+| UIKit host for SwiftUI internals? | UIHostingController façade; deeplink exits via host router (Hybrid UI / deeplinks soft). |
+
+**How can I relate to my case:**
+- **Shipped:** Hybrid UI / deeplinks
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q4. How do you keep Core from becoming a junk drawer?
-
-**Points to:** [Deep dive · §6 Shared models](../02-deep-dive.md#6-shared-models-without-core-junk-drawer)
 
 **Answer:**
 
@@ -74,11 +81,12 @@
 | Symptom of junk drawer? | Every feature imports Core and nobody knows who owns a type. |
 | Refactor path? | Move misplaced DTOs back to feature Interfaces incrementally. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. Build times got worse after many modules — why?
-
-**Points to:** [Deep dive · §7 Build times](../02-deep-dive.md#7-build-times-got-worse-after-80-modules)
 
 **Answer:**
 
@@ -92,33 +100,38 @@
 | Chatty Interface symptom? | Small DTO churn in Interface forces wide rebuilds. |
 | Ego split? | One screen ≠ one SPM product without team boundary justification. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. How does modularization connect to testability?
 
-**Points to:** [Production bridge · S9 soft](../03-production-bridge.md#1-provenance-map) · Deep dive · §1 Layer responsibilities
-
 **Answer:**
 
-> Features that depend on protocols can be tested with injected fakes — no live network or singletons. Clean/MVVM inside the module boundary (S9 soft) keeps AI and juniors inside an architecture envelope. Module boundaries are where you enforce “no `.shared` in Impl.”
+> Features that depend on protocols can be tested with injected fakes — no live network or singletons. Clean/MVVM inside the module boundary (District Free Parking + Clean/MVVM + AI tooling soft) keeps AI and juniors inside an architecture envelope. Module boundaries are where you enforce “no `.shared` in Impl.”
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
 | What does Interface enable in tests? | Mock `NetworkProviding`, mock cart, mock builders — constructor injection. |
-| S1 soft connection? | Ads as revenue module with POP boundary — modularization of behavior. |
+| BookMyShow Ads pipeline + HeroWidget lifecycle soft connection? | Ads as revenue module with POP boundary — modularization of behavior. |
 | Without Interface split? | Tests reach for globals or duplicate production wiring hacks. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle; District Free Parking + Clean/MVVM + AI tooling
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
 
 ---
 
 ### Q7. What SDK versioning mistakes hurt portfolio adoption?
 
-**Points to:** [Deep dive · §5 Stories SDK](../02-deep-dive.md#5-stories-sdk-as-reusable-module-deep) · [Deep dive · §9 Failure modes](../02-deep-dive.md#9-failure-modes)
-
 **Answer:**
 
-> Breaking public API without major version bumps; hiding internal VCs that hosts started reaching into; hardcoding host branding; owning third-party dependencies permanently. SDK quality = **API surface + versioning + independence from host shortcuts** — that’s the S10 lesson, not just “we moved files into a package.”
+> Breaking public API without major version bumps; hiding internal VCs that hosts started reaching into; hardcoding host branding; owning third-party dependencies permanently. SDK quality = **API surface + versioning + independence from host shortcuts** — that’s the Stories SDK (Raw / Miami Heat) lesson, not just “we moved files into a package.”
 
 **Follow-ups:**
 
@@ -128,6 +141,13 @@
 | Breaking change example? | Renaming public entry type — major + migration notes. |
 | Next sample? | [04-production-s10.md](04-production-s10.md) — Verified interview language. |
 
----
+**How can I relate to my case:**
+- **Shipped:** Stories SDK (Raw / Miami Heat)
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 Next: [04-production-s10.md](04-production-s10.md)
+
+---
+

@@ -66,6 +66,51 @@ List<String> splitSentences(String text) {
   return merged;
 }
 
+/// Silent cue spoken as its own "sentence" — TTS skips it and waits instead.
+const kSpeechPauseCue = '§pause§.';
+
+/// Longer breath before the follow-ups block (after the main answer).
+const kSpeechPauseLongCue = '§pauselong§.';
+
+bool isSpeechPauseCue(String sentence) {
+  final t = sentence.trim().toLowerCase();
+  return t == '§pause§.' ||
+      t == '§pause§' ||
+      t == '§pauselong§.' ||
+      t == '§pauselong§';
+}
+
+bool isSpeechPauseLongCue(String sentence) {
+  final t = sentence.trim().toLowerCase();
+  return t == '§pauselong§.' || t == '§pauselong§';
+}
+
+/// Insert breath beats so Q→Answer stays tight, but Answer→Follow-ups and
+/// follow-up question→answer get a clear pause (scripts use `?:` with no break).
+String insertQaStructuralPauses(String text) {
+  var t = text;
+  // answer … Follow-ups.  →  answer. [long pause] Follow-ups.
+  t = t.replaceAllMapped(
+    RegExp(r'\.\s*(Follow-ups\.)', caseSensitive: false),
+    (m) => '. $kSpeechPauseLongCue ${m.group(1)}',
+  );
+  // follow-up question?: answer  →  question? [pause] answer
+  t = t.replaceAllMapped(RegExp(r'\?\s*:\s*'), (_) => '? $kSpeechPauseCue ');
+  // Also split "question? Answer text" style follow-ups that use "? " then capital
+  // without a colon — only when previous token looks like a follow-up cue.
+  // (Main Q→Answer already uses "words? Answer." and should stay as-is.)
+  return t.replaceAll(RegExp(r'\s+'), ' ').trim();
+}
+
+/// Sanitize + Q&A pacing in one step for the player.
+List<String> speechUnitsForSection(String body) {
+  final sanitized = sanitizeForSpeech(body);
+  final paced = insertQaStructuralPauses(sanitized);
+  return splitSentences(paced)
+      .where((s) => s.trim().isNotEmpty)
+      .toList();
+}
+
 String applyPronunciation(String text) {
   var out = text;
   final expandKeys = expandShortforms.keys.toList()

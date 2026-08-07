@@ -15,11 +15,11 @@ Next. Q3. Pre-interview checklist — materials? Answer. Calendar link / login w
 
 ## §3 Q4. Pre-interview checklist — content (retrieval only)?
 
-Next. Q4. Pre-interview checklist — content (retrieval only)? Answer. Metric trio once · S6, S 8, S9 once (minimum) · coding + SD openers once · weak flashcards capped. Check boxes — don’t re-open full modules. Follow-ups. S 1 today?: In priority story list — once with S6/S 8/S9 block.. Re-read Day 26 scripts?: OK as story retrieval — not rewrite.. New flashcard creation?: Only Mock #4 fix-forward fronts — no expansion..
+Next. Q4. Pre-interview checklist — content (retrieval only)? Answer. Metric trio once · BookMyShow LE Bottom Sheet, BookMyShow I M O C + crash-free at scale, District Free Parking + Clean/M V V M + AI tooling once (minimum) · coding + SD openers once · weak flashcards capped. Check boxes — don’t re-open full modules. Follow-ups. BookMyShow Ads pipeline + HeroWidget lifecycle today?: In priority story list — once with BookMyShow LE Bottom Sheet/BookMyShow I M O C + crash-free at scale/District Free Parking + Clean/M V V M + AI tooling block.. Re-read Day 26 scripts?: OK as story retrieval — not rewrite.. New flashcard creation?: Only Mock #4 fix-forward fronts — no expansion..
 
 ## §4 Q5. What is the metric trio for retrieval?
 
-Next. Q5. What is the metric trio for retrieval? Answer. “I’ve owned features on BookMyShow at 30L+ daily active users, helped drive 99.95%+ crash-free discipline on my paths, and shipped UX like the LE bottom sheet that cut full-screen navigations by 30%+ on targeted flows.” Say once aloud today — honest scope on each number. Follow-ups. Shorter 20s version?: “30L+ daily active users, 99.95%+ crash-free on my paths, 30%+ nav on LE flows.”. Interviewer wants one metric?: Pick S6 or S 8 depending on question.. Inflate under pressure?: Never — clarify scope instead..
+Next. Q5. What is the metric trio for retrieval? Answer. “I’ve owned features on BookMyShow at 30L+ daily active users, helped drive 99.95%+ crash-free discipline on my paths, and shipped UX like the LE bottom sheet that cut full-screen navigations by 30%+ on targeted flows.” Say once aloud today — honest scope on each number. Follow-ups. Shorter 20s version?: “30L+ daily active users, 99.95%+ crash-free on my paths, 30%+ nav on LE flows.”. Interviewer wants one metric?: Pick BookMyShow LE Bottom Sheet or BookMyShow I M O C + crash-free at scale depending on question.. Inflate under pressure?: Never — clarify scope instead..
 
 ## §5 Q6. What body and sleep rules apply?
 
@@ -27,4 +27,4 @@ Next. Q6. What body and sleep rules apply? Answer. Real meal; light movement · 
 
 ## §6 Q7. What are mental time budgets to hold?
 
-Next. Q7. What are mental time budgets to hold? Answer. 45s — quick defs and openers. 2m — STAR behavioral. 5m — SD clarify + high level design sketch start. 45m — full SD segment with ops protected. These are anchors — not new learning, just rhythm recall. Follow-ups. 90–120s deep dive?: Between 45s and 2m — one mechanism + trade-off + proof.. 3–5m architecture?: When asked “design X” inside i O S block.. Overtime habit?: Agenda sentence + self-correct — practiced in mocks.. Next: 03-story-retrieval.md.
+Next. Q7. What are mental time budgets to hold? Answer. 45s — quick defs and openers. 2m — STAR behavioral. 5m — SD clarify + high level design sketch start. 45m — full SD segment with ops protected. These are anchors — not new learning, just rhythm recall. Follow-ups. 90–120s deep dive?: Between 45s and 2m — one mechanism + trade-off + proof.. 3–5m architecture?: When asked “design X” inside i O S block.. Overtime habit?: Agenda sentence + self-correct — practiced in mocks..

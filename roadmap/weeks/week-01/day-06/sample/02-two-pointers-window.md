@@ -1,12 +1,10 @@
 # Sample 02 — Two pointers & sliding window (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. How do I tell two pointers from sliding window?
-
-**Points to:** [Foundations · §2.1 Two pointers vs sliding window](../01-foundations.md#21-two-pointers-vs-sliding-window-intern-distinction) · [Foundations · §10 Decision tree](../01-foundations.md#10-decision-tree-30s-id)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Contiguous substring signal? | Variable sliding window. |
 | Sorted array, pair sum signal? | Opposite pointers (after sort if needed). |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What signals “opposite ends” two pointers?
-
-**Points to:** [Foundations · §2 Pattern cheatsheet](../01-foundations.md#2-pattern-cheatsheet-embedded--no-external-read-required) · [Deep dive · §4 Container With Most Water](../02-deep-dive.md#4-container-with-most-water)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | Unsorted 3Sum? | Sort first O(n log n), then opposite pointers with duplicate skip. |
 | Palindrome pointer rule? | Skip non-alphanumeric; compare lowercased chars. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. What signals a variable sliding window?
-
-**Points to:** [Foundations · §6.3 Variable window template](../01-foundations.md#63-variable-window) · [Deep dive · §5 Longest Substring](../02-deep-dive.md#5-longest-substring-without-repeating-characters)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | Duplicate char trap? | Move `left` to `lastIndex + 1`, not just `left + 1`. |
 | Min Size Subarray Sum? | Shrink while sum ≥ target; track minimum length. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. What is a write pointer (in-place two pointers)?
-
-**Points to:** [Foundations · §2 Pattern cheatsheet](../01-foundations.md#2-pattern-cheatsheet-embedded--no-external-read-required) · [Deep dive · §8 Move Zeroes](../02-deep-dive.md#8-move-zeroes)
 
 **Answer:**
 
@@ -74,11 +75,12 @@
 | Why not `removeFirst` in a loop? | O(n) per remove → O(n²) total. |
 | Mutate allowed? | Confirm — in-place patterns need it. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. How does Kadane relate to “window” thinking?
-
-**Points to:** [Foundations · §6.4 Kadane template](../01-foundations.md#64-kadane) · [Deep dive · §6 Maximum Subarray](../02-deep-dive.md#6-maximum-subarray-kadane)
 
 **Answer:**
 
@@ -92,11 +94,12 @@
 | Reset trap? | Wrong reset-to-zero logic breaks all-negative arrays. |
 | Contiguous required? | Yes — not the same as “pick any subset.” |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What is the off-by-one checklist for windows?
-
-**Points to:** [Deep dive · §14 Off-by-one window checklist](../02-deep-dive.md#14-off-by-one-window-checklist)
 
 **Answer:**
 
@@ -110,11 +113,12 @@
 | Update max when? | Usually after each valid expand; also check after shrink for min-window problems. |
 | Fixed window size k? | Different pattern — slide both ends together when size exceeds k. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. Pattern ID: which approach for these prompts?
-
-**Points to:** [Deep dive · §12 Pattern ID drills](../02-deep-dive.md#12-pattern-id-drills-no-code) · [Foundations · §10 Decision tree](../01-foundations.md#10-decision-tree-30s-id)
 
 **Answer:**
 
@@ -128,6 +132,10 @@
 | Range product no division? | Prefix/suffix — not window. |
 | Many subarray sums? | Prefix + hash (later week). |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [03-strings-swift.md](03-strings-swift.md)
+
+---
+

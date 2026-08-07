@@ -1,12 +1,10 @@
 # Sample 02 — Heap patterns (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What does a heap buy you in interviews?
-
-**Points to:** [Foundations · §2 Heap mental model](../01-foundations.md#2-heap-mental-model) · [Deep dive · §2 Heap pattern catalog](../02-deep-dive.md#2-heap-pattern-catalog)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Heapify build? | O(n) — mention if building from array once. |
 | Swift heap API? | Narrate sift operations if boilerplate missing — clarity beats broken code. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. Min-heap or max-heap for Kth largest?
-
-**Points to:** [Foundations · §2.2 Min vs max](../01-foundations.md#22-min-vs-max--the-interview-trap)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | Top K frequent? | Count map → min-heap K by freq **or** bucket O(n). |
 | k > n? | Clarify — return all or error. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. How does merge K sorted lists work?
-
-**Points to:** [Deep dive · §2 Merge K](../02-deep-dive.md#merge-k--why-not-concat--sort)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | Divide-and-conquer merge? | Pairwise merge — also strong; state complexity. |
 | Linked list nodes vs arrays? | Same heap-of-heads idea. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. Top K frequent — heap vs bucket?
-
-**Points to:** [Deep dive · §2 Top K frequent](../02-deep-dive.md#top-k-frequent--bucket-alternative)
 
 **Answer:**
 
@@ -74,11 +75,12 @@
 | Ties? | Any K among ties unless problem specifies. |
 | Stream variant? | Heap size K — online friendly. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. What is the heap complexity script?
-
-**Points to:** [Foundations · §2.1 Complexity script](../01-foundations.md#21-what-a-heap-buys-you) · [Deep dive · §7 Worked examples](../02-deep-dive.md#7-worked-complexity-examples)
 
 **Answer:**
 
@@ -92,11 +94,12 @@
 | Reorganize string / task scheduler? | Max-heap by freq + cooldown — greedy. |
 | Comparator bugs? | Define min-heap by **negated** max or explicit compare — say aloud. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What is the heap “say this first” script?
-
-**Points to:** [Foundations · §5 First scripts](../01-foundations.md#5-first-scripts-to-memorize)
 
 **Answer:**
 
@@ -110,11 +113,12 @@
 | Meeting rooms II? | Sort starts; min-heap of end times for overlap count. |
 | Return heap contents unsorted? | Clarify — may need sort before return. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. Common heap failure modes?
-
-**Points to:** [Deep dive · §5 Failure modes](../02-deep-dive.md#5-failure-modes)
 
 **Answer:**
 
@@ -128,6 +132,10 @@
 | Find median stream? | Two heaps — max-low + min-high — design question. |
 | iOS 18+ Heap type? | Use if available; else array + sift with explanation. |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [03-mixed-unknown-pattern.md](03-mixed-unknown-pattern.md)
+
+---
+

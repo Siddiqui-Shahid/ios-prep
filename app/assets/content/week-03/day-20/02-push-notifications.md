@@ -1,12 +1,10 @@
 # Sample 02 — Push notifications (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. Walk the push pipeline in order.
-
-**Points to:** [Foundations · §2 Push pipeline](../01-foundations.md#2-push-pipeline)
 
 **Answer:**
 
@@ -20,15 +18,16 @@
 | Token every launch? | Tokens change; **upsert** server-side on each register. |
 | Silent push as cron? | Limited wake budget — don’t rely. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. Why must push and Universal Links share one router?
 
-**Points to:** [Foundations · §2](../01-foundations.md#2-push-pipeline) · [Deep dive · §2 Router architecture](../02-deep-dive.md#2-router-architecture)
-
 **Answer:**
 
-> Dual routers **drift** — campaign push opens checkout; https link 404s because tables diverged. Senior design: **DeepLinkParser → AppRoute → Coordinator** for UL, custom scheme, push tap, Spotlight optional. S13 lesson: interop costs must be designed; routing is shared discipline.
+> Dual routers **drift** — campaign push opens checkout; https link 404s because tables diverged. Senior design: **DeepLinkParser → AppRoute → Coordinator** for UL, custom scheme, push tap, Spotlight optional. Hybrid UI / deeplinks lesson: interop costs must be designed; routing is shared discipline.
 
 **Follow-ups:**
 
@@ -38,11 +37,15 @@
 | Category actions? | Also map to AppRoute — same table. |
 | Mixpanel in push path? | Analytics on screen event after route — complementary to Airship. |
 
+**How can I relate to my case:**
+- **Shipped:** Hybrid UI / deeplinks
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
 ### Q3. When should you ask for notification permission?
-
-**Points to:** [Deep dive · §4 Push deep dive](../02-deep-dive.md#4-push-deep-dive)
 
 **Answer:**
 
@@ -54,13 +57,17 @@
 |---|---|
 | Provisional authorization? | Quiet delivery on iOS — know it exists; product decision. |
 | Re-prompt after deny? | Settings deep link — can’t re-show system dialog. |
-| Invent opt-in %? | **Forbidden** — don’t fabricate S13 metrics. |
+| Invent opt-in %? | **Forbidden** — don’t fabricate Hybrid UI / deeplinks metrics. |
+
+**How can I relate to my case:**
+- **Shipped:** Hybrid UI / deeplinks
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q4. How do you handle APNs token lifecycle?
-
-**Points to:** [Deep dive · §4](../02-deep-dive.md#4-push-deep-dive)
 
 **Answer:**
 
@@ -74,11 +81,12 @@
 | Multiple devices per user? | Store many tokens per account. |
 | Logout? | Unregister or invalidate token server-side. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. What goes in the push payload, and how to decode safely?
-
-**Points to:** [Foundations · §2](../01-foundations.md#2-push-pipeline) · [Deep dive · §4](../02-deep-dive.md#4-push-deep-dive)
 
 **Answer:**
 
@@ -92,31 +100,36 @@
 | Foreground presentation? | `willPresent` — decide banner/list/sound. |
 | Full cart in payload? | Bad — route only; fetch server state. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. Airship vs Mixpanel in the Grizzlies stack?
 
-**Points to:** [Foundations · §2](../01-foundations.md#2-push-pipeline) · [Production bridge · S13](../03-production-bridge.md#2-verified-s13--star-23-min)
-
 **Answer:**
 
-> **Airship:** push delivery, segments, engagement campaigns — Verified S13 integration.  
-> **Mixpanel:** product analytics, funnel events — also S13.  
+> **Airship:** push delivery, segments, engagement campaigns — Hybrid UI / deeplinks integration.  
+> **Mixpanel:** product analytics, funnel events — also Hybrid UI / deeplinks.  
 > Complementary, **not synonyms**. Push tap → router → screen → Mixpanel event. Don’t claim you “built Airship.”
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| S13 ≤20s line? | “Deeplinks and Airship push atop hybrid SwiftUI/UIKit, Mixpanel for analytics.” |
+| Hybrid UI / deeplinks ≤20s line? | “Deeplinks and Airship push atop hybrid SwiftUI/UIKit, Mixpanel for analytics.” |
 | Attribution in Airship? | Engagement; Mixpanel for in-app behavior — both can inform growth. |
 | One vendor for all? | Possible but know layered responsibilities. |
+
+**How can I relate to my case:**
+- **Shipped:** Hybrid UI / deeplinks
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q7. Push failure modes and senior responses?
-
-**Points to:** [Deep dive · §8 Failure modes](../02-deep-dive.md#8-failure-modes)
 
 **Answer:**
 
@@ -131,10 +144,17 @@
 
 | Follow-up | Answer |
 |---|---|
-| CFS drop after push feature? | Pause rollout — IMOC (S8) |
+| CFS drop after push feature? | Pause rollout — IMOC (BookMyShow IMOC + crash-free at scale) |
 | Test push E2E? | Device + sandbox/prod cert match |
 | Next topic? | CI/CD — [03-ci-cd-actions.md](03-ci-cd-actions.md) |
 
----
+**How can I relate to my case:**
+- **Shipped:** BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
 
 Next: [03-ci-cd-actions.md](03-ci-cd-actions.md)
+
+---
+

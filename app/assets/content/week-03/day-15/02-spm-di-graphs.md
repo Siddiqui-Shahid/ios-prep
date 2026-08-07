@@ -1,12 +1,10 @@
 # Sample 02 — SPM and DI graphs (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. How does SPM map to Interface / Impl / Core?
-
-**Points to:** [Deep dive · §2 SPM packaging model](../02-deep-dive.md#2-spm-packaging-model)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Changing Checkout UI rebuilds Cart? | Not if Cart only imported CheckoutInterface — Impl changes stay local. |
 | Worked sketches? | [`../code/Package.swift`](../code/Package.swift) · [`../code/CompositionRoot.swift`](../code/CompositionRoot.swift) |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. SPM vs CocoaPods — what do you say in an interview?
-
-**Points to:** [Deep dive · SPM vs CocoaPods](../02-deep-dive.md#spm-vs-cocoapods-interview-ready)
 
 **Answer:**
 
@@ -36,13 +35,17 @@
 |---|---|
 | Migration strategy? | Extract **leaf packages first** — don’t big-bang the whole graph. |
 | When mention Tuist/Bazel? | Monorepo scale when Xcode project pain dominates — not cargo cult. |
-| S4 soft hook? | Ads networking ownership lived behind a module boundary — packaging era may differ. |
+| BookMyShow SSL pinning + URLSession migration soft hook? | Ads networking ownership lived behind a module boundary — packaging era may differ. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow SSL pinning + URLSession migration
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Claiming pin-rotation / break-glass runbook as a shipped production playbook.
 
 ---
 
 ### Q3. How do you do DI without hidden globals?
-
-**Points to:** [Deep dive · §3 DI without hidden globals](../02-deep-dive.md#3-di-without-hidden-globals)
 
 **Answer:**
 
@@ -56,11 +59,12 @@
 | Locator pragmatism? | Legacy Swinject bridges exist — migrate feature-by-feature; don’t pretend locators are “more senior.” |
 | Interface secretly importing Impl? | Anti-pattern — breaks the graph and hides cycles. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. What are the main DI anti-patterns?
-
-**Points to:** [Deep dive · Anti-patterns](../02-deep-dive.md#anti-patterns)
 
 **Answer:**
 
@@ -74,11 +78,12 @@
 | Test impact? | Constructor injection lets you pass mocks; singletons force swizzling or env hacks. |
 | Junior onboarding fix? | Templates + forbidden-import lint + a documented golden path. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. Static vs dynamic linking — when which?
-
-**Points to:** [Deep dive · §4 Static vs dynamic linking](../02-deep-dive.md#4-static-vs-dynamic-linking)
 
 **Answer:**
 
@@ -92,11 +97,12 @@
 | Build got worse after modularization? | Chatty Interface changes, over-fine splits, too many dynamic frameworks, poor CI cache. |
 | Fix for build regression? | Merge leaf packages; stabilize Interfaces; prefer static internals; measure. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What failure modes show up in real modularization?
-
-**Points to:** [Deep dive · §9 Failure modes](../02-deep-dive.md#9-failure-modes)
 
 **Answer:**
 
@@ -110,15 +116,16 @@
 | SDK image dependency? | Host injects loader so portfolio shares one cache policy. |
 | Theming in reusable SDK? | Protocolised design tokens — not hardcoded Heat colors. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. How do trade-offs summarize for staff interviews?
 
-**Points to:** [Deep dive · §8 Trade-offs summary](../02-deep-dive.md#8-trade-offs-summary)
-
 **Answer:**
 
-> Interface/Impl split when multi-team or large features — cost is more targets. Constructor/tree DI for new modules — boilerplate at App. Service locator for legacy glue — runtime surprises. SPM for greenfield — some vendor binaries awkward. Folders-only for tiny spikes — no enforcement. SDK reuse (S10) when portfolio parity matters — versioning discipline required.
+> Interface/Impl split when multi-team or large features — cost is more targets. Constructor/tree DI for new modules — boilerplate at App. Service locator for legacy glue — runtime surprises. SPM for greenfield — some vendor binaries awkward. Folders-only for tiny spikes — no enforcement. SDK reuse (Stories SDK (Raw / Miami Heat)) when portfolio parity matters — versioning discipline required.
 
 **Follow-ups:**
 
@@ -126,8 +133,53 @@
 |---|---|
 | When skip Interface split? | Solo spike or truly tiny feature — don’t over-module a screen. |
 | Compile-time safety vs locator? | Tree/constructor fails at build; locator fails in prod on first missing dep. |
-| Next sample? | [03-stories-sdk.md](03-stories-sdk.md) — extraction and public API. |
+| Circular deps next? | Dedicated Q8 — prevention as a first-class interview topic. |
+
+**How can I relate to my case:**
+- **Shipped:** Stories SDK (Raw / Miami Heat)
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
+### Q8. How do you prevent circular dependencies?
+
+**Answer:**
+
+> Cycles usually mean two **Impls import each other**. Break them by depending only on **Interfaces** and letting **App register builders**. SPM/Xcode **fails resolution early** instead of giving mysterious runtime loops. “Import Impl just this once” is the wrong answer — it recreates the cycle under a different name.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Debug SPM cycle? | `swift package` / dependency graph tools — find the Impl↔Impl edge. |
+| Shared utils hack? | Often a smell — extract a real Interface or Core leaf instead of a junk drawer. |
+| Symptom in CI? | Package resolve / compile fails when the cycle closes — treat as graph bug, not “Xcode flaky.” |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
+---
+
+### Q9. Is binary size an interview topic for modularization?
+
+**Answer:**
+
+> Yes — modules don’t magically shrink binaries. **Dead-code stripping** helps, but **duplicate symbols** and **unused dynamic frameworks** hurt download/install size. Put a **size budget in CI** and watch diffs per release. Metric: compressed download / install size — not “more packages = smaller app.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Static vs dynamic size? | Many tiny dynamic frameworks add dyld + binary overhead — prefer static internals. |
+| Who owns the gate? | CI size budget on PRs/releases — same discipline as build-time budgets. |
+| Next sample? | [03-stories-sdk.md](03-stories-sdk.md) — extraction and public API. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 Next: [03-stories-sdk.md](03-stories-sdk.md)
+
+---
+

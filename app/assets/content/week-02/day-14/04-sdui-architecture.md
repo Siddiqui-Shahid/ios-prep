@@ -1,12 +1,10 @@
 # Sample 04 — Track B: SDUI architecture (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is Track B’s 5-minute agenda opener?
-
-**Points to:** [Deep dive · §3 Track B — Agenda](../02-deep-dive.md#agenda-20s-1) · [Production bridge · §6 SDUI mock line](../03-production-bridge.md#6-interview-lines-20s)
 
 **Answer:**
 
@@ -20,29 +18,34 @@
 | Fail-soft meaning? | Unknown skip; never crash; hard fallback if root empty. |
 | Time box? | Same 5:00 hard stop as Track A. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What problem does SDUI solve?
 
-**Points to:** [Deep dive · §3 Beat 1 — Problem](../02-deep-dive.md#beats-1) · [Production bridge · §4 S3 STAR](../03-production-bridge.md#4-s3-talk-track-23-min-star)
-
 **Answer:**
 
-> **Content and layout velocity** without app releases for many changes. Personalisation and experimentation on shell UI. Requirement: **crash-free rendering** — bad CMS payload must not take down the app. BMS header/search (S3) and Aces splash (S12) as production examples — no invented splash milliseconds.
+> **Content and layout velocity** without app releases for many changes. Personalisation and experimentation on shell UI. Requirement: **crash-free rendering** — bad CMS payload must not take down the app. BMS header/search (BookMyShow backend-driven header & search) and Aces splash (Audio streaming + server-driven splash (Aces)) as production examples — no invented splash milliseconds.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| S3 provenance? | Verified · backend-driven header + search MVVM. |
-| S12 provenance? | Verified · server-driven splash + audio — no fake TTFF ms. |
+| BookMyShow backend-driven header & search provenance? | backend-driven header + search MVVM. |
+| Audio streaming + server-driven splash (Aces) provenance? | server-driven splash + audio — no fake TTFF ms. |
 | New component types? | Still need app release for new widget code — admit limit. |
+
+**How can I relate to my case:**
+- **Shipped:** Audio streaming + server-driven splash (Aces); BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q3. What is the SDUI pipeline architecture?
-
-**Points to:** [Deep dive · §3 Beat 2 — Pipeline](../02-deep-dive.md#beats-1) · [Day 10 foundations](../../day-10/01-foundations.md)
 
 **Answer:**
 
@@ -56,15 +59,16 @@
 | Registry vs switch soup? | Registry scales; closed enum OK for small surfaces. |
 | Identity? | Server-stable node ids for lists — Day 12. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. How does fail-soft resilience work?
 
-**Points to:** [Deep dive · §3 Beat 3 — Resilience](../02-deep-dive.md#beats-1) · [Deep dive · §5 Unknown SDUI](../02-deep-dive.md#5-week-2-connective-micro-answers-embedded)
-
 **Answer:**
 
-> Unknown type → **skip + metric**; never throw into crash. **Last-known-good cache** when network fails. Empty root after parse → **hard fallback** header/splash shell. S3-A1: emphasize schema versioning + unknown fallback as **design** when pressed. Measure stability and time-to-interactive — not vanity first-frame alone.
+> Unknown type → **skip + metric**; never throw into crash. **Last-known-good cache** when network fails. Empty root after parse → **hard fallback** header/splash shell. BookMyShow backend-driven header & search-A1: emphasize schema versioning + unknown fallback as **design** when pressed. Measure stability and time-to-interactive — not vanity first-frame alone.
 
 **Follow-ups:**
 
@@ -74,15 +78,19 @@
 | Analytics? | Unknown type counts — ops visibility. |
 | Security? | Allowlist actions — prevent CMS injection paths. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
 ### Q5. What are the BMS and Aces production beats?
 
-**Points to:** [Deep dive · §3 Beat 4 — Production](../02-deep-dive.md#beats-1) · [Production bridge · §4–5 S3/S12](../03-production-bridge.md#4-s3-talk-track-23-min-star)
-
 **Answer:**
 
-> **S3:** backend-driven header; search with debounce, loading/empty/error, MVVM; content iteration without release for many header cases. **S12:** Aces live audio streaming + **server-driven splash** for cold-start content freshness — measure **time-to-interactive**, not invented splash ms. Both require fail-soft mindset.
+> **BookMyShow backend-driven header & search:** backend-driven header; search with debounce, loading/empty/error, MVVM; content iteration without release for many header cases. **Audio streaming + server-driven splash (Aces):** Aces live audio streaming + **server-driven splash** for cold-start content freshness — measure **time-to-interactive**, not invented splash ms. Both require fail-soft mindset.
 
 **Follow-ups:**
 
@@ -90,31 +98,39 @@
 |---|---|
 | Search cancel? | Debounce VM; cancel Task; ignore stale — Day 08. |
 | Splash slow fetch? | Cached last-good splash — failure mode table. |
-| District? | S9 separate — MVVM migration spice, not SDUI core. |
+| District? | District Free Parking + Clean/MVVM + AI tooling separate — MVVM migration spice, not SDUI core. |
+
+**How can I relate to my case:**
+- **Shipped:** Audio streaming + server-driven splash (Aces); BookMyShow backend-driven header & search; District Free Parking + Clean/MVVM + AI tooling
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q6. What trade-offs close Track B vs native Ads?
 
-**Points to:** [Deep dive · §3 Beat 5 — Trade-offs](../02-deep-dive.md#beats-1) · [§4 Why not both architectures](../02-deep-dive.md#4-why-not-both-architectures-as-one-religion)
-
 **Answer:**
 
-> SDUI wins velocity on shell/header/splash. **Revenue video Ads often stay native (S1)** — lifecycle, viewability, typed players. New widget types still need release. Bridge: SDUI **configures** placement; native **HeroWidget renders** video. Invite questions at 5:00.
+> SDUI wins velocity on shell/header/splash. **Revenue video Ads often stay native (BookMyShow Ads pipeline + HeroWidget lifecycle)** — lifecycle, viewability, typed players. New widget types still need release. Bridge: SDUI **configures** placement; native **HeroWidget renders** video. Invite questions at 5:00.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
 | SDUI the video player? | Rarely — weak lifecycle/typing for revenue media. |
-| Ads 5-min if stronger S1? | Pick Track A — don’t do both cold. |
+| Ads 5-min if stronger BookMyShow Ads pipeline + HeroWidget lifecycle? | Pick Track A — don’t do both cold. |
 | Full script? | [code/MockTalkTracks.md](../code/MockTalkTracks.md) § Track B. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
 
 ---
 
 ### Q7. What SDUI failure modes should I mention if time allows?
-
-**Points to:** [Deep dive · §3 Failure modes table](../02-deep-dive.md#failure-modes)
 
 **Answer:**
 
@@ -124,10 +140,17 @@
 
 | Follow-up | Answer |
 |---|---|
-| Outage week story? | IMOC + fallback + cache — S8 composure; no fake incident details. |
-| S3 STAR after talk? | Block 4 — 2–3 min; spice S12 opener 20–45s. |
+| Outage week story? | IMOC + fallback + cache — BookMyShow IMOC + crash-free at scale composure; no fake incident details. |
+| BookMyShow backend-driven header & search STAR after talk? | Block 4 — 2–3 min; spice Audio streaming + server-driven splash (Aces) opener 20–45s. |
 | Also read Ads sample? | Skim [03-ads-architecture.md](03-ads-architecture.md) 20 min after recording. |
+
+**How can I relate to my case:**
+- **Shipped:** Audio streaming + server-driven splash (Aces); BookMyShow backend-driven header & search; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
+
+Back to: [README.md](README.md) · Ads track: [03-ads-architecture.md](03-ads-architecture.md)
 
 ---
 
-Back to: [README.md](README.md) · Ads track: [03-ads-architecture.md](03-ads-architecture.md)

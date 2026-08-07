@@ -1,12 +1,10 @@
 # Sample 01 — Modularization basics (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. Why do large iOS apps need modules?
-
-**Points to:** [Foundations · §1 Plain-English mental model](../01-foundations.md#1-plain-english-mental-model) · [Foundations · §4 Why interviewers care](../01-foundations.md#4-why-interviewers-care)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Kitchen metaphor in one line? | Interface = recipe card; Impl = cook; Core = pantry; App = head chef who assigns cooks. |
 | What does “traffic jam” mean here? | Compile-time coupling — one change rebuilds half the app and teams step on each other. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What is Feature Interface vs Feature Impl?
-
-**Points to:** [Foundations · §2 Glossary](../01-foundations.md#2-glossary) · [Deep dive · §1 Layer responsibilities](../02-deep-dive.md#1-layer-responsibilities)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | What does Impl own? | UI, VM, feature-specific use-cases — but not imports of other Feature Impls. |
 | Cross-feature navigation pattern? | A depends on `FeatureBBuildable` from B’s Interface; App wires the concrete builder. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. What is the golden dependency rule?
-
-**Points to:** [Foundations · §3 Golden dependency rule](../01-foundations.md#3-golden-dependency-rule)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | Can two Impls both need each other’s UI? | They coordinate through Interface protocols and App-level routing — not direct Impl imports. |
 | Why is this interview-critical? | It proves you can scale teams and build times without hand-waving “we use modules.” |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. What is a composition root?
-
-**Points to:** [Foundations · §2 Glossary](../01-foundations.md#2-glossary) · [Deep dive · §3 DI without hidden globals](../02-deep-dive.md#3-di-without-hidden-globals)
 
 **Answer:**
 
@@ -74,11 +75,12 @@
 | God `AppDelegate` anti-pattern? | 40 singletons in AppDelegate — features should not discover deps at runtime. |
 | Needle-style / tree DI? | Typed dependency protocols per feature + component tree — compile-time wiring. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. What is Core, and what must it not become?
-
-**Points to:** [Foundations · §2 Glossary](../01-foundations.md#2-glossary) · [Deep dive · §6 Shared models](../02-deep-dive.md#6-shared-models-without-core-junk-drawer)
 
 **Answer:**
 
@@ -92,11 +94,12 @@
 | Core owns product rules? | No — feature-specific product rules stay in feature Impls. |
 | Why juniors get blocked without Core discipline? | They import Core for convenience and recreate hidden coupling. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What should the 60-second HLD show?
-
-**Points to:** [Foundations · §5 60-second HLD](../01-foundations.md#5-60-second-hld-to-draw)
 
 **Answer:**
 
@@ -110,11 +113,12 @@
 | Stories as SDK on diagram? | Reusable module with public API — host injects theme, analytics, loaders. |
 | One sentence for whiteboard? | “Impls depend on peer Interfaces and Core; App wires concrete types.” |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. What should I say after foundations?
-
-**Points to:** [Foundations · §6 Checkpoint](../01-foundations.md#6-checkpoint)
 
 **Answer:**
 
@@ -128,6 +132,10 @@
 | Static vs dynamic (preview)? | Static links into binary at build time; dynamic loads at runtime (dyld cost). |
 | Next sample? | [02-spm-di-graphs.md](02-spm-di-graphs.md) — packaging and DI mechanics. |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [02-spm-di-graphs.md](02-spm-di-graphs.md)
+
+---
+

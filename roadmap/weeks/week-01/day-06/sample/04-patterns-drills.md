@@ -1,12 +1,10 @@
 # Sample 04 — Patterns, drills & Week 1 core set (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. When do I reach for a hash map?
-
-**Points to:** [Foundations · §2 Pattern cheatsheet](../01-foundations.md#2-pattern-cheatsheet-embedded--no-external-read-required) · [Deep dive · §1 Two Sum](../02-deep-dive.md#1-two-sum) · [Deep dive · §11 Group Anagrams](../02-deep-dive.md#11-group-anagrams-bridge)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Group Anagrams key? | Sorted string or char-frequency signature. |
 | vs sorting? | Sort is O(n log n); hash is O(n) when order does not matter. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What is the prefix / suffix product pattern?
-
-**Points to:** [Foundations · §2 Pattern cheatsheet](../01-foundations.md#2-pattern-cheatsheet-embedded--no-external-read-required) · [Deep dive · §7 Product Except Self](../02-deep-dive.md#7-product-of-array-except-self)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | One zero in array? | Only that index gets non-zero product; others get 0. |
 | Space O(1)? | Output array often excluded from “extra” space — clarify. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. What is the Week 1 minimum core set?
-
-**Points to:** [Foundations · §5 Core problem set](../01-foundations.md#5-core-problem-set-week-1-day-06) · [README · Files in code](../README.md#files-in-code)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | Timed target? | 30–40 min per problem including approach script. |
 | Which 3 if short on time? | Two Sum, Longest Substring, Max Subarray — pattern spread. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. Say time and space for each core pattern.
-
-**Points to:** [Foundations · §9 Complexity cheat sheet](../01-foundations.md#9-complexity-cheat-sheet-say-out-loud) · [Deep dive · §16 Brute → optimal comparison table](../02-deep-dive.md#16-brute--optimal-comparison-table)
 
 **Answer:**
 
@@ -74,11 +75,12 @@
 | Longest substring space? | O(min(n, charset size)). |
 | Two Sum brute? | O(n²) time, O(1) space — contrast when optimizing. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. Best Time to Buy/Sell Stock — one-pass state?
-
-**Points to:** [Deep dive · §2 Best Time to Buy and Sell Stock](../02-deep-dive.md#2-best-time-to-buy-and-sell-stock) · [code/MaxProfit.swift](../code/MaxProfit.swift)
 
 **Answer:**
 
@@ -92,11 +94,12 @@
 | Multiple transactions? | Different problem (greedy) — not Week 1 core. |
 | Negative prices? | LeetCode usually non-negative — clarify. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. 3Sum — how do hash, sort, and pointers combine?
-
-**Points to:** [Deep dive · §9 3Sum (stretch)](../02-deep-dive.md#9-3sum-stretch) · [code/ThreeSum.swift](../code/ThreeSum.swift)
 
 **Answer:**
 
@@ -110,11 +113,12 @@
 | All zeros `[0,0,0,0]`? | One triplet `[0,0,0]` after skip logic. |
 | No solution? | Return empty array. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. How do I drill pattern ID without coding?
-
-**Points to:** [Deep dive · §12 Pattern ID drills](../02-deep-dive.md#12-pattern-id-drills-no-code) · [05-exercises · Exercise 3](../05-exercises.md#exercise-3--pattern-id-flash-15-min)
 
 **Answer:**
 
@@ -128,15 +132,16 @@
 | Two patterns fit? | Match output: indices vs length vs count. |
 | After drills? | Timed contest simulation in Exercise 4. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q8. How does DSA connect to iOS interview talk (honestly)?
 
-**Points to:** [Production bridge · §1 How seniors talk about DSA](../03-production-bridge.md#1-how-seniors-talk-about-dsa) · [Production bridge · §3 When DSA pivots to iOS](../03-production-bridge.md#3-when-dsa-interviews-pivot-to-ios)
-
 **Answer:**
 
-> DSA in this repo is a **communication skill** — approach narration under uncertainty. Do not claim “I used Kadane in production ads.” Soft honest bridges: cancel in-flight work ≈ debounce (S3); pagination ≈ listing windows later. Grade is process + complexity speech, not resume metric invention.
+> DSA in this repo is a **communication skill** — approach narration under uncertainty. Do not claim “I used Kadane in production ads.” Soft honest bridges: cancel in-flight work ≈ debounce (BookMyShow backend-driven header & search); pagination ≈ listing windows later. Grade is process + complexity speech, not resume metric invention.
 
 **Follow-ups:**
 
@@ -146,6 +151,13 @@
 | Anti-pattern? | Invented BMS DSA war stories. |
 | Catch-up rule? | Weak Day 03–05 topic 45–60 min beats a fourth Hard LC. |
 
----
+**How can I relate to my case:**
+- **Shipped:** BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 Back to: [README.md](README.md) · Main modules: [`../04-questions.md`](../04-questions.md)
+
+---
+

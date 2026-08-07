@@ -1,12 +1,10 @@
 # Sample 02 — Cells, reuse & prefetch (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. Why does UITableView/UICollectionView reuse cells?
-
-**Points to:** [Foundations · §4 Cells — intern path](../01-foundations.md#4-cells--intern-path) · [Deep dive · §3 Cells & Diffable](../02-deep-dive.md#3-cells--diffable)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Diffable still need reuse? | Yes — identity drives updates; cells still recycle physically. |
 | Self-sizing jank causes? | Bad estimates, ambiguous layout, image height changes after bind. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What must `prepareForReuse` do?
-
-**Points to:** [Foundations · §4 Cells](../01-foundations.md#4-cells--intern-path) · [Deep dive · prepareForReuse checklist](../02-deep-dive.md#prepareforreuse-checklist) · [code/CellReuseGuard.swift](../code/CellReuseGuard.swift)
 
 **Answer:**
 
@@ -35,14 +34,18 @@
 | Follow-up | Answer |
 |---|---|
 | Retain cycle via cell? | VC → collection → cell → closure → VC — use `[weak self]`; clear in reuse. |
-| HeroWidget in cell? | Stop player in prepareForReuse — same lifecycle contract as S1. |
+| HeroWidget in cell? | Stop player in prepareForReuse — same lifecycle contract as BookMyShow Ads pipeline + HeroWidget lifecycle. |
 | Diffable animated diff? | Still need stable Hashable IDs — unstable hashes → flicker/reorder chaos. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
 
 ---
 
 ### Q3. How does the “wrong image” bug happen?
-
-**Points to:** [Foundations · §12 Cell bind sequence](../01-foundations.md#12-cell-bind-sequence-memorize) · [Deep dive · Wrong-image anatomy](../02-deep-dive.md#wrong-image-anatomy)
 
 **Answer:**
 
@@ -56,11 +59,12 @@
 | Prefetch + configure double-fetch? | Repository single-flight per URL coalesces prefetch and cell bind (Day 09 cousin). |
 | Main-thread decode in bind? | Jank — decode off main with size budget (Week 3). |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. What is prefetching and when does it cancel?
-
-**Points to:** [Foundations · §5 Prefetch](../01-foundations.md#5-prefetch--intern-path) · [Deep dive · §4 Prefetch budgets](../02-deep-dive.md#4-prefetch-budgets) · [code/PrefetchBudget.swift](../code/PrefetchBudget.swift)
 
 **Answer:**
 
@@ -74,11 +78,12 @@
 | Wi-Fi vs cellular? | Product policy — may throttle on cellular. |
 | Couple with cancellation? | Same discipline as Day 09 — cancel stale work. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. What are Diffable Data Source benefits and remaining duties?
-
-**Points to:** [Deep dive · §3 Diffable benefits](../02-deep-dive.md#diffable-benefits) · [Foundations · §2 Glossary](../01-foundations.md#2-glossary)
 
 **Answer:**
 
@@ -92,11 +97,12 @@
 | Server inserts banner above? | Stable server node IDs — not array indices (Day 10 crossover). |
 | reloadData still valid? | Yes for simple cases — Diffable is for identity-safe diffs. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What prefetch rules protect users and App Store reviews?
-
-**Points to:** [Deep dive · §4 Prefetch budgets table](../02-deep-dive.md#4-prefetch-budgets) · [Deep dive · §18 Prefetch + image pipeline](../02-deep-dive.md#18-prefetch--image-pipeline-interaction)
 
 **Answer:**
 
@@ -110,11 +116,12 @@
 | Image pipeline interaction? | prefetch → warm(ids); configure → image(id) coalesced; cancel → drop unneeded warms. |
 | Production claim? | Learning-lab patterns — honest about tuning, not invented savings %. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. What is the cell + prefetch decision card?
-
-**Points to:** [Deep dive · §14 Decision rule card](../02-deep-dive.md#14-decision-rule-card) · [Deep dive · §21 Extended decision card](../02-deep-dive.md#21-extended-decision-card)
 
 **Answer:**
 
@@ -128,6 +135,29 @@
 | Self-sizing mitigation? | Better estimates, prefetch images, stable heights when product allows. |
 | Next topic? | Hybrid interop — [03-hybrid-interop.md](03-hybrid-interop.md). |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
+### Q8. What causes self-sizing collection jank?
+
+**Answer:**
+
+> Self-sizing jank usually comes from **ambiguous Auto Layout**, **estimated sizes far from reality**, **images changing height after bind**, or **heavy main-thread work during bind**. Fix estimates, prefetch images so heights stabilize earlier, use stable heights when product allows, and keep cell bind cheap — profile layout with Time Profiler / Core Animation rather than guessing “switch to SwiftUI List.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Instruments first? | Time Profiler + Core Animation to see layout thrash. |
+| Fixed height OK? | Yes when design allows — avoids multi-pass self-sizing thrash. |
+| SwiftUI List as silver bullet? | Trap — Day 12 has its own identity/layout trade-offs. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 Next: [03-hybrid-interop.md](03-hybrid-interop.md)
+
+---
+

@@ -1,12 +1,10 @@
 # Sample 02 — Signal safety and OOM (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What does async-signal-safe mean in the crash path?
-
-**Points to:** [Deep dive · §1 Signal handling](../02-deep-dive.md#1-signal-handling-what-safe-means) · [Foundations · §5 Glossary](../01-foundations.md#5-glossary)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Why no locks? | Deadlock if crash held the lock. |
 | Interview one-liner? | “Persist preallocated — don’t allocate in the handler.” |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What happens conceptually inside the handler?
-
-**Points to:** [Deep dive · §1.1 Handler responsibilities](../02-deep-dive.md#11-handler-responsibilities-conceptual)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | Suspend threads caveat? | Delicate — vendor SDKs differ; don’t overclaim custom handler expertise. |
 | Learning-lab? | [`../code/CrashReportNotes.swift`](../code/CrashReportNotes.swift) |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. How should breadcrumbs be designed?
-
-**Points to:** [Deep dive · §2 Breadcrumbs](../02-deep-dive.md#2-breadcrumbs)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | Heavy breadcrumbs cost? | CPU + PII risk — balance debuggability. |
 | Forbidden keys lint? | CI guard against `Authorization` in breadcrumb payloads. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. How does symbolication work and fail?
-
-**Points to:** [Deep dive · §3 Symbolication & dSYM](../02-deep-dive.md#3-symbolication--dsym)
 
 **Answer:**
 
@@ -74,11 +75,12 @@
 | Hotfix readability? | Same UUID discipline for hotfix binaries. |
 | Default vendor? | Crashlytics workflows — don’t claim in-house handler unless evidenced. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. What are honest limits of OOM detection?
-
-**Points to:** [Deep dive · §4 OOM detection](../02-deep-dive.md#4-oom-detection-honest-limits)
 
 **Answer:**
 
@@ -92,11 +94,12 @@
 | Cycles in OOM story? | Abandoned heaps contribute — Graph, not Leaks. |
 | User Documents? | Never wipe on memory pressure — L2 image cache OK to lose. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What are upload reliability rules?
-
-**Points to:** [Deep dive · §5 Upload reliability](../02-deep-dive.md#5-upload-reliability)
 
 **Answer:**
 
@@ -110,11 +113,12 @@
 | Duplicate uploads? | Idempotency / dedupe on server side — client retries safely. |
 | Launch budget? | Crash SDK init fast — heavy work after first frame where possible. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. What non-fatal error hygiene matters?
-
-**Points to:** [Deep dive · §6 Non-fatals](../02-deep-dive.md#6-non-fatals--alert-hygiene)
 
 **Answer:**
 
@@ -126,8 +130,31 @@
 |---|---|
 | vs fatal triage? | Non-fatals inform quality; CFS tracks session fatals. |
 | Payment non-fatal? | Treat as Sev even if crash-free.session continues. |
-| Next sample? | [03-imoc-triage.md](03-imoc-triage.md) — incident command. |
+| OSLog in handler? | Explicit trap — dedicated Q8. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
+### Q8. Why is OSLog / logging inside a signal handler a trap?
+
+**Answer:**
+
+> **OSLog and normal logging frameworks are not async-signal-safe.** Calling them from a signal handler is how you get a **secondary crash or deadlock**. The crash writer must use a **precomputed path** — mmap and safe writes — without allocating. **Breadcrumbs are recorded earlier on the happy path** so the handler only persists what’s already there. Common wrong answer: “Just OSLog from the signal handler.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| What *is* allowed? | Limited async-signal-safe syscalls (`write`, etc.) into preallocated buffers. |
+| Where do logs go then? | Happy-path breadcrumbs + next-launch upload — never a full logger in-handler. |
+| Next sample? | [03-imoc-triage.md](03-imoc-triage.md) — incident command. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 Next: [03-imoc-triage.md](03-imoc-triage.md)
+
+---
+

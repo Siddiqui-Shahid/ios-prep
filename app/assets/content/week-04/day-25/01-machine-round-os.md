@@ -1,12 +1,10 @@
 # Sample 01 — Machine round operating system (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is the north star for a 3-hour machine round?
-
-**Points to:** [Foundations · §0 North star](../01-foundations.md#0-north-star) · [§2 Vertical slice](../01-foundations.md#2-vertical-slice-definition)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Build both briefs? | Pick A **or** B — outline other in notes only if surplus time. |
 | Perfectionism? | Stop styling when pagination/SDUI core broken. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What is the 3-hour clock?
-
-**Points to:** [Foundations · §1 Clock](../01-foundations.md#1-clock-memorize)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | Pixel-perfect at 1:00? | Wrong priority — happy path first. |
 | No tests at 2:40? | Write two immediately — pass bar needs tests ≥3. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. What is a vertical slice in practice?
-
-**Points to:** [Foundations · §2 Vertical slice](../01-foundations.md#2-vertical-slice-definition) · [Deep dive · Must-have acceptance](../02-deep-dive.md#must-have-acceptance)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | Real network? | Impressive if stable — flaky Wi‑Fi; prefer stub + one live. |
 | README in buffer? | Known gaps, cache policy, cut lines — graders read this. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. Anti-perfectionism — what should trigger a stop?
-
-**Points to:** [Foundations · §3 Anti-perfectionism](../01-foundations.md#3-anti-perfectionism-checklist)
 
 **Answer:**
 
@@ -74,11 +75,12 @@
 | Full Clean Architecture? | Rarely fits 3 hrs — pragmatic MVVM + protocols. |
 | 100% coverage chase? | Fail — 3–6 meaningful tests win. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. Brief A or Brief B — how do I choose?
-
-**Points to:** [Foundations · §4 Pick A or B](../01-foundations.md#4-pick-a-or-b)
 
 **Answer:**
 
@@ -88,15 +90,19 @@
 
 | Follow-up | Answer |
 |---|---|
-| S3 hook? | Both touch list/search and SDUI instincts — honest ≤20s only. |
+| BookMyShow backend-driven header & search hook? | Both touch list/search and SDUI instincts — honest ≤20s only. |
 | UIKit vs SwiftUI? | Clarify at 0:15; state assumption aloud. |
 | Surplus time? | Second brief **notes** only — 20 min max. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q6. What do graders hear at key minutes?
-
-**Points to:** [Deep dive · Communication rubric cues](../02-deep-dive.md#communication-rubric-cues-what-graders-hear)
 
 **Answer:**
 
@@ -107,14 +113,18 @@
 | Follow-up | Answer |
 |---|---|
 | Trade-offs when? | Buffer + debrief — not only at end if asked. |
-| AI scaffolding tests? | S9 — you own architecture and review. |
+| AI scaffolding tests? | District Free Parking + Clean/MVVM + AI tooling — you own architecture and review. |
 | Pass bar? | Rubric avg ≥3.5, correctness ≥4, tests ≥3. |
+
+**How can I relate to my case:**
+- **Shipped:** District Free Parking + Clean/MVVM + AI tooling
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q7. What should I say at 0:15 (proctor opener)?
-
-**Points to:** [README · Proctor opener](../README.md#proctor-opener-015) · [Deep dive · Worked scripts](../02-deep-dive.md#worked-vertical-slice-scripts-speak-at-015)
 
 **Answer:**
 
@@ -128,6 +138,10 @@
 | Agenda layers? | ListView/Renderer → ViewModel → Repository protocol → Remote + Cache or Decoder + Factory. |
 | Next? | Brief-specific sample 02 or 03. |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [02-brief-a-pagination.md](02-brief-a-pagination.md) · [03-brief-b-sdui.md](03-brief-b-sdui.md)
+
+---
+

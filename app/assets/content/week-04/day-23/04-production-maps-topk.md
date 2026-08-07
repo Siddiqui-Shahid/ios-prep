@@ -1,12 +1,10 @@
-# Sample 04 — Production maps & top-K (Q&A)
+# Sample 04 — Maps & top-K in production (Q&A)
 
-> Guided teaching. **Verified** hooks only — interview patterns train instincts; don’t cosplay LeetCode on resume.
+> Guided teaching. Separates **shipped** named cases from **design-if-asked** and **lab-only** so you never blur them in an interview.
 
 ---
 
-### Q1. What is the S2 synchronised dictionaries hook?
-
-**Points to:** [Production bridge · Verified · S2](../03-production-bridge.md#verified--s2--synchronised-dictionaries-bookmyshow)
+### Q1. What is the BookMyShow synchronised dictionaries synchronised dictionaries hook?
 
 **Answer:**
 
@@ -18,13 +16,17 @@
 |---|---|
 | OK to say? | Maps for coalescing and counts with safe access. |
 | Not OK? | “Our search is Two Sum.” |
-| Soft S8 tie? | Aggregate Crashlytics by key — not invented triage metrics. |
+| Soft BookMyShow IMOC + crash-free at scale tie? | Aggregate Crashlytics by key — not invented triage metrics. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Do not steal BookMyShow IMOC / crash-free culture credit for a path-specific dictionary race fix — keep scopes separate.
 
 ---
 
-### Q2. How does S3 search relate to hash patterns?
-
-**Points to:** [Production bridge · Verified · S3](../03-production-bridge.md#verified--s3--search-debounce--state)
+### Q2. How does BookMyShow backend-driven header & search search relate to hash patterns?
 
 **Answer:**
 
@@ -38,11 +40,15 @@
 | MVVM angle? | State keyed by query generation — stale response guard. |
 | Invented latency? | Forbidden. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
-### Q3. GymFlow S16 and heap mental model?
-
-**Points to:** [Production bridge · Verified · S16](../03-production-bridge.md#verified--s16--gymflow-top-k-similar)
+### Q3. GymFlow GymFlow on-device AI and heap mental model?
 
 **Answer:**
 
@@ -56,15 +62,19 @@
 | Cloud LLM? | **Not claimed** for GymFlow. |
 | Fake accuracy %? | Forbidden. |
 
+**How can I relate to my case:**
+- **Shipped:** GymFlow on-device AI
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
 ### Q4. What is the honesty table for today?
 
-**Points to:** [Production bridge · Honesty table](../03-production-bridge.md#honesty-table)
-
 **Answer:**
 
-> **OK:** maps for coalescing and counts; top-K similar as exercises; soft S8 aggregate-by-key culture. **Not OK:** “Our search is Two Sum”; fake latency % from heap choice; invented triage metrics.
+> **OK:** maps for coalescing and counts; top-K similar as exercises; soft BookMyShow IMOC + crash-free at scale aggregate-by-key culture. **Not OK:** “Our search is Two Sum”; fake latency % from heap choice; invented triage metrics.
 
 **Follow-ups:**
 
@@ -74,11 +84,15 @@
 | Learning-lab? | All `code/` Swift — interview practice. |
 | Provenance file? | [`../../../provenance/README.md`](../../../provenance/README.md) |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
+
 ---
 
 ### Q5. What is the 45s production bridge script?
-
-**Points to:** [Production bridge · Bridge script](../03-production-bridge.md#bridge-script-45s)
 
 **Answer:**
 
@@ -88,15 +102,19 @@
 
 | Follow-up | Answer |
 |---|---|
-| Verified IDs? | S2 · S3 · S16 · learning-lab `code/`. |
+| Verified IDs? | BookMyShow synchronised dictionaries · BookMyShow backend-driven header & search · GymFlow on-device AI · learning-lab `code/`. |
 | When full STAR? | Day 26 / behavioral — not during LC narration. |
 | After sample? | [`../04-questions.md`](../04-questions.md) |
+
+**How can I relate to my case:**
+- **Shipped:** GymFlow on-device AI; BookMyShow synchronised dictionaries; BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
 
 ---
 
 ### Q6. How do hash/heap instincts connect to FinTrack/GymFlow?
-
-**Points to:** [Production bridge · S16](../03-production-bridge.md#verified--s16--gymflow-top-k-similar) · [Day 24 GymFlow](../../day-24/02-deep-dive.md#2-gymflow--edge-embeddings-recommender-verified--s16)
 
 **Answer:**
 
@@ -106,10 +124,17 @@
 
 | Follow-up | Answer |
 |---|---|
-| Conflate with District S9? | Tooling AI ≠ product on-device AI. |
+| Conflate with District District Free Parking + Clean/MVVM + AI tooling? | Tooling AI ≠ product on-device AI. |
 | Heap in shipped GymFlow? | Mental model — don’t claim specific heap API unless verified. |
 | Next study day? | Day 24 on-device AI deep dive. |
 
----
+**How can I relate to my case:**
+- **Shipped:** District Free Parking + Clean/MVVM + AI tooling
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 Next: main [`../04-questions.md`](../04-questions.md)
+
+---
+

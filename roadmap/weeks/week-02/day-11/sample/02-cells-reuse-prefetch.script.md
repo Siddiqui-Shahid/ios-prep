@@ -7,7 +7,7 @@ Next. Q1. Why does UITableView/UICollectionView reuse cells? Answer. Only a smal
 
 ## §1 Q2. What must `prepareForReuse` do?
 
-Next. Q2. What must `prepareForReuse` do? Answer. Cancel image and network tasks. Clear image, text, highlighted state. Nil out closures and targets that capture the view controller. Reset swipe/gesture transient U I. Invalidate display tokens or generation IDs. Never configure a recycled cell without this cleanup path. Follow-ups. Retain cycle via cell?: view controller → collection → cell → closure → view controller — use [weak self]; clear in reuse.. HeroWidget in cell?: Stop player in prepareForReuse — same lifecycle contract as S 1.. Diffable animated diff?: Still need stable Hashable IDs — unstable hashes → flicker/reorder chaos..
+Next. Q2. What must `prepareForReuse` do? Answer. Cancel image and network tasks. Clear image, text, highlighted state. Nil out closures and targets that capture the view controller. Reset swipe/gesture transient U I. Invalidate display tokens or generation IDs. Never configure a recycled cell without this cleanup path. Follow-ups. Retain cycle via cell?: view controller → collection → cell → closure → view controller — use [weak self]; clear in reuse.. HeroWidget in cell?: Stop player in prepareForReuse — same lifecycle contract as BookMyShow Ads pipeline + HeroWidget lifecycle.. Diffable animated diff?: Still need stable Hashable IDs — unstable hashes → flicker/reorder chaos..
 
 ## §2 Q3. How does the “wrong image” bug happen?
 
@@ -27,4 +27,8 @@ Next. Q6. What prefetch rules protect users and App Store reviews? Answer. Cance
 
 ## §6 Q7. What is the cell + prefetch decision card?
 
-Next. Q7. What is the cell + prefetch decision card? Answer. Cells: reset + cancel in prepareForReuse; token-check async completions. Prefetch: warm + cancel + bound concurrency + Low Data Mode. Diffable: stable IDs. Never configure without a reuse reset path. Wrong image = missing cancel or missing ID check. Follow-ups. Ads wrong creative in cell?: Same token pattern — cancel player and clear on reuse.. Self-sizing mitigation?: Better estimates, prefetch images, stable heights when product allows.. Next topic?: Hybrid interop — 03-hybrid-interop.md.. Next: 03-hybrid-interop.md.
+Next. Q7. What is the cell + prefetch decision card? Answer. Cells: reset + cancel in prepareForReuse; token-check async completions. Prefetch: warm + cancel + bound concurrency + Low Data Mode. Diffable: stable IDs. Never configure without a reuse reset path. Wrong image = missing cancel or missing ID check. Follow-ups. Ads wrong creative in cell?: Same token pattern — cancel player and clear on reuse.. Self-sizing mitigation?: Better estimates, prefetch images, stable heights when product allows.. Next topic?: Hybrid interop — 03-hybrid-interop.md..
+
+## §7 Q8. What causes self-sizing collection jank?
+
+Next. Q8. What causes self-sizing collection jank? Answer. Self-sizing jank usually comes from ambiguous Auto Layout, estimated sizes far from reality, images changing height after bind, or heavy main-thread work during bind. Fix estimates, prefetch images so heights stabilize earlier, use stable heights when product allows, and keep cell bind cheap — profile layout with Time Profiler / Core Animation rather than guessing “switch to SwiftUI List.” Follow-ups. Instruments first?: Time Profiler + Core Animation to see layout thrash.. Fixed height OK?: Yes when design allows — avoids multi-pass self-sizing thrash.. SwiftUI List as silver bullet?: Trap — Day 12 has its own identity/layout trade-offs..

@@ -1,12 +1,10 @@
 # Sample 01 — Running Mock #3 (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is Mock #3’s timeboxed spine?
-
-**Points to:** [Foundations · §1 Universal spine](../01-foundations.md#1-universal-spine-memorize) · [Exercises · Exercise 1](../05-exercises.md#exercise-1--spine-recite-5-min)
 
 **Answer:**
 
@@ -26,11 +24,12 @@
 | Checkpoint each phase? | Yes — silence ≠ agreement. |
 | 2× budget on one section? | Self-correct in one sentence; still scored on recovery. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. Which two prompts — pick how?
-
-**Points to:** [Foundations · §3 Pick one primary prompt](../01-foundations.md#3-pick-one-primary-prompt-coin-flip-live) · [Deep dive · intro](../02-deep-dive.md)
 
 **Answer:**
 
@@ -43,14 +42,18 @@
 | Follow-up | Answer |
 |---|---|
 | Interviewer asks both in 45? | Primary + 5-min secondary — or SDUI + security dive on allowlisted actions. |
-| Which is “easier”? | Pick the one you can ground in resume proof (S3/S12 vs S4/S5). |
+| Which is “easier”? | Pick the one you can ground in resume proof (BookMyShow backend-driven header & search/Audio streaming + server-driven splash (Aces) vs BookMyShow SSL pinning + URLSession migration/BookMyShow Firebase Performance traces). |
 | Code sketches? | Optional [`code/SDUISketch.swift`](../code/SDUISketch.swift) and [`NetworkPinSketch.swift`](../code/NetworkPinSketch.swift) — whiteboard crutches only. |
+
+**How can I relate to my case:**
+- **Shipped:** Audio streaming + server-driven splash (Aces); BookMyShow backend-driven header & search; BookMyShow SSL pinning + URLSession migration; BookMyShow Firebase Performance traces
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Claiming pin-rotation / break-glass runbook as a shipped production playbook.
 
 ---
 
 ### Q3. How do you run the live mock (Exercise 4)?
-
-**Points to:** [Exercises · Exercise 4](../05-exercises.md#exercise-4--live-mock-required-45-min)
 
 **Answer:**
 
@@ -68,11 +71,12 @@
 | Lightning alternate? | Exercise 5: other prompt — clarify + HLD + one dive + ops (20 min). |
 | Pass checklist? | ≥70 total, ops ≥6/10, no fabricated metrics, provenance labels correct. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. What communication habits score senior?
-
-**Points to:** [Foundations · §5 Communication habits](../01-foundations.md#5-communication-habits)
 
 **Answer:**
 
@@ -89,11 +93,12 @@
 | Pulled into pixel UI? | Park pixels; one component example; return to schema/reliability — timebox 5 min. |
 | End on class diagram? | **Anti-pattern** — close on failures + SLIs + pause. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. What should you rehearse before the timed mock?
-
-**Points to:** [Exercises · Exercises 1–3](../05-exercises.md) · [Deep dive · full scripts](../02-deep-dive.md)
 
 **Answer:**
 
@@ -110,15 +115,16 @@
 | Draw every time? | Muscle memory for layer boxes and arrows. |
 | Voice rest? | After-action says rest voice — mock is vocal. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What are shared anti-patterns for both prompts?
 
-**Points to:** [Deep dive · Anti-patterns](../02-deep-dive.md#anti-patterns-both)
-
 **Answer:**
 
-> Don’t: draw buttons 20 min · invent QPS · skip ops · claim S4-A1 runbook shipped · claim S2 = 99.95% CFS · hash SecKey as SPKI · end on class diagram only.  
+> Don’t: draw buttons 20 min · invent QPS · skip ops · claim Design: pin rotation / break-glass (not shipped runbook) runbook shipped · claim BookMyShow synchronised dictionaries = 99.95% CFS · hash SecKey as SPKI · end on class diagram only.  
 > Do: failures + SLIs + pause in last 5 min · resume-true metrics · correct provenance labels.
 
 **Follow-ups:**
@@ -126,18 +132,22 @@
 | Follow-up | Answer |
 |---|---|
 | Invent QPS? | Offer 30L+ DAU; labeled estimate if forced — transparent assumptions. |
-| S2 in networking mock? | Path-scoped token races only — not sole CFS owner. |
-| Averages in ops? | Use **p50/p90** journeys — S5 culture. |
+| BookMyShow synchronised dictionaries in networking mock? | Path-scoped token races only — not sole CFS owner. |
+| Averages in ops? | Use **p50/p90** journeys — BookMyShow Firebase Performance traces culture. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries; BookMyShow SSL pinning + URLSession migration; BookMyShow Firebase Performance traces
+- **Design if asked:** Design: pin rotation / break-glass (not shipped runbook)
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
 
 ---
 
 ### Q7. After-action — what do you log?
 
-**Points to:** [Exercises · After-action](../05-exercises.md#after-action) · [Exercises · Pass checklist](../05-exercises.md#pass-checklist)
-
 **Answer:**
 
-> Top 3 misses → flashcards / Week 4 Day 27. Self-review: **p50/p90 said?** rotation labeled design? unknown component handled? **fabricated metrics?** Rest voice. Pass requires ≥70, ops ≥6/10, zero fake numbers, SPKI ≠ SecKey, S4-A1 ≠ “shipped runbook.”
+> Top 3 misses → flashcards / Week 4 Day 27. Self-review: **p50/p90 said?** rotation labeled design? unknown component handled? **fabricated metrics?** Rest voice. Pass requires ≥70, ops ≥6/10, zero fake numbers, SPKI ≠ SecKey, Design: pin rotation / break-glass (not shipped runbook) ≠ “shipped runbook.”
 
 **Follow-ups:**
 
@@ -147,6 +157,13 @@
 | Week 4 link? | Day 27 gap logging from after-action. |
 | Next sample topic? | Clarify phase — [02-clarify-phase.md](02-clarify-phase.md). |
 
----
+**How can I relate to my case:**
+- **Shipped:** BookMyShow SSL pinning + URLSession migration
+- **Design if asked:** Design: pin rotation / break-glass (not shipped runbook)
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Claiming pin-rotation / break-glass runbook as a shipped production playbook.
 
 Next: [02-clarify-phase.md](02-clarify-phase.md)
+
+---
+

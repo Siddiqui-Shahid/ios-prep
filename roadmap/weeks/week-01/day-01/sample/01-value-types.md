@@ -1,12 +1,10 @@
 # Sample 01 — Value types (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is the north star for choosing types in Swift?
-
-**Points to:** [Foundations · §0 One-sentence north star](../01-foundations.md#0-one-sentence-north-star) · [Deep dive · §10 Diagram: decision flow](../02-deep-dive.md#10-diagram-decision-flow)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Default for a shared API client? | **`class`** — one identity the app shares. |
 | When does an enum beat a struct? | Finite modes with different payloads — loading vs loaded vs failed. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What does “copy” vs “share” mean?
-
-**Points to:** [Foundations · §1 Mental model](../01-foundations.md#1-mental-model-what-copy-and-share-mean) · [Foundations · §1.2 The intern demo](../01-foundations.md#12-the-intern-demo-do-this-once-out-loud)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | Class demo in one sentence? | `d = c` then `d.value = 99` also changes `c.value`. |
 | Are closures value or reference? | Closures **capture** references — especially `self` on classes. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. Does `let` vs `var` tell you value vs reference?
-
-**Points to:** [Foundations · §1.3 `let` vs `var`](../01-foundations.md#13-let-vs-var-is-not-value-vs-reference)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | `let c = Box(...)` on a class? | Cannot reassign `c` to another instance, but can mutate properties. |
 | Why does this matter in UI code? | People assume `let viewModel` means immutable state — often false for classes. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. When do you pick struct, class, enum, or actor?
-
-**Points to:** [Foundations · §2 Decision table](../01-foundations.md#2-decision-table-struct--class--enum--actor) · [Deep dive · §7.1 Type choice](../02-deep-dive.md#71-type-choice)
 
 **Answer:**
 
@@ -74,11 +75,12 @@
 | Payment screen with processing / success / failure? | **Enum** — each case carries only the data that mode needs. |
 | Shared dictionary mutated from many tasks? | **Actor** (or serial queue in legacy code) — not a plain class without sync. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. Why do teams prefer structs for ad and listing models?
-
-**Points to:** [Foundations · §3.1 Why teams love structs](../01-foundations.md#31-why-teams-love-structs-for-models) · [Production bridge · Verified S1](../03-production-bridge.md#2-verified--s1--ads--type-safe-models)
 
 **Answer:**
 
@@ -92,11 +94,12 @@
 | Does struct mean “immutable”? | No — `var` properties on a `var` binding are mutable; copies stay independent. |
 | When is a class still right in ads? | UIKit views, HeroWidget lifecycle, shared players — identity matters. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What happens when a struct contains a class property?
-
-**Points to:** [Foundations · §3.2 Structs can contain classes](../01-foundations.md#32-structs-can-contain-classes-shallow-copy) · [Deep dive · §3.1 Struct + class property](../02-deep-dive.md#31-struct--class-property)
 
 **Answer:**
 
@@ -110,11 +113,12 @@
 | Fix mindset? | Make the nested type a value, deep-copy explicitly, or inject services at the boundary — don’t hide them inside DTOs. |
 | Can a struct still “create a cycle”? | Indirectly — if nested classes or closures form strong loops. The cycle is among class instances. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. What is the difference between `==` and `===`?
-
-**Points to:** [Foundations · §4.2 `==` vs `===`](../01-foundations.md#42--vs-)
 
 **Answer:**
 
@@ -128,11 +132,12 @@
 | `let s1 = s2` after `s1 = CheckoutSession()`? | `s1 === s2` is **true** — both names point at one object. |
 | Structs in a `Set`? | Hash/equality on **value** fields — no `===`. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q8. Are structs always cheaper than classes?
-
-**Points to:** [Deep dive · §1.1 What the compiler actually does](../02-deep-dive.md#11-what-the-compiler-actually-does) · [Deep dive · §7.1 Type choice](../02-deep-dive.md#71-type-choice)
 
 **Answer:**
 
@@ -146,6 +151,10 @@
 | When might a class be cheaper? | One shared mutable cache entry with intentional identity — rare for DTOs. |
 | `inout` parameter? | Mutates in place — no conceptual return copy; exclusivity rules apply. |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [02-cow-enums.md](02-cow-enums.md)
+
+---
+

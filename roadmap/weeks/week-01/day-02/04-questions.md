@@ -1,8 +1,7 @@
-# 04 — Questions (two-layer Q&A)
+# 04 — Questions (Q&A)
 
-> **How to practice:** Cover **Full spoken answer**. Speak from **Answer points** only. Uncover and compare.  
-> Timing: Normal ≈ 30–60s · Tricky ≈ 90–120s.  
-> Every question uses the same shape.
+> Cover the answer, speak aloud, then check follow-ups. Each question ends with **How can I relate to my case** using named work — never S-codes.
+> Normal ≈ 30–60s · Design ≈ 90–120s · Tricky ≈ 90–120s.
 
 ---
 
@@ -10,429 +9,238 @@
 
 ### Q1. What is protocol-oriented programming? `(30–45s)`
 
-**Answer points (frame first):**
-- Design by composing capabilities (protocols + extensions)
-- Prefer over deep class inheritance for variants
-- Structs and classes can both conform
-- Ads pipeline hook: render / track / playback as capabilities
+**Answer:**
 
-**Agenda opener:**  
-> “Compose capabilities with protocols — prefer that over deep inheritance.”
+> Protocol-oriented programming means designing around capabilities — protocols and extensions — instead of growing a deep inheritance tree. Types opt into what they can do: renderable, trackable, playback-controllable. Structs and classes can both conform, so models stay value-friendly while UIKit views stay classes. On the BookMyShow Ads refactor we used protocol contracts so new creatives plugged into one pipeline instead of forking an AdView subclass hierarchy.
 
-**Full spoken answer:**  
-> “Protocol-oriented programming means designing around capabilities — protocols and extensions — instead of growing a deep inheritance tree. Types opt into what they can do: renderable, trackable, playback-controllable. Structs and classes can both conform, so models stay value-friendly while UIKit views stay classes. On the BookMyShow Ads refactor we used protocol contracts so new creatives plugged into one pipeline instead of forking an AdView subclass hierarchy.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> “POP means never use classes or inheritance.” (UIKit + HeroWidget still need class identity.)
+| Follow-up | Answer |
+|---|---|
+| How is composition different from multiple inheritance? | Composition stacks capabilities without inheriting stored state or fragile base implementations from multiple parents. |
+| When is a class hierarchy still justified? | When UIKit/ObjC requires a subclass, or you truly need reference identity and framework hooks. |
+| How do you unit-test a protocol-based pipeline? | Inject fake conformers for render/track/playback and assert the installer calls the right witnesses. |
 
-**Follow-up ladder:**
-- **L1:** How is composition different from multiple inheritance?
-- **L2:** When is a class hierarchy still justified?
-- **L3:** How do you unit-test a protocol-based pipeline?
-
-**Provenance:** Verified · S1 · BookMyShow · Ads POP pipeline
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
 
 ---
 
 ### Q2. associatedtype vs generic parameter? `(45–60s)`
 
-**Answer points (frame first):**
-- Generic parameter: caller chooses
-- associatedtype: conforming type chooses
-- Protocols with associated types complicate simple existentials / arrays
-- Pipeline stays generic to avoid that pain
+**Answer:**
 
-**Agenda opener:**  
-> “Associated type is chosen by the conformer; generic param by the caller.”
+> A generic parameter is filled in by the caller — `Renderer<ImageCreative>`. An associated type is filled in by the type that conforms to the protocol — `ImageAd` decides what its `ContentView` is. That’s powerful for flexible contracts, but protocols with associated types are awkward as plain existentials, so you often keep APIs generic — `install<R: AdRenderable>` — or erase at a boundary if you need a heterogeneous list.
 
-**Full spoken answer:**  
-> “A generic parameter is filled in by the caller — `Renderer<ImageCreative>`. An associated type is filled in by the type that conforms to the protocol — `ImageAd` decides what its `ContentView` is. That’s powerful for flexible contracts, but protocols with associated types are awkward as plain existentials, so you often keep APIs generic — `install<R: AdRenderable>` — or erase at a boundary if you need a heterogeneous list.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> “They’re the same thing” or “just write `var x: [AdRenderable]` with associated types and move on.”
+| Follow-up | Answer |
+|---|---|
+| Can you put a protocol with associated types in an array? | Not as a plain existential historically — keep it generic, use primary associated types, or erase to one concrete type. |
+| What are primary associated types helping with? | They let you write constrained existentials like `any Collection<String>` instead of always staying fully generic. |
+| Show `where` constraining an associated type. | `func install<R: AdRenderable>(_: R) where R.ContentView: UIView` ties the associated view to UIKit. |
 
-**Follow-up ladder:**
-- **L1:** Can you put a protocol with associated types in an array?
-- **L2:** What are primary associated types helping with?
-- **L3:** Show `where` constraining an associated type.
-
-**Provenance:** Learning-lab · associated-type mental model; Verified · S1 pipeline shape
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
 
 ---
 
 ### Q3. `some` vs `any`? `(45s)`
 
-**Answer points (frame first):**
-- `some` = opaque — one concrete hidden type
-- `any` = existential — may hold different conformers
-- Performance: opaque/generics specialize better
-- Use `any` when you need heterogeneity
+**Answer:**
 
-**Agenda opener:**  
-> “Opaque concrete versus existential box.”
+> `some Protocol` means one concrete type that conforms, but the caller can’t name it — like SwiftUI’s `some View`. `any Protocol` is an existential box that can hold different conforming types, with more dynamic dispatch and limits around Self and associated types. I use opaque or generics when the concrete type is stable and I care about specialization; I use `any` or type erasure when I truly need heterogeneous storage.
 
-**Full spoken answer:**  
-> “`some Protocol` means one concrete type that conforms, but the caller can’t name it — like SwiftUI’s `some View`. `any Protocol` is an existential box that can hold different conforming types, with more dynamic dispatch and limits around Self and associated types. I use opaque or generics when the concrete type is stable and I care about specialization; I use `any` or type erasure when I truly need heterogeneous storage.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> “They’re synonyms” or “`any` is always better because it’s flexible.”
+| Follow-up | Answer |
+|---|---|
+| Why does SwiftUI return `some View`? | The concrete view type stays opaque and stable for the compiler while callers only depend on the `View` contract. |
+| What’s the performance intuition? | Opaque/`some` and generics can specialize; `any` boxes and uses more dynamic dispatch. |
+| When does `any` refuse an associated-type operation? | When the API needs a specific associated type or `Self`, the existential can’t expose that without constraints/erasure. |
 
-**Follow-up ladder:**
-- **L1:** Why does SwiftUI return `some View`?
-- **L2:** What’s the performance intuition?
-- **L3:** When does `any` refuse an associated-type operation?
-
-**Provenance:** Learning-lab · language mechanics
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
 ### Q4. Why generics in an ads pipeline? `(45s)`
 
-**Answer points (frame first):**
-- Compile-time type safety
-- Avoid `Any` cast ladders on revenue path
-- New creatives conform and plug in
-- Specialization in hot bind paths
+**Answer:**
 
-**Agenda opener:**  
-> “Type safety on the revenue path — no cast ladders.”
+> Generics let the ads pipeline stay type-safe as creatives grow. Instead of `Any` and downcasting in bind code — which breaks when a new creative ships — each creative conforms to protocol contracts and flows through a generic installer. That kept the highest-revenue module maintainable: new types plug in without forking the revenue path, and the compiler catches mismatches.
 
-**Full spoken answer:**  
-> “Generics let the ads pipeline stay type-safe as creatives grow. Instead of `Any` and downcasting in bind code — which breaks when a new creative ships — each creative conforms to protocol contracts and flows through a generic installer. That kept the highest-revenue module maintainable: new types plug in without forking the revenue path, and the compiler catches mismatches.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> “Generics make everything faster automatically” (semantics/safety first; measure perf).
+| Follow-up | Answer |
+|---|---|
+| What did HeroWidget add on top? | Identity-bound playback/visibility lifecycle on a class, while creatives still flowed through the typed ads pipeline. |
+| Would you expose the generic pipeline across modules? | Prefer a narrow public protocol surface; keep heavy generics internal so module boundaries stay stable. |
+| When would you introduce type erasure? | At a heterogeneity boundary — arrays of mixed conformers or a single returned type — not inside the hot generic path. |
 
-**Follow-up ladder:**
-- **L1:** What did HeroWidget add on top?
-- **L2:** Would you expose the generic pipeline across modules?
-- **L3:** When would you introduce type erasure?
-
-**Provenance:** Verified · S1 · BookMyShow · type-safe ads pipeline
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
 
 ---
 
 ### Q5. Protocol extension default methods — dispatch catch? `(60s)`
 
-**Answer points (frame first):**
-- Requirements dispatch via witness table
-- Extension-only methods bind to static/existential type
-- Customization that must override → declare as requirement
-- Shared identical defaults can live in extensions
+**Answer:**
 
-**Agenda opener:**  
-> “Defaults are handy — until you expect polymorphic override.”
+> If a method is a protocol requirement, calling it through an existential uses the conformer’s implementation via the witness table. If it’s only defined in a protocol extension and not a requirement, the call can bind to the extension default based on the static type — even if the concrete type defines the same method name. So for behavior that must customize polymorphically, declare it as a requirement. Use extension defaults for truly shared behavior.
 
-**Full spoken answer:**  
-> “If a method is a protocol requirement, calling it through an existential uses the conformer’s implementation via the witness table. If it’s only defined in a protocol extension and not a requirement, the call can bind to the extension default based on the static type — even if the concrete type defines the same method name. So for behavior that must customize polymorphically, declare it as a requirement. Use extension defaults for truly shared behavior.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> “Everything in a protocol extension is dynamically dispatched like Java default interfaces.”
+| Follow-up | Answer |
+|---|---|
+| Show a minimal surprise example. | Extension-only `describe()` called via `any P` uses the default even if the concrete type defines its own `describe()`. |
+| How do you force dynamic dispatch? | Declare the method as a protocol requirement so existential calls go through the witness table. |
+| Implications for a shared `track()` helper? | If tracking must customize per creative, make `track()` a requirement; extension defaults only for truly shared behavior. |
 
-**Follow-up ladder:**
-- **L1:** Show a minimal surprise example.
-- **L2:** How do you force dynamic dispatch?
-- **L3:** Implications for a shared `track()` helper?
-
-**Provenance:** Learning-lab · dispatch trap
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
 ### Q6. What is type erasure? `(45–60s)`
 
-**Answer points (frame first):**
-- Wrap disparate conformers in one concrete box
-- Needed when PATs block easy existentials / heterogeneous arrays
-- AnyPublisher / AnySequence same idea
-- Cost: allocation, indirection, lost specialization
+**Answer:**
 
-**Agenda opener:**  
-> “Box a PAT into one type — pay for the convenience.”
+> Type erasure means wrapping types that conform to a protocol — especially one with associated types — in a single concrete type that forwards calls, so you can store them in arrays or return one type from APIs. Combine’s `AnyPublisher` is the standard example. The cost is extra allocation and indirection, and you lose generic specialization. I keep generics inside the hot ads pipeline and erase only at boundaries that need heterogeneity.
 
-**Full spoken answer:**  
-> “Type erasure means wrapping types that conform to a protocol — especially one with associated types — in a single concrete type that forwards calls, so you can store them in arrays or return one type from APIs. Combine’s `AnyPublisher` is the standard example. The cost is extra allocation and indirection, and you lose generic specialization. I keep generics inside the hot ads pipeline and erase only at boundaries that need heterogeneity.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> “Type erasure is free abstraction” or “always erase for clean APIs.”
+| Follow-up | Answer |
+|---|---|
+| Sketch `AnyTrackable` in 30s. | Store a closure or boxed base that forwards `track()`, constructed from any concrete `AdTrackable`. |
+| What do you collapse associated views to? | Often a common UIView/AnyView-like surface, or erase the whole renderer so callers never see the associated type. |
+| Erasure vs constrained `any` today? | Prefer constrained `any` when primary associated types suffice; hand-rolled erasure when you need a custom boxed API. |
 
-**Follow-up ladder:**
-- **L1:** Sketch `AnyTrackable` in 30s.
-- **L2:** What do you collapse associated views to?
-- **L3:** Erasure vs constrained `any` today?
-
-**Provenance:** Learning-lab · `TypeErasureDemo.swift`; pattern applies to S1 boundaries
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
 
 ---
 
 ### Q7. Protocol composition (`A & B`)? `(30s)`
 
-**Answer points (frame first):**
-- Require multiple capabilities at once
-- Not multiple inheritance of stored state
-- `Renderable & Trackable` ads example
-- Typealias for readability
+**Answer:**
 
-**Agenda opener:**  
-> “And-together capabilities — one type must satisfy both.”
+> Protocol composition means a type must satisfy multiple protocols — `AdRenderable & AdTrackable`. It’s capability intersection, not C++-style multiple inheritance of implementations and stored properties. For hero video ads I’d compose render, track, and playback protocols; image tiles might only need render and track.
 
-**Full spoken answer:**  
-> “Protocol composition means a type must satisfy multiple protocols — `AdRenderable & AdTrackable`. It’s capability intersection, not C++-style multiple inheritance of implementations and stored properties. For hero video ads I’d compose render, track, and playback protocols; image tiles might only need render and track.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> “Swift supports multiple inheritance via protocol composition.”
+| Follow-up | Answer |
+|---|---|
+| Composition vs protocol inheritance? | `A & B` requires both at the use site; inheritance builds a lasting subtype relationship into the protocol graph. |
+| How does this interact with generics? | Generic params can be constrained to `R: AdRenderable & AdTrackable` so one installer demands both capabilities. |
+| Class-bound + composition for delegates? | `AnyObject & PlaybackDelegate` lets you hold `weak` while still requiring multiple delegate capabilities. |
 
-**Follow-up ladder:**
-- **L1:** Composition vs protocol inheritance?
-- **L2:** How does this interact with generics?
-- **L3:** Class-bound + composition for delegates?
-
-**Provenance:** Verified · S1 · capability composition on ads
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
 
 ---
 
 ### Q8. When is inheritance still OK? `(45s)`
 
-**Answer points (frame first):**
-- UIKit / AppKit required subclasses
-- Shared identity / ObjC runtime
-- Mix: class for view, protocols for capabilities
-- HeroWidget as lifecycle class
+**Answer:**
 
-**Agenda opener:**  
-> “Inheritance where the platform demands identity — POP for capabilities.”
+> I still use inheritance when UIKit requires a subclass — views, cells, view controllers — or when I need reference identity and Objective-C interop. The senior move is to subclass for the platform object and attach capabilities via protocols. HeroWidget is a class because player lifecycle and visibility hooks are identity concerns, while the ads pipeline around it stays protocol- and generic-oriented.
 
-**Full spoken answer:**  
-> “I still use inheritance when UIKit requires a subclass — views, cells, view controllers — or when I need reference identity and Objective-C interop. The senior move is to subclass for the platform object and attach capabilities via protocols. HeroWidget is a class because player lifecycle and visibility hooks are identity concerns, while the ads pipeline around it stays protocol- and generic-oriented.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> “POP means rewrite UIKit without subclasses.”
+| Follow-up | Answer |
+|---|---|
+| Can a UIView subclass conform to your ad protocols? | Yes — HeroWidget-style classes conform for lifecycle while value creatives conform for data-only capabilities. |
+| Fragile base class symptoms? | Subclasses break when the base changes hooks/order, forcing overrides that fight shared superclass behavior. |
+| Testing UIKit subclasses vs protocol fakes? | Prefer fakes of protocol dependencies; reserve UIKit subclass tests for lifecycle/integration behavior. |
 
-**Follow-up ladder:**
-- **L1:** Can a UIView subclass conform to your ad protocols?
-- **L2:** Fragile base class symptoms?
-- **L3:** Testing UIKit subclasses vs protocol fakes?
-
-**Provenance:** Verified · S1 · HeroWidget lifecycle class
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
 
 ---
 
 ### Q9. Conditional conformance? `(45s)`
 
-**Answer points (frame first):**
-- Type conforms only when constraints hold
-- `Array: Equatable where Element: Equatable`
-- Keeps generics honest in model layers
-- Useful for wrapper types in pipelines
+**Answer:**
 
-**Agenda opener:**  
-> “Conform only when the pieces allow it.”
+> Conditional conformance means a generic type adopts a protocol only when its parameters meet constraints — Array is Equatable when its Element is. That keeps model layers honest: a Pair of Equatables can be Equatable without forcing Pair to always be Equatable. In pipelines I use the same idea for wrappers that should only be Hashable or Codable when their creative payload is.
 
-**Full spoken answer:**  
-> “Conditional conformance means a generic type adopts a protocol only when its parameters meet constraints — Array is Equatable when its Element is. That keeps model layers honest: a Pair of Equatables can be Equatable without forcing Pair to always be Equatable. In pipelines I use the same idea for wrappers that should only be Hashable or Codable when their creative payload is.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> “Conditional conformance is automatic for every generic.”
+| Follow-up | Answer |
+|---|---|
+| Write `Pair` Equatable where clause. | `extension Pair: Equatable where A: Equatable, B: Equatable { … }` so Pair is Equatable only when both sides are. |
+| Codable conditional pitfalls? | Synthesis/manual coding can diverge, and optional or existential payloads may not satisfy Codable as expected. |
+| Difference from `where` on a function? | Function `where` limits one call site; conditional conformance changes whether the type adopts the protocol at all. |
 
-**Follow-up ladder:**
-- **L1:** Write `Pair` Equatable where clause.
-- **L2:** Codable conditional pitfalls?
-- **L3:** Difference from `where` on a function?
-
-**Provenance:** Learning-lab · model-layer Swift
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
 ### Q10. Generics for repository / boundary interfaces? `(45s)`
 
-**Answer points (frame first):**
-- Associated Model or generic methods at boundaries
-- Keeps domain types explicit
-- Prefer protocols at SDK edges
-- Stories SDK soft bridge
+**Answer:**
 
-**Agenda opener:**  
-> “Boundaries expose contracts; concretes stay inside.”
+> At module boundaries I like protocol interfaces with an associated model or generic methods so call sites stay typed — `Repository` returning a concrete domain model rather than `[String: Any]`. Inside, implementations can vary. That same instinct showed up on a Stories SDK reused across apps: stable protocol-oriented surfaces rather than leaking concretes.
 
-**Full spoken answer:**  
-> “At module boundaries I like protocol interfaces with an associated model or generic methods so call sites stay typed — `Repository` returning a concrete domain model rather than `[String: Any]`. Inside, implementations can vary. That same instinct showed up on a Stories SDK reused across apps: stable protocol-oriented surfaces rather than leaking concretes.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> “Always expose concrete view models across packages.”
+| Follow-up | Answer |
+|---|---|
+| associatedtype Model vs generic method? | Associatedtype fixes Model per conforming type; a generic method lets each call choose its own type parameter. |
+| How do you mock in tests? | Provide a test double conforming to the repository protocol with a canned Model, injected at the boundary. |
+| Versioning broken contracts? | Add new protocol requirements carefully (defaults/extension), or introduce a v2 protocol rather than silently breaking callers. |
 
-**Follow-up ladder:**
-- **L1:** associatedtype Model vs generic method?
-- **L2:** How do you mock in tests?
-- **L3:** Versioning broken contracts?
-
-**Provenance:** Verified · S10 soft bridge; Clean/MVVM instinct · S9 optional if asked District
+**How can I relate to my case:**
+- **Shipped:** Stories SDK (Raw / Miami Heat); District Free Parking + Clean/MVVM + AI tooling
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q11. `protocol P: AnyObject` vs struct-friendly protocols? `(45s)`
 
-**Answer points (frame first):**
-- AnyObject = class-bound
-- Enables `weak` delegates
-- Structs cannot conform to class-bound protocols
-- Choose based on identity / weak needs
+**Answer:**
 
-**Agenda opener:**  
-> “Class-bound when you need weak identity — otherwise keep it value-friendly.”
+> Marking a protocol `AnyObject` restricts conformance to classes, which lets you hold `weak` references — classic delegates. Struct-friendly protocols omit that bound so value types can conform. For ads tracking on value creatives I keep protocols struct-friendly; for HeroWidget playback delegates or UIKit-style delegates I use class-bound protocols.
 
-**Full spoken answer:**  
-> “Marking a protocol `AnyObject` restricts conformance to classes, which lets you hold `weak` references — classic delegates. Struct-friendly protocols omit that bound so value types can conform. For ads tracking on value creatives I keep protocols struct-friendly; for HeroWidget playback delegates or UIKit-style delegates I use class-bound protocols.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> “All protocols should be AnyObject because UIKit.”
+| Follow-up | Answer |
+|---|---|
+| Why can’t weak point at a struct? | `weak` needs a reference-counted object; structs have no shared identity to zero out. |
+| Closure callbacks vs weak delegates? | Closures need explicit `[weak self]`; class-bound `weak var delegate` is the classic UIKit cycle break. |
+| Actor-bound protocols awareness? | Actor-isolated protocol requirements force await/isolation hops — don’t casually mix them with UIKit delegate assumptions. |
 
-**Follow-up ladder:**
-- **L1:** Why can’t weak point at a struct?
-- **L2:** Closure callbacks vs weak delegates?
-- **L3:** Actor-bound protocols awareness?
-
-**Provenance:** Learning-lab · weak delegate rules; S1 HeroWidget class-bound playback
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
 
 ---
 
 ## Tricky questions
-
-### T1. Why can’t you freely write `var x: [AdRenderable]` with associated types? `(120s)`
-
-**Answer points (frame first):**
-- Each conformer may pick different associated types
-- Existential can’t present one uniform associated shape
-- Options: generics, type erasure, constrained `any`, closed enum
-- Prefer generics in pipeline; erase at heterogeneous edge
-
-**Trap:**  
-> “Just use the protocol name like Java interfaces.”
-
-**Full spoken answer:**  
-> “If `AdRenderable` has associated types like `Model` and `ContentView`, each conformer can choose different concrete types. A homogeneous array existential would need one shared shape for those associated types, which you don’t have. Historically that blocked easy `[AdRenderable]`. Today I’d keep the installer generic, or erase to something like `AnyRenderable` that collapses views to `UIView`, or use constrained `any` when the language lets me fix part of the shape. On a revenue pipeline I prefer generics inside and erasure only if the feed must be heterogeneous.”
-
-**Follow-up ladder:**
-- **L1:** How does `AnyPublisher` relate?
-- **L2:** Primary associated types — what improves?
-- **L3:** Would an enum of creatives be better?
-
-**Provenance:** Learning-lab · PAT + erasure; applies to S1 feed boundaries
-
----
-
-### T2. Default implementation in extension vs requirement — override surprise `(90s)`
-
-**Answer points (frame first):**
-- Non-requirement extension methods: static binding risk
-- Requirements: witness-table dispatch
-- Promote customized APIs to requirements
-- Demo mental model with greet/wave
-
-**Trap:**  
-> Expect polymorphic call to concrete override via existential for extension-only methods.
-
-**Full spoken answer:**  
-> “If `wave` lives only in a protocol extension and isn’t a requirement, calling `wave` on an `any Greeter` can hit the extension default even when the concrete type defines `wave`. Requirements like `greet` dispatch to the conformer. The surprise bites teams who put ‘overridable’ behavior only in extensions. Fix: declare polymorphic methods as requirements; keep extensions for true shared defaults.”
-
-**Follow-up ladder:**
-- **L1:** Does generics calling a concrete type avoid the surprise?
-- **L2:** Interaction with inherited protocol defaults?
-- **L3:** How would you unit-test dispatch expectations?
-
-**Provenance:** Learning-lab · dispatch trap
-
----
-
-### T3. Type-erasing a generic renderer — when is it worth it? `(90s)`
-
-**Answer points (frame first):**
-- Worth it: heterogeneous lists, plugin registries, API boundaries
-- Not worth it: inside a monomorphic hot pipeline
-- Cost: allocation, indirection, lost specialization
-- S1 instinct: generics first
-
-**Trap:**  
-> Erase everything for ‘cleaner’ types.
-
-**Full spoken answer:**  
-> “I’d type-erase a renderer when I must store different creatives in one collection or cross a module boundary that can’t be generic end-to-end. Inside the hot ads bind path I’d keep `Pipeline<C: Creative>` so the compiler specializes and types stay precise. Erasure pays heap and witness-style indirection and collapses associated richness — fine at the edge, expensive if you wrap every call. At BMS ads scale the justified abstraction was POP + generics; erasure is a boundary tool, not the architecture.”
-
-**Follow-up ladder:**
-- **L1:** What common denominator do you erase views to?
-- **L2:** Class-based eraser vs struct-of-closures?
-- **L3:** Measuring the cost in Instruments?
-
-**Provenance:** How I would apply it · S1 boundary design; Learning-lab eraser
-
----
-
-### T4. POP for SDUI component registry vs enums `(120s)`
-
-**Answer points (frame first):**
-- Enum = closed world, exhaustive, app release to extend
-- Protocol registry = open world for CMS growth
-- Need unknown fallback + versioning
-- Soft S3 / S3-A1 honesty
-
-**Trap:**  
-> Enum of all components forever as the only design.
-
-**Full spoken answer:**  
-> “An enum of every component is a closed set — great exhaustiveness, painful when CMS invents types. A protocol-oriented registry lets factories register for type strings and construct components, which matches backend-driven UI growth. The trade-off is handling unknowns: you need a fallback component and schema versioning so old apps don’t crash on new types. At BookMyShow we did protocol-driven header work; the explicit unknown-fallback design is how I’d apply versioning — I’m not claiming a particular fallback implementation shipped.”
-
-**Follow-up ladder:**
-- **L1:** What does the fallback render?
-- **L2:** How do you version JSON schemas?
-- **L3:** Mixing ads creatives into SDUI slots?
-
-**Provenance:** Verified · S3 soft; How I would apply it · S3-A1
-
----
-
-### T5. Generics overkill for two ad types? `(90s)`
-
-**Answer points (frame first):**
-- YAGNI for tiny stable sets
-- Revenue + growing variants justified abstraction at BMS
-- Introduce when third variant or test seams demand
-- Don’t abstract for fashion
-
-**Trap:**  
-> Always abstract on day one / never abstract because YAGNI.
-
-**Full spoken answer:**  
-> “If you truly have two stable ad types forever, a small enum or shared function might be enough — YAGNI applies. On the highest-revenue Ads module, creatives and lifecycle concerns were growing, and forking bind code was the risk. That’s when POP and generics paid off: type-safe plug-in points and testable contracts. I’d introduce the abstraction when a third variant or a painful test seam appears — or earlier on a revenue path where a cast bug is expensive. It’s judgment, not dogma.”
-
-**Follow-up ladder:**
-- **L1:** What signals say ‘time to abstract’?
-- **L2:** How do you migrate an inheritance tree incrementally?
-- **L3:** Metrics you’d watch after refactor (honest: qualitative + crash/stability, not fake fill-rate)?
-
-**Provenance:** Verified · S1 · justified abstraction on revenue module
-
----
-
-### T6. `rethrows` + generic higher-order functions `(90s)`
-
-**Answer points (frame first):**
-- Function only throws if closure throws
-- Clean mapper APIs
-- Avoid forcing try on non-throwing call sites
-- Useful in generic transform pipelines
-
-**Trap:**  
-> Mark everything `throws` or ignore error propagation.
-
-**Full spoken answer:**  
-> “`rethrows` lets a higher-order function declare that it throws only when its function argument throws. So a generic `map` over creatives can take a throwing transform without forcing every non-throwing caller to write `try`. That keeps pipeline APIs clean: errors propagate when real, stay silent when not. I’d use it on generic mappers at module boundaries; I wouldn’t sprinkle `throws` on APIs that never fail.”
-
-**Follow-up ladder:**
-- **L1:** Difference between `throws` and `rethrows`?
-- **L2:** async + throws interaction at a high level?
-- **L3:** Typed throws awareness (newer Swift) — optional?
-
-**Provenance:** Learning-lab · API design fluency
-
----
 
 ## Timed set recommendations
 
@@ -440,7 +248,7 @@
 |---|---|---|
 | A | Q1, Q4, Q6, T1, T4 | POP + erasure + SDUI |
 | B | Q2, Q3, Q5, T2, T3 | Types + dispatch |
-| C | Q7, Q8, Q11, T5, S1 5-min | Composition + story |
+| C | Q7, Q8, Q11, T5, BookMyShow Ads pipeline + HeroWidget lifecycle 5-min | Composition + story |
 
 Score with [`../../../timing/answer-timing-guide.md`](../../../timing/answer-timing-guide.md).
 
@@ -448,7 +256,3 @@ Score with [`../../../timing/answer-timing-guide.md`](../../../timing/answer-tim
 
 ## Exit criteria for questions module
 
-- [ ] 8+ normals spoken from Answer points without reading Full  
-- [ ] 3+ trickies with trap named explicitly  
-- [ ] S1 ≤20s + ≤5 min architecture dry-run once  
-- [ ] Zero invented fill-rate metrics in any recording  

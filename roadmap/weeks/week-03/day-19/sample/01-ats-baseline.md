@@ -1,12 +1,10 @@
 # Sample 01 — ATS & transport baseline (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is ATS, in plain words?
-
-**Points to:** [Foundations · §1 Transport security stack](../01-foundations.md#1-transport-security-stack) · [Foundations · §0 North star](../01-foundations.md#0-north-star)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Is ATS the same as pinning? | **No.** ATS ≠ pinning — say this aloud in interviews. |
 | Where is ATS configured? | Info.plist exceptions and defaults; system enforces at the network layer. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What is the full transport security stack?
-
-**Points to:** [Foundations · §1 Transport security stack](../01-foundations.md#1-transport-security-stack)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | What does allowlist add? | Limits which hosts you talk to or pin — operational control, not global “pin the internet.” |
 | Can you skip HTTPS if you pin? | **No.** Pinning is not a substitute for HTTPS. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. What are ATS exceptions, and how should you treat them?
-
-**Points to:** [Foundations · §1 Transport security stack](../01-foundations.md#1-transport-security-stack)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | Interview red flag? | “We disabled ATS globally” with no threat-model story. |
 | Better fix than exception? | Move endpoint to HTTPS; proxy through your backend. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. What is a domain allowlist, and why pair it with pinning?
-
-**Points to:** [Foundations · §1](../01-foundations.md#1-transport-security-stack) · [Deep dive · §1 Where pinning lives](../02-deep-dive.md#1-where-pinning-lives-on-ios)
 
 **Answer:**
 
@@ -72,13 +73,17 @@
 |---|---|
 | Allowlist without pinning? | Still useful — limits blast radius of misconfigured clients. |
 | Pin every host? | **Never casually.** Pin sensitive, owned APIs (ads, auth, payments). |
-| BMS Ads example? | Verified S4: domain whitelist alongside HTTPS and SSL pinning on URLSession. |
+| BMS Ads example? | BookMyShow SSL pinning + URLSession migration: domain whitelist alongside HTTPS and SSL pinning on URLSession. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow SSL pinning + URLSession migration
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Claiming pin-rotation / break-glass runbook as a shipped production playbook.
 
 ---
 
 ### Q5. ATS vs pinning vs system trust — quick contrast?
-
-**Points to:** [Foundations · §1](../01-foundations.md#1-transport-security-stack) · [Foundations · §2 Pinning modes](../01-foundations.md#2-pinning-modes-first-pass)
 
 **Answer:**
 
@@ -93,13 +98,17 @@
 |---|---|
 | “ATS is our pinning”? | **Wrong.** Forbidden claim in this chapter. |
 | Low-sensitivity public JSON? | System trust + ATS may suffice; threat-model dependent. |
-| Ads/revenue APIs? | Pin + allowlist + fail closed — S4 pattern. |
+| Ads/revenue APIs? | Pin + allowlist + fail closed — BookMyShow SSL pinning + URLSession migration pattern. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow SSL pinning + URLSession migration
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Claiming pin-rotation / break-glass runbook as a shipped production playbook.
 
 ---
 
 ### Q6. What should I say in a ≤20s transport opener?
-
-**Points to:** [Foundations · §0 North star](../01-foundations.md#0-north-star) · [Foundations · §7 Teach-back](../01-foundations.md#7-teach-back)
 
 **Answer:**
 
@@ -109,15 +118,19 @@
 
 | Follow-up | Answer |
 |---|---|
-| Mention Alamofire? | Yes for S4: migrated **Alamofire → URLSession** for trust-challenge ownership. |
-| Lead with ATS on behavioral Q? | Start with what shipped (S4); ATS as context layer. |
+| Mention Alamofire? | Yes for BookMyShow SSL pinning + URLSession migration: migrated **Alamofire → URLSession** for trust-challenge ownership. |
+| Lead with ATS on behavioral Q? | Start with what shipped (BookMyShow SSL pinning + URLSession migration); ATS as context layer. |
 | Cleartext in debug only? | Still document; don’t leak to prod builds. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow SSL pinning + URLSession migration
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Claiming pin-rotation / break-glass runbook as a shipped production playbook.
 
 ---
 
 ### Q7. What transport mistakes fail senior interviews?
-
-**Points to:** [Deep dive · §8 Trade-offs](../02-deep-dive.md#8-trade-offs) · [Deep dive · §9 Failure modes](../02-deep-dive.md#9-failure-modes)
 
 **Answer:**
 
@@ -131,6 +144,10 @@
 | MITM on corporate proxy? | Real-world edge; design fail-closed vs break-glass explicitly. |
 | Next topic? | SPKI mechanics — [02-ssl-pinning-spki.md](02-ssl-pinning-spki.md). |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [02-ssl-pinning-spki.md](02-ssl-pinning-spki.md)
+
+---
+

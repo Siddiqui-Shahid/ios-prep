@@ -1,12 +1,10 @@
 # Sample 03 — IMOC and triage (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What do you do in the first ten minutes of a P0?
-
-**Points to:** [Deep dive · §7.1 First 10 minutes](../02-deep-dive.md#71-first-10-minutes)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Mitigate vs debug first? | Mitigate — IMOC pillar. |
 | Payment path? | Highest blast radius — escalate comms frequency. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. Mitigate vs hotfix — when which lever?
-
-**Points to:** [Deep dive · §7.2 Mitigate vs hotfix](../02-deep-dive.md#72-mitigate-vs-hotfix)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | Hotfix cost? | Process, review time, regression risk — justify with blast radius. |
 | Backend mitigate? | Fallback API response while iOS fix ships — IMOC coordinates both. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. How do you stop iOS vs backend blame spirals?
-
-**Points to:** [Deep dive · §7.3 Cross-team blame spiral](../02-deep-dive.md#73-cross-team-blame-spiral)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | % by layer? | “80% fail on API 503” vs “20% client decode” — focuses fix. |
 | Behavioral interview angle? | Conflict → shared timeline + mitigate first. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. How do you classify a Crashlytics spike?
-
-**Points to:** [Foundations · §3 Triage workflow](../01-foundations.md#3-triage-workflow) · [Deep dive · §6 Non-fatals](../02-deep-dive.md#6-non-fatals--alert-hygiene)
 
 **Answer:**
 
@@ -71,36 +72,44 @@
 | Follow-up | Answer |
 |---|---|
 | Regressed signal? | Spike on latest version only — bisect release. |
-| Flaky reproduce? | Race crashes (S2 path) — device matrix + stress. |
+| Flaky reproduce? | Race crashes (BookMyShow synchronised dictionaries path) — device matrix + stress. |
 | Non-fatal flood? | Sample/group — don’t page on volume alone. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
 
 ---
 
-### Q5. What is S2’s correct technical framing?
-
-**Points to:** [Deep dive · §8 S2 concurrency](../02-deep-dive.md#8-s2-concurrency--correct-framing) · [Production bridge · §4 S2 add-on](../03-production-bridge.md#4-s2-as-technical-add-on-90s--correct-coupling)
+### Q5. What is BookMyShow synchronised dictionaries’s correct technical framing?
 
 **Answer:**
 
-> **S2 was:** shared async maps hit from multiple queues → races → intermittent crashes; fixed with **GCD serial queues** / RW locks and safe API boundary. **S2 was not:** single explanation for org-wide **99.95% CFS**. OK: “Removed race crashes on that path.” Not OK: “S2 is why we have 99.95% CFS.”
+> **BookMyShow synchronised dictionaries was:** shared async maps hit from multiple queues → races → intermittent crashes; fixed with **GCD serial queues** / RW locks and safe API boundary. **BookMyShow synchronised dictionaries was not:** single explanation for org-wide **99.95% CFS**. OK: “Removed race crashes on that path.” Not OK: “BookMyShow synchronised dictionaries is why we have 99.95% CFS.”
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| S2-A1 greenfield? | Swift `actor` with same API boundary mindset — Applied. |
+| Design: actor SafeDict (not shipped) greenfield? | Swift `actor` with same API boundary mindset — Applied. |
 | try/catch myth? | SEGV/races need concurrency discipline + handlers — not catch alone. |
-| Provenance? | Verified · S2 path-scoped; Verified · S8 system. |
+| Provenance? | BookMyShow synchronised dictionaries path-scoped; BookMyShow IMOC + crash-free at scale system. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Design: actor SafeDict (not shipped)
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Do not steal BookMyShow IMOC / crash-free culture credit for a path-specific dictionary race fix — keep scopes separate.
 
 ---
 
 ### Q6. What IMOC pillars map to behavioral prompts?
 
-**Points to:** [Production bridge · §6 Behavioral variants](../03-production-bridge.md#6-behavioral-variants-same-facts) · [Foundations · §4 IMOC](../01-foundations.md#4-imoc-leadership-proof)
-
 **Answer:**
 
-> **Conflict:** IMOC forces shared timeline vs blame. **Pressure / peak sale:** mitigate first, cadenced comms. **Leadership:** owner clarity, handoff, postmortem actions. **Technical depth:** add S2 path + signal-safety vocabulary — but S8 STAR leads on incident ownership questions.
+> **Conflict:** IMOC forces shared timeline vs blame. **Pressure / peak sale:** mitigate first, cadenced comms. **Leadership:** owner clarity, handoff, postmortem actions. **Technical depth:** add BookMyShow synchronised dictionaries path + signal-safety vocabulary — but BookMyShow IMOC + crash-free at scale STAR leads on incident ownership questions.
 
 **Follow-ups:**
 
@@ -110,11 +119,15 @@
 | Handoff? | Document state when shift ends — IMOC continuity. |
 | Peak traffic BMS context? | 30L+ DAU — reliability is product during sales. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Do not steal BookMyShow IMOC / crash-free culture credit for a path-specific dictionary race fix — keep scopes separate.
+
 ---
 
 ### Q7. Whiteboard the crash SDK in ten minutes — what to include?
-
-**Points to:** [Production bridge · §7 Whiteboard crash SDK](../03-production-bridge.md#7-whiteboard-crash-sdk-10-min)
 
 **Answer:**
 
@@ -128,6 +141,10 @@
 | CI box on diagram? | dSYM upload per build — Day 20. |
 | Next sample? | [04-production-s8-s2.md](04-production-s8-s2.md) — Verified STAR language. |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [04-production-s8-s2.md](04-production-s8-s2.md)
+
+---
+

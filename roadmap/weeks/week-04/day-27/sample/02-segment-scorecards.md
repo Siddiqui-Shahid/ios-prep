@@ -1,12 +1,10 @@
 # Sample 02 — Segment scorecards (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. How is the coding segment timed (45 min)?
-
-**Points to:** [Deep dive · Segment A](../02-deep-dive.md#segment-a--coding-45)
 
 **Answer:**
 
@@ -24,11 +22,12 @@
 | No time for edges? | Major deduction — leave buffer by minute 35. |
 | Silent coding? | Scores 1 on communication — narrate trade-offs. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What does the coding scorecard measure?
-
-**Points to:** [Deep dive · Scorecard — Coding](../02-deep-dive.md#scorecard--coding)
 
 **Answer:**
 
@@ -45,11 +44,12 @@
 | O(n) stated wrong? | Complexity row hits **1** or **3** — say it aloud correctly. |
 | Partial solution at 45? | Time use **1** — communicate optimal approach for partial credit. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. How is the iOS deep dive scored?
-
-**Points to:** [Deep dive · Segment B](../02-deep-dive.md#segment-b--ios-deep-dive-45) · [Scorecard — iOS](../02-deep-dive.md#scorecard--ios-deep-dive)
 
 **Answer:**
 
@@ -62,14 +62,18 @@
 | Follow-up | Answer |
 |---|---|
 | Ramble 3 min on 45s question? | Timing **1** — self-correct with agenda. |
-| Correct but generic? | Production proof **3** or **1** — add S2/S4/S8 hook. |
+| Correct but generic? | Production proof **3** or **1** — add BookMyShow synchronised dictionaries/BookMyShow SSL pinning + URLSession migration/BookMyShow IMOC + crash-free at scale hook. |
 | Bluff wrong mechanism? | Honesty **1** — state assumption instead. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries; BookMyShow SSL pinning + URLSession migration; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Do not steal BookMyShow IMOC / crash-free culture credit for a path-specific dictionary race fix — keep scopes separate.
 
 ---
 
 ### Q4. What topics appear in the iOS pool?
-
-**Points to:** [Deep dive · Segment B topic pools](../02-deep-dive.md#segment-b--ios-deep-dive-45)
 
 **Answer:**
 
@@ -80,15 +84,19 @@
 
 | Follow-up | Answer |
 |---|---|
-| S2 bridge for concurrency? | Verified GCD prod vs Applied S2-A1 actor migration. |
-| SDUI unknown type? | Fallback + schema — S3 instinct. |
-| On-device AI pivot? | S15/S16 — privacy + fail-soft, 30–45s tight. |
+| BookMyShow synchronised dictionaries bridge for concurrency? | Verified GCD prod vs Design: actor SafeDict (not shipped) actor migration. |
+| SDUI unknown type? | Fallback + schema — BookMyShow backend-driven header & search instinct. |
+| On-device AI pivot? | FinTrack on-device AI/GymFlow on-device AI — privacy + fail-soft, 30–45s tight. |
+
+**How can I relate to my case:**
+- **Shipped:** FinTrack on-device AI; GymFlow on-device AI; BookMyShow synchronised dictionaries; BookMyShow backend-driven header & search
+- **Design if asked:** Design: actor SafeDict (not shipped)
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
 
 ---
 
 ### Q5. How is system design timed (45 min)?
-
-**Points to:** [Deep dive · Segment C](../02-deep-dive.md#segment-c--system-design-45)
 
 **Answer:**
 
@@ -107,11 +115,12 @@
 | No clarify? | Score **1** — assumptions without SLOs. |
 | Happy path only? | Failure modes **1** — mid signal. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What is the system design scorecard target?
-
-**Points to:** [Deep dive · Scorecard — System design](../02-deep-dive.md#scorecard--system-design)
 
 **Answer:**
 
@@ -127,11 +136,12 @@
 | One shallow deep dive? | Deep dive **3** — need two crisp subsystems. |
 | Generic “we’d monitor”? | Metrics **3** — name Firebase, crash-free, p90, etc. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. What does 5 vs 3 vs 1 mean across segments?
-
-**Points to:** [Deep dive · All scorecards](../02-deep-dive.md) · [Foundations · North star](../01-foundations.md#0-north-star)
 
 **Answer:**
 
@@ -148,11 +158,12 @@
 | 2× budget? | Self-correct in one sentence — still score recovery attempt. |
 | Average 3.4? | One fix-forward priority — don’t rewrite whole week. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q8. What are meta trade-offs for Mock #4?
-
-**Points to:** [Deep dive · Meta trade-offs](../02-deep-dive.md#meta-trade-offs)
 
 **Answer:**
 
@@ -166,6 +177,10 @@
 | Scorecards for proctor only? | Yes — not in candidate frame. |
 | Expert briefing? | See [`../README.md`](../README.md) paste block for proctor. |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [03-warmup-recovery.md](03-warmup-recovery.md)
+
+---
+

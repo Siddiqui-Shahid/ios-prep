@@ -1,12 +1,10 @@
 # Sample 01 — State ownership (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is SwiftUI’s core mental model?
-
-**Points to:** [Foundations · §1 Plain-English mental model](../01-foundations.md#1-plain-english-mental-model) · [Deep dive · §5 body purity](../02-deep-dive.md#5-body-purity)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | OK in body? | Compose views from state; cheap cached formatting. |
 | Not OK in body? | Start network; sort 10k rows; write to disk. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. Where does `@State` belong?
-
-**Points to:** [Foundations · §3 State ownership table](../01-foundations.md#3-state-ownership-table-memorize) · [Deep dive · §1 State ownership decision tree](../02-deep-dive.md#1-state-ownership-decision-tree)
 
 **Answer:**
 
@@ -38,15 +37,16 @@
 | Private why? | Encapsulation — child gets `@Binding` if it must write. |
 | Testability? | Domain logic in observable model / UseCase — not buried in `@State` only views. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. When do I use `@Binding`, `@Bindable`, and Environment?
 
-**Points to:** [Foundations · §3 State ownership table](../01-foundations.md#3-state-ownership-table-memorize) · [Deep dive · §1 decision tree](../02-deep-dive.md#1-state-ownership-decision-tree)
-
 **Answer:**
 
-> **`@Binding`:** child controls need to write parent-owned state. **`@Bindable`:** bridge bindings into `@Observable` fields (iOS 17+). **Environment:** tree-wide values — theme, color scheme, layout direction — not a hidden service-locator for every `NetworkClient`. SDKs like S10 prefer **explicit injectable** protocols over forcing host `AppModel` through Environment.
+> **`@Binding`:** child controls need to write parent-owned state. **`@Bindable`:** bridge bindings into `@Observable` fields (iOS 17+). **Environment:** tree-wide values — theme, color scheme, layout direction — not a hidden service-locator for every `NetworkClient`. SDKs like Stories SDK (Raw / Miami Heat) prefer **explicit injectable** protocols over forcing host `AppModel` through Environment.
 
 **Follow-ups:**
 
@@ -56,11 +56,15 @@
 | `@Bindable` vs `$` on ObservableObject? | `@Bindable` for Observation; `$` projected values for `@Published` legacy. |
 | Over-abstracting? | If not theme/locale and not shared feature state — keep it simple. |
 
+**How can I relate to my case:**
+- **Shipped:** Stories SDK (Raw / Miami Heat)
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
 ### Q4. What is `@Observable` and what is the iOS 17+ caveat?
-
-**Points to:** [Foundations · §7 @Observable version note](../01-foundations.md#7-observable-version-note-say-this) · [Deep dive · §2 Observation vs ObservableObject](../02-deep-dive.md#2-observation-vs-observableobject)
 
 **Answer:**
 
@@ -70,15 +74,19 @@
 
 | Follow-up | Answer |
 |---|---|
-| Verified S10 claim `@Observable`? | **Forbidden** as resume API name — teaching detail only. |
+| Stories SDK (Raw / Miami Heat) claim `@Observable`? | **Forbidden** as resume API name — teaching detail only. |
 | Granularity win? | Changing an unread property shouldn’t invalidate a view that didn’t read it. |
 | Monolithic model risk? | 50 fields on one observable read by root → invalidation storms — split models. |
+
+**How can I relate to my case:**
+- **Shipped:** Stories SDK (Raw / Miami Heat)
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q5. How does `@Observable` differ from `ObservableObject`?
-
-**Points to:** [Deep dive · §2 Observation vs ObservableObject](../02-deep-dive.md#2-observation-vs-observableobject) · [Foundations · §12 Observation access tracking](../01-foundations.md#12-observation-access-tracking-intuition)
 
 **Answer:**
 
@@ -92,11 +100,12 @@
 | Split models fix? | Player vs chrome vs catalog — pass slices to children. |
 | Fetch in model vs body? | Model + `.task` / appear — never side-effect network in `body`. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What are common state ownership anti-patterns?
-
-**Points to:** [Deep dive · §1 Anti-patterns](../02-deep-dive.md#anti-patterns) · [Deep dive · §13 Failure modes](../02-deep-dive.md#13-failure-modes)
 
 **Answer:**
 
@@ -110,11 +119,12 @@
 | Stories progress desync? | Timers scattered in views — centralize in player model timeline. |
 | Duplicate state? | Single source of truth in observable model; `@State` only for pure UI. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. What should I be able to say after state foundations?
-
-**Points to:** [Foundations · §14 90-second teaching script](../01-foundations.md#14-90-second-teaching-script) · [Deep dive · §14 Decision rule card](../02-deep-dive.md#14-decision-rule-card)
 
 **Answer:**
 
@@ -128,6 +138,10 @@
 | Async/domain rule? | `@Observable` / VM |
 | Next topic? | Identity — [02-identity-traps.md](02-identity-traps.md). |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [02-identity-traps.md](02-identity-traps.md)
+
+---
+

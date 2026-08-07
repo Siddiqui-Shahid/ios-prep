@@ -1,12 +1,10 @@
 # Sample 01 — Layer stack, patterns, and DI (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What problem do architecture layers actually solve?
-
-**Points to:** [Foundations · §1 Plain-English mental model](../01-foundations.md#1-plain-english-mental-model) · [Foundations · §5 Layer shape](../01-foundations.md#5-layer-shape-60-second-hld)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Can a UseCase push a view controller? | No — that is a boundary smell. Emit navigation events or let a Coordinator handle routing. |
 | Is this only about folder names? | No — it is about ownership and test seams, not whether you have a folder called `Domain`. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. How do MVVM, Clean, and MVI differ in one breath each?
-
-**Points to:** [Foundations · §4 Pattern map](../01-foundations.md#4-pattern-map-45-second-hld) · [Deep dive · §4 MVI](../02-deep-dive.md#4-mvi--unidirectional-data-flow)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | Is Clean “UseCase everywhere”? | No — ceremony on a settings toggle is waste. Scope UseCases to real policy. |
 | Do you need TCA to sound senior? | No — hand-rolled enum state inside MVVM is often enough; don’t claim frameworks you didn’t ship. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. Draw the layer stack and say what each layer must never own.
-
-**Points to:** [Foundations · §5 Layer shape](../01-foundations.md#5-layer-shape-60-second-hld) · [Deep dive · §1 Ownership matrix](../02-deep-dive.md#1-ownership-matrix-interview-gold)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | Where do billing eligibility rules live? | UseCase — product truth, unit-testable without UI. |
 | Where does JSON decode usually happen? | Repository or DataSource mapping layer — not in the View. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. What is dependency injection without framework religion?
-
-**Points to:** [Foundations · §8 DI without dogma](../01-foundations.md#8-di-without-dogma-intern-picture) · [Deep dive · §5 Dependency injection graphs](../02-deep-dive.md#5-dependency-injection-graphs)
 
 **Answer:**
 
@@ -74,11 +75,12 @@
 | When is SwiftUI `.environment` OK? | Theme, locale, shallow UI plumbing — risky as the sole path for networking clients. |
 | What does FeatureAssembler do? | Builds URLSession → DataSource → Repository → ViewModel for one feature at the composition root. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. Repository vs UseCase — what question does each answer?
-
-**Points to:** [Foundations · §2 Glossary](../01-foundations.md#2-glossary-learn-these-cold) · [Deep dive · §3.4 Repository vs UseCase](../02-deep-dive.md#34-repository-vs-usecase--the-confusion-interviewers-love)
 
 **Answer:**
 
@@ -92,11 +94,12 @@
 | Can a UseCase orchestrate two repositories? | Yes — that is a legitimate application action. |
 | Who owns cache TTL? | Repository — with optional policy hints from domain, not billing rules. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What is MVI and when is it overkill?
-
-**Points to:** [Deep dive · §4 MVI](../02-deep-dive.md#4-mvi--unidirectional-data-flow) · [Foundations · §4 Pattern map](../01-foundations.md#4-pattern-map-45-second-hld)
 
 **Answer:**
 
@@ -110,11 +113,12 @@
 | Does MVI replace Coordinators? | No — navigation side effects still belong outside UseCases. |
 | Hand-rolled vs TCA? | Hand-rolled for one complex screen is valid; frameworks buy tooling at onboarding cost. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. What should I say about AI tooling in architecture interviews?
-
-**Points to:** [Foundations · §9 AI tooling](../01-foundations.md#9-ai-tooling--the-seniority-filter) · [Production bridge · §3 AI tooling](../03-production-bridge.md#3-ai-tooling--speak-carefully-critical)
 
 **Answer:**
 
@@ -128,6 +132,10 @@
 | Safe phrase? | “AI drafted migrations inside an envelope I defined; review and XCTest were the gate.” |
 | What does AI commonly get wrong? | Debounce in the repository, empty UseCase layers, missing cancel on new search queries. |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [02-mvvm-clean-mvi.md](02-mvvm-clean-mvi.md)
+
+---
+

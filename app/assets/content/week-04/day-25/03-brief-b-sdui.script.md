@@ -11,15 +11,15 @@ Next. Q2. What architecture in 90s? Answer. JSON → SDUIDocument (Codable, sche
 
 ## §2 Q3. Must-have acceptance for Brief B?
 
-Next. Q3. Must-have acceptance for Brief B? Answer. (1) Decode sample JSON. (2) Render ≥3 types. (3) Unknown type does not crash — placeholder + analytics stub. (4) Nested children for one container. (5) Tests: decoder + factory fallback. Follow-ups. schemaVersion mismatch?: Fail-soft — fallback document or empty state; say policy.. Missing props?: Default values — don’t force-unwrap.. Deep nesting?: Optional max-depth guard — design nod to S3/S 8..
+Next. Q3. Must-have acceptance for Brief B? Answer. (1) Decode sample JSON. (2) Render ≥3 types. (3) Unknown type does not crash — placeholder + analytics stub. (4) Nested children for one container. (5) Tests: decoder + factory fallback. Follow-ups. schemaVersion mismatch?: Fail-soft — fallback document or empty state; say policy.. Missing props?: Default values — don’t force-unwrap.. Deep nesting?: Optional max-depth guard — design nod to BookMyShow backend-driven header & search/BookMyShow I M O C + crash-free at scale..
 
 ## §3 Q4. Decode + factory — what to whiteboard?
 
 Next. Q4. Decode + factory — what to whiteboard? Answer. SDUIDocument { schemaVersion, root: ComponentDTO }. DTO: type, props, children. Factory switch type →.text,.image,.vstack, default:.unknown(type). Renderer never force-unwraps. Maps to Day 22 serialize reversibility + Day 24 S D U I versioning instinct. Follow-ups. Props typing?: [String: String] interview-simple; say production would typed decode.. Unknown analytics?: Stub logger — unknown_component(type) event.. Codable polymorphism?: DTO + factory simpler than nested enums in 3 hrs..
 
-## §4 Q5. How do unknown components connect to production S3?
+## §4 Q5. How do unknown components connect to production BookMyShow backend-driven header & search?
 
-Next. Q5. How do unknown components connect to production S3? Answer. Backend-driven header/search — unknown CMS component types must not crash app. Same fail-soft as Brief B placeholder. ≤20s: “Machine round S D U I slice mirrors shipped instinct: contracts, fallbacks, observable state.” Do not claim the 3hr project is BookMyShow production code. Follow-ups. S12 splash?: Server-driven schema flexibility + client resilience.. schemaVersion?: Like A P I versioning — reject or degrade gracefully.. STAR timing?: Hooks only — full S3 on Day 26..
+Next. Q5. How do unknown components connect to production BookMyShow backend-driven header & search? Answer. Backend-driven header/search — unknown CMS component types must not crash app. Same fail-soft as Brief B placeholder. ≤20s: “Machine round S D U I slice mirrors shipped instinct: contracts, fallbacks, observable state.” Do not claim the 3hr project is BookMyShow production code. Follow-ups. Audio streaming + server-driven splash (Aces) splash?: Server-driven schema flexibility + client resilience.. schemaVersion?: Like A P I versioning — reject or degrade gracefully.. STAR timing?: Hooks only — full BookMyShow backend-driven header & search on Day 26..
 
 ## §5 Q6. Meaningful tests for Brief B?
 
@@ -27,4 +27,4 @@ Next. Q6. Meaningful tests for Brief B? Answer. test_decodeSampleJSON, test_rend
 
 ## §6 Q7. Brief B trade-offs?
 
-Next. Q7. Brief B trade-offs? Answer. SwiftUI AnyView faster than UIKit factory in 3 hrs — say assumption. Recursive render depth unbounded → mention iterative or max-depth design. Actions DSL and live reload are cut lines. Figma pixel parity loses to safe decode + 3 types. Follow-ups. Pick B if?: Weaker on S D U I — Day 27 SD prep ROI.. Connect Brief A?: List can host S D U I cells — out of scope unless surplus.. Debrief?: Sample 04.. Next: 04-debrief-structure.md · or run Brief B in../05-exercises.md.
+Next. Q7. Brief B trade-offs? Answer. SwiftUI AnyView faster than UIKit factory in 3 hrs — say assumption. Recursive render depth unbounded → mention iterative or max-depth design. Actions DSL and live reload are cut lines. Figma pixel parity loses to safe decode + 3 types. Follow-ups. Pick B if?: Weaker on S D U I — Day 27 SD prep ROI.. Connect Brief A?: List can host S D U I cells — out of scope unless surplus.. Debrief?: Sample 04..

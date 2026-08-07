@@ -6,8 +6,6 @@
 
 ### Q1. What is Brief A asking for?
 
-**Points to:** [Deep dive · Brief A prompt](../02-deep-dive.md#brief-a--paginated-list--cache--tests)
-
 **Answer:**
 
 > Paginated remote list (cursor or page number). Loading / empty / error states. Pull-to-refresh and next-page on scroll. **Cache** so revisiting shows last-good data quickly, then refresh. **Unit tests** for pagination and cache policy.
@@ -20,11 +18,12 @@
 | Stub vs live API? | Stub first for progress; one live call if stable. |
 | Cut lines OK? | Fancy skeletons, Diffable animations, image pipeline, auth refresh. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What architecture should I sketch in 90s?
-
-**Points to:** [Deep dive · Suggested architecture](../02-deep-dive.md#suggested-architecture) · [Brief A 90s plan](../02-deep-dive.md#brief-a--90s-plan)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | Generation id? | Stale response rule — commit only if generation matches. |
 | MVVM enough? | Yes — pragmatic layers beat over-Clean in 3 hrs. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. What are must-have acceptance criteria?
-
-**Points to:** [Deep dive · Must-have acceptance](../02-deep-dive.md#must-have-acceptance)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | Empty first page? | Empty state UI — not error. |
 | Error on refresh with cache? | Keep stale + nonblocking error — state machine. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. What cache policy should I pick and defend?
-
-**Points to:** [Deep dive · Cache policy options](../02-deep-dive.md#cache-policy-options-pick-one-say-why)
 
 **Answer:**
 
@@ -74,11 +75,12 @@
 | Disk scope? | Optional depth 2:00–2:30 — don’t block slice. |
 | Test cache how? | Mock cache data source; assert VM shows stale then updated. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. What is the pagination state machine?
-
-**Points to:** [Deep dive · Brief A state machine](../02-deep-dive.md#brief-a--state-machine-teach)
 
 **Answer:**
 
@@ -92,11 +94,12 @@
 | Pull during loadingMore? | Queue or cancel — state aloud. |
 | Test names? | `test_appendPage2`, `test_page2FailureKeepsPage1`, `test_staleCacheThenRefresh`. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What tests are “meaningful” for Brief A?
-
-**Points to:** [Deep dive · Rubrics](../02-deep-dive.md#rubrics-15) · [Must-have §5](../02-deep-dive.md#must-have-acceptance)
 
 **Answer:**
 
@@ -106,15 +109,19 @@
 
 | Follow-up | Answer |
 |---|---|
-| S9 AI tests? | You review — assert behavior not implementation trivia. |
+| District Free Parking + Clean/MVVM + AI tooling AI tests? | You review — assert behavior not implementation trivia. |
 | UI test one? | Optional cut — unit tests pass bar. |
 | Async tests? | Use async test or inject synchronous fake repo. |
+
+**How can I relate to my case:**
+- **Shipped:** District Free Parking + Clean/MVVM + AI tooling
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q7. Brief A trade-offs to narrate?
-
-**Points to:** [Deep dive · Trade-offs](../02-deep-dive.md#trade-offs)
 
 **Answer:**
 
@@ -124,10 +131,17 @@
 
 | Follow-up | Answer |
 |---|---|
-| S3 production hook? | Pagination/debounce instincts — not claim this project is BMS. |
+| BookMyShow backend-driven header & search production hook? | Pagination/debounce instincts — not claim this project is BMS. |
 | Image loading? | Cut line. |
 | Debrief? | Sample 04 + [`../04-questions.md`](../04-questions.md). |
 
----
+**How can I relate to my case:**
+- **Shipped:** BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 Next: [03-brief-b-sdui.md](03-brief-b-sdui.md) · or run Brief A in [`../05-exercises.md`](../05-exercises.md)
+
+---
+

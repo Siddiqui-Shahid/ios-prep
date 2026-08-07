@@ -1,12 +1,10 @@
 # Sample 02 — Identity traps (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is SwiftUI view identity?
-
-**Points to:** [Foundations · §4 Identity](../01-foundations.md#4-identity--the-senior-differentiator) · [Deep dive · §3 Identity mechanics](../02-deep-dive.md#3-identity-mechanics)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Intentional reset? | Logout → `.id(userSessionID)` to clear forms — deliberate, not accidental. |
 | Representable link? | Parent identity churn → `makeUIViewController` storms (Day 11). |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What is the UUID-in-`body` bug?
-
-**Points to:** [Foundations · §4 Classic bug](../01-foundations.md#4-identity--the-senior-differentiator) · [code/IdentityTraps.swift](../code/IdentityTraps.swift)
 
 **Answer:**
 
@@ -35,14 +34,18 @@
 | Follow-up | Answer |
 |---|---|
 | Symptom in search field? | Text clears on every keystroke — classic identity churn. |
-| Stories SDK (S10)? | Page identity must survive progress ticks — stable ids on pages. |
+| Stories SDK (Stories SDK (Raw / Miami Heat))? | Page identity must survive progress ticks — stable ids on pages. |
 | Fix? | Stable `Identifiable` from server or model — not random UUID(). |
+
+**How can I relate to my case:**
+- **Shipped:** Stories SDK (Raw / Miami Heat)
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q3. Structural vs explicit identity — when to use which?
-
-**Points to:** [Deep dive · §3 Structural identity](../02-deep-dive.md#structural-identity) · [Explicit identity](../02-deep-dive.md#explicit-identity)
 
 **Answer:**
 
@@ -56,11 +59,12 @@
 | ForEach `id: \.self` trap? | Bad when value equality changes often — unstable list behavior. |
 | Conditional branches? | Consider explicit `.id` when swapping substantially different subtrees. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. How does identity affect `@State` and animations?
-
-**Points to:** [Deep dive · §6 Animation & transitions](../02-deep-dive.md#6-animation--transitions) · [Foundations · §4 @State lifetime](../01-foundations.md#4-identity--the-senior-differentiator)
 
 **Answer:**
 
@@ -74,11 +78,12 @@
 | List jump on update? | Unstable ForEach ids — fix identity before blaming LazyVStack. |
 | Logout form reset? | Intentional `.id(session)` — document why. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. How does identity connect to UIKit representables?
-
-**Points to:** [Deep dive · §3 Representable link](../02-deep-dive.md#representable-link-day-11) · [Day 11 · update storms](../02-deep-dive.md#13-failure-modes)
 
 **Answer:**
 
@@ -88,33 +93,41 @@
 
 | Follow-up | Answer |
 |---|---|
-| Hybrid Grizzlies (S13)? | Identity + lifecycle designed together — not bolted hosting. |
+| Hybrid Grizzlies (Hybrid UI / deeplinks)? | Identity + lifecycle designed together — not bolted hosting. |
 | Fix priority? | Reduce observed state at parent; stable ids; Equatable inputs if measured. |
 | SDK public API? | Should not force host to churn identity every progress tick. |
+
+**How can I relate to my case:**
+- **Shipped:** Hybrid UI / deeplinks
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q6. What identity failures show up in production SDKs?
 
-**Points to:** [Deep dive · §13 Failure modes](../02-deep-dive.md#13-failure-modes) · [Foundations · §5 Stories SDK implication](../01-foundations.md#4-identity--the-senior-differentiator)
-
 **Answer:**
 
-> Text clears while typing (identity churn). Progress desync (timers in views / id reset). List jump (unstable ForEach ids). Whole screen redraws (separate issue — god observable). Representable remake (parent id churn). Background audio (scene-phase pause missing — lifecycle cousin to S1). Stories pages need **stable page IDs** across progress updates.
+> Text clears while typing (identity churn). Progress desync (timers in views / id reset). List jump (unstable ForEach ids). Whole screen redraws (separate issue — god observable). Representable remake (parent id churn). Background audio (scene-phase pause missing — lifecycle cousin to BookMyShow Ads pipeline + HeroWidget lifecycle). Stories pages need **stable page IDs** across progress updates.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| S10 lesson? | Stable identity/state for pages/progress is SDK quality. |
+| Stories SDK (Raw / Miami Heat) lesson? | Stable identity/state for pages/progress is SDK quality. |
 | Testing identity bugs? | Reproduce with fast state updates + typing in field. |
 | WWDC topic? | Demystify SwiftUI identity — optional citation at deep dive end. |
+
+**How can I relate to my case:**
+- **Shipped:** Stories SDK (Raw / Miami Heat); BookMyShow Ads pipeline + HeroWidget lifecycle
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
 
 ---
 
 ### Q7. What is the identity decision card?
-
-**Points to:** [Deep dive · §14 Decision rule card](../02-deep-dive.md#14-decision-rule-card)
 
 **Answer:**
 
@@ -128,6 +141,29 @@
 | `@State` rule? | Lifetime follows identity — say this in every senior SwiftUI answer. |
 | Next topic? | Lists and performance — [03-lists-performance.md](03-lists-performance.md). |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
+### Q8. Animation causes a list jump — what are the causes?
+
+**Answer:**
+
+> List jumps usually come from **identity changes**, **row height changes** without a careful transaction, or **scroll position loss** when IDs reshuffle. Fix stable `Identifiable` keys, animate data changes carefully, and avoid applying animation modifiers to entire giant trees. Images loading without reserved height also bounce layout. Stories progress must not change page identity.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| `.animation` on root? | Scope it — local transactions. |
+| Images loading? | Reserve height / placeholders. |
+| Stories progress? | Progress shouldn’t change page id. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 Next: [03-lists-performance.md](03-lists-performance.md)
+
+---
+

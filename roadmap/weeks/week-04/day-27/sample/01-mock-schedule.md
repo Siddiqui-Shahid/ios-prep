@@ -1,12 +1,10 @@
 # Sample 01 — Mock #4 schedule & how to run (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is Mock #4’s full day schedule?
-
-**Points to:** [Foundations · §1 Day schedule](../01-foundations.md#1-day-schedule) · [Exercises · Run](../05-exercises.md#2-run)
 
 **Answer:**
 
@@ -21,11 +19,12 @@
 | Break rules? | Walk — no doomscroll; keep cognitive freshness. |
 | Skip debrief? | No — fix-forwards feed Day 28 flashcards. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What are the three main segments?
-
-**Points to:** [README · Outcomes](../README.md) · [Deep dive · Segments A–C](../02-deep-dive.md)
 
 **Answer:**
 
@@ -41,11 +40,12 @@
 | Reuse Day 25 app problem? | Weaker coding signal — prefer fresh DSA. |
 | SD prompt chosen when? | Before mock or expert chooses day-of. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. How do you open each segment?
-
-**Points to:** [Foundations · §2 Openers](../01-foundations.md#2-openers-rehearse-30s-each-before-segment)
 
 **Answer:**
 
@@ -63,15 +63,16 @@
 | Skip opener under stress? | Common failure mode — practice makes it automatic. |
 | SD “does that work?” | Invites interviewer alignment — senior communication. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. What is the warm-up block for?
 
-**Points to:** [Foundations · §1 Day schedule](../01-foundations.md#1-day-schedule) · [Questions · Suggested warm-up set](../04-questions.md#suggested-warm-up-set-15-min)
-
 **Answer:**
 
-> **15 minutes** before Coding: weak flashcards + one STAR opener (S6 or S8). Speak warm-up pool once each — suggested set **W1, W6, W7, W3**. Save W9–W12 for mental rehearsal. Purpose: activate recall, not learn new material.
+> **15 minutes** before Coding: weak flashcards + one STAR opener (BookMyShow LE Bottom Sheet or BookMyShow IMOC + crash-free at scale). Speak warm-up pool once each — suggested set **W1, W6, W7, W3**. Save W9–W12 for mental rehearsal. Purpose: activate recall, not learn new material.
 
 **Follow-ups:**
 
@@ -81,11 +82,15 @@
 | STAR in warm-up timed? | One full opener — 2 min max — then coding focus. |
 | Skip warm-up? | Lose confidence ramp — keep 15 min. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow LE Bottom Sheet; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
+
 ---
 
 ### Q5. What materials do you need before starting?
-
-**Points to:** [Exercises · §1 Materials](../05-exercises.md#1-materials) · [Deep dive · Scorecards](../02-deep-dive.md)
 
 **Answer:**
 
@@ -99,11 +104,12 @@
 | Recording? | Recommended for self-proctor blind spots. |
 | IDE setup? | Ready only for coding segment. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What is Mock #4’s north star?
-
-**Points to:** [Foundations · §0 North star](../01-foundations.md#0-north-star)
 
 **Answer:**
 
@@ -117,11 +123,12 @@
 | New topics after mock? | Forbidden — no Day 25 rewrite, no new LC pattern. |
 | One STAR if story failed? | Only if iOS answer needed story and blew timing — else rest. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. How do you recover when you blank?
-
-**Points to:** [Foundations · §3 Blank recovery](../01-foundations.md#3-blank-recovery) · [Questions · W8](../04-questions.md#w8-what-if-you-blank-3045s)
 
 **Answer:**
 
@@ -135,6 +142,10 @@
 | Blank in SD? | Clarify scope again — buys 2 min and resets structure. |
 | Apology spiral cost? | Signals junior — recovery communication scores. |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [02-segment-scorecards.md](02-segment-scorecards.md)
+
+---
+

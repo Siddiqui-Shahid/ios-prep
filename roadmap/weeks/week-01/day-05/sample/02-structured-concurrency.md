@@ -1,12 +1,10 @@
 # Sample 02 — Structured concurrency and cancellation (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is structured concurrency?
-
-**Points to:** [Foundations · §2.3 Structured concurrency = parent owns children](../01-foundations.md#23-structured-concurrency--parent-owns-children) · [Deep dive · §2.1 Why structure matters](../02-deep-dive.md#21-why-structure-matters)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | What goes wrong without structure? | Work outlives the screen; stale results win; failures leave orphans running. |
 | Interview one-liner? | “Parent owns children — cancellation propagates.” |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. When do I use `async let` vs TaskGroup?
-
-**Points to:** [Deep dive · §2.2 `async let`](../02-deep-dive.md#22-async-let--fixed-parallel-children) · [Deep dive · §2.3 Task groups](../02-deep-dive.md#23-task-groups--dynamic-fan-out)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | TaskGroup collection pattern? | `for await` over group results into a dictionary or array. |
 | Interview risk to name? | Unbounded TaskGroup on thousands of URLs — say you’d chunk or cap. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. What is unstructured concurrency, and when is it OK?
-
-**Points to:** [Foundations · §2.2](../01-foundations.md#22-tasks-are-units-of-asynchronous-work) · [Deep dive · §2.4 Unstructured `Task`](../02-deep-dive.md#24-unstructured-task-and-taskdetached)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | MainActor inheritance? | `Task { }` from `@MainActor` often runs closure on main — behavior can interact with language settings; be explicit for UI mutations. |
 | Prefer inside async APIs? | Structured concurrency — not naked `Task { }` buried in helpers. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. How does Task cancellation work?
-
-**Points to:** [Deep dive · §3.1 Model](../02-deep-dive.md#31-model) · [Foundations · §5 Glossary · Cooperative cancellation](../01-foundations.md#5-glossary-study-until-these-feel-boring)
 
 **Answer:**
 
@@ -74,15 +75,16 @@
 | `CancellationError` in debounce? | Often **expected** — ignore or catch separately from real errors. |
 | Parent cancelled — children? | Structured children receive cancellation too — they must cooperate. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. Why must search debounce cancel in-flight work?
 
-**Points to:** [Deep dive · §3.3 Search debounce](../02-deep-dive.md#33-search-debounce-s3-hook) · [Production bridge · §3 Verified · S3](../03-production-bridge.md#3-verified--s3--search-debounce-and-task-cancellation)
-
 **Answer:**
 
-> User types `a`, then `av`, then `ave` — three requests fly. A slow `a` response can **overwrite** fresh `ave` results if you only delay with sleep. Fix: on each keystroke **cancel the previous Task**, start a new one (debounce sleep + fetch), optionally track a generation token. Verified · S3 at BookMyShow: debounce **plus** explicit loading/empty/error state and MVVM — cancellation is part of the product behavior.
+> User types `a`, then `av`, then `ave` — three requests fly. A slow `a` response can **overwrite** fresh `ave` results if you only delay with sleep. Fix: on each keystroke **cancel the previous Task**, start a new one (debounce sleep + fetch), optionally track a generation token. BookMyShow backend-driven header & search at BookMyShow: debounce **plus** explicit loading/empty/error state and MVVM — cancellation is part of the product behavior.
 
 **Follow-ups:**
 
@@ -92,11 +94,15 @@
 | Store Task where? | ViewModel property — `searchTask?.cancel()` before creating the next. |
 | ≤20s interview line? | “Debounced and cancelled the previous in-flight Task so older responses couldn’t win.” |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
 ### Q6. What about URLSession and cancellation?
-
-**Points to:** [Deep dive · §3.2 What to say about URLSession](../02-deep-dive.md#32-what-to-say-about-urlsession)
 
 **Answer:**
 
@@ -110,11 +116,12 @@
 | Async vs callback migration? | Async path composes with structured cancel; callbacks need manual wiring. |
 | Stale guard without cancel? | Possible but fragile — cancel is the primary fix. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. What failure modes should I name?
-
-**Points to:** [Deep dive · §8 Failure modes checklist](../02-deep-dive.md#8-failure-modes-checklist-production-thinking) · [Deep dive · §9 Decision rules](../02-deep-dive.md#9-decision-rules-speak-these)
 
 **Answer:**
 
@@ -128,15 +135,16 @@
 | Parallel known children? | `async let`; dynamic N → TaskGroup (bounded). |
 | After this sample topic? | Actors and Sendable — [03-actors-sendable.md](03-actors-sendable.md). |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q8. Structured vs unstructured — how do I choose in an interview?
 
-**Points to:** [Deep dive · §2.4 interview line](../02-deep-dive.md#24-unstructured-task-and-taskdetached) · [Production bridge · §3 Tie-back](../03-production-bridge.md#tie-back-to-day-05-vocabulary)
-
 **Answer:**
 
-> “Prefer structured concurrency inside async APIs — `async let` or TaskGroup so the parent owns children and cancel propagates. Use unstructured `Task` only at sync boundaries like UI actions, and **always** plan cancellation when the user can repeat the action quickly — search is the textbook case.” Tie S3: unstructured Task at VM boundary + cooperative cancel on each query change.
+> “Prefer structured concurrency inside async APIs — `async let` or TaskGroup so the parent owns children and cancel propagates. Use unstructured `Task` only at sync boundaries like UI actions, and **always** plan cancellation when the user can repeat the action quickly — search is the textbook case.” Tie BookMyShow backend-driven header & search: unstructured Task at VM boundary + cooperative cancel on each query change.
 
 **Follow-ups:**
 
@@ -146,6 +154,51 @@
 | Button tap? | Unstructured bridge — `Task { await … }`. |
 | Next sample file? | [03-actors-sendable.md](03-actors-sendable.md) |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
+### Q9. What do you say about Task priority / QoS?
+
+**Answer:**
+
+> Tasks carry **priority** and often inherit from their parent — similar in spirit to caring about GCD QoS, not an identical API. Interactive UI work should stay responsive; bulk prefetch shouldn’t casually run at the highest priority. Set priority deliberately for true background work and avoid assuming the runtime will save you from heavy decoding on `@MainActor`. On mobile, lower priority for deferrable work saves energy.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Detached priority? | Can set priority; still don’t starve UI carelessly. |
+| Inherit from parent? | Usually yes for `Task { }` — detached is independent. |
+| Bridge from GCD QoS? | Same judgment: urgency vs energy — different knobs. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
+---
+
+### Q10. Why is GCD `sync` inside async a deadlock / starvation risk?
+
+**Answer:**
+
+> Swift concurrency multiplexes many tasks onto a **thread pool**. If async code calls `DispatchQueue.sync` and blocks, you can **starve** that pool and create hangs. Sync to **main** is especially sharp (deadlock or long stalls). In mixed codebases wrap legacy queue APIs with **async façades** using continuations, resume exactly once, and avoid sync bridges from async paths. At BMS, GCD dictionary isolation still exists — the lesson is serialize at the boundary **without** blocking the world.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| When is sync OK? | Tiny known sync contexts — not as the async architecture spine. |
+| Prefer instead? | Continuations / actors / async methods end-to-end. |
+| Symptom under load? | Hang, watchdog, or “async but everything stalled.” |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 Next: [03-actors-sendable.md](03-actors-sendable.md)
+
+---
+

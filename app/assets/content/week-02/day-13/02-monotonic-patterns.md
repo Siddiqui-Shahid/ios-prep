@@ -1,12 +1,10 @@
 # Sample 02 — Monotonic patterns & queues (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. How does valid parentheses work on a stack?
-
-**Points to:** [Deep dive · §1.2 Valid parentheses](../02-deep-dive.md#12-valid-parentheses-pattern) · [Foundations · §4 Pattern map](../01-foundations.md#4-pattern--structure-map)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Undo/redo cousin? | Stack of states — same LIFO discipline. |
 | Nested CMS JSON? | Different problem — still “matching/nesting” instinct. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What is a monotonic stack?
-
-**Points to:** [Deep dive · §1.3 Monotonic stack](../02-deep-dive.md#13-monotonic-stack--next-greater) · [code/MonotonicStack.swift](../code/MonotonicStack.swift)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | Store indices vs values? | Indices — needed for distance/day counts. |
 | Sliding window max? | Monotonic **deque** — different container, same invariant idea. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. How does min stack achieve O(1) getMin?
-
-**Points to:** [Deep dive · §1.4 Min stack](../02-deep-dive.md#14-min-stack-o1) · [code/MinStack.swift](../code/MinStack.swift)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | Interview variant? | Max stack — symmetric. |
 | Production use? | Learning-lab — honest about interview focus. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. How does the two-stack queue work?
-
-**Points to:** [Deep dive · §2.2 Two-stack queue](../02-deep-dive.md#22-two-stack-queue) · [code/TwoStackQueue.swift](../code/TwoStackQueue.swift)
 
 **Answer:**
 
@@ -74,11 +75,12 @@
 | vs ring buffer? | Ring: fixed capacity O(1); two-stack: dynamic, classic interview. |
 | vs Deque? | Deque is production-friendly; two-stack is interview canonical. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. When do I use a queue for BFS?
-
-**Points to:** [Deep dive · §2.3 BFS / level order](../02-deep-dive.md#23-bfs--level-order) · [Foundations · §4 Pattern map](../01-foundations.md#4-pattern--structure-map)
 
 **Answer:**
 
@@ -92,11 +94,12 @@
 | Graph cycles? | Track visited — queue alone isn’t enough. |
 | Hit counter / recent requests? | Queue of timestamps; drop older than window. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What is a circular queue (ring buffer)?
-
-**Points to:** [Deep dive · §2.5 Circular queue](../02-deep-dive.md#25-circular-queue-ring)
 
 **Answer:**
 
@@ -106,15 +109,19 @@
 
 | Follow-up | Answer |
 |---|---|
-| S12 adjacency? | Ring language adjacent to media buffering — **do not** claim you shipped Aces as custom ring engine. |
+| Audio streaming + server-driven splash (Aces) adjacency? | Ring language adjacent to media buffering — **do not** claim you shipped Aces as custom ring engine. |
 | vs two-stack? | Ring: bounded capacity; two-stack: dynamic interview FIFO. |
 | Full when? | count == capacity — reject or overwrite per spec. |
+
+**How can I relate to my case:**
+- **Shipped:** Audio streaming + server-driven splash (Aces)
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q7. What failure modes hit stack/queue problems?
-
-**Points to:** [Deep dive · §6 Failure modes / traps](../02-deep-dive.md#6-failure-modes--traps)
 
 **Answer:**
 
@@ -128,6 +135,10 @@
 | Concurrency on hit counter? | Actor wrapper — Learning-lab if asked. |
 | Next topic? | Linked list algos — [03-linked-list-algos.md](03-linked-list-algos.md). |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [03-linked-list-algos.md](03-linked-list-algos.md)
+
+---
+

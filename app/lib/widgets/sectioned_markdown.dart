@@ -77,12 +77,16 @@ class SectionedMarkdownReader extends StatefulWidget {
     required this.activeScriptTitle,
     required this.activeScriptIndex,
     this.highlightActive = true,
+    this.onCodeLink,
   });
 
   final String markdown;
   final String activeScriptTitle;
   final int activeScriptIndex;
   final bool highlightActive;
+
+  /// Return true if the link was handled (e.g. opened a code file).
+  final bool Function(String href)? onCodeLink;
 
   @override
   State<SectionedMarkdownReader> createState() =>
@@ -241,6 +245,11 @@ class _SectionedMarkdownReaderState extends State<SectionedMarkdownReader> {
                 : section.body,
             selectable: true,
             styleSheet: active ? activeSheet : baseSheet,
+            onTapLink: (text, href, title) {
+              if (href == null) return;
+              final handled = widget.onCodeLink?.call(href) ?? false;
+              if (handled) return;
+            },
           ),
         );
       },

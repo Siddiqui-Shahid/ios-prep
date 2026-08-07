@@ -1,30 +1,32 @@
 # Sample 03 — Story retrieval (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. Which stories in what order — and how many times?
 
-**Points to:** [Foundations · Priority stories](../01-foundations.md#priority-stories-once-each) · [Exercises · Story run-throughs](../05-exercises.md#story-run-through-scripts-speak-once)
-
 **Answer:**
 
-> **Once each**, then stop: S6 → S8 → S9 → S1 → (S3 **or** S4) → (S10 **or** S15). Optional micro TMAY 30–45s. **40–50 min** block max. ≤1 re-take only if derailed mid-story — not a perfection loop.
+> **Once each**, then stop: BookMyShow LE Bottom Sheet → BookMyShow IMOC + crash-free at scale → District Free Parking + Clean/MVVM + AI tooling → BookMyShow Ads pipeline + HeroWidget lifecycle → (BookMyShow backend-driven header & search **or** BookMyShow SSL pinning + URLSession migration) → (Stories SDK (Raw / Miami Heat) **or** FinTrack on-device AI). Optional micro TMAY 30–45s. **40–50 min** block max. ≤1 re-take only if derailed mid-story — not a perfection loop.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| Skip S10/S15? | Minimum four: S6, S8, S9, S1 — add specialty if time. |
+| Skip Stories SDK (Raw / Miami Heat)/FinTrack on-device AI? | Minimum four: BookMyShow LE Bottom Sheet, BookMyShow IMOC + crash-free at scale, District Free Parking + Clean/MVVM + AI tooling, BookMyShow Ads pipeline + HeroWidget lifecycle — add specialty if time. |
 | Record today? | Optional one voice memo — not mandatory rewrite day. |
 | Full 2–3 min each? | Target yes; compressions OK if energy low. |
 
+**How can I relate to my case:**
+- **Shipped:** FinTrack on-device AI; Stories SDK (Raw / Miami Heat); BookMyShow Ads pipeline + HeroWidget lifecycle; BookMyShow backend-driven header & search; BookMyShow SSL pinning + URLSession migration; BookMyShow LE Bottom Sheet; BookMyShow IMOC + crash-free at scale; District Free Parking + Clean/MVVM + AI tooling
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Claiming pin-rotation / break-glass runbook as a shipped production playbook.
+
 ---
 
-### Q2. S6 run-through spine?
-
-**Points to:** [Exercises · S6 run-through](../05-exercises.md#1-s6--le-bottom-sheet) · [Day 26 · S6 full](../../day-26/04-questions.md#s6--le-bottom-sheet-conflict--impact-23-min)
+### Q2. BookMyShow LE Bottom Sheet run-through spine?
 
 **Answer:**
 
@@ -38,11 +40,15 @@
 | Metric scope? | Targeted flows — not all BMS nav. |
 | Under 2 min? | Add one Action step — alignment or component reuse. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow LE Bottom Sheet
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
-### Q3. S8 run-through spine?
-
-**Points to:** [Exercises · S8 run-through](../05-exercises.md#2-s8--imoc--crash-free) · [Day 26 · S8 full](../../day-26/04-questions.md#s8--imoc--crash-free-incident--leadership-23-min)
+### Q3. BookMyShow IMOC + crash-free at scale run-through spine?
 
 **Answer:**
 
@@ -56,11 +62,15 @@
 | Sole CFS claim? | No — culture participation on your paths. |
 | Example mitigation? | Feature guard or hotfix path — one concrete. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
+
 ---
 
-### Q4. S9 run-through spine?
-
-**Points to:** [Exercises · S9 run-through](../05-exercises.md#3-s9--ai-tooling-judgment) · [Day 26 · S9 full](../../day-26/04-questions.md#s9--district-ai-tooling-judgment-no-worship-23-min)
+### Q4. District Free Parking + Clean/MVVM + AI tooling run-through spine?
 
 **Answer:**
 
@@ -72,13 +82,17 @@
 |---|---|
 | Tool names? | Cursor, Claude, Copilot — accelerators only. |
 | “10× engineer”? | Wrong framing — context + review judgment. |
-| S15 pivot line? | Product on-device AI is a different story. |
+| FinTrack on-device AI pivot line? | Product on-device AI is a different story. |
+
+**How can I relate to my case:**
+- **Shipped:** FinTrack on-device AI; District Free Parking + Clean/MVVM + AI tooling
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
-### Q5. S1 run-through spine?
-
-**Points to:** [Exercises · S1 run-through](../05-exercises.md#4-s1--ads--herowidget) · [Day 26 · S1 full](../../day-26/04-questions.md#s1--ads-refactor--herowidget-hard-technical-23-min)
+### Q5. BookMyShow Ads pipeline + HeroWidget lifecycle run-through spine?
 
 **Answer:**
 
@@ -88,46 +102,61 @@
 
 | Follow-up | Answer |
 |---|---|
-| Hard technical prompt? | Default router story — S1. |
+| Hard technical prompt? | Default router story — BookMyShow Ads pipeline + HeroWidget lifecycle. |
 | Why POP? | Type-safe extensibility vs inheritance thicket. |
 | Video lifecycle test? | Visibility + VC lifecycle rules explicit. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
+
 ---
 
-### Q6. S3 vs S4 — which to pick today?
-
-**Points to:** [Exercises · S3 or S4](../05-exercises.md#5-s3-or-s4-pick-one) · [Foundations · Priority table](../01-foundations.md#priority-stories-once-each)
+### Q6. BookMyShow backend-driven header & search vs BookMyShow SSL pinning + URLSession migration — which to pick today?
 
 **Answer:**
 
-> **Target-company pick:** SDUI-heavy role → **S3** (backend-driven header, debounce/MVVM, schema/fallbacks). Security/networking role → **S4** (Alamofire → URLSession, HTTPS, SSL pinning, whitelist). Speak **one** only today.
+> **Target-company pick:** SDUI-heavy role → **BookMyShow backend-driven header & search** (backend-driven header, debounce/MVVM, schema/fallbacks). Security/networking role → **BookMyShow SSL pinning + URLSession migration** (Alamofire → URLSession, HTTPS, SSL pinning, whitelist). Speak **one** only today.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| S3 one line? | Protocol-driven main screen; faster iteration; schema resilience. |
-| S4 one line? | ATS ≠ pinning; SPKI hash; revenue path security. |
+| BookMyShow backend-driven header & search one line? | Protocol-driven main screen; faster iteration; schema resilience. |
+| BookMyShow SSL pinning + URLSession migration one line? | ATS ≠ pinning; SPKI hash; revenue path security. |
 | Both companies mixed? | Pick stronger Verified story — don’t cram both full. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow backend-driven header & search; BookMyShow SSL pinning + URLSession migration
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Claiming pin-rotation / break-glass runbook as a shipped production playbook.
 
 ---
 
 ### Q7. Where do full scripts live?
 
-**Points to:** [Exercises · Full spoken run-throughs](../05-exercises.md#full-spoken-run-throughs-preferred-if-energy-allows) · [Day 26 · 04-questions](../../day-26/04-questions.md)
-
 **Answer:**
 
-> **Day 26** [`04-questions.md`](../../day-26/04-questions.md) — S6, S8, S9, S1 **Full spoken answer** blocks. Day 28 Exercises mirror compressions. Today: speak full if energy allows; otherwise run-through spines — **once**, no rewrite from scratch.
+> **Day 26** [`04-questions.md`](../../day-26/04-questions.md) — BookMyShow LE Bottom Sheet, BookMyShow IMOC + crash-free at scale, District Free Parking + Clean/MVVM + AI tooling, BookMyShow Ads pipeline + HeroWidget lifecycle **Full spoken answer** blocks. Day 28 Exercises mirror compressions. Today: speak full if energy allows; otherwise run-through spines — **once**, no rewrite from scratch.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
 | Story bank file? | [`../../../stories/story-bank.md`](../../../stories/story-bank.md) |
-| S10/S15 full? | Exercises compressions; Day 26 for behavioral core four. |
+| Stories SDK (Raw / Miami Heat)/FinTrack on-device AI full? | Exercises compressions; Day 26 for behavioral core four. |
 | Edit scripts today? | Forbidden — retrieval only. |
+
+**How can I relate to my case:**
+- **Shipped:** FinTrack on-device AI; Stories SDK (Raw / Miami Heat); BookMyShow Ads pipeline + HeroWidget lifecycle; BookMyShow LE Bottom Sheet; BookMyShow IMOC + crash-free at scale; District Free Parking + Clean/MVVM + AI tooling
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
+
+Next: [04-calm-prep.md](04-calm-prep.md)
 
 ---
 
-Next: [04-calm-prep.md](04-calm-prep.md)

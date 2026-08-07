@@ -1,12 +1,10 @@
 # Sample 03 — Hybrid UIKit ↔ SwiftUI (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. How do you embed SwiftUI inside UIKit?
-
-**Points to:** [Foundations · §6 Hybrid](../01-foundations.md#6-hybrid--intern-path) · [Deep dive · §5 SwiftUI in UIKit](../02-deep-dive.md#swiftui-in-uikit-uihostingcontroller) · [code/HybridHostingNotes.swift](../code/HybridHostingNotes.swift)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Sizing fights? | Constraints, intrinsic content, `sizingOptions` awareness — test on notched devices. |
 | State churn? | Rebuilding hosting VC every bind → identity and lifecycle bugs. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. How do you embed UIKit inside SwiftUI?
-
-**Points to:** [Foundations · §6 Hybrid](../01-foundations.md#6-hybrid--intern-path) · [Deep dive · UIKit in SwiftUI](../02-deep-dive.md#uikit-in-swiftui-representable)
 
 **Answer:**
 
@@ -38,15 +37,16 @@
 | Fixes? | Reduce observed state, stable identity, Equatable inputs where measured useful (Day 12). |
 | Coordinator role? | Glue for UIKit delegates inside SwiftUI lifecycle. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. Why is dual navigation an anti-pattern?
 
-**Points to:** [Foundations · §6 One navigation owner](../01-foundations.md#6-hybrid--intern-path) · [Deep dive · §5 Dual navigation anti-pattern](../02-deep-dive.md#dual-navigation-anti-pattern)
-
 **Answer:**
 
-> `NavigationPath` and `UINavigationController` both mutating from deeplinks and push taps → double present, lost back stack, analytics double-count. **Pick one root navigation owner**; bridge at edges. Deeplinks, Airship taps, and in-app routing must all write to that single router (S13 lesson).
+> `NavigationPath` and `UINavigationController` both mutating from deeplinks and push taps → double present, lost back stack, analytics double-count. **Pick one root navigation owner**; bridge at edges. Deeplinks, Airship taps, and in-app routing must all write to that single router (Hybrid UI / deeplinks lesson).
 
 **Follow-ups:**
 
@@ -56,11 +56,15 @@
 | Cold start deeplink? | Queue intent until root ready — avoid race with unfinished launch. |
 | Auth gates? | In router, not buried in random VCs. |
 
+**How can I relate to my case:**
+- **Shipped:** Hybrid UI / deeplinks
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
 ### Q4. How should deeplinks flow in a hybrid app?
-
-**Points to:** [Deep dive · §6 Deeplinks in hybrid apps](../02-deep-dive.md#6-deeplinks-in-hybrid-apps) · [Production bridge · S13](../03-production-bridge.md#2-s13-star-23-min)
 
 **Answer:**
 
@@ -72,13 +76,17 @@
 |---|---|
 | Push opened wrong screen? | Single router; same path as deeplinks; queue until ready. |
 | Analytics double-count? | One screen owner per visible surface — not UIKit parent and SwiftUI child both firing viewed. |
-| S13 provenance? | Verified · Grizzlies hybrid + deeplinks + Mixpanel/Airship. |
+| Hybrid UI / deeplinks provenance? | Grizzlies hybrid + deeplinks + Mixpanel/Airship. |
+
+**How can I relate to my case:**
+- **Shipped:** Hybrid UI / deeplinks
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q5. What is the UIHostingController containment checklist?
-
-**Points to:** [Foundations · §13 Hybrid containment checklist](../01-foundations.md#13-hybrid-containment-checklist-uihostingcontroller)
 
 **Answer:**
 
@@ -89,14 +97,18 @@
 | Follow-up | Answer |
 |---|---|
 | Nested scroll fights? | Ownership of sizing — intrinsic vs explicit height; avoid nested scroll views fighting. |
-| Legacy UIKit host for SwiftUI SDK? | UIHostingController façade is valid (S10 / Day 12). |
-| Why not pure SwiftUI everywhere? | Legacy UIKit + ship velocity — hybrid with deliberate ownership (S13). |
+| Legacy UIKit host for SwiftUI SDK? | UIHostingController façade is valid (Stories SDK (Raw / Miami Heat) / Day 12). |
+| Why not pure SwiftUI everywhere? | Legacy UIKit + ship velocity — hybrid with deliberate ownership (Hybrid UI / deeplinks). |
+
+**How can I relate to my case:**
+- **Shipped:** Stories SDK (Raw / Miami Heat); Hybrid UI / deeplinks
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q6. How do representable `update` storms connect to SwiftUI identity?
-
-**Points to:** [Deep dive · §10 Representable update storms](../02-deep-dive.md#10-representable-update-storms) · [Deep dive · §5 Identity stability](../02-deep-dive.md#uikit-in-swiftui-representable)
 
 **Answer:**
 
@@ -110,15 +122,16 @@
 | Intentional `.id` reset? | Logout → `.id(session)` to clear forms — different from accidental UUID churn. |
 | Mixpanel discipline? | Representable updates must not re-fire screen_view every body pass. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. Sheet vs push — when which?
 
-**Points to:** [Foundations · §7 LE Bottom Sheet](../01-foundations.md#7-le-bottom-sheet--product-picture-s6) · [Deep dive · §7 LE Bottom Sheet](../02-deep-dive.md#7-le-bottom-sheet-s6--engineering--product) · [Foundations · §14 Sheet heuristics](../01-foundations.md#14-sheet-product-heuristics)
-
 **Answer:**
 
-> **Sheet:** glanceable overview, keep list context, shallow depth (1–2 actions), high-frequency overview taps — S6 LE Bottom Sheet reduced full-screen navigations for **30%+ of user flows**. **Push:** deep multi-step hierarchy, checkout wizards, tools needing strong back-stack history. Do not use sheet for deep checkout flows.
+> **Sheet:** glanceable overview, keep list context, shallow depth (1–2 actions), high-frequency overview taps — BookMyShow LE Bottom Sheet LE Bottom Sheet reduced full-screen navigations for **30%+ of user flows**. **Push:** deep multi-step hierarchy, checkout wizards, tools needing strong back-stack history. Do not use sheet for deep checkout flows.
 
 **Follow-ups:**
 
@@ -126,8 +139,15 @@
 |---|---|
 | Why not a new tab for LE? | Tabs change information architecture; sheet fixes local friction. |
 | Detents? | Medium for overview; large for expanded; grabber + VoiceOver focus matter. |
-| Metric you may claim? | Verified S6 · **30%+** fewer full-screen navigations — resume only. |
+| Metric you may claim? | BookMyShow LE Bottom Sheet · **30%+** fewer full-screen navigations — resume only. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow LE Bottom Sheet
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
+Next: [04-production-s13-s6.md](04-production-s13-s6.md)
 
 ---
 
-Next: [04-production-s13-s6.md](04-production-s13-s6.md)

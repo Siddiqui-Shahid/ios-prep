@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Sync sample Q&A from all roadmap weeks into Flutter assets.
+# Sync sample Q&A + day code labs from roadmap weeks into Flutter assets.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
@@ -30,9 +30,26 @@ for week in "$WEEKS_SRC"/week-*; do
       [[ "$base" == "README.md" ]] && continue
       cp "$f" "$dest/$day_name/$base"
     done
+
+    # Lesson code labs (Swift / notes) — flat into the day folder so pubspec dirs pick them up.
+    code_dir="$day/code"
+    if [[ -d "$code_dir" ]]; then
+      for f in "$code_dir"/*; do
+        [[ -f "$f" ]] || continue
+        base="$(basename "$f")"
+        case "$base" in
+          *.swift|*.md|*.txt|*.json) cp "$f" "$dest/$day_name/$base" ;;
+          *) ;;
+        esac
+      done
+    fi
+
     echo "synced $week_name/$day_name ($(ls "$dest/$day_name" | wc -l | tr -d ' ') files)"
   done
 done
 
-echo "Synced sample content to $DEST_ROOT"
-find "$DEST_ROOT" -type f -name '*.md' | wc -l | xargs echo "md files:"
+python3 "$(dirname "$0")/patch_manifest_code.py"
+python3 "$(dirname "$0")/sync_revision.py"
+
+echo "Synced sample + code + revision content to $DEST_ROOT"
+find "$DEST_ROOT" -type f \( -name '*.md' -o -name '*.swift' \) | wc -l | xargs echo "content files:"

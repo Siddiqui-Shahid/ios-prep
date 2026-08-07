@@ -1,12 +1,10 @@
-# Sample 04 — Production tree hooks (Q&A)
+# Sample 04 — Trees in production systems (Q&A)
 
-> Guided teaching. Maps traversal *shapes* to shipped work. **Verified** labels only — no fake LeetCode metrics.
+> Guided teaching. Separates **shipped** named cases from **design-if-asked** and **lab-only** so you never blur them in an interview.
 
 ---
 
-### Q1. How do trees show up in SDUI / header work (S3)?
-
-**Points to:** [Production bridge · §1 Verified · S3](../03-production-bridge.md#verified--s3--backend-driven-header--search-bookmyshow)
+### Q1. How do trees show up in SDUI / header work (BookMyShow backend-driven header & search)?
 
 **Answer:**
 
@@ -17,14 +15,18 @@
 | Follow-up | Answer |
 |---|---|
 | ≤20s interview line? | “Tree traversals map to SDUI and view trees — BFS for level-aware passes, DFS for path/subtree decisions.” |
-| What *is* verified for S3? | Protocol-driven header, search debounce, MVVM state. |
+| What *is* verified for BookMyShow backend-driven header & search? | Protocol-driven header, search debounce, MVVM state. |
 | Day 25 link? | Brief B SDUI renderer — same fail-soft instinct. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
-### Q2. What is the Stories SDK tree angle (S10)?
-
-**Points to:** [Production bridge · §1 Verified · S10](../03-production-bridge.md#verified--s10--stories-sdk-raw--miami-heat)
+### Q2. What is the Stories SDK tree angle (Stories SDK (Raw / Miami Heat))?
 
 **Answer:**
 
@@ -38,11 +40,15 @@
 | Max-depth guard analogy? | Design: fail-soft placeholder after N nests — crash-free culture, not a shipped claim unless verified. |
 | STAR timing? | Full STAR on Day 26; today ≤20s hooks while coding. |
 
+**How can I relate to my case:**
+- **Shipped:** Stories SDK (Raw / Miami Heat)
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
-### Q3. How do deeplinks relate to tree walks (S13)?
-
-**Points to:** [Production bridge · §1 Verified · S13](../03-production-bridge.md#verified--s13--swiftuiuikit--deeplinks-raw--grizzlies)
+### Q3. How do deeplinks relate to tree walks (Hybrid UI / deeplinks)?
 
 **Answer:**
 
@@ -56,11 +62,15 @@
 | Production iterative walk? | Prefer iterative when CMS/JSON depth is unbounded — reliability over clever recursion. |
 | Invented metric? | Forbidden — no “reduced tree walk latency X%.” |
 
+**How can I relate to my case:**
+- **Shipped:** Hybrid UI / deeplinks
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
 ### Q4. What metrics may I mention on a DSA tree day?
-
-**Points to:** [Production bridge · §3 Metrics](../03-production-bridge.md#3-metrics--what-is-and-isnt-allowed-today)
 
 **Answer:**
 
@@ -70,15 +80,19 @@
 
 | Follow-up | Answer |
 |---|---|
-| S8 soft touch? | Fail-soft / depth guards tie to crash-free **culture** — not a Memory Graph war story. |
+| BookMyShow IMOC + crash-free at scale soft touch? | Fail-soft / depth guards tie to crash-free **culture** — not a Memory Graph war story. |
 | Learning-lab code? | All LeetCode Swift in `code/` — interview practice, not shipped product. |
 | When full STAR? | Day 26 architecture/behavioral — not while narrating LC medium #5. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
 
 ---
 
 ### Q5. What is the 45s bridge if asked “when do you use this at work?”
-
-**Points to:** [Production bridge · §5 Bridge script](../03-production-bridge.md#5-bridge-script-45s-if-interviewer-asks-when-do-you-use-this-at-work)
 
 **Answer:**
 
@@ -92,11 +106,15 @@
 | Parent map for component path? | O(n) preprocess — design interview, not resume claim. |
 | Anti-pattern? | “Our search is level-order BFS” — cosplay. |
 
+**How can I relate to my case:**
+- **Shipped:** None for this prompt — keep it conceptual unless they ask for a case.
+- **Design if asked:** N/A
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
 ### Q6. What production anti-patterns should I avoid?
-
-**Points to:** [Production bridge · §6 Anti-patterns](../03-production-bridge.md#6-anti-patterns-in-production-answers)
 
 **Answer:**
 
@@ -107,9 +125,16 @@
 | Follow-up | Answer |
 |---|---|
 | Honest framing for depth guard? | “I’d design fail-soft — tie to 99.95% mindset, not ‘I shipped this guard.’” |
-| STAR pointers? | S3 header, S10 SDK, S13 deeplink, S8 reliability — story-bank IDs. |
+| STAR pointers? | BookMyShow backend-driven header & search header, Stories SDK (Raw / Miami Heat) SDK, Hybrid UI / deeplinks deeplink, BookMyShow IMOC + crash-free at scale reliability — story-bank IDs. |
 | After sample? | [`../04-questions.md`](../04-questions.md) for timed two-layer Q&A. |
+
+**How can I relate to my case:**
+- **Shipped:** Stories SDK (Raw / Miami Heat); Hybrid UI / deeplinks; BookMyShow backend-driven header & search; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
+
+Next: main [`../04-questions.md`](../04-questions.md)
 
 ---
 
-Next: main [`../04-questions.md`](../04-questions.md)

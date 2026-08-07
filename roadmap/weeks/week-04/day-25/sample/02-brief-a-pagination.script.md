@@ -23,8 +23,8 @@ Next. Q5. What is the pagination state machine? Answer. idle → loadingFirst �
 
 ## §5 Q6. What tests are “meaningful” for Brief A?
 
-Next. Q6. What tests are “meaningful” for Brief A? Answer. Test ViewModel or repository with injected fakes: append pagination, failed page 2 preserves page 1, cache SWR or stale-then-refresh, generation id ignores stale response. 3+ fast unit tests — not snapshot-only, not 100% coverage chase. Follow-ups. S9 AI tests?: You review — assert behavior not implementation trivia.. U I test one?: Optional cut — unit tests pass bar.. Async tests?: Use async test or inject synchronous fake repo..
+Next. Q6. What tests are “meaningful” for Brief A? Answer. Test ViewModel or repository with injected fakes: append pagination, failed page 2 preserves page 1, cache SWR or stale-then-refresh, generation id ignores stale response. 3+ fast unit tests — not snapshot-only, not 100% coverage chase. Follow-ups. District Free Parking + Clean/M V V M + AI tooling AI tests?: You review — assert behavior not implementation trivia.. U I test one?: Optional cut — unit tests pass bar.. Async tests?: Use async test or inject synchronous fake repo..
 
 ## §6 Q7. Brief A trade-offs to narrate?
 
-Next. Q7. Brief A trade-offs to narrate? Answer. SwiftUI list faster slice; UIKit shop may want Diffable — state assumption. Protocol + fake repo first — progress + tests. Real network impressive but flaky. Perfect Clean Architecture rarely fits 3 hrs. Follow-ups. S3 production hook?: Pagination/debounce instincts — not claim this project is BMS.. Image loading?: Cut line.. Debrief?: Sample 04 +../04-questions.md.. Next: 03-brief-b-sdui.md · or run Brief A in../05-exercises.md.
+Next. Q7. Brief A trade-offs to narrate? Answer. SwiftUI list faster slice; UIKit shop may want Diffable — state assumption. Protocol + fake repo first — progress + tests. Real network impressive but flaky. Perfect Clean Architecture rarely fits 3 hrs. Follow-ups. BookMyShow backend-driven header & search production hook?: Pagination/debounce instincts — not claim this project is BMS.. Image loading?: Cut line.. Debrief?: Sample 04 +../04-questions.md..

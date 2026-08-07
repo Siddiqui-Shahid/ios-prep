@@ -1,12 +1,10 @@
 # Sample 03 — Swift strings (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. Why is Swift String not like `[Int]` for indexing?
-
-**Points to:** [Foundations · §4.1 String indexing](../01-foundations.md#41-string-indexing-is-not-array-indexing) · [Deep dive · §3 Valid Palindrome](../02-deep-dive.md#3-valid-palindrome)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | LeetCode Swift? | Same rules — do not assume C-style char arrays. |
 | Why interviewers care? | Shows you know real Swift, not just Python-style pseudocode. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. When should I convert to `[Character]`?
-
-**Points to:** [Foundations · §4.1 String indexing](../01-foundations.md#41-string-indexing-is-not-array-indexing) · [Deep dive · §5 Longest Substring](../02-deep-dive.md#5-longest-substring-without-repeating-characters)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | Lowercase for compare? | `Array(s.lowercased())` — another O(n) pass; say it. |
 | `[Character]` vs `[UInt8]`? | Character preserves Unicode scalars; bytes are wrong for general Unicode. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. What is the interview-safe line about String cost?
-
-**Points to:** [Foundations · §4 Swift-specific tips](../01-foundations.md#4-swift-specific-tips-interview-landmines) · [README · Agenda openers](../README.md#agenda-openers)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | Alternative? | Two `String.Index` pointers from start/end — O(1) extra space, trickier code. |
 | `Substring`? | Slices share storage but still use Index, not Int. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. Valid Palindrome — how do strings change the approach?
-
-**Points to:** [Deep dive · §3 Valid Palindrome](../02-deep-dive.md#3-valid-palindrome) · [code/ValidPalindrome.swift](../code/ValidPalindrome.swift)
 
 **Answer:**
 
@@ -74,11 +75,12 @@
 | Empty or all punctuation? | True — nothing fails comparison. |
 | Unicode emoji? | Clarify with interviewer; default tests are ASCII. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. Longest substring — string-specific traps?
-
-**Points to:** [Deep dive · §5 Longest Substring](../02-deep-dive.md#5-longest-substring-without-repeating-characters) · [code/LengthOfLongestSubstring.swift](../code/LengthOfLongestSubstring.swift)
 
 **Answer:**
 
@@ -92,11 +94,12 @@
 | Empty string? | Return 0. |
 | All same char `"aaaa"`? | Answer 1. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What Array pitfalls matter on Day 06?
-
-**Points to:** [Foundations · §4.2 Prefer Array indices](../01-foundations.md#42-prefer-array-indices-carefully) · [Foundations · §4.4 Sorting costs](../01-foundations.md#44-sorting-costs)
 
 **Answer:**
 
@@ -110,11 +113,12 @@
 | `nums.sorted()` vs sort in place? | `sorted()` is O(n) extra space; `sort()` mutates. |
 | Group Anagrams string key? | Sort chars or count frequency — both O(k log k) or O(k) per string. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. String.Index vs `[Character]` — when to pick which?
-
-**Points to:** [Foundations · §4.1 String indexing](../01-foundations.md#41-string-indexing-is-not-array-indexing) · [Deep dive · §3 Valid Palindrome](../02-deep-dive.md#3-valid-palindrome)
 
 **Answer:**
 
@@ -128,6 +132,10 @@
 | Interviewer asks O(1) space? | Offer Index walk; accept more implementation risk. |
 | Test with `"A man, a plan, a canal: Panama"`? | Yes — classic palindrome dry-run. |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [04-patterns-drills.md](04-patterns-drills.md)
+
+---
+

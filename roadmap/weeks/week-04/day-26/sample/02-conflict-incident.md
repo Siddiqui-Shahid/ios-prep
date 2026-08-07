@@ -1,12 +1,10 @@
 # Sample 02 — Conflict & incident STARs (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
-### Q1. How do I structure a conflict STAR (S6)?
-
-**Points to:** [Deep dive · §1 Conflict script structure](../02-deep-dive.md#1-conflict-script-structure-s6-primary) · [Questions · S6](../04-questions.md#s6--le-bottom-sheet-conflict--impact-23-min)
+### Q1. How do I structure a conflict STAR (BookMyShow LE Bottom Sheet)?
 
 **Answer:**
 
@@ -21,11 +19,15 @@
 | How measure 30%+? | Targeted flows in scope — clarify you don’t claim all BMS navigation. |
 | What would you do differently? | Honest trade-off — e.g. earlier contract workshop, not “nothing.” |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow LE Bottom Sheet
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
 ### Q2. What is the LE bottom sheet story in one pass?
-
-**Points to:** [Questions · S6 Full spoken answer](../04-questions.md#s6--le-bottom-sheet-conflict--impact-23-min) · [Production bridge · S6](../03-production-bridge.md)
 
 **Answer:**
 
@@ -39,11 +41,12 @@
 | “Reusable component” — why matter? | Shows senior thinking — pattern others can adopt. |
 | Overclaim risk? | Say “targeted flows” — not “all of BookMyShow nav.” |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
-### Q3. How do I structure an incident STAR (S8)?
-
-**Points to:** [Deep dive · §2 Incident script structure](../02-deep-dive.md#2-incident-script-structure-s8) · [Questions · S8](../04-questions.md#s8--imoc--crash-free-incident--leadership-23-min)
+### Q3. How do I structure an incident STAR (BookMyShow IMOC + crash-free at scale)?
 
 **Answer:**
 
@@ -57,11 +60,15 @@
 | How prevent recurrence? | RCA action + checklist or monitoring — not “we tried harder.” |
 | Conflict during incident? | Clear owner and comms channel — debate after stabilize. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
+
 ---
 
 ### Q4. What does IMOC mean in your story?
-
-**Points to:** [Questions · S8](../04-questions.md#s8--imoc--crash-free-incident--leadership-23-min) · [Production bridge · S8](../03-production-bridge.md)
 
 **Answer:**
 
@@ -75,11 +82,12 @@
 | IMOC vs regular on-call? | IMOC = coordination + comms + prevent, not just fixing your module. |
 | Drama without process? | Weak — name stabilize/communicate/prevent steps. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. How do you handle disagreement without being combative?
-
-**Points to:** [Deep dive · §1 Conflict script structure](../02-deep-dive.md#1-conflict-script-structure-s6-primary) · [Deep dive · §5 Trade-offs](../02-deep-dive.md#5-trade-offs)
 
 **Answer:**
 
@@ -90,14 +98,18 @@
 | Follow-up | Answer |
 |---|---|
 | PM wants scope you can’t meet? | Visible risk + MVP cut + protect crash-free — see deadline pushback Q. |
-| Design wants full rewrite? | Small surface + contracts often wins — S6 lesson. |
+| Design wants full rewrite? | Small surface + contracts often wins — BookMyShow LE Bottom Sheet lesson. |
 | Never disagree? | Disagree *with* people on trade-offs — not performative conflict. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow LE Bottom Sheet
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q6. What is a good failure STAR approach?
-
-**Points to:** [Deep dive · §6 Failure STAR](../02-deep-dive.md#6-failure-star--choose-a-real-miss-do-not-invent) · [Questions · T1](../04-questions.md#t1-tell-me-about-a-failure-90120s)
 
 **Answer:**
 
@@ -107,15 +119,19 @@
 
 | Follow-up | Answer |
 |---|---|
-| SDUI unknown-type miss? | Fallback + schemaVersion (S3-A1) as process change. |
-| Race that escaped? | Concurrency boundary + tests (S2) as prevention. |
+| SDUI unknown-type miss? | Fallback + schemaVersion (BookMyShow backend-driven header & search-A1) as process change. |
+| Race that escaped? | Concurrency boundary + tests (BookMyShow synchronised dictionaries) as prevention. |
 | Too much detail on the miss? | 20s miss, 90s fix + prevention — stay forward-looking. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries; BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
 
 ---
 
 ### Q7. How do you push back on a bad deadline?
-
-**Points to:** [Questions · T5](../04-questions.md#t5-push-back-on-a-bad-deadline-90120s) · [Deep dive · §5 Trade-offs](../02-deep-dive.md#5-trade-offs)
 
 **Answer:**
 
@@ -129,6 +145,10 @@
 | No time for options meeting? | One slide or message: scope A vs B vs date — still senior. |
 | Always say no to deadlines? | No — negotiate scope and risk visibility; sometimes MVP ship is right. |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [03-mentorship-ai.md](03-mentorship-ai.md)
+
+---
+

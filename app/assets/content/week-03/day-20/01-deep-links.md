@@ -1,12 +1,10 @@
 # Sample 01 — Deep links & Universal Links (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. Universal Links vs custom URL scheme — when which?
-
-**Points to:** [Foundations · §1 Deep linking pipeline](../01-foundations.md#1-deep-linking-pipeline)
 
 **Answer:**
 
@@ -22,11 +20,12 @@
 | https in Notes app? | Universal Link if AASA valid; else Safari. |
 | Both in one app? | Yes — route both through **one router**. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What is AASA, and what can go wrong?
-
-**Points to:** [Foundations · §1](../01-foundations.md#1-deep-linking-pipeline) · [Deep dive · §1 Universal Links debugging](../02-deep-dive.md#1-universal-links-debugging-checklist)
 
 **Answer:**
 
@@ -40,11 +39,12 @@
 | “iOS bug” first answer? | **Trap** — verify AASA and entitlements first. |
 | Path excluded? | Link won’t open app even if domain matches. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. Describe the deep link pipeline end-to-end.
-
-**Points to:** [Foundations · §1](../01-foundations.md#1-deep-linking-pipeline) · [Deep dive · §2 Router architecture](../02-deep-dive.md#2-router-architecture)
 
 **Answer:**
 
@@ -58,11 +58,12 @@
 | Invalid link? | Safe home + metric — don’t crash on bad params. |
 | Dual routers problem? | Push vs UL drift — checkout works from one, 404s from other. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. What is the cold-start race, and how do you fix it?
-
-**Points to:** [Foundations · §1](../01-foundations.md#1-deep-linking-pipeline) · [code/DeepLinkQueue.swift](../code/DeepLinkQueue.swift)
 
 **Answer:**
 
@@ -76,11 +77,12 @@
 | Multiple queued links? | Policy: latest wins, or FIFO — state explicitly. |
 | Push tap same queue? | Yes — same router mindset. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. What security rules apply to URL parameters?
-
-**Points to:** [Foundations · §1](../01-foundations.md#1-deep-linking-pipeline) · [Deep dive · §6 Secure checkout link](../02-deep-dive.md#6-secure-checkout-link)
 
 **Answer:**
 
@@ -94,15 +96,16 @@
 | Logged-out checkout link? | Auth gate → login → resume queued route. |
 | Open redirect in web fallback? | Sanitize web paths in AASA. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. Hybrid SwiftUI/UIKit — what does routing need?
 
-**Points to:** [Deep dive · §2 Router architecture](../02-deep-dive.md#2-router-architecture) · [Production bridge · S13](../03-production-bridge.md#2-verified-s13--star-23-min)
-
 **Answer:**
 
-> **Coordinator owns stack identity** — don’t bolt `UIHostingController` without lifecycle plan. S13 Grizzlies: SwiftUI surfaces hosted in UIKit (or reverse) with designed interop. Router targets coordinator APIs, not raw view controller class names scattered in features.
+> **Coordinator owns stack identity** — don’t bolt `UIHostingController` without lifecycle plan. Hybrid UI / deeplinks Grizzlies: SwiftUI surfaces hosted in UIKit (or reverse) with designed interop. Router targets coordinator APIs, not raw view controller class names scattered in features.
 
 **Follow-ups:**
 
@@ -110,13 +113,17 @@
 |---|---|
 | SwiftUI NavigationStack vs UIKit? | Pick ownership model; router stays above both. |
 | State restoration? | Coordinator + route enum aids restore. |
-| S13 one-liner? | “Deeplinks and Airship atop hybrid SwiftUI/UIKit navigation.” |
+| Hybrid UI / deeplinks one-liner? | “Deeplinks and Airship atop hybrid SwiftUI/UIKit navigation.” |
+
+**How can I relate to my case:**
+- **Shipped:** Hybrid UI / deeplinks
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q7. Deferred deep links — what to claim honestly?
-
-**Points to:** [Deep dive · §3 Deferred deep links](../02-deep-dive.md#3-deferred-deep-links)
 
 **Answer:**
 
@@ -130,6 +137,54 @@
 | Branch/Adjust internals? | Know concept; don’t invent CTR %. |
 | Organic install? | No deferred route — native onboarding. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
+### Q8. “Two routers drifted” — tell it as a first-class failure story
+
+**Answer:**
+
+> Push and Universal Links are **entrypoints only**. One `DeepLinkRouter` and one `AppRoute` table own behavior. Duplication is how checkout works from a campaign banner and **404s from an https campaign** — tables drifted. Symptom: marketing says “push works, links broken” (or the reverse). Fix: unify the routing table; modules register routes through interfaces (Day 15 modular thinking). Hybrid UI / deeplinks lesson: interop costs must be designed; routing is shared discipline.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Who owns the table? | App coordinator / routing module — not each feature switch. |
+| Push payload? | Small route id or URL → same parser. |
+| Test for drift? | Contract tests: same AppRoute from UL fixture and push fixture. |
+
+**How can I relate to my case:**
+- **Shipped:** Hybrid UI / deeplinks
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
+---
+
+### Q9. Marketing wants `myapp://` everywhere — how do you push back?
+
+**Answer:**
+
+> Prefer **Universal Links** for public campaigns and explain **scheme hijack risk** — iOS doesn’t uniquely bind custom schemes to one app. Offer schemes as a **transitional legacy fallback** and migrate campaigns gradually. On Grizzlies we lived in a practical mix while designing routing so either entrypoint still hit **one table**. Don’t refuse without options, and don’t accept hijack risk silently.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Internal deep links? | Schemes can be fine short-term if not public. |
+| Email/SMS campaigns? | Prefer https UL for consumer trust + web fallback. |
+| Same router either way? | Yes — scheme vs UL is entrypoint only (Hybrid UI / deeplinks). |
+
+**How can I relate to my case:**
+- **Shipped:** Hybrid UI / deeplinks
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 Next: [02-push-notifications.md](02-push-notifications.md)
+
+---
+

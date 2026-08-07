@@ -1,12 +1,10 @@
 # Sample 01 — Taper rules (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is game day taper’s north star?
-
-**Points to:** [README · North star](../README.md) · [Foundations · Allowed vs forbidden](../01-foundations.md#allowed-vs-forbidden)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Failed Mock #4? | Prefer rest + fix-forward cards over full re-mock. |
 | Interview tomorrow AM? | Taper morning-of: checklist + metric trio once. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What is allowed vs forbidden on Day 28?
-
-**Points to:** [Foundations · Allowed vs forbidden](../01-foundations.md#allowed-vs-forbidden)
 
 **Answer:**
 
@@ -39,11 +38,12 @@
 | Re-read whole deep dive? | Skim openers only — retrieval, not study. |
 | Caffeine experiment? | Forbidden — stick to normal intake. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. What is the weak-card protocol?
-
-**Points to:** [Foundations · Weak-card protocol](../01-foundations.md#weak-card-protocol-4560-min-cap)
 
 **Answer:**
 
@@ -57,11 +57,12 @@
 | Whole deck temptation? | Violates taper — chronic gotchas + 3 fixes only. |
 | Miss same card twice? | Round 2 only — if still miss, one line on index card; stop. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. How much total time on Day 28?
-
-**Points to:** [Exercises · Timed protocol](../05-exercises.md#timed-protocol) · [README · Outcomes](../README.md)
 
 **Answer:**
 
@@ -75,11 +76,12 @@
 | Skip checklist? | Don’t — environment failures are avoidable. |
 | Extra hour “just in case”? | Sleep ROI higher than hour 4 of study. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. What if anxiety says “study more”?
-
-**Points to:** [Foundations · Allowed vs forbidden](../01-foundations.md#allowed-vs-forbidden) · [Questions · T1](../04-questions.md#t1-anxiety-i-didnt-cover-x-6090s-to-yourself)
 
 **Answer:**
 
@@ -93,11 +95,12 @@
 | Friend quizzing new topics? | Decline — “I’m tapering retrieval only.” |
 | Physical reset? | Light walk beats scroll — allowed. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. Can you run a full mock on Day 28?
-
-**Points to:** [Deep dive · Trade-offs](../02-deep-dive.md#trade-offs) · [README · Forbidden](../README.md)
 
 **Answer:**
 
@@ -111,15 +114,16 @@
 | Record one STAR? | One run-through in story block — not full mock. |
 | Day 27 missed? | Compress: fix-forwards from self-assessment, still taper Day 28. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. Which stories get one run-through?
 
-**Points to:** [Foundations · Priority stories](../01-foundations.md#priority-stories-once-each)
-
 **Answer:**
 
-> Order: **S6** (30%+ nav) → **S8** (99.95%) → **S9** (AI judgment) → **S1** (POP/Ads) → **S3 or S4** (SDUI or pinning — pick target company) → **S10 or S15** (SDK or on-device AI). Optional micro: “Tell me about yourself” 30–45s. **Once each — then stop.**
+> Order: **BookMyShow LE Bottom Sheet** (30%+ nav) → **BookMyShow IMOC + crash-free at scale** (99.95%) → **District Free Parking + Clean/MVVM + AI tooling** (AI judgment) → **BookMyShow Ads pipeline + HeroWidget lifecycle** (POP/Ads) → **BookMyShow backend-driven header & search or BookMyShow SSL pinning + URLSession migration** (SDUI or pinning — pick target company) → **Stories SDK (Raw / Miami Heat) or FinTrack on-device AI** (SDK or on-device AI). Optional micro: “Tell me about yourself” 30–45s. **Once each — then stop.**
 
 **Follow-ups:**
 
@@ -129,6 +133,36 @@
 | Second take? | ≤1 re-take if derailed — not perfection loop. |
 | New story polish? | Forbidden — retrieval only. |
 
+**How can I relate to my case:**
+- **Shipped:** FinTrack on-device AI; Stories SDK (Raw / Miami Heat); BookMyShow Ads pipeline + HeroWidget lifecycle; BookMyShow backend-driven header & search; BookMyShow SSL pinning + URLSession migration; BookMyShow LE Bottom Sheet; BookMyShow IMOC + crash-free at scale; District Free Parking + Clean/MVVM + AI tooling
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Claiming pin-rotation / break-glass runbook as a shipped production playbook.
+
 ---
 
+### Q8. Optional micro “Tell me about yourself” (30–45s)
+
+**Answer:**
+
+> “BookMyShow at **30L+ DAU** across ads, reliability, and delivery metrics like **30%+** nav reduction and **99.95%+** crash-free culture → District architecture + AI judgment → Raw SDK/hybrid apps → FinTrack/GymFlow on-device AI → I want senior ownership of systems and trade-offs.”  
+> One breath per chapter — not four full STARs. Use once in the story run-through block, then stop.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Full 90–120s? | Day 26 Q1 / `04-questions` — today is micro only. |
+| Repeat full BookMyShow LE Bottom Sheet inside? | No — cite 30%+ in one clause. |
+| Skip if tired? | OK — priority STARs first. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow LE Bottom Sheet
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 Next: [02-checklist-openers.md](02-checklist-openers.md)
+
+---
+

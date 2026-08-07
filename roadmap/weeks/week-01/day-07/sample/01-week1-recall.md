@@ -1,16 +1,14 @@
 # Sample 01 — Week 1 active recall (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. struct vs class — when do you choose each?
 
-**Points to:** [Foundations · §1 Revision map](../01-foundations.md#1-revision-map-must-nail) · [04-questions · Warm-up W1](../04-questions.md#warm-up-pool)
-
 **Answer:**
 
-> **Struct** for models and state you want copied by default — value semantics, less accidental shared mutation. **Class** when you need identity, inheritance (UIKit), or reference sharing. Payment states as enums with associated values (S7-A1 design) fit value types. Say “value semantics” and one UIKit class example.
+> **Struct** for models and state you want copied by default — value semantics, less accidental shared mutation. **Class** when you need identity, inheritance (UIKit), or reference sharing. Payment states as enums with associated values (Design: payment status pattern (not shipped) design) fit value types. Say “value semantics” and one UIKit class example.
 
 **Follow-ups:**
 
@@ -20,11 +18,15 @@
 | UIView model? | Class — UIKit hierarchy requires it. |
 | COW related? | Structs may share storage until mutated — next card. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow payment processing-status popup
+- **Design if asked:** Design: payment status pattern (not shipped)
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented checkout drop-off % from the status popup alone.
+
 ---
 
 ### Q2. What is copy-on-write (COW)?
-
-**Points to:** [Foundations · §1 Revision map](../01-foundations.md#1-revision-map-must-nail) · [04-questions · Warm-up](../04-questions.md#warm-up-pool)
 
 **Answer:**
 
@@ -38,15 +40,16 @@
 | Interview depth today? | Definition + “mutation triggers copy” suffices in warm-up. |
 | Deep pool? | COW uniqueness traps — see deep section in 04. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. POP in the ads pipeline — one minute?
 
-**Points to:** [Foundations · §1 Revision map](../01-foundations.md#1-revision-map-must-nail) · Day 02 production bridge · [04-questions · W12](../04-questions.md#warm-up-pool)
-
 **Answer:**
 
-> Protocol-oriented design: capabilities (render, track) instead of a deep `AdView` subclass tree. Generic pipeline over `AdRenderable`; type erasure at boundaries when mixing concrete types. Verified **S1**: new creatives plug in without forking revenue path. No invented fill-rate metrics.
+> Protocol-oriented design: capabilities (render, track) instead of a deep `AdView` subclass tree. Generic pipeline over `AdRenderable`; type erasure at boundaries when mixing concrete types. Verified **BookMyShow Ads pipeline + HeroWidget lifecycle**: new creatives plug in without forking revenue path. No invented fill-rate metrics.
 
 **Follow-ups:**
 
@@ -54,13 +57,17 @@
 |---|---|
 | Generics vs associated type? | Caller picks `T`; adopter picks associated type. |
 | Type erasure cost? | Allocation + indirection + lost specialization. |
-| Optional encore today? | S1 ≤5 min preview Mock #2. |
+| Optional encore today? | BookMyShow Ads pipeline + HeroWidget lifecycle ≤5 min preview Mock #2. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
 
 ---
 
 ### Q4. weak vs unowned — one sentence each?
-
-**Points to:** [Foundations · §1 Revision map](../01-foundations.md#1-revision-map-must-nail) · Day 03 foundations · [04-questions · W3](../04-questions.md#warm-up-pool)
 
 **Answer:**
 
@@ -72,13 +79,17 @@
 |---|---|
 | Memory Graph vs Leaks? | Graph finds cycles (reachable abandoned); Leaks finds unreachable memory. |
 | Timer trap? | Target-selector retains target until `invalidate`. |
-| S8 tie-in? | Reliability culture — do not invent Memory Graph war stories. |
+| BookMyShow IMOC + crash-free at scale tie-in? | Reliability culture — do not invent Memory Graph war stories. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
 
 ---
 
 ### Q5. Serial vs concurrent queue?
-
-**Points to:** [Foundations · §1 Revision map](../01-foundations.md#1-revision-map-must-nail) · Day 04 · [04-questions · W4](../04-questions.md#warm-up-pool)
 
 **Answer:**
 
@@ -92,15 +103,16 @@
 | Main-queue deadlock? | `DispatchQueue.main.sync` from main thread hangs forever. |
 | vs actor? | Actor serializes access with async/await — Day 05. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. async/await vs GCD — when which?
 
-**Points to:** [Foundations · §1 Revision map](../01-foundations.md#1-revision-map-must-nail) · Day 05 · [04-questions · W5](../04-questions.md#warm-up-pool)
-
 **Answer:**
 
-> **GCD** is queue-based callbacks — still everywhere in UIKit legacy. **async/await** structures suspension and errors in Swift concurrency — better for new modules. Production S2 was GCD; **S2-A1** says you’d expose an **actor** today with await. Do not claim a full prod rewrite unless verified.
+> **GCD** is queue-based callbacks — still everywhere in UIKit legacy. **async/await** structures suspension and errors in Swift concurrency — better for new modules. Production BookMyShow synchronised dictionaries was GCD; **Design: actor SafeDict (not shipped)** says you’d expose an **actor** today with await. Do not claim a full prod rewrite unless verified.
 
 **Follow-ups:**
 
@@ -110,15 +122,19 @@
 | Task cancellation? | Cooperative — check `Task.isCancelled` at suspension points. |
 | Sendable? | Types safe to pass across concurrency domains. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries
+- **Design if asked:** Design: actor SafeDict (not shipped)
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
+
 ---
 
 ### Q7. Thread-safe dictionary — 60s design?
 
-**Points to:** [Foundations · §5 Warm-up pool](../01-foundations.md#5-warm-up-pool-ids--full-answers-in-04) · Day 04 · [04-questions · W6](../04-questions.md#warm-up-pool)
-
 **Answer:**
 
-> Hide storage behind a **serial queue API** (or actor today): get/set/snapshot methods dispatch work so callers cannot race the raw dictionary. Avoid `sync` re-entry on the same queue. Mention async-write / sync-read visibility caveat if asked. Verified **S2** is the production proof point.
+> Hide storage behind a **serial queue API** (or actor today): get/set/snapshot methods dispatch work so callers cannot race the raw dictionary. Avoid `sync` re-entry on the same queue. Mention async-write / sync-read visibility caveat if asked. Verified **BookMyShow synchronised dictionaries** is the production proof point.
 
 **Follow-ups:**
 
@@ -128,11 +144,15 @@
 | `final class` wrapper? | Common pattern for reference-type container. |
 | Migration? | Parallel actor façade — deep pool D4. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
+
 ---
 
 ### Q8. DSA from Day 06 — what to recall today?
-
-**Points to:** [Foundations · §1 Revision map](../01-foundations.md#1-revision-map-must-nail) · Day 06 sample · [05-exercises · Exercise 5](../05-exercises.md#exercise-5--dsa-light-3040-min)
 
 **Answer:**
 
@@ -146,6 +166,10 @@
 | Mock includes coding? | Mock #1 is concurrency/memory/HLD — DSA is light exercise 5. |
 | Flashcard deck? | [`../../../flashcards/week-01.md`](../../../flashcards/week-01.md) |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [02-story-s2.md](02-story-s2.md)
+
+---
+

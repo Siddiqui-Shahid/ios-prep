@@ -3,7 +3,7 @@
 
 ## §0 Q1. What does the image loader HLD look like?
 
-Next. Q1. What does the image loader HLD look like? Answer. UIImageView talks to an ImageLoader Coordinator that checks L1 memory, then L2 disk, then network — with an in-flight dedupe map, cancel tokens, and ImageIO downsample off the main thread. A P I shape for interviews: load(url:targetSize:) async throws - UIImage and cancel(id:). Sketch:../code/ImageCacheTiers.swift. Follow-ups. Why coordinator, not view-owned URLSession?: Central dedupe, policy, metrics, and memory pressure in one place.. Protocol name?: ImageLoading — host injects into SDKs (S 10 bridge).. Main thread rule?: Coordinator schedules decode off main; only UIImage assign on main..
+Next. Q1. What does the image loader HLD look like? Answer. UIImageView talks to an ImageLoader Coordinator that checks L1 memory, then L2 disk, then network — with an in-flight dedupe map, cancel tokens, and ImageIO downsample off the main thread. A P I shape for interviews: load(url:targetSize:) async throws - UIImage and cancel(id:). Sketch:../code/ImageCacheTiers.swift. Follow-ups. Why coordinator, not view-owned URLSession?: Central dedupe, policy, metrics, and memory pressure in one place.. Protocol name?: ImageLoading — host injects into SDKs (Stories S D K (Raw / Miami Heat) bridge).. Main thread rule?: Coordinator schedules decode off main; only UIImage assign on main..
 
 ## §1 Q2. How do you downsample correctly?
 
@@ -27,4 +27,8 @@ Next. Q6. What failure modes map to which fixes? Answer. Wrong image in cell →
 
 ## §6 Q7. Should Stories SDK embed Kingfisher?
 
-Next. Q7. Should Stories SDK embed Kingfisher? Answer. No — inject ImageLoading from host (Day 15 S 10). Portfolio apps share one loader, cache policy, and memory behavior. S D K stays reusable; hosts upgrade/downsample rules without forking the S D K. Follow-ups. Host implements protocol?: Wrap SDWebImage/Kingfisher/custom — boundary is ImageLoading.. Test hook?: Mock loader returns fixed UIImage — S D K U I tests without network.. Next sample?: 03-video-audio-media.md — video + audio contracts.. Next: 03-video-audio-media.md.
+Next. Q7. Should Stories SDK embed Kingfisher? Answer. No — inject ImageLoading from host (Day 15 Stories S D K (Raw / Miami Heat)). Portfolio apps share one loader, cache policy, and memory behavior. S D K stays reusable; hosts upgrade/downsample rules without forking the S D K. Follow-ups. Host implements protocol?: Wrap SDWebImage/Kingfisher/custom — boundary is ImageLoading.. Test hook?: Mock loader returns fixed UIImage — S D K U I tests without network.. Animated formats?: Dedicated Q8 — separate decoder path, not the JPEG pipeline..
+
+## §7 Q8. How do you handle GIFs / animated images?
+
+Next. Q8. How do you handle GIFs / animated images? Answer. Animated formats need a separate decoder and a higher memory budget — frame buffers are not the same as a single downsampled still. In system-design interviews, call them out of scope unless asked, rather than pretending the JPEG/ImageIO thumbnail pipeline handles GIF or animated WebP frames the same way. Follow-ups. Video vs animated WebP?: Product/perf trade-off — video often better for long loops; animated stills for short stickers.. Same L1 key as still?: No — animated needs frame/decode policy; don’t share still-image L1 blindly.. Next sample?: 03-video-audio-media.md — video + audio contracts..

@@ -27,4 +27,12 @@ Next. Q6. Path Sum II — what is the backtracking pattern? Answer. Push node.va
 
 ## §6 Q7. What trade-offs should seniors mention?
 
-Next. Q7. What trade-offs should seniors mention? Answer. BFS vs DFS for same problem (max depth): same O(n), different space h vs w. Recursive vs iterative: clarity vs stack depth on skewed input. Array queue vs deque: acknowledge removeFirst cost. Failure modes: BST tricks on plain trees, forgetting null markers in serialize, diameter at root only, Morris without restore. Follow-ups. Symmetric tree?: Mirror DFS: same(a.left,b.right) && same(a.right,b.left).. Iterative preorder?: Push root; pop, visit, push right then left.. When to mention Morris?: Only if you can finish link threading and restore in one breath.. Next: 03-approach-complexity.md.
+Next. Q7. What trade-offs should seniors mention? Answer. BFS vs DFS for same problem (max depth): same O(n), different space h vs w. Recursive vs iterative: clarity vs stack depth on skewed input. Array queue vs deque: acknowledge removeFirst cost. Failure modes: BST tricks on plain trees, forgetting null markers in serialize, diameter at root only, Morris without restore. Follow-ups. Symmetric tree?: Mirror DFS: same(a.left,b.right) && same(a.right,b.left).. Iterative preorder?: Push root; pop, visit, push right then left.. When to mention Morris?: Only if you can finish link threading and restore in one breath..
+
+## §7 Q8. Construct tree from preorder + inorder — full approach?
+
+Next. Q8. Construct tree from preorder + inorder — full approach? Answer. Preorder[0] is the root. Find that value in inorder to split left/right subtree sizes; recurse on matching preorder slices. Build a hashmap value→index for O(n) total if values are unique — don’t rescan inorder each time (that’s O(n²)). Clarify unique values. Time O(n), space O(n) for the map + O(h) recursion. Follow-ups. Duplicate values?: Classic LC assumes unique — say so; otherwise need multiset/indices carefully.. Why both arrays?: Preorder picks root order; inorder gives left/right partition.. Agenda tag?: “Hash index + recurse sizes.”.
+
+## §8 Q9. Symmetric tree — full approach?
+
+Next. Q9. Symmetric tree — full approach? Answer. A single comparison of the root’s children is nowhere near enough. Need a mirror predicate: two nodes match if values are equal and left of one matches right of the other recursively — including nulls. Alternatively BFS with a queue of pairs. Time O(n), space O(h) or O(w). Agenda opener: “Mirror recursively — not one root check.” Follow-ups. Asymmetric nulls on one side?: Mirror check fails — nulls must pair symmetrically.. Perfect binary vs symmetric?: Perfect ≠ symmetric; values/structure must mirror.. Next sample?: 03-approach-complexity.md..

@@ -1,12 +1,10 @@
 # Sample 03 — Track A: Ads architecture (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is Track A’s 5-minute agenda opener?
-
-**Points to:** [Deep dive · §2 Track A — Agenda](../02-deep-dive.md#agenda-20s) · [Production bridge · §6 Ads mock line](../03-production-bridge.md#6-interview-lines-20s)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Wrong opener? | Jumping to pinning without scope — interviewer lost. |
 | Time if over 20s? | Cut examples; keep nouns: POP, HeroWidget, URLSession, trade-offs. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What is the Ads problem context beat?
-
-**Points to:** [Deep dive · §2 Beat 1 — Context](../02-deep-dive.md#beats-1-min-each) · [Production bridge · §3 S1 STAR](../03-production-bridge.md#3-s1-talk-track-23-min-star)
 
 **Answer:**
 
@@ -34,15 +33,19 @@
 
 | Follow-up | Answer |
 |---|---|
-| S1 provenance? | Verified · BookMyShow · Ads / HeroWidget. |
+| BookMyShow Ads pipeline + HeroWidget lifecycle provenance? | BookMyShow · Ads / HeroWidget. |
 | Why revenue framing? | Explains strict lifecycle + security choices. |
 | CMS role? | May configure placement — renderer stays native. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
 
 ---
 
 ### Q3. How do POP and generics shape the Ads pipeline?
-
-**Points to:** [Deep dive · §2 Beat 2 — Component model](../02-deep-dive.md#beats-1-min-each) · [Day 02 POP](../../day-02/01-foundations.md) · [Day 01 Week 1 sample POP](../../../week-01/day-02/sample/01-pop-and-generics.md)
 
 **Answer:**
 
@@ -54,13 +57,17 @@
 |---|---|
 | Why not inheritance? | Fragile base on ad variants; POP composes capabilities. |
 | Associated types pain? | Stay generic, erase at boundary, or closed enum — Day 02. |
-| S10 cousin? | Reusable protocol surfaces — Stories SDK boundary instinct. |
+| Stories SDK (Raw / Miami Heat) cousin? | Reusable protocol surfaces — Stories SDK boundary instinct. |
+
+**How can I relate to my case:**
+- **Shipped:** Stories SDK (Raw / Miami Heat)
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q4. What is the HeroWidget lifecycle contract?
-
-**Points to:** [Deep dive · §2 Beat 3 — HeroWidget](../02-deep-dive.md#beats-1-min-each) · [Day 11 · Ads visibility](../../day-11/02-deep-dive.md#2-ads--video-visibility-s1)
 
 **Answer:**
 
@@ -74,15 +81,16 @@
 | Wrong creative in cell? | Cancel + generation token — Day 11. |
 | SDUI the player? | Weak — see Q6 bridge. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
-### Q5. What is the URLSession / pinning beat? (S4)
-
-**Points to:** [Deep dive · §2 Beat 4 — Networking security](../02-deep-dive.md#beats-1-min-each) · [Production bridge · §5 S4 opener](../03-production-bridge.md#5-supporting-openers-2045s)
+### Q5. What is the URLSession / pinning beat? (BookMyShow SSL pinning + URLSession migration)
 
 **Answer:**
 
-> Alamofire → **URLSession** on high-traffic revenue module. **HTTPS**, **SSL pinning**, **domain whitelist** — you owned the stack. Pin rotation, backup pins, break-glass as **Applied design (S4-A1)** — not “I shipped the ops runbook.” Watch TLS failure rate; don’t claim pinning alone owns crash-free (S8 culture reference only).
+> Alamofire → **URLSession** on high-traffic revenue module. **HTTPS**, **SSL pinning**, **domain whitelist** — you owned the stack. Pin rotation, backup pins, break-glass as **Applied design (Design: pin rotation / break-glass (not shipped runbook))** — not “I shipped the ops runbook.” Watch TLS failure rate; don’t claim pinning alone owns crash-free (BookMyShow IMOC + crash-free at scale culture reference only).
 
 **Follow-ups:**
 
@@ -92,11 +100,15 @@
 | Whitelist why? | Reduce attack surface on revenue endpoints. |
 | Single-flight? | Refresh waiters — Day 09; pairs with auth on same module. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow SSL pinning + URLSession migration; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Design: pin rotation / break-glass (not shipped runbook)
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Claiming pin-rotation / break-glass runbook as a shipped production playbook.
+
 ---
 
 ### Q6. What trade-offs close Track A vs SDUI?
-
-**Points to:** [Deep dive · §2 Beat 5 — Trade-offs](../02-deep-dive.md#beats-1-min-each) · [§4 Why not both architectures](../02-deep-dive.md#4-why-not-both-architectures-as-one-religion)
 
 **Answer:**
 
@@ -107,14 +119,18 @@
 | Follow-up | Answer |
 |---|---|
 | Why not SDUI video? | Weak lifecycle/typing for revenue media. |
-| SDUI header? | S3 — different surface, complementary story. |
+| SDUI header? | BookMyShow backend-driven header & search — different surface, complementary story. |
 | Full script? | [code/MockTalkTracks.md](../code/MockTalkTracks.md) § Track A. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q7. What Ads failure modes should I mention if time allows?
-
-**Points to:** [Deep dive · §2 Failure modes table](../02-deep-dive.md#failure-modes-to-mention-if-time)
 
 **Answer:**
 
@@ -125,9 +141,39 @@
 | Follow-up | Answer |
 |---|---|
 | Invent metrics? | **Forbidden** — fill-rate %, CTR, fake crash deltas. |
-| S1 STAR after talk? | Block 4 — 2–3 min full STAR. |
+| BookMyShow Ads pipeline + HeroWidget lifecycle STAR after talk? | Block 4 — 2–3 min full STAR. |
 | Also read SDUI sample? | Skim [04-sdui-architecture.md](04-sdui-architecture.md) 20 min after recording. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
 
 ---
 
+### Q8. Refresh stampede + pin outage same week — how do you lead? (T3)
+
+**Answer:**
+
+> “I’d lead with blast radius and owners first — feature guards, rollback, break-glass design — while engineering fixes **single-flight refresh** and **pin backups**. I’d watch TLS failure rate and crash-free. At BMS scale we held a **99.95%+ CFS** bar at **30L+ DAU** — I’m not claiming pinning alone created that number, but that reliability culture shapes how I’d run the week.”  
+> **Provenance:** BookMyShow IMOC + crash-free at scale culture · BookMyShow SSL pinning + URLSession migration controls · Design: pin rotation / break-glass (not shipped runbook)
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Comms? | Status cadence — don’t silent-fix. |
+| Stories to cite? | BookMyShow IMOC + crash-free at scale + BookMyShow SSL pinning + URLSession migration + Design: pin rotation / break-glass (not shipped runbook) design. |
+| Only technical rabbit hole? | Trap — lead ops first, then fixes. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow SSL pinning + URLSession migration; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Design: pin rotation / break-glass (not shipped runbook)
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Claiming pin-rotation / break-glass runbook as a shipped production playbook.
+
 Back to: [README.md](README.md) · SDUI track: [04-sdui-architecture.md](04-sdui-architecture.md)
+
+---
+

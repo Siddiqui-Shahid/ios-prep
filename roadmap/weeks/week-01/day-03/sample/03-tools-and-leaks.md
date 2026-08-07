@@ -6,8 +6,6 @@
 
 ### Q1. What is the difference between a true leak and abandoned memory?
 
-**Points to:** [Deep dive · §5 Leak vs abandoned vs high watermark](../02-deep-dive.md#5-leak-vs-abandoned-vs-high-watermark) · [Foundations · §3](../01-foundations.md#3-what-is-a-retain-cycle)
-
 **Answer:**
 
 > A **true leak** is allocated memory with **no** live references left — unreachable. Instruments **Leaks** is built for that.  
@@ -22,11 +20,12 @@
 | Casual “we leaked the VC” usually means? | Abandoned via cycle or cache — Graph / Allocations, not necessarily Leaks. |
 | Winning interview sentence? | “Retain cycles don’t show as Leaks. I use Memory Graph for the cycle and Allocations for persistent growth.” |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. Why doesn’t the Leaks instrument show retain cycles?
-
-**Points to:** [Foundations · §3 Why this matters](../01-foundations.md#why-this-matters-in-interviews) · [Deep dive · §6.3 Leaks](../02-deep-dive.md#63-leaks) · [Day 03 README critical correctness](../README.md#critical-correctness-memorize)
 
 **Answer:**
 
@@ -40,11 +39,12 @@
 | When *do* you use Leaks? | When you suspect unreachable memory — unsafe / CF / some ObjC edges — after Graph suggests something other than a cycle. |
 | True in the demo comments? | Yes — the commented UIKit drill notes Leaks may stay clean even for a BROKEN cycle. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. What is Debug Memory Graph for?
-
-**Points to:** [Foundations · §9 Tools at a glance](../01-foundations.md#9-tools-at-a-glance-foundations) · [Deep dive · §6.1 Debug Memory Graph](../02-deep-dive.md#61-debug-memory-graph-xcode-debugger)
 
 **Answer:**
 
@@ -58,11 +58,12 @@
 | What if the instance is still on a window? | That is still a live owner — not every surviving instance is a cycle. |
 | Pair with what? | Allocations, to prove the type persists across navigation generations. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. What is the Allocations instrument for?
-
-**Points to:** [Deep dive · §6.2 Allocations](../02-deep-dive.md#62-allocations)
 
 **Answer:**
 
@@ -76,11 +77,12 @@
 | High watermark vs abandoned? | Peak can be OK if it drops; abandoned keeps rising or stuck across generations. |
 | Jetsam connection? | Peak memory plus abandoned heaps under big events can become process kills. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. What order do you use when a VC “won’t die”?
-
-**Points to:** [Deep dive · §6.4 Suggested order](../02-deep-dive.md#64-suggested-order-when-a-vc-wont-die)
 
 **Answer:**
 
@@ -99,11 +101,12 @@
 | Fix checklist? | Weak capture, weak delegate, `timer.invalidate()`, NC token removal, Task cancel. |
 | Verify bar? | `deinit` runs; Graph clear; Allocations flat across generations. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What production-shaped failure modes should I name?
-
-**Points to:** [Deep dive · §8 Failure modes](../02-deep-dive.md#8-failure-modes-production-shaped)
 
 **Answer:**
 
@@ -117,11 +120,12 @@
 | Callbacks after pop? | Notification / Task / network completion still holding `self`. |
 | Memory climbs listing → detail → back? | Abandoned VCs, image caches, or cycles — Graph + Allocations. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. How do you map casual language to the right tool?
-
-**Points to:** [Production bridge · §5 Mapping tools to production language](../03-production-bridge.md#5-mapping-tools-to-production-language)
 
 **Answer:**
 
@@ -136,13 +140,17 @@
 |---|---|
 | Why be pedantic? | Wrong tool claim (“cycles in Leaks”) is a common senior trap question. |
 | Teach QA this difference? | Only if useful; always teach interviewers with precise words. |
-| Next file? | Production S8 language — Verified vs Applied. |
+| Next file? | Production BookMyShow IMOC + crash-free at scale language — Verified vs Applied. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
 
 ---
 
 ### Q8. What does a clean Leaks run *not* prove?
-
-**Points to:** [Deep dive · §6.3](../02-deep-dive.md#63-leaks) · [04-questions · T8 pattern](../04-questions.md)
 
 **Answer:**
 
@@ -156,6 +164,30 @@
 | What proves the fix? | `deinit` + Graph empty + Allocations generations flat. |
 | One sentence to memorize? | “Leaks ≠ cycle detector.” |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
+### Q9. When do you use autorelease pools?
+
+**Answer:**
+
+> Autorelease pools let you drain temporary autoreleased ObjC / bridged objects sooner — useful in tight loops that create lots of temporaries (image or string processing helpers). That lowers **high watermark**. It does **not** break retain cycles. Mention it only when the question is about peak temporary memory in ObjC-heavy loops — not when memory climbs from a cycle.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Default pool? | RunLoop drains pools; tight loops may need an explicit `autoreleasepool { }`. |
+| Pure Swift structs loop? | Often unnecessary. |
+| Relate to jetsam? | Lower peak can help pressure; still fix abandonment separately. |
+| Wrong answer? | “Wrap everything in autoreleasepool to fix leaks.” |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 Next: [04-production-s8.md](04-production-s8.md)
+
+---
+

@@ -1,12 +1,10 @@
 # Sample 01 — HashMap patterns (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. When does a HashMap beat nested loops?
-
-**Points to:** [Foundations · §1 HashMap mental model](../01-foundations.md#1-hashmap-mental-model) · [Deep dive · §1 HashMap pattern catalog](../02-deep-dive.md#1-hashmap-pattern-catalog)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | When sort + two pointers instead? | Memory tight and indices don’t matter — O(n log n). |
 | Keys must be? | `Hashable` in Swift — don’t hash mutable identity carelessly. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. How does Two Sum work as the intern demo?
-
-**Points to:** [Foundations · §1.2 Intern demo](../01-foundations.md#12-intern-demo--two-sum)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | No solution? | Return empty or [-1,-1] per prompt — clarify. |
 | Three Sum? | Sort + two pointers with skip logic — different pattern. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. Subarray sum equals K — why prefix + hash?
-
-**Points to:** [Deep dive · §1 Prefix sum + hash](../02-deep-dive.md#prefix-sum--hash-negatives-break-two-pointers)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | All negative array? | Prefix+hash still works. |
 | Non-negative only? | Window two-pointer may work — still clarify. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. How do I group anagrams or isomorphic strings?
-
-**Points to:** [Deep dive · §1 HashMap catalog](../02-deep-dive.md#1-hashmap-pattern-catalog)
 
 **Answer:**
 
@@ -74,11 +75,12 @@
 | Empty strings? | Single group or skip — confirm. |
 | Group shift? | Fixed alphabet offset — key by normalized form. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. Sliding window + hash — what hygiene matters?
-
-**Points to:** [Deep dive · §1 Window + counts hygiene](../02-deep-dive.md#window--counts-hygiene)
 
 **Answer:**
 
@@ -92,11 +94,12 @@
 | Minimum window substring? | Expand until valid, shrink while valid, track best. |
 | Fixed-size window? | Sometimes array of counts — no hash needed. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What complexity script do I say for hash problems?
-
-**Points to:** [Foundations · §1.3 Average vs worst](../01-foundations.md#13-average-vs-worst-case-interview-script) · [§4 Complexity cheat card](../01-foundations.md#4-complexity-cheat-card)
 
 **Answer:**
 
@@ -110,11 +113,12 @@
 | Space when only 26 letters? | O(1) alphabet — still say O(1) or O(Σ). |
 | Clone graph with map? | old→new during DFS/BFS — O(n). |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. What is the hash “say this first” script?
-
-**Points to:** [Foundations · §5 First scripts](../01-foundations.md#5-first-scripts-to-memorize)
 
 **Answer:**
 
@@ -128,6 +132,32 @@
 | Time-based key-value? | Binary search on timestamps — different catalog entry. |
 | Swift String gotcha? | Not O(1) index — convert to `[Character]` when needed. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
+### Q8. Design O(1) insert, delete, and getRandom?
+
+**Answer:**
+
+> A hash map alone doesn’t give **uniform random in O(1)**, and an array alone makes **delete O(n)**. Keep an **array of values** plus a **dictionary from value → index**. **Insert:** append and record the index. **Delete:** swap target with the last element, update the map for the swapped value, pop — O(1). **getRandom:** pick a random index into the array. If **duplicates** are allowed, store **sets of indices** per value. Opener: “Array for random, map for index — swap-delete.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Why not hash alone? | No O(1) uniform pick over keys without extra structure. |
+| Weighted random? | Different structure — alias method / prefix sums — say constraints first. |
+| Thread safety (BookMyShow synchronised dictionaries soft)? | Shared mutable map+array needs serialisation or actor — don’t claim lock-free casually. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
+
 Next: [02-heap-patterns.md](02-heap-patterns.md)
+
+---
+

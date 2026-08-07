@@ -1,12 +1,10 @@
-# Sample 04 — Production S5 (Q&A)
+# Sample 04 — Firebase Performance traces (Q&A)
 
-> Guided teaching. Separates **Verified** resume facts from **How I would apply it** and technical correctness vocabulary.
+> Guided teaching. Separates **shipped** named cases from **design-if-asked** and **lab-only** so you never blur them in an interview.
 
 ---
 
-### Q1. What can you claim under Verified · S5?
-
-**Points to:** [Production bridge · §1 Provenance map](../03-production-bridge.md#1-provenance-map-for-today) · [§2 Verified S5 STAR](../03-production-bridge.md#2-verified-s5--star-2-3-min)
+### Q1. What can you claim under BookMyShow Firebase Performance traces?
 
 **Answer:**
 
@@ -16,15 +14,19 @@
 
 | Follow-up | Answer |
 |---|---|
-| Provenance tag? | Verified · S5 · BookMyShow · Firebase Performance p50/p90 |
+| Provenance tag? | BookMyShow Firebase Performance traces · BookMyShow · Firebase Performance p50/p90 |
 | ≤20s line? | “I instrumented Firebase Performance for listing, checkout, and search — p50/p90 so release decisions followed real tails, not averages.” |
-| What S5 is not? | MetricKit subscriber as personal shipped work without evidence. |
+| What BookMyShow Firebase Performance traces is not? | MetricKit subscriber as personal shipped work without evidence. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Firebase Performance traces
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
-### Q2. Walk the S5 STAR spine
-
-**Points to:** [Production bridge · §2 Verified S5](../03-production-bridge.md#2-verified-s5--star-2-3-min)
+### Q2. Walk the BookMyShow Firebase Performance traces STAR spine
 
 **Answer:**
 
@@ -38,15 +40,19 @@
 | Backend conversation example? | Checkout p90 high, CPU clean → network/backend investigation. |
 | Release culture? | Traces as regression watch — Day 20 CI gates bridge. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Firebase Performance traces
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
-### Q3. Journey traces vs interceptor spans (S5-A1)?
-
-**Points to:** [Production bridge · Journey vs interceptor](../03-production-bridge.md#journey-vs-interceptor--s5-a1) · [Deep dive · §7.2 Placement judgment](../02-deep-dive.md#72-placement-judgment-s5-a1)
+### Q3. Journey traces vs interceptor spans (BookMyShow Firebase Performance traces-A1)?
 
 **Answer:**
 
-> **Journey-level traces** for product SLIs and PM conversations — clear start/stop tied to user outcome. **Per-request interceptor spans** for debugging API chatter — carefully, with cardinality hygiene. Label **How I would apply it · S5-A1** when describing placement judgment beyond Verified Firebase journey work.
+> **Journey-level traces** for product SLIs and PM conversations — clear start/stop tied to user outcome. **Per-request interceptor spans** for debugging API chatter — carefully, with cardinality hygiene. Label **Design: BookMyShow Firebase Performance traces-A1** when describing placement judgment beyond Verified Firebase journey work.
 
 **Follow-ups:**
 
@@ -56,29 +62,37 @@
 | Unbounded interceptor risk? | Noise, cost, alert fatigue. |
 | When add interceptor? | During targeted API chatter investigation — not default everywhere. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Firebase Performance traces
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
-### Q4. How do S12, S6, and S3 hook adjacent?
-
-**Points to:** [Production bridge · §4 Adjacent hooks](../03-production-bridge.md#4-adjacent-hooks-keep-honest)
+### Q4. How do Audio streaming + server-driven splash (Aces), BookMyShow LE Bottom Sheet, and BookMyShow backend-driven header & search hook adjacent?
 
 **Answer:**
 
-> **S12 Verified:** server-driven splash / cold-start product — TTI mindset, no fake ms. **S6 Verified:** LE Bottom Sheet — **30%+** flows fewer full-screen navigations — UX performance. **S3 Verified:** search debounce/cancel — pair with search journey traces. Keep S5 as hero observability story; adjacent hooks answer pivots.
+> **Audio streaming + server-driven splash (Aces) Verified:** server-driven splash / cold-start product — TTI mindset, no fake ms. **BookMyShow LE Bottom Sheet Verified:** LE Bottom Sheet — **30%+** flows fewer full-screen navigations — UX performance. **BookMyShow backend-driven header & search Verified:** search debounce/cancel — pair with search journey traces. Keep BookMyShow Firebase Performance traces as hero observability story; adjacent hooks answer pivots.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| S6 one-liner? | Performance isn’t only CPU — fewer navigations cut stack cost. |
-| S3 search checklist? | Debounce, cancel in-flight, ignore stale results. |
-| Collapse into one STAR? | No — match hook to question; S5 stays Firebase p50/p90 core. |
+| BookMyShow LE Bottom Sheet one-liner? | Performance isn’t only CPU — fewer navigations cut stack cost. |
+| BookMyShow backend-driven header & search search checklist? | Debounce, cancel in-flight, ignore stale results. |
+| Collapse into one STAR? | No — match hook to question; BookMyShow Firebase Performance traces stays Firebase p50/p90 core. |
+
+**How can I relate to my case:**
+- **Shipped:** Audio streaming + server-driven splash (Aces); BookMyShow backend-driven header & search; BookMyShow Firebase Performance traces; BookMyShow LE Bottom Sheet
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q5. What Instruments correctness do you say in perf interviews?
-
-**Points to:** [Production bridge · §5 Instruments correctness](../03-production-bridge.md#5-instruments-correctness-say-in-perf-interviews)
 
 **Answer:**
 
@@ -89,14 +103,18 @@
 | Follow-up | Answer |
 |---|---|
 | Why mention in perf day? | Interviewers blend memory + perf — correctness trap. |
-| Pair with S5? | Field p90 for priority; Graph/Allocations for lab memory attribution. |
+| Pair with BookMyShow Firebase Performance traces? | Field p90 for priority; Graph/Allocations for lab memory attribution. |
 | Day 03 depth? | ARC cycles — today only Instruments trap. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Firebase Performance traces
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q6. What anti-patterns must you refuse?
-
-**Points to:** [Production bridge · §7 Anti-patterns](../03-production-bridge.md#7-anti-patterns-to-refuse)
 
 **Answer:**
 
@@ -110,15 +128,19 @@
 | PM-friendly metric? | p90 checkout latency movement — not average. |
 | Lab without field? | Insufficient for fleet-only regressions. |
 
+**How can I relate to my case:**
+- **Shipped:** None for this prompt — keep it conceptual unless they ask for a case.
+- **Design if asked:** N/A
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
-### Q7. Give a full honest S5 + correctness answer
-
-**Points to:** [Production bridge · §3 Interview line](../03-production-bridge.md#3-interview-line-20s) · [§5 Instruments](../03-production-bridge.md#5-instruments-correctness-say-in-perf-interviews)
+### Q7. Give a full honest BookMyShow Firebase Performance traces + correctness answer
 
 **Answer:**
 
-> “I instrumented Firebase Performance on listing, checkout, and search with p50/p90 (Verified S5) — release and optimisation discussions followed tails, not averages. In lab, I attribute CPU with Time Profiler and hitches; for memory cycles I’d use Memory Graph and Allocations, not Leaks (Applied correctness). Field percentiles decide priority; Instruments names the bottleneck class.”
+> “I instrumented Firebase Performance on listing, checkout, and search with p50/p90 (BookMyShow Firebase Performance traces) — release and optimisation discussions followed tails, not averages. In lab, I attribute CPU with Time Profiler and hitches; for memory cycles I’d use Memory Graph and Allocations, not Leaks (Applied correctness). Field percentiles decide priority; Instruments names the bottleneck class.”
 
 **Follow-ups:**
 
@@ -128,10 +150,17 @@
 | Applied portion? | Memory tool order when cycles suspected. |
 | After this sample? | [`../04-questions.md`](../04-questions.md), [`../05-exercises.md`](../05-exercises.md). |
 
----
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Firebase Performance traces
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ## After this sample
 
 1. Skim [`../code/JourneyTrace.swift`](../code/JourneyTrace.swift) and [`../code/InstrumentsToolMap.swift`](../code/InstrumentsToolMap.swift).
-2. Time S5 STAR from [`../04-questions.md`](../04-questions.md).
+2. Time BookMyShow Firebase Performance traces STAR from [`../04-questions.md`](../04-questions.md).
 3. Practice tool-selection drills in [`../05-exercises.md`](../05-exercises.md).
+
+---
+

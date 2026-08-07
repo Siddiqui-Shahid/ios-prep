@@ -225,18 +225,29 @@ class TtsPlayerService extends BaseAudioHandler with ChangeNotifier {
       _currentWord = '';
       return;
     }
-    final sanitized = sanitizeForSpeech(section.body);
-    _sentences = splitSentences(sanitized);
+    _sentences = speechUnitsForSection(section.body);
     if (resetSentence) _sentenceIndex = 0;
     _sentenceIndex = _sentenceIndex.clamp(
       0,
       (_sentences.length - 1).clamp(0, 9999),
     );
-    _currentSentence = _sentences.isEmpty ? '' : _sentences[_sentenceIndex];
+    _currentSentence = _sentences.isEmpty
+        ? ''
+        : _sentences
+            .skip(_sentenceIndex)
+            .firstWhere((s) => !isSpeechPauseCue(s), orElse: () => '');
     _currentWord = '';
   }
 
   int _speakingUntil = 0;
+
+  /// Breath after main answer (before Follow-ups) / after follow-up questions.
+  int _structuralPauseMs({required bool longPause}) {
+    final base = longPause ? 950.0 : 700.0;
+    // Keep pauses audible even at high speed, but shorten a bit.
+    final scaled = base / _speed.clamp(0.75, 3.5);
+    return scaled.round().clamp(longPause ? 280 : 220, longPause ? 1100 : 850);
+  }
 
   Future<void> _applyRate() async {
     // iOS: 0.5 ≈ 1x normal, 1.0 ≈ 4x. Android flutter_tts: ~0.5 normal, 1.0 fast.
@@ -351,8 +362,32 @@ class TtsPlayerService extends BaseAudioHandler with ChangeNotifier {
       _reloadSentences(resetSentence: true);
     }
     if (_sentences.isEmpty) return;
+
     _sentenceIndex = _sentenceIndex.clamp(0, _sentences.length - 1);
-    final end = (_sentenceIndex + _chunkSize()).clamp(0, _sentences.length);
+
+    // Honour structural breaths (never spoken aloud).
+    while (_sentenceIndex < _sentences.length &&
+        isSpeechPauseCue(_sentences[_sentenceIndex])) {
+      final long = isSpeechPauseLongCue(_sentences[_sentenceIndex]);
+      await Future<void>.delayed(
+        Duration(milliseconds: _structuralPauseMs(longPause: long)),
+      );
+      if (!_playing) return;
+      _sentenceIndex++;
+    }
+    if (_sentenceIndex >= _sentences.length) {
+      await _finishSectionOrChapter();
+      return;
+    }
+
+    // Do not chunk across a pause cue — keeps answer / follow-up breaths intact.
+    var end = _sentenceIndex + 1;
+    final maxEnd = (_sentenceIndex + _chunkSize()).clamp(0, _sentences.length);
+    while (end < maxEnd) {
+      if (isSpeechPauseCue(_sentences[end])) break;
+      end++;
+    }
+
     _speakingUntil = (end - 1).clamp(0, _sentences.length - 1);
     final joined = _sentences.sublist(_sentenceIndex, end).join(' ');
     _currentSentence = joined;
@@ -367,7 +402,7 @@ class TtsPlayerService extends BaseAudioHandler with ChangeNotifier {
     if (!_playing) return;
     _advancing = true;
     try {
-      // Almost no gap between utterances; high speed = no artificial pause.
+      // Tiny gap between ordinary sentences; structural pauses are separate cues.
       final gapMs = _speed >= 2.0
           ? 0
           : _speed >= 1.25
@@ -384,28 +419,38 @@ class TtsPlayerService extends BaseAudioHandler with ChangeNotifier {
         return;
       }
 
-      if (_sectionIndex < _sections.length - 1) {
-        _sectionIndex++;
-        _reloadSentences(resetSentence: true);
-        _updateMediaItem();
-        onSectionChanged?.call();
-        notifyListeners();
-        await _speakCurrentSentence();
-        return;
-      }
-
-      _playing = false;
-      playbackState.add(
-        playbackState.value.copyWith(
-          playing: false,
-          processingState: AudioProcessingState.completed,
-        ),
-      );
-      onChapterCompleted?.call();
-      notifyListeners();
+      await _finishSectionOrChapter();
     } finally {
       _advancing = false;
     }
+  }
+
+  Future<void> _finishSectionOrChapter() async {
+    if (!_playing) return;
+    if (_sectionIndex < _sections.length - 1) {
+      // Brief beat between Q&A sections (next question).
+      await Future<void>.delayed(
+        Duration(milliseconds: _structuralPauseMs(longPause: false)),
+      );
+      if (!_playing) return;
+      _sectionIndex++;
+      _reloadSentences(resetSentence: true);
+      _updateMediaItem();
+      onSectionChanged?.call();
+      notifyListeners();
+      await _speakCurrentSentence();
+      return;
+    }
+
+    _playing = false;
+    playbackState.add(
+      playbackState.value.copyWith(
+        playing: false,
+        processingState: AudioProcessingState.completed,
+      ),
+    );
+    onChapterCompleted?.call();
+    notifyListeners();
   }
 
   Future<void> seekBySeconds(double seconds) async {

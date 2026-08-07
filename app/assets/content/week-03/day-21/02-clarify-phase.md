@@ -1,12 +1,10 @@
 # Sample 02 — Clarify phase (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. How do you start any mobile SD interview?
-
-**Points to:** [Foundations · §1 Universal spine](../01-foundations.md#1-universal-spine-memorize) · [04-questions · Q1](../04-questions.md#q1-how-do-you-start-any-mobile-sd-interview-3045s)
 
 **Answer:**
 
@@ -20,29 +18,34 @@
 | Clarify for 15 min? | Fails structure rubric — timebox ruthlessly. |
 | Solo practice? | Speak agenda aloud; timer 5 min. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What scale numbers can you use honestly?
 
-**Points to:** [Foundations · §2 Clarify checklist](../01-foundations.md#2-clarify-checklist-resume-true-numbers-only) · [04-questions · Q2](../04-questions.md#q2-what-scale-number-do-you-use-3045s)
-
 **Answer:**
 
-> **30+ lakh DAU** when BMS-like consumer context — from resume. **99.95%+ CFS** as ops constraint when rollout discussed (S8). **Don’t invent precise QPS.** If forced to estimate, label assumptions transparently from DAU and session length — never fake precision as fact.
+> **30+ lakh DAU** when BMS-like consumer context — from resume. **99.95%+ CFS** as ops constraint when rollout discussed (BookMyShow IMOC + crash-free at scale). **Don’t invent precise QPS.** If forced to estimate, label assumptions transparently from DAU and session length — never fake precision as fact.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
 | “What’s your QPS?” never measured | Offer DAU; labeled estimate; refocus on client arch — T2 in 04. |
-| Journey metrics? | p50/p90 from S5 — listing, checkout, search instrumented. |
+| Journey metrics? | p50/p90 from BookMyShow Firebase Performance traces — listing, checkout, search instrumented. |
 | Fabricate drop-off %? | **Forbidden** — resume-only metrics. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Firebase Performance traces; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
 
 ---
 
 ### Q3. What do you cut from scope by default?
-
-**Points to:** [Foundations · §2 Clarify checklist](../01-foundations.md#2-clarify-checklist-resume-true-numbers-only) · [Deep dive · A0 Clarify](../02-deep-dive.md#a0-clarify-05)
 
 **Answer:**
 
@@ -56,11 +59,12 @@
 | Backend service mesh? | Out for networking mock unless asked — client focus. |
 | Admin CMS for SDUI? | Out — you design **client engine**, not editorial UI. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. SDUI clarify script — what do you say?
-
-**Points to:** [Deep dive · A0 Clarify](../02-deep-dive.md#a0-clarify-05) · [Foundations · Prompt A agenda](../01-foundations.md#prompt-a--sdui-engine)
 
 **Answer:**
 
@@ -72,13 +76,17 @@
 |---|---|
 | Offline-first requested? | Adjust — cache TTL, native scaffold on empty first launch. |
 | Which deep dives swap? | Caching/freshness or image pipeline if media-heavy — timebox judgment. |
-| Provenance in clarify? | Light hooks OK — S3 header/search, S12 splash family. |
+| Provenance in clarify? | Light hooks OK — BookMyShow backend-driven header & search header/search, Audio streaming + server-driven splash (Aces) splash family. |
+
+**How can I relate to my case:**
+- **Shipped:** Audio streaming + server-driven splash (Aces); BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q5. Networking + pinning clarify script?
-
-**Points to:** [Deep dive · B0 Clarify](../02-deep-dive.md#b0-clarify-05) · [Foundations · Prompt B agenda](../01-foundations.md#prompt-b--networking--ssl-pinning)
 
 **Answer:**
 
@@ -88,15 +96,19 @@
 
 | Follow-up | Answer |
 |---|---|
-| Alamofire? | Prefer URLSession when owning trust — S4 Ads migration proof. |
+| Alamofire? | Prefer URLSession when owning trust — BookMyShow SSL pinning + URLSession migration Ads migration proof. |
 | Pin all hosts? | No — allowlisted sensitive hosts only. |
-| S4-A1 in clarify? | Mention rotation as **design** — not shipped runbook. |
+| Design: pin rotation / break-glass (not shipped runbook) in clarify? | Mention rotation as **design** — not shipped runbook. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow SSL pinning + URLSession migration
+- **Design if asked:** Design: pin rotation / break-glass (not shipped runbook)
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Claiming pin-rotation / break-glass runbook as a shipped production playbook.
 
 ---
 
 ### Q6. What do you ask about offline during clarify?
-
-**Points to:** [04-questions · Q10](../04-questions.md#q10-offline-for-sdui-3045s) · [Deep dive · A0](../02-deep-dive.md#a0-clarify-05)
 
 **Answer:**
 
@@ -108,13 +120,17 @@
 |---|---|
 | Offline-first product? | Stronger disk cache, sync strategy — still timebox. |
 | White screen on decode fail? | **Refuse** — partial render + fallback metric. |
-| Charge POST offline? | Queue with idempotency keys — S7 intent. |
+| Charge POST offline? | Queue with idempotency keys — BookMyShow payment processing-status popup intent. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow payment processing-status popup
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented checkout drop-off % from the status popup alone.
 
 ---
 
 ### Q7. How is clarify scored?
-
-**Points to:** [04-questions · SA1](../04-questions.md#sa1-what-does-excellent-agenda--clarify-look-like-45s) · [04-questions · Full rubric](../04-questions.md#full-rubric-100-pts)
 
 **Answer:**
 
@@ -126,8 +142,31 @@
 |---|---|
 | Mock partner silent? | Checkpoint — “Does this agenda work?” — T8. |
 | Jump to diagram early? | Ask permission — agenda first. |
-| Next topic? | Cache & scroll — [03-cache-scroll.md](03-cache-scroll.md). |
+| Action routing dive? | Dedicated Q8 — allowlist + one DeepLinkRouter. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
+### Q8. SDUI action routing — worked deep-dive answer?
+
+**Answer:**
+
+> Actions are **data, not code**. **Allowlisted types only** — CMS cannot invent arbitrary native paths. Deeplink actions enter the **same DeepLinkRouter** as Universal Links and push — **one table** — so CMS doesn’t create a second navigation world. Sensitive routes still **auth-gate**. Analytics maps on components let PM change event names without an app release. **Kill switch** via remote config disables SDUI surfaces and falls back to native scaffolding.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Arbitrary native code from CMS? | Refuse — T5 in 04; allowlist + router only. |
+| Sketch? | [`code/SDUISketch.swift`](../code/SDUISketch.swift) — `SDUIActionAllowlist`. |
+| Next topic? | Cache & scroll — [03-cache-scroll.md](03-cache-scroll.md). |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 Next: [03-cache-scroll.md](03-cache-scroll.md)
+
+---
+

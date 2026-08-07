@@ -27,4 +27,8 @@ Next. Q6. What are upload reliability rules? Answer. Do: persist on crash; uploa
 
 ## §6 Q7. What non-fatal error hygiene matters?
 
-Next. Q7. What non-fatal error hygiene matters? Answer. Group, sample, fix top offenders. Don’t equate non-fatal volume with crash free sessions. Promote to P1 when user-impacting on critical path (payments). Alert fatigue kills incident response — same discipline as breadcrumb PII. Follow-ups. vs fatal triage?: Non-fatals inform quality; crash free sessions tracks session fatals.. Payment non-fatal?: Treat as Sev even if crash-free.session continues.. Next sample?: 03-imoc-triage.md — incident command.. Next: 03-imoc-triage.md.
+Next. Q7. What non-fatal error hygiene matters? Answer. Group, sample, fix top offenders. Don’t equate non-fatal volume with crash free sessions. Promote to P1 when user-impacting on critical path (payments). Alert fatigue kills incident response — same discipline as breadcrumb PII. Follow-ups. vs fatal triage?: Non-fatals inform quality; crash free sessions tracks session fatals.. Payment non-fatal?: Treat as Sev even if crash-free.session continues.. OSLog in handler?: Explicit trap — dedicated Q8..
+
+## §7 Q8. Why is OSLog / logging inside a signal handler a trap?
+
+Next. Q8. Why is OSLog / logging inside a signal handler a trap? Answer. OSLog and normal logging frameworks are not async-signal-safe. Calling them from a signal handler is how you get a secondary crash or deadlock. The crash writer must use a precomputed path — mmap and safe writes — without allocating. Breadcrumbs are recorded earlier on the happy path so the handler only persists what’s already there. Common wrong answer: “Just OSLog from the signal handler.” Follow-ups. What is allowed?: Limited async-signal-safe syscalls (write, etc.) into preallocated buffers.. Where do logs go then?: Happy-path breadcrumbs + next-launch upload — never a full logger in-handler.. Next sample?: 03-imoc-triage.md — incident command..

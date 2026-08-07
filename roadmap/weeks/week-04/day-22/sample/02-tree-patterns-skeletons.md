@@ -1,12 +1,10 @@
 # Sample 02 — Tree patterns & skeletons (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. How do I map prompt phrases to algorithms?
-
-**Points to:** [Deep dive · §1 Pattern catalog](../02-deep-dive.md#1-pattern-catalog-trigger--algorithm)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | k-th smallest BST? | Inorder (stack or Morris) — sorted order. |
 | Construct from preorder + inorder? | Root from preorder[0]; split inorder; hashmap for O(n) if values unique. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. How does LCA work on a binary tree?
-
-**Points to:** [Deep dive · §4.2 LCA binary tree](../02-deep-dive.md#42-lca-binary-tree--postorder-markers)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | BST LCA? | Compare values — don’t scan whole tree unless asked. |
 | Parent-pointer variant? | Walk depth, align, step up — O(h) if map built. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. Why does validate BST need bounds, not just parent?
-
-**Points to:** [Deep dive · §4.3 Validate BST](../02-deep-dive.md#43-validate-bst--bounds) · [Foundations · §6.3](../01-foundations.md#63-validate-bst--bounds-preview)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | Duplicates allowed? | Adjust bounds — clarify `<` vs `<=`. |
 | Empty tree? | Valid — say in edges. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. How do I compute diameter correctly?
-
-**Points to:** [Deep dive · §4.1 Diameter](../02-deep-dive.md#41-diameter--why-root-only-fails)
 
 **Answer:**
 
@@ -74,11 +75,12 @@
 | Path through root only? | Insufficient — path may avoid root. |
 | Balanced check? | Return height or -1 if |leftH - rightH| > 1. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. How do I serialize and deserialize a tree?
-
-**Points to:** [Deep dive · §4.5 Serialize](../02-deep-dive.md#45-serialize--null-markers-required)
 
 **Answer:**
 
@@ -92,11 +94,12 @@
 | N-ary tree? | Encode child count or delimiter between subtrees. |
 | Production nod? | Version schema; fail-soft on unknown component types (Day 25 Brief B). |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. Path Sum II — what is the backtracking pattern?
-
-**Points to:** [Deep dive · §4.4 Path Sum II](../02-deep-dive.md#44-path-sum-ii--backtracking)
 
 **Answer:**
 
@@ -110,11 +113,12 @@
 | Negative values? | Still DFS — no monotonic window trick. |
 | Target zero at root-only? | Clarify whether root counts as path. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. What trade-offs should seniors mention?
-
-**Points to:** [Deep dive · §5 Trade-offs](../02-deep-dive.md#5-trade-offs) · [§6 Failure modes](../02-deep-dive.md#6-failure-modes-seniors-mention)
 
 **Answer:**
 
@@ -128,6 +132,48 @@
 | Iterative preorder? | Push root; pop, visit, push right then left. |
 | When to mention Morris? | Only if you can finish link threading and restore in one breath. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
+### Q8. Construct tree from preorder + inorder — full approach?
+
+**Answer:**
+
+> **Preorder[0] is the root.** Find that value in **inorder** to split left/right subtree sizes; recurse on matching preorder slices. Build a **hashmap value→index** for O(n) total if values are unique — don’t rescan inorder each time (that’s O(n²)). Clarify unique values. Time O(n), space O(n) for the map + O(h) recursion.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Duplicate values? | Classic LC assumes unique — say so; otherwise need multiset/indices carefully. |
+| Why both arrays? | Preorder picks root order; inorder gives left/right partition. |
+| Agenda tag? | “Hash index + recurse sizes.” |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
+---
+
+### Q9. Symmetric tree — full approach?
+
+**Answer:**
+
+> A single comparison of the root’s children is **nowhere near enough**. Need a **mirror predicate**: two nodes match if values are equal and **left of one matches right of the other** recursively — including **nulls**. Alternatively **BFS with a queue of pairs**. Time O(n), space O(h) or O(w). Agenda opener: “Mirror recursively — not one root check.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Asymmetric nulls on one side? | Mirror check fails — nulls must pair symmetrically. |
+| Perfect binary vs symmetric? | Perfect ≠ symmetric; values/structure must mirror. |
+| Next sample? | [03-approach-complexity.md](03-approach-complexity.md). |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 Next: [03-approach-complexity.md](03-approach-complexity.md)
+
+---
+

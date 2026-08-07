@@ -1,12 +1,10 @@
 # Sample 03 — Search MVVM: debounce, cancel, states (Q&A)
 
-> Guided teaching. Ties learning-lab code to Verified S3 search behavior.
+> Guided teaching. Ties learning-lab code to BookMyShow backend-driven header & search search behavior.
 
 ---
 
 ### Q1. Walk the happy path for debounced search in MVVM.
-
-**Points to:** [Foundations · §6 Intern path: search](../01-foundations.md#6-intern-path-one-happy-search) · [Deep dive · §8 BMS search](../02-deep-dive.md#8-bms-search--full-mvvm-walkthrough-s3)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Offline / timeout branch? | Map to `.error` with a retry intent — not a crash. |
 | Task cancelled mid-flight? | Ignore — not user-facing error. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. Why does debounce belong in the ViewModel, not URLSession?
-
-**Points to:** [Deep dive · §8.2 Timing policy](../02-deep-dive.md#82-timing-policy) · [Deep dive · §1 Ownership matrix](../02-deep-dive.md#1-ownership-matrix-interview-gold)
 
 **Answer:**
 
@@ -38,15 +37,16 @@
 | AI mistake to call out? | “It placed debounce in the repository” — move to VM and add cancel. |
 | Interview push: “Where does debounce live?” | VM/UseCase presentation policy; repo cancels tasks, not keystroke rhythm. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. What is the stale-response race and how do you fix it?
 
-**Points to:** [Deep dive · §2.4 Cancellation](../02-deep-dive.md#24-cancellation-is-part-of-mvvm) · [Deep dive · §8.3 Out-of-order responses](../02-deep-dive.md#83-out-of-order-responses)
-
 **Answer:**
 
-> Without cancel or generation tokens, query `"a"` can return after `"av"` already displayed — the UI flashes old results. Fix by cancelling the prior `Task` on each new query (preferred with structured concurrency), then checking `Task.isCancelled` before applying state. Alternative: monotonic request IDs and ignore stale generations. BMS search (S3) shipped debounce + cancel + explicit states specifically to make this race-safer on a high-traffic surface.
+> Without cancel or generation tokens, query `"a"` can return after `"av"` already displayed — the UI flashes old results. Fix by cancelling the prior `Task` on each new query (preferred with structured concurrency), then checking `Task.isCancelled` before applying state. Alternative: monotonic request IDs and ignore stale generations. BMS search (BookMyShow backend-driven header & search) shipped debounce + cancel + explicit states specifically to make this race-safer on a high-traffic surface.
 
 **Follow-ups:**
 
@@ -56,11 +56,15 @@
 | Show cancel as error banner? | No — expected when typing fast; silent ignore. |
 | See code? | [SearchViewModel.swift](../code/SearchViewModel.swift) learning-lab shape. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
 ### Q4. What are the five presentation states search must name?
-
-**Points to:** [Foundations · §6 Failure branches](../01-foundations.md#6-intern-path-one-happy-search) · [Deep dive · §2.1 State enum](../02-deep-dive.md#21-state-enum-beats-boolean-soup)
 
 **Answer:**
 
@@ -74,11 +78,12 @@
 | Decode failure? | Error state + metric; don’t crash the app on CMS/API drift. |
 | Self-check from foundations? | Name all five before opening deep dive. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. How does cancellation fit MVVM ownership?
-
-**Points to:** [Deep dive · §2.4 Cancellation](../02-deep-dive.md#24-cancellation-is-part-of-mvvm) · [Foundations · §11 S3 search keys](../01-foundations.md#11-two-production-anchors-preview)
 
 **Answer:**
 
@@ -90,13 +95,17 @@
 |---|---|
 | `[weak self]` in search Task? | Yes for escaping async work tied to a screen. |
 | Fire-and-forget `Task { }` without handle? | Orphan work can apply after dismiss — hold and cancel the Task. |
-| S3 verified claim? | Debounce, explicit states, MVVM binding, race-safer UX on BMS search. |
+| BookMyShow backend-driven header & search verified claim? | Debounce, explicit states, MVVM binding, race-safer UX on BMS search. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q6. What does the Repository own in search vs the ViewModel?
-
-**Points to:** [Deep dive · §8.1 Responsibilities](../02-deep-dive.md#81-responsibilities) · [Foundations · §5 Layer shape](../01-foundations.md#5-layer-shape-60-second-hld)
 
 **Answer:**
 
@@ -110,11 +119,12 @@
 | Header SDUI today? | Backend-driven header is Day 10; today’s beat is search VM shape. |
 | Test seam? | Fake `SearchRepository` in VM unit tests; no URLProtocol at VM layer. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. What is the 45-second agenda opener for search design?
-
-**Points to:** [Deep dive · §8.4 Agenda opener](../02-deep-dive.md#84-agenda-opener-for-search-design) · [Production bridge · §4 Verified S3](../03-production-bridge.md#4-verified-s3--search-mvvm-secondary-star--deep-dive-beat)
 
 **Answer:**
 
@@ -124,10 +134,17 @@
 
 | Follow-up | Answer |
 |---|---|
-| ≤20s S3 line from production bridge? | “BMS search sits in MVVM: debounce and cancel in the ViewModel, explicit states — out-of-order responses can’t win.” |
+| ≤20s BookMyShow backend-driven header & search line from production bridge? | “BMS search sits in MVVM: debounce and cancel in the ViewModel, explicit states — out-of-order responses can’t win.” |
 | Combine vs async VM? | Both valid — cancel `AnyCancellable` store or cancel `Task`; same ownership rules. |
-| Whiteboard Script A? | Draw View↔VM↔Repo, debounce+cancel on VM, state enum, stale race, tie S3. |
+| Whiteboard Script A? | Draw View↔VM↔Repo, debounce+cancel on VM, state enum, stale race, tie BookMyShow backend-driven header & search. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
+Next: [04-production-s9-s3.md](04-production-s9-s3.md)
 
 ---
 
-Next: [04-production-s9-s3.md](04-production-s9-s3.md)

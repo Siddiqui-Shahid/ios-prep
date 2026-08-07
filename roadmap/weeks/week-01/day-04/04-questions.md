@@ -1,7 +1,7 @@
-# 04 — Questions (two-layer Q&A)
+# 04 — Questions (Q&A)
 
-> Cover **Full spoken answer**. Speak from **Answer points**. Uncover and compare.  
-> Normal ≈ 30–60s · Design Q4 ≈ 90–120s · Tricky ≈ 90–120s.
+> Cover the answer, speak aloud, then check follow-ups. Each question ends with **How can I relate to my case** using named work — never S-codes.
+> Normal ≈ 30–60s · Design ≈ 90–120s · Tricky ≈ 90–120s.
 
 ---
 
@@ -9,430 +9,226 @@
 
 ### Q1. Serial vs concurrent queue? `(30–45s)`
 
-**Answer points (frame first):**
-- Serial: one task at a time
-- Concurrent: tasks may overlap
-- SafeDict uses private serial for mutex-by-queue
-- Main is serial (UI)
+**Answer:**
 
-**Agenda opener:**  
-> “One-at-a-time versus overlapping execution.”
+> A serial queue runs one block at a time in FIFO start order — it’s mutual exclusion via queue. A concurrent queue can run multiple blocks overlapping. The main queue is serial and owns UI work. For synchronised dictionaries at BookMyShow we used a private serial queue as the exclusion boundary so shared map access couldn’t race.
 
-**Full spoken answer:**  
-> “A serial queue runs one block at a time in FIFO start order — it’s mutual exclusion via queue. A concurrent queue can run multiple blocks overlapping. The main queue is serial and owns UI work. For synchronised dictionaries at BookMyShow we used a private serial queue as the exclusion boundary so shared map access couldn’t race.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> “Concurrent queues are always faster so always use them for shared mutable state.”
+| Follow-up | Answer |
+|---|---|
+| What is the main queue? | The serial queue bound to the main thread where UIKit/SwiftUI UI work must run. |
+| When prefer concurrent + barrier? | Read-heavy maps where overlapping reads help, and writes need exclusive barrier sections — BookMyShow RW-style dictionaries. |
+| How does QoS interact? | Queue/work QoS influences scheduling priority; mismatched high QoS for background work steals from UI responsiveness. |
 
-**Follow-up ladder:**
-- **L1:** What is the main queue?
-- **L2:** When prefer concurrent + barrier?
-- **L3:** How does QoS interact?
-
-**Provenance:** Verified · S2 · serial-queue dictionaries
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
 
 ---
 
 ### Q2. async vs sync? `(30–45s)`
 
-**Answer points (frame first):**
-- async: schedule, return immediately
-- sync: wait for completion (can return value)
-- sync-to-current-serial-queue deadlocks
-- UI hops usually async to main
+**Answer:**
 
-**Agenda opener:**  
-> “Wait for completion versus schedule and return.”
+> `async` enqueues work and returns immediately. `sync` enqueues and waits until the block finishes — useful when you need a return value. The danger is syncing onto the serial queue you’re already on, including `main.sync` from main — that deadlocks. For UI updates after networking I hop with `main.async`, not sync, so I don’t block the callback thread waiting on the main run loop unnecessarily.
 
-**Full spoken answer:**  
-> “`async` enqueues work and returns immediately. `sync` enqueues and waits until the block finishes — useful when you need a return value. The danger is syncing onto the serial queue you’re already on, including `main.sync` from main — that deadlocks. For UI updates after networking I hop with `main.async`, not sync, so I don’t block the callback thread waiting on the main run loop unnecessarily.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> “sync is safer because you always know it’s done — so sync everywhere.”
+| Follow-up | Answer |
+|---|---|
+| Why does main.sync from main deadlock? | Main blocks waiting for the synced block, but that block can’t run until main is free — classic self-wait. |
+| Can private serial queues deadlock the same way? | Yes — `queue.sync` from a block already running on that same serial queue deadlocks identically. |
+| sync from async/await contexts — concern? | Blocking sync inside async code can stall threads and invite priority/deadlock issues; prefer await-friendly APIs. |
 
-**Follow-up ladder:**
-- **L1:** Why does main.sync from main deadlock?
-- **L2:** Can private serial queues deadlock the same way?
-- **L3:** sync from async/await contexts — concern?
-
-**Provenance:** Learning-lab · GCD mechanics
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
 ### Q3. Why not sync to main from main? `(45s)`
 
-**Answer points (frame first):**
-- Main waits for a block that only main can run
-- Classic deadlock
-- Same pattern for any serial queue re-entry
-- Use async for UI hops
+**Answer:**
 
-**Agenda opener:**  
-> “You’re waiting for yourself.”
+> If you’re already on the main queue and call `DispatchQueue.main.sync`, the main thread blocks waiting for that block to run, but that block can’t run until main is free — deadlock. The same self-wait happens on any serial queue if you sync re-enter it. So UI work from main should just run directly or via async for deferred work — never main.sync from main.
 
-**Full spoken answer:**  
-> “If you’re already on the main queue and call `DispatchQueue.main.sync`, the main thread blocks waiting for that block to run, but that block can’t run until main is free — deadlock. The same self-wait happens on any serial queue if you sync re-enter it. So UI work from main should just run directly or via async for deferred work — never main.sync from main.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> “Only the main queue can deadlock; private queues are safe.”
+| Follow-up | Answer |
+|---|---|
+| Show private serial re-entry deadlock. | Outer `queue.sync { queue.sync { … } }` on one serial queue waits forever for itself. |
+| How do you structure unlocked internals? | Keep a private unsynchronized helper and only call it from code already on the protecting queue. |
+| `dispatchPrecondition` usage? | Assert `.onQueue` / `.notOnQueue` in debug to catch illegal re-entry or wrong-queue assumptions early. |
 
-**Follow-up ladder:**
-- **L1:** Show private serial re-entry deadlock.
-- **L2:** How do you structure unlocked internals?
-- **L3:** `dispatchPrecondition` usage?
-
-**Provenance:** Learning-lab · deadlock patterns
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
 ### Q4. How do you implement a thread-safe dictionary? `(90–120s)`
 
-**Answer points (frame first):**
-- `final class` wrapper; private storage; private serial queue
-- sync get; sync set when read-after-write matters
-- Never expose storage/queue
-- Optional: concurrent + barrier if read-heavy
-- S2 story hook + actor coda
+**Answer:**
 
-**Agenda opener:**  
-> “Private serial queue — safe API, no raw storage.”
+> I’d wrap the dictionary in a `final class`, keep storage private, and keep a private serial `DispatchQueue`. Reads go through `queue.sync` so I can return a value and respect prior writes already on the queue. Writes I’d make `queue.sync` when callers need read-after-write — async write is fine for fire-and-forget but the next line’s sync read isn’t a completion handler. Snapshots return a copied dictionary under sync. The critical product lesson from BookMyShow was standardizing that API so call sites couldn’t touch raw storage — that removed races on that path. For read-heavy maps we also used RW locking. Today for new modules I’d evaluate a Swift actor with the same surface.
 
-**Full spoken answer:**  
-> “I’d wrap the dictionary in a `final class`, keep storage private, and keep a private serial `DispatchQueue`. Reads go through `queue.sync` so I can return a value and respect prior writes already on the queue. Writes I’d make `queue.sync` when callers need read-after-write — async write is fine for fire-and-forget but the next line’s sync read isn’t a completion handler. Snapshots return a copied dictionary under sync. The critical product lesson from BookMyShow was standardizing that API so call sites couldn’t touch raw storage — that removed races on that path. For read-heavy maps we also used RW locking. Today for new modules I’d evaluate a Swift actor with the same surface.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> “Just mark methods synchronized” / expose the queue / use concurrent writes without barriers / `Final class`.
+| Follow-up | Answer |
+|---|---|
+| Why not return `storage` directly? | Callers would bypass the queue and race; return a copied snapshot under sync instead. |
+| Async set then immediate get — visibility? | An async write may not have run yet, so a following sync read can miss it — use sync write when you need read-after-write. |
+| Migrate to actor without big-bang? | Keep the same SafeDict-style API, implement with an actor behind async methods, and bridge call sites gradually. |
 
-**Follow-up ladder:**
-- **L1:** Why not return `storage` directly?
-- **L2:** Async set then immediate get — visibility?
-- **L3:** Migrate to actor without big-bang?
-
-**Provenance:** Verified · S2; How I would apply it · S2-A1; Learning-lab · SafeDict.swift
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries
+- **Design if asked:** Design: actor SafeDict (not shipped)
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
 
 ---
 
 ### Q5. QoS levels — why care? `(45s)`
 
-**Answer points (frame first):**
-- Priority and energy
-- Don’t mark everything userInteractive
-- Impacts scheduling under load
-- Background work shouldn’t starve UI carelessly (and vice versa with locks)
+**Answer:**
 
-**Agenda opener:**  
-> “Priority and energy — not all work is interactive.”
+> Quality of Service tells GCD how urgent work is — from userInteractive down to background. It matters for responsiveness and battery. If I classify analytics batching as userInteractive, I compete with real UI work. I pick QoS to match user expectation: fetches the user is waiting on higher; prefetch and cleanup lower.
 
-**Full spoken answer:**  
-> “Quality of Service tells GCD how urgent work is — from userInteractive down to background. It matters for responsiveness and battery. If I classify analytics batching as userInteractive, I compete with real UI work. I pick QoS to match user expectation: fetches the user is waiting on higher; prefetch and cleanup lower.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> “Always use the highest QoS so things finish faster.”
+| Follow-up | Answer |
+|---|---|
+| List QoS levels roughly. | userInteractive, userInitiated, default, utility, background — from most to least urgent for the user. |
+| Priority inversion with locks? | A low-priority holder of a lock can block a high-priority waiter; the system may boost, but design to avoid long critical sections. |
+| QoS vs Task priority in Swift concurrency? | GCD QoS labels queue work; Task priority is the concurrency runtime’s knob — map them thoughtfully at bridges. |
 
-**Follow-up ladder:**
-- **L1:** List QoS levels roughly.
-- **L2:** Priority inversion with locks?
-- **L3:** QoS vs Task priority in Swift concurrency?
-
-**Provenance:** Learning-lab · scheduling judgment
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
 ### Q6. DispatchGroup use case? `(45s)`
 
-**Answer points (frame first):**
-- Fan-out parallel work; notify when all done
-- enter/leave balance
-- Prefetch then merge on main
-- Trap: forgotten leave
+**Answer:**
 
-**Agenda opener:**  
-> “Join parallel work — then one notify.”
+> DispatchGroup is for fan-out/fan-in: enter before each async child, leave when it finishes, notify when the count hits zero. I use it for parallel prefetenches then merge results on the main queue. The classic bug is forgetting leave, so notify never fires — I prefer `defer { leave() }` right after enter when the structure allows.
 
-**Full spoken answer:**  
-> “DispatchGroup is for fan-out/fan-in: enter before each async child, leave when it finishes, notify when the count hits zero. I use it for parallel prefetenches then merge results on the main queue. The classic bug is forgetting leave, so notify never fires — I prefer `defer { leave() }` right after enter when the structure allows.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> “Group replaces the need for thread-safe storage.”
+| Follow-up | Answer |
+|---|---|
+| notify queue choice? | Pick the queue that should own the merge/UI update — often main for binding, a private queue for pure aggregation. |
+| wait vs notify? | `wait` blocks the current thread; `notify` schedules a completion without blocking — prefer notify on UI paths. |
+| TaskGroup equivalent? | `withTaskGroup` / `async let` fan-out with structured child lifetimes and cancellation. |
 
-**Follow-up ladder:**
-- **L1:** notify queue choice?
-- **L2:** wait vs notify?
-- **L3:** TaskGroup equivalent?
-
-**Provenance:** Learning-lab · fan-out patterns
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
 ### Q7. Barrier flag purpose? `(45s)`
 
-**Answer points (frame first):**
-- Exclusive work on concurrent queue
-- Reader-writer: concurrent reads, barrier writes
-- Without barrier, concurrent writes race
-- Still hide the queue
+**Answer:**
 
-**Agenda opener:**  
-> “Exclusive writer on a concurrent queue.”
+> A barrier block on a concurrent queue waits for previously started work and runs exclusively — no other blocks overlap it. That’s the GCD reader-writer pattern: normal sync reads may overlap; writes use `.barrier`. If you write without a barrier on a concurrent queue guarding a dictionary, you still have a data race. At BookMyShow we used RW approaches where maps were read-heavy; otherwise serial queues kept the mental model simpler.
 
-**Full spoken answer:**  
-> “A barrier block on a concurrent queue waits for previously started work and runs exclusively — no other blocks overlap it. That’s the GCD reader-writer pattern: normal sync reads may overlap; writes use `.barrier`. If you write without a barrier on a concurrent queue guarding a dictionary, you still have a data race. At BookMyShow we used RW approaches where maps were read-heavy; otherwise serial queues kept the mental model simpler.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> “Concurrent queue makes dictionary access safe by itself.”
+| Follow-up | Answer |
+|---|---|
+| Writer starvation? | Continuous overlapping readers can delay barriers indefinitely; cap read concurrency or prefer serial if writes matter. |
+| async barrier vs sync barrier visibility? | Sync barrier completes the write before return; async barrier only guarantees order relative to later enqueued work. |
+| Serial vs RW trade-off? | Serial is simpler and race-harder to misuse; concurrent+barrier helps read-heavy BookMyShow dictionary paths. |
 
-**Follow-up ladder:**
-- **L1:** Writer starvation?
-- **L2:** async barrier vs sync barrier visibility?
-- **L3:** Serial vs RW trade-off?
-
-**Provenance:** Verified · S2 · RW where read-heavy; Learning-lab · BarrierDict
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
 
 ---
 
 ### Q8. Main thread rule for UI? `(30s)`
 
-**Answer points (frame first):**
-- UIKit/SwiftUI updates on main
-- Heavy work off main
-- Hop with async after network
-- Don’t parse huge JSON on main
+**Answer:**
 
-**Agenda opener:**  
-> “UI on main — heavy work elsewhere.”
+> UIKit and SwiftUI UI updates must happen on the main queue. Networking callbacks often aren’t on main, so I hop with `DispatchQueue.main.async` before binding views. I keep JSON parsing and image decode off the main thread so scrolling stays smooth.
 
-**Full spoken answer:**  
-> “UIKit and SwiftUI UI updates must happen on the main queue. Networking callbacks often aren’t on main, so I hop with `DispatchQueue.main.async` before binding views. I keep JSON parsing and image decode off the main thread so scrolling stays smooth.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> “SwiftUI removes the main-thread rule.”
+| Follow-up | Answer |
+|---|---|
+| `@MainActor` relationship? | `@MainActor` is the Swift concurrency expression of “this state/UI work belongs on the main actor.” |
+| What breaks if you update UI off main? | Undefined UIKit behavior — torn layouts, missing updates, and hard-to-repro crashes/warnings. |
+| Instruments for main-thread hangs? | Time Profiler / Hang detection / os_signpost around main-queue work to find long synchronous blocks. |
 
-**Follow-up ladder:**
-- **L1:** `@MainActor` relationship?
-- **L2:** What breaks if you update UI off main?
-- **L3:** Instruments for main-thread hangs?
-
-**Provenance:** Learning-lab · UI rule
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
 ### Q9. Race vs deadlock? `(45s)`
 
-**Answer points (frame first):**
-- Race: unsynchronized shared mutation
-- Deadlock: wait circle / sync to self
-- Races intermittent; deadlocks freeze
-- S2 was race-class bugs
+**Answer:**
 
-**Agenda opener:**  
-> “Corruption versus freeze.”
+> A race is unsynchronized access to shared mutable state — intermittent corruption or crashes. A deadlock is when threads or queues wait on each other forever — including syncing to the serial queue you’re on. At BookMyShow the synchronised-dictionary work targeted races on shared maps; deadlock avoidance is the companion discipline when you introduce queues and locks.
 
-**Full spoken answer:**  
-> “A race is unsynchronized access to shared mutable state — intermittent corruption or crashes. A deadlock is when threads or queues wait on each other forever — including syncing to the serial queue you’re on. At BookMyShow the synchronised-dictionary work targeted races on shared maps; deadlock avoidance is the companion discipline when you introduce queues and locks.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> Using the words interchangeably.
+| Follow-up | Answer |
+|---|---|
+| How do you detect each in tools? | Races: Thread Sanitizer; deadlocks: hung threads in the debugger and queue/lock ownership graphs. |
+| Example of ABBA deadlock? | Thread 1 locks A then B while thread 2 locks B then A — each waits forever for the other’s lock. |
+| Actor eliminates which class of bug? | Data races on the actor’s isolated state; you still design carefully around await reentrancy and external locks. |
 
-**Follow-up ladder:**
-- **L1:** How do you detect each in tools?
-- **L2:** Example of ABBA deadlock?
-- **L3:** Actor eliminates which class of bug?
-
-**Provenance:** Verified · S2 · race reduction on path
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
 
 ---
 
 ### Q10. When semaphore over group? `(45s)`
 
-**Answer points (frame first):**
-- Semaphore limits in-flight concurrency
-- Group joins a known set of tasks
-- Semaphore easy to misuse / deadlock
-- Prefer TaskGroup later for structured limits
+**Answer:**
 
-**Agenda opener:**  
-> “Limit in-flight work versus join a batch.”
+> Use a group when you have a batch of tasks and need one continuation when they’re all done. Use a semaphore when you need a concurrency limit — at most N image decodes at once. Semaphores are easy to deadlock if you wait on the wrong queue, so I’m cautious; in modern Swift I’d rather reach for task grouping and explicit limits.
 
-**Full spoken answer:**  
-> “Use a group when you have a batch of tasks and need one continuation when they’re all done. Use a semaphore when you need a concurrency limit — at most N image decodes at once. Semaphores are easy to deadlock if you wait on the wrong queue, so I’m cautious; in modern Swift I’d rather reach for task grouping and explicit limits.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> “Semaphore is the general replacement for serial queues.”
+| Follow-up | Answer |
+|---|---|
+| value of semaphore = 1 means? | Mutual exclusion — at most one waiter proceeds, like a binary lock, without being a full reader-writer scheme. |
+| Deadly embrace with sync? | Waiting on a semaphore while holding the queue that the signal path needs to run on can deadlock. |
+| OperationQueue maxConcurrent? | Caps parallel Operations similarly to a counting semaphore limit, with Operation dependencies as extra structure. |
 
-**Follow-up ladder:**
-- **L1:** value of semaphore = 1 means?
-- **L2:** Deadly embrace with sync?
-- **L3:** OperationQueue maxConcurrent?
-
-**Provenance:** Learning-lab · concurrency limiting
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
 ### Q11. `DispatchQueue.main.async` after network? `(30s)`
 
-**Answer points (frame first):**
-- Callback often background
-- Hop to main before UI bind
-- Keep model apply thread-safe
-- Don’t block with main.sync casually
+**Answer:**
 
-**Agenda opener:**  
-> “Network off main — bind on main.”
+> URLSession completions typically aren’t on the main queue, so after I parse I dispatch async to main before touching UIKit. That keeps UI work legal without deadlocking via sync. If the view model is `@MainActor`, the hop may be structured differently, but the rule remains: UI affinity on main.
 
-**Full spoken answer:**  
-> “URLSession completions typically aren’t on the main queue, so after I parse I dispatch async to main before touching UIKit. That keeps UI work legal without deadlocking via sync. If the view model is `@MainActor`, the hop may be structured differently, but the rule remains: UI affinity on main.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> Always main.sync after network for ‘safety’.
+| Follow-up | Answer |
+|---|---|
+| Where should parsing happen? | Off the main queue — parse on a background queue/Task, then hop to main only to bind UI. |
+| Cancellation if VC gone? | Cancel the task/URLSession task on disappear/deinit and use `[weak self]` so completion doesn’t revive the VC. |
+| Combine/async alternatives? | `receive(on: DispatchQueue.main)` or `@MainActor` async functions replace manual `main.async` hops. |
 
-**Follow-up ladder:**
-- **L1:** Where should parsing happen?
-- **L2:** Cancellation if VC gone?
-- **L3:** Combine/async alternatives?
-
-**Provenance:** Learning-lab · UI hop
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
 ## Tricky questions
-
-### T1. Read with sync + write with async on same serial queue — ordering? `(90s)`
-
-**Answer points (frame first):**
-- Serial FIFO for enqueued work
-- Async write returns before write runs
-- Sync read waits for work already enqueued
-- For call-site read-after-write certainty → sync write
-
-**Trap:**  
-> Assume async write is always visible to the next statement as if it completed.
-
-**Full spoken answer:**  
-> “On a serial queue, tasks run one-by-one in enqueue order. An async write schedules the mutation and returns immediately; a following sync read will wait for previously enqueued tasks — so if the write was enqueued first, the read usually sees it. But async write is not a completion handshake for the caller. If the API promises read-after-write on the next line, I implement set with sync — or expose a single sync mutate transaction. At BMS we cared about a race-free boundary more than micro-optimizing async writes.”
-
-**Follow-up ladder:**
-- **L1:** What if another thread calls get without going through the API?
-- **L2:** Would you async get?
-- **L3:** Actor equivalent of sync set?
-
-**Provenance:** Learning-lab · visibility caveat; applies to S2 API design
-
----
-
-### T2. Concurrent queue + non-barrier write `(90s)`
-
-**Answer points (frame first):**
-- Data race / UB on Swift Dictionary
-- Concurrent ≠ thread-safe storage
-- Need barrier writes or serial queue
-- Intermittent crashes match S2 symptom class
-
-**Trap:**  
-> “Concurrent is fine for dict because reads are parallel.”
-
-**Full spoken answer:**  
-> “A concurrent queue only allows blocks to overlap — it does not make Dictionary thread-safe. If two blocks mutate storage without a barrier, that’s a data race. The fix is barrier writes with concurrent reads, or a serial queue for simplicity. The intermittent crashes we saw on shared maps are exactly this failure class — which is why we put a real exclusion boundary and a safe API in front of the storage.”
-
-**Follow-up ladder:**
-- **L1:** Can two barrier writes overlap?
-- **L2:** Instruments Thread Sanitizer?
-- **L3:** Serial vs RW choice criteria?
-
-**Provenance:** Verified · S2 symptom class; Learning-lab
-
----
-
-### T3. sync from serial queue to itself via nested call `(90s)`
-
-**Answer points (frame first):**
-- Not only a main-queue problem
-- Nested sync on same serial queue deadlocks
-- Use unlocked internals / async / assert queue
-- Design APIs to avoid re-entry sync
-
-**Trap:**  
-> “Only main deadlocks on sync.”
-
-**Full spoken answer:**  
-> “Any serial queue can deadlock on sync re-entry. If `a()` does `queue.sync` and inside that calls `b()` which also `queue.sync`s, you’re waiting for yourself. I fix it by splitting locked wrappers from unlocked internals that assume they’re already on the queue, or by making the nested path async. Debug asserts with `dispatchPrecondition` catch accidental off-queue use.”
-
-**Follow-up ladder:**
-- **L1:** Sketch `_setUnlocked`.
-- **L2:** Recursion through delegates while holding queue?
-- **L3:** Actor reentrancy contrast (Day 05)?
-
-**Provenance:** Learning-lab · deadlock patterns
-
----
-
-### T4. RW lock vs serial queue — when? `(120s)`
-
-**Answer points (frame first):**
-- Serial: simple, correct mental model
-- RW: read-heavy benefit
-- Costs: complexity, writer starvation
-- S2: serial default; RW where read-heavy
-
-**Trap:**  
-> Always RW because ‘optimized’.
-
-**Full spoken answer:**  
-> “I default to a serial queue wrapper — it’s easy to reason about and enough for many shared maps. If profiling shows read-heavy access and reader queuing hurts, a reader-writer design — GCD barriers or RW locks — can let reads overlap. The costs are complexity and possible writer starvation under constant reads. At BookMyShow we used serial queues for synchronised dictionaries and RW locks where access was read-heavy. I wouldn’t start with RW for fashion.”
-
-**Follow-up ladder:**
-- **L1:** How do you know it’s read-heavy?
-- **L2:** Actor instead?
-- **L3:** Returning snapshots vs holding locks across IO?
-
-**Provenance:** Verified · S2 · serial + RW where read-heavy
-
----
-
-### T5. Priority inversion with locks `(90s)`
-
-**Answer points (frame first):**
-- Low priority holds resource high priority needs
-- UI can stall
-- Prefer short critical sections
-- Queue QoS / system inheritance helps some designs
-
-**Trap:**  
-> Ignore QoS and lock duration.
-
-**Full spoken answer:**  
-> “Priority inversion is when a low-priority task holds a lock or resource a high-priority task needs — the high-priority work waits behind low-priority execution. On iOS that can feel like UI jank. I keep critical sections tiny, avoid doing IO under lock, and I’m careful with QoS. Another reason I like a single serial-queue boundary for maps: the coordination story stays clearer than ad-hoc locks everywhere.”
-
-**Follow-up ladder:**
-- **L1:** os_unfair_lock vs NSLock?
-- **L2:** Holding lock across await — why bad?
-- **L3:** How would TSan vs Time Profiler show symptoms?
-
-**Provenance:** Learning-lab · concurrency hazards
-
----
-
-### T6. Exposing internal queue to callers `(90s)`
-
-**Answer points (frame first):**
-- Callers async onto your queue incorrectly
-- Sync re-entry / ordering bugs
-- Bypass safe API → races return
-- S2 lesson: standardize access API
-
-**Trap:**  
-> Let callers `async` onto your queue ‘for flexibility’.
-
-**Full spoken answer:**  
-> “If you expose the queue, callers will schedule arbitrary work on it — including sync re-entry patterns you didn’t anticipate — or they might touch storage again and reintroduce races. The BookMyShow lesson was to standardize a safe access API so call sites couldn’t touch raw storage or the coordination primitive. Flexibility belongs in higher-level methods like `mutate` and `snapshot`, not in leaking `DispatchQueue`.”
-
-**Follow-up ladder:**
-- **L1:** Is a read-only queue accessor ever OK?
-- **L2:** How do you unit-test without exposing queue?
-- **L3:** Actor makes this leak impossible how?
-
-**Provenance:** Verified · S2 · standardized access API
-
----
 
 ## Timed sets
 
@@ -440,6 +236,6 @@
 |---|---|
 | A | Q4, Q2, T3, T4 |
 | B | Q1, Q7, T1, T2 |
-| C | Full S2 STAR + T6 + S2-A1 90s |
+| C | Full BookMyShow synchronised dictionaries STAR + T6 + Design: actor SafeDict (not shipped) 90s |
 
 Score with [`../../../timing/answer-timing-guide.md`](../../../timing/answer-timing-guide.md).

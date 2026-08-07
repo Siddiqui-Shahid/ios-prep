@@ -1,12 +1,10 @@
 # Sample 04 — Calm prep & light Q&A (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. Metric trio — light retrieval?
-
-**Points to:** [Questions · Q1](../04-questions.md#q1-metric-trio-3045s) · [Deep dive · Metric trio](../02-deep-dive.md#metric-trio)
 
 **Answer:**
 
@@ -21,11 +19,12 @@
 | Missing one number? | Check Day 26 provenance — don’t guess. |
 | Non-BMS interview? | Still valid proof — add one target-company hook. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. Coding opener — light retrieval?
-
-**Points to:** [Questions · Q2](../04-questions.md#q2-coding-opener-30s)
 
 **Answer:**
 
@@ -40,11 +39,12 @@
 | Different from Day 27? | Identical — consistency reduces anxiety. |
 | Machine round tomorrow? | IDE test in checklist — opener unchanged. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. System design opener — light retrieval?
-
-**Points to:** [Questions · Q3](../04-questions.md#q3-sd-opener-30s)
 
 **Answer:**
 
@@ -56,19 +56,23 @@
 | Follow-up | Answer |
 |---|---|
 | Draw today? | Skim only — no new HLD from scratch. |
-| On-device AI role? | Pivot kit ready — S15/S16 — not new study. |
+| On-device AI role? | Pivot kit ready — FinTrack on-device AI/GymFlow on-device AI — not new study. |
 | Forgot ops block? | Last five minutes = failure modes + metrics + kill switch. |
+
+**How can I relate to my case:**
+- **Shipped:** FinTrack on-device AI; GymFlow on-device AI
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q4. AI tools — light retrieval?
 
-**Points to:** [Questions · Q4](../04-questions.md#q4-ai-tools-45s) · [Production bridge](../03-production-bridge.md)
-
 **Answer:**
 
 > “I use AI as an accelerator inside context and review — District lesson. I’m still author of record on architecture and critical tests. Product on-device AI is a different story.”  
-> **45s** — S9 compressed; no tool-worship.
+> **45s** — District Free Parking + Clean/MVVM + AI tooling compressed; no tool-worship.
 
 **Follow-ups:**
 
@@ -78,11 +82,15 @@
 | District vs FinTrack? | Tooling vs product — one breath separation. |
 | Copilot policy answer? | Review bar + human tests on critical paths. |
 
+**How can I relate to my case:**
+- **Shipped:** District Free Parking + Clean/MVVM + AI tooling
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
 ### Q5. What will you NOT do tonight?
-
-**Points to:** [Questions · Q5](../04-questions.md#q5-what-will-you-not-do-tonight-20s)
 
 **Answer:**
 
@@ -97,11 +105,12 @@
 | Rewrite STAR? | Forbidden — stories already retrieved. |
 | Scroll interview prep Twitter? | Doomscroll breaks sleep — walk instead. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. Anxiety: “I didn’t cover X” — what now?
-
-**Points to:** [Questions · T1](../04-questions.md#t1-anxiety-i-didnt-cover-x-6090s-to-yourself)
 
 **Answer:**
 
@@ -115,11 +124,12 @@
 | X is LC pattern? | State brute + communicate — partial credit model. |
 | Still wired at bedtime? | No new content — breathing, walk, sleep hygiene. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. What is the ≤20s production bridge line?
-
-**Points to:** [Production bridge](../03-production-bridge.md) · [Questions · Cap ~5](../04-questions.md)
 
 **Answer:**
 
@@ -134,6 +144,10 @@
 | Customize company name? | Add one line — “excited about [team]’s [surface]” — not new metrics. |
 | After this line? | Stop studying — environment checklist → rest. |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [`../05-exercises.md`](../05-exercises.md) taper protocol → log “Day 28 complete — tapered” → rest
+
+---
+

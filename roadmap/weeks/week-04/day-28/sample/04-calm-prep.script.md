@@ -11,11 +11,11 @@ Next. Q2. Coding opener — light retrieval? Answer. “Clarify constraints, bru
 
 ## §2 Q3. System design opener — light retrieval?
 
-Next. Q3. System design opener — light retrieval? Answer. “Five minutes on scope, then architecture, deep dives, and ops — starting with clarifying questions.” 30s — protects ops block mentally before you walk in. Follow-ups. Draw today?: Skim only — no new high level design from scratch.. On-device AI role?: Pivot kit ready — S15/S16 — not new study.. Forgot ops block?: Last five minutes = failure modes + metrics + kill switch..
+Next. Q3. System design opener — light retrieval? Answer. “Five minutes on scope, then architecture, deep dives, and ops — starting with clarifying questions.” 30s — protects ops block mentally before you walk in. Follow-ups. Draw today?: Skim only — no new high level design from scratch.. On-device AI role?: Pivot kit ready — FinTrack on-device AI/GymFlow on-device AI — not new study.. Forgot ops block?: Last five minutes = failure modes + metrics + kill switch..
 
 ## §3 Q4. AI tools — light retrieval?
 
-Next. Q4. AI tools — light retrieval? Answer. “I use AI as an accelerator inside context and review — District lesson. I’m still author of record on architecture and critical tests. Product on-device AI is a different story.” 45s — S9 compressed; no tool-worship. Follow-ups. Name tools?: Only if asked — context engineering matters more.. District vs FinTrack?: Tooling vs product — one breath separation.. Copilot policy answer?: Review bar + human tests on critical paths..
+Next. Q4. AI tools — light retrieval? Answer. “I use AI as an accelerator inside context and review — District lesson. I’m still author of record on architecture and critical tests. Product on-device AI is a different story.” 45s — District Free Parking + Clean/M V V M + AI tooling compressed; no tool-worship. Follow-ups. Name tools?: Only if asked — context engineering matters more.. District vs FinTrack?: Tooling vs product — one breath separation.. Copilot policy answer?: Review bar + human tests on critical paths..
 
 ## §4 Q5. What will you NOT do tonight?
 
@@ -27,4 +27,4 @@ Next. Q6. Anxiety: “I didn’t cover X” — what now? Answer. If X was a Moc
 
 ## §6 Q7. What is the ≤20s production bridge line?
 
-Next. Q7. What is the ≤20s production bridge line? Answer. “I’m ready to talk ownership, trade-offs, and systems I’ve shipped — I’ll keep answers timed and concrete.” Optional before join call. No new claims. No new metrics. Retrieve from story bank only. Follow-ups. Say aloud or silent?: Once aloud — confidence cue.. Customize company name?: Add one line — “excited about [team]’s [surface]” — not new metrics.. After this line?: Stop studying — environment checklist → rest.. Next:../05-exercises.md taper protocol → log “Day 28 complete — tapered” → rest.
+Next. Q7. What is the ≤20s production bridge line? Answer. “I’m ready to talk ownership, trade-offs, and systems I’ve shipped — I’ll keep answers timed and concrete.” Optional before join call. No new claims. No new metrics. Retrieve from story bank only. Follow-ups. Say aloud or silent?: Once aloud — confidence cue.. Customize company name?: Add one line — “excited about [team]’s [surface]” — not new metrics.. After this line?: Stop studying — environment checklist → rest..

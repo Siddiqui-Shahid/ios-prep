@@ -1,12 +1,10 @@
 # Sample 01 — POP and generics (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is protocol-oriented programming (POP)?
-
-**Points to:** [Foundations · §0 Main guiding idea](../01-foundations.md#0-main-guiding-idea) · [Foundations · §1 Why POP exists](../01-foundations.md#1-why-pop-exists)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Does POP mean never use classes? | No. UIKit views and HeroWidget still need class identity. Put *capabilities* on protocols. |
 | Ads example of composition? | A video hero may need render + track + playback. An image tile may only need render + track. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. Why do inheritance trees hurt at scale for ads?
-
-**Points to:** [Foundations · §1.1 The inheritance trap](../01-foundations.md#11-the-inheritance-trap)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | Why “multiple is-a” fails? | Single class inheritance cannot express “I am renderable and trackable and playable” cleanly. |
 | When is inheritance still OK? | When UIKit requires a subclass (`UIView`, `UIViewController`) or shared identity / ObjC runtime. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. What is the difference between protocol requirements and extension defaults?
-
-**Points to:** [Foundations · §2.1 Requirements vs extension defaults](../01-foundations.md#21-requirements-vs-extension-defaults) · [Deep dive · §3.2 Extension default trap](../02-deep-dive.md#32-the-extension-default-trap-classic-interview)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | Fix? | Declare `wave()` as a protocol requirement if polymorphic behavior matters. |
 | When are extension defaults fine? | Shared identical behavior (for example the same default click log) that nobody needs to override through the existential. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. What is protocol composition?
-
-**Points to:** [Foundations · §2.2 Protocol composition](../01-foundations.md#22-protocol-composition)
 
 **Answer:**
 
@@ -74,11 +75,12 @@
 | Class-bound (`AnyObject`) when? | When you need `weak` delegates or class identity. |
 | Prefer protocols for models? | Prefer value conformers for models; class conformers are fine for UIKit views. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. What is a generic parameter, and why beat `Any` on a revenue path?
-
-**Points to:** [Foundations · §3 Generics](../01-foundations.md#3-generics--the-caller-chooses-the-type)
 
 **Answer:**
 
@@ -90,13 +92,17 @@
 |---|---|
 | Who chooses `T`? | The **caller**. |
 | What does `where` buy you? | Readable constraints when rules grow — especially with associated types. |
-| Provenance care? | You may say the pipeline was type-safe (Verified S1). Do **not** invent fill-rate percentages. |
+| Provenance care? | You may say the pipeline was type-safe (BookMyShow Ads pipeline + HeroWidget lifecycle). Do **not** invent fill-rate percentages. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
 
 ---
 
 ### Q6. What is `some` vs `any` (first cut)?
-
-**Points to:** [Foundations · §5 some vs any](../01-foundations.md#5-some-vs-any-first-cut) · [Deep dive · §4 some vs any deep](../02-deep-dive.md#4-some-vs-any-deep)
 
 **Answer:**
 
@@ -110,11 +116,12 @@
 | When prefer `any`? | Heterogeneous stored values — or use a type eraser. |
 | Hot bind preference? | Generics on the concrete type, or `some`. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. When is class inheritance still the right tool?
-
-**Points to:** [Foundations · §8 When inheritance is still OK](../01-foundations.md#8-when-inheritance-is-still-ok) · [Deep dive · §7 Mixing POP with UIKit](../02-deep-dive.md#7-mixing-pop-with-uikit-identity-herowidget)
 
 **Answer:**
 
@@ -128,11 +135,12 @@
 | Examples of required subclasses? | `UIView`, `UIViewController`, `UICollectionViewCell`. |
 | Next sample file? | Associated types under pressure and type erasure. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q8. What should you say after foundations, before the deep dive?
-
-**Points to:** [Foundations · §11 Self-check](../01-foundations.md#11-self-check-before-deep-dive) · [Foundations · §9 Glossary](../01-foundations.md#9-glossary-pin)
 
 **Answer:**
 
@@ -146,6 +154,48 @@
 | Existential in one line? | `any P` — a value that can hold different adopters. |
 | Opaque type in one line? | `some P` — one hidden concrete type. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
+### Q9. What is conditional conformance?
+
+**Answer:**
+
+> Conditional conformance means a generic type adopts a protocol **only when its parameters meet constraints** — `Array` is `Equatable` when `Element` is; `Pair` is `Equatable` where `A` and `B` are. That keeps model layers honest: a wrapper can be `Hashable` or `Codable` only when its creative payload is, without forcing the wrapper to always conform. It is not automatic for every generic — you write the constrained extension.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| `Pair` sketch? | `extension Pair: Equatable where A: Equatable, B: Equatable`. |
+| vs `where` on a function? | Function `where` constrains one call site; conditional conformance makes the *type* adopt the protocol when pieces allow. |
+| Pipeline use? | Wrappers that are `Hashable`/`Codable` only when the payload is — same honesty as stdlib collections. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
+---
+
+### Q10. What is `rethrows` on a generic higher-order function?
+
+**Answer:**
+
+> `rethrows` lets a higher-order function declare that it **throws only when its function argument throws**. A generic `map` over creatives can take a throwing transform without forcing every non-throwing caller to write `try`. Errors propagate when real and stay silent when not — clean pipeline APIs at module boundaries. Don’t sprinkle `throws` on APIs that never fail, and don’t mark everything `rethrows` as ceremony.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| `throws` vs `rethrows`? | `throws` always can throw; `rethrows` only if a passed closure throws. |
+| Why it matters on ads pipelines? | Typed mappers stay ergonomic for non-throwing call sites while still supporting throwing transforms. |
+| async interaction? | Same instinct — don’t force `try`/`await` noise on callers when the transform never fails. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 Next: [02-associated-types-erasure.md](02-associated-types-erasure.md)
+
+---
+

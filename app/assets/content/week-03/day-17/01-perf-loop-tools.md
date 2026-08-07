@@ -1,12 +1,10 @@
 # Sample 01 — Performance loop and tools (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is the one-sentence north star for performance work?
-
-**Points to:** [Foundations · §0 One-sentence north star](../01-foundations.md#0-one-sentence-north-star)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | “Smallest high-leverage cause”? | Fix the bottleneck class first — not micro-JSON tweaks when p90 is network wait. |
 | Re-verify how? | Same trace definitions — watch next release for regression (Day 20 gates). |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What are the five steps of the performance loop?
-
-**Points to:** [Foundations · §1 The performance loop](../01-foundations.md#1-the-performance-loop-senior-habit)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | Skip step 5 symptom? | “We shipped the JSON fix” — p90 unchanged. |
 | Staff signal? | Start where the signal lives — field-only bug → field first, then lab. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. Lab vs field — when do you use which?
-
-**Points to:** [Foundations · §1.1 Lab vs field](../01-foundations.md#11-lab-vs-field)
 
 **Answer:**
 
@@ -54,13 +54,17 @@
 |---|---|
 | Desk reproduces, users complain? | Segment field p90 by device class / OS / network — your phone isn’t the fleet. |
 | Lab clean, field p90 bad? | Wait-bound or device-class specific — Network instrument or MetricKit segment. |
-| Both together? | Yes — MetricKit + custom journey traces (S5). |
+| Both together? | Yes — MetricKit + custom journey traces (BookMyShow Firebase Performance traces). |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Firebase Performance traces
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q4. Why p50 and p90 instead of averages?
-
-**Points to:** [Foundations · §2 Why p50 / p90](../01-foundations.md#2-why-p50--p90-not-averages)
 
 **Answer:**
 
@@ -70,15 +74,19 @@
 
 | Follow-up | Answer |
 |---|---|
-| S5 Verified line? | Firebase Performance on listing/checkout/search with **p50/p90** — not averages. |
+| BookMyShow Firebase Performance traces Verified line? | Firebase Performance on listing/checkout/search with **p50/p90** — not averages. |
 | PM conversation shift? | From “feels slow” to “checkout p90 moved.” |
 | When mention p99? | Payment or rare Sev paths — acknowledge noise on mobile. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Firebase Performance traces
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q5. Which Instruments tools for which problems (first pass)?
-
-**Points to:** [Foundations · §4 Instruments](../01-foundations.md#4-instruments--name-with-purpose-first-pass)
 
 **Answer:**
 
@@ -92,11 +100,12 @@
 | Scroll jank? | Hitches + Time Profiler on main. |
 | Checkout slow, CPU clean? | Network / backend wait — not micro-optimise JSON first. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. Why don’t retain cycles show in Leaks?
-
-**Points to:** [Foundations · Critical correctness](../01-foundations.md#critical-correctness--retain-cycles-vs-leaks)
 
 **Answer:**
 
@@ -110,11 +119,12 @@
 | Wrong interview answer? | “We opened Leaks and saw the cycle.” |
 | Day 03 link? | ARC deep dive there; today only Instruments correctness trap. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. What is MetricKit’s role at a high level?
-
-**Points to:** [Foundations · §5 MetricKit](../01-foundations.md#5-metrickit-field-os-aggregates)
 
 **Answer:**
 
@@ -128,24 +138,32 @@
 | Exit reasons bridge? | OOM/jetsam narratives with Day 18 — not clean client stacks. |
 | Don’t claim as Verified? | MetricKit subscriber code as personal shipped work without evidence. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q8. Which tool first — mini decision tree?
 
-**Points to:** [Foundations · §9 Mini decision tree](../01-foundations.md#9-mini-decision-tree--which-tool-first)
-
 **Answer:**
 
-> “App feels slow” → desk repro? **Instruments** (Time Profiler / Hitches / Launch). Only some users/devices? **Field first** (Firebase p90 segment, MetricKit). Memory climbs on navigate? **Allocations + Memory Graph**. Scroll jank? **Hitches** on main. Checkout/search latency? **Journey traces (S5)** + Network if lab.
+> “App feels slow” → desk repro? **Instruments** (Time Profiler / Hitches / Launch). Only some users/devices? **Field first** (Firebase p90 segment, MetricKit). Memory climbs on navigate? **Allocations + Memory Graph**. Scroll jank? **Hitches** on main. Checkout/search latency? **Journey traces (BookMyShow Firebase Performance traces)** + Network if lab.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
 | Teach-back item 6? | Retain cycles → Graph/Allocations, not Leaks. |
-| Teach-back S5 one-liner? | p50/p90 on listing/checkout/search at BMS. |
+| Teach-back BookMyShow Firebase Performance traces one-liner? | p50/p90 on listing/checkout/search at BMS. |
 | Next sample? | [02-instruments-metrickit.md](02-instruments-metrickit.md) — deep attribution. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Firebase Performance traces
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
+Next: [02-instruments-metrickit.md](02-instruments-metrickit.md)
 
 ---
 
-Next: [02-instruments-metrickit.md](02-instruments-metrickit.md)

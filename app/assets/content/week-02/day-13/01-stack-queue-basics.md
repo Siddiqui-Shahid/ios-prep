@@ -1,12 +1,10 @@
 # Sample 01 — Stack & queue basics (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is a stack vs a queue, in one sentence each?
-
-**Points to:** [Foundations · §1 Plain-English mental model](../01-foundations.md#1-plain-english-mental-model) · [§3 Complexity cheat-sheet](../01-foundations.md#3-complexity-cheat-sheet-say-aloud)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | DFS vs BFS? | DFS uses stack or recursion; BFS uses **queue**. |
 | Swift default stack? | `Array` with `append` / `removeLast`. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. Why is `Array.removeFirst()` a bad default queue?
-
-**Points to:** [Foundations · §3 Complexity cheat-sheet](../01-foundations.md#3-complexity-cheat-sheet-say-aloud) · [Deep dive · §2.1 Why Array.removeFirst is wrong](../02-deep-dive.md#21-why-arrayremovefirst-is-wrong-by-default)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | Production Swift? | Often `Deque` if dependency OK; two-stack for interviews. |
 | Interviewer trap? | Claiming Array queue is O(1) — wrong. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. What are the complexity targets to say aloud?
-
-**Points to:** [Foundations · §3 Complexity cheat-sheet](../01-foundations.md#3-complexity-cheat-sheet-say-aloud) · [Deep dive · §5 Trade-offs table](../02-deep-dive.md#5-trade-offs-table)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | Two-stack worst case? | Dequeue O(n) when pouring in→out — say **amortized**, not strict O(1) always. |
 | Floyd cycle? | O(n) time, O(1) space with slow/fast pointers. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. How do I implement a stack in Swift?
-
-**Points to:** [Foundations · §7 Swift defaults](../01-foundations.md#7-swift-defaults-interview) · [Deep dive · §1.1 Array as stack](../02-deep-dive.md#11-array-as-stack)
 
 **Answer:**
 
@@ -74,11 +75,12 @@
 | Thread-safe stack? | Wrap in actor or lock if concurrent — say so if asked. |
 | Min stack? | Separate topic — [02-monotonic-patterns.md](02-monotonic-patterns.md). |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. What is the pattern → structure map?
-
-**Points to:** [Foundations · §4 Pattern → structure map](../01-foundations.md#4-pattern--structure-map) · [Deep dive · §1–2 patterns](../02-deep-dive.md#1-stack-deep-dive)
 
 **Answer:**
 
@@ -92,11 +94,12 @@
 | Daily temperatures? | Monotonic decreasing stack of indices. |
 | Binary tree level order? | Queue drains level by level. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. Why do interviewers ask stack/queue in iOS rounds?
-
-**Points to:** [Foundations · §5 Why interviewers care](../01-foundations.md#5-why-interviewers-care) · [Production bridge · Honest LL answer](../03-production-bridge.md#3-scripts)
 
 **Answer:**
 
@@ -106,15 +109,19 @@
 
 | Follow-up | Answer |
 |---|---|
-| Bridge to production? | Nav back stack = LIFO; refresh waiters = FIFO queue (soft S4). |
+| Bridge to production? | Nav back stack = LIFO; refresh waiters = FIFO queue (soft BookMyShow SSL pinning + URLSession migration). |
 | Force LL into UITableView? | Wrong — Array + honesty. |
 | Agenda-first? | 2–3 min plan before typing — every time. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow SSL pinning + URLSession migration
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Claiming pin-rotation / break-glass runbook as a shipped production playbook.
 
 ---
 
 ### Q7. What is linked list honesty in Swift apps?
-
-**Points to:** [Foundations · §1 Linked list row](../01-foundations.md#1-plain-english-mental-model) · [Deep dive · §3.1 Why rare in Swift apps](../02-deep-dive.md#31-why-rare-in-swift-apps)
 
 **Answer:**
 
@@ -128,6 +135,48 @@
 | UITableView cells? | Array-backed diffable — not linked list nodes. |
 | Next topic? | Monotonic patterns — [02-monotonic-patterns.md](02-monotonic-patterns.md). |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
+### Q8. How do you design a hit counter / recent-requests queue?
+
+**Answer:**
+
+> Store timestamps in a queue. On hit, enqueue now; while the front is older than the window, dequeue. The count is the queue’s size — memory stays proportional to hits in the window. Unbounded growth is the footgun. If multiple threads call in, isolate behind an **actor** (Learning-lab design — not a Verified shipped hit counter). Soft prod note: budget cardinality and sampling in real analytics.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Window check? | Compare `now - t ≥ window` (e.g. 5 minutes). |
+| Persist? | Usually in-memory for this interview problem. |
+| Prod bridge? | Soft — not a Verified BMS metric. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
+---
+
+### Q9. How do you approach a calculator / expression stack problem?
+
+**Answer:**
+
+> First clarify the grammar — which operators, precedence, associativity, integers only or not. Then either **shunting-yard** to RPN, or a **values stack plus an operators stack**. State assumptions before coding and mention integer overflow. Diving into code without the grammar is how calculator problems implode.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Parentheses? | Ops stack handles with higher-precedence / grouping rules. |
+| Unary minus? | Call it out as a tokenisation issue before coding. |
+| Approach opener? | Restate → constraints → brute/optimize → complexity → edges → code. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 Next: [02-monotonic-patterns.md](02-monotonic-patterns.md)
+
+---
+

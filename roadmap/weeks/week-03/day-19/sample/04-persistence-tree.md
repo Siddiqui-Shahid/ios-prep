@@ -1,12 +1,10 @@
 # Sample 04 — Persistence decision tree (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is the persistence decision tree opener?
-
-**Points to:** [Foundations · §3 Full persistence decision tree](../01-foundations.md#3-full-persistence-decision-tree-embedded--recite-this) · [Foundations · Recite opener](../01-foundations.md#3-full-persistence-decision-tree-embedded--recite-this)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Main-thread SQLite writes? | **No** — heavy writes off main. |
 | Caches as sole truth? | **No** — caches can vanish under memory pressure. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. Recite the full 7-row table.
-
-**Points to:** [Foundations · §3](../01-foundations.md#3-full-persistence-decision-tree-embedded--recite-this) · [Deep dive · §6](../02-deep-dive.md#6-persistence-tree--worked-examples)
 
 **Answer:**
 
@@ -45,11 +44,12 @@
 | Core Data for 3 booleans? | **Don’t** — UserDefaults suffices. |
 | Ticket PDF user saved? | **Application Support** — not Caches. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. Walk five quick pairing drills.
-
-**Points to:** [Deep dive · §11 Persistence tree stress drills](../02-deep-dive.md#11-persistence-tree-stress-drills-embed-again)
 
 **Answer:**
 
@@ -59,7 +59,7 @@
 > 4. Ticket PDF user saved → **Application Support**  
 > 5. Poster images session → **NSCache** + **Caches** files  
 > 6. Shared in-flight map → **Actor** / serial queue  
-> 7. Complex graph + tooling → **Core Data** bg writes  
+> 7. Complex graph + tooling → **Core Data** bg writes
 
 **Follow-ups:**
 
@@ -69,11 +69,12 @@
 | Encrypted messages DB? | SQLCipher + Keychain-wrapped key when threat model requires. |
 | PII at rest? | Encrypt when required; keys in Keychain/SEP. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. SQLite WAL vs Core Data — when which?
-
-**Points to:** [Foundations · §3](../01-foundations.md#3-full-persistence-decision-tree-embedded--recite-this) · [Deep dive · §6 Worked examples](../02-deep-dive.md#6-persistence-tree--worked-examples)
 
 **Answer:**
 
@@ -89,11 +90,12 @@
 | Rich object relationships + undo? | Core Data tooling wins. |
 | Both in one app? | Yes — different domains, different stores. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. FileManager: Caches vs Application Support?
-
-**Points to:** [Foundations · §3](../01-foundations.md#3-full-persistence-decision-tree-embedded--recite-this) · [Deep dive · §6](../02-deep-dive.md#6-persistence-tree--worked-examples)
 
 **Answer:**
 
@@ -109,16 +111,17 @@
 | UserDefaults for file paths? | OK for non-sensitive path prefs; not for secrets. |
 | iCloud backup? | App Support user files may backup; Caches typically excluded. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. NSCache vs actor for in-session state?
 
-**Points to:** [Foundations · §3](../01-foundations.md#3-full-persistence-decision-tree-embedded--recite-this) · [Deep dive · §6](../02-deep-dive.md#6-persistence-tree--worked-examples)
-
 **Answer:**
 
 > **NSCache:** decoded images, parsed blobs — auto-evict on memory warning; set **cost limits** (e.g. byte count). Not for secrets or authoritative state.  
-> **Actor / serial queue:** shared mutable maps, in-flight request dedup — race-free boundary (links to S2 / S2-A1). Pick based on **evictable cache** vs **correct concurrent mutation**.
+> **Actor / serial queue:** shared mutable maps, in-flight request dedup — race-free boundary (links to BookMyShow synchronised dictionaries / Design: actor SafeDict (not shipped)). Pick based on **evictable cache** vs **correct concurrent mutation**.
 
 **Follow-ups:**
 
@@ -128,24 +131,35 @@
 | Actor for image bytes? | Overkill — NSCache fits. |
 | Dictionary without isolation? | Data races — actor or serial queue. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries
+- **Design if asked:** Design: actor SafeDict (not shipped)
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
+
 ---
 
 ### Q7. Full persistence + security close (45s drill)?
 
-**Points to:** [Production bridge · §5 Persistence recite](../03-production-bridge.md#5-persistence-recite-45s-drill) · [Foundations · §7 Teach-back](../01-foundations.md#7-teach-back)
-
 **Answer:**
 
-> Recite 7-row table → “Tokens never in UserDefaults” → tie to S4 transport: “Refresh in Keychain, theme in UD, session images in NSCache, offline queries in SQLite WAL.” If interviewer pushes encryption: SQLCipher + Keychain-wrapped key for sensitive DB; PII policy drives the call.
+> Recite 7-row table → “Tokens never in UserDefaults” → tie to BookMyShow SSL pinning + URLSession migration transport: “Refresh in Keychain, theme in UD, session images in NSCache, offline queries in SQLite WAL.” If interviewer pushes encryption: SQLCipher + Keychain-wrapped key for sensitive DB; PII policy drives the call.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| Day 19 teach-back four items? | ATS ≠ pinning · SPKI DER ≠ SecKey raw · full table · S4 vs S4-A1. |
+| Day 19 teach-back four items? | ATS ≠ pinning · SPKI DER ≠ SecKey raw · full table · BookMyShow SSL pinning + URLSession migration vs Design: pin rotation / break-glass (not shipped runbook). |
 | Invent Core Data for flags? | Decision tree discipline fail. |
 | After sample? | [`../04-questions.md`](../04-questions.md) timed practice. |
 
----
+**How can I relate to my case:**
+- **Shipped:** BookMyShow SSL pinning + URLSession migration
+- **Design if asked:** Design: pin rotation / break-glass (not shipped runbook)
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Claiming pin-rotation / break-glass runbook as a shipped production playbook.
 
 Next: [`../04-questions.md`](../04-questions.md)
+
+---
+

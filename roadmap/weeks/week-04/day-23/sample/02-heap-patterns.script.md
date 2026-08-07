@@ -27,4 +27,4 @@ Next. Q6. What is the heap “say this first” script? Answer. “I need the be
 
 ## §6 Q7. Common heap failure modes?
 
-Next. Q7. Common heap failure modes? Answer. Max-heap when min-heap size K needed. Returning heap unsorted when sorted output required. Forgetting tie policy. Building heap of all n when K is small. Broken sift boilerplate under pressure — narrate intent if A P I missing. Follow-ups. K closest points?: Max-heap size K by distance — evict farthest among K.. Find median stream?: Two heaps — max-low + min-high — design question.. i O S 18+ Heap type?: Use if available; else array + sift with explanation.. Next: 03-mixed-unknown-pattern.md.
+Next. Q7. Common heap failure modes? Answer. Max-heap when min-heap size K needed. Returning heap unsorted when sorted output required. Forgetting tie policy. Building heap of all n when K is small. Broken sift boilerplate under pressure — narrate intent if A P I missing. Follow-ups. K closest points?: Max-heap size K by distance — evict farthest among K.. Find median stream?: Two heaps — max-low + min-high — design question.. i O S 18+ Heap type?: Use if available; else array + sift with explanation..

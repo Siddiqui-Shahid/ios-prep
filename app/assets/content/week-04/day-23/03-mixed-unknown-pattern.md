@@ -1,12 +1,10 @@
 # Sample 03 — Mixed unknown-pattern (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is the 90-second unknown-pattern protocol?
-
-**Points to:** [Foundations · §3 Mixed unknown-pattern](../01-foundations.md#3-mixed-unknown-pattern--the-90-second-protocol) · [Deep dive · §3 Mixed simulation](../02-deep-dive.md#3-mixed-unknown-pattern-simulation-todays-differentiator)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Timer? | 90s classification only — write pattern name, then solve or skip. |
 | Anti-pattern? | Silent coding with no classification. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. How do I decide hash vs heap vs window?
-
-**Points to:** [Foundations · §3 table](../01-foundations.md#3-mixed-unknown-pattern--the-90-second-protocol)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | Sorted + need indices? | Hash or index map — not blind sort. |
 | Online stream? | Heap size K strong signal. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. How do I recover from a wrong pattern pick?
-
-**Points to:** [Deep dive · §3 Misclassification recovery](../02-deep-dive.md#3-mixed-unknown-pattern-simulation-todays-differentiator)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | Two patterns hybrid? | Sometimes hash + heap (top-K freq) — say both. |
 | Still stuck at 10 min? | Brute that runs — partial credit beats blank IDE. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. What is the unknown-pattern spoken script?
-
-**Points to:** [Foundations · §5 Unknown script](../01-foundations.md#5-first-scripts-to-memorize)
 
 **Answer:**
 
@@ -74,11 +75,12 @@
 | Reject alternative aloud? | “Not DP — no overlapping subproblem stated; hash one-pass fits.” |
 | Mixed drill block? | 6 blind problems: 90s tag each, then solve — see exercises. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. Approach scripts for two-layer Q&A?
-
-**Points to:** [Deep dive · §6 Approach scripts](../02-deep-dive.md#6-approach-scripts-two-layer-ready)
 
 **Answer:**
 
@@ -92,11 +94,12 @@
 | 60s vs 90s? | Classification 90s; family-specific script ~60s inside. |
 | Record yourself? | Suggested record set in questions module. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What trade-offs belong in mixed problems?
-
-**Points to:** [Deep dive · §4 Trade-offs](../02-deep-dive.md#4-trade-offs)
 
 **Answer:**
 
@@ -110,11 +113,12 @@
 | Need full order? | Sort beats heap. |
 | Freq bounded small? | Counting sort / bucket beats heap. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. Checklist before leaving Day 23 foundations?
-
-**Points to:** [Foundations · §7 Checklist](../01-foundations.md#7-checklist-before-deep-dive)
 
 **Answer:**
 
@@ -128,6 +132,10 @@
 | Code lab first? | Read `code/HashPatterns.swift` and `HeapPatterns.swift` before inventing. |
 | Next sample? | Production hooks — maps and top-K without cosplay. |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [04-production-maps-topk.md](04-production-maps-topk.md)
+
+---
+

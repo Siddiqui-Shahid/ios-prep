@@ -1,16 +1,14 @@
-# Sample 04 — Production bridges & Mock prep (Q&A)
+# Sample 04 — Production story bridges (Q&A)
 
-> Guided teaching. Honest bridges from DSA patterns to iOS interview language — without inventing production linked lists.
+> Guided teaching. Separates **shipped** named cases from **design-if-asked** and **lab-only** so you never blur them in an interview.
 
 ---
 
 ### Q1. What production claims are allowed for Day 13 DSA?
 
-**Points to:** [Production bridge · §1 Provenance map](../03-production-bridge.md#1-provenance-map-for-today) · [§2 Structure → production bridge table](../03-production-bridge.md#2-structure--production-bridge-table)
-
 **Answer:**
 
-> **Learning-lab:** patterns + Swift in `code/` for interviews. **Soft bridges only:** S4 mindset — refresh **waiters** as FIFO queue of continuations (Day 09). S6/S13 — nav back stack as LIFO mental model; Verified **30%+** nav metric for LE sheet. S12 adjacency — ring buffer **vocabulary** for media, not “I built Aces ring engine.” S8 — composure pivot energy, not a DSA incident story.
+> **Learning-lab:** patterns + Swift in `code/` for interviews. **Soft bridges only:** BookMyShow SSL pinning + URLSession migration mindset — refresh **waiters** as FIFO queue of continuations (Day 09). BookMyShow LE Bottom Sheet/Hybrid UI / deeplinks — nav back stack as LIFO mental model; Verified **30%+** nav metric for LE sheet. Audio streaming + server-driven splash (Aces) adjacency — ring buffer **vocabulary** for media, not “I built Aces ring engine.” BookMyShow IMOC + crash-free at scale — composure pivot energy, not a DSA incident story.
 
 **Follow-ups:**
 
@@ -20,15 +18,19 @@
 | Verified DSA feature? | None — interview skill chapter. |
 | Tomorrow link? | DSA feeds composure for Mock #2 — pick Ads or SDUI track tonight. |
 
+**How can I relate to my case:**
+- **Shipped:** Audio streaming + server-driven splash (Aces); Hybrid UI / deeplinks; BookMyShow SSL pinning + URLSession migration; BookMyShow LE Bottom Sheet; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Claiming pin-rotation / break-glass runbook as a shipped production playbook.
+
 ---
 
-### Q2. How do refresh waiters bridge to a queue? (S4 mindset)
-
-**Points to:** [Production bridge · §3 Soft bridge — refresh waiters](../03-production-bridge.md#3-scripts) · [Day 09 single-flight](../../../week-02/day-09/01-foundations.md)
+### Q2. How do refresh waiters bridge to a queue? (BookMyShow SSL pinning + URLSession migration mindset)
 
 **Answer:**
 
-> Concurrent 401s shouldn’t each refresh independently. **Waiters line up** behind one refresh Task — conceptually a **FIFO queue** of continuations — then fan-out when refresh completes. Same discipline as BFS queue, applied to auth. Verified work is Ads URLSession security ownership (S4); waiter queue is the concurrency **pattern** you reason about in that layer — label Learning-lab / soft bridge.
+> Concurrent 401s shouldn’t each refresh independently. **Waiters line up** behind one refresh Task — conceptually a **FIFO queue** of continuations — then fan-out when refresh completes. Same discipline as BFS queue, applied to auth. Verified work is Ads URLSession security ownership (BookMyShow SSL pinning + URLSession migration); waiter queue is the concurrency **pattern** you reason about in that layer — label Learning-lab / soft bridge.
 
 **Follow-ups:**
 
@@ -38,29 +40,37 @@
 | Stampede failure? | N×401 → N refresh calls — single-flight fixes. |
 | Mock #2 tricky? | Refresh stampede + pin outage leadership — Day 14. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow SSL pinning + URLSession migration
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Claiming pin-rotation / break-glass runbook as a shipped production playbook.
+
 ---
 
-### Q3. How does navigation bridge to a stack? (S6 / S13)
-
-**Points to:** [Production bridge · §3 Soft bridge — nav LIFO](../03-production-bridge.md#3-scripts)
+### Q3. How does navigation bridge to a stack? (BookMyShow LE Bottom Sheet / Hybrid UI / deeplinks)
 
 **Answer:**
 
-> Product navigation is **LIFO**: push screens, pop on back. LE Bottom Sheet reduced **full-screen pushes** — Verified **30%+** fewer full-screen navigations (S6). Hybrid apps still need **one router** — stack discipline matters when deeplinks push (S13). Metaphor supports intuition; don’t claim UIKit literally implements parentheses matching.
+> Product navigation is **LIFO**: push screens, pop on back. LE Bottom Sheet reduced **full-screen pushes** — Verified **30%+** fewer full-screen navigations (BookMyShow LE Bottom Sheet). Hybrid apps still need **one router** — stack discipline matters when deeplinks push (Hybrid UI / deeplinks). Metaphor supports intuition; don’t claim UIKit literally implements parentheses matching.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| Sheet vs push? | Sheet cuts nav fatigue for shallow overview — S6 product win. |
+| Sheet vs push? | Sheet cuts nav fatigue for shallow overview — BookMyShow LE Bottom Sheet product win. |
 | Dual stacks? | Anti-pattern — one owner (Day 11). |
 | Undo stack? | Same LIFO — valid parentheses cousin. |
+
+**How can I relate to my case:**
+- **Shipped:** Hybrid UI / deeplinks; BookMyShow LE Bottom Sheet
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q4. What is the honest linked-list interview answer?
-
-**Points to:** [Production bridge · §3 Honest LL answer](../03-production-bridge.md#3-scripts) · [Deep dive · §3.1 Why rare](../02-deep-dive.md#31-why-rare-in-swift-apps)
 
 **Answer:**
 
@@ -74,11 +84,15 @@
 | UITableView? | Array-backed — not LL nodes. |
 | When Array beats LL? | Random access, cache, Swift algorithms — almost always in UI. |
 
+**How can I relate to my case:**
+- **Shipped:** None for this prompt — keep it conceptual unless they ask for a case.
+- **Design if asked:** N/A
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
 ### Q5. What is the Day 13 opener line?
-
-**Points to:** [Production bridge · §4 Interview line](../03-production-bridge.md#4-interview-line-20s--day-opener) · [Foundations · §6 Coding approach](../01-foundations.md#6-coding-approach-budget-23-min--memorize)
 
 **Answer:**
 
@@ -92,29 +106,37 @@
 | Two-stack queue? | Say amortized O(1). |
 | Record practice? | 04-questions — speak 6–8 answers. |
 
+**How can I relate to my case:**
+- **Shipped:** None for this prompt — keep it conceptual unless they ask for a case.
+- **Design if asked:** N/A
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
 ### Q6. How does DSA composure help in mixed interviews?
 
-**Points to:** [Deep dive · §7 Catch-up ↔ DSA composure](../02-deep-dive.md#7-catch-up--dsa-composure-t8-energy) · [Foundations · §8 Week 2 catch-up](../01-foundations.md#8-week-2-catch-up-dont-skip-mock-2-prep)
-
 **Answer:**
 
-> Interviewer pivots coding → SDUI mid-problem: **park state** (“I have prev/curr wired through node 3…”), answer SDUI with versioning + unknown skip (Day 10 / S3), offer to resume coding. Shows calm ownership (S8 IMOC energy) without inventing a DSA production incident. Also: pick **one** weak Week 2 day for 45–60m catch-up — still finish timed DSA drill.
+> Interviewer pivots coding → SDUI mid-problem: **park state** (“I have prev/curr wired through node 3…”), answer SDUI with versioning + unknown skip (Day 10 / BookMyShow backend-driven header & search), offer to resume coding. Shows calm ownership (BookMyShow IMOC + crash-free at scale IMOC energy) without inventing a DSA production incident. Also: pick **one** weak Week 2 day for 45–60m catch-up — still finish timed DSA drill.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| Weak on hybrid? | Day 11 + S13 opener. |
-| Weak on identity? | Day 12 + S10 opener. |
+| Weak on hybrid? | Day 11 + Hybrid UI / deeplinks opener. |
+| Weak on identity? | Day 12 + Stories SDK (Raw / Miami Heat) opener. |
 | Mock #2 tonight? | Choose Ads **or** SDUI architecture track. |
+
+**How can I relate to my case:**
+- **Shipped:** Stories SDK (Raw / Miami Heat); Hybrid UI / deeplinks; BookMyShow backend-driven header & search; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
 
 ---
 
 ### Q7. What should I do after Day 13 sample?
-
-**Points to:** [README · Suggested order](README.md#suggested-order) · [Day 14 sample](../../day-14/sample/README.md)
 
 **Answer:**
 
@@ -128,6 +150,13 @@
 | Week 2 catch-up? | One weak day only — don’t skip today’s drill. |
 | Revision twin? | [revision/weeks/week-02/day-13.md](../../../../revision/weeks/week-02/day-13.md) |
 
----
+**How can I relate to my case:**
+- **Shipped:** None for this prompt — keep it conceptual unless they ask for a case.
+- **Design if asked:** N/A
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 Back to: [README.md](README.md)
+
+---
+

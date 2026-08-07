@@ -4,6 +4,7 @@ import '../models/models.dart';
 import '../services/tts_player_service.dart';
 import '../widgets/player_bar.dart';
 import '../widgets/sectioned_markdown.dart';
+import 'code_lab_screen.dart';
 
 enum ReaderMode { listen, read }
 
@@ -107,6 +108,18 @@ class _ReaderScreenState extends State<ReaderScreen> {
           appBar: AppBar(
             title: Text(widget.chapter.title),
             actions: [
+              if (widget.day.codeFiles.isNotEmpty)
+                IconButton(
+                  tooltip: 'Lesson code',
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => CodeLabScreen(day: widget.day),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.code),
+                ),
               IconButton(
                 tooltip: 'Jump to section',
                 onPressed: () => _showSectionPicker(context),
@@ -220,6 +233,21 @@ class _ReaderScreenState extends State<ReaderScreen> {
                   activeScriptTitle: active?.title ?? '',
                   activeScriptIndex: widget.player.sectionIndex,
                   highlightActive: isListen,
+                  onCodeLink: widget.day.codeFiles.isEmpty
+                      ? null
+                      : (href) {
+                          final file = codeFileForLink(widget.day, href);
+                          if (file == null) return false;
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => CodeLabScreen(
+                                day: widget.day,
+                                initialFileId: file.id,
+                              ),
+                            ),
+                          );
+                          return true;
+                        },
                 ),
               ),
               if (isListen)

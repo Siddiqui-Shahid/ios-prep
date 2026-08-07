@@ -11,11 +11,11 @@ Next. Q2. What does the coding scorecard measure? Answer. Six criteria, each 1 /
 
 ## §2 Q3. How is the iOS deep dive scored?
 
-Next. Q3. How is the iOS deep dive scored? Answer. 4–6 topics — answers 30–45s or 90–120s; one architecture answer 3–5 min if “design X.” Criteria: Timing · Mechanism · Trade-off · Production proof · Agenda on long answers · Honesty. Target: ≥4 on Normals; ≥3 on Trickies; ≥2 production hooks (BMS/Raw/District). Follow-ups. Ramble 3 min on 45s question?: Timing 1 — self-correct with agenda.. Correct but generic?: Production proof 3 or 1 — add S 2/S4/S 8 hook.. Bluff wrong mechanism?: Honesty 1 — state assumption instead..
+Next. Q3. How is the iOS deep dive scored? Answer. 4–6 topics — answers 30–45s or 90–120s; one architecture answer 3–5 min if “design X.” Criteria: Timing · Mechanism · Trade-off · Production proof · Agenda on long answers · Honesty. Target: ≥4 on Normals; ≥3 on Trickies; ≥2 production hooks (BMS/Raw/District). Follow-ups. Ramble 3 min on 45s question?: Timing 1 — self-correct with agenda.. Correct but generic?: Production proof 3 or 1 — add BookMyShow synchronised dictionaries/BookMyShow SSL pinning + URLSession migration/BookMyShow I M O C + crash-free at scale hook.. Bluff wrong mechanism?: Honesty 1 — state assumption instead..
 
 ## §3 Q4. What topics appear in the iOS pool?
 
-Next. Q4. What topics appear in the iOS pool? Answer. A R C/retain cycles · G C D vs actors · M V V M–Clean–DI · URLSession/pinning · S D U I fallbacks · SwiftUI identity/hybrid · Instruments p50/p90 · Crash/I M O C 99.95% · SPM/Stories S D K · On-device AI fail-soft if pivoted (keep tight). Every answer: definition → mechanism → trade-off → production proof. Follow-ups. S 2 bridge for concurrency?: Verified G C D prod vs Applied S 2-A1 actor migration.. S D U I unknown type?: Fallback + schema — S3 instinct.. On-device AI pivot?: S15/S16 — privacy + fail-soft, 30–45s tight..
+Next. Q4. What topics appear in the iOS pool? Answer. A R C/retain cycles · G C D vs actors · M V V M–Clean–DI · URLSession/pinning · S D U I fallbacks · SwiftUI identity/hybrid · Instruments p50/p90 · Crash/I M O C 99.95% · SPM/Stories S D K · On-device AI fail-soft if pivoted (keep tight). Every answer: definition → mechanism → trade-off → production proof. Follow-ups. BookMyShow synchronised dictionaries bridge for concurrency?: Verified G C D prod vs Design: actor SafeDict (not shipped) actor migration.. S D U I unknown type?: Fallback + schema — BookMyShow backend-driven header & search instinct.. On-device AI pivot?: FinTrack on-device AI/GymFlow on-device AI — privacy + fail-soft, 30–45s tight..
 
 ## §4 Q5. How is system design timed (45 min)?
 
@@ -31,4 +31,4 @@ Next. Q7. What does 5 vs 3 vs 1 mean across segments? Answer. 5 = on time, expli
 
 ## §7 Q8. What are meta trade-offs for Mock #4?
 
-Next. Q8. What are meta trade-offs for Mock #4? Answer. Expert human = best signal, costs scheduling. Self + recorded = always on, blind spots remain. Fresh D S A = realism and stress — intended. Reuse Day 25 app = comfort but weaker coding signal. Choose fresh problem and honest debrief over comfort. Follow-ups. Re-run mock next day?: Day 28 taper — only if Mock #4 missed entirely.. Scorecards for proctor only?: Yes — not in candidate frame.. Expert briefing?: See../README.md paste block for proctor.. Next: 03-warmup-recovery.md.
+Next. Q8. What are meta trade-offs for Mock #4? Answer. Expert human = best signal, costs scheduling. Self + recorded = always on, blind spots remain. Fresh D S A = realism and stress — intended. Reuse Day 25 app = comfort but weaker coding signal. Choose fresh problem and honest debrief over comfort. Follow-ups. Re-run mock next day?: Day 28 taper — only if Mock #4 missed entirely.. Scorecards for proctor only?: Yes — not in candidate frame.. Expert briefing?: See../README.md paste block for proctor..

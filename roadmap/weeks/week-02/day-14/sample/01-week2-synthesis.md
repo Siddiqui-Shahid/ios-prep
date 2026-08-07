@@ -1,12 +1,10 @@
 # Sample 01 — Week 2 synthesis (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is the Week 2 narrative in one flow?
-
-**Points to:** [Foundations · §1 Week 2 map](../01-foundations.md#1-week-2-map-say-as-one-narrative)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Week 1 still relevant? | POP, ARC, async — Mock #2 assumes Week 1+2 together. |
 | Revision twin? | [revision/weeks/week-02/day-14.md](../../../../revision/weeks/week-02/day-14.md) |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What is the Week 2 one-liner to memorize?
-
-**Points to:** [Foundations · §1 One-sentence senior narrative](../01-foundations.md#1-week-2-map-say-as-one-narrative)
 
 **Answer:**
 
@@ -35,36 +34,44 @@
 | Follow-up | Answer |
 |---|---|
 | Overclaim risk? | One-liner is synthesis — STAR still per Verified ID. |
-| District piece? | S9 Clean/MVVM + AI judgment — supporting spice. |
-| Raw piece? | S10 Stories, S13 Grizzlies hybrid. |
+| District piece? | District Free Parking + Clean/MVVM + AI tooling Clean/MVVM + AI judgment — supporting spice. |
+| Raw piece? | Stories SDK (Raw / Miami Heat) Stories, Hybrid UI / deeplinks Grizzlies hybrid. |
+
+**How can I relate to my case:**
+- **Shipped:** Stories SDK (Raw / Miami Heat); Hybrid UI / deeplinks; District Free Parking + Clean/MVVM + AI tooling
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q3. What is single-flight refresh in 30 seconds?
 
-**Points to:** [Deep dive · §5 Single-flight refresh](../02-deep-dive.md#5-week-2-connective-micro-answers-embedded) · [Day 09 foundations](../../day-09/01-foundations.md)
-
 **Answer:**
 
-> N concurrent 401s shouldn’t each start refresh. **One refresh Task**; other callers become **waiters** that await the same result. Retry once on success path; on failure → logout fan-out. FIFO queue of continuations mental model (Day 13 soft bridge). Verified: S4 URLSession ownership on Ads — not invented stampede metrics.
+> N concurrent 401s shouldn’t each start refresh. **One refresh Task**; other callers become **waiters** that await the same result. Retry once on success path; on failure → logout fan-out. FIFO queue of continuations mental model (Day 13 soft bridge). Verified: BookMyShow SSL pinning + URLSession migration URLSession ownership on Ads — not invented stampede metrics.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
 | vs debounce? | Debounce delays intent; single-flight dedupes concurrent same work. |
-| Pin outage same week? | IMOC leadership + backup pins design (S4-A1 Applied). |
+| Pin outage same week? | IMOC leadership + backup pins design (Design: pin rotation / break-glass (not shipped runbook) Applied). |
 | Mock tricky pool? | Refresh stampede + pin outage — Block 2. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow SSL pinning + URLSession migration
+- **Design if asked:** Design: pin rotation / break-glass (not shipped runbook)
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Claiming pin-rotation / break-glass runbook as a shipped production playbook.
 
 ---
 
 ### Q4. What is unknown SDUI handling in 20 seconds?
 
-**Points to:** [Deep dive · §5 Unknown SDUI](../02-deep-dive.md#5-week-2-connective-micro-answers-embedded) · [Day 10 foundations](../../day-10/01-foundations.md)
-
 **Answer:**
 
-> Unknown component type → **skip + metric**; never crash the shell. Schema version gate on fetch. Empty root after parse → **hard fallback** header/splash. Last-known-good cache when network fails. Allowlisted actions only — no arbitrary URL schemes from CMS. S3-A1 emphasizes versioning + fallback as design emphasis.
+> Unknown component type → **skip + metric**; never crash the shell. Schema version gate on fetch. Empty root after parse → **hard fallback** header/splash. Last-known-good cache when network fails. Allowlisted actions only — no arbitrary URL schemes from CMS. BookMyShow backend-driven header & search-A1 emphasizes versioning + fallback as design emphasis.
 
 **Follow-ups:**
 
@@ -72,17 +79,21 @@
 |---|---|
 | Skip vs throw? | Skip — fail-soft product contract. |
 | Stable node ids? | ForEach identity — Day 12 crossover. |
-| Native Ads player SDUI? | Weak — keep renderer native (S1). |
+| Native Ads player SDUI? | Weak — keep renderer native (BookMyShow Ads pipeline + HeroWidget lifecycle). |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle; BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
 
 ---
 
 ### Q5. What is search cancel discipline in 20 seconds?
 
-**Points to:** [Deep dive · §5 Search cancel](../02-deep-dive.md#5-week-2-connective-micro-answers-embedded) · [Day 08 SearchViewModel](../../day-08/code/SearchViewModel.swift)
-
 **Answer:**
 
-> Debounce in view model. Cancel in-flight `Task` on new query. **Cancellation ≠ user-facing error** — ignore stale results. MVVM binding for loading/empty/error. Verified S3: backend-driven header + search debounce/state/MVVM.
+> Debounce in view model. Cancel in-flight `Task` on new query. **Cancellation ≠ user-facing error** — ignore stale results. MVVM binding for loading/empty/error. BookMyShow backend-driven header & search: backend-driven header + search debounce/state/MVVM.
 
 **Follow-ups:**
 
@@ -92,15 +103,19 @@
 | Race on slow network? | Generation token or task id — apply latest only. |
 | SDUI search field? | Same cancel discipline in observable model. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
 ### Q6. What is SwiftUI identity in 20 seconds for mock warm-ups?
 
-**Points to:** [Deep dive · §5 SwiftUI identity](../02-deep-dive.md#5-week-2-connective-micro-answers-embedded) · [Day 12 sample](../../day-12/sample/02-identity-traps.md)
-
 **Answer:**
 
-> Stable IDs preserve `@State` and representables. **Never `.id(UUID())` in body** — text clears, players restart. Stories pages need stable identity across progress ticks (S10). SDUI leaves use server node ids, not array indices.
+> Stable IDs preserve `@State` and representables. **Never `.id(UUID())` in body** — text clears, players restart. Stories pages need stable identity across progress ticks (Stories SDK (Raw / Miami Heat)). SDUI leaves use server node ids, not array indices.
 
 **Follow-ups:**
 
@@ -110,11 +125,15 @@
 | Hybrid link? | Representable remake — Day 11. |
 | List jump? | Unstable ForEach ids. |
 
+**How can I relate to my case:**
+- **Shipped:** Stories SDK (Raw / Miami Heat)
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
 ### Q7. What is Array-as-queue in 15 seconds?
-
-**Points to:** [Deep dive · §5 Array as queue](../02-deep-dive.md#5-week-2-connective-micro-answers-embedded) · [Day 13 sample](../../day-13/sample/01-stack-queue-basics.md)
 
 **Answer:**
 
@@ -128,6 +147,10 @@
 | Mock warm-up? | One DSA composure question in Block 1. |
 | Next topic? | Mock format — [02-mock-format.md](02-mock-format.md). |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [02-mock-format.md](02-mock-format.md)
+
+---
+

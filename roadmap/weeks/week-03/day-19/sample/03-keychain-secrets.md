@@ -1,12 +1,10 @@
 # Sample 03 — Keychain & secrets (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. Keychain vs UserDefaults — when which?
-
-**Points to:** [Foundations · §4 Keychain vs UserDefaults](../01-foundations.md#4-keychain-vs-userdefaults-zoom) · [Foundations · §3 Hard rules](../01-foundations.md#3-full-persistence-decision-tree-embedded--recite-this)
 
 **Answer:**
 
@@ -22,11 +20,12 @@
 | “Base64 in UserDefaults”? | **Obfuscation, not security.** Move to Keychain; rotate if exposed. |
 | Dark mode flag? | UserDefaults — correct pairing. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. Where do access and refresh tokens live?
-
-**Points to:** [Deep dive · §5 Auth & biometric](../02-deep-dive.md#5-auth--biometric-client-lens)
 
 **Answer:**
 
@@ -42,11 +41,12 @@
 | Refresh races? | Single-flight actor (Day 09) — linked, not primary security day topic. |
 | PII in UD? | Same rule — sensitive data belongs in Keychain or encrypted stores. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. What Keychain accessibility should you mention?
-
-**Points to:** [Foundations · §3 Full persistence tree](../01-foundations.md#3-full-persistence-decision-tree-embedded--recite-this) · [Foundations · §4](../01-foundations.md#4-keychain-vs-userdefaults-zoom)
 
 **Answer:**
 
@@ -60,11 +60,12 @@
 | Biometric templates in app? | **No** — Face ID unlocks Keychain items via LocalAuthentication; you don’t store templates. |
 | Migration pain? | Keychain entitlements and item migration — plan app updates carefully. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. How do biometrics fit the auth model?
-
-**Points to:** [Deep dive · §5 Auth & biometric](../02-deep-dive.md#5-auth--biometric-client-lens) · [Foundations · §4](../01-foundations.md#4-keychain-vs-userdefaults-zoom)
 
 **Answer:**
 
@@ -78,11 +79,12 @@
 | Biometric bypass on jailbreak? | Client checks are bypassable — defense in depth only. |
 | Payments sole control? | Never client-only — server attestation when in scope. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. What goes wrong if tokens sit in UserDefaults?
-
-**Points to:** [Deep dive · §9 Failure modes](../02-deep-dive.md#9-failure-modes) · [Foundations · §3 Hard rules](../01-foundations.md#3-full-persistence-decision-tree-embedded--recite-this)
 
 **Answer:**
 
@@ -96,15 +98,16 @@
 | Keychain on simulator vs device? | Behavior differs; test on device for auth flows. |
 | NSCache for tokens? | **Wrong** — evictable, not secret store. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. How does Keychain fit the networking HLD?
 
-**Points to:** [Deep dive · §5](../02-deep-dive.md#5-auth--biometric-client-lens) · [Deep dive · §6 Persistence worked examples](../02-deep-dive.md#6-persistence-tree--worked-examples)
-
 **Answer:**
 
-> In a networking layer diagram: **Token store (Keychain)** sits beside URLSession/cache/reachability. Interceptors read access token from memory/Keychain; refresh writes back to Keychain on success. Features never touch UserDefaults for secrets. Ads URLSession path (S4) assumes this split.
+> In a networking layer diagram: **Token store (Keychain)** sits beside URLSession/cache/reachability. Interceptors read access token from memory/Keychain; refresh writes back to Keychain on success. Features never touch UserDefaults for secrets. Ads URLSession path (BookMyShow SSL pinning + URLSession migration) assumes this split.
 
 **Follow-ups:**
 
@@ -114,11 +117,15 @@
 | Multiple accounts? | Keychain service/account keys per user — design explicitly. |
 | Watch/extension sharing? | Access groups — advanced; mention if asked. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow SSL pinning + URLSession migration
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Claiming pin-rotation / break-glass runbook as a shipped production playbook.
+
 ---
 
 ### Q7. Keychain teach-back in one breath?
-
-**Points to:** [Foundations · §7 Teach-back](../01-foundations.md#7-teach-back) · [Production bridge · §5 Persistence recite](../03-production-bridge.md#5-persistence-recite-45s-drill)
 
 **Answer:**
 
@@ -132,6 +139,10 @@
 | kSecAttrSynchronizable true for auth? | Usually **false** for auth tokens. |
 | Next topic? | Full persistence tree — [04-persistence-tree.md](04-persistence-tree.md). |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [04-persistence-tree.md](04-persistence-tree.md)
+
+---
+

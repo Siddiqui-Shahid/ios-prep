@@ -1,12 +1,10 @@
 # Sample 01 — BFS / DFS basics (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. When do I pick BFS vs DFS?
-
-**Points to:** [Foundations · §1 Mental model](../01-foundations.md#1-mental-model-what-a-tree-problem-is-asking) · [Deep dive · §1 Pattern catalog](../02-deep-dive.md#1-pattern-catalog-trigger--algorithm)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | “All root-to-leaf paths”? | **DFS** preorder + backtracking. |
 | Can I use either for max depth? | Yes — both O(n); BFS counts waves, DFS returns 1 + max(children). Pick the one you can explain cleanly. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What is the level-size BFS idiom?
-
-**Points to:** [Foundations · §4 BFS foundation](../01-foundations.md#4-bfs-foundation--level-size-idiom) · [Deep dive · §2 BFS skeleton](../02-deep-dive.md#2-bfs-skeleton-production-quality-interview-form)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | Zigzag variant? | Same BFS; reverse odd levels (or insert at front). |
 | Right side view? | Last node dequeued each level — or DFS right-before-left with depth tracking. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. What are the three DFS return styles?
-
-**Points to:** [Foundations · §5 DFS foundation](../01-foundations.md#5-dfs-foundation--three-return-styles)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | When iterative DFS? | Skewed deep trees, explicit stack control, or interviewer asks for non-recursive form. |
 | Morris traversal? | O(1) aux inorder via threaded links — mention only if you can restore cleanly. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. Binary tree vs BST — why does it matter?
-
-**Points to:** [Foundations · §1.3 Binary tree vs BST](../01-foundations.md#13-binary-tree-vs-bst-do-not-blur) · [Deep dive · §4.2 LCA](../02-deep-dive.md#42-lca-binary-tree--postorder-markers)
 
 **Answer:**
 
@@ -74,11 +75,12 @@
 | Validate BST trap? | Parent-only check fails — need low/high bounds or strictly increasing inorder. |
 | Duplicate policy? | Clarify with interviewer — affects bounds (`<=` vs `<`). |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. What complexity should I say for tree problems?
-
-**Points to:** [Foundations · §3 Complexity script](../01-foundations.md#3-complexity-script-memorize-verbatim) · [Deep dive · §8 Complexity quick reference](../02-deep-dive.md#8-complexity-quick-reference)
 
 **Answer:**
 
@@ -92,11 +94,12 @@
 | DFS space? | O(h) call stack — O(n) if skewed. |
 | Morris inorder? | O(1) auxiliary besides mutations — rare mention. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. Walk BFS and DFS on a tiny tree.
-
-**Points to:** [Foundations · §1.2 Intern demo](../01-foundations.md#12-the-intern-demo-say-aloud-once)
 
 **Answer:**
 
@@ -110,11 +113,12 @@
 | Single-node tree? | BFS/DFS both visit once; depth = 1 (confirm node vs edge definition). |
 | Null root? | Return empty / 0 / false per prompt — name it in edges. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. What should I know before opening Deep Dive?
-
-**Points to:** [Foundations · §9 Checklist](../01-foundations.md#9-checklist-before-you-open-deep-dive)
 
 **Answer:**
 
@@ -128,6 +132,10 @@
 | Height vs depth? | Confirm with interviewer — edges vs nodes along longest root→leaf. |
 | Next file? | Pattern catalog and skeletons in sample 02 and Deep Dive. |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [02-tree-patterns-skeletons.md](02-tree-patterns-skeletons.md)
+
+---
+

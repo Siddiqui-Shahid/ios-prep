@@ -1,12 +1,10 @@
 # Sample 04 — Debrief & fix-forwards (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What are fix-forwards and why ≤3?
-
-**Points to:** [Exercises · §3 Debrief template](../05-exercises.md#3-debrief-template) · [Foundations · §0 North star](../01-foundations.md#0-north-star) · [Day 28 · Weak-card protocol](../../day-28/01-foundations.md#weak-card-protocol-4560-min-cap)
 
 **Answer:**
 
@@ -16,15 +14,19 @@
 
 | Follow-up | Answer |
 |---|---|
-| Example fix-forward? | “Actor reentrancy — one sentence + S2-A1 label.” |
+| Example fix-forward? | “Actor reentrancy — one sentence + Design: actor SafeDict (not shipped) label.” |
 | Ten weak areas? | Pick top 3 by scorecard **1** rows; rest wait. |
 | Rewrite STAR as fix-forward? | No — flashcard-sized technical/concept gaps only. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries
+- **Design if asked:** Design: actor SafeDict (not shipped)
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
 
 ---
 
 ### Q2. How do you run the debrief?
-
-**Points to:** [Exercises · §3 Debrief template](../05-exercises.md#3-debrief-template) · [Exercises · §2 Run](../05-exercises.md#2-run)
 
 **Answer:**
 
@@ -38,11 +40,12 @@
 | Solo debrief? | Watch recording; score honestly against rubrics. |
 | Agenda score separate? | Yes — tracks communication habit independent of correctness. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. What is the hard stop after Mock #4?
-
-**Points to:** [Exercises · §4 Hard stop](../05-exercises.md#4-hard-stop) · [Exercises · §5 Exit](../05-exercises.md#5-exit)
 
 **Answer:**
 
@@ -56,17 +59,18 @@
 | Re-record all STARs? | Day 28 story bank once each — not tonight. |
 | Fix-forward drill tonight? | Optional one 45s card — then sleep. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. What proof trio stays loaded under pressure?
 
-**Points to:** [Production bridge · Proof trio](../03-production-bridge.md) · [Questions · W5](../04-questions.md#w5-crash-free-one-liner--ownership-3045s)
-
 **Answer:**
 
-> 1. **30L+ DAU** context (S8).  
-> 2. **99.95%+ crash-free** (S8).  
-> 3. **30%+ nav** LE sheet (S6).  
+> 1. **30L+ DAU** context (BookMyShow IMOC + crash-free at scale).  
+> 2. **99.95%+ crash-free** (BookMyShow IMOC + crash-free at scale).  
+> 3. **30%+ nav** LE sheet (BookMyShow LE Bottom Sheet).  
 > ≤20s before mock: “I’ll run this like a real loop — agenda first, trade-offs, and metrics I actually shipped.”
 
 **Follow-ups:**
@@ -75,31 +79,39 @@
 |---|---|
 | W5 crash-free one-liner? | Triage + IMOC stabilize-communicate-prevent — not blame. |
 | Invent if blank? | Never — clarify scope or nearest Verified story. |
-| Raw/District add-ons? | S10 SDK, S9 AI, S15 on-device as pivot specialty. |
+| Raw/District add-ons? | Stories SDK (Raw / Miami Heat) SDK, District Free Parking + Clean/MVVM + AI tooling AI, FinTrack on-device AI on-device as pivot specialty. |
+
+**How can I relate to my case:**
+- **Shipped:** FinTrack on-device AI; Stories SDK (Raw / Miami Heat); BookMyShow LE Bottom Sheet; BookMyShow IMOC + crash-free at scale; District Free Parking + Clean/MVVM + AI tooling
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
 
 ---
 
 ### Q5. How do you pivot proofs by topic?
 
-**Points to:** [Production bridge · Pivot kit](../03-production-bridge.md#pivot-kit)
-
 **Answer:**
 
-> SDUI → S3/S12 + schema fallback. Networking security → S4 pinning. Concurrency → S2. Architecture migration / AI tools → S9. On-device AI → S15/S16. SDK → S10. Hybrid UI → S13. Keep pivot **one sentence** then resume mechanism + trade-off.
+> SDUI → BookMyShow backend-driven header & search/Audio streaming + server-driven splash (Aces) + schema fallback. Networking security → BookMyShow SSL pinning + URLSession migration pinning. Concurrency → BookMyShow synchronised dictionaries. Architecture migration / AI tools → District Free Parking + Clean/MVVM + AI tooling. On-device AI → FinTrack on-device AI/GymFlow on-device AI. SDK → Stories SDK (Raw / Miami Heat). Hybrid UI → Hybrid UI / deeplinks. Keep pivot **one sentence** then resume mechanism + trade-off.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
 | Two pivots in one answer? | Pick strongest Verified hook — don’t stack. |
-| S12 if unknown? | Schema + fallback language still works. |
+| Audio streaming + server-driven splash (Aces) if unknown? | Schema + fallback language still works. |
 | No story for topic? | Applied label + honest “how I would” — sparingly. |
+
+**How can I relate to my case:**
+- **Shipped:** FinTrack on-device AI; GymFlow on-device AI; Stories SDK (Raw / Miami Heat); Audio streaming + server-driven splash (Aces); Hybrid UI / deeplinks; BookMyShow synchronised dictionaries; BookMyShow backend-driven header & search; BookMyShow SSL pinning + URLSession migration; District Free Parking + Clean/MVVM + AI tooling
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
 
 ---
 
 ### Q6. Interviewer challenges a BMS metric — what now?
-
-**Points to:** [Questions · W11](../04-questions.md#w11-interviewer-challenges-a-bms-metric-90s)
 
 **Answer:**
 
@@ -113,11 +125,12 @@
 | Wrong number remembered? | Stop — don’t guess; qualitative outcome + lesson. |
 | Challenge as trap? | They want honesty — senior engineers scope claims. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. Coding still O(n²) near time — what now?
-
-**Points to:** [Questions · W10](../04-questions.md#w10-coding-still-on-near-time-90s)
 
 **Answer:**
 
@@ -131,6 +144,10 @@
 | Hide suboptimal? | Say it — “current is O(n²); optimal uses hash map.” |
 | No optimal idea? | Brute + edges + honest complexity — still better than silence. |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [`../05-exercises.md`](../05-exercises.md) to run the mock · [`../../day-28/sample/README.md`](../../day-28/sample/README.md) for taper
+
+---
+

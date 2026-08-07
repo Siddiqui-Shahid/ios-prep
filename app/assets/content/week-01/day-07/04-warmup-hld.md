@@ -1,12 +1,10 @@
 # Sample 04 — Warm-up pool & Social Feed HLD (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. Name five warm-up topics you must have ready.
-
-**Points to:** [Foundations · §5 Warm-up pool](../01-foundations.md#5-warm-up-pool-ids--full-answers-in-04) · [02-deep-dive · §1 Scripted set A](../02-deep-dive.md#1-warm-up-definitions-10-min)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | All 12 before mock? | Skim 04; drill misses from flashcards. |
 | Actor isolation warm-up? | One sentence: only one task mutates actor state at a time. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. Actor isolation — warm-up answer shape?
-
-**Points to:** [04-questions · Warm-up](../04-questions.md#warm-up-pool) · Day 05 foundations
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | MainActor? | UI-bound actor — common in SwiftUI/UIKit bridges. |
 | Deep follow-up? | Reentrancy after await — deep pool D1. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. Sendable — what do you say in 45s?
-
-**Points to:** [04-questions · Warm-up](../04-questions.md#warm-up-pool) · Day 05
 
 **Answer:**
 
@@ -56,15 +56,16 @@
 | NSDictionary Sendable? | Legacy reference types — often not without wrapping. |
 | Interview depth? | Definition + one example (struct model vs mutable class). |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. Social Feed HLD — what is the prompt?
 
-**Points to:** [02-deep-dive · §4 Mini system design](../02-deep-dive.md#4-mini-system-design--social-feed-20-min) · [Production bridge · §5 Social feed talk](../03-production-bridge.md#5-social-feed-talk--honesty)
-
 **Answer:**
 
-> “Design the **client side** of a social/listing feed for a large consumer app — BookMyShow-scale. Clarify first, then high-level design only — no full LLD.” 20 min block. Honesty: design skill exercise; tie ads slots to **S1 instinct** only; cite **S8** for scale when asked “how big.”
+> “Design the **client side** of a social/listing feed for a large consumer app — BookMyShow-scale. Clarify first, then high-level design only — no full LLD.” 20 min block. Honesty: design skill exercise; tie ads slots to **BookMyShow Ads pipeline + HeroWidget lifecycle instinct** only; cite **BookMyShow IMOC + crash-free at scale** for scale when asked “how big.”
 
 **Follow-ups:**
 
@@ -74,29 +75,37 @@
 | Incomplete OK? | Interviewer cuts at 20 min — note gaps in retro. |
 | Invent metrics? | No fake latency SLAs — clarify with interviewer. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
+
 ---
 
 ### Q5. What clarifying questions should you ask?
 
-**Points to:** [02-deep-dive · §4 Good clarifying questions](../02-deep-dive.md#4-mini-system-design--social-feed-20-min)
-
 **Answer:**
 
-> Ask ~4–6 before drawing boxes: organic vs **ads mixing** rules? **Pagination** (cursor vs offset)? **Offline / stale** content OK? Image/video **autoplay**? Realtime invalidation vs pull-to-refresh? Approximate **DAU / latency** targets? (May cite 30L+ DAU as Verified **S8** scale — do not invent new numbers.)
+> Ask ~4–6 before drawing boxes: organic vs **ads mixing** rules? **Pagination** (cursor vs offset)? **Offline / stale** content OK? Image/video **autoplay**? Realtime invalidation vs pull-to-refresh? Approximate **DAU / latency** targets? (May cite 30L+ DAU as Verified **BookMyShow IMOC + crash-free at scale** scale — do not invent new numbers.)
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
 | Cursor vs offset? | Cursor stable for live feeds; offset breaks on inserts. |
-| Ads mixing? | Slot injection without forking feed pipeline — S1 instinct. |
+| Ads mixing? | Slot injection without forking feed pipeline — BookMyShow Ads pipeline + HeroWidget lifecycle instinct. |
 | Skip clarify? | Weak signal — looks like guessing requirements. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
 
 ---
 
 ### Q6. HLD bullets — caching and scroll?
-
-**Points to:** [02-deep-dive · §4 HLD bullets](../02-deep-dive.md#4-mini-system-design--social-feed-20-min) · [code/MockScorecard.md](../code/MockScorecard.md)
 
 **Answer:**
 
@@ -106,15 +115,19 @@
 
 | Follow-up | Answer |
 |---|---|
-| Cancel on scroll away? | Same instinct as S3 debounce / cancel in-flight — light metaphor. |
+| Cancel on scroll away? | Same instinct as BookMyShow backend-driven header & search debounce / cancel in-flight — light metaphor. |
 | Memory pressure? | Trim distant pages from memory cache. |
 | Scorecard row? | MockScorecard “Mini SD — Social Feed” checks these areas. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q7. Task cancellation — warm-up tie-in?
-
-**Points to:** [04-questions · Warm-up](../04-questions.md#warm-up-pool) · Day 05
 
 **Answer:**
 
@@ -128,6 +141,10 @@
 | Structured concurrency? | Child tasks cancel with parent scope. |
 | Feed HLD link? | Prefetch + cancel pair is the client-side win. |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Back to: [README.md](README.md) · Full mock: [`../02-deep-dive.md`](../02-deep-dive.md)
+
+---
+

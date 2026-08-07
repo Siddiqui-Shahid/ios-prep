@@ -1,12 +1,10 @@
-# Sample 04 — Production S8 and S2 (Q&A)
+# Sample 04 — Crash-free culture & synchronised dictionaries (Q&A)
 
-> Guided teaching. Separates **Verified** resume facts, **S2 path-scoped** technical add-on, and **Forbidden** causal overclaims.
+> Guided teaching. Separates **shipped** named cases from **design-if-asked** and **lab-only** so you never blur them in an interview.
 
 ---
 
-### Q1. What can you claim under Verified · S8?
-
-**Points to:** [Production bridge · §1 Provenance map](../03-production-bridge.md#1-provenance-map) · [§2 Verified S8 STAR](../03-production-bridge.md#2-verified-s8--star-2-3-min)
+### Q1. What can you claim under BookMyShow IMOC + crash-free at scale?
 
 **Answer:**
 
@@ -17,14 +15,18 @@
 | Follow-up | Answer |
 |---|---|
 | ≤20s line? | “At 30L+ DAU we held 99.95%+ crash-free — Crashlytics triage plus IMOC on P0/P1s, not just fixing stacks alone.” |
-| Provenance tag? | Verified · S8 · BookMyShow · 30L+ DAU · 99.95%+ CFS · IMOC |
+| Provenance tag? | BookMyShow IMOC + crash-free at scale · BookMyShow · 30L+ DAU · 99.95%+ CFS · IMOC |
 | Lesson? | Incident leadership = owner + blast radius + rollback — not lone-hero debugging. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
 
 ---
 
-### Q2. Walk the S8 STAR spine
-
-**Points to:** [Production bridge · §2 Verified S8](../03-production-bridge.md#2-verified-s8--star-2-3-min)
+### Q2. Walk the BookMyShow IMOC + crash-free at scale STAR spine
 
 **Answer:**
 
@@ -38,11 +40,15 @@
 | Result without fake stats? | Sustained bar + reduced impact — no invented minute counts. |
 | Behavioral emphasis? | Cadenced comms under peak sale pressure. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
+
 ---
 
-### Q3. How do you add S2 without stealing S8?
-
-**Points to:** [Production bridge · §4 S2 add-on](../03-production-bridge.md#4-s2-as-technical-add-on-90s--correct-coupling) · [§3 Forbidden script](../03-production-bridge.md#forbidden-script)
+### Q3. How do you add BookMyShow synchronised dictionaries without stealing BookMyShow IMOC + crash-free at scale?
 
 **Answer:**
 
@@ -52,19 +58,23 @@
 
 | Follow-up | Answer |
 |---|---|
-| S2-A1? | Greenfield → Swift `actor` — How I would apply it. |
-| When lead S2 vs S8? | Incident/leadership → S8; concurrency depth → S2 add-on after. |
-| Provenance split? | S8 system · S2 path-scoped. |
+| Design: actor SafeDict (not shipped)? | Greenfield → Swift `actor` — How I would apply it. |
+| When lead BookMyShow synchronised dictionaries vs BookMyShow IMOC + crash-free at scale? | Incident/leadership → BookMyShow IMOC + crash-free at scale; concurrency depth → BookMyShow synchronised dictionaries add-on after. |
+| Provenance split? | BookMyShow IMOC + crash-free at scale system · BookMyShow synchronised dictionaries path-scoped. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Design: actor SafeDict (not shipped)
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Do not steal BookMyShow IMOC / crash-free culture credit for a path-specific dictionary race fix — keep scopes separate.
 
 ---
 
-### Q4. What must you never say about S8 and S2 together?
-
-**Points to:** [Production bridge · Forbidden overclaims](../03-production-bridge.md#forbidden-overclaims)
+### Q4. What must you never say about BookMyShow IMOC + crash-free at scale and BookMyShow synchronised dictionaries together?
 
 **Answer:**
 
-> Never: S2 alone caused/delivered 99.95% CFS. Never: in-house signal handler unless evidenced. Never: invented crash counts or downtime minutes. Never: CFS proves no hangs/OOM pain. Never: merge S8 IMOC story into fake memory Graph war story.
+> Never: BookMyShow synchronised dictionaries alone caused/delivered 99.95% CFS. Never: in-house signal handler unless evidenced. Never: invented crash counts or downtime minutes. Never: CFS proves no hangs/OOM pain. Never: merge BookMyShow IMOC + crash-free at scale IMOC story into fake memory Graph war story.
 
 **Follow-ups:**
 
@@ -74,15 +84,19 @@
 | Hang gap phrase? | “CFS fine — still check hangs and MetricKit.” |
 | Memory tools if asked? | Applied triage — Graph/Allocations, not Leaks for cycles. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Do not steal BookMyShow IMOC / crash-free culture credit for a path-specific dictionary race fix — keep scopes separate.
+
 ---
 
 ### Q5. How do behavioral variants use the same facts?
 
-**Points to:** [Production bridge · §6 Behavioral variants](../03-production-bridge.md#6-behavioral-variants-same-facts)
-
 **Answer:**
 
-> **Conflict:** IMOC timeline vs blame spiral. **Pressure:** peak traffic mitigate-first + comms clock. **Leadership:** owner, handoff, postmortem actions. **Technical:** S2 races + signal-safety vocabulary as add-on — same Verified S8 spine, different emphasis per prompt.
+> **Conflict:** IMOC timeline vs blame spiral. **Pressure:** peak traffic mitigate-first + comms clock. **Leadership:** owner, handoff, postmortem actions. **Technical:** BookMyShow synchronised dictionaries races + signal-safety vocabulary as add-on — same BookMyShow IMOC + crash-free at scale spine, different emphasis per prompt.
 
 **Follow-ups:**
 
@@ -92,47 +106,59 @@
 | Mid-STAR memory question? | Short Applied triage sentence — return to IMOC narrative. |
 | Postmortem? | Blameless — alerts/tests/runbooks as outputs. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Do not steal BookMyShow IMOC / crash-free culture credit for a path-specific dictionary race fix — keep scopes separate.
+
 ---
 
-### Q6. How does S8 bridge to Days 17 and 20?
-
-**Points to:** [Production bridge · implicit] · [Deep dive · §10 Failure modes](../02-deep-dive.md#10-failure-modes)
+### Q6. How does BookMyShow IMOC + crash-free at scale bridge to Days 17 and 20?
 
 **Answer:**
 
-> **Day 17:** CFS may be fine while users freeze — hang/OOM observability separate. Perf p90 culture (S5) complements CFS — don’t trust crash-free alone for UX. **Day 20:** release trains pause on perf/CFS gates; dSYM upload CI. Reliability is ops + engineering — not one dictionary fix.
+> **Day 17:** CFS may be fine while users freeze — hang/OOM observability separate. Perf p90 culture (BookMyShow Firebase Performance traces) complements CFS — don’t trust crash-free alone for UX. **Day 20:** release trains pause on perf/CFS gates; dSYM upload CI. Reliability is ops + engineering — not one dictionary fix.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
 | Jetsam clusters? | OOM heuristics + memory lab — not always CFS fatal. |
-| Peak + perf? | S5 p90 and S8 CFS both matter during events. |
+| Peak + perf? | BookMyShow Firebase Performance traces p90 and BookMyShow IMOC + crash-free at scale CFS both matter during events. |
 | Security launch cost? | Day 19 — measure; don’t silently regress startup. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Firebase Performance traces; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
 
 ---
 
-### Q7. Give a full honest answer mixing S8 and S2
-
-**Points to:** [Production bridge · §3 Interview line](../03-production-bridge.md#3-interview-line-20s) · [§4 OK script](../03-production-bridge.md#ok-script)
+### Q7. Give a full honest answer mixing BookMyShow IMOC + crash-free at scale and BookMyShow synchronised dictionaries
 
 **Answer:**
 
-> “At 30L+ DAU we held 99.95%+ crash-free sessions through Crashlytics triage and IMOC coordination on P0/P1s (Verified S8) — mitigate first, blast radius, cadenced comms. Separately, synchronised shared async dictionaries removed intermittent race crashes on that path (Verified S2) — one reliability input among many. I don’t collapse those into one causal story. Hangs and OOM still need their own observability even when CFS looks fine.”
+> “At 30L+ DAU we held 99.95%+ crash-free sessions through Crashlytics triage and IMOC coordination on P0/P1s (BookMyShow IMOC + crash-free at scale) — mitigate first, blast radius, cadenced comms. Separately, synchronised shared async dictionaries removed intermittent race crashes on that path (BookMyShow synchronised dictionaries) — one reliability input among many. I don’t collapse those into one causal story. Hangs and OOM still need their own observability even when CFS looks fine.”
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
 | Verified in paragraph? | Scale, CFS bar, IMOC, triage workflow. |
-| S2 in paragraph? | Path-scoped race fix — contributed, not sole cause. |
+| BookMyShow synchronised dictionaries in paragraph? | Path-scoped race fix — contributed, not sole cause. |
 | Honesty closing? | CFS ≠ full UX health. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Do not steal BookMyShow IMOC / crash-free culture credit for a path-specific dictionary race fix — keep scopes separate.
 
 ---
 
 ### Q8. What is the one-minute CFS honesty drill?
-
-**Points to:** [Foundations · §9 One-minute drill](../01-foundations.md#9-one-minute-cfs-honesty-drill)
 
 **Answer:**
 
@@ -144,12 +170,19 @@
 |---|---|
 | Why drill? | Interviews tempt false causality — muscle memory prevents it. |
 | After this sample? | Code notes, [`../04-questions.md`](../04-questions.md), [`../05-exercises.md`](../05-exercises.md). |
-| Primary provenance? | S8 IMOC/CFS system + S2 path honesty. |
+| Primary provenance? | BookMyShow IMOC + crash-free at scale IMOC/CFS system + BookMyShow synchronised dictionaries path honesty. |
 
----
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Do not steal BookMyShow IMOC / crash-free culture credit for a path-specific dictionary race fix — keep scopes separate.
 
 ## After this sample
 
 1. Skim [`../code/BreadcrumbRing.swift`](../code/BreadcrumbRing.swift) and [`../code/CrashReportNotes.swift`](../code/CrashReportNotes.swift).
-2. Time S8 STAR + S2 add-on from [`../04-questions.md`](../04-questions.md).
+2. Time BookMyShow IMOC + crash-free at scale STAR + BookMyShow synchronised dictionaries add-on from [`../04-questions.md`](../04-questions.md).
 3. Run the one-minute CFS honesty drill aloud until clean.
+
+---
+

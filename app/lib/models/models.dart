@@ -21,16 +21,41 @@ class ChapterRef {
   }
 }
 
+class CodeFileRef {
+  const CodeFileRef({
+    required this.id,
+    required this.title,
+    required this.asset,
+    this.language = 'text',
+  });
+
+  final String id;
+  final String title;
+  final String asset;
+  final String language;
+
+  factory CodeFileRef.fromJson(Map<String, dynamic> json) {
+    return CodeFileRef(
+      id: json['id'] as String,
+      title: json['title'] as String,
+      asset: json['asset'] as String,
+      language: json['language'] as String? ?? 'text',
+    );
+  }
+}
+
 class DayRef {
   const DayRef({
     required this.id,
     required this.title,
     required this.chapters,
+    this.codeFiles = const [],
   });
 
   final String id;
   final String title;
   final List<ChapterRef> chapters;
+  final List<CodeFileRef> codeFiles;
 
   factory DayRef.fromJson(Map<String, dynamic> json) {
     return DayRef(
@@ -39,8 +64,22 @@ class DayRef {
       chapters: (json['chapters'] as List<dynamic>)
           .map((e) => ChapterRef.fromJson(e as Map<String, dynamic>))
           .toList(),
+      codeFiles: (json['code'] as List<dynamic>? ?? const [])
+          .map((e) => CodeFileRef.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
+}
+
+/// Resolve `../code/Foo.swift` style links against the day's code files.
+CodeFileRef? codeFileForLink(DayRef day, String href) {
+  final cleaned = href.split('#').first.replaceAll('\\', '/').trim();
+  final name = cleaned.split('/').last;
+  if (name.isEmpty) return null;
+  for (final file in day.codeFiles) {
+    if (file.id == name || file.title == name) return file;
+  }
+  return null;
 }
 
 class WeekRef {
@@ -66,20 +105,38 @@ class WeekRef {
 }
 
 class ContentManifest {
-  const ContentManifest({required this.weeks});
+  const ContentManifest({
+    required this.weeks,
+    this.revisionWeeks = const [],
+    this.flashcardWeeks = const [],
+  });
 
   final List<WeekRef> weeks;
+  final List<WeekRef> revisionWeeks;
+  final List<WeekRef> flashcardWeeks;
 
   factory ContentManifest.fromJson(Map<String, dynamic> json) {
     return ContentManifest(
       weeks: (json['weeks'] as List<dynamic>)
           .map((e) => WeekRef.fromJson(e as Map<String, dynamic>))
           .toList(),
+      revisionWeeks: (json['revisionWeeks'] as List<dynamic>? ?? const [])
+          .map((e) => WeekRef.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      flashcardWeeks: (json['flashcardWeeks'] as List<dynamic>? ?? const [])
+          .map((e) => WeekRef.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 
+  Iterable<WeekRef> get allTracks sync* {
+    yield* weeks;
+    yield* revisionWeeks;
+    yield* flashcardWeeks;
+  }
+
   WeekRef? weekById(String id) {
-    for (final w in weeks) {
+    for (final w in allTracks) {
       if (w.id == id) return w;
     }
     return null;

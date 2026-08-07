@@ -6,8 +6,10 @@ import '../data/reminder_store.dart';
 import '../models/models.dart';
 import '../services/tts_player_service.dart';
 import 'day_screen.dart';
+import 'flashcards_screen.dart';
 import 'progress_screen.dart';
 import 'reminders_screen.dart';
+import 'revision_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -27,6 +29,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final weeks = catalog.weeks;
+    final revisionWeeks = catalog.revisionWeeks;
+    final flashcardWeeks = catalog.flashcardWeeks;
     return ListenableBuilder(
       listenable: progress,
       builder: (context, _) {
@@ -35,6 +39,38 @@ class HomeScreen extends StatelessWidget {
           appBar: AppBar(
             title: const Text('iOS Prep Audiobook'),
             actions: [
+              if (revisionWeeks.isNotEmpty)
+                IconButton(
+                  tooltip: 'Revision',
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => RevisionScreen(
+                          weeks: revisionWeeks,
+                          progress: progress,
+                          onOpenChapter: onOpenChapter,
+                        ),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.menu_book_outlined),
+                ),
+              if (flashcardWeeks.isNotEmpty)
+                IconButton(
+                  tooltip: 'Flashcards',
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => FlashcardsScreen(
+                          weeks: flashcardWeeks,
+                          progress: progress,
+                          onOpenChapter: onOpenChapter,
+                        ),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.style_outlined),
+                ),
               IconButton(
                 tooltip: 'Progress',
                 onPressed: () {
@@ -42,6 +78,8 @@ class HomeScreen extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (_) => ProgressScreen(
                         weeks: weeks,
+                        revisionWeeks: revisionWeeks,
+                        flashcardWeeks: flashcardWeeks,
                         progress: progress,
                       ),
                     ),
@@ -66,7 +104,7 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             children: [
               Text(
-                'Sample Q&A · Week 1 (Days 01–07)',
+                'Interview prep audiobook',
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
               const SizedBox(height: 8),
@@ -113,46 +151,153 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ],
-              const SizedBox(height: 20),
-              for (final week in weeks) ...[
-                Text(week.title, style: Theme.of(context).textTheme.titleLarge),
-                const SizedBox(height: 8),
+              if (revisionWeeks.isNotEmpty) ...[
+                const SizedBox(height: 16),
                 Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Week progress',
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        const SizedBox(height: 12),
-                        LinearProgressIndicator(
-                          value: progress.weekProgress(week),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          '${(progress.weekProgress(week) * 100).round()}% complete',
-                        ),
-                      ],
+                  color: const Color(0xFF0B6E4F),
+                  child: ListTile(
+                    leading: const Icon(
+                      Icons.menu_book,
+                      color: Color(0xFFFFFFFF),
                     ),
+                    title: const Text(
+                      'Revision',
+                      style: TextStyle(
+                        color: Color(0xFFFFFFFF),
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    subtitle: Text(
+                      '${revisionWeeks.fold<int>(0, (n, w) => n + w.days.length)} day guides · outcomes, truths, map to your work',
+                      style: const TextStyle(color: Color(0xFFE8FFF6)),
+                    ),
+                    trailing: const Icon(
+                      Icons.chevron_right,
+                      color: Color(0xFFFFFFFF),
+                    ),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => RevisionScreen(
+                            weeks: revisionWeeks,
+                            progress: progress,
+                            onOpenChapter: onOpenChapter,
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
-                const SizedBox(height: 8),
+              ],
+              if (flashcardWeeks.isNotEmpty) ...[
+                const SizedBox(height: 12),
+                Card(
+                  color: const Color(0xFF14532D),
+                  child: ListTile(
+                    leading: const Icon(
+                      Icons.style,
+                      color: Color(0xFFFFFFFF),
+                    ),
+                    title: const Text(
+                      'Flashcards',
+                      style: TextStyle(
+                        color: Color(0xFFFFFFFF),
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    subtitle: Text(
+                      '${flashcardWeeks.fold<int>(0, (n, w) => n + w.days.length)} packs · speak prompts cold, listen to reveal',
+                      style: const TextStyle(color: Color(0xFFE8FFF6)),
+                    ),
+                    trailing: const Icon(
+                      Icons.chevron_right,
+                      color: Color(0xFFFFFFFF),
+                    ),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => FlashcardsScreen(
+                            weeks: flashcardWeeks,
+                            progress: progress,
+                            onOpenChapter: onOpenChapter,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+              const SizedBox(height: 8),
+              Text(
+                'Sample Q&A',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              for (var i = 0; i < weeks.length; i++)
+                _WeekSection(
+                  week: weeks[i],
+                  progress: progress,
+                  initiallyExpanded: i == 0,
+                  onOpenChapter: onOpenChapter,
+                ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _WeekSection extends StatelessWidget {
+  const _WeekSection({
+    required this.week,
+    required this.progress,
+    required this.initiallyExpanded,
+    required this.onOpenChapter,
+  });
+
+  final WeekRef week;
+  final ProgressStore progress;
+  final bool initiallyExpanded;
+  final Future<void> Function(ChapterLocation location, {int section})
+      onOpenChapter;
+
+  @override
+  Widget build(BuildContext context) {
+    final pct = progress.weekProgress(week);
+    return Card(
+      margin: const EdgeInsets.only(top: 12),
+      clipBehavior: Clip.antiAlias,
+      child: ExpansionTile(
+        initiallyExpanded: initiallyExpanded,
+        maintainState: true,
+        title: Text(week.title),
+        subtitle: Text('${(pct * 100).round()}% complete'),
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                LinearProgressIndicator(value: pct),
+                const SizedBox(height: 12),
                 ...week.days.map((day) {
-                  final pct = progress.dayProgress(day, week.id);
+                  final dayPct = progress.dayProgress(day, week.id);
                   return Card(
+                    elevation: 0,
+                    color: Theme.of(context)
+                        .colorScheme
+                        .surfaceContainerHighest
+                        .withValues(alpha: 0.45),
                     child: ListTile(
                       title: Text(day.title),
                       subtitle: Text(
-                        '${(pct * 100).round()}% · ${day.chapters.length} chapters',
+                        '${(dayPct * 100).round()}% · ${day.chapters.length} chapters',
                       ),
                       trailing: SizedBox(
                         width: 36,
                         height: 36,
                         child: CircularProgressIndicator(
-                          value: pct == 0 ? null : pct,
+                          value: dayPct == 0 ? null : dayPct,
                           strokeWidth: 3,
                           color: const Color(0xFF0B6E4F),
                         ),
@@ -172,12 +317,11 @@ class HomeScreen extends StatelessWidget {
                     ),
                   );
                 }),
-                const SizedBox(height: 24),
               ],
-            ],
+            ),
           ),
-        );
-      },
+        ],
+      ),
     );
   }
 }
@@ -209,5 +353,6 @@ class AppScope extends InheritedWidget {
   }
 
   @override
-  bool updateShouldNotify(AppScope oldWidget) => reminders != oldWidget.reminders;
+  bool updateShouldNotify(AppScope oldWidget) =>
+      reminders != oldWidget.reminders;
 }

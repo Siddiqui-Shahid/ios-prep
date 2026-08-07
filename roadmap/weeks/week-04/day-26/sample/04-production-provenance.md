@@ -1,12 +1,10 @@
-# Sample 04 — Production provenance walls (Q&A)
+# Sample 04 — Provenance honesty & named cases (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Separates **shipped** named cases from **design-if-asked** and **lab-only** so you never blur them in an interview.
 
 ---
 
-### Q1. What can you claim for S1 (Ads / HeroWidget)?
-
-**Points to:** [Production bridge · S1](../03-production-bridge.md) · [Questions · S1](../04-questions.md#s1--ads-refactor--herowidget-hard-technical-23-min)
+### Q1. What can you claim for BookMyShow Ads pipeline + HeroWidget lifecycle (Ads / HeroWidget)?
 
 **Answer:**
 
@@ -20,13 +18,17 @@
 |---|---|
 | Why not inheritance? | Protocol-oriented design scales ad types without a class thicket. |
 | How test lifecycle? | Visibility + VC lifecycle — explicit pause/play rules. |
-| Conflict on API shape? | Same S6 instinct — contract and user impact. |
+| Conflict on API shape? | Same BookMyShow LE Bottom Sheet instinct — contract and user impact. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle; BookMyShow LE Bottom Sheet
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
 
 ---
 
-### Q2. What can you claim for S6 (LE bottom sheet)?
-
-**Points to:** [Production bridge · S6](../03-production-bridge.md) · [Questions · S6](../04-questions.md#s6--le-bottom-sheet-conflict--impact-23-min)
+### Q2. What can you claim for BookMyShow LE Bottom Sheet (LE bottom sheet)?
 
 **Answer:**
 
@@ -39,14 +41,18 @@
 | Follow-up | Answer |
 |---|---|
 | Interviewer challenges 30%+? | Clarify measurement scope — nav reduction on flows you shipped, not whole app. |
-| No metric in follow-up? | Weak answer — S6 needs the number or a crisp qualitative outcome. |
+| No metric in follow-up? | Weak answer — BookMyShow LE Bottom Sheet needs the number or a crisp qualitative outcome. |
 | Design-only story? | Still need your technical ownership — component + contracts. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow LE Bottom Sheet
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
-### Q3. What can you claim for S8 (IMOC / crash-free)?
-
-**Points to:** [Production bridge · S8](../03-production-bridge.md) · [Questions · S8](../04-questions.md#s8--imoc--crash-free-incident--leadership-23-min)
+### Q3. What can you claim for BookMyShow IMOC + crash-free at scale (IMOC / crash-free)?
 
 **Answer:**
 
@@ -62,16 +68,20 @@
 | Hero debug story? | Fine as one Action step — lesson still rollback + owner. |
 | Backend blame? | No — coordination and blast radius, not blame theater. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
+
 ---
 
-### Q4. What can you claim for S9 (District AI tooling)?
-
-**Points to:** [Production bridge · S9](../03-production-bridge.md) · [Questions · S9](../04-questions.md#s9--district-ai-tooling-judgment-no-worship-23-min)
+### Q4. What can you claim for District Free Parking + Clean/MVVM + AI tooling (District AI tooling)?
 
 **Answer:**
 
 > **Allowed:** Context engineering, AI-assisted tests/reviews inside envelope, Clean/MVVM migration discipline, structured logging, rejected bad generations.  
-> **Forbidden:** “AI wrote the app”; mixing S15/S16 product AI into tooling answer.  
+> **Forbidden:** “AI wrote the app”; mixing FinTrack on-device AI/GymFlow on-device AI product AI into tooling answer.  
 > Contrast line ready: FinTrack/GymFlow = product on-device systems.
 
 **Follow-ups:**
@@ -80,13 +90,17 @@
 |---|---|
 | Name the tools? | Cursor, Claude, Copilot — as accelerators, not authors. |
 | XCTest/XCUITest drafts? | Allowed — with human review on assertions. |
-| S15 if they ask privacy? | Pivot cleanly — on-device, fail-soft, no cloud sync of finance data. |
+| FinTrack on-device AI if they ask privacy? | Pivot cleanly — on-device, fail-soft, no cloud sync of finance data. |
+
+**How can I relate to my case:**
+- **Shipped:** FinTrack on-device AI; GymFlow on-device AI; District Free Parking + Clean/MVVM + AI tooling
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q5. What metrics are forbidden to invent?
-
-**Points to:** [Production bridge](../03-production-bridge.md) · [Questions · S1 common wrong](../04-questions.md#s1--ads-refactor--herowidget-hard-technical-23-min)
 
 **Answer:**
 
@@ -100,11 +114,15 @@
 | “Significantly improved”? | Weaker than **30%+** or **99.95%+** when you have them. |
 | Story bank location? | [`../../../stories/story-bank.md`](../../../stories/story-bank.md) |
 
+**How can I relate to my case:**
+- **Shipped:** None for this prompt — keep it conceptual unless they ask for a case.
+- **Design if asked:** N/A
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
 ### Q6. How do you answer “biggest impact metric?”
-
-**Points to:** [Questions · Q6](../04-questions.md#q6-biggest-impact-metric-3045s)
 
 **Answer:**
 
@@ -116,15 +134,19 @@
 
 | Follow-up | Answer |
 |---|---|
-| They want one number only? | S6 **30%+** for product impact; S8 for reliability culture. |
+| They want one number only? | BookMyShow LE Bottom Sheet **30%+** for product impact; BookMyShow IMOC + crash-free at scale for reliability culture. |
 | Side project metric? | FinTrack/GymFlow only if question invites — default BMS trio. |
 | No metric role? | Crisp qualitative outcome + lesson — still better than invented %. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow LE Bottom Sheet; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
+
 ---
 
-### Q7. What is the S1 full script spine for recording?
-
-**Points to:** [Questions · S1 Full spoken answer](../04-questions.md#s1--ads-refactor--herowidget-hard-technical-23-min)
+### Q7. What is the BookMyShow Ads pipeline + HeroWidget lifecycle full script spine for recording?
 
 **Answer:**
 
@@ -139,10 +161,17 @@
 
 | Follow-up | Answer |
 |---|---|
-| Priority record set? | S6, S8, S9, S1 + T2 (Copilot junk). |
+| Priority record set? | BookMyShow LE Bottom Sheet, BookMyShow IMOC + crash-free at scale, District Free Parking + Clean/MVVM + AI tooling, BookMyShow Ads pipeline + HeroWidget lifecycle + T2 (Copilot junk). |
 | Voice memo artifact? | Yes — Day 26 has no code/; voice is the deliverable. |
-| Provenance tag? | Verified · S1 · BookMyShow · Ads / HeroWidget |
+| Provenance tag? | BookMyShow Ads pipeline + HeroWidget lifecycle · BookMyShow · Ads / HeroWidget |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle; BookMyShow LE Bottom Sheet; BookMyShow IMOC + crash-free at scale; District Free Parking + Clean/MVVM + AI tooling
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
+
+Next: [`../04-questions.md`](../04-questions.md) for full spoken scripts · [`../05-exercises.md`](../05-exercises.md) for record reps
 
 ---
 
-Next: [`../04-questions.md`](../04-questions.md) for full spoken scripts · [`../05-exercises.md`](../05-exercises.md) for record reps

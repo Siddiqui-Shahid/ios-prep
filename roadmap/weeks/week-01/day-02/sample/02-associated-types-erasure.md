@@ -6,14 +6,11 @@
 
 ### Q1. How is an associated type different from a generic parameter?
 
-**Points to:** [Foundations · §4 Associated types](../01-foundations.md#4-associated-types--the-adopter-chooses-the-type)
-
 **Answer:**
 
 > A **generic parameter** is filled in by the **caller** — `Renderer<ImageCreative>`. An **associated type** is filled in by the **type that adopts the protocol** — `ImageAd` decides what its `ContentView` is. Remember: “Generics: I tell the function what `T` is. Associated types: the adopter decides.”
 
 **Follow-ups:**
-
 
 | Follow-up              | Answer                                                                                                         |
 | ---------------------- | -------------------------------------------------------------------------------------------------------------- |
@@ -21,14 +18,12 @@
 | Why is that powerful?  | Flexible contracts without a shared base class.                                                                |
 | Why does it feel hard? | Different adopters pick different shapes — hard to put in one plain array.                                     |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
-
-
 ### Q2. Why does a “simple protocol variable” stop working with associated types?
-
-**Points to:** [Deep dive · §1.1 Under pressure](../02-deep-dive.md#11-why-a-simple-protocol-variable-suddenly-stops-working)
 
 **Answer:**
 
@@ -36,21 +31,18 @@
 
 **Follow-ups:**
 
-
 | Follow-up                                        | Answer                                                                                                    |
 | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------- |
 | Were these always usable as simple existentials? | Historically no — unlike many plain protocols. Modern Swift improved some cases; you still need a plan.   |
 | Four strategies?                                 | Stay generic end-to-end; type-erase at the boundary; constrained `any P`; closed enum of known creatives. |
 | Decision to memorize?                            | Stay generic while you can; erase only when you must mix shapes.                                          |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
-
-
 ### Q3. What do primary associated types buy you?
-
-**Points to:** [Deep dive · §1.2 Primary associated types](../02-deep-dive.md#12-primary-associated-types-awareness)
 
 **Answer:**
 
@@ -58,21 +50,18 @@
 
 **Follow-ups:**
 
-
 | Follow-up                     | Answer                                                                                                    |
 | ----------------------------- | --------------------------------------------------------------------------------------------------------- |
 | Interview line?               | “They fix part of the type shape — they don’t make every associated-type protocol free as a mixed array.” |
 | Still need erasure sometimes? | Yes — when you need one usable type for heterogeneous storage.                                            |
 | Same idea in Apple’s libs?    | `AnyIterator` / `AnySequence` / `AnyPublisher` exist because associated types block easy existentials.    |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
-
-
 ### Q4. What is the extension-default dispatch trap?
-
-**Points to:** [Deep dive · §3 Static vs dynamic dispatch](../02-deep-dive.md#3-static-vs-dynamic-dispatch-senior-must-know)
 
 **Answer:**
 
@@ -80,21 +69,18 @@
 
 **Follow-ups:**
 
-
 | Follow-up                  | Answer                                                                                                                       |
 | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | One interview sentence?    | “Generics can specialize; existentials use witness tables; extension defaults that aren’t requirements may bind statically.” |
 | Ads angle?                 | Shared identical `track()` defaults in an extension are fine; custom per-creative overrides must be requirements.            |
 | Static vs witness vs ObjC? | Concrete/`final`/specialized generics → static; protocol requirements via existential → witness; `@objc` → message send.     |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
-
-
 ### Q5. What is type erasure, and when do you need it?
-
-**Points to:** [Deep dive · §5 Type erasure](../02-deep-dive.md#5-type-erasure--full-mental-model) · [code · AnyTrackable](../code/TypeErasureDemo.swift)
 
 **Answer:**
 
@@ -102,21 +88,18 @@
 
 **Follow-ups:**
 
-
 | Follow-up                           | Answer                                                                                                      |
 | ----------------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | How does a hand-rolled eraser work? | Store the needed operations as closures / a common output (often upcast views to `UIView`).                 |
 | Same idea as Combine?               | `AnyPublisher` hides nested generic publisher types — same motive.                                          |
 | Demo file?                          | `[TypeErasureDemo.swift](../code/TypeErasureDemo.swift)` — `AnyTrackable` wrapping Banner and Interstitial. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
-
-
 ### Q6. What costs of type erasure must you say aloud?
-
-**Points to:** [Deep dive · §5.3 Costs](../02-deep-dive.md#53-costs-you-must-be-able-to-say)
 
 **Answer:**
 
@@ -124,28 +107,24 @@
 
 **Follow-ups:**
 
-
 | Follow-up            | Answer                                                                               |
 | -------------------- | ------------------------------------------------------------------------------------ |
 | Senior rule?         | Generics inside; erase at the boundary only.                                         |
 | Trap answer?         | “Type erasure is free.”                                                              |
 | When still worth it? | True mixed feed, plugin registry, or public boundary that must hide nested generics. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
-
-
 ### Q7. Open registry vs closed enum — when each?
-
-**Points to:** [Deep dive · §6 Open vs closed component sets](../02-deep-dive.md#6-open-vs-closed-component-sets-sdui-bridge)
 
 **Answer:**
 
-> A **closed enum** of known creatives is simple and exhaustive — but every new type is an app release plus an enum edit. An **open protocol registry** of factories matches CMS growth better — with an explicit unknown fallback and versioning. Soft bridge to SDUI / backend-driven header (Verified S3 / Applied S3-A1); keep Day 02 centered on S1.
+> A **closed enum** of known creatives is simple and exhaustive — but every new type is an app release plus an enum edit. An **open protocol registry** of factories matches CMS growth better — with an explicit unknown fallback and versioning. Soft bridge to SDUI / backend-driven header (BookMyShow backend-driven header & search / Applied BookMyShow backend-driven header & search-A1); keep Day 02 centered on BookMyShow Ads pipeline + HeroWidget lifecycle.
 
 **Follow-ups:**
-
 
 | Follow-up              | Answer                                                        |
 | ---------------------- | ------------------------------------------------------------- |
@@ -153,14 +132,15 @@
 | Cons of open registry? | Unknown types need fallback; versioning matters.              |
 | POP connection?        | Factories and capabilities are the same composition instinct. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle; BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
 
 ---
 
-
-
 ### Q8. How do `some` and `any` differ once associated types enter?
-
-**Points to:** [Deep dive · §4 some vs any](../02-deep-dive.md#4-some-vs-any-deep) · [Foundations · §4.2 Why this feels hard](../01-foundations.md#42-why-this-feels-hard)
 
 **Answer:**
 
@@ -168,14 +148,16 @@
 
 **Follow-ups:**
 
-
 | Follow-up                    | Answer                                       |
 | ---------------------------- | -------------------------------------------- |
 | Hide one return type?        | Prefer `some P`.                             |
 | Store different adopters?    | `any P` if allowed, else type eraser.        |
 | Max performance in hot bind? | Generics / `some` on a stable concrete type. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
+Next: [03-pipeline-and-code.md](03-pipeline-and-code.md)
 
 ---
 
-Next: [03-pipeline-and-code.md](03-pipeline-and-code.md)

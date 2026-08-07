@@ -1,12 +1,10 @@
 # Sample 01 — Cache tiers (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is the image loading pipeline, in plain words?
-
-**Points to:** [Foundations · §1 Plain-English mental model](../01-foundations.md#1-plain-english-mental-model)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Cancel on scroll? | Prevents wrong image flash and wasted decode/network work. |
 | Video vs image lifecycle? | Ads video needs pause/play contract; images need cancel + cache tiers. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What are L1, L2, and L3?
-
-**Points to:** [Foundations · §2 Glossary](../01-foundations.md#2-glossary) · [Foundations · §3 Cache tiers](../01-foundations.md#3-cache-tiers-embedded-teaching)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | Write policy? | Decode → L1 immediately for UI; write L2 **async** — don’t block main on disk. |
 | L3 alone enough? | No — see URLCache question below. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. What decoded-size math must you quote?
-
-**Points to:** [Foundations · §3 Cache tiers](../01-foundations.md#3-cache-tiers-embedded-teaching)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | Why not full-res in L1 “for zoom”? | Feed cells don’t need it — decode on demand for zoom if product requires. |
 | Senior one-liner? | “Decoded size dominates RAM; bytes on disk are cheap by comparison.” |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. Why is URLCache alone insufficient?
-
-**Points to:** [Foundations · §4 Why URLCache alone](../01-foundations.md#4-why-urlcache-alone-is-insufficient)
 
 **Answer:**
 
@@ -74,11 +75,12 @@
 | Dedupe across views? | Coordinator tracks in-flight tasks per key — URLCache doesn’t fan-out to N image views. |
 | ETag / HTTP cache role? | Bandwidth savings at L3 — orthogonal to decoded L1 eviction. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. What is scroll-safe loading in five rules?
-
-**Points to:** [Foundations · §5 Scroll-safe loading](../01-foundations.md#5-scroll-safe-loading-60s)
 
 **Answer:**
 
@@ -92,11 +94,12 @@
 | Prefetch footgun? | Decode storms on fling — bound concurrency and cancel when scroll direction changes. |
 | SwiftUI note? | `.task(id: url)` helps cancellation — still reason about view identity. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What are dedup and generation tokens?
-
-**Points to:** [Foundations · §2 Glossary](../01-foundations.md#2-glossary) · [Deep dive · §3 Dedup & cancellation](../02-deep-dive.md#3-dedup--cancellation)
 
 **Answer:**
 
@@ -110,11 +113,12 @@
 | Cancel last observer policy? | Some loaders cancel Task when last observer detaches — policy choice. |
 | Symptom without tokens? | Avatar from previous row flashes on fast scroll. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. What should I say after foundations?
-
-**Points to:** [Foundations · §7 Checkpoint](../01-foundations.md#7-checkpoint)
 
 **Answer:**
 
@@ -128,6 +132,10 @@
 | Memory warning action? | Trim L1; pause non-visible media/decodes; keep L2. |
 | Next sample? | [02-image-pipeline.md](02-image-pipeline.md) — ImageIO and coordinator HLD. |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [02-image-pipeline.md](02-image-pipeline.md)
+
+---
+

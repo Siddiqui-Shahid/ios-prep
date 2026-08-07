@@ -1,12 +1,10 @@
 # Sample 03 — Actors, reentrancy, and Sendable (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is an actor, in plain words?
-
-**Points to:** [Foundations · §2.4 Actors = a room with one conversation at a time](../01-foundations.md#24-actors--a-room-with-one-conversation-at-a-time) · [Deep dive · §4.1 Isolation basics](../02-deep-dive.md#41-isolation-basics)
 
 **Answer:**
 
@@ -18,13 +16,17 @@
 |---|---|
 | Do I write locks for actor state? | No for isolated properties — the serial executor handles mutual exclusion. |
 | Call from outside? | `await counter.increment()` — hop onto the actor’s executor. |
-| vs GCD serial queue? | Same “one writer at a time” idea — compiler-enforced for actors (S2-A1). |
+| vs GCD serial queue? | Same “one writer at a time” idea — compiler-enforced for actors (Design: actor SafeDict (not shipped)). |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries
+- **Design if asked:** Design: actor SafeDict (not shipped)
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
 
 ---
 
 ### Q2. What is reentrancy, and why do seniors miss it?
-
-**Points to:** [Foundations · §2.4 reentrancy sentence](../01-foundations.md#24-actors--a-room-with-one-conversation-at-a-time) · [Deep dive · §4.2 Reentrancy](../02-deep-dive.md#42-reentrancy--the-critical-senior-fact)
 
 **Answer:**
 
@@ -38,11 +40,12 @@
 | Wallet `spend` bug? | Refresh at `await` — another `spend` may run in between. |
 | Self-check Q3 from foundations? | Yes — another call **can** interleave during `await`. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. How do I harden actor code across `await`?
-
-**Points to:** [Deep dive · §4.2 Hardening patterns](../02-deep-dive.md#hardening-patterns) · [Deep dive · §9 Decision rules](../02-deep-dive.md#9-decision-rules-speak-these)
 
 **Answer:**
 
@@ -56,11 +59,12 @@
 | Boolean `isRefreshing` alone? | Fragile — another call may clear/set it during your await. |
 | Interview vs “actors fix concurrency”? | They move bugs from data races to **logic across suspension**. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. When do I use `@MainActor` vs a custom actor?
-
-**Points to:** [Foundations · §2.5 `@MainActor`](../01-foundations.md#25-mainactor--this-belongs-on-the-ui-thread) · [Deep dive · §4.4 `@MainActor` vs custom actors](../02-deep-dive.md#44-mainactor-vs-custom-actors)
 
 **Answer:**
 
@@ -74,15 +78,16 @@
 | Heavy work location? | Off main; hop back with `await MainActor.run` or `@MainActor` method for UI updates. |
 | Call `@MainActor` from background? | Usually requires `await` — hop to main. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. Actor vs GCD serial queue vs lock?
 
-**Points to:** [Deep dive · §4.3 Actor vs class + lock vs GCD](../02-deep-dive.md#43-actor-vs-class--lock-vs-gcd-serial-queue) · [Foundations · §3](../01-foundations.md#3-asyncawait-vs-gcd-callbacks-first-contrast)
-
 **Answer:**
 
-> **GCD serial queue** — manual API discipline; `sync` on same queue deadlocks; legacy shared maps (Verified · S2). **Lock** — tiny critical sections; easy to forget unlock / ordering. **`actor`** — compiler isolation; pitfall is **reentrancy** not forgotten locks. Actors don’t replace stable GCD that works — strangler migration for new boundaries (S2-A1).
+> **GCD serial queue** — manual API discipline; `sync` on same queue deadlocks; legacy shared maps (BookMyShow synchronised dictionaries). **Lock** — tiny critical sections; easy to forget unlock / ordering. **`actor`** — compiler isolation; pitfall is **reentrancy** not forgotten locks. Actors don’t replace stable GCD that works — strangler migration for new boundaries (Design: actor SafeDict (not shipped)).
 
 **Follow-ups:**
 
@@ -92,11 +97,15 @@
 | Still deadlock risks? | Blocking pool with sync GCD, logical waits, priority issues — avoid sync main hops from async. |
 | New shared mutable map? | Prefer actor (deep dive rule 1). |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries
+- **Design if asked:** Design: actor SafeDict (not shipped)
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
+
 ---
 
 ### Q6. What does Sendable mean?
-
-**Points to:** [Foundations · §2.6 Sendable](../01-foundations.md#26-sendable--safe-to-hand-across-concurrency-domains) · [Deep dive · §5.1 What Sendable means](../02-deep-dive.md#51-what-sendable-means)
 
 **Answer:**
 
@@ -110,11 +119,12 @@
 | `@unchecked Sendable`? | “Trust me, I synchronized” — compiler stops checking; prefer actor for new code. |
 | `nonisolated`? | Sparingly — for truly immutable or computed pieces; know the rules. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. Are all structs automatically Sendable?
-
-**Points to:** [Deep dive · §5.2 Value types are not automatically Sendable](../02-deep-dive.md#52-value-types-are-not-automatically-sendable-forever) · [Foundations · §7 Self-check](../01-foundations.md#7-self-check-before-deep-dive)
 
 **Answer:**
 
@@ -128,11 +138,12 @@
 | `Wrapper { var label: MutableLabel }`? | **Not** safely Sendable — class mutability escapes. |
 | Generic `Box<T>`? | Sendable when `T: Sendable` (under checking). |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q8. What should I say about Swift 6 / default MainActor settings?
-
-**Points to:** [Deep dive · §7 Swift 6.2 / Approachable Concurrency](../02-deep-dive.md#7-swift-62--approachable-concurrency--default-mainactor--settings-not-universal-law) · [Production bridge · Bridge C](../03-production-bridge.md#bridge-c--settings-humility-swift-6)
 
 **Answer:**
 
@@ -144,8 +155,53 @@
 |---|---|
 | Safe interview opener on settings? | “Under Swift 6 checking when enabled…” |
 | Universal claim to avoid? | “Every Swift app defaults to MainActor everywhere.” |
-| Next sample? | Production S2 — [04-production-s2.md](04-production-s2.md) |
+| Next sample? | Production BookMyShow synchronised dictionaries — [04-production-s2.md](04-production-s2.md) |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
 
 ---
 
+### Q9. How do you handle Sendable across modules / public classes?
+
+**Answer:**
+
+> Module boundaries make Sendable a **design** problem, not a checkbox. If a public class from another module isn’t Sendable, don’t paper over it with `@unchecked` just to call an actor. Prefer **Sendable value DTOs** at the boundary, or keep the reference inside an isolated domain and only expose async methods that return values. Under Swift 6 checking when enabled, crossings surface as errors — good pressure. UIKit types: hop to `@MainActor` rather than pretending `UIView` is a free Sendable token.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Generic APIs? | Constrain to `Sendable` where values cross tasks. |
+| `@MainActor` public class? | Callers must `await`; document isolation. |
+| Trap answer? | “Ignore library types; only my models need Sendable.” |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
+---
+
+### Q10. Does awaiting MainActor from an actor deadlock like GCD?
+
+**Answer:**
+
+> People map GCD deadlock instincts onto actors incorrectly. With GCD, **syncing onto the queue you’re already on** deadlocks. Awaiting `@MainActor` from a custom actor is different — your actor method **suspends**, which allows reentrancy, and MainActor work can proceed. You can still create poor designs: blocking with `DispatchQueue.main.sync` from thread-pool async code, or long circular waits. Prefer async hops end-to-end; keep actor mutations short after returning from MainActor work. While awaiting MainActor, other tasks may enter your actor — re-validate state.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| When hop needed? | Publishing UI state owned on MainActor. |
+| Reverse hop? | MainActor awaiting custom actor for cache — fine if not blocking. |
+| Wrong absolute claim? | “Never call MainActor from an actor or you’ll always deadlock.” |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 Next: [04-production-s2.md](04-production-s2.md)
+
+---
+

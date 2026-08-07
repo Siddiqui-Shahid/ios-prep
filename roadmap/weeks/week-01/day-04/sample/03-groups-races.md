@@ -1,12 +1,10 @@
 # Sample 03 — Groups, races, concurrency traps (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is DispatchGroup for?
-
-**Points to:** [Foundations · §6 DispatchGroup](../01-foundations.md#6-dispatchgroup-foundations) · [Deep dive · §6 DispatchGroup pitfalls](../02-deep-dive.md#6-dispatchgroup-pitfalls)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Safe pattern? | `group.enter(); defer { group.leave() }` immediately after enter. |
 | Where to notify for UI? | **`DispatchQueue.main`** for the merge/update block. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What are common DispatchGroup pitfalls?
-
-**Points to:** [Deep dive · §6 DispatchGroup pitfalls](../02-deep-dive.md#6-dispatchgroup-pitfalls)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | `wait()` vs `notify`? | `wait()` blocks the calling thread; `notify` schedules async completion. |
 | Timeout in tools? | Some code uses timed wait for diagnostics — don’t block main in production UI. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. What is a semaphore (awareness level)?
-
-**Points to:** [Foundations · §7 Semaphores](../01-foundations.md#7-semaphores-awareness-only)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | Semaphore vs serial queue? | Semaphore limits parallelism; serial queue enforces one-at-a-time on that queue’s tasks. |
 | Wrong-queue wait trap? | Waiting on a queue that must run the signaling work → circular wait. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. What is a data race?
-
-**Points to:** [Foundations · §1 Why threads race](../01-foundations.md#1-why-threads-race-intern-story) · [Foundations · §8 Race vs deadlock](../01-foundations.md#8-race-vs-deadlock-vs-priority-inversion)
 
 **Answer:**
 
@@ -74,11 +75,12 @@
 | vs logic bug? | Race is timing-dependent; may pass tests, fail in production under load. |
 | SafeDict fixes which problem? | Race on shared dictionary storage — not deadlock by itself. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. What is deadlock (in GCD terms)?
-
-**Points to:** [Foundations · §3.2 Deadlock rule](../01-foundations.md#32-deadlock-rule-learn-early) · [Deep dive · §2 Deadlock patterns](../02-deep-dive.md#2-deadlock-patterns-memorize)
 
 **Answer:**
 
@@ -92,11 +94,12 @@
 | Main-thread symptom? | UI frozen, spinner forever, watchdog may kill app. |
 | Fix hierarchy for ABBA? | Always acquire queues/locks in one global order. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What is priority inversion?
-
-**Points to:** [Foundations · §8 Race vs deadlock vs priority inversion](../01-foundations.md#8-race-vs-deadlock-vs-priority-inversion) · [Deep dive · §9 QoS and priority inversion](../02-deep-dive.md#9-qos-and-priority-inversion)
 
 **Answer:**
 
@@ -110,11 +113,12 @@
 | SafeDict on serial queue? | All work same queue — less ad-hoc lock inversion than scattered `NSLock`s. |
 | UI feels janky under load? | Check if background work holds contended locks UI needs. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. How do race, deadlock, and priority inversion differ?
-
-**Points to:** [Foundations · §8 Race vs deadlock vs priority inversion](../01-foundations.md#8-race-vs-deadlock-vs-priority-inversion) · [Deep dive · §10 Trade-off table](../02-deep-dive.md#10-trade-off-table-memorize)
 
 **Answer:**
 
@@ -128,15 +132,16 @@
 | main.sync from main causes? | **Deadlock** — not a race. |
 | Low QoS lock + high QoS UI? | **Priority inversion** risk. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q8. What is the actors preview for Day 04?
 
-**Points to:** [Foundations · §9 Actors preview](../01-foundations.md#9-actors-preview-one-paragraph) · [Deep dive · §7 Locks vs queues vs actors](../02-deep-dive.md#7-locks-vs-queues-vs-actors) · [Production bridge · §3 S2-A1](../03-production-bridge.md#3-how-i-would-apply-it--s2-a1)
-
 **Answer:**
 
-> A Swift **`actor`** gives **language-enforced isolation** for the same problem SafeDict solves with a serial queue — one executor, serialized access. For **new** code you’d evaluate an actor with get/set/snapshot and `await` (How I would apply it · **S2-A1**). Today’s depth is **GCD** — the production story you shipped. Don’t claim production was rewritten as actors for S2.
+> A Swift **`actor`** gives **language-enforced isolation** for the same problem SafeDict solves with a serial queue — one executor, serialized access. For **new** code you’d evaluate an actor with get/set/snapshot and `await` (Design: **Design: actor SafeDict (not shipped)**). Today’s depth is **GCD** — the production story you shipped. Don’t claim production was rewritten as actors for BookMyShow synchronised dictionaries.
 
 **Follow-ups:**
 
@@ -146,6 +151,35 @@
 | Migration pitch (not shipped claim)? | “Same safe API — get/set/snapshot — implemented by an actor; callers await.” |
 | Day 05 pointer? | [`../day-05/code/SafeDictActor.swift`](../day-05/code/SafeDictActor.swift) as Learning-lab. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries
+- **Design if asked:** Design: actor SafeDict (not shipped)
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
+
 ---
 
+### Q9. Locks vs queues vs actors — how do you compare them?
+
+**Answer:**
+
+> **Serial queue wrapper** — simple shared maps (BookMyShow synchronised dictionaries); cost is sync-read latency under load and `sync` deadlock if misused. **Concurrent + barrier** — read-heavy maps; cost is complexity and writer starvation. **NSLock / os_unfair_lock** — tiny critical sections; easy to forget unlock and hit **priority inversion**. **`actor`** — greenfield / Design: actor SafeDict (not shipped); compiler isolation, async API, reentrancy across `await`. Pitch (not a shipped claim): same get/set/snapshot surface on an actor; isolation moves from convention to the type system.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Default for shared maps today? | Serial-queue SafeDict for legacy BookMyShow synchronised dictionaries; actor for new modules. |
+| Why not locks everywhere? | Ordering bugs, forgotten unlock, inversion under QoS. |
+| Barrier when? | Read-dominated large maps — measure; watch writer starvation. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries
+- **Design if asked:** Design: actor SafeDict (not shipped)
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
+
 Next: [04-production-s2.md](04-production-s2.md)
+
+---
+

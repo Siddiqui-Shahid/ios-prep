@@ -1,12 +1,10 @@
 # Sample 01 — ARC basics (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is ARC, in plain words?
-
-**Points to:** [Foundations · §1 The one-sentence model](../01-foundations.md#1-the-one-sentence-model) · [Deep dive · §1 What the compiler actually does](../02-deep-dive.md#1-what-the-compiler-actually-does)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | When does `deinit` run? | When the last strong reference is released. Relative to that release, timing is predictable — unlike many GC finalizers. |
 | Does ARC mean “no memory bugs”? | No. Ownership bugs show up as cycles, early crashes from bad `unowned`, or abandoned caches — not as “forgot to free” in everyday Swift class code. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What are strong, weak, and unowned?
-
-**Points to:** [Foundations · §2 Three kinds of references](../01-foundations.md#2-three-kinds-of-references) · [Deep dive · §2 Strong, weak, unowned](../02-deep-dive.md#2-strong-weak-unowned--semantics-table)
 
 **Answer:**
 
@@ -40,11 +39,12 @@
 | When is `unowned` justified? | When lifetimes are tied by construction — for example a child object that cannot outlive its parent, and you want non-optional access. |
 | What about `unowned(unsafe)`? | It skips safety checks. Almost never for casual app code. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. How do I choose between weak and unowned?
-
-**Points to:** [Foundations · §6 weak vs unowned decision tree](../01-foundations.md#6-weak-vs-unowned--intern-decision-tree) · [Deep dive · When unowned is justified](../02-deep-dive.md#when-unowned-is-justified)
 
 **Answer:**
 
@@ -60,11 +60,12 @@
 | Child owned only by parent, never escapes — allowed? | **Unowned** is allowed if that construction is true. Prefer weak if you are unsure. |
 | Is unowned “faster so always use it”? | No. Correctness first. Weak’s optional unwrap is cheap compared to a production crash. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. What does it mean if `deinit` never runs?
-
-**Points to:** [Foundations · §7 What “deinit not called” means](../01-foundations.md#7-what-deinit-not-called-means)
 
 **Answer:**
 
@@ -78,11 +79,12 @@
 | Is “ARC is broken” ever the answer? | Almost never. Fix ownership. |
 | Could the object simply still be on screen? | Yes — presented, in a stack, or cached. Not every missing `deinit` is a cycle. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. How do value types relate to ARC?
-
-**Points to:** [Foundations · §1](../01-foundations.md#1-the-one-sentence-model) · [Deep dive · §10 Value types vs ARC](../02-deep-dive.md#10-value-types-vs-arc-edge)
 
 **Answer:**
 
@@ -96,11 +98,12 @@
 | Why prefer structs for models? | Copy semantics and less accidental shared mutation. Classes when you need identity or UIKit subclassing. |
 | Does `weak` work on structs? | `weak` / `unowned` apply to class instances (reference types), not to plain value types. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What should I be able to say after foundations?
-
-**Points to:** [Foundations · §10 Bridge to senior thinking](../01-foundations.md#10-bridge-to-senior-thinking) · [Foundations · §4 Glossary](../01-foundations.md#4-glossary-speak-these-cleanly)
 
 **Answer:**
 
@@ -114,11 +117,12 @@
 | What is an escaping closure? | A closure that can outlive the function that created it — stored, async, or kept by an API. |
 | What is jetsam? | iOS killing your process under memory pressure. Abandoned heaps contribute to that risk at scale. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. How is ARC different from a tracing garbage collector?
-
-**Points to:** [Deep dive · §1 interview-ready contrast](../02-deep-dive.md#1-what-the-compiler-actually-does)
 
 **Answer:**
 
@@ -132,6 +136,10 @@
 | Cost model? | Predictable per-operation retain/release, not GC pause semantics. |
 | Why do interviews still ask this? | To check you won’t say “Swift has a garbage collector like Java.” |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [02-retain-cycles.md](02-retain-cycles.md)
+
+---
+

@@ -1,12 +1,10 @@
 # Sample 03 — Linked list algorithms (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. How do I reverse a linked list iteratively?
-
-**Points to:** [Deep dive · §3.2 Reverse iterative](../02-deep-dive.md#32-reverse-iterative-must-have) · [code/LinkedListAlgos.swift](../code/LinkedListAlgos.swift)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Approach script? | Iterative three-pointer O(1) space; save next before rewrite; edges empty/single. |
 | Production Swift? | Interview must-have; Arrays dominate product UI. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. How does Floyd cycle detection work?
-
-**Points to:** [Deep dive · §3.3 Floyd cycle detection](../02-deep-dive.md#33-floyd-cycle-detection) · [Foundations · §2 Glossary](../01-foundations.md#2-glossary-learn-these-cold)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | Phase 2 when? | When interviewer asks for entrance node, not just boolean. |
 | Swift `ListNode`? | `final class` — reference semantics; cycle is possible. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. How do I find the middle of a linked list?
-
-**Points to:** [Deep dive · §3.4 Middle of list](../02-deep-dive.md#34-middle-of-list)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | Delete middle node? | Often copy next value or use dummy head — separate problem. |
 | Array middle? | O(1) index — why Arrays win for random access. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. How do I merge two sorted linked lists?
-
-**Points to:** [Deep dive · §3.5 Merge two sorted lists](../02-deep-dive.md#35-merge-two-sorted-lists)
 
 **Answer:**
 
@@ -74,11 +75,12 @@
 | Recursive merge? | O(n+m) stack — iterative preferred in interviews. |
 | Merge k lists preview? | Repeated merge O(kn); min-heap O(n log k) — Week 4 preview. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. What is reverse k-group and why is it tricky?
-
-**Points to:** [Deep dive · §3.6 Reverse k-group](../02-deep-dive.md#36-reverse-k-group-tricky)
 
 **Answer:**
 
@@ -92,11 +94,12 @@
 | Dummy head again? | Often helps segment bookkeeping. |
 | Interview frequency? | Hard — shows pointer mastery. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What is the universal coding opener?
-
-**Points to:** [Foundations · §6 Coding approach budget](../01-foundations.md#6-coding-approach-budget-23-min--memorize) · [Deep dive · §4 Approach scripts bank](../02-deep-dive.md#4-approach-scripts-bank-embed--speak-these)
 
 **Answer:**
 
@@ -110,11 +113,12 @@
 | Mid-problem constraint change? | Restate new plan aloud — don’t silently rewrite. |
 | Full scripts? | [code/ApproachScripts.md](../code/ApproachScripts.md) |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. What linked-list traps should I name before coding?
-
-**Points to:** [Deep dive · §6 Failure modes](../02-deep-dive.md#6-failure-modes--traps) · [§7 Catch-up ↔ DSA composure](../02-deep-dive.md#7-catch-up--dsa-composure-t8-energy)
 
 **Answer:**
 
@@ -128,6 +132,10 @@
 | Class vs struct node? | Interview `ListNode` is class — shared mutable links. |
 | Next topic? | Production bridges — [04-production-bridges.md](04-production-bridges.md). |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [04-production-bridges.md](04-production-bridges.md)
+
+---
+

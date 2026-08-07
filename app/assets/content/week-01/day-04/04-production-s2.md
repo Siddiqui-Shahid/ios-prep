@@ -1,12 +1,10 @@
-# Sample 04 — Production S2 and S2-A1 (Q&A)
+# Sample 04 — Synchronised dictionaries & actor SafeDict design (Q&A)
 
-> Guided teaching. Separates **Verified · S2** resume facts from **How I would apply it · S2-A1** so you never blur them in an interview.
+> Guided teaching. Separates **shipped** named cases from **design-if-asked** and **lab-only** so you never blur them in an interview.
 
 ---
 
-### Q1. What can you claim under Verified · S2?
-
-**Points to:** [Production bridge · §1 Story map](../03-production-bridge.md#1-story-map) · [Production bridge · §2 Verified · S2](../03-production-bridge.md#2-verified--s2--synchronised-dictionaries)
+### Q1. What can you claim for BookMyShow synchronised dictionaries?
 
 **Answer:**
 
@@ -18,17 +16,21 @@
 |---|---|
 | ≤20s pitch? | “We gated shared dictionaries behind a serial queue API so call sites couldn’t race the storage — crashes went away on that path.” |
 | Timed opener? | “We had races on shared dictionaries — I’ll cover the serial-queue design and trade-offs vs actors.” |
-| Provenance label? | Verified · S2 · BookMyShow · synchronised dictionaries |
+| Named-case label? | BookMyShow synchronised dictionaries |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
 
 ---
 
-### Q2. What must you NOT invent for S2?
-
-**Points to:** [Production bridge · §2 What you must not invent](../03-production-bridge.md#2-verified--s2--synchronised-dictionaries) · [Production bridge · §5 Anti-patterns](../03-production-bridge.md#5-anti-patterns)
+### Q2. What must you NOT invent for BookMyShow synchronised dictionaries?
 
 **Answer:**
 
-> Do **not** invent exact crash counts or percentages fixed by this work alone. Do **not** say “I alone brought the app to 99.95% CFS” — that is **S8 culture**, not S2 attribution. Do **not** claim every dictionary in the app was converted. Do **not** claim production used your Learning-lab [`SafeDict.swift`](../code/SafeDict.swift) file literally.
+> Do **not** invent exact crash counts or percentages fixed by this work alone. Do **not** say “I alone brought the app to 99.95% CFS” — that is **BookMyShow IMOC + crash-free at scale culture**, not BookMyShow synchronised dictionaries attribution. Do **not** claim every dictionary in the app was converted. Do **not** claim production used your Learning-lab [`SafeDict.swift`](../code/SafeDict.swift) file literally.
 
 **Follow-ups:**
 
@@ -38,11 +40,15 @@
 | Forbidden breadth? | “Fixed all crashes at BMS.” |
 | Learning-lab label? | SafeDict / BarrierDict demos — not shipped BMS source. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Do not steal BookMyShow IMOC / crash-free culture credit for a path-specific dictionary race fix — keep scopes separate.
+
 ---
 
-### Q3. What is the full S2 STAR Action (~90s)?
-
-**Points to:** [Production bridge · §2 STAR Action](../03-production-bridge.md#2-verified--s2--synchronised-dictionaries) · [Production bridge · §7 Timed drills](../03-production-bridge.md#7-timed-drills)
+### Q3. What is the full BookMyShow synchronised dictionaries STAR Action (~90s)?
 
 **Answer:**
 
@@ -56,51 +62,63 @@
 | Result line? | “Eliminated concurrent-access crashes in that shared state path; pattern reused.” |
 | Full STAR budget? | ≤3 minutes including trade-offs if asked. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
+
 ---
 
-### Q4. What is How I would apply it · S2-A1?
-
-**Points to:** [Production bridge · §3 S2-A1](../03-production-bridge.md#3-how-i-would-apply-it--s2-a1) · [Deep dive · §7 Locks vs queues vs actors](../02-deep-dive.md#7-locks-vs-queues-vs-actors)
+### Q4. What is the actor SafeDict design coda (not shipped)?
 
 **Answer:**
 
-> **Design direction**, not a shipped rewrite: “Production used GCD. How I’d apply it in a new module is an **`actor SafeDict`** with get/set/snapshot — callers **await**, isolation is in the type system, same boundary idea.” Point at Day 05 [`SafeDictActor.swift`](../day-05/code/SafeDictActor.swift) as Learning-lab. Say **Applied** aloud so the interviewer hears honesty.
+> **Design direction**, not a shipped rewrite: “Production used GCD. How I’d apply it in a new module is an **`actor SafeDict`** with get/set/snapshot — callers **await**, isolation is in the type system, same boundary idea.” Point at Day 05 [`SafeDictActor.swift`](../day-05/code/SafeDictActor.swift) as Learning-lab. Say **design, not shipped** aloud so the interviewer hears honesty.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| 20s actor coda? | “Same API as an actor for new modules — Applied S2-A1, not a claim we rewrote production.” |
+| 20s actor coda? | “Same API as an actor for new modules — design only, not a claim we rewrote production.” |
 | Why mention actors at all? | Shows modern Swift awareness without faking migration history. |
 | Actor API cost? | Async surface; reentrancy across `await` — different traps than GCD sync. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries
+- **Design if asked:** Design: actor SafeDict (not shipped)
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
+
 ---
 
-### Q5. How do S2 concepts map to interview questions?
-
-**Points to:** [Production bridge · §4 Mapping concepts → lines](../03-production-bridge.md#4-mapping-concepts--lines) · [Foundations · §11 First production bridge](../01-foundations.md#11-first-production-bridge-short)
+### Q5. How do BookMyShow synchronised dictionaries concepts map to interview questions?
 
 **Answer:**
 
-> **Serial vs concurrent** → definitions; SafeDict uses serial. **Thread-safe dict** → private queue API (S2). **async vs sync write** → visibility caveat; prefer sync for read-after-write. **Barrier** → RW pattern for read-heavy (S2 mention). **Deadlock** → sync re-entry on any serial queue. **Actors** → S2-A1 coda. **Why hide queue** → call sites re-race if they touch storage or queue.
+> **Serial vs concurrent** → definitions; SafeDict uses serial. **Thread-safe dict** → private queue API (BookMyShow synchronised dictionaries). **async vs sync write** → visibility caveat; prefer sync for read-after-write. **Barrier** → RW pattern for read-heavy (BookMyShow synchronised dictionaries mention). **Deadlock** → sync re-entry on any serial queue. **Actors** → Design: actor SafeDict (not shipped) coda. **Why hide queue** → call sites re-race if they touch storage or queue.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| If asked “why not always barrier”? | S2 honesty: serial default; RW where read-heavy and measured. |
+| If asked “why not always barrier”? | BookMyShow synchronised dictionaries honesty: serial default; RW where read-heavy and measured. |
 | If asked visibility? | Teach async-write / sync-read rule; prefer sync set. |
-| If asked modern approach? | S2-A1 actor — labeled Applied. |
+| If asked modern approach? | Actor SafeDict coda — labeled design, not shipped. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries
+- **Design if asked:** Design: actor SafeDict (not shipped)
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
 
 ---
 
-### Q6. What are the S2 anti-patterns to avoid?
-
-**Points to:** [Production bridge · §5 Anti-patterns](../03-production-bridge.md#5-anti-patterns) · [Deep dive · §12 Anti-patterns](../02-deep-dive.md#12-anti-patterns)
+### Q6. What are the BookMyShow synchronised dictionaries anti-patterns to avoid?
 
 **Answer:**
 
-> **“Fixed all crashes at BMS”** → path-specific race elimination. **Inventing crash %** → qualitative intermittent races → eliminated on path. **`Final class` spelling** → **`final class`**. **“Async set always visible on next line”** → teach sync set / visibility. **Skipping actor coda** when asked modern approach → give S2-A1 with honest label.
+> **“Fixed all crashes at BMS”** → path-specific race elimination. **Inventing crash %** → qualitative intermittent races → eliminated on path. **`Final class` spelling** → **`final class`**. **“Async set always visible on next line”** → teach sync set / visibility. **Skipping actor coda** when asked modern approach → give Design: actor SafeDict (not shipped) with honest label.
 
 **Follow-ups:**
 
@@ -110,42 +128,57 @@
 | Exposing queue? | Anti-pattern — standardized API was the fix. |
 | Concurrent writes without barrier? | Anti-pattern — barrier or serial. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries
+- **Design if asked:** Design: actor SafeDict (not shipped)
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
+
 ---
 
-### Q7. How does S2 relate to S8 without stealing credit?
-
-**Points to:** [Production bridge · §1 Story map](../03-production-bridge.md#1-story-map) · [Day 04 README · Provenance](../README.md#provenance-reminder)
+### Q7. How does BookMyShow synchronised dictionaries relate to BookMyShow IMOC + crash-free at scale without stealing credit?
 
 **Answer:**
 
-> **S2** is the **specific fix** — synchronised dictionaries, races on that path. **S8** is soft **reliability culture** — Crashlytics triage, high CFS bar at scale. You may say S2 validation included watching Crashlytics. You may **not** attribute app-wide 99.95% CFS solely to S2 or use S8 metrics as if they were S2 results.
+> **BookMyShow synchronised dictionaries** is the **specific fix** — synchronised dictionaries, races on that path. **BookMyShow IMOC + crash-free at scale** is soft **reliability culture** — Crashlytics triage, high CFS bar at scale. You may say BookMyShow synchronised dictionaries validation included watching Crashlytics. You may **not** attribute app-wide 99.95% CFS solely to BookMyShow synchronised dictionaries or use BookMyShow IMOC + crash-free at scale metrics as if they were BookMyShow synchronised dictionaries results.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| Safe Crashlytics mention for S2? | “Validated under concurrency stress and watched Crashlytics” on **that path**. |
-| Behavioral question — lead with? | S2 STAR for concurrency/dictionary question; S8 for reliability culture question. |
-| Blurring S2 and S8? | Interview red flag — keep provenance labels separate. |
+| Safe Crashlytics mention for BookMyShow synchronised dictionaries? | “Validated under concurrency stress and watched Crashlytics” on **that path**. |
+| Behavioral question — lead with? | BookMyShow synchronised dictionaries STAR for concurrency/dictionary question; BookMyShow IMOC + crash-free at scale for reliability culture question. |
+| Blurring BookMyShow synchronised dictionaries and BookMyShow IMOC + crash-free at scale? | Interview red flag — keep provenance labels separate. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Do not steal BookMyShow IMOC / crash-free culture credit for a path-specific dictionary race fix — keep scopes separate.
 
 ---
 
-### Q8. What should you deliver in a timed S2 drill?
-
-**Points to:** [Production bridge · §6 Flash map card](../03-production-bridge.md#6-flash-map-card) · [Production bridge · §7 Timed drills](../03-production-bridge.md#7-timed-drills)
+### Q8. What should you deliver in a timed BookMyShow synchronised dictionaries drill?
 
 **Answer:**
 
-> **≤20s:** serial-queue API, races gone on path. **≤3 min STAR:** problem (multi-queue shared dicts) → action (serial queue / RW, standardized API, stress + Crashlytics) → result (path clean, pattern reused) → lesson (serialize at boundary) → **actor coda** (S2-A1, Applied). Flash card: BookMyShow synchronised dictionaries; GCD serial / RW; safe access API.
+> **≤20s:** serial-queue API, races gone on path. **≤3 min STAR:** problem (multi-queue shared dicts) → action (serial queue / RW, standardized API, stress + Crashlytics) → result (path clean, pattern reused) → lesson (serialize at boundary) → **actor coda** (design-only SafeDict actor). Flash card: BookMyShow synchronised dictionaries; GCD serial / RW; safe access API.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| Story bank link? | [S2](../../../stories/story-bank.md#s2--synchronised-dictionaries-bookmyshow) |
-| After S2 drill? | Main [`../04-questions.md`](../04-questions.md) for two-layer Q&A timing. |
+| Story bank link? | [BookMyShow synchronised dictionaries](../../../stories/story-bank.md#s2--synchronised-dictionaries-bookmyshow) |
+| After BookMyShow synchronised dictionaries drill? | Main [`../04-questions.md`](../04-questions.md) for two-layer Q&A timing. |
 | Code aloud? | Tour [`SafeDict.swift`](../code/SafeDict.swift) line-by-line — Learning-lab. |
 
----
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries
+- **Design if asked:** Design: actor SafeDict (not shipped)
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Exact crash %, “fixed all BMS crashes,” or claiming lab SafeDict.swift was the shipped file.
 
 Back to: [README.md](README.md)
+
+---
+

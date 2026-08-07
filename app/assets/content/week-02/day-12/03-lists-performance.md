@@ -1,12 +1,10 @@
 # Sample 03 — Lists & performance (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. When do I use `List` vs `LazyVStack` vs eager `VStack`?
-
-**Points to:** [Foundations · §6 Lists — intern path](../01-foundations.md#6-lists--intern-path) · [Deep dive · §4 Container choice](../02-deep-dive.md#container-choice) · [code/LazyListNotes.swift](../code/LazyListNotes.swift)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | 10k rows in VStack? | Never for production — memory and layout cost explode. |
 | UITableView cousin? | Same “only visible cells matter” idea — Day 11 reuse discipline. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What are the row-level performance rules?
-
-**Points to:** [Deep dive · §4 Row rules](../02-deep-dive.md#row-rules) · [Foundations · §6 Do / Don’t](../01-foundations.md#6-lists--intern-path)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | Row observes root `@Observable`? | Pulls entire catalog invalidations into row — pass slice. |
 | Shadows and blurs on every row? | Expensive — use sparingly; measure. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. What is an invalidation storm?
-
-**Points to:** [Foundations · §2 Invalidation storm](../01-foundations.md#2-glossary) · [Deep dive · §2 Granularity and storms](../02-deep-dive.md#granularity-and-storms)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | Whole screen redraw symptom? | Typing in search refreshes unrelated chrome — split state. |
 | Equatable View micro-opt? | Useful for rare-changing expensive subtrees — measure first; don’t sprinkle early. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. How should Stories player lists handle progress updates?
-
-**Points to:** [Foundations · §5 Happy Stories player](../01-foundations.md#5-intern-path-happy-stories-player) · [Deep dive · §7 Stories SDK design](../02-deep-dive.md#7-stories-sdk-design-s10-shape) · [code/StoriesPlayerModel.swift](../code/StoriesPlayerModel.swift)
 
 **Answer:**
 
@@ -74,11 +75,12 @@
 | Image bytes? | Injectable loader protocol — host variance. |
 | UIKit host? | UIHostingController façade OK — public API shouldn’t force one nav paradigm. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. What belongs in `body` vs the model for list screens?
-
-**Points to:** [Deep dive · §5 body purity](../02-deep-dive.md#5-body-purity) · [Deep dive · §1 Anti-patterns](../02-deep-dive.md#anti-patterns)
 
 **Answer:**
 
@@ -92,11 +94,12 @@
 | Cancel on disappear? | Same discipline as UIKit — pause and cancel work. |
 | Testing list logic? | XCTest observable model / UseCase primary — not ViewInspector alone. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. How does SDUI connect to list identity?
-
-**Points to:** [Deep dive · §8 SDUI leaf identity](../02-deep-dive.md#8-sdui-leaf-identity-day-10-crossover)
 
 **Answer:**
 
@@ -110,11 +113,12 @@
 | Mock #2 SDUI track? | Version gate + registry + fallback — Day 14. |
 | Native vs SDUI list? | Both need stable identity — different data source, same rule. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. What is the lists + performance decision card?
-
-**Points to:** [Deep dive · §14 Decision rule card](../02-deep-dive.md#14-decision-rule-card) · [Deep dive · §11 Trade-offs](../02-deep-dive.md#11-trade-offs)
 
 **Answer:**
 
@@ -126,8 +130,56 @@
 |---|---|
 | `AnyView` erasure? | Rare need — kills optimization and clarity. |
 | All `@State` tiny screen? | OK; async spaghetti if you never hoist domain. |
-| Next topic? | S10 production — [04-production-s10.md](04-production-s10.md). |
+| Next topic? | Stories SDK (Raw / Miami Heat) production — [04-production-s10.md](04-production-s10.md). |
+
+**How can I relate to my case:**
+- **Shipped:** Stories SDK (Raw / Miami Heat)
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
+### Q8. Is Equatable View conformance worth it?
+
+**Answer:**
+
+> Treat it as a **measured micro-opt**. `Equatable` View can help expensive subtrees that rarely change, but sprinkling it everywhere early is noise. Prefer **narrowing observation** first. Measure before and after. Understanding how Observation already tracks accesses matters more than ritual Equatable. Simple Text rows usually don’t need it; a heavy chart leaf with rare updates might.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| When yes? | Heavy chart leaf, rare updates. |
+| When no? | Simple Text rows — don’t sprinkle. |
+| `AnyView` instead? | Usually worse for clarity and optimization. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
+---
+
+### Q9. How do you test SwiftUI state logic?
+
+**Answer:**
+
+> Unit-test **observable models and UseCases** in XCTest — that’s where Stories phase transitions and pause rules live. Snapshots are optional for chrome. UITests cover critical open/close paths only. Flaky sleep-based UITests are a smell — same testing culture as District’s review gates (District Free Parking + Clean/MVVM + AI tooling). ViewInspector is an optional aid, not the primary strategy.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| District Free Parking + Clean/MVVM + AI tooling link? | Tests as gate, not theater. |
+| ViewInspector? | Optional aid — don’t rely exclusively. |
+| Async tests? | Swift Testing / XCTest async. |
+
+**How can I relate to my case:**
+- **Shipped:** District Free Parking + Clean/MVVM + AI tooling
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 Next: [04-production-s10.md](04-production-s10.md)
+
+---
+

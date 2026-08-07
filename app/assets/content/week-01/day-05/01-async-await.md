@@ -1,12 +1,10 @@
 # Sample 01 — async/await mental model (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What does `async`/`await` mean in plain words?
-
-**Points to:** [Foundations · §2.1 “Async” means “I might pause here”](../01-foundations.md#21-async-means-i-might-pause-here) · [Deep dive · §1.1 What `async` actually changes](../02-deep-dive.md#11-what-async-actually-changes)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | What marks a possible pause? | `await` — treat code after it as running **later**, possibly after other concurrent work. |
 | Do I throw away GCD? | No. Large apps mix both. Pick the right tool per boundary. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. Does `await` always jump to a background thread?
-
-**Points to:** [Foundations · §2.1](../01-foundations.md#21-async-means-i-might-pause-here) · [Deep dive · §1 Suspension, resume, and “which thread?”](../02-deep-dive.md#1-suspension-resume-and-which-thread)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | UI updates after network — where? | Usually hop back to `@MainActor` for UI state; network work stays off main. |
 | Self-check from foundations? | “Does await always mean background thread?” → **No.** |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. What is the difference between blocking and suspending?
-
-**Points to:** [Foundations · §2.1](../01-foundations.md#21-async-means-i-might-pause-here) · [Foundations · §5 Glossary](../01-foundations.md#5-glossary-study-until-these-feel-boring)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | GCD `sync` inside async code? | Risky — can deadlock or starve the cooperative pool. Prefer async facades. |
 | Suspension vs sleep? | `Task.sleep` suspends cooperatively; `Thread.sleep` blocks a thread. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. What is a Task, and when do I start one?
-
-**Points to:** [Foundations · §2.2 Tasks are units of asynchronous work](../01-foundations.md#22-tasks-are-units-of-asynchronous-work) · [Deep dive · §2.4 Unstructured `Task`](../02-deep-dive.md#24-unstructured-task-and-taskdetached)
 
 **Answer:**
 
@@ -74,11 +75,12 @@
 | Must I store the Task handle? | When you need to **cancel** (search debounce) — yes. Fire-and-forget is a common bug. |
 | `@MainActor` button handler? | `Task { await viewModel.load() }` — common UI entry pattern. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. How does async/await compare to GCD callbacks?
-
-**Points to:** [Foundations · §3 async/await vs GCD callbacks](../01-foundations.md#3-asyncawait-vs-gcd-callbacks-first-contrast) · [Deep dive · §1.2 Writing async APIs](../02-deep-dive.md#12-writing-async-apis)
 
 **Answer:**
 
@@ -92,11 +94,12 @@
 | URLSession example? | `try await URLSession.shared.data(from: url)` — one line vs nested callbacks. |
 | Still need main queue? | Yes for UI — often via `@MainActor` instead of manual `DispatchQueue.main.async`. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. Walk through the tiny end-to-end picture in one breath
-
-**Points to:** [Foundations · §4 A tiny end-to-end picture](../01-foundations.md#4-a-tiny-end-to-end-picture) · [Foundations · §6 What “good” sounds like](../01-foundations.md#6-what-good-sounds-like-in-an-interview-preview)
 
 **Answer:**
 
@@ -106,15 +109,19 @@
 
 | Follow-up | Answer |
 |---|---|
-| Why cancel before debounce sleep? | New keystroke should drop the old in-flight search — S3 pattern. |
+| Why cancel before debounce sleep? | New keystroke should drop the old in-flight search — BookMyShow backend-driven header & search pattern. |
 | Where is unstructured Task OK? | UI/sync boundary — not deep inside reusable async APIs. |
 | 30s interview definition? | See foundations §6 — suspension, structure, actors, reentrancy preview. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q7. What glossary terms must I speak cleanly?
-
-**Points to:** [Foundations · §5 Glossary](../01-foundations.md#5-glossary-study-until-these-feel-boring) · [Deep dive · §9 Decision rules](../02-deep-dive.md#9-decision-rules-speak-these)
 
 **Answer:**
 
@@ -128,11 +135,12 @@
 | Isolation domain example? | `@MainActor` ViewModel vs custom `actor` cache. |
 | Approachable Concurrency? | Optional **settings** direction — not universal language law (deep dive §7). |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q8. What should I nail before moving to structured concurrency?
-
-**Points to:** [Foundations · §7 Self-check before deep dive](../01-foundations.md#7-self-check-before-deep-dive) · [Deep dive · §1](../02-deep-dive.md#1-suspension-resume-and-which-thread)
 
 **Answer:**
 
@@ -146,6 +154,10 @@
 | Main module after sample? | [02-deep-dive.md](../02-deep-dive.md) §2–3 |
 | Code to read aloud? | [SafeDictActor.swift](../code/SafeDictActor.swift) after actors sample |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [02-structured-concurrency.md](02-structured-concurrency.md)
+
+---
+

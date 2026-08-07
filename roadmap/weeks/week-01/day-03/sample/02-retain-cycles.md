@@ -6,8 +6,6 @@
 
 ### Q1. What is a retain cycle?
 
-**Points to:** [Foundations · §3 What is a retain cycle?](../01-foundations.md#3-what-is-a-retain-cycle) · [Foundations · §8 Mini demo](../01-foundations.md#8-mini-demo-mental-walkthrough) · [code · BoxBroken / BoxFixed](../code/RetainCycleDemo.swift)
-
 **Answer:**
 
 > A retain cycle is a loop of strong references. Example: a view controller owns a closure, and that closure strongly captures the view controller. Nothing outside still needs those objects, but their retain counts never hit zero, so they never deallocate. They are still **reachable** from each other. That is **abandoned memory** — not the same as an Instruments **Leak**, which is memory with no live references at all.
@@ -20,11 +18,12 @@
 | Classic fix for a stored escaping closure? | Capture list: `[weak self]` plus `guard let self`. |
 | Is every mention of `self` in a closure a leak? | No. Non-escaping closures usually cannot outlive `self`, so they often cannot form a long-lived cycle. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. How do escaping closures create cycles?
-
-**Points to:** [Deep dive · §3 Closures](../02-deep-dive.md#3-closures-how-captures-create-cycles) · [code · ClosureCycleDemo](../code/RetainCycleDemo.swift)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | What does `guard let self` do after weak? | It turns the optional weak reference into a strong local for the rest of the scope — only while that scope runs. |
 | Where do I see broken vs fixed in the repo? | `BoxBroken` vs `BoxFixed` in [`RetainCycleDemo.swift`](../code/RetainCycleDemo.swift). |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. Why are delegates usually weak?
-
-**Points to:** [Deep dive · §4.1 Delegates](../02-deep-dive.md#41-delegates) · [Foundations · §5 Cycle hotspots](../01-foundations.md#5-cycle-hotspots-youll-see-every-week)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | Strong delegate ever OK for UIKit? | Almost never for the classic VC ↔ child pattern — instant cycle risk. |
 | What about struct “delegates”? | Value types don’t use ARC the same way; usually you pass closures or another pattern. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. How does a Timer keep a target alive?
-
-**Points to:** [Deep dive · §4.2 Timer](../02-deep-dive.md#42-timer--target-selector-retains-the-target) · [code · TickerBroken / TickerFixed](../code/RetainCycleDemo.swift)
 
 **Answer:**
 
@@ -74,11 +75,12 @@
 | Why invalidate on disappear too? | If the object stays alive for other reasons, the timer keeps firing until you stop it. |
 | Demo classes? | `TickerBroken` never invalidates; `TickerFixed` stops in `deinit`. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. What must you remember about NotificationCenter block observers?
-
-**Points to:** [Deep dive · §4.3 NotificationCenter](../02-deep-dive.md#43-notificationcenter--block-api-uses-tokens) · [code · TimeZoneObserver](../code/RetainCycleDemo.swift)
 
 **Answer:**
 
@@ -92,11 +94,12 @@
 | Weak capture without removing — enough? | Weak helps the cycle edge; you still remove the observer as part of lifecycle hygiene. |
 | Where is a complete sketch? | `TimeZoneObserver` in [`RetainCycleDemo.swift`](../code/RetainCycleDemo.swift). |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. How do you break a parent ↔ child cycle?
-
-**Points to:** [Deep dive · §4.4 Parent ↔ child](../02-deep-dive.md#44-parent--child) · [code · ParentChildDemo](../code/RetainCycleDemo.swift)
 
 **Answer:**
 
@@ -110,11 +113,12 @@
 | When unowned on parent? | Only if the child is guaranteed never to outlive the parent *and* you want non-optional access. |
 | Same idea in UIKit? | Yes — view hierarchies and controller ownership need a clear owner; avoid two-way strong.
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. How do Tasks create ownership problems?
-
-**Points to:** [Deep dive · §4.5 Task / unstructured concurrency](../02-deep-dive.md#45-task--unstructured-concurrency)
 
 **Answer:**
 
@@ -128,11 +132,12 @@
 | Why cancel previous search? | Avoid overlapping updates and abandoned tasks stacking up. |
 | Same idea for Combine? | Yes — long-lived subscriptions that strongly capture `self` are a common cycle shape. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q8. What is the trap with `lazy var` closures?
-
-**Points to:** [Deep dive · §3.3 lazy var closures](../02-deep-dive.md#33-lazy-var-closures)
 
 **Answer:**
 
@@ -146,11 +151,12 @@
 | Simple safe habit? | Build formatters and pure helpers without reading other `self` state when you can. |
 | Interview angle? | Show you know lazy init is a closure, not “just a delayed property.” |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q9. What are the weekly cycle hotspots to memorize?
-
-**Points to:** [Foundations · §5 Cycle hotspots](../01-foundations.md#5-cycle-hotspots-youll-see-every-week) · [Deep dive · §7 Trade-off table](../02-deep-dive.md#7-trade-off-table)
 
 **Answer:**
 
@@ -164,6 +170,10 @@
 | Singleton caches? | Forever caches of VCs or models are abandoned memory even without a tiny two-node cycle. |
 | Next practice? | Walk every BROKEN/FIXED pair in [`RetainCycleDemo.swift`](../code/RetainCycleDemo.swift) aloud. |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [03-tools-and-leaks.md](03-tools-and-leaks.md)
+
+---
+

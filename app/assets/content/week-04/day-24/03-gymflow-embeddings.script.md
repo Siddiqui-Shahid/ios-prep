@@ -7,7 +7,7 @@ Next. Q1. What problem does GymFlow solve? Answer. Workout recommendations witho
 
 ## §1 Q2. Defend the GymFlow architecture.
 
-Next. Q2. Defend the GymFlow architecture Answer. (1) INT8 MiniLM TFLite + WordPiece tokenizer (Dart in shipped app). (2) Embed query/user context; cosine similarity over exercise catalog; trainer routine as retrieval context. (3) Fail-soft: TF-IDF lexical fallback if TFLite missing, slow, or thermal-limited. Principle: retrieval + ranking + degradation — not “call an LLM.” Follow-ups. ≤20s line?: “GymFlow ranks exercises with on-device MiniLM embeddings and falls back to TF-IDF when the model path can’t run.”. INT8 why?: Fits mobile RAM; quality trade-off vs FP32.. STAR?: story-bank #S16..
+Next. Q2. Defend the GymFlow architecture Answer. (1) INT8 MiniLM TFLite + WordPiece tokenizer (Dart in shipped app). (2) Embed query/user context; cosine similarity over exercise catalog; trainer routine as retrieval context. (3) Fail-soft: TF-IDF lexical fallback if TFLite missing, slow, or thermal-limited. Principle: retrieval + ranking + degradation — not “call an LLM.” Follow-ups. ≤20s line?: “GymFlow ranks exercises with on-device MiniLM embeddings and falls back to TF-IDF when the model path can’t run.”. INT8 why?: Fits mobile RAM; quality trade-off vs FP32.. STAR?: story-bank #GymFlow on-device AI..
 
 ## §2 Q3. How does cosine top-K work?
 
@@ -27,4 +27,4 @@ Next. Q6. Map portfolio to generic on-device HLD? Answer. Local RAG/index: FinTr
 
 ## §6 Q7. Hybrid router — speak the design?
 
-Next. Q7. Hybrid router — speak the design? Answer. If !eligible || thermal || lowPower → rulesOrTfIdf. Else retrieve (BM25 or embeddings). If ctx empty → emptyState. If canLocalGenerate → streamLocal. Else if cloudAllowed && consented → streamCloud(sanitize). Else rulesOrTfIdf. See code/HybridAIRouter.swift. Follow-ups. FinTrack cloud branch?: Design-only with consent — not shipped default.. Eligibility checks?: OS, memory, model file, thermal at launch and per request.. Next sample?: Production S15/S16 honest proof.. Next: 04-production-s15-s16.md.
+Next. Q7. Hybrid router — speak the design? Answer. If !eligible || thermal || lowPower → rulesOrTfIdf. Else retrieve (BM25 or embeddings). If ctx empty → emptyState. If canLocalGenerate → streamLocal. Else if cloudAllowed && consented → streamCloud(sanitize). Else rulesOrTfIdf. See code/HybridAIRouter.swift. Follow-ups. FinTrack cloud branch?: Design-only with consent — not shipped default.. Eligibility checks?: OS, memory, model file, thermal at launch and per request.. Next sample?: Production FinTrack on-device AI/GymFlow on-device AI honest proof..

@@ -1,12 +1,10 @@
 # Sample 02 — FinTrack RAG & privacy (Q&A)
 
-> Guided teaching. **Verified · S15** — honest claims only.
+> Guided teaching. **FinTrack on-device AI** — honest claims only.
 
 ---
 
 ### Q1. What problem does FinTrack solve?
-
-**Points to:** [Deep dive · §1.1 Problem](../02-deep-dive.md#11-problem) · [Production bridge · S15](../03-production-bridge.md#verified--s15--fintrack)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Invented fine-tune? | **Forbidden** — “fine-tuned on user ledgers.” |
 | Play Store ops? | Crashlytics, Remote Config, AdMob — qualitative verified. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. Defend the FinTrack architecture in layers.
-
-**Points to:** [Deep dive · §1.2 Architecture](../02-deep-dive.md#12-architecture-you-can-defend)
 
 **Answer:**
 
@@ -36,13 +35,17 @@
 |---|---|
 | ≤20s line? | “Local-first — BM25 RAG over Hive, Apple Intelligence when present, rules when not; financial data doesn’t leave the device.” |
 | Android path? | Platform AI abstraction — don’t invent identical FM on Android. |
-| STAR? | story-bank #S15 — full timing on exercise day. |
+| STAR? | story-bank #FinTrack on-device AI — full timing on exercise day. |
+
+**How can I relate to my case:**
+- **Shipped:** FinTrack on-device AI
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q3. What is BM25 enough for in interviews?
-
-**Points to:** [Deep dive · §1.3 BM25 teaching](../02-deep-dive.md#13-bm25-teaching-enough-for-interviews)
 
 **Answer:**
 
@@ -56,11 +59,12 @@
 | Code sketch? | `code/BM25Ranker.swift` — teaching, not production paste. |
 | Empty index? | Fail-soft to rules + honest empty tips. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. How do you ground money and stop hallucination?
-
-**Points to:** [Deep dive · §1.4 Grounding money](../02-deep-dive.md#14-grounding-money-non-negotiable)
 
 **Answer:**
 
@@ -74,11 +78,12 @@
 | Model contradicts DB? | UI trusts DB; model text is explanatory only. |
 | Cloud path design? | Sanitize fields; never send full ledger by default. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. What failures trigger FinTrack fallback?
-
-**Points to:** [Deep dive · §5 Fail-soft matrix](../02-deep-dive.md#5-fail-soft-matrix-memorize)
 
 **Answer:**
 
@@ -92,11 +97,12 @@
 | Remote config? | Disable feature path without app update. |
 | 30L DAU lesson? | BMS scale teaches kill switches — FinTrack is personal-scale proof. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What is the 90s privacy-first script?
-
-**Points to:** [Deep dive · §6 Privacy-first script](../02-deep-dive.md#6-privacy-first-script-90s--speak-verbatim-until-automatic) · [Foundations · §6 Complexity / ops](../01-foundations.md#6-complexity--ops-scripts)
 
 **Answer:**
 
@@ -110,11 +116,12 @@
 | Token budget? | Minimize PII stuffed into any cloud prompt. |
 | Hybrid router? | See `code/HybridAIRouter.swift` teaching sketch. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
-### Q7. What must I NOT claim for S15?
-
-**Points to:** [Production bridge · S15 table](../03-production-bridge.md#verified--s15--fintrack)
+### Q7. What must I NOT claim for FinTrack on-device AI?
 
 **Answer:**
 
@@ -125,9 +132,16 @@
 | Follow-up | Answer |
 |---|---|
 | 2–3 min STAR spine? | Situation local-first → Action Hive+BM25+FM+rules → Result privacy coach → Lesson retrieval+fallback not model worship. |
-| Contrast S16? | GymFlow embeddings — sample 03. |
+| Contrast GymFlow on-device AI? | GymFlow embeddings — sample 03. |
 | After sample? | GymFlow + production bridge sample 04. |
+
+**How can I relate to my case:**
+- **Shipped:** FinTrack on-device AI; GymFlow on-device AI
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
+Next: [03-gymflow-embeddings.md](03-gymflow-embeddings.md)
 
 ---
 
-Next: [03-gymflow-embeddings.md](03-gymflow-embeddings.md)

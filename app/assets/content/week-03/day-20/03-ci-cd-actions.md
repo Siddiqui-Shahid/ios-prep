@@ -1,12 +1,10 @@
 # Sample 03 — CI/CD & GitHub Actions (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is the BMS CI/CD pipeline shape?
-
-**Points to:** [Foundations · §3 CI/CD & release trains](../01-foundations.md#3-cicd--release-trains) · [Deep dive · §5 CI/CD deep dive](../02-deep-dive.md#5-cicd-deep-dive)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Fully auto prod? | Only with strong gates — weak gates = risk. |
 | BMS CI ≤20s? | “Automated GitHub Actions for build, lint, and TestFlight upload.” |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What runs on every PR?
-
-**Points to:** [Deep dive · §5.1 PR checks](../02-deep-dive.md#51-pr-checks)
 
 **Answer:**
 
@@ -36,13 +35,17 @@
 |---|---|
 | UI tests every PR? | Often nightly or selective — cost/time trade-off. |
 | Flaky test policy? | Quarantine + fix ticket — never silent retry forever. |
-| AI on PRs? | S9: assist only — humans own architecture/security. |
+| AI on PRs? | District Free Parking + Clean/MVVM + AI tooling: assist only — humans own architecture/security. |
+
+**How can I relate to my case:**
+- **Shipped:** District Free Parking + Clean/MVVM + AI tooling
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q3. How do you handle signing in CI?
-
-**Points to:** [Deep dive · §5.2 Signing](../02-deep-dive.md#52-signing) · [Foundations · §3](../01-foundations.md#3-cicd--release-trains)
 
 **Answer:**
 
@@ -56,11 +59,12 @@
 | Fastlane Match? | Common pattern — encrypted repo or cloud bucket. |
 | Per-branch profiles? | Ad hoc vs App Store — separate pipelines. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. Why upload dSYM on every user-facing build?
-
-**Points to:** [Deep dive · §5.4 dSYM](../02-deep-dive.md#54-dsym) · [Foundations · §3](../01-foundations.md#3-cicd--release-trains)
 
 **Answer:**
 
@@ -74,11 +78,12 @@
 | TF internal only? | Still upload — internal crashes matter. |
 | Missing dSYM symptom? | Hex addresses in Crashlytics. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. TestFlight workflow — internal vs external?
-
-**Points to:** [Deep dive · §5.3 TestFlight + phased release](../02-deep-dive.md#53-testflight--phased-release)
 
 **Answer:**
 
@@ -92,15 +97,16 @@
 | External beta review? | Apple beta review for external groups. |
 | Feature flags in TF? | Decouple binary ship from exposure. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
-### Q6. How does AI-assisted PR review fit (S9)?
-
-**Points to:** [Deep dive · §5.5 AI on PRs](../02-deep-dive.md#55-ai-on-prs-s9) · [Production bridge · §4](../03-production-bridge.md#4-ai-review-breath-s9)
+### Q6. How does AI-assisted PR review fit (District Free Parking + Clean/MVVM + AI tooling)?
 
 **Answer:**
 
-> “AI accelerates review for **obvious regressions**; humans still own **architecture, security, and product trade-offs**. I never say ‘AI approved so it’s fine.’” Verified S9 judgment — assist, don’t own. Forbidden: “AI approved the release.”
+> “AI accelerates review for **obvious regressions**; humans still own **architecture, security, and product trade-offs**. I never say ‘AI approved so it’s fine.’” District Free Parking + Clean/MVVM + AI tooling judgment — assist, don’t own. Forbidden: “AI approved the release.”
 
 **Follow-ups:**
 
@@ -108,20 +114,24 @@
 |---|---|
 | What AI catches well? | Style, obvious nil crashes, duplicate code. |
 | What humans must own? | Threat model, pinning, router design, rollout. |
-| Context Engineering? | S9 family — tooling augments, doesn’t replace. |
+| Context Engineering? | District Free Parking + Clean/MVVM + AI tooling family — tooling augments, doesn’t replace. |
+
+**How can I relate to my case:**
+- **Shipped:** District Free Parking + Clean/MVVM + AI tooling
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q7. CI failure modes?
-
-**Points to:** [Deep dive · §8 Failure modes](../02-deep-dive.md#8-failure-modes)
 
 **Answer:**
 
 > | Mode | Response |
 > | TF crash-loop, CI green | Release flags / entitlements / env — smoke TF |
 > | Secrets in git | Rotate; CI secrets store |
-> | CFS drop at 10% phased | Pause — IMOC (S8) |
+> | CFS drop at 10% phased | Pause — IMOC (BookMyShow IMOC + crash-free at scale) |
 > | No dSYM | Fix upload step before widening rollout |
 > | Flaky CI ignored | Culture problem — quarantine and fix |
 
@@ -133,6 +143,13 @@
 | Manual release overhead? | What BMS CI automation removed. |
 | Next topic? | Release trains — [04-release-trains.md](04-release-trains.md) |
 
----
+**How can I relate to my case:**
+- **Shipped:** BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
 
 Next: [04-release-trains.md](04-release-trains.md)
+
+---
+

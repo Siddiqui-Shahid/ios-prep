@@ -1,12 +1,10 @@
 # Sample 02 — COW and enums (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is copy-on-write in plain words?
-
-**Points to:** [Foundations · §6 Copy-on-write](../01-foundations.md#6-copy-on-write-cow--intern-version) · [Deep dive · §2 Copy-on-write — senior mechanics](../02-deep-dive.md#2-copy-on-write--senior-mechanics)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | Wrong trap answers? | “Always shared” or “always copied on assign.” Correct: **shared until a write forces uniqueness.** |
 | Who pays for the copy? | Whoever mutates while aliases exist — `a` or `b` in `var b = a`. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. Walk through assign → read → mutate with Array.
-
-**Points to:** [Foundations · §6.2 The three steps](../01-foundations.md#62-the-three-steps) · [code/COWDemo.swift](../code/COWDemo.swift)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | Does read trigger a copy? | No — reads are free while sharing. |
 | Runnable demo? | See `COWDemo.arrayShareUntilWrite()` in [`code/COWDemo.swift`](../code/COWDemo.swift). |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. Which standard library types use COW?
-
-**Points to:** [Foundations · §6.2](../01-foundations.md#62-the-three-steps) · [Deep dive · §2.1 Uniqueness](../02-deep-dive.md#21-uniqueness)
 
 **Answer:**
 
@@ -56,29 +56,32 @@
 | COW in one implementation pattern? | Value-type façade over a reference-counted `Storage` class — see handmade `COWList` in deep dive and code. |
 | Why not deep-copy every assign? | Large listing/search arrays would be expensive in hot paths. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. What breaks COW independence across variables?
 
-**Points to:** [Deep dive · §2.3 Wrapping arrays in a class](../02-deep-dive.md#23-wrapping-arrays-in-a-class-kills-cow-across-that-wrapper) · [code/COWDemo.swift](../code/COWDemo.swift)
-
 **Answer:**
 
-> The inner `Array` still COWs relative to other `Array` values — but if you wrap it in a **`class`** (`ArrayBox`), two names pointing at one box share the same array **property path**. Mutating `box2.values` changes `box1.values` too. Interviewers use this to test whether you confuse collection COW with object identity.
+> Separate **Array COW** from **object identity**. With `var b = a` as two `Array` values, assignment may share a buffer; mutating `b` copies if not unique, so `a` stays unchanged. If you wrap the array in a **`class`** (`ArrayBox`) and do `let box2 = box1`, both names share one box — mutating `box2.values` changes `box1.values` too. The inner `Array` still COWs relative to *other* `Array` values, but aliases through the class share the same property path. Interviewers use this trap to catch “arrays are values so aliases are independent” without noticing the wrapper.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| Symptom? | “I thought arrays were values” — but the box is shared. |
-| Production lesson? | Don’t wrap collections in classes “for safety” without thinking — you reintroduce shared mutation. |
+| Symptom? | “I thought arrays were values” — but the box is shared identity. |
+| Absolute “A always changes” wrong? | Yes for plain `Array` aliases — uniqueness at mutation time decides. Absolute “never changes” is also wrong if both names are the same class instance. |
+| Production lesson? | Don’t wrap collections in classes “for safety” without thinking — you reintroduce shared mutation across UI aliases. |
 | Demo? | `COWDemo.classBoxBreaksIndependence()` in [`code/COWDemo.swift`](../code/COWDemo.swift). |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
 ### Q5. Why do enums beat boolean flags for UI state?
-
-**Points to:** [Foundations · §5.1 Associated values](../01-foundations.md#51-associated-values--data-that-travels-with-the-mode) · [Deep dive · §4.1 Impossible states](../02-deep-dive.md#41-impossible-states-are-bugs-you-dont-ship)
 
 **Answer:**
 
@@ -92,11 +95,12 @@
 | Adding a new enum case? | Every `switch` must update — that compile pressure is the feature. |
 | Generic pattern? | `LoadState<T>` in [`code/LoadState.swift`](../code/LoadState.swift). |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What are associated values on an enum?
-
-**Points to:** [Foundations · §5.1](../01-foundations.md#51-associated-values--data-that-travels-with-the-mode) · [Foundations · §5.2 Why this matters for UI](../01-foundations.md#52-why-this-matters-for-ui)
 
 **Answer:**
 
@@ -110,15 +114,16 @@
 | Extract in a switch? | `case .loaded(let value):` — bind the payload in the pattern. |
 | Payment example? | `success(bookingID: String)` — ID only exists in success, not in processing. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. How would you model a payment processing popup as an enum?
 
-**Points to:** [Deep dive · §4.3 Payment popup machine](../02-deep-dive.md#43-payment-popup-machine-applied--s7-a1) · [code/LoadState.swift](../code/LoadState.swift) · [Production bridge · S7-A1](../03-production-bridge.md#4-applied--s7-a1--enum-state-machine-design)
-
 **Answer:**
 
-> Cases: `hidden`, `processing(message:)`, `success(bookingID:)`, `failure(...)`, `timedOut(message:)`. Transitions come from events (`userStartedCheckout`, `backendSuccess`, `timeout`, `dismiss`). Illegal transitions are ignored or asserted in DEBUG. Label clearly: **Verified S7** is the popup intent; **Applied S7-A1** is how you’d model it in Swift — not a claim that production shipped this enum by name.
+> Cases: `hidden`, `processing(message:)`, `success(bookingID:)`, `failure(...)`, `timedOut(message:)`. Transitions come from events (`userStartedCheckout`, `backendSuccess`, `timeout`, `dismiss`). Illegal transitions are ignored or asserted in DEBUG. Label clearly: **BookMyShow payment processing-status popup** is the popup intent; **Design: payment status pattern (not shipped)** is how you’d model it in Swift — not a claim that production shipped this enum by name.
 
 **Follow-ups:**
 
@@ -126,13 +131,17 @@
 |---|---|
 | Why enum over five booleans? | Impossible UI modes can’t exist — no “success banner + processing spinner.” |
 | Map from network `Result`? | `LoadState.from(result:)` at the edge; UI enum adds idle/loading. |
-| Product problem S7 solves? | Silent waiting during checkout — users need explicit processing status. |
+| Product problem BookMyShow payment processing-status popup solves? | Silent waiting during checkout — users need explicit processing status. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow payment processing-status popup
+- **Design if asked:** Design: payment status pattern (not shipped)
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented checkout drop-off % from the status popup alone.
 
 ---
 
 ### Q8. When do you need `indirect` on an enum?
-
-**Points to:** [Foundations · §5.3 Recursive enums](../01-foundations.md#53-recursive-enums-need-indirect) · [Deep dive · §4.5 Recursive / nested domain trees](../02-deep-dive.md#45-recursive--nested-domain-trees)
 
 **Answer:**
 
@@ -146,6 +155,30 @@
 | Unknown backend modes? | Fallback case like `unknown(type:raw:)` beats crashing on new JSON — resilience pattern. |
 | Tie to listings? | `section(title:children: [FeedNode])` for nested ad/event rows. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
+### Q9. How do you map `Result` into UI state — and stay resilient when the backend adds modes?
+
+**Answer:**
+
+> Keep `Result` at the networking edge — it models a **one-shot** success/failure. Map at the boundary into a UI enum like `LoadState` with `idle`, `loading`, `loaded(T)`, `failed(Error)` so the screen can express waiting and empty, not only finished outcomes. For backend-driven or versioned payloads, add an explicit **`unknown(type:raw:)`** (or similar fallback) so new server modes degrade gracefully instead of crashing decode/`switch`. Domain enums communicate screen semantics; `Result` communicates attempt outcomes; unknown cases buy versioning resilience.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Why not `Result` alone in the ViewModel? | No `idle` / `loading` — UI needs those modes. |
+| Mapping helper? | `LoadState.from(result:)` — success → `.loaded`, failure → `.failed`. |
+| Versioning trap? | Exhaustive enum with no unknown → crash or force-update on every CMS/backend case add. |
+| Payment UI further? | Screen-language cases (`processing` / `timedOut`) beyond plain `Result` — see Q7. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 Next: [03-actors-classes.md](03-actors-classes.md)
+
+---
+

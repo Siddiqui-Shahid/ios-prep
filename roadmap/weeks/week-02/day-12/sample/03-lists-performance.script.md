@@ -27,4 +27,12 @@ Next. Q6. How does SDUI connect to list identity? Answer. Registry-rendered S D 
 
 ## §6 Q7. What is the lists + performance decision card?
 
-Next. Q7. What is the lists + performance decision card? Answer. Large collections → lazy container + stable ids + cheap body. Split models to avoid storms. Images async with budgets. No UUID in body. Stories: model timeline + stable page ids + pause on disappear. Profile before micro-opts like Equatable View. Follow-ups. AnyView erasure?: Rare need — kills optimization and clarity.. All @State tiny screen?: OK; async spaghetti if you never hoist domain.. Next topic?: S 10 production — 04-production-s10.md.. Next: 04-production-s10.md.
+Next. Q7. What is the lists + performance decision card? Answer. Large collections → lazy container + stable ids + cheap body. Split models to avoid storms. Images async with budgets. No UUID in body. Stories: model timeline + stable page ids + pause on disappear. Profile before micro-opts like Equatable View. Follow-ups. AnyView erasure?: Rare need — kills optimization and clarity.. All @State tiny screen?: OK; async spaghetti if you never hoist domain.. Next topic?: Stories S D K (Raw / Miami Heat) production — 04-production-s10.md..
+
+## §7 Q8. Is Equatable View conformance worth it?
+
+Next. Q8. Is Equatable View conformance worth it? Answer. Treat it as a measured micro-opt. Equatable View can help expensive subtrees that rarely change, but sprinkling it everywhere early is noise. Prefer narrowing observation first. Measure before and after. Understanding how Observation already tracks accesses matters more than ritual Equatable. Simple Text rows usually don’t need it; a heavy chart leaf with rare updates might. Follow-ups. When yes?: Heavy chart leaf, rare updates.. When no?: Simple Text rows — don’t sprinkle.. AnyView instead?: Usually worse for clarity and optimization..
+
+## §8 Q9. How do you test SwiftUI state logic?
+
+Next. Q9. How do you test SwiftUI state logic? Answer. Unit-test observable models and UseCases in XCTest — that’s where Stories phase transitions and pause rules live. Snapshots are optional for chrome. UITests cover critical open/close paths only. Flaky sleep-based UITests are a smell — same testing culture as District’s review gates (District Free Parking + Clean/M V V M + AI tooling). ViewInspector is an optional aid, not the primary strategy. Follow-ups. District Free Parking + Clean/M V V M + AI tooling link?: Tests as gate, not theater.. ViewInspector?: Optional aid — don’t rely exclusively.. Async tests?: Swift Testing / XCTest async..

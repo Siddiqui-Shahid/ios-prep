@@ -1,12 +1,10 @@
-# Sample 04 — Production S15 / S16 (Q&A)
+# Sample 04 — FinTrack & GymFlow on-device AI (Q&A)
 
-> Guided teaching. Verified claims, contrasts, and bridge scripts — no invented AI metrics.
+> Guided teaching. Separates **shipped** named cases from **design-if-asked** and **lab-only** so you never blur them in an interview.
 
 ---
 
-### Q1. What can you claim under Verified · S15?
-
-**Points to:** [Production bridge · S15 table](../03-production-bridge.md#verified--s15--fintrack)
+### Q1. What can you claim under FinTrack on-device AI?
 
 **Answer:**
 
@@ -20,11 +18,15 @@
 | Money from model? | Never — DB/rules ground amounts. |
 | Behavioral metrics? | 30L DAU / 99.95% only as company context if drift — not FinTrack proof. |
 
+**How can I relate to my case:**
+- **Shipped:** FinTrack on-device AI
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
-### Q2. What can you claim under Verified · S16?
-
-**Points to:** [Production bridge · S16 table](../03-production-bridge.md#verified--s16--gymflow)
+### Q2. What can you claim under GymFlow on-device AI?
 
 **Answer:**
 
@@ -36,31 +38,39 @@
 |---|---|
 | Heap in production? | Top-K **mental model** — don’t claim CFBinaryHeap unless verified. |
 | vs FinTrack? | Embeddings vs BM25; both on-device degrade paths. |
-| STAR? | #S16 in story-bank. |
+| STAR? | #GymFlow on-device AI in story-bank. |
+
+**How can I relate to my case:**
+- **Shipped:** GymFlow on-device AI
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
-### Q3. How do you contrast S9 District tooling?
-
-**Points to:** [Production bridge · Contrast S9](../03-production-bridge.md#contrast--s9--district-tooling) · [Foundations · §5](../01-foundations.md#5-product-ai-vs-tooling-ai-do-not-conflate)
+### Q3. How do you contrast District Free Parking + Clean/MVVM + AI tooling District tooling?
 
 **Answer:**
 
-> “District was context engineering for migrations/tests. FinTrack/GymFlow are product on-device systems with privacy and fail-soft. I don’t conflate Cursor with RAG.” Use S9 only to **separate** concerns when asked “how do you use AI?”
+> “District was context engineering for migrations/tests. FinTrack/GymFlow are product on-device systems with privacy and fail-soft. I don’t conflate Cursor with RAG.” Use District Free Parking + Clean/MVVM + AI tooling only to **separate** concerns when asked “how do you use AI?”
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| S9 in FinTrack answer? | Brief contrast — don’t lead with tooling. |
-| Tests AI-generated? | S9 judgment — you own architecture and review. |
+| District Free Parking + Clean/MVVM + AI tooling in FinTrack answer? | Brief contrast — don’t lead with tooling. |
+| Tests AI-generated? | District Free Parking + Clean/MVVM + AI tooling judgment — you own architecture and review. |
 | Machine round Day 25? | Same rule — AI may scaffold tests; you own design. |
+
+**How can I relate to my case:**
+- **Shipped:** District Free Parking + Clean/MVVM + AI tooling
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
-### Q4. What is soft S8 applied to AI features?
-
-**Points to:** [Production bridge · Soft S8](../03-production-bridge.md#soft--s8) · [Deep dive · §8 Scale caution](../02-deep-dive.md#8-scale-caution-bookmyshow-judgment)
+### Q4. What is soft BookMyShow IMOC + crash-free at scale applied to AI features?
 
 **Answer:**
 
@@ -74,11 +84,15 @@
 | Feature flags? | Remote config disable bad model path. |
 | Jetsam? | Unload weights on memory warning — fail-soft matrix. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
+
 ---
 
 ### Q5. What is the 45s bridge script?
-
-**Points to:** [Production bridge · Bridge script](../03-production-bridge.md#bridge-script-45s)
 
 **Answer:**
 
@@ -88,15 +102,19 @@
 
 | Follow-up | Answer |
 |---|---|
-| Provenance IDs? | Verified S15 · S16; contrast S9; soft S8. |
+| Provenance IDs? | FinTrack on-device AI · GymFlow on-device AI; contrast District Free Parking + Clean/MVVM + AI tooling; soft BookMyShow IMOC + crash-free at scale. |
 | SD whiteboard? | [`../05-exercises.md`](../05-exercises.md) §2 HLD 25–30 min. |
 | Privacy 90s? | Sample 02 Q6 — memorize spine. |
+
+**How can I relate to my case:**
+- **Shipped:** FinTrack on-device AI; GymFlow on-device AI; BookMyShow IMOC + crash-free at scale; District Free Parking + Clean/MVVM + AI tooling
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
 
 ---
 
 ### Q6. Anti-patterns in AI interview answers?
-
-**Points to:** [Foundations · §0](../01-foundations.md#0-north-star) · [Deep dive · §4](../02-deep-dive.md#4-trade-offs)
 
 **Answer:**
 
@@ -110,6 +128,13 @@
 | Skip retrieval? | Model doesn’t know Hive DB — RAG required. |
 | After sample? | [`../04-questions.md`](../04-questions.md) two-layer Q&A. |
 
----
+**How can I relate to my case:**
+- **Shipped:** None for this prompt — keep it conceptual unless they ask for a case.
+- **Design if asked:** N/A
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 Next: main [`../04-questions.md`](../04-questions.md)
+
+---
+

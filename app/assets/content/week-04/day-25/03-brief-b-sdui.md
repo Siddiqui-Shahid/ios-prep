@@ -6,8 +6,6 @@
 
 ### Q1. What is Brief B asking for?
 
-**Points to:** [Deep dive · Brief B prompt](../02-deep-dive.md#brief-b--sdui-component-renderer)
-
 **Answer:**
 
 > Server-driven UI renderer: JSON document of components (`type`, `props`, optional `children`) → native views. Support ≥**3** types (e.g. `text`, `image`, `button` / `vstack`). Unknown `type` → **safe fallback**. Include `schemaVersion` check. Unit-test decoding + unknown-type fallback.
@@ -20,11 +18,12 @@
 | Crash on unknown? | **Never** — placeholder + analytics stub. |
 | Cut lines? | CMS tooling, live reload, expression language, Figma parity. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What architecture in 90s?
-
-**Points to:** [Deep dive · Suggested architecture](../02-deep-dive.md#suggested-architecture-1) · [Brief B 90s plan](../02-deep-dive.md#brief-b--90s-plan)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | Recursive render? | vstack children — DFS-shaped (Day 22 nod). |
 | Feature flag? | Optional — default fallback leaf. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. Must-have acceptance for Brief B?
-
-**Points to:** [Deep dive · Must-have acceptance](../02-deep-dive.md#must-have-acceptance-1)
 
 **Answer:**
 
@@ -54,13 +54,17 @@
 |---|---|
 | schemaVersion mismatch? | Fail-soft — fallback document or empty state; say policy. |
 | Missing props? | Default values — don’t force-unwrap. |
-| Deep nesting? | Optional max-depth guard — design nod to S3/S8. |
+| Deep nesting? | Optional max-depth guard — design nod to BookMyShow backend-driven header & search/BookMyShow IMOC + crash-free at scale. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow backend-driven header & search; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
 
 ---
 
 ### Q4. Decode + factory — what to whiteboard?
-
-**Points to:** [Deep dive · Brief B decode sketch](../02-deep-dive.md#brief-b--decode--factory-sketch-interview-whiteboard)
 
 **Answer:**
 
@@ -74,11 +78,12 @@
 | Unknown analytics? | Stub logger — `unknown_component(type)` event. |
 | Codable polymorphism? | DTO + factory simpler than nested enums in 3 hrs. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
-### Q5. How do unknown components connect to production S3?
-
-**Points to:** [Production bridge · S3](../03-production-bridge.md#verified--s3) · [Day 22 serialize nod](../../day-22/02-deep-dive.md#45-serialize--null-markers-required)
+### Q5. How do unknown components connect to production BookMyShow backend-driven header & search?
 
 **Answer:**
 
@@ -88,15 +93,19 @@
 
 | Follow-up | Answer |
 |---|---|
-| S12 splash? | Server-driven schema flexibility + client resilience. |
+| Audio streaming + server-driven splash (Aces) splash? | Server-driven schema flexibility + client resilience. |
 | schemaVersion? | Like API versioning — reject or degrade gracefully. |
-| STAR timing? | Hooks only — full S3 on Day 26. |
+| STAR timing? | Hooks only — full BookMyShow backend-driven header & search on Day 26. |
+
+**How can I relate to my case:**
+- **Shipped:** Audio streaming + server-driven splash (Aces); BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q6. Meaningful tests for Brief B?
-
-**Points to:** [Deep dive · Rubrics](../02-deep-dive.md#rubrics-15) · [Must-have §5](../02-deep-dive.md#must-have-acceptance-1)
 
 **Answer:**
 
@@ -110,11 +119,12 @@
 | Fixture JSON in bundle? | Clean pattern for test target. |
 | Nested vstack test? | One fixture with children — acceptance #4. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. Brief B trade-offs?
-
-**Points to:** [Deep dive · Trade-offs](../02-deep-dive.md#trade-offs) · [Cut lines](../02-deep-dive.md#cut-lines-1)
 
 **Answer:**
 
@@ -128,6 +138,10 @@
 | Connect Brief A? | List can host SDUI cells — out of scope unless surplus. |
 | Debrief? | Sample 04. |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [04-debrief-structure.md](04-debrief-structure.md) · or run Brief B in [`../05-exercises.md`](../05-exercises.md)
+
+---
+

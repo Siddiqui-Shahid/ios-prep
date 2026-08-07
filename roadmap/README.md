@@ -11,17 +11,18 @@ Personalized 4-week senior iOS system. **Full chapters are self-contained in Cur
 | Track | Path | Use when |
 |---|---|---|
 | **Full study** | [`weeks/week-XX/day-YY/README.md`](weeks/week-01/day-01/README.md) | First time learning a topic |
-| **Revision** | [`revision/weeks/`](revision/README.md) | After full study — timed drills only |
-| **Audiobook app** | [`../app/README.md`](../app/README.md) | Listen + read Week 1 offline (iOS & Android) |
+| **Sample Q&A** | [`weeks/.../day-YY/sample/`](weeks/week-01/day-01/sample/README.md) | Guided teaching cards (also what the audiobook app plays) |
+| **Revision** | [`revision/weeks/`](revision/README.md) | After sample/full study — timed drills only |
+| **Audiobook app** | [`../app/README.md`](../app/README.md) | Listen + read Days 01–28 sample Q&A offline (iOS & Android) |
 
 ### How to study a day
 
 1. Open `weeks/week-XX/day-YY/README.md`
-2. Read `01-foundations` → `02-deep-dive` → `03-production-bridge`
-3. Run / read `code/`
+2. Prefer guided cards in `sample/` (question → answer → follow-ups), or read `01-foundations` → `02-deep-dive` → `03-production-bridge`
+3. Run / read `code/` when present
 4. In `04-questions.md`: cover the full answer → speak from **Answer points** → compare to **Full spoken answer**
 5. Do `05-exercises.md`
-6. Drill with the revision twin
+6. Drill with the revision twin (`revision/weeks/...`) — flash prompts + timed budgets only
 
 ### Answer timing budgets
 
@@ -88,3 +89,4 @@ python3 scripts/validate_roadmap.py
 | [flashcards/](flashcards/) | Decks + Anki CSV |
 | [coding/dsa-track.md](coding/dsa-track.md) | DSA list |
 | [revision/](revision/) | Short drill notes |
+| [SAMPLE_COVERAGE_TRACKER.md](SAMPLE_COVERAGE_TRACKER.md) | Sample Q&A vs day-module gap checklist |

@@ -1,12 +1,10 @@
 # Sample 03 — Approach & complexity (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is the 2–3 min “say this first” script for trees?
-
-**Points to:** [Foundations · §7 “Say this first”](../01-foundations.md#7-say-this-first--23-min-coding-approach) · [README · Agenda opener](../README.md#agenda-opener-pin-this)
 
 **Answer:**
 
@@ -20,11 +18,12 @@
 | LCA example opener? | “Postorder markers; bubble single-side hit; confirm both exist; O(n)/O(h).” |
 | Skip the script? | Restart — interviews grade process under uncertainty. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. What should I clarify before picking BFS or DFS?
-
-**Points to:** [Foundations · §1 Mental model](../01-foundations.md#1-mental-model-what-a-tree-problem-is-asking) · [Deep dive · §6 Failure modes](../02-deep-dive.md#6-failure-modes-seniors-mention)
 
 **Answer:**
 
@@ -38,11 +37,12 @@
 | Path “downward only”? | Usually root-to-leaf — confirm; any-node paths differ. |
 | n = 10⁵ skewed? | Mention iterative or stack — recursion depth risk. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. How do I present brute force without sounding weak?
-
-**Points to:** [Foundations · §7 step 2](../01-foundations.md#7-say-this-first--23-min-coding-approach)
 
 **Answer:**
 
@@ -56,11 +56,12 @@
 | When is brute the answer? | Tiny n or explicit compare-approaches question. |
 | Same tree check brute? | Compare every node pair — motivates synchronized DFS. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. What edge cases should I name every time?
-
-**Points to:** [Foundations · §4 BFS edges](../01-foundations.md#4-bfs-foundation--level-size-idiom) · [§7 step 5](../01-foundations.md#7-say-this-first--23-min-coding-approach)
 
 **Answer:**
 
@@ -74,11 +75,12 @@
 | LCA both same node? | Return that node — clarify if allowed. |
 | Serialize empty? | `"#" ` or `"null"` marker policy — match decoder. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. When must I state time and space complexity?
-
-**Points to:** [Foundations · §3 Complexity script](../01-foundations.md#3-complexity-script-memorize-verbatim)
 
 **Answer:**
 
@@ -92,11 +94,12 @@
 | BFS “O(1) space”? | Wrong unless tree is a linked list level — queue dominates. |
 | Amortized over all nodes? | Still O(n) total work — each node enqueued/dequeued once. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. Example spoken scripts for three classics.
-
-**Points to:** [Foundations · §7 examples](../01-foundations.md#7-say-this-first--23-min-coding-approach)
 
 **Answer:**
 
@@ -110,11 +113,12 @@
 | Right side view? | “BFS last per level — or DFS right-first with depth map.” |
 | Same tree? | “Mirror DFS on both roots; nil-nil true, one-nil false.” |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. What glossary terms should I speak cleanly?
-
-**Points to:** [Foundations · §2 Glossary](../01-foundations.md#2-glossary-interview-vocabulary)
 
 **Answer:**
 
@@ -128,6 +132,10 @@
 | Cousins vs siblings? | Same depth, different parents — BFS level helps. |
 | Subtree vs substructure? | Subtree = exact clone; substructure = pattern match — different problems. |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [04-production-trees.md](04-production-trees.md)
+
+---
+

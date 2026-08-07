@@ -6,8 +6,6 @@
 
 ### Q1. What is the security ladder and why not collapse rungs?
 
-**Points to:** [Foundations · §10 Security ladder](../01-foundations.md#10-security-ladder-do-not-collapse-these) · [Deep dive · §8.3 ATS vs pinning](../02-deep-dive.md#83-ats-vs-pinning-again-with-ops)
-
 **Answer:**
 
 > Rungs: (1) HTTPS only — no cleartext API traffic. (2) ATS baseline — system policy preferring secure connections. (3) Default certificate validation via system trust. (4) Optional **pinning** — extra identity check for high-value traffic. (5) **Domain whitelist** — client only calls approved hosts. **ATS ≠ pinning.** ATS pushes TLS and blocks insecure cleartext; pinning says “among TLS servers, only these SPKI hashes/certs are acceptable for our API hosts.” You can have ATS without pinning; pinning without HTTPS is nonsense.
@@ -17,14 +15,18 @@
 | Follow-up | Answer |
 |---|---|
 | Interview trap? | “ATS is our pinning” — wrong; separate layers and failure modes. |
-| Ads module why first-party? | Revenue-adjacent high volume; MITM risk; need session delegate ownership (S4). |
+| Ads module why first-party? | Revenue-adjacent high volume; MITM risk; need session delegate ownership (BookMyShow SSL pinning + URLSession migration). |
 | Creative CDN URLs vs API hosts? | Whitelist API POST credentials hosts separately from image CDN loads. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow SSL pinning + URLSession migration
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Claiming pin-rotation / break-glass runbook as a shipped production playbook.
 
 ---
 
 ### Q2. What is SPKI pinning and what must you NOT hash?
-
-**Points to:** [Foundations · §11 SPKI](../01-foundations.md#11-spki-in-one-honest-paragraph) · [Deep dive · §8.2 SPKI correctly](../02-deep-dive.md#82-spki-correctly)
 
 **Answer:**
 
@@ -38,15 +40,16 @@
 | Pin generator alignment? | Ops must hash SPKI DER — same as `openssl dgst` workflows in rotation docs. |
 | Forbidden resume claim? | “We hash SecKeyCopyExternalRepresentation as SPKI.” |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. Where does SSL pinning hook in URLSession?
 
-**Points to:** [Deep dive · §8.1 Where it hooks](../02-deep-dive.md#81-where-it-hooks) · [Production bridge · §2 Verified S4](../03-production-bridge.md#2-verified-s4--star-you-can-deliver-23-min)
-
 **Answer:**
 
-> Implement `URLSessionDelegate` method `urlSession(_:didReceive:completionHandler:)` for server trust challenges (`NSURLAuthenticationMethodServerTrust`). System presents server trust; you evaluate certificates in the chain; compute pin(s); compare to allow-list; call `completionHandler(.useCredential, credential)` on match or `.cancelAuthenticationChallenge` on mismatch — **fail closed**. At BMS Ads (S4), pinning was added on the URLSession stack alongside HTTPS enforcement and domain whitelist after migrating off Alamofire.
+> Implement `URLSessionDelegate` method `urlSession(_:didReceive:completionHandler:)` for server trust challenges (`NSURLAuthenticationMethodServerTrust`). System presents server trust; you evaluate certificates in the chain; compute pin(s); compare to allow-list; call `completionHandler(.useCredential, credential)` on match or `.cancelAuthenticationChallenge` on mismatch — **fail closed**. At BMS Ads (BookMyShow SSL pinning + URLSession migration), pinning was added on the URLSession stack alongside HTTPS enforcement and domain whitelist after migrating off Alamofire.
 
 **Follow-ups:**
 
@@ -54,13 +57,17 @@
 |---|---|
 | Debug with Charles? | Only on builds that disable pinning or use debug trust path — never weaken prod casually. |
 | Pin mismatch user experience? | Request fails; security metric — don’t silently fall back to unpinned in prod without design. |
-| Alamofire pinning? | Possible via session wiring — S4 moved to first-party delegate ownership. |
+| Alamofire pinning? | Possible via session wiring — BookMyShow SSL pinning + URLSession migration moved to first-party delegate ownership. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow SSL pinning + URLSession migration
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Claiming pin-rotation / break-glass runbook as a shipped production playbook.
 
 ---
 
 ### Q4. What is a domain whitelist and why Ads needed it?
-
-**Points to:** [Deep dive · §8.4 Domain whitelist](../02-deep-dive.md#84-domain-whitelist) · [Production bridge · §7 Threat model](../03-production-bridge.md#7-threat-model-for-ads-short)
 
 **Answer:**
 
@@ -74,29 +81,34 @@
 | Test? | Assert bad host never hits URLProtocol stub. |
 | Tie to Day 10? | SDUI action URLs should also respect domain/deeplink policy. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
-### Q5. What is S4-A1 and how do you speak pin rotation?
-
-**Points to:** [Production bridge · §3 S4-A1](../03-production-bridge.md#3-s4-a1--pin-ops-as-design-speak-carefully) · [Deep dive · §8.3 ATS vs pinning ops](../02-deep-dive.md#83-ats-vs-pinning-again-with-ops)
+### Q5. What is Design: pin rotation / break-glass (not shipped runbook) and how do you speak pin rotation?
 
 **Answer:**
 
-> **S4-A1** is **How I would apply it** — design judgment, not a verified shipped runbook. When interviewers ask “cert rotates?”, answer with **backup pins** (≥2 SPKI hashes), pin set ownership, staged/canary exposure, monitored **break-glass** (build flag or remote config, time-boxed), and fail-closed default. Pinning without rotation thinking is an outage generator when keys change. You shipped pinning on Ads (S4); you **design** rotation — don’t claim you shipped the full ops runbook unless verified later.
+> **Design: pin rotation / break-glass (not shipped runbook)** is **How I would apply it** — design judgment, not a verified shipped runbook. When interviewers ask “cert rotates?”, answer with **backup pins** (≥2 SPKI hashes), pin set ownership, staged/canary exposure, monitored **break-glass** (build flag or remote config, time-boxed), and fail-closed default. Pinning without rotation thinking is an outage generator when keys change. You shipped pinning on Ads (BookMyShow SSL pinning + URLSession migration); you **design** rotation — don’t claim you shipped the full ops runbook unless verified later.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
 | Script fragment? | “We shipped pinning and whitelist; separately I’d require backup pins and monitored break-glass — I’m not claiming the full ops runbook.” |
-| “Did pinning break you?” | Honest: failure mode is outage — that’s why S4-A1 design matters. |
-| Shadow traffic rollout? | Do not claim as Verified S4. |
+| “Did pinning break you?” | Honest: failure mode is outage — that’s why Design: pin rotation / break-glass (not shipped runbook) design matters. |
+| Shadow traffic rollout? | Do not claim as BookMyShow SSL pinning + URLSession migration. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow SSL pinning + URLSession migration
+- **Design if asked:** Design: pin rotation / break-glass (not shipped runbook)
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Claiming pin-rotation / break-glass runbook as a shipped production playbook.
 
 ---
 
 ### Q6. How do you test networking security without flaky CI?
-
-**Points to:** [Deep dive · §10 Testing](../02-deep-dive.md#10-testing-without-flaky-ci) · [Deep dive · §14 Debugging workflow](../02-deep-dive.md#14-debugging-workflow)
 
 **Answer:**
 
@@ -108,17 +120,21 @@
 |---|---|
 | Staging smoke hits? | Optional; keep secrets out of fixtures. |
 | Pin debug step 5? | Confirm pin generator uses SPKI DER per debugging workflow. |
-| Observability? | Log path template, status, duration — correlate `X-Request-ID`; p50/p90 not averages (S5). |
+| Observability? | Log path template, status, duration — correlate `X-Request-ID`; p50/p90 not averages (BookMyShow Firebase Performance traces). |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Firebase Performance traces
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
-### Q7. What must you never say about S4 and security together?
-
-**Points to:** [Production bridge · §1 Forbidden overclaims](../03-production-bridge.md#1-provenance-map-for-today) · [Production bridge · §9 Common pushes](../03-production-bridge.md#9-common-interviewer-pushes--honest-replies)
+### Q7. What must you never say about BookMyShow SSL pinning + URLSession migration and security together?
 
 **Answer:**
 
-> Do **not** claim: shipped pin-rotation runbook, shadow traffic rollout, “pinning alone fixed crash-free,” “ATS is pinning,” or hashing `SecKeyCopyExternalRepresentation` as SPKI. **Do** claim: Ads migrated Alamofire → URLSession; enforced HTTPS; added SSL pinning; domain whitelist — first-party control on a high-traffic revenue module. Pair with S4-A1 rotation **design** when pushed on ops.
+> Do **not** claim: shipped pin-rotation runbook, shadow traffic rollout, “pinning alone fixed crash-free,” “ATS is pinning,” or hashing `SecKeyCopyExternalRepresentation` as SPKI. **Do** claim: Ads migrated Alamofire → URLSession; enforced HTTPS; added SSL pinning; domain whitelist — first-party control on a high-traffic revenue module. Pair with Design: pin rotation / break-glass (not shipped runbook) rotation **design** when pushed on ops.
 
 **Follow-ups:**
 
@@ -126,8 +142,15 @@
 |---|---|
 | Whole app on URLSession? | Risk-based — Ads first where threat/value highest. |
 | “Why not keep Alamofire?” | Ownership of pinning/whitelist and smaller dependency surface on that module. |
-| Payment retry hook? | S7 — no blind POST retry on networking SDK. |
+| Payment retry hook? | BookMyShow payment processing-status popup — no blind POST retry on networking SDK. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow SSL pinning + URLSession migration; BookMyShow payment processing-status popup
+- **Design if asked:** Design: pin rotation / break-glass (not shipped runbook)
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Claiming pin-rotation / break-glass runbook as a shipped production playbook.
+
+Next: [04-production-s4.md](04-production-s4.md)
 
 ---
 
-Next: [04-production-s4.md](04-production-s4.md)

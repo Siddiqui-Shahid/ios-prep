@@ -1,12 +1,10 @@
-# Sample 04 — Production S1 / S10 (Q&A)
+# Sample 04 — BookMyShow Ads pipeline + HeroWidget (Q&A)
 
-> Guided teaching. Separates **Verified** resume facts from **Learning-lab** demos and soft bridges so you never blur them in an interview.
+> Guided teaching. Separates **shipped** named cases from **design-if-asked** and **lab-only** so you never blur them in an interview.
 
 ---
 
-### Q1. What can you claim under Verified · S1?
-
-**Points to:** [Production bridge · §2 Verified · S1](../03-production-bridge.md#2-verified--s1--ads--herowidget-core) · [§1 Story map](../03-production-bridge.md#1-story-map-for-today)
+### Q1. What can you claim under BookMyShow Ads pipeline + HeroWidget lifecycle?
 
 **Answer:**
 
@@ -20,11 +18,15 @@
 | Architecture opener (5–10s)? | “I’ll walk through our highest-revenue Ads refactor — protocols, generics, and video lifecycle.” |
 | Result (honest)? | Maintainable type-safe pipeline; lifecycle-correct video reduced wasted playback / UI glitches — no invented %. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
+
 ---
 
-### Q2. What must you never invent for S1?
-
-**Points to:** [Production bridge · What you must not invent](../03-production-bridge.md#what-you-must-not-invent)
+### Q2. What must you never invent for BookMyShow Ads pipeline + HeroWidget lifecycle?
 
 **Answer:**
 
@@ -38,33 +40,41 @@
 | Trade-off to volunteer? | Generics inside for safety; erase only at mixed list or module boundary — erasure isn’t free. |
 | If asked for metrics you don’t have? | Stay qualitative; offer triage or architecture reasoning instead. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
+
 ---
 
-### Q3. How do Day 02 concepts map to S1 interview lines?
-
-**Points to:** [Production bridge · §3 Mapping concepts → S1](../03-production-bridge.md#3-mapping-concepts--s1-lines)
+### Q3. How do Day 02 concepts map to BookMyShow Ads pipeline + HeroWidget lifecycle interview lines?
 
 **Answer:**
 
-> POP → capability composition + S1 pipeline contracts. Generics → compile-time safety vs `Any` casts. Associated-type pain → keep generic / erase at the edge (lab eraser if asked “how”). Inheritance vs POP → fragile base on ad variants. Video lifecycle → HeroWidget pause/play (class identity + protocol capability). `some`/`any` → prefer generics in hot bind. Extension dispatch → requirement vs default.
+> POP → capability composition + BookMyShow Ads pipeline + HeroWidget lifecycle pipeline contracts. Generics → compile-time safety vs `Any` casts. Associated-type pain → keep generic / erase at the edge (lab eraser if asked “how”). Inheritance vs POP → fragile base on ad variants. Video lifecycle → HeroWidget pause/play (class identity + protocol capability). `some`/`any` → prefer generics in hot bind. Extension dispatch → requirement vs default.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| Asked “what is POP?” | Capability composition; support with S1 contracts. |
+| Asked “what is POP?” | Capability composition; support with BookMyShow Ads pipeline + HeroWidget lifecycle contracts. |
 | Asked “why generics?” | Safety vs casts; revenue path correctness. |
 | Asked about erasure? | Applied/lab how — don’t invent “we erased everything in production.” |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
+
 ---
 
-### Q4. What is the Verified · S10 soft bridge?
-
-**Points to:** [Production bridge · §4 Stories SDK](../03-production-bridge.md#4-verified--s10--stories-sdk-soft-bridge) · [Deep dive · §10 SDK boundary](../02-deep-dive.md#10-sdk-boundary-lessons-s10-soft)
+### Q4. What is the Stories SDK (Raw / Miami Heat) soft bridge?
 
 **Answer:**
 
-> Stories SDK reused across a portfolio — reusable surfaces mattered. Same instinct: **contracts at the boundary**, concretes inside. Use S10 when asked about reusable module APIs — not as a replacement for S1 on ads-specific questions. Do not invent client counts or latency percentages.
+> Stories SDK reused across a portfolio — reusable surfaces mattered. Same instinct: **contracts at the boundary**, concretes inside. Use Stories SDK (Raw / Miami Heat) when asked about reusable module APIs — not as a replacement for BookMyShow Ads pipeline + HeroWidget lifecycle on ads-specific questions. Do not invent client counts or latency percentages.
 
 **Follow-ups:**
 
@@ -72,17 +82,21 @@
 |---|---|
 | ≤20s bridge? | “Same POP instinct showed up later in a Stories SDK — reusable protocol-oriented surfaces across brands rather than copy-pasted concretes.” |
 | Public API shape? | Protocols + carefully chosen value models — not a forest of concretes clients must subclass. |
-| Provenance label? | Verified · S10 · Stories SDK portfolio reuse. |
+| Named-case label? | Stories SDK (Raw / Miami Heat) · Stories SDK portfolio reuse. |
+
+**How can I relate to my case:**
+- **Shipped:** Stories SDK (Raw / Miami Heat); BookMyShow Ads pipeline + HeroWidget lifecycle
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
 
 ---
 
 ### Q5. How do you talk about Learning-lab code honestly?
 
-**Points to:** [Production bridge · §6 Learning-lab](../03-production-bridge.md#6-learning-lab--what-the-code-files-are) · [AdsPipeline.swift](../code/AdsPipeline.swift)
-
 **Answer:**
 
-> `AdsPipeline.swift` and `TypeErasureDemo.swift` are teaching sketches of the S1 shape and erasure mechanics — **not** shipped BMS source. If asked “Did you write it like this?” say: “This is the teaching shape of the contracts we used — protocol + generic pipeline. I’m not claiming this file is production source.”
+> `AdsPipeline.swift` and `TypeErasureDemo.swift` are teaching sketches of the BookMyShow Ads pipeline + HeroWidget lifecycle shape and erasure mechanics — **not** shipped BMS source. If asked “Did you write it like this?” say: “This is the teaching shape of the contracts we used — protocol + generic pipeline. I’m not claiming this file is production source.”
 
 **Follow-ups:**
 
@@ -90,17 +104,21 @@
 |---|---|
 | Why keep lab files? | Practice speaking and Memory/type concepts without overclaiming. |
 | Erasure in interview? | Prefer lab for “how erasure works”; don’t invent production erasure metrics. |
-| Claim level table? | Pipeline = teaching shape of S1; eraser = mechanics demo. |
+| Claim level table? | Pipeline = teaching shape of BookMyShow Ads pipeline + HeroWidget lifecycle; eraser = mechanics demo. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
 
 ---
 
-### Q6. Soft S3 / S3-A1 — when do you even mention it?
-
-**Points to:** [Production bridge · §5 Soft S3](../03-production-bridge.md#5-soft--s3--s3-a1--open-registries)
+### Q6. Soft BookMyShow backend-driven header & search / BookMyShow backend-driven header & search-A1 — when do you even mention it?
 
 **Answer:**
 
-> Only if the interviewer pivots to SDUI / CMS components. Verified S3: backend-driven header; protocol-driven main screen. Applied S3-A1: unknown component fallback + versioning — say it is design, not a shipped Day 02 core claim. Do not let this hijack Day 02 — keep S1 as the spine.
+> Only if the interviewer pivots to SDUI / CMS components. BookMyShow backend-driven header & search: backend-driven header; protocol-driven main screen. Applied BookMyShow backend-driven header & search-A1: unknown component fallback + versioning — say it is design, not a shipped Day 02 core claim. Do not let this hijack Day 02 — keep BookMyShow Ads pipeline + HeroWidget lifecycle as the spine.
 
 **Follow-ups:**
 
@@ -110,15 +128,19 @@
 | Closed enum when? | Stable small set; rare additions. |
 | Link to deep dive? | Open vs closed component sets section. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle; BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
+
 ---
 
 ### Q7. What interview anti-patterns should you avoid?
 
-**Points to:** [Production bridge · §7 Anti-patterns](../03-production-bridge.md#7-anti-patterns-in-interviews)
-
 **Answer:**
 
-> Inventing fill-rate %. Claiming POP means never use classes. Calling type erasure free. Diving into Generics Manifesto trivia. Skipping the agenda on architecture questions. Claiming actors/SwiftUI for S1 when that wasn’t the stack — stick to POP + generics + lifecycle.
+> Inventing fill-rate %. Claiming POP means never use classes. Calling type erasure free. Diving into Generics Manifesto trivia. Skipping the agenda on architecture questions. Claiming actors/SwiftUI for BookMyShow Ads pipeline + HeroWidget lifecycle when that wasn’t the stack — stick to POP + generics + lifecycle.
 
 **Follow-ups:**
 
@@ -128,11 +150,15 @@
 | HeroWidget contradiction? | Class for lifecycle; protocols for capabilities — not a contradiction. |
 | Flash card company/feature? | BookMyShow — Ads module / HeroWidget. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
+
 ---
 
 ### Q8. Deliver a clean ≈90s Action slice (STAR) with honest labels
-
-**Points to:** [Production bridge · Interview lines](../03-production-bridge.md#interview-lines) · [story-bank S1](../../../../stories/story-bank.md)
 
 **Answer:**
 
@@ -144,10 +170,14 @@
 | Follow-up | Answer |
 |---|---|
 | Timing drills? | 20s pitch · 90s Action · ≤3 min full STAR · ≤5 min whiteboard. |
-| S10 in same answer? | Only if asked about reusable SDKs — don’t replace S1. |
+| Stories SDK (Raw / Miami Heat) in same answer? | Only if asked about reusable SDKs — don’t replace BookMyShow Ads pipeline + HeroWidget lifecycle. |
 | After this sample? | Timed practice in [`../04-questions.md`](../04-questions.md); code walk in [`../code/`](../code/). |
 
----
+**How can I relate to my case:**
+- **Shipped:** Stories SDK (Raw / Miami Heat); BookMyShow Ads pipeline + HeroWidget lifecycle
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
 
 ## After this sample
 
@@ -155,3 +185,6 @@
 2. Speak from **Answer points** in [`../04-questions.md`](../04-questions.md).
 3. Do drills in [`../05-exercises.md`](../05-exercises.md).
 4. Optional: Day 03 sample for ARC / cycles — [`../../day-03/sample/`](../../day-03/sample/README.md).
+
+---
+

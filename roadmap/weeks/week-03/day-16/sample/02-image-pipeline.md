@@ -1,12 +1,10 @@
 # Sample 02 — Image pipeline (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What does the image loader HLD look like?
-
-**Points to:** [Deep dive · §1 End-to-end image loader HLD](../02-deep-dive.md#1-end-to-end-image-loader-hld)
 
 **Answer:**
 
@@ -17,14 +15,18 @@
 | Follow-up | Answer |
 |---|---|
 | Why coordinator, not view-owned URLSession? | Central dedupe, policy, metrics, and memory pressure in one place. |
-| Protocol name? | `ImageLoading` — host injects into SDKs (S10 bridge). |
+| Protocol name? | `ImageLoading` — host injects into SDKs (Stories SDK (Raw / Miami Heat) bridge). |
 | Main thread rule? | Coordinator schedules decode off main; only `UIImage` assign on main. |
+
+**How can I relate to my case:**
+- **Shipped:** Stories SDK (Raw / Miami Heat)
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q2. How do you downsample correctly?
-
-**Points to:** [Deep dive · §2 Downsampling](../02-deep-dive.md#2-downsampling-critical-api)
 
 **Answer:**
 
@@ -38,11 +40,12 @@
 | Store original vs per-size on disk? | Original saves disk; per-size saves CPU on L2 hit — explain trade-off aloud. |
 | maxPixelSize meaning? | Caps longest edge in pixels — match cell bounds × screen scale. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. How do dedup and cancellation work together?
-
-**Points to:** [Deep dive · §3 Dedup & cancellation](../02-deep-dive.md#3-dedup--cancellation)
 
 **Answer:**
 
@@ -56,11 +59,12 @@
 | Same URL two cells visible? | Dedup shares one Task — both observers get result. |
 | Priority visible vs prefetch? | Visible runs higher QoS; prefetch yields under load. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. What are prefetch footguns and fixes?
-
-**Points to:** [Deep dive · §4 Prefetch footguns](../02-deep-dive.md#4-prefetch-footguns)
 
 **Answer:**
 
@@ -74,11 +78,12 @@
 | UITableView/UICollectionView hook? | `prefetchDataSource` with budget — not unbounded ahead queue. |
 | Metric to watch? | RAM spike + CPU on fling — Allocations + Time Profiler. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. What is the memory pressure playbook for images?
-
-**Points to:** [Deep dive · §5 Memory pressure playbook](../02-deep-dive.md#5-memory-pressure-playbook)
 
 **Answer:**
 
@@ -92,11 +97,12 @@
 | Symptom: RAM spike, small disk? | Full-res decoded in L1 or imageViews holding huge images. |
 | Jetsam connection? | Abandoned L1 under peak events → Day 18 OOM narrative. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. What failure modes map to which fixes?
-
-**Points to:** [Deep dive · §10 Failure modes](../02-deep-dive.md#10-failure-modes)
 
 **Answer:**
 
@@ -110,15 +116,16 @@
 | Debug hitch? | Hitches instrument + confirm decode off main. |
 | Third-party loader in interview? | Know internals — don’t say “Kingfisher handles it” without explaining tiers. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. Should Stories SDK embed Kingfisher?
 
-**Points to:** [Deep dive · §8 Should Stories SDK own pipeline](../02-deep-dive.md#8-should-stories-sdk-own-the-image-pipeline-s10-bridge)
-
 **Answer:**
 
-> **No** — inject `ImageLoading` from host (Day 15 S10). Portfolio apps share one loader, cache policy, and memory behavior. SDK stays reusable; hosts upgrade/downsample rules without forking the SDK.
+> **No** — inject `ImageLoading` from host (Day 15 Stories SDK (Raw / Miami Heat)). Portfolio apps share one loader, cache policy, and memory behavior. SDK stays reusable; hosts upgrade/downsample rules without forking the SDK.
 
 **Follow-ups:**
 
@@ -126,8 +133,34 @@
 |---|---|
 | Host implements protocol? | Wrap SDWebImage/Kingfisher/custom — boundary is `ImageLoading`. |
 | Test hook? | Mock loader returns fixed UIImage — SDK UI tests without network. |
-| Next sample? | [03-video-audio-media.md](03-video-audio-media.md) — video + audio contracts. |
+| Animated formats? | Dedicated Q8 — separate decoder path, not the JPEG pipeline. |
+
+**How can I relate to my case:**
+- **Shipped:** Stories SDK (Raw / Miami Heat)
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
+### Q8. How do you handle GIFs / animated images?
+
+**Answer:**
+
+> Animated formats need a **separate decoder** and a **higher memory budget** — frame buffers are not the same as a single downsampled still. In system-design interviews, **call them out of scope unless asked**, rather than pretending the JPEG/ImageIO thumbnail pipeline handles GIF or animated WebP frames the same way.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Video vs animated WebP? | Product/perf trade-off — video often better for long loops; animated stills for short stickers. |
+| Same L1 key as still? | No — animated needs frame/decode policy; don’t share still-image L1 blindly. |
+| Next sample? | [03-video-audio-media.md](03-video-audio-media.md) — video + audio contracts. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 Next: [03-video-audio-media.md](03-video-audio-media.md)
+
+---
+

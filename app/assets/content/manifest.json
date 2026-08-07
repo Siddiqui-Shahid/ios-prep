@@ -2,11 +2,11 @@
   "weeks": [
     {
       "id": "week-01",
-      "title": "Week 1 \u2014 Foundations",
+      "title": "Week 1 — Foundations",
       "days": [
         {
           "id": "day-01",
-          "title": "Day 01 \u2014 Sample Q&A: Value vs Reference, COW, Enums, Actors Intro",
+          "title": "Day 01 — Sample Q&A: Value vs Reference, COW, Enums, Actors Intro",
           "chapters": [
             {
               "id": "01-value-types",
@@ -28,15 +28,29 @@
             },
             {
               "id": "04-production-s1-s7",
-              "title": "04 Production S1 S7 (Q&A)",
+              "title": "Ads pipeline, HeroWidget & payment status popup (Q&A)",
               "markdown": "assets/content/week-01/day-01/04-production-s1-s7.md",
               "script": "assets/content/week-01/day-01/04-production-s1-s7.script.md"
+            }
+          ],
+          "code": [
+            {
+              "id": "COWDemo.swift",
+              "title": "COWDemo.swift",
+              "asset": "assets/content/week-01/day-01/COWDemo.swift",
+              "language": "swift"
+            },
+            {
+              "id": "LoadState.swift",
+              "title": "LoadState.swift",
+              "asset": "assets/content/week-01/day-01/LoadState.swift",
+              "language": "swift"
             }
           ]
         },
         {
           "id": "day-02",
-          "title": "Day 02 \u2014 Sample Q&A: Protocols, POP, Generics, Associated Types, Type Erasure",
+          "title": "Day 02 — Sample Q&A: Protocols, POP, Generics, Associated Types, Type Erasure",
           "chapters": [
             {
               "id": "01-pop-and-generics",
@@ -58,15 +72,29 @@
             },
             {
               "id": "04-production-s1",
-              "title": "04 Production S1 (Q&A)",
+              "title": "BookMyShow Ads pipeline + HeroWidget (Q&A)",
               "markdown": "assets/content/week-01/day-02/04-production-s1.md",
               "script": "assets/content/week-01/day-02/04-production-s1.script.md"
+            }
+          ],
+          "code": [
+            {
+              "id": "AdsPipeline.swift",
+              "title": "AdsPipeline.swift",
+              "asset": "assets/content/week-01/day-02/AdsPipeline.swift",
+              "language": "swift"
+            },
+            {
+              "id": "TypeErasureDemo.swift",
+              "title": "TypeErasureDemo.swift",
+              "asset": "assets/content/week-01/day-02/TypeErasureDemo.swift",
+              "language": "swift"
             }
           ]
         },
         {
           "id": "day-03",
-          "title": "Day 03 \u2014 Sample Q&A: ARC, Retain Cycles, weak/unowned, Instruments",
+          "title": "Day 03 — Sample Q&A: ARC, Retain Cycles, weak/unowned, Instruments",
           "chapters": [
             {
               "id": "01-arc-basics",
@@ -88,15 +116,23 @@
             },
             {
               "id": "04-production-s8",
-              "title": "04 Production S8 (Q&A)",
+              "title": "IMOC + crash-free at scale (Q&A)",
               "markdown": "assets/content/week-01/day-03/04-production-s8.md",
               "script": "assets/content/week-01/day-03/04-production-s8.script.md"
+            }
+          ],
+          "code": [
+            {
+              "id": "RetainCycleDemo.swift",
+              "title": "RetainCycleDemo.swift",
+              "asset": "assets/content/week-01/day-03/RetainCycleDemo.swift",
+              "language": "swift"
             }
           ]
         },
         {
           "id": "day-04",
-          "title": "Day 04 \u2014 Sample Q&A: GCD Queues, sync/async, Barriers, Thread-Safe Dictionary",
+          "title": "Day 04 — Sample Q&A: GCD Queues, sync/async, Barriers, Thread-Safe Dictionary",
           "chapters": [
             {
               "id": "01-queues-sync-async",
@@ -118,15 +154,29 @@
             },
             {
               "id": "04-production-s2",
-              "title": "04 Production S2 (Q&A)",
+              "title": "Synchronised dictionaries & actor SafeDict design (Q&A)",
               "markdown": "assets/content/week-01/day-04/04-production-s2.md",
               "script": "assets/content/week-01/day-04/04-production-s2.script.md"
+            }
+          ],
+          "code": [
+            {
+              "id": "BarrierDict.swift",
+              "title": "BarrierDict.swift",
+              "asset": "assets/content/week-01/day-04/BarrierDict.swift",
+              "language": "swift"
+            },
+            {
+              "id": "SafeDict.swift",
+              "title": "SafeDict.swift",
+              "asset": "assets/content/week-01/day-04/SafeDict.swift",
+              "language": "swift"
             }
           ]
         },
         {
           "id": "day-05",
-          "title": "Day 05 \u2014 Sample Q&A: async/await, Structured Concurrency, Actors, Sendable",
+          "title": "Day 05 — Sample Q&A: async/await, Structured Concurrency, Actors, Sendable",
           "chapters": [
             {
               "id": "01-async-await",
@@ -148,15 +198,23 @@
             },
             {
               "id": "04-production-s2",
-              "title": "04 Production S2 (Q&A)",
+              "title": "Synchronised dictionaries & actor SafeDict design (Q&A)",
               "markdown": "assets/content/week-01/day-05/04-production-s2.md",
               "script": "assets/content/week-01/day-05/04-production-s2.script.md"
+            }
+          ],
+          "code": [
+            {
+              "id": "SafeDictActor.swift",
+              "title": "SafeDictActor.swift",
+              "asset": "assets/content/week-01/day-05/SafeDictActor.swift",
+              "language": "swift"
             }
           ]
         },
         {
           "id": "day-06",
-          "title": "Day 06 \u2014 Sample Q&A: DSA: Arrays, Strings, Two Pointers, Sliding Window",
+          "title": "Day 06 — Sample Q&A: DSA: Arrays, Strings, Two Pointers, Sliding Window",
           "chapters": [
             {
               "id": "01-approach-scripts",
@@ -182,11 +240,85 @@
               "markdown": "assets/content/week-01/day-06/04-patterns-drills.md",
               "script": "assets/content/week-01/day-06/04-patterns-drills.script.md"
             }
+          ],
+          "code": [
+            {
+              "id": "ContainerWater.swift",
+              "title": "ContainerWater.swift",
+              "asset": "assets/content/week-01/day-06/ContainerWater.swift",
+              "language": "swift"
+            },
+            {
+              "id": "GroupAnagrams.swift",
+              "title": "GroupAnagrams.swift",
+              "asset": "assets/content/week-01/day-06/GroupAnagrams.swift",
+              "language": "swift"
+            },
+            {
+              "id": "LengthOfLongestSubstring.swift",
+              "title": "LengthOfLongestSubstring.swift",
+              "asset": "assets/content/week-01/day-06/LengthOfLongestSubstring.swift",
+              "language": "swift"
+            },
+            {
+              "id": "MaxProfit.swift",
+              "title": "MaxProfit.swift",
+              "asset": "assets/content/week-01/day-06/MaxProfit.swift",
+              "language": "swift"
+            },
+            {
+              "id": "MaxSubArray.swift",
+              "title": "MaxSubArray.swift",
+              "asset": "assets/content/week-01/day-06/MaxSubArray.swift",
+              "language": "swift"
+            },
+            {
+              "id": "MinSubArrayLen.swift",
+              "title": "MinSubArrayLen.swift",
+              "asset": "assets/content/week-01/day-06/MinSubArrayLen.swift",
+              "language": "swift"
+            },
+            {
+              "id": "MoveZeroes.swift",
+              "title": "MoveZeroes.swift",
+              "asset": "assets/content/week-01/day-06/MoveZeroes.swift",
+              "language": "swift"
+            },
+            {
+              "id": "ProductExceptSelf.swift",
+              "title": "ProductExceptSelf.swift",
+              "asset": "assets/content/week-01/day-06/ProductExceptSelf.swift",
+              "language": "swift"
+            },
+            {
+              "id": "Solutions.swift",
+              "title": "Solutions.swift",
+              "asset": "assets/content/week-01/day-06/Solutions.swift",
+              "language": "swift"
+            },
+            {
+              "id": "ThreeSum.swift",
+              "title": "ThreeSum.swift",
+              "asset": "assets/content/week-01/day-06/ThreeSum.swift",
+              "language": "swift"
+            },
+            {
+              "id": "TwoSum.swift",
+              "title": "TwoSum.swift",
+              "asset": "assets/content/week-01/day-06/TwoSum.swift",
+              "language": "swift"
+            },
+            {
+              "id": "ValidPalindrome.swift",
+              "title": "ValidPalindrome.swift",
+              "asset": "assets/content/week-01/day-06/ValidPalindrome.swift",
+              "language": "swift"
+            }
           ]
         },
         {
           "id": "day-07",
-          "title": "Day 07 \u2014 Sample Q&A: Week 1 Revision + Mock Interview #1",
+          "title": "Day 07 — Sample Q&A: Week 1 Revision + Mock Interview #1",
           "chapters": [
             {
               "id": "01-week1-recall",
@@ -196,7 +328,7 @@
             },
             {
               "id": "02-story-s2",
-              "title": "02 Story S2 (Q&A)",
+              "title": "Story: BookMyShow synchronised dictionaries (Q&A)",
               "markdown": "assets/content/week-01/day-07/02-story-s2.md",
               "script": "assets/content/week-01/day-07/02-story-s2.script.md"
             },
@@ -212,17 +344,25 @@
               "markdown": "assets/content/week-01/day-07/04-warmup-hld.md",
               "script": "assets/content/week-01/day-07/04-warmup-hld.script.md"
             }
+          ],
+          "code": [
+            {
+              "id": "MockScorecard.md",
+              "title": "MockScorecard.md",
+              "asset": "assets/content/week-01/day-07/MockScorecard.md",
+              "language": "markdown"
+            }
           ]
         }
       ]
     },
     {
       "id": "week-02",
-      "title": "Week 2 \u2014 Architecture & UI",
+      "title": "Week 2 — Architecture & UI",
       "days": [
         {
           "id": "day-08",
-          "title": "Day 08 \u2014 Sample Q&A: MVVM / Clean / MVI \u00b7 Layering \u00b7 DI",
+          "title": "Day 08 — Sample Q&A: MVVM / Clean / MVI · Layering · DI",
           "chapters": [
             {
               "id": "01-layer-stack-di",
@@ -244,15 +384,35 @@
             },
             {
               "id": "04-production-s9-s3",
-              "title": "04 Production S9 S3 (Q&A)",
+              "title": "Free Parking architecture & backend-driven search (Q&A)",
               "markdown": "assets/content/week-02/day-08/04-production-s9-s3.md",
               "script": "assets/content/week-02/day-08/04-production-s9-s3.script.md"
+            }
+          ],
+          "code": [
+            {
+              "id": "FeatureAssembler.swift",
+              "title": "FeatureAssembler.swift",
+              "asset": "assets/content/week-02/day-08/FeatureAssembler.swift",
+              "language": "swift"
+            },
+            {
+              "id": "FreeParkingUseCase.swift",
+              "title": "FreeParkingUseCase.swift",
+              "asset": "assets/content/week-02/day-08/FreeParkingUseCase.swift",
+              "language": "swift"
+            },
+            {
+              "id": "SearchViewModel.swift",
+              "title": "SearchViewModel.swift",
+              "asset": "assets/content/week-02/day-08/SearchViewModel.swift",
+              "language": "swift"
             }
           ]
         },
         {
           "id": "day-09",
-          "title": "Day 09 \u2014 Sample Q&A: URLSession Networking Layer",
+          "title": "Day 09 — Sample Q&A: URLSession Networking Layer",
           "chapters": [
             {
               "id": "01-networking-layer",
@@ -274,15 +434,23 @@
             },
             {
               "id": "04-production-s4",
-              "title": "04 Production S4 (Q&A)",
+              "title": "SSL pinning + URLSession migration (Q&A)",
               "markdown": "assets/content/week-02/day-09/04-production-s4.md",
               "script": "assets/content/week-02/day-09/04-production-s4.script.md"
+            }
+          ],
+          "code": [
+            {
+              "id": "SingleFlightRefresh.swift",
+              "title": "SingleFlightRefresh.swift",
+              "asset": "assets/content/week-02/day-09/SingleFlightRefresh.swift",
+              "language": "swift"
             }
           ]
         },
         {
           "id": "day-10",
-          "title": "Day 10 \u2014 Sample Q&A: SDUI / CMS \u00b7 Schema Versioning \u00b7 Fallbacks",
+          "title": "Day 10 — Sample Q&A: SDUI / CMS · Schema Versioning · Fallbacks",
           "chapters": [
             {
               "id": "01-sdui-foundations",
@@ -304,15 +472,35 @@
             },
             {
               "id": "04-production-s3-s12",
-              "title": "04 Production S3 S12 (Q&A)",
+              "title": "Backend-driven UI & Aces splash (Q&A)",
               "markdown": "assets/content/week-02/day-10/04-production-s3-s12.md",
               "script": "assets/content/week-02/day-10/04-production-s3-s12.script.md"
+            }
+          ],
+          "code": [
+            {
+              "id": "ComponentRegistry.swift",
+              "title": "ComponentRegistry.swift",
+              "asset": "assets/content/week-02/day-10/ComponentRegistry.swift",
+              "language": "swift"
+            },
+            {
+              "id": "FallbackEngine.swift",
+              "title": "FallbackEngine.swift",
+              "asset": "assets/content/week-02/day-10/FallbackEngine.swift",
+              "language": "swift"
+            },
+            {
+              "id": "SchemaVersionGate.swift",
+              "title": "SchemaVersionGate.swift",
+              "asset": "assets/content/week-02/day-10/SchemaVersionGate.swift",
+              "language": "swift"
             }
           ]
         },
         {
           "id": "day-11",
-          "title": "Day 11 \u2014 Sample Q&A: UIKit Lifecycle, Cells, Prefetch \u00b7 Hybrid UIKit \u2194 SwiftUI",
+          "title": "Day 11 — Sample Q&A: UIKit Lifecycle, Cells, Prefetch · Hybrid UIKit ↔ SwiftUI",
           "chapters": [
             {
               "id": "01-lifecycle-hooks",
@@ -334,15 +522,35 @@
             },
             {
               "id": "04-production-s13-s6",
-              "title": "04 Production S13 S6 (Q&A)",
+              "title": "Hybrid UI, deeplinks & LE Bottom Sheet (Q&A)",
               "markdown": "assets/content/week-02/day-11/04-production-s13-s6.md",
               "script": "assets/content/week-02/day-11/04-production-s13-s6.script.md"
+            }
+          ],
+          "code": [
+            {
+              "id": "CellReuseGuard.swift",
+              "title": "CellReuseGuard.swift",
+              "asset": "assets/content/week-02/day-11/CellReuseGuard.swift",
+              "language": "swift"
+            },
+            {
+              "id": "HybridHostingNotes.swift",
+              "title": "HybridHostingNotes.swift",
+              "asset": "assets/content/week-02/day-11/HybridHostingNotes.swift",
+              "language": "swift"
+            },
+            {
+              "id": "PrefetchBudget.swift",
+              "title": "PrefetchBudget.swift",
+              "asset": "assets/content/week-02/day-11/PrefetchBudget.swift",
+              "language": "swift"
             }
           ]
         },
         {
           "id": "day-12",
-          "title": "Day 12 \u2014 Sample Q&A: SwiftUI State, Identity, @Observable, Lists, Performance",
+          "title": "Day 12 — Sample Q&A: SwiftUI State, Identity, @Observable, Lists, Performance",
           "chapters": [
             {
               "id": "01-state-ownership",
@@ -364,15 +572,35 @@
             },
             {
               "id": "04-production-s10",
-              "title": "04 Production S10 (Q&A)",
+              "title": "Stories SDK (Raw / Miami Heat) (Q&A)",
               "markdown": "assets/content/week-02/day-12/04-production-s10.md",
               "script": "assets/content/week-02/day-12/04-production-s10.script.md"
+            }
+          ],
+          "code": [
+            {
+              "id": "IdentityTraps.swift",
+              "title": "IdentityTraps.swift",
+              "asset": "assets/content/week-02/day-12/IdentityTraps.swift",
+              "language": "swift"
+            },
+            {
+              "id": "LazyListNotes.swift",
+              "title": "LazyListNotes.swift",
+              "asset": "assets/content/week-02/day-12/LazyListNotes.swift",
+              "language": "swift"
+            },
+            {
+              "id": "StoriesPlayerModel.swift",
+              "title": "StoriesPlayerModel.swift",
+              "asset": "assets/content/week-02/day-12/StoriesPlayerModel.swift",
+              "language": "swift"
             }
           ]
         },
         {
           "id": "day-13",
-          "title": "Day 13 \u2014 Sample Q&A: DSA: Stack / Queue / Linked List",
+          "title": "Day 13 — Sample Q&A: DSA: Stack / Queue / Linked List",
           "chapters": [
             {
               "id": "01-stack-queue-basics",
@@ -394,15 +622,53 @@
             },
             {
               "id": "04-production-bridges",
-              "title": "04 Production Bridges (Q&A)",
+              "title": "Production story bridges (Q&A)",
               "markdown": "assets/content/week-02/day-13/04-production-bridges.md",
               "script": "assets/content/week-02/day-13/04-production-bridges.script.md"
+            }
+          ],
+          "code": [
+            {
+              "id": "ApproachScripts.md",
+              "title": "ApproachScripts.md",
+              "asset": "assets/content/week-02/day-13/ApproachScripts.md",
+              "language": "markdown"
+            },
+            {
+              "id": "LinkedListAlgos.swift",
+              "title": "LinkedListAlgos.swift",
+              "asset": "assets/content/week-02/day-13/LinkedListAlgos.swift",
+              "language": "swift"
+            },
+            {
+              "id": "MinStack.swift",
+              "title": "MinStack.swift",
+              "asset": "assets/content/week-02/day-13/MinStack.swift",
+              "language": "swift"
+            },
+            {
+              "id": "MonotonicStack.swift",
+              "title": "MonotonicStack.swift",
+              "asset": "assets/content/week-02/day-13/MonotonicStack.swift",
+              "language": "swift"
+            },
+            {
+              "id": "StackAndQueue.swift",
+              "title": "StackAndQueue.swift",
+              "asset": "assets/content/week-02/day-13/StackAndQueue.swift",
+              "language": "swift"
+            },
+            {
+              "id": "TwoStackQueue.swift",
+              "title": "TwoStackQueue.swift",
+              "asset": "assets/content/week-02/day-13/TwoStackQueue.swift",
+              "language": "swift"
             }
           ]
         },
         {
           "id": "day-14",
-          "title": "Day 14 \u2014 Sample Q&A: Week 2 Revision + Mock #2 (Ads or SDUI)",
+          "title": "Day 14 — Sample Q&A: Week 2 Revision + Mock #2 (Ads or SDUI)",
           "chapters": [
             {
               "id": "01-week2-synthesis",
@@ -428,17 +694,37 @@
               "markdown": "assets/content/week-02/day-14/04-sdui-architecture.md",
               "script": "assets/content/week-02/day-14/04-sdui-architecture.script.md"
             }
+          ],
+          "code": [
+            {
+              "id": "MockAgenda.swift",
+              "title": "MockAgenda.swift",
+              "asset": "assets/content/week-02/day-14/MockAgenda.swift",
+              "language": "swift"
+            },
+            {
+              "id": "MockTalkTracks.md",
+              "title": "MockTalkTracks.md",
+              "asset": "assets/content/week-02/day-14/MockTalkTracks.md",
+              "language": "markdown"
+            },
+            {
+              "id": "Week2Warmups.md",
+              "title": "Week2Warmups.md",
+              "asset": "assets/content/week-02/day-14/Week2Warmups.md",
+              "language": "markdown"
+            }
           ]
         }
       ]
     },
     {
       "id": "week-03",
-      "title": "Week 3 \u2014 Systems & Reliability",
+      "title": "Week 3 — Systems & Reliability",
       "days": [
         {
           "id": "day-15",
-          "title": "Day 15 \u2014 Sample Q&A: App Modularization, SPM & DI Graphs",
+          "title": "Day 15 — Sample Q&A: App Modularization, SPM & DI Graphs",
           "chapters": [
             {
               "id": "01-modularization-basics",
@@ -460,15 +746,35 @@
             },
             {
               "id": "04-production-s10",
-              "title": "04 Production S10 (Q&A)",
+              "title": "Stories SDK (Raw / Miami Heat) (Q&A)",
               "markdown": "assets/content/week-03/day-15/04-production-s10.md",
               "script": "assets/content/week-03/day-15/04-production-s10.script.md"
+            }
+          ],
+          "code": [
+            {
+              "id": "CompositionRoot.swift",
+              "title": "CompositionRoot.swift",
+              "asset": "assets/content/week-03/day-15/CompositionRoot.swift",
+              "language": "swift"
+            },
+            {
+              "id": "Package.swift",
+              "title": "Package.swift",
+              "asset": "assets/content/week-03/day-15/Package.swift",
+              "language": "swift"
+            },
+            {
+              "id": "StoriesPublicAPI.swift",
+              "title": "StoriesPublicAPI.swift",
+              "asset": "assets/content/week-03/day-15/StoriesPublicAPI.swift",
+              "language": "swift"
             }
           ]
         },
         {
           "id": "day-16",
-          "title": "Day 16 \u2014 Sample Q&A: Image/Video Pipelines, Caching & Memory Pressure",
+          "title": "Day 16 — Sample Q&A: Image/Video Pipelines, Caching & Memory Pressure",
           "chapters": [
             {
               "id": "01-cache-tiers",
@@ -490,15 +796,35 @@
             },
             {
               "id": "04-production-s1-s12",
-              "title": "04 Production S1 S12 (Q&A)",
+              "title": "HeroWidget lifecycle & Aces splash (Q&A)",
               "markdown": "assets/content/week-03/day-16/04-production-s1-s12.md",
               "script": "assets/content/week-03/day-16/04-production-s1-s12.script.md"
+            }
+          ],
+          "code": [
+            {
+              "id": "CacheTiersCheatsheet.md",
+              "title": "CacheTiersCheatsheet.md",
+              "asset": "assets/content/week-03/day-16/CacheTiersCheatsheet.md",
+              "language": "markdown"
+            },
+            {
+              "id": "HeroWidgetLifecycle.swift",
+              "title": "HeroWidgetLifecycle.swift",
+              "asset": "assets/content/week-03/day-16/HeroWidgetLifecycle.swift",
+              "language": "swift"
+            },
+            {
+              "id": "ImageCacheTiers.swift",
+              "title": "ImageCacheTiers.swift",
+              "asset": "assets/content/week-03/day-16/ImageCacheTiers.swift",
+              "language": "swift"
             }
           ]
         },
         {
           "id": "day-17",
-          "title": "Day 17 \u2014 Sample Q&A: Performance: Instruments, MetricKit, Startup & Scrolling (p50/p90)",
+          "title": "Day 17 — Sample Q&A: Performance: Instruments, MetricKit, Startup & Scrolling (p50/p90)",
           "chapters": [
             {
               "id": "01-perf-loop-tools",
@@ -520,15 +846,29 @@
             },
             {
               "id": "04-production-s5",
-              "title": "04 Production S5 (Q&A)",
+              "title": "Firebase Performance traces (Q&A)",
               "markdown": "assets/content/week-03/day-17/04-production-s5.md",
               "script": "assets/content/week-03/day-17/04-production-s5.script.md"
+            }
+          ],
+          "code": [
+            {
+              "id": "InstrumentsToolMap.swift",
+              "title": "InstrumentsToolMap.swift",
+              "asset": "assets/content/week-03/day-17/InstrumentsToolMap.swift",
+              "language": "swift"
+            },
+            {
+              "id": "JourneyTrace.swift",
+              "title": "JourneyTrace.swift",
+              "asset": "assets/content/week-03/day-17/JourneyTrace.swift",
+              "language": "swift"
             }
           ]
         },
         {
           "id": "day-18",
-          "title": "Day 18 \u2014 Sample Q&A: Crash Reporting, Observability & Incident Response (IMOC)",
+          "title": "Day 18 — Sample Q&A: Crash Reporting, Observability & Incident Response (IMOC)",
           "chapters": [
             {
               "id": "01-crash-pipeline-cfs",
@@ -550,15 +890,29 @@
             },
             {
               "id": "04-production-s8-s2",
-              "title": "04 Production S8 S2 (Q&A)",
+              "title": "Crash-free culture & synchronised dictionaries (Q&A)",
               "markdown": "assets/content/week-03/day-18/04-production-s8-s2.md",
               "script": "assets/content/week-03/day-18/04-production-s8-s2.script.md"
+            }
+          ],
+          "code": [
+            {
+              "id": "BreadcrumbRing.swift",
+              "title": "BreadcrumbRing.swift",
+              "asset": "assets/content/week-03/day-18/BreadcrumbRing.swift",
+              "language": "swift"
+            },
+            {
+              "id": "CrashReportNotes.swift",
+              "title": "CrashReportNotes.swift",
+              "asset": "assets/content/week-03/day-18/CrashReportNotes.swift",
+              "language": "swift"
             }
           ]
         },
         {
           "id": "day-19",
-          "title": "Day 19 \u2014 Sample Q&A: Security: ATS, SSL Pinning, Keychain & Persistence",
+          "title": "Day 19 — Sample Q&A: Security: ATS, SSL Pinning, Keychain & Persistence",
           "chapters": [
             {
               "id": "01-ats-baseline",
@@ -584,11 +938,25 @@
               "markdown": "assets/content/week-03/day-19/04-persistence-tree.md",
               "script": "assets/content/week-03/day-19/04-persistence-tree.script.md"
             }
+          ],
+          "code": [
+            {
+              "id": "PersistenceDecision.swift",
+              "title": "PersistenceDecision.swift",
+              "asset": "assets/content/week-03/day-19/PersistenceDecision.swift",
+              "language": "swift"
+            },
+            {
+              "id": "SPKIPinningNotes.swift",
+              "title": "SPKIPinningNotes.swift",
+              "asset": "assets/content/week-03/day-19/SPKIPinningNotes.swift",
+              "language": "swift"
+            }
           ]
         },
         {
           "id": "day-20",
-          "title": "Day 20 \u2014 Sample Q&A: Deep Links, Push Notifications & CI/CD Release Trains",
+          "title": "Day 20 — Sample Q&A: Deep Links, Push Notifications & CI/CD Release Trains",
           "chapters": [
             {
               "id": "01-deep-links",
@@ -614,11 +982,19 @@
               "markdown": "assets/content/week-03/day-20/04-release-trains.md",
               "script": "assets/content/week-03/day-20/04-release-trains.script.md"
             }
+          ],
+          "code": [
+            {
+              "id": "DeepLinkQueue.swift",
+              "title": "DeepLinkQueue.swift",
+              "asset": "assets/content/week-03/day-20/DeepLinkQueue.swift",
+              "language": "swift"
+            }
           ]
         },
         {
           "id": "day-21",
-          "title": "Day 21 \u2014 Sample Q&A: System-Design Mock #3 (45 min)",
+          "title": "Day 21 — Sample Q&A: System-Design Mock #3 (45 min)",
           "chapters": [
             {
               "id": "01-running-the-mock",
@@ -644,17 +1020,31 @@
               "markdown": "assets/content/week-03/day-21/04-scoring-rubric.md",
               "script": "assets/content/week-03/day-21/04-scoring-rubric.script.md"
             }
+          ],
+          "code": [
+            {
+              "id": "NetworkPinSketch.swift",
+              "title": "NetworkPinSketch.swift",
+              "asset": "assets/content/week-03/day-21/NetworkPinSketch.swift",
+              "language": "swift"
+            },
+            {
+              "id": "SDUISketch.swift",
+              "title": "SDUISketch.swift",
+              "asset": "assets/content/week-03/day-21/SDUISketch.swift",
+              "language": "swift"
+            }
           ]
         }
       ]
     },
     {
       "id": "week-04",
-      "title": "Week 4 \u2014 DSA, AI & Mocks",
+      "title": "Week 4 — DSA, AI & Mocks",
       "days": [
         {
           "id": "day-22",
-          "title": "Day 22 \u2014 Sample Q&A: DSA Trees: BFS / DFS Patterns",
+          "title": "Day 22 — Sample Q&A: DSA Trees: BFS / DFS Patterns",
           "chapters": [
             {
               "id": "01-bfs-dfs-basics",
@@ -676,15 +1066,47 @@
             },
             {
               "id": "04-production-trees",
-              "title": "04 Production Trees (Q&A)",
+              "title": "Trees in production systems (Q&A)",
               "markdown": "assets/content/week-04/day-22/04-production-trees.md",
               "script": "assets/content/week-04/day-22/04-production-trees.script.md"
+            }
+          ],
+          "code": [
+            {
+              "id": "BSTProblems.swift",
+              "title": "BSTProblems.swift",
+              "asset": "assets/content/week-04/day-22/BSTProblems.swift",
+              "language": "swift"
+            },
+            {
+              "id": "SerializeTree.swift",
+              "title": "SerializeTree.swift",
+              "asset": "assets/content/week-04/day-22/SerializeTree.swift",
+              "language": "swift"
+            },
+            {
+              "id": "TreeBFS.swift",
+              "title": "TreeBFS.swift",
+              "asset": "assets/content/week-04/day-22/TreeBFS.swift",
+              "language": "swift"
+            },
+            {
+              "id": "TreeDFS.swift",
+              "title": "TreeDFS.swift",
+              "asset": "assets/content/week-04/day-22/TreeDFS.swift",
+              "language": "swift"
+            },
+            {
+              "id": "TreeNode.swift",
+              "title": "TreeNode.swift",
+              "asset": "assets/content/week-04/day-22/TreeNode.swift",
+              "language": "swift"
             }
           ]
         },
         {
           "id": "day-23",
-          "title": "Day 23 \u2014 Sample Q&A: DSA HashMap / Heap + Mixed Unknown-Pattern",
+          "title": "Day 23 — Sample Q&A: DSA HashMap / Heap + Mixed Unknown-Pattern",
           "chapters": [
             {
               "id": "01-hashmap-patterns",
@@ -706,15 +1128,29 @@
             },
             {
               "id": "04-production-maps-topk",
-              "title": "04 Production Maps Topk (Q&A)",
+              "title": "Maps & top-K in production (Q&A)",
               "markdown": "assets/content/week-04/day-23/04-production-maps-topk.md",
               "script": "assets/content/week-04/day-23/04-production-maps-topk.script.md"
+            }
+          ],
+          "code": [
+            {
+              "id": "HashPatterns.swift",
+              "title": "HashPatterns.swift",
+              "asset": "assets/content/week-04/day-23/HashPatterns.swift",
+              "language": "swift"
+            },
+            {
+              "id": "HeapPatterns.swift",
+              "title": "HeapPatterns.swift",
+              "asset": "assets/content/week-04/day-23/HeapPatterns.swift",
+              "language": "swift"
             }
           ]
         },
         {
           "id": "day-24",
-          "title": "Day 24 \u2014 Sample Q&A: On-Device AI (FinTrack / GymFlow)",
+          "title": "Day 24 — Sample Q&A: On-Device AI (FinTrack / GymFlow)",
           "chapters": [
             {
               "id": "01-on-device-primer",
@@ -736,15 +1172,41 @@
             },
             {
               "id": "04-production-s15-s16",
-              "title": "04 Production S15 S16 (Q&A)",
+              "title": "FinTrack & GymFlow on-device AI (Q&A)",
               "markdown": "assets/content/week-04/day-24/04-production-s15-s16.md",
               "script": "assets/content/week-04/day-24/04-production-s15-s16.script.md"
+            }
+          ],
+          "code": [
+            {
+              "id": "BM25Ranker.swift",
+              "title": "BM25Ranker.swift",
+              "asset": "assets/content/week-04/day-24/BM25Ranker.swift",
+              "language": "swift"
+            },
+            {
+              "id": "DeviceAIEligibility.swift",
+              "title": "DeviceAIEligibility.swift",
+              "asset": "assets/content/week-04/day-24/DeviceAIEligibility.swift",
+              "language": "swift"
+            },
+            {
+              "id": "HybridAIRouter.swift",
+              "title": "HybridAIRouter.swift",
+              "asset": "assets/content/week-04/day-24/HybridAIRouter.swift",
+              "language": "swift"
+            },
+            {
+              "id": "TFIDFFallback.swift",
+              "title": "TFIDFFallback.swift",
+              "asset": "assets/content/week-04/day-24/TFIDFFallback.swift",
+              "language": "swift"
             }
           ]
         },
         {
           "id": "day-25",
-          "title": "Day 25 \u2014 Sample Q&A: Machine Round 3hr (Briefs A & B)",
+          "title": "Day 25 — Sample Q&A: Machine Round 3hr (Briefs A & B)",
           "chapters": [
             {
               "id": "01-machine-round-os",
@@ -770,11 +1232,12 @@
               "markdown": "assets/content/week-04/day-25/04-debrief-structure.md",
               "script": "assets/content/week-04/day-25/04-debrief-structure.script.md"
             }
-          ]
+          ],
+          "code": []
         },
         {
           "id": "day-26",
-          "title": "Day 26 \u2014 Sample Q&A: Behavioral Leadership STAR",
+          "title": "Day 26 — Sample Q&A: Behavioral Leadership STAR",
           "chapters": [
             {
               "id": "01-star-rhythm",
@@ -796,15 +1259,16 @@
             },
             {
               "id": "04-production-provenance",
-              "title": "04 Production Provenance (Q&A)",
+              "title": "Provenance honesty & named cases (Q&A)",
               "markdown": "assets/content/week-04/day-26/04-production-provenance.md",
               "script": "assets/content/week-04/day-26/04-production-provenance.script.md"
             }
-          ]
+          ],
+          "code": []
         },
         {
           "id": "day-27",
-          "title": "Day 27 \u2014 Sample Q&A: Expert Mock #4 (Full Loop)",
+          "title": "Day 27 — Sample Q&A: Expert Mock #4 (Full Loop)",
           "chapters": [
             {
               "id": "01-mock-schedule",
@@ -830,11 +1294,12 @@
               "markdown": "assets/content/week-04/day-27/04-fix-forwards.md",
               "script": "assets/content/week-04/day-27/04-fix-forwards.script.md"
             }
-          ]
+          ],
+          "code": []
         },
         {
           "id": "day-28",
-          "title": "Day 28 \u2014 Sample Q&A: Game Day Taper",
+          "title": "Day 28 — Sample Q&A: Game Day Taper",
           "chapters": [
             {
               "id": "01-taper-rules",
@@ -859,6 +1324,731 @@
               "title": "04 Calm Prep (Q&A)",
               "markdown": "assets/content/week-04/day-28/04-calm-prep.md",
               "script": "assets/content/week-04/day-28/04-calm-prep.script.md"
+            }
+          ],
+          "code": []
+        }
+      ]
+    }
+  ],
+  "revisionWeeks": [
+    {
+      "id": "rev-week-01",
+      "title": "Revision · Week 1 — Day guides",
+      "days": [
+        {
+          "id": "day-01",
+          "title": "Day 01 — Value vs Reference, COW, Enums, Actors Intro",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-01/day-01/01-guide.md",
+              "script": "assets/content/revision/week-01/day-01/01-guide.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-02",
+          "title": "Day 02 — Protocols, POP, Generics, Associated Types, Type Erasure",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-01/day-02/01-guide.md",
+              "script": "assets/content/revision/week-01/day-02/01-guide.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-03",
+          "title": "Day 03 — ARC, Retain Cycles, weak/unowned, Instruments",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-01/day-03/01-guide.md",
+              "script": "assets/content/revision/week-01/day-03/01-guide.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-04",
+          "title": "Day 04 — GCD Queues, sync/async, Barriers, Thread-Safe Dictionary",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-01/day-04/01-guide.md",
+              "script": "assets/content/revision/week-01/day-04/01-guide.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-05",
+          "title": "Day 05 — async/await, Structured Concurrency, Actors, Sendable",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-01/day-05/01-guide.md",
+              "script": "assets/content/revision/week-01/day-05/01-guide.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-06",
+          "title": "Day 06 — DSA: Arrays, Strings, Two Pointers, Sliding Window",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-01/day-06/01-guide.md",
+              "script": "assets/content/revision/week-01/day-06/01-guide.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-07",
+          "title": "Day 07 — Week 1 Revision + Mock Interview #1",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-01/day-07/01-guide.md",
+              "script": "assets/content/revision/week-01/day-07/01-guide.script.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rev-week-02",
+      "title": "Revision · Week 2 — Day guides",
+      "days": [
+        {
+          "id": "day-08",
+          "title": "Day 08 — MVVM / Clean / MVI · Layering · DI",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-02/day-08/01-guide.md",
+              "script": "assets/content/revision/week-02/day-08/01-guide.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-09",
+          "title": "Day 09 — URLSession Networking · Refresh · Pinning",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-02/day-09/01-guide.md",
+              "script": "assets/content/revision/week-02/day-09/01-guide.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-10",
+          "title": "Day 10 — SDUI / CMS · Schema Versioning · Fallbacks",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-02/day-10/01-guide.md",
+              "script": "assets/content/revision/week-02/day-10/01-guide.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-11",
+          "title": "Day 11 — UIKit Lifecycle · Cells · Hybrid UIKit ↔ SwiftUI",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-02/day-11/01-guide.md",
+              "script": "assets/content/revision/week-02/day-11/01-guide.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-12",
+          "title": "Day 12 — SwiftUI State · Identity · @Observable · Lists",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-02/day-12/01-guide.md",
+              "script": "assets/content/revision/week-02/day-12/01-guide.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-13",
+          "title": "Day 13 — DSA: Stack · Queue · Linked List",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-02/day-13/01-guide.md",
+              "script": "assets/content/revision/week-02/day-13/01-guide.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-14",
+          "title": "Day 14 — Week 2 Revision + Mock #2 (Ads or SDUI)",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-02/day-14/01-guide.md",
+              "script": "assets/content/revision/week-02/day-14/01-guide.script.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rev-week-03",
+      "title": "Revision · Week 3 — Day guides",
+      "days": [
+        {
+          "id": "day-15",
+          "title": "Day 15 — App Modularization, SPM & DI Graphs",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-03/day-15/01-guide.md",
+              "script": "assets/content/revision/week-03/day-15/01-guide.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-16",
+          "title": "Day 16 — Image/Video Pipelines, Caching & Memory Pressure",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-03/day-16/01-guide.md",
+              "script": "assets/content/revision/week-03/day-16/01-guide.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-17",
+          "title": "Day 17 — Performance: Instruments, MetricKit, Startup & Scrolling",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-03/day-17/01-guide.md",
+              "script": "assets/content/revision/week-03/day-17/01-guide.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-18",
+          "title": "Day 18 — Crash Reporting, Observability & Incident Response (IMOC)",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-03/day-18/01-guide.md",
+              "script": "assets/content/revision/week-03/day-18/01-guide.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-19",
+          "title": "Day 19 — Security: ATS, SSL Pinning, Keychain & Persistence",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-03/day-19/01-guide.md",
+              "script": "assets/content/revision/week-03/day-19/01-guide.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-20",
+          "title": "Day 20 — Deep Links, Push Notifications & CI/CD Release Trains",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-03/day-20/01-guide.md",
+              "script": "assets/content/revision/week-03/day-20/01-guide.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-21",
+          "title": "Day 21 — System-Design Mock #3 (45 min)",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-03/day-21/01-guide.md",
+              "script": "assets/content/revision/week-03/day-21/01-guide.script.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rev-week-04",
+      "title": "Revision · Week 4 — Day guides",
+      "days": [
+        {
+          "id": "day-22",
+          "title": "Day 22 — DSA Trees: BFS / DFS Patterns",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-04/day-22/01-guide.md",
+              "script": "assets/content/revision/week-04/day-22/01-guide.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-23",
+          "title": "Day 23 — DSA HashMap / Heap + Mixed Unknown-Pattern",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-04/day-23/01-guide.md",
+              "script": "assets/content/revision/week-04/day-23/01-guide.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-24",
+          "title": "Day 24 — On-Device AI (FinTrack / GymFlow)",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-04/day-24/01-guide.md",
+              "script": "assets/content/revision/week-04/day-24/01-guide.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-25",
+          "title": "Day 25 — Machine Round 3hr (Briefs A & B)",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-04/day-25/01-guide.md",
+              "script": "assets/content/revision/week-04/day-25/01-guide.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-26",
+          "title": "Day 26 — Behavioral Leadership STAR",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-04/day-26/01-guide.md",
+              "script": "assets/content/revision/week-04/day-26/01-guide.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-27",
+          "title": "Day 27 — Expert Mock #4 (Full Loop)",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-04/day-27/01-guide.md",
+              "script": "assets/content/revision/week-04/day-27/01-guide.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-28",
+          "title": "Day 28 — Game Day Taper",
+          "chapters": [
+            {
+              "id": "01-guide",
+              "title": "Day guide",
+              "markdown": "assets/content/revision/week-04/day-28/01-guide.md",
+              "script": "assets/content/revision/week-04/day-28/01-guide.script.md"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "flashcardWeeks": [
+    {
+      "id": "fc-week-01",
+      "title": "Flashcards · Week 1 — Swift, Memory, Concurrency, DSA Warm-up",
+      "days": [
+        {
+          "id": "day-01",
+          "title": "Day 01 — Flashcards: Value vs Reference, COW, Enums, Actors Intro",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 8 cards",
+              "markdown": "assets/content/flashcards/week-01/day-01/01-flashcards.md",
+              "script": "assets/content/flashcards/week-01/day-01/01-flashcards.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-02",
+          "title": "Day 02 — Flashcards: Protocols, POP, Generics, Associated Types, Type Erasure",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 8 cards",
+              "markdown": "assets/content/flashcards/week-01/day-02/01-flashcards.md",
+              "script": "assets/content/flashcards/week-01/day-02/01-flashcards.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-03",
+          "title": "Day 03 — Flashcards: ARC, Retain Cycles, weak/unowned, Instruments",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 6 cards",
+              "markdown": "assets/content/flashcards/week-01/day-03/01-flashcards.md",
+              "script": "assets/content/flashcards/week-01/day-03/01-flashcards.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-04",
+          "title": "Day 04 — Flashcards: GCD Queues, sync/async, Barriers, Thread-Safe Dictionary",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 8 cards",
+              "markdown": "assets/content/flashcards/week-01/day-04/01-flashcards.md",
+              "script": "assets/content/flashcards/week-01/day-04/01-flashcards.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-05",
+          "title": "Day 05 — Flashcards: async/await, Structured Concurrency, Actors, Sendable",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 8 cards",
+              "markdown": "assets/content/flashcards/week-01/day-05/01-flashcards.md",
+              "script": "assets/content/flashcards/week-01/day-05/01-flashcards.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-06",
+          "title": "Day 06 — Flashcards: DSA: Arrays, Strings, Two Pointers, Sliding Window",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 6 cards",
+              "markdown": "assets/content/flashcards/week-01/day-06/01-flashcards.md",
+              "script": "assets/content/flashcards/week-01/day-06/01-flashcards.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-07",
+          "title": "Day 07 — Flashcards: Week 1 Revision + Mock Interview #1",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 6 cards",
+              "markdown": "assets/content/flashcards/week-01/day-07/01-flashcards.md",
+              "script": "assets/content/flashcards/week-01/day-07/01-flashcards.script.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fc-week-02",
+      "title": "Flashcards · Week 2 — Architecture, Networking, SDUI, UIKit, SwiftUI",
+      "days": [
+        {
+          "id": "day-08",
+          "title": "Day 08 — Flashcards: MVVM / Clean / MVI · Layering · DI",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 7 cards",
+              "markdown": "assets/content/flashcards/week-02/day-08/01-flashcards.md",
+              "script": "assets/content/flashcards/week-02/day-08/01-flashcards.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-09",
+          "title": "Day 09 — Flashcards: URLSession Networking Layer",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 8 cards",
+              "markdown": "assets/content/flashcards/week-02/day-09/01-flashcards.md",
+              "script": "assets/content/flashcards/week-02/day-09/01-flashcards.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-10",
+          "title": "Day 10 — Flashcards: SDUI / CMS · Schema Versioning · Fallbacks",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 8 cards",
+              "markdown": "assets/content/flashcards/week-02/day-10/01-flashcards.md",
+              "script": "assets/content/flashcards/week-02/day-10/01-flashcards.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-11",
+          "title": "Day 11 — Flashcards: UIKit Lifecycle, Cells, Prefetch · Hybrid UIKit ↔ SwiftUI",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 7 cards",
+              "markdown": "assets/content/flashcards/week-02/day-11/01-flashcards.md",
+              "script": "assets/content/flashcards/week-02/day-11/01-flashcards.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-12",
+          "title": "Day 12 — Flashcards: SwiftUI State, Identity, @Observable, Lists, Performance",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 6 cards",
+              "markdown": "assets/content/flashcards/week-02/day-12/01-flashcards.md",
+              "script": "assets/content/flashcards/week-02/day-12/01-flashcards.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-13",
+          "title": "Day 13 — Flashcards: DSA: Stack / Queue / Linked List",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 6 cards",
+              "markdown": "assets/content/flashcards/week-02/day-13/01-flashcards.md",
+              "script": "assets/content/flashcards/week-02/day-13/01-flashcards.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-14",
+          "title": "Day 14 — Flashcards: Week 2 Revision + Mock #2 (Ads or SDUI)",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 6 cards",
+              "markdown": "assets/content/flashcards/week-02/day-14/01-flashcards.md",
+              "script": "assets/content/flashcards/week-02/day-14/01-flashcards.script.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fc-week-03",
+      "title": "Flashcards · Week 3 — Modularization, Media, Perf, Crashes, Security, CI",
+      "days": [
+        {
+          "id": "day-15",
+          "title": "Day 15 — Flashcards: App Modularization, SPM & DI Graphs",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 6 cards",
+              "markdown": "assets/content/flashcards/week-03/day-15/01-flashcards.md",
+              "script": "assets/content/flashcards/week-03/day-15/01-flashcards.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-16",
+          "title": "Day 16 — Flashcards: Image/Video Pipelines, Caching & Memory Pressure",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 6 cards",
+              "markdown": "assets/content/flashcards/week-03/day-16/01-flashcards.md",
+              "script": "assets/content/flashcards/week-03/day-16/01-flashcards.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-17",
+          "title": "Day 17 — Flashcards: Performance: Instruments, MetricKit, Startup & Scrolling (p50/p90)",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 6 cards",
+              "markdown": "assets/content/flashcards/week-03/day-17/01-flashcards.md",
+              "script": "assets/content/flashcards/week-03/day-17/01-flashcards.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-18",
+          "title": "Day 18 — Flashcards: Crash Reporting, Observability & Incident Response (IMOC)",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 6 cards",
+              "markdown": "assets/content/flashcards/week-03/day-18/01-flashcards.md",
+              "script": "assets/content/flashcards/week-03/day-18/01-flashcards.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-19",
+          "title": "Day 19 — Flashcards: Security: ATS, SSL Pinning, Keychain & Persistence",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 6 cards",
+              "markdown": "assets/content/flashcards/week-03/day-19/01-flashcards.md",
+              "script": "assets/content/flashcards/week-03/day-19/01-flashcards.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-20",
+          "title": "Day 20 — Flashcards: Deep Links, Push Notifications & CI/CD Release Trains",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 6 cards",
+              "markdown": "assets/content/flashcards/week-03/day-20/01-flashcards.md",
+              "script": "assets/content/flashcards/week-03/day-20/01-flashcards.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-21",
+          "title": "Day 21 — Flashcards: System-Design Mock #3 (45 min)",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 6 cards",
+              "markdown": "assets/content/flashcards/week-03/day-21/01-flashcards.md",
+              "script": "assets/content/flashcards/week-03/day-21/01-flashcards.script.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fc-week-04",
+      "title": "Flashcards · Week 4 — Trees, Hash/Heap, On-device AI, Mocks, Behavioral, Taper",
+      "days": [
+        {
+          "id": "day-22",
+          "title": "Day 22 — Flashcards: DSA Trees: BFS / DFS Patterns",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 6 cards",
+              "markdown": "assets/content/flashcards/week-04/day-22/01-flashcards.md",
+              "script": "assets/content/flashcards/week-04/day-22/01-flashcards.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-23",
+          "title": "Day 23 — Flashcards: DSA HashMap / Heap + Mixed Unknown-Pattern",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 6 cards",
+              "markdown": "assets/content/flashcards/week-04/day-23/01-flashcards.md",
+              "script": "assets/content/flashcards/week-04/day-23/01-flashcards.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-24",
+          "title": "Day 24 — Flashcards: On-Device AI (FinTrack / GymFlow)",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 6 cards",
+              "markdown": "assets/content/flashcards/week-04/day-24/01-flashcards.md",
+              "script": "assets/content/flashcards/week-04/day-24/01-flashcards.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-25",
+          "title": "Day 25 — Flashcards: Machine Round 3hr (Briefs A & B)",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 6 cards",
+              "markdown": "assets/content/flashcards/week-04/day-25/01-flashcards.md",
+              "script": "assets/content/flashcards/week-04/day-25/01-flashcards.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-26",
+          "title": "Day 26 — Flashcards: Behavioral Leadership STAR",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 6 cards",
+              "markdown": "assets/content/flashcards/week-04/day-26/01-flashcards.md",
+              "script": "assets/content/flashcards/week-04/day-26/01-flashcards.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-27",
+          "title": "Day 27 — Flashcards: Expert Mock #4 (Full Loop)",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 6 cards",
+              "markdown": "assets/content/flashcards/week-04/day-27/01-flashcards.md",
+              "script": "assets/content/flashcards/week-04/day-27/01-flashcards.script.md"
+            }
+          ]
+        },
+        {
+          "id": "day-28",
+          "title": "Day 28 — Flashcards: Game Day Taper",
+          "chapters": [
+            {
+              "id": "01-flashcards",
+              "title": "Flashcards · 6 cards",
+              "markdown": "assets/content/flashcards/week-04/day-28/01-flashcards.md",
+              "script": "assets/content/flashcards/week-04/day-28/01-flashcards.script.md"
             }
           ]
         }

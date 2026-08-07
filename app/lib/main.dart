@@ -1,5 +1,6 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest.dart' as tz_data;
@@ -288,7 +289,10 @@ class _AppShellState extends State<_AppShell> {
     ChapterLocation location, {
     int section = 0,
   }) async {
-    final markdown = await widget.catalog.loadMarkdown(location.chapter);
+    final markdown = await widget.catalog.loadMarkdownWithEmbeddedCode(
+      location.chapter,
+      location.day,
+    );
     final sections =
         await widget.catalog.loadScriptSections(location.chapter);
     final accent =
@@ -361,18 +365,32 @@ class _AppShellState extends State<_AppShell> {
 
   @override
   Widget build(BuildContext context) {
-    return Navigator(
-      key: _navKey,
-      onGenerateRoute: (settings) {
-        return MaterialPageRoute(
-          builder: (_) => HomeScreen(
-            catalog: widget.catalog,
-            progress: widget.progress,
-            player: widget.player,
-            onOpenChapter: _openChapter,
-          ),
-        );
+    // Nested Navigator owns day/reader routes. Intercept system back so it
+    // pops that stack instead of exiting the MaterialApp (single-route) shell.
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
+        final nav = _navKey.currentState;
+        if (nav != null && nav.canPop()) {
+          nav.pop();
+        } else {
+          SystemNavigator.pop();
+        }
       },
+      child: Navigator(
+        key: _navKey,
+        onGenerateRoute: (settings) {
+          return MaterialPageRoute(
+            builder: (_) => HomeScreen(
+              catalog: widget.catalog,
+              progress: widget.progress,
+              player: widget.player,
+              onOpenChapter: _openChapter,
+            ),
+          );
+        },
+      ),
     );
   }
 }

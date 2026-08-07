@@ -6,8 +6,6 @@
 
 ### Q1. How does schema versioning work in 60 seconds?
 
-**Points to:** [Foundations · §7 Schema versioning](../01-foundations.md#7-schema-versioning--60s-picture) · [Deep dive · §3 Version gate mechanics](../02-deep-dive.md#3-version-gate-mechanics)
-
 **Answer:**
 
 > Payloads carry `schemaVersion`. Client compares against min/max supported. **Major too new:** reject → hard fallback + metric. **Major too old:** fallback or force-upgrade messaging (product call). **Within range:** parse and render. **Unknown JSON fields:** ignore — forward compatible additive change. **Unknown component types:** skip + metric — not reject whole tree unless root becomes empty. **Breaking structural change:** bump major + dual-publish old and new until old clients fall below threshold.
@@ -17,14 +15,18 @@
 | Follow-up | Answer |
 |---|---|
 | Interview line? | “Compatibility is a product feature. Unknown nodes fail soft; known nodes validate strictly.” |
-| S3-A1 label? | Full versioning discipline as **design** on top of verified S3 header — not a named resume VersionGate service. |
+| BookMyShow backend-driven header & search-A1 label? | Full versioning discipline as **design** on top of verified BookMyShow backend-driven header & search header — not a named resume VersionGate service. |
 | Dual-publish why? | Don’t force-upgrade 30L users for a banner experiment. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q2. What happens at the version gate for each case?
-
-**Points to:** [Deep dive · §3 Version gate mechanics](../02-deep-dive.md#3-version-gate-mechanics) · [code · SchemaVersionGate](../code/SchemaVersionGate.swift)
 
 **Answer:**
 
@@ -45,11 +47,12 @@
 | Additive field example? | New optional `props.subtitle` on `promoBanner` — old client ignores, title still shows. |
 | Breaking rename `children`→`nodes`? | Needs major bump + dual-publish — don’t silently rename. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. What is the unknown-component policy?
-
-**Points to:** [Foundations · §13 New type example](../01-foundations.md#13-schema-evolution-worked-examples) · [Deep dive · §4 Component registry](../02-deep-dive.md#4-component-registry)
 
 **Answer:**
 
@@ -63,11 +66,12 @@
 | Silent skip spike? | Alert — hides broken contracts in production. |
 | Partial failure vs empty root? | Skipping children OK; if root resolves to nothing meaningful, hard fallback. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. What does FallbackEngine provide?
-
-**Points to:** [Deep dive · §5 FallbackEngine](../02-deep-dive.md#5-fallbackengine) · [code · FallbackEngine](../code/FallbackEngine.swift)
 
 **Answer:**
 
@@ -81,11 +85,12 @@
 | Personalized header cache? | Key by user/session; clear on logout — don’t leak user A promo to user B. |
 | TTL + freshness UX? | Optional “updated earlier” affordance if product wants honesty. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. Walk schema evolution: additive, new type, breaking.
-
-**Points to:** [Foundations · §13 Schema evolution](../01-foundations.md#13-schema-evolution-worked-examples) · [Deep dive · §3 Dual-publish](../02-deep-dive.md#3-version-gate-mechanics)
 
 **Answer:**
 
@@ -99,11 +104,12 @@
 | iOS/Android parity? | Shared schema spec + contract tests per platform registry — parity is negotiated. |
 | Contract test value? | Fixture per schema version catches decode + gate drift in CI. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. How do you test SDUI without combinatorial UITest explosion?
-
-**Points to:** [Deep dive · §11 Testing SDUI](../02-deep-dive.md#11-testing-sdui) · [Deep dive · §17 Failure modes](../02-deep-dive.md#17-failure-modes)
 
 **Answer:**
 
@@ -117,15 +123,16 @@
 | Snapshot scope? | Critical layouts only — not every CMS variant. |
 | Main-thread parse test? | Performance budget — large JSON off main. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. What is the decision rule card for SDUI?
 
-**Points to:** [Deep dive · §18 Decision rule card](../02-deep-dive.md#18-decision-rule-card) · [Foundations · §11 Self-check](../01-foundations.md#11-self-check)
-
 **Answer:**
 
-> (1) Dynamic content/layout + native quality → SDUI hybrid. (2) Always: version gate + unknown skip + fallback. (3) Actions allowlisted; no script exec. (4) Splash: cache + timeout default. (5) New types need app release — CMS isn’t infinite. (6) Speak S3 verified; S3-A1 as design for versioning/fallback discipline.
+> (1) Dynamic content/layout + native quality → SDUI hybrid. (2) Always: version gate + unknown skip + fallback. (3) Actions allowlisted; no script exec. (4) Splash: cache + timeout default. (5) New types need app release — CMS isn’t infinite. (6) Speak BookMyShow backend-driven header & search verified; BookMyShow backend-driven header & search-A1 as design for versioning/fallback discipline.
 
 **Follow-ups:**
 
@@ -133,8 +140,53 @@
 |---|---|
 | Full SDUI home? | Super-app velocity vs QA matrix cost — trade-off table. |
 | WebView island? | Docs/legal — perf/a11y trade-offs. |
-| Backend breaks schema for everyone? | Gate + fallback + canary + kill switch — client must survive (S8 culture). |
+| Backend breaks schema for everyone? | Gate + fallback + canary + kill switch — client must survive (BookMyShow IMOC + crash-free at scale culture). |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow backend-driven header & search; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
 
 ---
 
+### Q8. Personalized SDUI cache — how do you prevent a privacy leak?
+
+**Answer:**
+
+> Personalized payloads must **not** live in a single global disk slot. Cache keys include **user or session**, and **logout clears** them. Be intentional about what splash or header may contain and how long it persists. Guest versus logged-in variants are different keys. A shared cache is how you leak another user’s promo — or worse — across accounts on a family device.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Multi-user devices? | Clear aggressively on account switch. |
+| Encryption at rest? | Consider for sensitive CMS content. |
+| Analytics in cache? | Don’t persist PII needlessly. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
+---
+
+### Q9. How do you keep iOS / Android SDUI parity?
+
+**Answer:**
+
+> Parity is **negotiated**, not hoped. It comes from a **shared schema spec**, **capability negotiation**, and **contract tests in CI** against each platform’s registry. Temporary capability gaps are OK if the server targets correctly. A new component ships in native apps first, then CMS starts using it. Copy-pasting JSON and hoping is how iOS renders a banner Android skips into a lopsided experiment.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Gap communication? | CMS tooling shows support matrix. |
+| Version skew? | Dual-publish + min client versions. |
+| Design system help? | Shared primitives reduce drift. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 Next: [03-registry-actions-splash.md](03-registry-actions-splash.md)
+
+---
+

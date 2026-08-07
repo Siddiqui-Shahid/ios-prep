@@ -1,12 +1,10 @@
 # Sample 04 — Scoring rubric (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What is two-layer scoring?
-
-**Points to:** [04-questions · Part II intro](../04-questions.md#part-ii--two-layer-scoring-questions) · [04-questions · SB3](../04-questions.md#sb3-two-layer-scoring--how-do-you-combine-60s)
 
 **Answer:**
 
@@ -22,11 +20,12 @@
 | Self-grade when? | Immediately after Exercise 4 — be harsh. |
 | Partner mock? | Same rubric — peer uses Part II questions. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. Full 100-point rubric — dimensions?
-
-**Points to:** [04-questions · Full rubric](../04-questions.md#full-rubric-100-pts)
 
 **Answer:**
 
@@ -48,11 +47,12 @@
 | Ops only 10 pts? | Still **pass gate** — zero ops fails bar. |
 | Communication low weight? | Checkpoints and timeboxes still differentiate senior. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. What does “excellent agenda & clarify” look like?
-
-**Points to:** [04-questions · SA1](../04-questions.md#sa1-what-does-excellent-agenda--clarify-look-like-45s)
 
 **Answer:**
 
@@ -66,11 +66,12 @@
 | Forgot scale? | Deduct production grounding too if you invent later. |
 | Timed warm-up? | Q1 from 04 before live mock. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. What fails HLD clarity?
-
-**Points to:** [04-questions · SA2](../04-questions.md#sa2-what-fails-hld-clarity-45s)
 
 **Answer:**
 
@@ -84,11 +85,12 @@
 | Modules in diagram? | Features → protocols → core — Q8 in 04. |
 | One giant box “Backend”? | Split CMS, API, auth as relevant. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q5. How do you score deep dive quality (25 pts)?
-
-**Points to:** [04-questions · SB2](../04-questions.md#sb2-deep-dive-quality--what-earns-25-45s) · [04-questions · Q6](../04-questions.md#q6-which-deep-dives-for-networking-mock-3045s)
 
 **Answer:**
 
@@ -102,29 +104,34 @@
 | Networking dives? | Single-flight refresh + SPKI rotation design. |
 | Cert lecture? | Stop — SPKI vs leaf, rotation, metrics — T4 in 04. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. How do you score production grounding?
 
-**Points to:** [04-questions · SB1](../04-questions.md#sb1-how-do-you-score-production-grounding-45s) · [Production bridge](../03-production-bridge.md)
-
 **Answer:**
 
-> Full points: SDUI cites **S3/S12**-style proof or networking cites **S4/S5** without fake QPS; **S4-A1 labeled design** when discussing rotation; **S2 path-scoped** only — not sole CFS. Caps score: invented metrics, “S2 caused 99.95% CFS,” “shipped pin runbook,” SecKey as SPKI.
+> Full points: SDUI cites **BookMyShow backend-driven header & search/Audio streaming + server-driven splash (Aces)**-style proof or networking cites **BookMyShow SSL pinning + URLSession migration/BookMyShow Firebase Performance traces** without fake QPS; **Design: pin rotation / break-glass (not shipped runbook) labeled design** when discussing rotation; **BookMyShow synchronised dictionaries path-scoped** only — not sole CFS. Caps score: invented metrics, “BookMyShow synchronised dictionaries caused 99.95% CFS,” “shipped pin runbook,” SecKey as SPKI.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| S6 in SDUI? | Optional lightweight LE sheet beat — not whole engine. |
-| S8 in ops? | IMOC pause, CFS bar — ops vocabulary. |
+| BookMyShow LE Bottom Sheet in SDUI? | Optional lightweight LE sheet beat — not whole engine. |
+| BookMyShow IMOC + crash-free at scale in ops? | IMOC pause, CFS bar — ops vocabulary. |
 | No resume hook for topic? | Say “learning-lab” — don’t fabricate BMS war stories. |
+
+**How can I relate to my case:**
+- **Shipped:** Audio streaming + server-driven splash (Aces); BookMyShow synchronised dictionaries; BookMyShow backend-driven header & search; BookMyShow SSL pinning + URLSession migration; BookMyShow Firebase Performance traces; BookMyShow LE Bottom Sheet; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Design: pin rotation / break-glass (not shipped runbook)
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Do not steal BookMyShow IMOC / crash-free culture credit for a path-specific dictionary race fix — keep scopes separate.
 
 ---
 
 ### Q7. Why is ops weighted even in the last 5 minutes?
-
-**Points to:** [04-questions · SA3](../04-questions.md#sa3-why-is-ops-weighted-even-if-small-minutes-45s) · [04-questions · Q7](../04-questions.md#q7-ops-metrics-at-the-end-3045s)
 
 **Answer:**
 
@@ -138,6 +145,10 @@
 | Forgot ops in mock? | Log as top miss → Week 4 flashcard. |
 | After scoring? | [`../05-exercises.md`](../05-exercises.md) pass checklist + revision twin. |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [`../05-exercises.md`](../05-exercises.md)
+
+---
+

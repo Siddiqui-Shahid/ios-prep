@@ -1,7 +1,7 @@
-# 04 — Questions (two-layer Q&A)
+# 04 — Questions (Q&A)
 
-> Pattern / meta questions use the standard two-layer shape.  
-> Problem rows use **Answer points** = approach outline; **Full spoken answer** = full 60–90s approach script (then you’d code).
+> Cover the answer, speak aloud, then check follow-ups. Each question ends with **How can I relate to my case** using named work — never S-codes.
+> Normal ≈ 30–60s · Design ≈ 90–120s · Tricky ≈ 90–120s.
 
 ---
 
@@ -9,105 +9,77 @@
 
 ### Q1. Explain two pointers `(30–45s)`
 
-**Answer points (frame first):**
-- Two indices moving through a sequence
-- Opposite ends or same-direction / write pointer
-- Maintain an invariant; move the side that restores it
-- Sorted pairs, palindrome, container water
+**Answer:**
 
-**Agenda opener:**  
-> “Two indices, an invariant, and a rule for which one moves.”
+> Two pointers means I maintain two indices into an array or string and move them according to an invariant. Classic opposite-ends: palindrome checks or container-with-most-water, where I move the pointer that can still improve the answer. Same-direction patterns include a write pointer that compacts non-zeroes in place. It’s usually O(n) time and O(1) extra space when the input is already suitable — if I must sort first, I say that cost up front.
 
-**Full spoken answer:**  
-> “Two pointers means I maintain two indices into an array or string and move them according to an invariant. Classic opposite-ends: palindrome checks or container-with-most-water, where I move the pointer that can still improve the answer. Same-direction patterns include a write pointer that compacts non-zeroes in place. It’s usually O(n) time and O(1) extra space when the input is already suitable — if I must sort first, I say that cost up front.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> “Two pointers always means left and right at the ends.”
+| Follow-up | Answer |
+|---|---|
+| Fast/slow vs opposite ends? | Fast/slow detects cycles or midpoints; opposite ends shrink a sorted/range invariant from both sides. |
+| When does sorting + two pointers beat a hash map? | When O(1) extra space matters and you can afford n log n sort, or you need ordered pairs/triplets. |
+| Write pointer vs allocate a new array? | Write pointer compacts in place with O(1) extra space; a new array is clearer but uses O(n) memory. |
 
-**Follow-up ladder:**
-- **L1:** Fast/slow vs opposite ends?
-- **L2:** When does sorting + two pointers beat a hash map?
-- **L3:** Write pointer vs allocate a new array?
-
-**Provenance:** Learning-lab · pattern fluency
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
 ### Q2. Sliding window vs two pointers? `(45s)`
 
-**Answer points (frame first):**
-- Window = contiguous range with an invariant
-- Expand right; shrink left when broken
-- Two pointers is broader family
-- Variable vs fixed window
+**Answer:**
 
-**Agenda opener:**  
-> “Window maintains a contiguous invariant; pointers are the mechanism.”
+> A sliding window is a contiguous subarray or substring where I expand the right edge to include elements and shrink the left when a constraint breaks — like longest substring without repeating characters. Two pointers is the broader family that includes windows, opposite ends, and write pointers. I’d call it a window when the answer is about a contiguous range with a running condition.
 
-**Full spoken answer:**  
-> “A sliding window is a contiguous subarray or substring where I expand the right edge to include elements and shrink the left when a constraint breaks — like longest substring without repeating characters. Two pointers is the broader family that includes windows, opposite ends, and write pointers. I’d call it a window when the answer is about a contiguous range with a running condition.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> Treating them as unrelated jargon with no invariant talk.
+| Follow-up | Answer |
+|---|---|
+| Fixed vs variable window? | Fixed keeps constant length; variable expands/shrinks with a constraint like unique chars or sum ≥ target. |
+| Why negatives break some window sum tricks? | Shrinking the left side no longer monotonically improves/violates the sum, so the two-pointer invariant fails. |
+| Off-by-one checklist? | Confirm inclusive bounds, when left advances (`lastIndex+1`), and length as `right-left+1` vs half-open ranges. |
 
-**Follow-up ladder:**
-- **L1:** Fixed vs variable window?
-- **L2:** Why negatives break some window sum tricks?
-- **L3:** Off-by-one checklist?
-
-**Provenance:** Learning-lab
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
 ### Q3. When prefix sums? `(30–45s)`
 
-**Answer points (frame first):**
-- Many range-sum queries
-- O(n) prep → O(1) range
-- Prefix/suffix products variant (product except self)
-- Negatives → often prefix + hash, not two pointers
+**Answer:**
 
-**Agenda opener:**  
-> “Pay O(n) once for fast range aggregates.”
+> Prefix sums help when I need many range sums: build a prefix array so a range is a subtraction. Product-of-array-except-self is the same idea with prefix and suffix products without division. If the problem has negatives and asks for subarray sums equaling k, I shift to prefix sums plus a hash map — pure two-pointer windows usually need monotonic positivity.
 
-**Full spoken answer:**  
-> “Prefix sums help when I need many range sums: build a prefix array so a range is a subtraction. Product-of-array-except-self is the same idea with prefix and suffix products without division. If the problem has negatives and asks for subarray sums equaling k, I shift to prefix sums plus a hash map — pure two-pointer windows usually need monotonic positivity.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> “Prefix sums replace Kadane for maximum subarray.”
+| Follow-up | Answer |
+|---|---|
+| Space trade-off of storing prefix? | O(n) prefix storage buys O(1) range queries; you can sometimes overwrite the input if mutation is allowed. |
+| Difference from Kadane? | Prefix+hash answers many range/sum-k queries; Kadane finds one best contiguous sum in O(n)/O(1). |
+| Mutable vs immutable prefix? | Building into a new array is safer; mutating in place saves memory but destroys the original values. |
 
-**Follow-up ladder:**
-- **L1:** Space trade-off of storing prefix?
-- **L2:** Difference from Kadane?
-- **L3:** Mutable vs immutable prefix?
-
-**Provenance:** Learning-lab
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
 ### Q4. Why narrate before coding? `(30s)`
 
-**Answer points (frame first):**
-- Interviewer grades process
-- Catch wrong approach early
-- Align on constraints
-- Shows senior communication
+**Answer:**
 
-**Agenda opener:**  
-> “Process under uncertainty is the product.”
+> Narrating the approach first lets the interviewer correct constraints early and shows how I think — brute force, why a pattern fits, complexity, and edges. Silent coding hides mistakes until the end. As a senior signal I’d rather burn sixty seconds aligning than ten minutes implementing the wrong plan.
 
-**Full spoken answer:**  
-> “Narrating the approach first lets the interviewer correct constraints early and shows how I think — brute force, why a pattern fits, complexity, and edges. Silent coding hides mistakes until the end. As a senior signal I’d rather burn sixty seconds aligning than ten minutes implementing the wrong plan.”
+**Follow-ups:**
 
-**Common wrong answer:**  
-> “Talking wastes time; coding proves skill.”
+| Follow-up | Answer |
+|---|---|
+| What if they say ‘just code’? | Still state brute force, chosen approach, and complexity in one breath, then code — keep the alignment tiny. |
+| How do you handle mid-problem constraint change? | Pause, restate the new invariant, scrap the broken assumption, and adjust the plan before typing more. |
+| Time split for 45-minute interview? | Roughly a few minutes clarifying/approach, most of the time coding+tests, leave a buffer to dry-run edges. |
 
-**Follow-up ladder:**
-- **L1:** What if they say ‘just code’?
-- **L2:** How do you handle mid-problem constraint change?
-- **L3:** Time split for 45-minute interview?
-
-**Provenance:** Communication skill
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
@@ -115,340 +87,208 @@
 
 ### Q5. Two Sum — approach `(60–90s)`
 
-**Answer points (frame first):**
-- Need indices → careful with sorting
-- Brute O(n²) pairs
-- One pass map value→index
-- Edges: duplicates, no pair, negatives
+**Answer:**
 
-**Full spoken answer:**  
-> “Constraints — is there exactly one answer? Duplicates allowed? Brute force tries all pairs in O(n²). Sorting would lose indices unless I store pairs, so I’ll scan once with a dictionary from value to index: for each number I look up target minus that number; if found I return both indices; otherwise I store the current value. Time O(n), space O(n). Edges: empty input, no valid pair, negatives, and not using the same index twice. Coding that now.”
+> Constraints — is there exactly one answer? Duplicates allowed? Brute force tries all pairs in O(n²). Sorting would lose indices unless I store pairs, so I’ll scan once with a dictionary from value to index: for each number I look up target minus that number; if found I return both indices; otherwise I store the current value. Time O(n), space O(n). Edges: empty input, no valid pair, negatives, and not using the same index twice. Coding that now.
 
-**Trap:** Same index twice; returning values not indices.
+**Follow-ups:**
 
-**Follow-up ladder:**
-- **L1:** Return all pairs?
-- **L2:** O(1) space if allowed to sort?
-- **L3:** Streaming numbers?
+| Follow-up | Answer |
+|---|---|
+| Return all pairs? | Scan with a map of value→indices (or sort+two pointers) and emit every valid pair while skipping duplicates if required. |
+| O(1) space if allowed to sort? | Sort then two-pointer for the values; recovering original indices needs stored pairs, so space isn’t truly free. |
+| Streaming numbers? | Keep a hash of seen values online; you can’t sort the whole stream, so map-based lookup is the natural fit. |
 
-**Provenance:** Learning-lab · `TwoSum.swift`
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
 ### Q6. Buy/Sell Stock — approach `(60–90s)`
 
-**Answer points (frame first):**
-- One buy one sell
-- Track min so far + max profit
-- Brute pairs O(n²)
-- Edges: length 1, decreasing → 0
+**Answer:**
 
-**Full spoken answer:**  
-> “One transaction — buy once, sell later. Brute force is all buy/sell pairs O(n²). I’ll track the minimum price so far and at each day compute profit as price minus that minimum, keeping the max profit. Time O(n), space O(1). Edges: single price returns zero; strictly decreasing returns zero. Coding the one-pass now.”
+> One transaction — buy once, sell later. Brute force is all buy/sell pairs O(n²). I’ll track the minimum price so far and at each day compute profit as price minus that minimum, keeping the max profit. Time O(n), space O(1). Edges: single price returns zero; strictly decreasing returns zero. Coding the one-pass now.
 
-**Trap:** Sell before buy; wrong min update order.
+**Follow-ups:**
 
-**Follow-up ladder:**
-- **L1:** k transactions?
-- **L2:** With cooldown?
-- **L3:** Fee per transaction?
+| Follow-up | Answer |
+|---|---|
+| k transactions? | Move to DP over day and transaction count (or state machine of hold/sold per trade), not the one-pass min tracker. |
+| With cooldown? | Track states like hold / sold-today / cooldown so you can’t buy on the day after a sell. |
+| Fee per transaction? | Subtract the fee when transitioning out of a sell (or into a buy) inside the DP/state updates. |
 
-**Provenance:** Learning-lab · `MaxProfit.swift`
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
 ### Q7. Valid Palindrome — approach `(60–90s)`
 
-**Answer points (frame first):**
-- Opposite pointers
-- Skip non-alnum; casefold
-- Swift: `[Character]` for indexing
-- Edges: empty, all punctuation
+**Answer:**
 
-**Full spoken answer:**  
-> “I’ll use two pointers from both ends. Skip non-alphanumeric characters, compare lowercased equals, move inward. In Swift String isn’t O(1) random access, so I’ll convert to an array of characters for clear indexing — O(n) space — unless you prefer String.Index walking. Time O(n). Edges: empty string is true; all punctuation is true; I’ll assume ASCII alnum per typical LeetCode unless you want unicode rules.”
+> I’ll use two pointers from both ends. Skip non-alphanumeric characters, compare lowercased equals, move inward. In Swift String isn’t O(1) random access, so I’ll convert to an array of characters for clear indexing — O(n) space — unless you prefer String.Index walking. Time O(n). Edges: empty string is true; all punctuation is true; I’ll assume ASCII alnum per typical LeetCode unless you want unicode rules.
 
-**Trap:** Ignoring case; not skipping; pretending `s[i]` works with Int.
+**Follow-ups:**
 
-**Follow-up ladder:**
-- **L1:** Unicode normalization?
-- **L2:** O(1) extra space with indices?
-- **L3:** Almost-palindrome (one delete)?
+| Follow-up | Answer |
+|---|---|
+| Unicode normalization? | Ask whether to normalize (NFC) and define alnum on Characters/scalars; LeetCode-style ASCII is the usual default. |
+| O(1) extra space with indices? | Walk with `String.Index` from both ends instead of materializing a `[Character]` array. |
+| Almost-palindrome (one delete)? | On mismatch, try skipping left or right once and check whether either remainder is a palindrome. |
 
-**Provenance:** Learning-lab · `ValidPalindrome.swift`
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
 ### Q8. Container With Most Water — approach `(60–90s)`
 
-**Answer points (frame first):**
-- Area = min height × width
-- Start at ends; move shorter
-- Brute O(n²)
-- Edges: n=2, equal heights
+**Answer:**
 
-**Full spoken answer:**  
-> “Area is min of the two heights times the distance between indices. Brute checks all pairs O(n²). I’ll start at both ends for maximum width and move the shorter pointer inward, because width always shrinks and only a taller short side can improve the min height. Time O(n), space O(1). Edges: exactly two lines; all heights equal. Coding that.”
+> Area is min of the two heights times the distance between indices. Brute checks all pairs O(n²). I’ll start at both ends for maximum width and move the shorter pointer inward, because width always shrinks and only a taller short side can improve the min height. Time O(n), space O(1). Edges: exactly two lines; all heights equal. Coding that.
 
-**Trap:** Moving the taller pointer; off-by-one width.
+**Follow-ups:**
 
-**Follow-up ladder:**
-- **L1:** Prove why move shorter?
-- **L2:** Histogram largest rectangle contrast?
-- **L3:** 3D variant joke → stay focused?
+| Follow-up | Answer |
+|---|---|
+| Prove why move shorter? | Width shrinks either way; only raising the shorter height can increase min(hL,hR), so move that pointer. |
+| Histogram largest rectangle contrast? | Histogram uses a monotonic stack over contiguous bars; container-with-most-water only needs opposite-end two pointers. |
+| 3D variant joke → stay focused? | Acknowledge briefly, then return to the 1D proof and finish the O(n) two-pointer solution they asked for. |
 
-**Provenance:** Learning-lab · `ContainerWater.swift`
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
 ### Q9. Longest Substring Without Repeating — approach `(60–90s)`
 
-**Answer points (frame first):**
-- Variable window + last index map
-- Expand right; lift left past duplicate
-- O(n); each index moves ≤ once
-- Edges: empty, all unique, all same
+**Answer:**
 
-**Full spoken answer:**  
-> “I need the longest contiguous substring with unique characters. I’ll keep a sliding window and a map of character to last index. Expand right; if the character was seen inside the window, move left to lastIndex + 1 — taking max so left never jumps backward. Track max window length. Each index moves at most once so O(n) time, space O(alphabet). Edges: empty string, all unique, all identical characters. I’ll dry-run ‘abba’ mentally for the left jump. Coding now.”
+> I need the longest contiguous substring with unique characters. I’ll keep a sliding window and a map of character to last index. Expand right; if the character was seen inside the window, move left to lastIndex + 1 — taking max so left never jumps backward. Track max window length. Each index moves at most once so O(n) time, space O(alphabet). Edges: empty string, all unique, all identical characters. I’ll dry-run ‘abba’ mentally for the left jump. Coding now.
 
-**Trap:** Forgetting `max(left, prev+1)`; wrong length formula.
+**Follow-ups:**
 
-**Follow-up ladder:**
-- **L1:** At most k distinct characters?
-- **L2:** Return the substring not length?
-- **L3:** Byte vs Character in Swift?
+| Follow-up | Answer |
+|---|---|
+| At most k distinct characters? | Variable window with a frequency map; shrink left while distinct count exceeds k and track max length. |
+| Return the substring not length? | Also record the best `(start, end)` whenever the window length updates, then slice that range. |
+| Byte vs Character in Swift? | Clarify whether uniqueness is on `Character`/scalars; don’t assume UTF-8 byte indexing equals Character bounds. |
 
-**Provenance:** Learning-lab · `LengthOfLongestSubstring.swift`
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
 ### Q10. Maximum Subarray — approach `(60–90s)`
 
-**Answer points (frame first):**
-- Kadane running max
-- running = max(x, running+x)
-- All-negative → largest element
-- O(n)/O(1)
+**Answer:**
 
-**Full spoken answer:**  
-> “Maximum contiguous sum — brute is O(n²). Kadane keeps a running sum: at each value, running becomes max of starting fresh at x versus extending running + x, and I track the global max. That correctly handles all-negative arrays by returning the largest element. Time O(n), space O(1). Edges: single element; all negative; mix of signs. Coding Kadane.”
+> Maximum contiguous sum — brute is O(n²). Kadane keeps a running sum: at each value, running becomes max of starting fresh at x versus extending running + x, and I track the global max. That correctly handles all-negative arrays by returning the largest element. Time O(n), space O(1). Edges: single element; all negative; mix of signs. Coding Kadane.
 
-**Trap:** Resetting to zero and returning 0 on all-negative when empty subarray isn’t allowed.
+**Follow-ups:**
 
-**Follow-up ladder:**
-- **L1:** Also return bounds?
-- **L2:** Circular maximum subarray?
-- **L3:** 2D kadane?
+| Follow-up | Answer |
+|---|---|
+| Also return bounds? | When starting a new run or extending, store start/end indices alongside the best sum. |
+| Circular maximum subarray? | Compare standard Kadane max with totalSum − minimum subarray sum (careful with the all-negative case). |
+| 2D kadane? | Fix left/right column bounds, compress rows to a 1D temp, and run Kadane on that temp for each pair. |
 
-**Provenance:** Learning-lab · `MaxSubArray.swift`
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
 ### Q11. Product Except Self — approach `(60–90s)`
 
-**Answer points (frame first):**
-- No division
-- Left products into output; right pass multiply
-- O(n); O(1) extra aside from output
-- Edges: zeros, negatives
+**Answer:**
 
-**Full spoken answer:**  
-> “Each output index is the product of all other elements without division. I’ll put prefix products into the output array on a left-to-right pass, then multiply by a running right product on the way back. Time O(n). Extra space O(1) if the output array doesn’t count. Edges: one zero, two zeros, negatives. I won’t use division because zeros break it and the prompt forbids it.”
+> Each output index is the product of all other elements without division. I’ll put prefix products into the output array on a left-to-right pass, then multiply by a running right product on the way back. Time O(n). Extra space O(1) if the output array doesn’t count. Edges: one zero, two zeros, negatives. I won’t use division because zeros break it and the prompt forbids it.
 
-**Trap:** Division; not handling zeros; O(n) left/right arrays without noting optimization.
+**Follow-ups:**
 
-**Follow-up ladder:**
-- **L1:** Follow-up O(1) extra?
-- **L2:** Modular product?
-- **L3:** Streaming?
+| Follow-up | Answer |
+|---|---|
+| Follow-up O(1) extra? | The left-pass into output plus right running product already uses O(1) extra if the output array doesn’t count. |
+| Modular product? | Apply modular multiplies on the prefix/suffix passes; still avoid division, and define behavior with zeros carefully. |
+| Streaming? | You generally need two passes or stored prefixes — a single online pass can’t know future factors without extra state. |
 
-**Provenance:** Learning-lab · `ProductExceptSelf.swift`
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
 ### Q12. Move Zeroes / write pointer — approach `(60s)`
 
-**Answer points (frame first):**
-- Write non-zeroes forward
-- Fill remaining zeroes
-- Stable order
-- O(n)/O(1)
+**Answer:**
 
-**Full spoken answer:**  
-> “I’ll keep a write index. Scan left to right, and whenever I see a non-zero I write it at the write index and advance. Then fill the tail with zeroes. That keeps relative order and uses O(1) extra space. Edges: no zeroes, all zeroes, already compacted.”
+> I’ll keep a write index. Scan left to right, and whenever I see a non-zero I write it at the write index and advance. Then fill the tail with zeroes. That keeps relative order and uses O(1) extra space. Edges: no zeroes, all zeroes, already compacted.
 
-**Trap:** Removing during for-in; swapping incorrectly and scrambling order if unstable swap used carelessly.
+**Follow-ups:**
 
-**Follow-up ladder:**
-- **L1:** Move zeroes to front?
-- **L2:** removeElement general pattern?
-- **L3:** Why not `removeAll` repeatedly?
+| Follow-up | Answer |
+|---|---|
+| Move zeroes to front? | Write non-zeroes from the end backward (or collect zeroes first), preserving relative order of non-zeroes as required. |
+| removeElement general pattern? | Same write pointer: copy keepers forward and return the new logical length. |
+| Why not `removeAll` repeatedly? | Repeated removals shift the array and become quadratic; one write-pointer pass stays linear. |
 
-**Provenance:** Learning-lab · `MoveZeroes.swift`
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
 ## Tricky
 
-### T1. Interviewer asks O(1) space after your map solution `(90s)`
-
-**Answer points (frame first):**
-- Don’t panic rewrite silently
-- Restate trade-off
-- Ask if sort/mutate allowed
-- Propose alternative or say map is justified for indices
-
-**Trap:** Silent erase of working solution.
-
-**Full spoken answer:**  
-> “If we need O(1) extra space, I’d clarify whether I may sort or mutate the input. For Two Sum, sorting with paired indices can work then two-pointer, but it’s O(n log n) time. If indices matter and I can’t use a map, I need that clarity. I’m happy to recode after we lock the constraint — I won’t silently thrash the current approach.”
-
-**Follow-up ladder:**
-- **L1:** When is O(n) space acceptable?
-- **L2:** External memory constraints?
-- **L3:** Parallelism?
-
-**Provenance:** Communication skill
-
----
-
-### T2. Swift String indexing feels O(n) `(90s)`
-
-**Answer points (frame first):**
-- String not Int-subscript random access
-- Convert to `[Character]` when needed
-- Mention cost honestly
-- Alternative: String.Index walking
-
-**Trap:** Pretend `s[i]` with Int works / is O(1).
-
-**Full spoken answer:**  
-> “Swift’s String isn’t a random-access array of characters with Int subscripts. Indexing with String.Index can be linear if I advance from start repeatedly. In an interview I’ll convert to `Array(s)` for O(1) indexing and call out the O(n) copy, or carefully walk indices once. I’d rather be honest about the cost than write incorrect Int subscripts.”
-
-**Follow-up ladder:**
-- **L1:** Character vs Unicode scalar?
-- **L2:** UTF-8 ContiguousBytes?
-- **L3:** Performance in production parsing?
-
-**Provenance:** Learning-lab · Swift realism
-
----
-
-### T3. Off-by-one in window `(90s)`
-
-**Answer points (frame first):**
-- State invariant out loud
-- Dry-run a known tricky string
-- Length = right - left + 1
-- left = last + 1 with max
-
-**Trap:** Expand/shrink without invariant.
-
-**Full spoken answer:**  
-> “When a window is wrong, I restate the invariant: characters from left through right are unique. Length is right minus left plus one. When I see a duplicate, left becomes max(left, lastIndex + 1) so I never move backward. I’ll dry-run a case like ‘abba’ before adjusting code. That catches most off-by-ones faster than random tweaks.”
-
-**Follow-up ladder:**
-- **L1:** Inclusive vs exclusive right?
-- **L2:** Fixed window off-by-ones?
-- **L3:** Empty window handling?
-
-**Provenance:** Learning-lab
-
----
-
-### T4. Mutating array while iterating `(90s)`
-
-**Answer points (frame first):**
-- Don’t remove during for-in casually
-- Write pointer pattern
-- Or iterate indices carefully
-- Prefer new array if space OK and clarity wins
-
-**Trap:** `for x in arr { arr.remove }` chaos.
-
-**Full spoken answer:**  
-> “Mutating an array’s length while using for-in is a footgun. For in-place compaction I use a write pointer over indices: read with `i`, write non-removed elements forward, then truncate or zero-fill. If mutation rules allow allocating, a new array can be clearer — I’ll ask. For Move Zeroes the write-pointer pattern is the intended O(1)-space approach.”
-
-**Follow-up ladder:**
-- **L1:** `removeFirst` in a loop cost?
-- **L2:** Copy-on-write surprises when sharing arrays?
-- **L3:** Concurrent mutation — Day 04 link?
-
-**Provenance:** Learning-lab · write pointer
-
----
-
-### T5. They want brute and optimal `(120s)`
-
-**Answer points (frame first):**
-- Sketch brute verbally with complexity
-- Code optimal
-- Note when brute OK (tiny n)
-- Keep calm timeboxing
-
-**Trap:** Only coding optimal with no brute discussion — or coding both fully and running out of time.
-
-**Full spoken answer:**  
-> “I’ll state the brute force clearly — for example all pairs O(n²) — so you know I see the naive baseline, then I’ll implement the optimal O(n) approach. If n is tiny, say ≤20, brute might be acceptable in production; here with interview constraints I’ll code the linear pass. If you want both fully typed, I’ll timebox brute as a short stub and focus on the optimal with tests.”
-
-**Follow-up ladder:**
-- **L1:** How long for brute stub?
-- **L2:** Property tests vs examples?
-- **L3:** Complexity proof depth expected?
-
-**Provenance:** Communication skill
-
----
-
 ## Stretch approach scripts
 
 ### Q13. 3Sum — approach `(90s)`
 
-**Answer points (frame first):**
-- Sort first O(n log n)
-- Fix i; two-sum with left/right
-- Skip duplicates on i/left/right
-- O(n²); edges all-zero, <3 elems
+**Answer:**
 
-**Full spoken answer:**  
-> “I’ll sort, then for each index i run two pointers on the remainder looking for sum zero, skipping duplicate values so we don’t emit the same triplet. Sorting costs n log n; the nested scan is O(n²). Edges: fewer than three numbers, all zeros, heavy duplicates. Coding sort plus two-sum now.”
+> I’ll sort, then for each index i run two pointers on the remainder looking for sum zero, skipping duplicate values so we don’t emit the same triplet. Sorting costs n log n; the nested scan is O(n²). Edges: fewer than three numbers, all zeros, heavy duplicates. Coding sort plus two-sum now.
 
-**Trap:** Forgetting duplicate skips; using hash without sorting discussion.
+**Follow-ups:**
 
-**Provenance:** Learning-lab · `ThreeSum.swift`
+| Follow-up | Answer |
+|---|---|
+| Probe deeper? | For `[-1,0,1,2,-1,-4]`, after sorting skip duplicate `-1` anchors so you emit `[-1,0,1]` once instead of three identical triplets. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
 ### Q14. Min Size Subarray Sum — approach `(90s)`
 
-**Answer points (frame first):**
-- Positive nums → variable window
-- Expand until sum ≥ target; shrink; track min length
-- Impossible → 0
-- O(n)/O(1)
+**Answer:**
 
-**Full spoken answer:**  
-> “Assuming positive numbers, I’ll expand a right pointer adding to a running sum; while the sum is at least target I’ll shrink from the left and track the minimum window length. If I never reach the target, return zero. Each pointer moves at most n times so O(n). If negatives were allowed, this shrink logic would break and I’d switch strategies.”
+> Assuming positive numbers, I’ll expand a right pointer adding to a running sum; while the sum is at least target I’ll shrink from the left and track the minimum window length. If I never reach the target, return zero. Each pointer moves at most n times so O(n). If negatives were allowed, this shrink logic would break and I’d switch strategies.
 
-**Trap:** Using window with negatives; off-by-one length.
+**Follow-ups:**
 
-**Provenance:** Learning-lab · `MinSubArrayLen.swift`
+| Follow-up | Answer |
+|---|---|
+| Probe deeper? | For target `7` and `[2,3,1,2,4,3]`, expand until sum ≥ 7 then shrink to window `[4,3]` of length 2 — each pointer moves at most n times. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 
 ### Q15. Group Anagrams — approach `(60–90s)`
 
-**Answer points (frame first):**
-- Key by sorted string or count signature
-- Bucket in dictionary
-- O(n·k log k) or O(n·k)
-- Edges: empty strings
+**Answer:**
 
-**Full spoken answer:**  
-> “Anagrams share a sorted character key or a 26-length count signature. I’ll map key to a list of strings and return the buckets. Sorted keys are O(n·k log k); count signatures are O(n·k). Edges: empty strings, single characters, already identical inputs.”
+> Anagrams share a sorted character key or a 26-length count signature. I’ll map key to a list of strings and return the buckets. Sorted keys are O(n·k log k); count signatures are O(n·k). Edges: empty strings, single characters, already identical inputs.
 
-**Provenance:** Learning-lab · `GroupAnagrams.swift`
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Probe deeper? | Key `"aet"` (sorted) or a 26-count signature buckets `eat`/`tea`/`ate` into one list without comparing every pair. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 ---
 

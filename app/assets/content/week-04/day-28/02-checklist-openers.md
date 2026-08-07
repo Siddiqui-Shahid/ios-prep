@@ -1,12 +1,10 @@
 # Sample 02 — Checklist & openers (Q&A)
 
-> Guided teaching. Each answer stands alone; **Points to** shows where the full module expands the idea.
+> Guided teaching. Each answer stands alone and ends with **How can I relate to my case** using named work — never S-codes.
 
 ---
 
 ### Q1. What are the agenda openers for each segment?
-
-**Points to:** [Deep dive · Agenda openers](../02-deep-dive.md#agenda-openers-read-once) · [Foundations · Day 27 openers](../../day-27/01-foundations.md#2-openers-rehearse-30s-each-before-segment)
 
 **Answer:**
 
@@ -24,11 +22,12 @@
 | Customize per company? | Core spine stays; swap one production hook. |
 | Forget mid-interview? | One segment opener is enough to reset — don’t stack all four. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q2. Pre-interview checklist — environment?
-
-**Points to:** [Deep dive · Environment](../02-deep-dive.md#environment)
 
 **Answer:**
 
@@ -42,11 +41,12 @@
 | Light behind you? | Face the light — interviewers read confidence cues. |
 | Hotspot tested? | Know how to switch before call, not during. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q3. Pre-interview checklist — materials?
-
-**Points to:** [Deep dive · Materials](../02-deep-dive.md#materials)
 
 **Answer:**
 
@@ -60,29 +60,34 @@
 | Second monitor? | OK if allowed — no extra cheat sheets. |
 | Whiteboard tool? | Test pen/undo before SD round if virtual. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q4. Pre-interview checklist — content (retrieval only)?
 
-**Points to:** [Deep dive · Content](../02-deep-dive.md#content-retrieval-only)
-
 **Answer:**
 
-> Metric trio **once** · S6, S8, S9 **once** (minimum) · coding + SD openers **once** · weak flashcards **capped**. Check boxes — don’t re-open full modules.
+> Metric trio **once** · BookMyShow LE Bottom Sheet, BookMyShow IMOC + crash-free at scale, District Free Parking + Clean/MVVM + AI tooling **once** (minimum) · coding + SD openers **once** · weak flashcards **capped**. Check boxes — don’t re-open full modules.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| S1 today? | In priority story list — once with S6/S8/S9 block. |
+| BookMyShow Ads pipeline + HeroWidget lifecycle today? | In priority story list — once with BookMyShow LE Bottom Sheet/BookMyShow IMOC + crash-free at scale/District Free Parking + Clean/MVVM + AI tooling block. |
 | Re-read Day 26 scripts? | OK as story retrieval — not rewrite. |
 | New flashcard creation? | Only Mock #4 fix-forward fronts — no expansion. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle; BookMyShow LE Bottom Sheet; BookMyShow IMOC + crash-free at scale; District Free Parking + Clean/MVVM + AI tooling
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented fill-rate % or sole credit for ads revenue.
 
 ---
 
 ### Q5. What is the metric trio for retrieval?
-
-**Points to:** [Deep dive · Metric trio](../02-deep-dive.md#metric-trio) · [Questions · Q1](../04-questions.md#q1-metric-trio-3045s)
 
 **Answer:**
 
@@ -94,14 +99,18 @@
 | Follow-up | Answer |
 |---|---|
 | Shorter 20s version? | “30L+ DAU, 99.95%+ crash-free on my paths, 30%+ nav on LE flows.” |
-| Interviewer wants one metric? | Pick S6 or S8 depending on question. |
+| Interviewer wants one metric? | Pick BookMyShow LE Bottom Sheet or BookMyShow IMOC + crash-free at scale depending on question. |
 | Inflate under pressure? | Never — clarify scope instead. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow LE Bottom Sheet; BookMyShow IMOC + crash-free at scale
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
 
 ---
 
 ### Q6. What body and sleep rules apply?
-
-**Points to:** [Deep dive · Body](../02-deep-dive.md#body) · [Foundations · Allowed](../01-foundations.md#allowed-vs-forbidden)
 
 **Answer:**
 
@@ -115,11 +124,12 @@
 | Heavy workout? | Light movement — don’t exhaust before interview. |
 | Skip breakfast? | Real meal — stable energy for 45m segments. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q7. What are mental time budgets to hold?
-
-**Points to:** [Deep dive · Materials](../02-deep-dive.md#materials) · [Questions · Q2–Q3](../04-questions.md)
 
 **Answer:**
 
@@ -133,6 +143,10 @@
 | 3–5m architecture? | When asked “design X” inside iOS block. |
 | Overtime habit? | Agenda sentence + self-correct — practiced in mocks. |
 
----
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
 
 Next: [03-story-retrieval.md](03-story-retrieval.md)
+
+---
+

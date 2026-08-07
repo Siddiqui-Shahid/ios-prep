@@ -6,11 +6,9 @@
 
 ### Q1. What are the design rules for a ComponentRegistry?
 
-**Points to:** [Deep dive · §4 Component registry](../02-deep-dive.md#4-component-registry) · [code · ComponentRegistry](../code/ComponentRegistry.swift)
-
 **Answer:**
 
-> (1) **Fail soft on unknown** — never crash on CMS type strings. (2) **Validate known props strictly** — bad props on a known type: skip node or safe defaults — pick one policy and stay consistent. (3) **Stable identity** — server `id` on nodes for SwiftUI identity and analytics. (4) **Keep leaves dumb** — registry returns views; ViewModel owns payload lifecycle. (5) **Ownership** — app-specific header components in app module; shared primitives in UI kit with clear public API (S10 SDK lesson).
+> (1) **Fail soft on unknown** — never crash on CMS type strings. (2) **Validate known props strictly** — bad props on a known type: skip node or safe defaults — pick one policy and stay consistent. (3) **Stable identity** — server `id` on nodes for SwiftUI identity and analytics. (4) **Keep leaves dumb** — registry returns views; ViewModel owns payload lifecycle. (5) **Ownership** — app-specific header components in app module; shared primitives in UI kit with clear public API (Stories SDK (Raw / Miami Heat) SDK lesson).
 
 **Follow-ups:**
 
@@ -20,11 +18,15 @@
 | `fatalError` in factory? | Forbidden — skip + metric instead. |
 | See code? | [ComponentRegistry.swift](../code/ComponentRegistry.swift) learning-lab. |
 
+**How can I relate to my case:**
+- **Shipped:** Stories SDK (Raw / Miami Heat)
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** Learning-lab demos / sketches only — not production source.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
 ### Q2. How do allowlisted actions work?
-
-**Points to:** [Foundations · §8 Actions & security](../01-foundations.md#8-actions--security-intern) · [Deep dive · §6 Actions & security](../02-deep-dive.md#6-actions--security)
 
 **Answer:**
 
@@ -35,18 +37,22 @@
 | Follow-up | Answer |
 |---|---|
 | Metric for bad action? | `sdui_unknown_action`. |
-| `open_deeplink`? | App schemes only; router owns nav (S13). |
+| `open_deeplink`? | App schemes only; router owns nav (Hybrid UI / deeplinks). |
 | Analytics in CMS payload? | Validate event names; refuse unchecked PII from CMS. |
+
+**How can I relate to my case:**
+- **Shipped:** Hybrid UI / deeplinks
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q3. What is BMS-style header component inventory thinking?
 
-**Points to:** [Foundations · §14 Header inventory](../01-foundations.md#14-header-component-inventory-bms-style-thinking) · [Deep dive · §8 BMS header](../02-deep-dive.md#8-bms-header-s3--architecture-reading)
-
 **Answer:**
 
-> Types like `logo`, `citySelector`, `promoBanner`, `searchEntry`, `navIcons` map to native responsibilities. Skip impact varies: missing **logo** at root is high — may trigger hard fallback; **promoBanner** skip is low. **searchEntry** skip medium — provide native default search affordance. Verified S3: protocol-driven generalised main-screen header from backend/CMS so many layout/content changes skip App Store — registry + fail-soft is how that stays crash-safe.
+> Types like `logo`, `citySelector`, `promoBanner`, `searchEntry`, `navIcons` map to native responsibilities. Skip impact varies: missing **logo** at root is high — may trigger hard fallback; **promoBanner** skip is low. **searchEntry** skip medium — provide native default search affordance. BookMyShow backend-driven header & search: protocol-driven generalised main-screen header from backend/CMS so many layout/content changes skip App Store — registry + fail-soft is how that stays crash-safe.
 
 **Follow-ups:**
 
@@ -56,15 +62,19 @@
 | New component type? | App release to register — CMS can’t invent native types without client. |
 | Limits of SDUI? | Not infinite flexibility — types need client support. |
 
+**How can I relate to my case:**
+- **Shipped:** BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
 ### Q4. What is the Aces splash cold-start checklist?
 
-**Points to:** [Foundations · §15 Splash inventory](../01-foundations.md#15-splash-inventory-aces-style-thinking) · [Deep dive · §9 Aces splash](../02-deep-dive.md#9-aces-splash-s12--cold-start-reading)
-
 **Answer:**
 
-> Verified **S12:** server-driven splash for cold-start flexibility/freshness alongside audio streaming — **no invented milliseconds**. Design checklist: prewarm/read disk cache on launch; network fetch with **short timeout** → default if slow; minimum viable tree (logo/brand) if partial skip; don’t serialize audio init and splash network on one blocking main-thread chain; measure **time-to-interactive**, not only first frame. Startup is a product surface — cached splash with timeout-to-default beats blocking on perfection.
+> Verified **Audio streaming + server-driven splash (Aces):** server-driven splash for cold-start flexibility/freshness alongside audio streaming — **no invented milliseconds**. Design checklist: prewarm/read disk cache on launch; network fetch with **short timeout** → default if slow; minimum viable tree (logo/brand) if partial skip; don’t serialize audio init and splash network on one blocking main-thread chain; measure **time-to-interactive**, not only first frame. Startup is a product surface — cached splash with timeout-to-default beats blocking on perfection.
 
 **Follow-ups:**
 
@@ -74,11 +84,15 @@
 | Seasonal art unknown type? | Skip skippable art; keep brand minimum. |
 | Legal/age gate? | Prefer native if product-required. |
 
+**How can I relate to my case:**
+- **Shipped:** Audio streaming + server-driven splash (Aces)
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 ---
 
 ### Q5. How do analytics work safely in SDUI payloads?
-
-**Points to:** [Deep dive · §7 Analytics in SDUI](../02-deep-dive.md#7-analytics-in-sdui) · [Foundations · §16 Metric dictionary](../01-foundations.md#16-metric-dictionary-speak-these-names)
 
 **Answer:**
 
@@ -92,11 +106,12 @@
 | Skip metrics vs analytics? | `sdui_unknown_component` is ops signal; product analytics still gated. |
 | Double logging? | Inject context once — avoid duplicate fire on re-render. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
 ### Q6. How does SDUI relate to feature flags and A/B?
-
-**Points to:** [Deep dive · §12 SDUI vs flags vs A/B](../02-deep-dive.md#12-sdui-vs-feature-flags-vs-ab) · [Deep dive · §10 iOS/Android parity](../02-deep-dive.md#10-ios--android-parity)
 
 **Answer:**
 
@@ -106,15 +121,19 @@
 
 | Follow-up | Answer |
 |---|---|
-| Kill switch? | Feature flag back to native default — part of S3-A1 design. |
+| Kill switch? | Feature flag back to native default — part of BookMyShow backend-driven header & search-A1 design. |
 | Canary payload? | % expose new schema before full rollout. |
 | Contract tests in CI? | Catch platform drift early. |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow backend-driven header & search
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
 ---
 
 ### Q7. What performance notes matter for SDUI on iOS?
-
-**Points to:** [Deep dive · §14 Performance notes](../02-deep-dive.md#14-performance-notes) · [Deep dive · §17 Main-thread parse](../02-deep-dive.md#17-failure-modes)
 
 **Answer:**
 
@@ -128,6 +147,32 @@
 | Large header tree? | Incremental render or flatten where product allows. |
 | Whiteboard script? | Schema → gate → registry → actions → fallback; map BMS + Aces. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
 ---
 
+### Q8. Where should the component registry live — app or SDK?
+
+**Answer:**
+
+> Put specificity with ownership. **App-specific** header components live in the **app module** with protocol hooks. A shared SDK can own common primitives — text, stack, image — if versioned cleanly. The Stories SDK lesson (Stories SDK (Raw / Miami Heat)) applies: public API and independence matter when multiple apps share code. Don’t shove every BMS-only promo widget into a portfolio SDK.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Stories SDK (Raw / Miami Heat) crossover? | Modularity + versioning of the public surface. |
+| Header registry default? | Likely app module — BMS-specific types. |
+| Absolute one place forever? | Wrong — specificity drives ownership. |
+
+**How can I relate to my case:**
+- **Shipped:** Stories SDK (Raw / Miami Heat)
+- **Design if asked:** Only if they ask for a modern redesign — label it design, not shipped.
+- **Lab only:** N/A for this prompt.
+- **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
+
 Next: [04-production-s3-s12.md](04-production-s3-s12.md)
+
+---
+
