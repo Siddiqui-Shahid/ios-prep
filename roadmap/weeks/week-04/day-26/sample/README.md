@@ -20,6 +20,7 @@ After the sample, record full STAR scripts in [`../04-questions.md`](../04-quest
 | [02-conflict-incident.md](02-conflict-incident.md) | S6 conflict + S8 incident structure, failure, deadlines | Deep dive · Questions |
 | [03-mentorship-ai.md](03-mentorship-ai.md) | Lead without title, TMAY, S9 AI judgment, senior vs mid | Deep dive · Questions |
 | [04-production-provenance.md](04-production-provenance.md) | Provenance walls for S1/S6/S8/S9, honest metrics | Production bridge · Questions |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — Platform EM / release trains | ios-system-design/docs |
 
 ## Critical truths (pin these)
 
@@ -34,4 +35,4 @@ After the sample, record full STAR scripts in [`../04-questions.md`](../04-quest
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → then record S6, S8, S9, S1 in [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → then record S6, S8, S9, S1 in [`../04-questions.md`](../04-questions.md).

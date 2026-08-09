@@ -2,7 +2,8 @@
 
 **Target:** Senior iOS (ownership, trade-offs, production scale)  
 **Load:** ~4–5 hrs weekdays · ~5–6 hrs weekends  
-**System design spine:** `ios-system-design/docs/` (linked per day)
+**System design spine:** `ios-system-design/docs/` (linked per day)  
+**Daily SD drill:** every day includes [`sample/05-system-design-mock.md`](weeks/week-01/day-01/sample/05-system-design-mock.md) — mock-interview Q&A (clarify → HLD → API/load → dives → ops) mapped to the day’s primary SD doc.
 
 ---
 

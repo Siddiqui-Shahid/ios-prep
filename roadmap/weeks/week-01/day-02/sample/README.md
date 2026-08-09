@@ -20,6 +20,7 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 | [02-associated-types-erasure.md](02-associated-types-erasure.md) | Associated types under pressure, dispatch, type erasure | Foundations · Deep dive |
 | [03-pipeline-and-code.md](03-pipeline-and-code.md) | Ads pipeline shape, HeroWidget, code demos | Deep dive · code |
 | [04-production-s1.md](04-production-s1.md) | Verified S1 / S10 interview language | Production bridge |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — SDUI ComponentRegistry | ios-system-design/docs |
 
 ## Critical truths (pin these)
 
@@ -36,7 +37,7 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → then main [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → then main [`../04-questions.md`](../04-questions.md).
 
 ## App
 

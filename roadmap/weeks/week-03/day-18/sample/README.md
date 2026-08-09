@@ -22,6 +22,7 @@ Main curriculum modules for this day — see [`../README.md`](../README.md#modul
 | [02-signal-safety-oom.md](02-signal-safety-oom.md) | Signal handlers, breadcrumbs, OOM, dSYM | Deep dive |
 | [03-imoc-triage.md](03-imoc-triage.md) | Triage workflow, IMOC, mitigate vs hotfix | Deep dive · Foundations |
 | [04-production-s8-s2.md](04-production-s8-s2.md) | Verified S8 IMOC/CFS + S2 correct coupling | Production bridge |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — Crash reporting SDK | ios-system-design/docs |
 
 ## Critical truths (pin these)
 
@@ -36,7 +37,7 @@ Main curriculum modules for this day — see [`../README.md`](../README.md#modul
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → then main [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → then main [`../04-questions.md`](../04-questions.md).
 
 ## App
 

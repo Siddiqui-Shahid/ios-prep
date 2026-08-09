@@ -20,6 +20,7 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 | [02-thread-safe-dict.md](02-thread-safe-dict.md) | Pattern A serial queue, Pattern B barriers, async write / sync read visibility | Foundations · Deep dive · code |
 | [03-groups-races.md](03-groups-races.md) | DispatchGroup, semaphores, race vs deadlock vs priority inversion, actors preview | Foundations · Deep dive |
 | [04-production-s2.md](04-production-s2.md) | Verified S2 vs Applied S2-A1, anti-claims | Production bridge |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — Offline sync engine | ios-system-design/docs |
 
 ## Critical truths (pin these)
 
@@ -36,7 +37,7 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → then main [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → then main [`../04-questions.md`](../04-questions.md).
 
 ## Code (learning-lab)
 

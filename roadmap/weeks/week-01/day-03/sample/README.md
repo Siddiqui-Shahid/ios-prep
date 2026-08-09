@@ -20,6 +20,7 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 | [02-retain-cycles.md](02-retain-cycles.md) | Cycles + classic UIKit patterns + demo code | Foundations · Deep dive · code |
 | [03-tools-and-leaks.md](03-tools-and-leaks.md) | Leak vs abandoned, Memory Graph / Allocations / Leaks | Foundations · Deep dive |
 | [04-production-s8.md](04-production-s8.md) | Verified S8 vs Applied triage language | Production bridge |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — Image loading (memory) | ios-system-design/docs |
 
 ## Critical truths (pin these)
 
@@ -34,7 +35,7 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → then main [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → then main [`../04-questions.md`](../04-questions.md).
 
 ## App
 

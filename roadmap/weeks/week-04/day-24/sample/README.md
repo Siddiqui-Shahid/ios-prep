@@ -33,6 +33,7 @@ Full curriculum layout: [`../README.md`](../README.md) — study order and prove
 | [02-fintrack-rag.md](02-fintrack-rag.md) | S15 BM25, rules, privacy, grounding money | Deep dive · Production bridge |
 | [03-gymflow-embeddings.md](03-gymflow-embeddings.md) | S16 MiniLM, cosine top-K, TF-IDF fallback | Deep dive · Production bridge |
 | [04-production-s15-s16.md](04-production-s15-s16.md) | Verified claims, S9 contrast, bridge script | Production bridge |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — On-device LLM/AI | ios-system-design/docs |
 
 ## Critical truths (pin these)
 
@@ -47,4 +48,4 @@ Full curriculum layout: [`../README.md`](../README.md) — study order and prove
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → then main [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → then main [`../04-questions.md`](../04-questions.md).

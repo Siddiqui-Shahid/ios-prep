@@ -20,6 +20,7 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 | [02-monotonic-patterns.md](02-monotonic-patterns.md) | Valid parens, monotonic stack, min stack, two-stack queue | Deep dive · code |
 | [03-linked-list-algos.md](03-linked-list-algos.md) | Reverse, Floyd cycle, merge, Swift honesty | Foundations · Deep dive · code |
 | [04-production-bridges.md](04-production-bridges.md) | Agenda-first coding, soft S4/S6 bridges, Mock #2 prep | Production bridge · Deep dive |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — Messaging/chat | ios-system-design/docs |
 
 ## Critical truths (pin these)
 
@@ -34,7 +35,7 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → then main [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → then main [`../04-questions.md`](../04-questions.md).
 
 ## App
 

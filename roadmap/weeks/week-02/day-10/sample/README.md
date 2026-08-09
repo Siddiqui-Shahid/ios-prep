@@ -20,6 +20,7 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 | [02-schema-version-fallbacks.md](02-schema-version-fallbacks.md) | Version gate, unknown skip, FallbackEngine, cache | Deep dive · code |
 | [03-registry-actions-splash.md](03-registry-actions-splash.md) | Component registry, allowlisted actions, cold start | Deep dive · Foundations |
 | [04-production-s3-s12.md](04-production-s3-s12.md) | Verified S3 header + S12 splash; S3-A1 design | Production bridge |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — SDUI engine | ios-system-design/docs |
 
 ## Critical truths (pin these)
 
@@ -36,7 +37,7 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → then main [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → then main [`../04-questions.md`](../04-questions.md).
 
 ## App
 

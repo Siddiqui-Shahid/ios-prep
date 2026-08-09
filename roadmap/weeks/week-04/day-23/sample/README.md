@@ -33,6 +33,7 @@ Full curriculum layout: [`../README.md`](../README.md#module-map)
 | [02-heap-patterns.md](02-heap-patterns.md) | Top-K, Kth stream, merge K, min vs max | Foundations · Deep dive |
 | [03-mixed-unknown-pattern.md](03-mixed-unknown-pattern.md) | 90s classify protocol, pivots, anti-DP worship | Foundations · Deep dive |
 | [04-production-maps-topk.md](04-production-maps-topk.md) | S2/S3/S16 honest hooks | Production bridge |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — Realtime location | ios-system-design/docs |
 
 ## Critical truths (pin these)
 
@@ -47,4 +48,4 @@ Full curriculum layout: [`../README.md`](../README.md#module-map)
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → then main [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → then main [`../04-questions.md`](../04-questions.md).

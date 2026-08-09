@@ -31,6 +31,12 @@
               "title": "Ads pipeline, HeroWidget & payment status popup (Q&A)",
               "markdown": "assets/content/week-01/day-01/04-production-s1-s7.md",
               "script": "assets/content/week-01/day-01/04-production-s1-s7.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: Infinite Social Feed (Q&A)",
+              "markdown": "assets/content/week-01/day-01/05-system-design-mock.md",
+              "script": "assets/content/week-01/day-01/05-system-design-mock.script.md"
             }
           ],
           "code": [
@@ -75,6 +81,12 @@
               "title": "BookMyShow Ads pipeline + HeroWidget (Q&A)",
               "markdown": "assets/content/week-01/day-02/04-production-s1.md",
               "script": "assets/content/week-01/day-02/04-production-s1.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: Server-Driven UI Engine (Q&A)",
+              "markdown": "assets/content/week-01/day-02/05-system-design-mock.md",
+              "script": "assets/content/week-01/day-02/05-system-design-mock.script.md"
             }
           ],
           "code": [
@@ -119,6 +131,12 @@
               "title": "IMOC + crash-free at scale (Q&A)",
               "markdown": "assets/content/week-01/day-03/04-production-s8.md",
               "script": "assets/content/week-01/day-03/04-production-s8.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: Image Loading Library (Q&A)",
+              "markdown": "assets/content/week-01/day-03/05-system-design-mock.md",
+              "script": "assets/content/week-01/day-03/05-system-design-mock.script.md"
             }
           ],
           "code": [
@@ -157,6 +175,12 @@
               "title": "Synchronised dictionaries & actor SafeDict design (Q&A)",
               "markdown": "assets/content/week-01/day-04/04-production-s2.md",
               "script": "assets/content/week-01/day-04/04-production-s2.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: Offline-First Sync Engine (Q&A)",
+              "markdown": "assets/content/week-01/day-04/05-system-design-mock.md",
+              "script": "assets/content/week-01/day-04/05-system-design-mock.script.md"
             }
           ],
           "code": [
@@ -201,6 +225,12 @@
               "title": "Synchronised dictionaries & actor SafeDict design (Q&A)",
               "markdown": "assets/content/week-01/day-05/04-production-s2.md",
               "script": "assets/content/week-01/day-05/04-production-s2.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: Infinite Social Feed (Q&A)",
+              "markdown": "assets/content/week-01/day-05/05-system-design-mock.md",
+              "script": "assets/content/week-01/day-05/05-system-design-mock.script.md"
             }
           ],
           "code": [
@@ -239,6 +269,12 @@
               "title": "04 Patterns Drills (Q&A)",
               "markdown": "assets/content/week-01/day-06/04-patterns-drills.md",
               "script": "assets/content/week-01/day-06/04-patterns-drills.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: Search Autocomplete (Q&A)",
+              "markdown": "assets/content/week-01/day-06/05-system-design-mock.md",
+              "script": "assets/content/week-01/day-06/05-system-design-mock.script.md"
             }
           ],
           "code": [
@@ -343,6 +379,12 @@
               "title": "04 Warmup HLD (Q&A)",
               "markdown": "assets/content/week-01/day-07/04-warmup-hld.md",
               "script": "assets/content/week-01/day-07/04-warmup-hld.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: Infinite Social Feed (Q&A)",
+              "markdown": "assets/content/week-01/day-07/05-system-design-mock.md",
+              "script": "assets/content/week-01/day-07/05-system-design-mock.script.md"
             }
           ],
           "code": [
@@ -387,6 +429,12 @@
               "title": "Free Parking architecture & backend-driven search (Q&A)",
               "markdown": "assets/content/week-02/day-08/04-production-s9-s3.md",
               "script": "assets/content/week-02/day-08/04-production-s9-s3.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: App Modularization & DI (Q&A)",
+              "markdown": "assets/content/week-02/day-08/05-system-design-mock.md",
+              "script": "assets/content/week-02/day-08/05-system-design-mock.script.md"
             }
           ],
           "code": [
@@ -437,6 +485,12 @@
               "title": "SSL pinning + URLSession migration (Q&A)",
               "markdown": "assets/content/week-02/day-09/04-production-s4.md",
               "script": "assets/content/week-02/day-09/04-production-s4.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: Networking Layer / HTTP Client (Q&A)",
+              "markdown": "assets/content/week-02/day-09/05-system-design-mock.md",
+              "script": "assets/content/week-02/day-09/05-system-design-mock.script.md"
             }
           ],
           "code": [
@@ -475,6 +529,12 @@
               "title": "Backend-driven UI & Aces splash (Q&A)",
               "markdown": "assets/content/week-02/day-10/04-production-s3-s12.md",
               "script": "assets/content/week-02/day-10/04-production-s3-s12.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: Server-Driven UI Engine (Q&A)",
+              "markdown": "assets/content/week-02/day-10/05-system-design-mock.md",
+              "script": "assets/content/week-02/day-10/05-system-design-mock.script.md"
             }
           ],
           "code": [
@@ -525,6 +585,12 @@
               "title": "Hybrid UI, deeplinks & LE Bottom Sheet (Q&A)",
               "markdown": "assets/content/week-02/day-11/04-production-s13-s6.md",
               "script": "assets/content/week-02/day-11/04-production-s13-s6.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: Deep Linking & Universal Links (Q&A)",
+              "markdown": "assets/content/week-02/day-11/05-system-design-mock.md",
+              "script": "assets/content/week-02/day-11/05-system-design-mock.script.md"
             }
           ],
           "code": [
@@ -575,6 +641,12 @@
               "title": "Stories SDK (Raw / Miami Heat) (Q&A)",
               "markdown": "assets/content/week-02/day-12/04-production-s10.md",
               "script": "assets/content/week-02/day-12/04-production-s10.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: Short-form Video Feed (Q&A)",
+              "markdown": "assets/content/week-02/day-12/05-system-design-mock.md",
+              "script": "assets/content/week-02/day-12/05-system-design-mock.script.md"
             }
           ],
           "code": [
@@ -625,6 +697,12 @@
               "title": "Production story bridges (Q&A)",
               "markdown": "assets/content/week-02/day-13/04-production-bridges.md",
               "script": "assets/content/week-02/day-13/04-production-bridges.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: Instant Messaging & Chat (Q&A)",
+              "markdown": "assets/content/week-02/day-13/05-system-design-mock.md",
+              "script": "assets/content/week-02/day-13/05-system-design-mock.script.md"
             }
           ],
           "code": [
@@ -693,6 +771,12 @@
               "title": "04 SDUI Architecture (Q&A)",
               "markdown": "assets/content/week-02/day-14/04-sdui-architecture.md",
               "script": "assets/content/week-02/day-14/04-sdui-architecture.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: Mobile Payment Checkout (Q&A)",
+              "markdown": "assets/content/week-02/day-14/05-system-design-mock.md",
+              "script": "assets/content/week-02/day-14/05-system-design-mock.script.md"
             }
           ],
           "code": [
@@ -749,6 +833,12 @@
               "title": "Stories SDK (Raw / Miami Heat) (Q&A)",
               "markdown": "assets/content/week-03/day-15/04-production-s10.md",
               "script": "assets/content/week-03/day-15/04-production-s10.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: App Modularization & DI (Q&A)",
+              "markdown": "assets/content/week-03/day-15/05-system-design-mock.md",
+              "script": "assets/content/week-03/day-15/05-system-design-mock.script.md"
             }
           ],
           "code": [
@@ -799,6 +889,12 @@
               "title": "HeroWidget lifecycle & Aces splash (Q&A)",
               "markdown": "assets/content/week-03/day-16/04-production-s1-s12.md",
               "script": "assets/content/week-03/day-16/04-production-s1-s12.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: Image Loading Library (Q&A)",
+              "markdown": "assets/content/week-03/day-16/05-system-design-mock.md",
+              "script": "assets/content/week-03/day-16/05-system-design-mock.script.md"
             }
           ],
           "code": [
@@ -849,6 +945,12 @@
               "title": "Firebase Performance traces (Q&A)",
               "markdown": "assets/content/week-03/day-17/04-production-s5.md",
               "script": "assets/content/week-03/day-17/04-production-s5.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: App Performance Monitoring (Q&A)",
+              "markdown": "assets/content/week-03/day-17/05-system-design-mock.md",
+              "script": "assets/content/week-03/day-17/05-system-design-mock.script.md"
             }
           ],
           "code": [
@@ -893,6 +995,12 @@
               "title": "Crash-free culture & synchronised dictionaries (Q&A)",
               "markdown": "assets/content/week-03/day-18/04-production-s8-s2.md",
               "script": "assets/content/week-03/day-18/04-production-s8-s2.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: Crash Reporting SDK (Q&A)",
+              "markdown": "assets/content/week-03/day-18/05-system-design-mock.md",
+              "script": "assets/content/week-03/day-18/05-system-design-mock.script.md"
             }
           ],
           "code": [
@@ -937,6 +1045,12 @@
               "title": "04 Persistence Tree (Q&A)",
               "markdown": "assets/content/week-03/day-19/04-persistence-tree.md",
               "script": "assets/content/week-03/day-19/04-persistence-tree.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: Mobile Security & Zero-Trust Engine (Q&A)",
+              "markdown": "assets/content/week-03/day-19/05-system-design-mock.md",
+              "script": "assets/content/week-03/day-19/05-system-design-mock.script.md"
             }
           ],
           "code": [
@@ -981,6 +1095,12 @@
               "title": "04 Release Trains (Q&A)",
               "markdown": "assets/content/week-03/day-20/04-release-trains.md",
               "script": "assets/content/week-03/day-20/04-release-trains.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: Push Notification System (Q&A)",
+              "markdown": "assets/content/week-03/day-20/05-system-design-mock.md",
+              "script": "assets/content/week-03/day-20/05-system-design-mock.script.md"
             }
           ],
           "code": [
@@ -1019,6 +1139,12 @@
               "title": "04 Scoring Rubric (Q&A)",
               "markdown": "assets/content/week-03/day-21/04-scoring-rubric.md",
               "script": "assets/content/week-03/day-21/04-scoring-rubric.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: Networking Layer + SSL Pinning (Q&A)",
+              "markdown": "assets/content/week-03/day-21/05-system-design-mock.md",
+              "script": "assets/content/week-03/day-21/05-system-design-mock.script.md"
             }
           ],
           "code": [
@@ -1069,6 +1195,12 @@
               "title": "Trees in production systems (Q&A)",
               "markdown": "assets/content/week-04/day-22/04-production-trees.md",
               "script": "assets/content/week-04/day-22/04-production-trees.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: Collaborative Document Editor (Q&A)",
+              "markdown": "assets/content/week-04/day-22/05-system-design-mock.md",
+              "script": "assets/content/week-04/day-22/05-system-design-mock.script.md"
             }
           ],
           "code": [
@@ -1131,6 +1263,12 @@
               "title": "Maps & top-K in production (Q&A)",
               "markdown": "assets/content/week-04/day-23/04-production-maps-topk.md",
               "script": "assets/content/week-04/day-23/04-production-maps-topk.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: Realtime Location / Ride Tracking (Q&A)",
+              "markdown": "assets/content/week-04/day-23/05-system-design-mock.md",
+              "script": "assets/content/week-04/day-23/05-system-design-mock.script.md"
             }
           ],
           "code": [
@@ -1175,6 +1313,12 @@
               "title": "FinTrack & GymFlow on-device AI (Q&A)",
               "markdown": "assets/content/week-04/day-24/04-production-s15-s16.md",
               "script": "assets/content/week-04/day-24/04-production-s15-s16.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: On-Device LLM / AI Engine (Q&A)",
+              "markdown": "assets/content/week-04/day-24/05-system-design-mock.md",
+              "script": "assets/content/week-04/day-24/05-system-design-mock.script.md"
             }
           ],
           "code": [
@@ -1231,6 +1375,12 @@
               "title": "04 Debrief Structure (Q&A)",
               "markdown": "assets/content/week-04/day-25/04-debrief-structure.md",
               "script": "assets/content/week-04/day-25/04-debrief-structure.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: E-Commerce Catalog & Discovery (Q&A)",
+              "markdown": "assets/content/week-04/day-25/05-system-design-mock.md",
+              "script": "assets/content/week-04/day-25/05-system-design-mock.script.md"
             }
           ],
           "code": []
@@ -1262,6 +1412,12 @@
               "title": "Provenance honesty & named cases (Q&A)",
               "markdown": "assets/content/week-04/day-26/04-production-provenance.md",
               "script": "assets/content/week-04/day-26/04-production-provenance.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: Mobile Platform Engineering (EM/Staff) (Q&A)",
+              "markdown": "assets/content/week-04/day-26/05-system-design-mock.md",
+              "script": "assets/content/week-04/day-26/05-system-design-mock.script.md"
             }
           ],
           "code": []
@@ -1293,6 +1449,12 @@
               "title": "04 Fix Forwards (Q&A)",
               "markdown": "assets/content/week-04/day-27/04-fix-forwards.md",
               "script": "assets/content/week-04/day-27/04-fix-forwards.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: Auth: OAuth2 PKCE + Biometrics (Q&A)",
+              "markdown": "assets/content/week-04/day-27/05-system-design-mock.md",
+              "script": "assets/content/week-04/day-27/05-system-design-mock.script.md"
             }
           ],
           "code": []
@@ -1324,6 +1486,12 @@
               "title": "04 Calm Prep (Q&A)",
               "markdown": "assets/content/week-04/day-28/04-calm-prep.md",
               "script": "assets/content/week-04/day-28/04-calm-prep.script.md"
+            },
+            {
+              "id": "05-system-design-mock",
+              "title": "System-design mock: Social Feed (warm retrieval) (Q&A)",
+              "markdown": "assets/content/week-04/day-28/05-system-design-mock.md",
+              "script": "assets/content/week-04/day-28/05-system-design-mock.script.md"
             }
           ],
           "code": []

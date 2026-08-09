@@ -22,6 +22,7 @@ Main curriculum modules for this day — see [`../README.md`](../README.md#modul
 | [02-spm-di-graphs.md](02-spm-di-graphs.md) | SPM targets, DI graphs, linking, anti-patterns | Deep dive |
 | [03-stories-sdk.md](03-stories-sdk.md) | SDK extraction, public API, shared models, build times | Deep dive |
 | [04-production-s10.md](04-production-s10.md) | Verified S10 Stories SDK interview language | Production bridge |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — Modularization / SDK boundary | ios-system-design/docs |
 
 ## Critical truths (pin these)
 
@@ -36,7 +37,7 @@ Main curriculum modules for this day — see [`../README.md`](../README.md#modul
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → then main [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → then main [`../04-questions.md`](../04-questions.md).
 
 ## App
 

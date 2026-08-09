@@ -20,6 +20,7 @@ After the sample, run Mock #2 from [`../02-deep-dive.md`](../02-deep-dive.md) an
 | [02-mock-format.md](02-mock-format.md) | Mock #2 blocks, timing, scoring, retro | Foundations · Deep dive · Exercises |
 | [03-ads-architecture.md](03-ads-architecture.md) | Track A 5-min spine: POP, HeroWidget, pinning | Deep dive · Production bridge |
 | [04-sdui-architecture.md](04-sdui-architecture.md) | Track B 5-min spine: schema, registry, fallback | Deep dive · Production bridge |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — Payment checkout (+ Search sister) | ios-system-design/docs |
 
 ## Critical truths (pin these)
 
@@ -34,7 +35,7 @@ After the sample, run Mock #2 from [`../02-deep-dive.md`](../02-deep-dive.md) an
 
 ## Suggested order
 
-`01` → `02` → `03` or `04` (your track) → then full Mock #2 in [`../05-exercises.md`](../05-exercises.md).
+`01` → `02` → `03` or `04` (your track) → `05` (Payment SD mock) → then full Mock #2 in [`../05-exercises.md`](../05-exercises.md).
 
 ## App
 

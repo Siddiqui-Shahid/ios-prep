@@ -22,6 +22,7 @@ Main curriculum modules for this day — see [`../README.md`](../README.md#modul
 | [02-image-pipeline.md](02-image-pipeline.md) | ImageIO downsample, dedup, cancel, prefetch | Deep dive |
 | [03-video-audio-media.md](03-video-audio-media.md) | Memory pressure, HeroWidget video, Aces audio | Deep dive |
 | [04-production-s1-s12.md](04-production-s1-s12.md) | Verified S1 HeroWidget + S12 audio/splash | Production bridge |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — Image loading (+ video follow-up) | ios-system-design/docs |
 
 ## Critical truths (pin these)
 
@@ -36,7 +37,7 @@ Main curriculum modules for this day — see [`../README.md`](../README.md#modul
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → then main [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → then main [`../04-questions.md`](../04-questions.md).
 
 ## App
 

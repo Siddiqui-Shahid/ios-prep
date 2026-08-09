@@ -24,9 +24,10 @@ Track topics present in day modules (`01`–`05`) that are **missing** or **thin
 | Check | Result |
 |---|---|
 | Days 01–28 have `sample/` | Yes |
-| 4 QnA `.md` + matching `.script.md` + `README` | Yes |
+| 5 QnA `.md` + matching `.script.md` + `README` (incl. `05-system-design-mock`) | Yes |
 | QnA format (`### Qn` → Answer → Follow-ups → How can I relate to my case) | Consistent — named cases, no S-codes |
 | Empty/stub samples | None |
+| Daily SD mock (`05-system-design-mock.md`) | Days 01–28 — from `ios-system-design/docs/` via `roadmap/scripts/generate_sd_mock_samples.py` |
 
 Core day outcomes are mostly covered. Gaps below are secondary module topics, tricky `04-questions` items, and pointer-only mock/revision days.
 

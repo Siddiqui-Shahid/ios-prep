@@ -20,6 +20,7 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 | [02-structured-concurrency.md](02-structured-concurrency.md) | Structured vs unstructured, cancel, debounce | Foundations · Deep dive |
 | [03-actors-sendable.md](03-actors-sendable.md) | Actors, reentrancy, `@MainActor`, Sendable | Foundations · Deep dive |
 | [04-production-s2.md](04-production-s2.md) | Verified S2 vs S2-A1, S3 cancel hook | Production bridge |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — Social Feed HLD + async | ios-system-design/docs |
 
 ## Critical truths (pin these)
 
@@ -36,4 +37,4 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → then main [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → then main [`../04-questions.md`](../04-questions.md).

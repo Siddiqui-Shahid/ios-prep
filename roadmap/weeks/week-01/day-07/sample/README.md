@@ -20,6 +20,7 @@ After the sample, run the full mock from [`../02-deep-dive.md`](../02-deep-dive.
 | [02-story-s2.md](02-story-s2.md) | S2 synchronised dictionaries ≤3 min pitch | Production bridge · Deep dive |
 | [03-mock-interview.md](03-mock-interview.md) | Mock #1 structure, scoring, practice from Answer points | Foundations · Deep dive · Exercises |
 | [04-warmup-hld.md](04-warmup-hld.md) | Warm-up pool + Social Feed HLD bullets (light) | Foundations · Deep dive · Production bridge |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — Social Feed full LLD | ios-system-design/docs |
 
 ## Critical truths (pin these)
 
@@ -34,4 +35,4 @@ After the sample, run the full mock from [`../02-deep-dive.md`](../02-deep-dive.
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → then full Mock #1 in [`../05-exercises.md`](../05-exercises.md).
+`01` → `02` → `03` → `04` → `05` → then full Mock #1 in [`../05-exercises.md`](../05-exercises.md).

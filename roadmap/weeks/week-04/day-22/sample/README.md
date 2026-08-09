@@ -33,6 +33,7 @@ Full curriculum layout: [`../README.md`](../README.md#module-map)
 | [02-tree-patterns-skeletons.md](02-tree-patterns-skeletons.md) | Pattern catalog, LCA, validate BST, diameter | Deep dive · code |
 | [03-approach-complexity.md](03-approach-complexity.md) | “Say this first”, complexity scripts, edges | Foundations · Deep dive |
 | [04-production-trees.md](04-production-trees.md) | SDUI / SDK / deeplink tree hooks (honest) | Production bridge |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — Collaborative editor | ios-system-design/docs |
 
 ## Critical truths (pin these)
 
@@ -47,4 +48,4 @@ Full curriculum layout: [`../README.md`](../README.md#module-map)
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → then main [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → then main [`../04-questions.md`](../04-questions.md).

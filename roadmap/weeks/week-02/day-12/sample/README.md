@@ -20,6 +20,7 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 | [02-identity-traps.md](02-identity-traps.md) | Structural vs explicit identity, UUID trap, @State lifetime | Foundations · Deep dive · code |
 | [03-lists-performance.md](03-lists-performance.md) | Lazy containers, stable IDs, invalidation storms | Foundations · Deep dive · code |
 | [04-production-s10.md](04-production-s10.md) | Verified S10 Stories SDK API + isolation | Production bridge |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — Short-form video feed | ios-system-design/docs |
 
 ## Critical truths (pin these)
 
@@ -34,7 +35,7 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → then main [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → then main [`../04-questions.md`](../04-questions.md).
 
 ## App
 

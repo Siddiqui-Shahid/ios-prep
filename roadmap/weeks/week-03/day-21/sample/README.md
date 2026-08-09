@@ -31,6 +31,7 @@ After the sample, run the full 45-min mock from [`../02-deep-dive.md`](../02-dee
 | [02-clarify-phase.md](02-clarify-phase.md) | Scope, scale, offline, in/out, resume-true numbers | Foundations · Deep dive |
 | [03-cache-scroll.md](03-cache-scroll.md) | SDUI cache/freshness, list scroll, pagination | Foundations · Deep dive |
 | [04-scoring-rubric.md](04-scoring-rubric.md) | Two-layer rubric, pass bar, self-grade after mock | Questions · Exercises |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — Networking+pinning (Mock #3 alt) | ios-system-design/docs |
 
 ## Critical truths (pin these)
 
@@ -45,7 +46,7 @@ After the sample, run the full 45-min mock from [`../02-deep-dive.md`](../02-dee
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → then live mock in [`../05-exercises.md`](../05-exercises.md).
+`01` → `02` → `03` → `04` → `05` → then live mock in [`../05-exercises.md`](../05-exercises.md).
 
 ## App
 

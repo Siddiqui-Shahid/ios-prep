@@ -20,6 +20,7 @@ After the sample, run the full loop in [`../05-exercises.md`](../05-exercises.md
 | [02-segment-scorecards.md](02-segment-scorecards.md) | Coding / iOS / SD timing + 1–5 rubrics | Deep dive |
 | [03-warmup-recovery.md](03-warmup-recovery.md) | Warm-up pools, pivots, blank recovery | Questions · Deep dive |
 | [04-fix-forwards.md](04-fix-forwards.md) | Debrief, ≤3 fix-forwards, hard stop, proof trio | Exercises · Production bridge |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — OAuth PKCE + biometrics | ios-system-design/docs |
 
 ## Critical truths (pin these)
 
@@ -34,4 +35,4 @@ After the sample, run the full loop in [`../05-exercises.md`](../05-exercises.md
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → then run Mock #4 in [`../05-exercises.md`](../05-exercises.md).
+`01` → `02` → `03` → `04` → `05` → then run Mock #4 in [`../05-exercises.md`](../05-exercises.md).

@@ -20,6 +20,7 @@ After the sample, run the taper protocol in [`../05-exercises.md`](../05-exercis
 | [02-checklist-openers.md](02-checklist-openers.md) | Pre-interview checklist, agenda openers, metric trio | Deep dive |
 | [03-story-retrieval.md](03-story-retrieval.md) | Priority story bank once each, run-through spines | Foundations · Exercises |
 | [04-calm-prep.md](04-calm-prep.md) | Light Q&A, anxiety, sleep, close laptop | Questions · Production bridge |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — Cheatsheet warm retrieval | ios-system-design/docs |
 
 ## Critical truths (pin these)
 
@@ -34,4 +35,4 @@ After the sample, run the taper protocol in [`../05-exercises.md`](../05-exercis
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → taper protocol in [`../05-exercises.md`](../05-exercises.md) → rest.
+`01` → `02` → `03` → `04` → `05` → taper protocol in [`../05-exercises.md`](../05-exercises.md) → rest.

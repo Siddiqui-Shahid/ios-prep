@@ -31,6 +31,7 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 | [02-push-notifications.md](02-push-notifications.md) | APNs, Airship, payload routing, token lifecycle | Foundations · Deep dive · Production bridge |
 | [03-ci-cd-actions.md](03-ci-cd-actions.md) | GitHub Actions, signing, TestFlight, dSYM | Foundations · Deep dive · Production bridge |
 | [04-release-trains.md](04-release-trains.md) | Phased rollout, pause criteria, gates, S8/S9 | Deep dive · Production bridge |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — Push notifications | ios-system-design/docs |
 
 ## Critical truths (pin these)
 
@@ -45,7 +46,7 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → then main [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → then main [`../04-questions.md`](../04-questions.md).
 
 ## App
 

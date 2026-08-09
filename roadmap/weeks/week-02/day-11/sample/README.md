@@ -20,6 +20,7 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 | [02-cells-reuse-prefetch.md](02-cells-reuse-prefetch.md) | Cell reuse, prepareForReuse, Diffable, prefetch budgets | Foundations · Deep dive · code |
 | [03-hybrid-interop.md](03-hybrid-interop.md) | UIHostingController, Representables, deeplinks, one router | Foundations · Deep dive · code |
 | [04-production-s13-s6.md](04-production-s13-s6.md) | Verified S13 hybrid + S6 bottom sheet + S1 lifecycle hook | Production bridge |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — Deep linking | ios-system-design/docs |
 
 ## Critical truths (pin these)
 
@@ -35,7 +36,7 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → then main [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → then main [`../04-questions.md`](../04-questions.md).
 
 ## App
 

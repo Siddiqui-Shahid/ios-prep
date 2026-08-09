@@ -22,6 +22,7 @@ Main curriculum modules for this day — see [`../README.md`](../README.md#modul
 | [02-instruments-metrickit.md](02-instruments-metrickit.md) | Instruments matrix, MetricKit, attribution, Leaks trap | Deep dive |
 | [03-startup-scrolling.md](03-startup-scrolling.md) | Cold start, hitches vs hangs, scroll playbook | Deep dive |
 | [04-production-s5.md](04-production-s5.md) | Verified S5 Firebase Performance p50/p90 | Production bridge |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — APM | ios-system-design/docs |
 
 ## Critical truths (pin these)
 
@@ -36,7 +37,7 @@ Main curriculum modules for this day — see [`../README.md`](../README.md#modul
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → then main [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → then main [`../04-questions.md`](../04-questions.md).
 
 ## App
 

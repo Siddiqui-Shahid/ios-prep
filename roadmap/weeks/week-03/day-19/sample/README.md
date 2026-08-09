@@ -31,6 +31,7 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 | [02-ssl-pinning-spki.md](02-ssl-pinning-spki.md) | SPKI DER, rotation design, S4 vs S4-A1 | Foundations · Deep dive · Production bridge |
 | [03-keychain-secrets.md](03-keychain-secrets.md) | Keychain vs UserDefaults, tokens, biometrics | Foundations · Deep dive |
 | [04-persistence-tree.md](04-persistence-tree.md) | Full 7-row decision tree + worked examples | Foundations · Deep dive |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — Security / pinning | ios-system-design/docs |
 
 ## Critical truths (pin these)
 
@@ -45,7 +46,7 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → then main [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → then main [`../04-questions.md`](../04-questions.md).
 
 ## App
 

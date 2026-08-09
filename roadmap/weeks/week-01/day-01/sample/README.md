@@ -20,6 +20,7 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 | [02-cow-enums.md](02-cow-enums.md) | COW mechanics, enums as state machines, nested refs | Foundations · Deep dive · code |
 | [03-actors-classes.md](03-actors-classes.md) | class identity, actors intro, trade-offs | Foundations · Deep dive |
 | [04-production-s1-s7.md](04-production-s1-s7.md) | Verified S1 ads models, S7 payment, Applied S7-A1, S2 actors bridge | Production bridge |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — Social Feed (scope/clarify) | ios-system-design/docs |
 
 ## Critical truths (pin these)
 
@@ -36,7 +37,7 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → then main [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → then main [`../04-questions.md`](../04-questions.md).
 
 ## App
 

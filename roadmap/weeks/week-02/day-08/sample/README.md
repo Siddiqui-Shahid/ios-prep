@@ -20,6 +20,7 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 | [02-mvvm-clean-mvi.md](02-mvvm-clean-mvi.md) | UseCase vs Repository, MVI, fat VM surgery, migration | Deep dive · code |
 | [03-search-cancel-states.md](03-search-cancel-states.md) | Debounce, cancel, state enum, stale responses | Deep dive · code |
 | [04-production-s9-s3.md](04-production-s9-s3.md) | Verified S9 Free Parking + S3 search interview language | Production bridge |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — App modularization & DI | ios-system-design/docs |
 
 ## Critical truths (pin these)
 
@@ -35,7 +36,7 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → then main [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → then main [`../04-questions.md`](../04-questions.md).
 
 ## App
 

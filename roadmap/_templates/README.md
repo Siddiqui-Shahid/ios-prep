@@ -13,6 +13,7 @@ Use these when authoring `roadmap/weeks/week-XX/day-YY/`.
 | `04-questions.md` | Two-layer Q&A (Answer points + Full spoken answer) |
 | `05-exercises.md` | Drills + solutions pointers |
 | `code/` | Swift examples |
+| `sample/05-system-design-mock.md` | Daily SD mock interview Q&A — see [`05-system-design-mock.md`](05-system-design-mock.md) |
 
 ## Q&A required shape
 

@@ -20,9 +20,10 @@ Personalized 4-week senior iOS system. **Full chapters are self-contained in Cur
 1. Open `weeks/week-XX/day-YY/README.md`
 2. Prefer guided cards in `sample/` (question → answer → follow-ups), or read `01-foundations` → `02-deep-dive` → `03-production-bridge`
 3. Run / read `code/` when present
-4. In `04-questions.md`: cover the full answer → speak from **Answer points** → compare to **Full spoken answer**
-5. Do `05-exercises.md`
-6. Drill with the revision twin (`revision/weeks/...`) — flash prompts + timed budgets only
+4. Do `sample/05-system-design-mock.md` — mock interview flow from `ios-system-design` (clarify Qs → HLD/load → API → dives → ops)
+5. In `04-questions.md`: cover the full answer → speak from **Answer points** → compare to **Full spoken answer**
+6. Do `05-exercises.md`
+7. Drill with the revision twin (`revision/weeks/...`) — flash prompts + timed budgets only
 
 ### Answer timing budgets
 
