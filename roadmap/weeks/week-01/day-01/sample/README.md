@@ -1,26 +1,27 @@
 # Day 01 sample — guided Q&A
 
 > Separate teaching sample. Does **not** replace the main Day 01 modules.  
-> Use this when you want concepts explained as **question → module pointer → answer → follow-ups**.
+> Use this when you want concepts as **question → spoken answer → follow-ups → brain puzzles**.  
+> Samples now also fold in leftovers from foundations, deep dive, production bridge, questions, and exercises.
 
 ## How to use
 
 1. Read the question.
-2. Follow **Points to** and skim that module section (optional first pass; answers stand alone).
-3. Read the **Answer** in full.
-4. Cover the follow-up answers and try to speak them, then check.
-
-After the sample, practice interview timing in [`../04-questions.md`](../04-questions.md) and drills in [`../05-exercises.md`](../05-exercises.md).
+2. Say the **Answer** out loud like you’re in an interview.
+3. Cover follow-ups, try to answer, then check.
+4. Do **Brain puzzles** at the bottom of each file.
+5. Finish with [06-module-drills.md](06-module-drills.md), then [`../04-questions.md`](../04-questions.md) and [`../05-exercises.md`](../05-exercises.md).
 
 ## Topic map
 
-| Sample file | What it teaches | Main modules |
+| Sample file | What it teaches | Also pulled from modules |
 |---|---|---|
-| [01-value-types.md](01-value-types.md) | struct vs class, copy vs share, decision table | Foundations · Deep dive |
-| [02-cow-enums.md](02-cow-enums.md) | COW mechanics, enums as state machines, nested refs | Foundations · Deep dive · code |
-| [03-actors-classes.md](03-actors-classes.md) | class identity, actors intro, trade-offs | Foundations · Deep dive |
-| [04-production-s1-s7.md](04-production-s1-s7.md) | Verified S1 ads models, S7 payment, Applied S7-A1, S2 actors bridge | Production bridge |
-| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — Social Feed (scope/clarify) | ios-system-design/docs |
+| [01-value-types.md](01-value-types.md) | struct vs class, copy vs share, let vs var, exclusivity / mutating | Large-struct copy cost; 45s agenda; closure nested-ref |
+| [02-cow-enums.md](02-cow-enums.md) | COW, handmade COWList, enums as state machines | Payment transition graph; Result→UI; `@unknown` / SDUI unknown |
+| [03-actors-classes.md](03-actors-classes.md) | class identity, actors intro, MainActor | Reentrancy awareness; Set hashing; when not to migrate |
+| [04-production-s1-s7.md](04-production-s1-s7.md) | Ads / HeroWidget, payment popup, dictionaries → actors | Metric-inflation & story-combining traps |
+| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — Social Feed (scope/clarify) | Type-choice instincts in feed HLD |
+| [06-module-drills.md](06-module-drills.md) | Exercises + flash recall + close-out | LoadState, payment graph, COW, nested refs, SyncedMap, README outcomes |
 
 ## Critical truths (pin these)
 
@@ -30,14 +31,14 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 | `let` vs `var` | Controls **binding** mutability — not the same as value vs reference |
 | COW | Share buffer until write; then copy if not uniquely referenced |
 | Enum state | Impossible combinations become compile errors, not runtime bugs |
-| Actor intro | Isolated reference type; `await` to touch state — not “replace all classes” |
-| Verified S1 | Type-safe ads pipeline + HeroWidget lifecycle — **no** invented fill-rate % |
-| Verified S7 | Processing popup with explicit status — **no** invented drop-off % |
-| S7-A1 / S2-A1 | **How I would apply it** — design patterns, not shipped claims |
+| Actor intro | Isolated reference type; `await` to touch state — **reentrant at await** |
+| Verified Ads / HeroWidget | Type-safe ads pipeline + HeroWidget lifecycle — **no** invented fill-rate % |
+| Verified payment popup | Processing popup with explicit status — **no** invented drop-off % |
+| Payment / SafeDict design | **How I would apply it** — design patterns, not shipped claims |
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → `05` → then main [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → `06` → [`../04-questions.md`](../04-questions.md) (T1–T10) → coding in [`../05-exercises.md`](../05-exercises.md).
 
 ## App
 

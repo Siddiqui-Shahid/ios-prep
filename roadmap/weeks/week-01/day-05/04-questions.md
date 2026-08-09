@@ -11,7 +11,7 @@
 
 **Answer:**
 
-> GCD gives you queues and explicit scheduling with closures. async/await lets a function suspend at await points so control flow stays linear, errors use throws, and work composes with structured concurrency and Task cancellation. GCD isn’t obsolete — at BookMyShow our synchronised dictionaries were serial-queue based — but for new asynchronous APIs I prefer async/await for readability and cancellation, and I keep GCD where a stable queue boundary already works.
+> “With callbacks, work nests and every closure repeats error handling. Async/await lets me write it top to bottom with try await, and one throws path. Cancellation becomes cooperative Task cancel when the APIs participate. GCD isn’t dead — at BookMyShow our synchronised dictionaries were serial-queue based — but for new async APIs I prefer async/await for clarity, and I keep GCD where a stable queue boundary already works.”
 
 **Follow-ups:**
 
@@ -31,7 +31,7 @@
 
 **Answer:**
 
-> Structured concurrency organizes asynchronous work into a parent/child hierarchy. The parent owns child lifetimes, so cancellation and completion compose naturally. APIs like async let and TaskGroup keep fan-out inside a scope. Unstructured Task braces are still needed to bridge from synchronous UI code, but if everything is detached fire-and-forget you lose that ownership story — which shows up as stale search results or work after a screen disappears.
+> “Async work forms a tree. The parent owns the kids — it doesn’t finish until they finish or cancel — so cancel and errors can travel down. async let and TaskGroup keep fan-out inside a scope. I still need unstructured Task at UI sync boundaries, but if everything is fire-and-forget I lose ownership — stale search results, work after the screen is gone.”
 
 **Follow-ups:**
 
@@ -51,7 +51,7 @@
 
 **Answer:**
 
-> Calling cancel marks a Task cancelled; it doesn’t forcibly kill a thread. The task stops when it hits a cancellable suspension that throws CancellationError, or when code checks Task.isCancelled or checkCancellation. Tight CPU loops that never check can ignore cancel. In search debounce, I store the Task and cancel the previous one on each keystroke so older in-flight work doesn’t overwrite newer results — that’s the BookMyShow search UX pattern.
+> “Cancel is a request, not a kill. The task is marked cancelled. It actually stops when it hits a cancellable await that throws CancellationError, or when code checks isCancelled / checkCancellation. A tight CPU loop with no checks can ignore you completely. In search debounce I store the Task and cancel the previous one on each keystroke so an older response can’t overwrite a newer query — BookMyShow search UX pattern.”
 
 **Follow-ups:**
 
@@ -91,7 +91,7 @@
 
 **Answer:**
 
-> Actors serialize execution on their isolated state, but they are reentrant at await points. If an actor method awaits, another task may enter the actor before the first resumes, so fields may have changed even though you never had a data race. Seniors don’t assume continuity across await — they snapshot what they need, re-check invariants after resume, and keep mutations short. That’s the main trap when people say actors make concurrency bugs impossible.
+> “Actors serialize access to their state, but at await another task can walk in before you resume. Fields may have changed — no data race, but your logic can still be wrong. I don’t assume continuity across await. I snapshot what I need, re-check after resume, and keep mutations short. That’s the trap when people say actors make concurrency bugs impossible.”
 
 **Follow-ups:**
 
@@ -226,7 +226,202 @@
 
 ---
 
-## Tricky questions
+## Tricky questions / brain puzzles
+
+> Cover the answer. Speak for ~90–120s. These are the ones that separate “I read a blog” from “I’ve been burned.”
+
+---
+
+### T1. Cancel is called — why is work still running? `(90s)`
+
+**Answer:**
+
+> “Cancel is a request, not a kill switch. The task is marked cancelled, but a tight CPU loop that never awaits and never checks `Task.isCancelled` will keep going. URLSession’s async APIs usually throw CancellationError for you. Your own thumbnail render loop won’t, unless you add `Task.checkCancellation()` each iteration. In search debounce I store the Task and cancel it — and I still treat CancellationError as normal.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Probe deeper? | “Any loop or heavy sync work inside async needs an explicit cancel check. ‘The network call throws’ only covers the network call.” |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow backend-driven header & search
+- **Concept:** Cooperative cancellation — not preemptive.
+
+---
+
+### T2. Is this struct Sendable? `(90s)`
+
+```swift
+final class Counter { var n = 0 }
+struct Box { var counter: Counter }
+```
+
+**Answer:**
+
+> “No — not safely. `Box` is a value type, but it holds a class. Copies share the same Counter. Two tasks mutating `n` race. Sendable isn’t ‘structs are fine.’ It’s ‘can this cross domains without a race?’ Value types are Sendable when their stored properties are. Fix: keep Counter inside an actor, or make the data a Sendable value.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Probe deeper? | “Same trap with NSMutableDictionary wrapped in a struct — classic false confidence.” |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
+---
+
+### T3. Actor wallet — two spends of 80 on balance 100 `(90–120s)`
+
+```swift
+actor Wallet {
+    var balance = 100
+    func spend(_ amount: Int) async throws {
+        guard balance >= amount else { throw Err.insufficient }
+        await bank.authorize(amount)
+        balance -= amount
+    }
+}
+```
+
+**Answer:**
+
+> “Both calls can pass the guard. Both await authorize. Both subtract. You can go negative or inconsistent — no data race, but a logic bug from reentrancy. After await I re-check balance, or I reserve funds before await, or I keep the mutation in a short section after network returns and validate again. Actors stop races on storage; they don’t freeze your business rules across suspension.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Probe deeper? | “Phrase: prevent data races, reentrant at await — re-validate.” |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
+---
+
+### T4. `onAppear { Task { } }` vs `.task { }` `(90s)`
+
+**Answer:**
+
+> “Bare onAppear plus Task is easy to orphan — screen goes away, work keeps running, stale UI updates. SwiftUI `.task` ties the work to the view lifetime: appear starts it, disappear cancels it, and cancel can propagate if the code cooperates. For search I’d also cancel on query change with `.task(id: query)`.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Probe deeper? | “Reviewer question: where did the Task handle go, and why isn’t this `.task`?” |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
+---
+
+### T5. Does `await` always mean background thread? `(60–90s)`
+
+**Answer:**
+
+> “No. Await means possible suspension. Where you resume depends on actor isolation — MainActor stays on main. Thinking await equals background is how people put Thread.sleep on main ‘for debounce’ and freeze scrolling. Use Task.sleep to suspend. Hop explicitly when you need off-main work.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Probe deeper? | “After await in a @MainActor function, you’re still on MainActor unless you hopped away.” |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
+---
+
+### T6. `@unchecked Sendable` — when is it honest? `(90s)`
+
+**Answer:**
+
+> “It’s ‘trust me, I synchronized.’ The compiler stops checking. I’ll use it only when I’ve proven thread safety — for example wrapping a legacy type that is already confined to a serial queue — and I’d rather put new mutable state in an actor. Using unchecked just to silence Swift 6 warnings is how races sneak back in.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Probe deeper? | “Prefer Sendable DTOs at boundaries over unchecked class tokens.” |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries (manual sync — same honesty bar as unchecked)
+- **Design if asked:** Design: actor SafeDict (not shipped)
+
+---
+
+### T7. “We should rewrite all BMS dictionaries to actors” — your reply? `(90–120s)`
+
+**Answer:**
+
+> “I’d push back on big-bang. Shipped fix was GCD synchronised dictionaries with a closed API — that path is proven. For greenfield shared maps I’d use an actor with the same get/set surface — design judgment, not a claim we rewrote the org. Strangler at module boundaries. New pitfall to train: reentrancy after await, not queue.sync deadlock. And I won’t hang app-wide crash-free percent on either story alone.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Probe deeper? | “Same boundary idea — hide storage, one writer path — different enforcement.” |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries
+- **Design if asked:** Design: actor SafeDict (not shipped)
+- **Don’t claim:** Org-wide actor rewrite or CFS ownership from dictionaries alone.
+
+---
+
+### T8. Image cache actor downloads twice for one URL `(90s)`
+
+**Answer:**
+
+> “Two tasks miss the cache, both await download, both write. Wasted network, possible overwrite. After await I re-check the store; if another task filled it, return that. Or single-flight: one in-flight Task per URL. Classic reentrancy-aware cache design.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Probe deeper? | “Same pattern as generation tokens for single-flight refresh.” |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
+---
+
+### T9. GCD `sync` from async code — what fails? `(90s)`
+
+**Answer:**
+
+> “The cooperative thread pool can starve if async tasks block on DispatchQueue.sync. Sync to main is especially nasty — deadlock or long stalls. Prefer async façades with continuations, resume exactly once. At BMS we still serialize dictionaries on GCD — the rule is don’t bridge with sync from the middle of async/await paths.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Probe deeper? | “Symptom: ‘everything is async’ but the app hangs under load.” |
+
+**How can I relate to my case:**
+- **Shipped:** BookMyShow synchronised dictionaries
+- **Concept:** Serialize at the boundary without blocking the pool.
+
+---
+
+### T10. Whole ViewModel marked `@MainActor` with heavy decode `(90s)`
+
+**Answer:**
+
+> “Then decode runs on main and the UI janks. MainActor is for UI-affined state, not ‘make the whole class safe by default.’ Decode off-main, await back to apply published state. Custom actor for non-UI caches.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| Probe deeper? | “Annotate the smallest surface that must touch UI.” |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
+
+---
 
 ## Timed set suggestions
 
@@ -235,3 +430,4 @@
 | Core 10 min | Q4, Q5, T1, T3 | Actor + cancel |
 | Migration 8 min | Q1, T7, Q12 | BookMyShow synchronised dictionaries → Design: actor SafeDict (not shipped) + settings humility |
 | Sendable 8 min | Q7, T2, T6 | Exact Sendable rules |
+| Brain-puzzle sprint 12 min | T3, T5, T8, T1 | Reentrancy + await myths + cache + cancel |

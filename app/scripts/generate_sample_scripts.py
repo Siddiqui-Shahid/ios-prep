@@ -78,11 +78,17 @@ def parse_questions(md: str) -> list[tuple[str, str]]:
         title = m.group(1).strip()
         rest = part[m.end() :]
         rest = re.sub(r"\*\*Points to:\*\*[^\n]*\n*", "", rest)
-        # Keep listen scripts focused on answer + follow-ups (relate is read-mode).
+        # Keep listen scripts focused on answer + follow-ups (relate / puzzles are read-mode).
         rest = re.sub(
             r"\*\*How can I relate to my case:\*\*[\s\S]*$",
             "",
             rest,
+        )
+        rest = re.sub(
+            r"^## Brain puzzles[\s\S]*$",
+            "",
+            rest,
+            flags=re.M,
         )
         rest = re.sub(r"\*\*Answer:\*\*\s*", "Answer. ", rest)
         rest = re.sub(r"\*\*Follow-ups:\*\*\s*", "Follow-ups. ", rest)

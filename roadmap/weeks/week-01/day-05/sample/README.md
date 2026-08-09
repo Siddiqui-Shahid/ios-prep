@@ -1,26 +1,27 @@
 # Day 05 sample — guided Q&A
 
 > Separate teaching sample. Does **not** replace the main Day 05 modules.  
-> Use this when you want concepts explained as **question → module pointer → answer → follow-ups**.
+> Use this when you want concepts as **question → spoken answer → follow-ups → brain puzzles**.  
+> Samples now also fold in leftovers from foundations, deep dive, production bridge, questions, and exercises.
 
 ## How to use
 
 1. Read the question.
-2. Follow **Points to** and skim that module section (optional first pass; answers stand alone).
-3. Read the **Answer** in full.
-4. Cover the follow-up answers and try to speak them, then check.
-
-After the sample, practice interview timing in [`../04-questions.md`](../04-questions.md) and drills in [`../05-exercises.md`](../05-exercises.md).
+2. Say the **Answer** out loud like you’re in an interview.
+3. Cover follow-ups, try to answer, then check.
+4. Do **Brain puzzles** at the bottom of each file.
+5. Finish with [06-module-drills.md](06-module-drills.md), then [`../04-questions.md`](../04-questions.md) and [`../05-exercises.md`](../05-exercises.md).
 
 ## Topic map
 
-| Sample file | What it teaches | Main modules |
+| Sample file | What it teaches | Also pulled from modules |
 |---|---|---|
-| [01-async-await.md](01-async-await.md) | Suspension vs blocking, Tasks, async/await mental model | Foundations · Deep dive |
-| [02-structured-concurrency.md](02-structured-concurrency.md) | Structured vs unstructured, cancel, debounce | Foundations · Deep dive |
-| [03-actors-sendable.md](03-actors-sendable.md) | Actors, reentrancy, `@MainActor`, Sendable | Foundations · Deep dive |
-| [04-production-s2.md](04-production-s2.md) | Verified S2 vs S2-A1, S3 cancel hook | Production bridge |
-| [05-system-design-mock.md](05-system-design-mock.md) | SD mock — Social Feed HLD + async | ios-system-design/docs |
+| [01-async-await.md](01-async-await.md) | Suspension, Tasks, async vs callbacks | Why Day 05 after 04; not every await suspends; 30s definition; data race vs race condition |
+| [02-structured-concurrency.md](02-structured-concurrency.md) | Structure, cancel, debounce | Search VM pattern; failure-mode table; continuations; venue `async let`; timeouts |
+| [03-actors-sendable.md](03-actors-sendable.md) | Actors, reentrancy, Sendable | Office analogy; 8 decision rules; MainActor.run vs sync; SafeDictActor narration |
+| [04-production-s2.md](04-production-s2.md) | S2 / S2-A1 / S3 honesty | Full STAR spine; bridges A/B/C |
+| [05-system-design-mock.md](05-system-design-mock.md) | Social feed HLD + async | Feed concurrency map; timeouts / kill switches |
+| [06-module-drills.md](06-module-drills.md) | Exercises + flash recall + close-out | A1–A3, C1–C3, flash cards, README outcomes |
 
 ## Critical truths (pin these)
 
@@ -37,4 +38,4 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → `05` → then main [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → `06` → [`../04-questions.md`](../04-questions.md) (T1–T10) → coding in [`../05-exercises.md`](../05-exercises.md).

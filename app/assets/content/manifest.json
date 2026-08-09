@@ -37,6 +37,12 @@
               "title": "System-design mock: Infinite Social Feed (Q&A)",
               "markdown": "assets/content/week-01/day-01/05-system-design-mock.md",
               "script": "assets/content/week-01/day-01/05-system-design-mock.script.md"
+            },
+            {
+              "id": "06-module-drills",
+              "title": "Module leftovers: drills, flash recall, close-out (Q&A)",
+              "markdown": "assets/content/week-01/day-01/06-module-drills.md",
+              "script": "assets/content/week-01/day-01/06-module-drills.script.md"
             }
           ],
           "code": [
@@ -87,6 +93,12 @@
               "title": "System-design mock: Server-Driven UI Engine (Q&A)",
               "markdown": "assets/content/week-01/day-02/05-system-design-mock.md",
               "script": "assets/content/week-01/day-02/05-system-design-mock.script.md"
+            },
+            {
+              "id": "06-module-drills",
+              "title": "Module leftovers: drills, flash recall, close-out (Q&A)",
+              "markdown": "assets/content/week-01/day-02/06-module-drills.md",
+              "script": "assets/content/week-01/day-02/06-module-drills.script.md"
             }
           ],
           "code": [
@@ -137,6 +149,12 @@
               "title": "System-design mock: Image Loading Library (Q&A)",
               "markdown": "assets/content/week-01/day-03/05-system-design-mock.md",
               "script": "assets/content/week-01/day-03/05-system-design-mock.script.md"
+            },
+            {
+              "id": "06-module-drills",
+              "title": "Module leftovers: drills, flash recall, close-out (Q&A)",
+              "markdown": "assets/content/week-01/day-03/06-module-drills.md",
+              "script": "assets/content/week-01/day-03/06-module-drills.script.md"
             }
           ],
           "code": [
@@ -181,6 +199,12 @@
               "title": "System-design mock: Offline-First Sync Engine (Q&A)",
               "markdown": "assets/content/week-01/day-04/05-system-design-mock.md",
               "script": "assets/content/week-01/day-04/05-system-design-mock.script.md"
+            },
+            {
+              "id": "06-module-drills",
+              "title": "Module leftovers: drills, flash recall, close-out (Q&A)",
+              "markdown": "assets/content/week-01/day-04/06-module-drills.md",
+              "script": "assets/content/week-01/day-04/06-module-drills.script.md"
             }
           ],
           "code": [
@@ -231,6 +255,12 @@
               "title": "System-design mock: Infinite Social Feed (Q&A)",
               "markdown": "assets/content/week-01/day-05/05-system-design-mock.md",
               "script": "assets/content/week-01/day-05/05-system-design-mock.script.md"
+            },
+            {
+              "id": "06-module-drills",
+              "title": "Module leftovers: drills, flash recall, close-out (Q&A)",
+              "markdown": "assets/content/week-01/day-05/06-module-drills.md",
+              "script": "assets/content/week-01/day-05/06-module-drills.script.md"
             }
           ],
           "code": [

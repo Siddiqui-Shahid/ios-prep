@@ -21,9 +21,10 @@ By end of day, without notes, you can:
 2. [`02-deep-dive.md`](02-deep-dive.md) — deadlocks, barriers, SafeDict correctness
 3. [`03-production-bridge.md`](03-production-bridge.md) — Verified · S2 / S2-A1
 4. [`code/SafeDict.swift`](code/SafeDict.swift) — read, predict, then explain aloud
-5. [`04-questions.md`](04-questions.md) — speak from **Answer points**; compare
-6. [`05-exercises.md`](05-exercises.md) — race demo + speaking drills
-7. Revision twin for flashcards / timed drill day-of
+5. [`sample/README.md`](sample/README.md) — spoken Q&A + **brain puzzles** (01–06)
+6. [`04-questions.md`](04-questions.md) — speak aloud; include **Tricky T1–T10**
+7. [`05-exercises.md`](05-exercises.md) — race demo + speaking drills
+8. Revision twin for flashcards / timed drill day-of
 
 ## Module map
 
@@ -32,10 +33,10 @@ By end of day, without notes, you can:
 | Foundations | [01-foundations.md](01-foundations.md) | Queues, sync/async, QoS |
 | Deep dive | [02-deep-dive.md](02-deep-dive.md) | Deadlock, RW barriers, visibility |
 | Production bridge | [03-production-bridge.md](03-production-bridge.md) | S2 STAR + actor coda |
-| Questions | [04-questions.md](04-questions.md) | Two-layer Q&A |
+| Questions | [04-questions.md](04-questions.md) | Normal + **Tricky T1–T10** |
 | Exercises | [05-exercises.md](05-exercises.md) | Coding + speaking |
 | Code | [code/SafeDict.swift](code/SafeDict.swift), [code/BarrierDict.swift](code/BarrierDict.swift) | Learning-lab |
-| Sample Q&A | [sample/README.md](sample/README.md) | Guided teaching cards |
+| Sample Q&A | [sample/README.md](sample/README.md) | Guided teaching + brain puzzles + [06-module-drills](sample/06-module-drills.md) |
 
 ## Time budget (suggested)
 
@@ -44,7 +45,8 @@ By end of day, without notes, you can:
 | Foundations | 55–70 |
 | Deep dive | 75–90 |
 | Production bridge + code | 35–45 |
-| Questions (speak 7–9 aloud) | 60–75 |
+| Questions (speak 7–9 aloud + 2–3 Tricky) | 60–75 |
+| Sample 01–06 + brain puzzles (optional pass) | 45–60 |
 | Exercises + timed drill | 45–60 |
 
 ## Provenance reminder

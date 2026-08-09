@@ -1,8 +1,9 @@
 # Sample 05 — System-design mock: Image Loading Library (Q&A)
 
-> Guided **mock interview** flow. Speak answers aloud against a 45‑min timer.
-> **Source:** [`ios-system-design/docs/image-loading-library.md`](../../../../ios-system-design/docs/image-loading-library.md) · timing: [`cheatsheet.md`](../../../../ios-system-design/docs/cheatsheet.md)
-> **Angle:** Day 03 — **memory / decode** (ARC & Instruments parallel).
+> Guided **mock interview** flow. Speak answers aloud against a 45‑min timer.  
+> **Source:** [`ios-system-design/docs/image-loading-library.md`](../../../../ios-system-design/docs/image-loading-library.md) · timing: [`cheatsheet.md`](../../../../ios-system-design/docs/cheatsheet.md)  
+> **Angle:** Day 03 — **memory / decode** (ARC & Instruments parallel).  
+> **Brain puzzles** at the bottom — ownership twists interviewers love.
 
 ---
 
@@ -10,23 +11,19 @@
 
 **Answer:**
 
-> **Agenda (≤20s):** “I’ll take ~5 minutes clarifying scope and scale, then a four-layer client HLD with backend touchpoints and load, then API/data, two deep dives on **3-tier cache** and **Downsample, dedupe, cancel**, and close on failure modes, metrics, and kill switches. Does that work?”
-> **Then ask the interviewer (speak these):**
-> 1. In scope: download + decode + L1/L2 cache + cancel on reuse — or also GIF/video?
-> 2. Memory budget for decoded L1 (e.g. ~50MB)?
-> 3. CDN only GET, or custom image API?
-> 4. Must support WebP/AVIF accept negotiation?
-> 5. Out of scope: upload, editing, CDN architecture?
-> 6. Cell reuse cancel required?
-> Do **not** draw until they answer or you state **labeled assumptions**. Keep backend load in mind from the first minute.
+> “I’ll take about five minutes clarifying scope and scale. Then a four-layer client high-level design with backend touchpoints and load. Then API and data. Two deep dives: three-tier cache, and downsample plus dedupe plus cancel. I’ll close on failures, metrics, and kill switches. Does that plan work?
+>
+> Before I draw: download, decode, L1/L2 cache, cancel on reuse — or also GIF and video? Rough memory budget for decoded L1 — say around 50MB? CDN only GET, or a custom image API? WebP/AVIF accept negotiation? Out of scope for me: upload, editing, CDN architecture — okay? Cell reuse cancel required?”
+
+Do **not** draw until they answer or you state labeled assumptions. Keep backend load in mind from minute one.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| Skip agenda? | Weak senior signal — interviewer may want different dives. |
-| Clarify for 15 min? | Hard stop at 5 — park extras as labeled assumptions. |
-| They refuse numbers? | State labeled estimates from DAU context; continue. |
+| Skip agenda? | “Don’t — they may want different dives.” |
+| Clarify 15 min? | “Hard stop at five. Rest becomes labeled assumptions.” |
+| No numbers? | “Give labeled DAU estimates and continue.” |
 
 **How can I relate to my case:**
 - **Shipped instincts:** BookMyShow Ads / HeroWidget lifecycle — cancel and visibility discipline.
@@ -34,21 +31,22 @@
 
 ---
 
-### Q2. After clarify — what does the optimal flow look like?
+### Q2. After clarify — what does the good flow look like?
 
 **Answer:**
 
-> **Scripted outcomes for this mock:** Still-image pipeline; L1 ~50MB NSCache + disk ~500MB; cancel on reuse; out: GIF/video decode, upload, CDN design.
-> **Good flow:** agenda → clarify Qs → confirm → HLD (4 layers + backend + load) → API → two crisp dives → ops last 5.
-> **Weak flow:** silent drawing, happy-path only, no QPS/TTL, invent metrics, skip ops.
+> “For this mock: still-image pipeline; L1 around 50MB NSCache plus disk around 500MB; cancel on reuse. Out: GIF/video decode, upload, CDN design.
+>
+> Good flow: agenda, clarify, confirm, HLD with four layers plus backend plus load, API, two deep dives, last five minutes ops.
+>
+> Weak flow: drawing in silence, only happy path, inventing QPS as fact, skipping ops.”
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| They change scope mid-HLD? | Re-confirm in/out in 20s; adjust dives; protect ops. |
-| Backend mesh deep-dive? | Out unless asked — sketch touchpoints, stay client-owned. |
-| Forgot to ask offline? | State online-first + last-good cache as assumption; invite correction. |
+| Scope changes mid-HLD? | “Re-confirm in/out in twenty seconds. Adjust dives. Protect ops.” |
+| Forgot offline? | “Assumption: online-first plus last-good cache — correct me if wrong.” |
 
 **How can I relate to my case:**
 - **Shipped instincts:** BookMyShow Ads / HeroWidget lifecycle — cancel and visibility discipline.
@@ -56,20 +54,18 @@
 
 ---
 
-### Q3. Walk the HLD — client layers, backend, load.
+### Q3. Walk the HLD — client layers, backend, load
 
 **Answer:**
 
-> **Pipeline:** URL → (dedupe) → L1 NSCache → L2 disk → network CDN → ImageIO downsample → display.
-> **Threads:** download/decode off main; MainActor only for UIImage assignment.
-> **Load:** Cache-Control max-age ~7d; Accept webp/avif; decoded cost = width×height×4 — always downsample to view size.
+> “Pipeline: URL, then dedupe, then L1 NSCache, then L2 disk, then network CDN, then ImageIO downsample, then display. Download and decode off main; MainActor only for UIImage assignment. Load: Cache-Control max-age around seven days; Accept webp/avif; decoded cost is width times height times four — always downsample to view size. Where ARC bites: retain cycles in completion handlers; cancel tokens on deinit and reuse.”
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| Where ARC bites? | Retain cycles in completion handlers; cancel tokens on deinit/reuse. |
-| Three tiers? | Memory / disk / network — write-around for decoded often. |
+| Three tiers? | “Memory, disk, network — write-around for decoded often.” |
+| Forever L1? | “NSCache with a cost limit and memory warnings — not a singleton forever map of VCs.” |
 
 **How can I relate to my case:**
 - **Shipped instincts:** BookMyShow Ads / HeroWidget lifecycle — cancel and visibility discipline.
@@ -77,19 +73,18 @@
 
 ---
 
-### Q4. Data / API — entities, endpoints, scale.
+### Q4. Data / API — entities, endpoints, scale
 
 **Answer:**
 
-> `GET {image_url}` with Cache-Control. Library API: `load(url, targetSize, priority) → Task` cancelable.
-> Dedupe identical in-flight URLs; priority boost for on-screen.
+> “GET the image URL with Cache-Control. Library API: load with url, target size, priority — returns a cancelable Task. Dedupe identical in-flight URLs; priority boost for on-screen. Completions capture weak owners so a recycled cell doesn’t keep a request graph alive forever.”
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| Same URL two cells? | One download; fan-out completions. |
-| Auth images? | Inject headers via session; don’t put tokens in URL query if avoidable. |
+| Same URL two cells? | “One download; fan-out completions.” |
+| Auth images? | “Inject headers via session; don’t put tokens in URL query if avoidable.” |
 
 **How can I relate to my case:**
 - **Shipped instincts:** BookMyShow Ads / HeroWidget lifecycle — cancel and visibility discipline.
@@ -101,15 +96,14 @@
 
 **Answer:**
 
-> L1 cost-based NSCache (~50MB) responds to memory warnings. L2 disk LRU (~500MB). Network last.
-> Combined hit target >80%; L1 >40%.
+> “L1 cost-based NSCache around 50MB responds to memory warnings. L2 disk LRU around 500MB. Network last. Combined hit target above 80%; L1 above 40%. On memory warning clear L1, keep disk. Disk full — LRU free about 20% and continue. This is bounded cache design — not a singleton that forever retains screens.”
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| Memory warning? | Clear L1; keep disk. |
-| Disk full? | LRU free ~20%; continue. |
+| Why NSCache not Dictionary? | “Cost limits and purge under pressure — Dictionary forever-grows.” |
+| Decode into L1 full-res? | “No — downsample first or you blow the budget.” |
 
 **How can I relate to my case:**
 - **Shipped instincts:** BookMyShow Ads / HeroWidget lifecycle — cancel and visibility discipline.
@@ -121,15 +115,14 @@
 
 **Answer:**
 
-> ImageIO create thumbnail at display size — never full decode then scale.
-> Cancel on `prepareForReuse`; generation token ignores stale completions. Decode p50 <10ms / p99 <50ms targets from spec.
+> “ImageIO create thumbnail at display size — never full decode then scale. Cancel on prepareForReuse; generation token ignores stale completions. Decode p50 under 10ms / p99 under 50ms as labeled targets from the spec. Same cancel discipline as Task-outlives-screen on Day 03 — don’t let a completion strongly own the cell or VC.”
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| GIF asked? | Out of scope unless pulled — separate decoder + memory budget. |
-| Main-thread decode? | Classic hitch — always background. |
+| GIF asked? | “Out of scope unless pulled — separate decoder plus memory budget.” |
+| Main-thread decode? | “Classic hitch — always background.” |
 
 **How can I relate to my case:**
 - **Shipped instincts:** BookMyShow Ads / HeroWidget lifecycle — cancel and visibility discipline.
@@ -141,18 +134,18 @@
 
 **Answer:**
 
-> L1/L2 hit rates, decode latency, OOM rate <0.1% target, scroll hitch.
-> Kill: disable high-res prefetch under memory pressure.
+> “Track L1/L2 hit rates, decode latency, OOM rate under 0.1% as a target, scroll hitch. Kill switch: disable high-res prefetch under memory pressure. Instruments angle from Day 03: Allocations for decode spikes and abandoned heaps; Memory Graph if a loader completion keeps a VC alive; Crashlytics for jetsam clusters — Graph doesn’t replace fleet signals.”
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| HeroWidget link? | Pause/cancel media on disappear — same cancel discipline. |
-| Instruments? | Allocations + Time Profiler for decode spikes — Day 03 tools. |
+| HeroWidget link? | “Pause and cancel media on disappear — same cancel discipline.” |
+| Invented crash-free %? | “Forbidden — use resume-backed numbers or label as target.” |
 
 **How can I relate to my case:**
 - **Shipped instincts:** BookMyShow Ads / HeroWidget lifecycle — cancel and visibility discipline.
+- **Shipped:** BookMyShow IMOC + crash-free at scale — only for reliability culture framing, not fake image-lib metrics.
 - **Don’t claim:** You wrote Kingfisher/SDWebImage.
 
 ---
@@ -161,18 +154,56 @@
 
 **Answer:**
 
-> **Pass bar:** clarify + agenda in ≤5; HLD shows 4 layers + backend + load; API has cursors/idempotency as needed; two deep dives; ops with kill switch and concrete metrics.
-> **Anti-patterns:** offset pagination on dynamic feeds; main-thread SQLite/decode; inventing QPS as fact; never reaching ops; blob “architecture” with no data flow.
-> **Spine:** 0–5 clarify · 5–15 HLD · 15–25 API · 25–40 dives · 40–45 ops.
+> “Pass bar: clarify plus agenda in five minutes or less; HLD shows four layers plus backend plus load; API has cancel and dedupe; two deep dives; ops with kill switch and concrete metrics. Anti-patterns: main-thread decode; unbounded Dictionary cache; inventing QPS as fact; never reaching ops; blob architecture with no data flow. Spine: zero to five clarify, five to fifteen HLD, fifteen to twenty-five API, twenty-five to forty dives, forty to forty-five ops.”
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| Ran long on dive 1? | Park dive 2 bullets; protect ops 5 min. |
-| Forgot load? | One sentence: DAU → labeled QPS, cursor cost, single-flight. |
-| Invented crash-free %? | Forbidden — use resume-backed numbers or label as target. |
+| Ran long on dive 1? | “Park dive 2 bullets; protect ops five minutes.” |
+| Forgot load? | “One sentence: DAU to labeled QPS, cache TTL, single-flight.” |
 
 **How can I relate to my case:**
 - **Concept-only — no shipped story.** Rehearse this scorecard after every timed mock.
 
+---
+
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — Completion keeps the cell
+
+Loader stores `onSuccess` that strongly captures the cell/VC. User scrolls away; request finishes late.
+
+**Ask:** What happens?
+
+**Answer:** Ownership can keep the cell/VC alive or apply a stale image. Use `[weak self]` / weak cell, cancel on reuse, generation token.
+
+---
+
+### Puzzle B — Forever Dictionary “cache”
+
+Someone uses `static var cache = [URL: UIImage]()` with no eviction.
+
+**Ask:** Cycle or abandoned?
+
+**Answer:** Often **no two-node cycle** — a live singleton root forever retains images (and maybe screens if you stash wrong things). Abandoned from product view. Prefer cost-limited NSCache + disk LRU.
+
+---
+
+### Puzzle C — Jetsam vs Graph in the mock
+
+Crashlytics shows jetsam during big events. Interviewer asks which tool finds the retain cycle.
+
+**Answer:** Crashlytics signals **fleet pressure**. **Memory Graph** finds ownership edges for a suspected cycle. Don’t say Leaks found the cycle; don’t say Crashlytics draws the graph.
+
+---
+
+### Puzzle D — Autoreleasepool around decode
+
+Decode loop spikes watermark. Candidate wraps the whole library in `autoreleasepool` and claims cycles are fixed.
+
+**Answer:** Pool can help **temporary** ObjC peaks. It does **not** fix retain cycles or unbounded caches. Still need cancel, weak completions, and bounded L1.
+
+---
+
+Next: [06-module-drills.md](06-module-drills.md)

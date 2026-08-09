@@ -21,9 +21,10 @@ By end of day, without notes, you can:
 2. `02-deep-dive.md` — full mechanics, reentrancy, Sendable, settings caveats
 3. `03-production-bridge.md` — S2 / S2-A1 / S3 hooks and interview lines
 4. `code/SafeDictActor.swift` — read, then explain aloud line by line
-5. `04-questions.md` — cover Full spoken answers; speak from **Answer points**; compare
-6. `05-exercises.md` — coding + speaking drills
-7. Revision twin for timed drill after the full read
+5. `sample/` — spoken Q&A + brain puzzles (`01`–`06`; `06` folds exercise/flash-recall leftovers)
+6. `04-questions.md` — normal Qs + tricky **T1–T10** brain puzzles; speak aloud
+7. `05-exercises.md` — coding + speaking drills (still do the hands-on B1–B3 here)
+8. Revision twin for timed drill after the full read
 
 ## Module map
 
@@ -35,7 +36,7 @@ By end of day, without notes, you can:
 | Questions | [04-questions.md](04-questions.md) |
 | Exercises | [05-exercises.md](05-exercises.md) |
 | Code | [code/SafeDictActor.swift](code/SafeDictActor.swift) |
-| Sample Q&A (guided) | [sample/](sample/README.md) |
+| Sample Q&A (guided) | [sample/](sample/README.md) — includes **06-module-drills** leftovers from these modules |
 
 ## Provenance reminder
 
