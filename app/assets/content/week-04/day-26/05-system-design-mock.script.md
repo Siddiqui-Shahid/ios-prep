@@ -9,13 +9,13 @@ Next. Q1. Interviewer: “Design Mobile Platform Engineering (EM/Staff).” How 
 
 Next. Q2. After clarify — what does the optimal flow look like? Answer. Scripted outcomes for this mock: Phased 1→100% rollout; auto-pause gates; flag kill <5m; Sev-1 playbook; build budgets. Good flow: agenda → clarify Qs → confirm → high level design (4 layers + backend + load) → A P I → two crisp dives → ops last 5. Weak flow: silent drawing, happy-path only, no QPS/TTL, invent metrics, skip ops. Follow-ups. They change scope mid-high level design?: Re-confirm in/out in 20s; adjust dives; protect ops.. Backend mesh deep-dive?: Out unless asked — sketch touchpoints, stay client-owned.. Forgot to ask offline?: State online-first + last-good cache as assumption; invite correction..
 
-## §2 Q3. Walk the HLD — client layers, backend, load.
+## §2 Q3. Walk the HLD — client layers, backend, load?
 
-Next. Q3. Walk the HLD — client layers, backend, load Answer. Platform view: monorepo modules → CI budgets → ASC phased release → Remote Config kill → I M O C. Load/governance: weekly train; flags mandatory on new surfaces; pause if crash free sessions <99.85% class. Follow-ups. Product SD instead?: Redirect — this prompt is platform/EM.. AI tooling?: District envelope — review bar, not platform train..
+Next. Q3. Walk the HLD — client layers, backend, load? Answer. Platform view: monorepo modules → CI budgets → ASC phased release → Remote Config kill → I M O C. Load/governance: weekly train; flags mandatory on new surfaces; pause if crash free sessions <99.85% class. Follow-ups. Product SD instead?: Redirect — this prompt is platform/EM.. AI tooling?: District envelope — review bar, not platform train..
 
-## §3 Q4. Data / API — entities, endpoints, scale.
+## §3 Q4. Data / API — entities, endpoints, scale?
 
-Next. Q4. Data / API — entities, endpoints, scale Answer. Remote Config kill-switch; ASC halt rollout; expedited review path (process). Follow-ups. Who flips kill?: On-call + EM; SLA <5m.. Canary metrics?: crash free sessions, hang, 5xx ≥3× baseline → pause..
+Next. Q4. Data / API — entities, endpoints, scale? Answer. Remote Config kill-switch; ASC halt rollout; expedited review path (process). Follow-ups. Who flips kill?: On-call + EM; SLA <5m.. Canary metrics?: crash free sessions, hang, 5xx ≥3× baseline → pause..
 
 ## §4 Q5. Deep dive 1 — Phased rollout gates?
 

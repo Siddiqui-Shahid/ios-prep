@@ -19,7 +19,7 @@ Next. Q4. Why does `DispatchQueue.main.sync` from the main thread deadlock? Answ
 
 ## §4 Q5. Can a private serial queue deadlock the same way?
 
-Next. Q5. Can a private serial queue deadlock the same way? Answer. “Yes. If you’re inside queue.async { … } and call queue.sync { … } on the same serial queue, the inner sync waits for the outer block to finish — and the outer block waits for the inner sync. Classic re-entrancy deadlock. Same if method a() syncs to the queue and calls b(), which also syncs to the queue.” Follow-ups. Debug aid?: “dispatchPrecondition(condition:.onQueue(queue)) on unlocked internals.”. Service design fix?: “Split public sync A P I from _mutateUnlocked() that assumes the caller is already on the queue.”. Cross-queue deadlock?: “ABBA — Queue1 waits on Queue2 while Queue2 waits on Queue1. Keep a lock hierarchy.”.
+Next. Q5. Can a private serial queue deadlock the same way? Answer. “Yes. If you’re inside queue.async { … } and call queue.sync { … } on the same serial queue, the inner sync waits for the outer block to finish — and the outer block waits for the inner sync. Classic re-entrancy deadlock. Same if method a syncs to the queue and calls b, which also syncs to the queue.” Follow-ups. Debug aid?: “dispatchPrecondition(condition:.onQueue(queue)) on unlocked internals.”. Service design fix?: “Split public sync A P I from _mutateUnlocked that assumes the caller is already on the queue.”. Cross-queue deadlock?: “ABBA — Queue1 waits on Queue2 while Queue2 waits on Queue1. Keep a lock hierarchy.”.
 
 ## §5 Q6. What is QoS and why does it matter?
 

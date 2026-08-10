@@ -5,7 +5,6 @@
 ---
 
 ### Q1. Which stories in what order — and how many times?
-
 **Answer:**
 
 > **Once each**, then stop: BookMyShow LE Bottom Sheet → BookMyShow IMOC + crash-free at scale → District Free Parking + Clean/MVVM + AI tooling → BookMyShow Ads pipeline + HeroWidget lifecycle → (BookMyShow backend-driven header & search **or** BookMyShow SSL pinning + URLSession migration) → (Stories SDK (Raw / Miami Heat) **or** FinTrack on-device AI). Optional micro TMAY 30–45s. **40–50 min** block max. ≤1 re-take only if derailed mid-story — not a perfection loop.
@@ -27,7 +26,6 @@
 ---
 
 ### Q2. BookMyShow LE Bottom Sheet run-through spine?
-
 **Answer:**
 
 > Full-screen overview friction → led lightweight bottom sheet end-to-end → aligned PM/Design/Backend on contracts → shipped reusable component → **30%+** flows fewer full-screen navigations → lesson: small surfaces + clear contracts beat big rewrites. Prefer Day 26 **Full spoken answer** if fresh.
@@ -49,7 +47,6 @@
 ---
 
 ### Q3. BookMyShow IMOC + crash-free at scale run-through spine?
-
 **Answer:**
 
 > **30L+ DAU** and **99.95%+** bar → Crashlytics triage + IMOC stabilize/communicate/prevent → mitigations and clear ownership in peaks → sustained crash-free discipline → lesson: blast radius and rollback, not hero debug.
@@ -71,7 +68,6 @@
 ---
 
 ### Q4. District Free Parking + Clean/MVVM + AI tooling run-through spine?
-
 **Answer:**
 
 > District Free Parking + Clean/MVVM migration → context engineering for AI tools → accelerate tests/reviews inside review bar → reject bad generations → ship with discipline → tools amplify thinking; you own architecture — **not** the same as FinTrack product AI.
@@ -93,7 +89,6 @@
 ---
 
 ### Q5. BookMyShow Ads pipeline + HeroWidget lifecycle run-through spine?
-
 **Answer:**
 
 > Revenue-critical Ads → POP + generics pipeline → HeroWidget pause/play lifecycle → stakeholder alignment **without inventing fill-rate %** → maintainable type-safe path → lifecycle is part of the product contract.
@@ -115,7 +110,6 @@
 ---
 
 ### Q6. BookMyShow backend-driven header & search vs BookMyShow SSL pinning + URLSession migration — which to pick today?
-
 **Answer:**
 
 > **Target-company pick:** SDUI-heavy role → **BookMyShow backend-driven header & search** (backend-driven header, debounce/MVVM, schema/fallbacks). Security/networking role → **BookMyShow SSL pinning + URLSession migration** (Alamofire → URLSession, HTTPS, SSL pinning, whitelist). Speak **one** only today.
@@ -137,10 +131,9 @@
 ---
 
 ### Q7. Where do full scripts live?
-
 **Answer:**
 
-> **Day 26** [`04-questions.md`](../../day-26/04-questions.md) — BookMyShow LE Bottom Sheet, BookMyShow IMOC + crash-free at scale, District Free Parking + Clean/MVVM + AI tooling, BookMyShow Ads pipeline + HeroWidget lifecycle **Full spoken answer** blocks. Day 28 Exercises mirror compressions. Today: speak full if energy allows; otherwise run-through spines — **once**, no rewrite from scratch.
+> **Day 26** [`07-revision-qna.md`](../../day-26/07-revision-qna.md) — BookMyShow LE Bottom Sheet, BookMyShow IMOC + crash-free at scale, District Free Parking + Clean/MVVM + AI tooling, BookMyShow Ads pipeline + HeroWidget lifecycle **Full spoken answer** blocks. Day 28 Exercises mirror compressions. Today: speak full if energy allows; otherwise run-through spines — **once**, no rewrite from scratch.
 
 **Follow-ups:**
 
@@ -160,3 +153,22 @@ Next: [04-calm-prep.md](04-calm-prep.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — BookMyShow LE Bottom Sheet run-through spine
+
+**Ask yourself:** BookMyShow LE Bottom Sheet run-through spine?
+
+**Answer:** “Full-screen overview friction → led lightweight bottom sheet end-to-end → aligned PM/Design/Backend on contracts → shipped reusable component → **30%+** flows fewer full-screen navigations → lesson: small surfaces + clear contracts beat big rewrites. Prefer Day 26 **Full spoken answer** if fresh.”
+
+### Puzzle B — BookMyShow IMOC + crash-free at scale run-through spine
+
+**Ask yourself:** BookMyShow IMOC + crash-free at scale run-through spine?
+
+**Answer:** “**30L+ DAU** and **99.95%+** bar → Crashlytics triage + IMOC stabilize/communicate/prevent → mitigations and clear ownership in peaks → sustained crash-free discipline → lesson: blast radius and rollback, not hero debug.”
+
+### Puzzle C — District Free Parking + Clean/MVVM + AI tooling run-through spine
+
+**Ask yourself:** District Free Parking + Clean/MVVM + AI tooling run-through spine?
+
+**Answer:** “District Free Parking + Clean/MVVM migration → context engineering for AI tools → accelerate tests/reviews inside review bar → reject bad generations → ship with discipline → tools amplify thinking; you own architecture — **not** the same as FinTrack product AI.”

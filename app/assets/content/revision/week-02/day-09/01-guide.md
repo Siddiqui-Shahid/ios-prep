@@ -54,7 +54,7 @@ Endpoint describes path/method/body → builder assembles `URLRequest` → inter
 |---|---|---|
 | Must | [Sample Q&A](../../../weeks/week-02/day-09/sample/) | Guided cards |
 | Must | Full modules [01–03](../../../weeks/week-02/day-09/01-foundations.md) | Gaps |
-| Drill | [04-questions](../../../weeks/week-02/day-09/04-questions.md) | Timed answers |
+| Drill | [07-revision-qna](../../../weeks/week-02/day-09/sample/07-revision-qna.md) | Timed answers |
 
 Suggested sample order: `01-networking-layer` → `02-refresh-and-cancel` → `03-pinning-security` → `04-production-s4`.
 
@@ -88,4 +88,4 @@ Suggested sample order: `01-networking-layer` → `02-refresh-and-cancel` → `0
 | Cert rotation design (Design: pin rotation / break-glass (not shipped runbook)) | 90s |
 | BookMyShow SSL pinning + URLSession migration ≤20s pitch | 20s |
 
-Expand from [sample cards](../../../weeks/week-02/day-09/sample/) and [04-questions](../../../weeks/week-02/day-09/04-questions.md) answer points.
+Expand from [sample cards](../../../weeks/week-02/day-09/sample/) and [07-revision-qna](../../../weeks/week-02/day-09/sample/07-revision-qna.md) answer points.

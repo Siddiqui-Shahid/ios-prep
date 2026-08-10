@@ -15,7 +15,7 @@ Next. Q3. How do you open each segment? Answer. Coding: Clarify → brute → op
 
 ## §3 Q4. What is the warm-up block for?
 
-Next. Q4. What is the warm-up block for? Answer. 15 minutes before Coding: weak flashcards + one STAR opener (BookMyShow LE Bottom Sheet or BookMyShow I M O C + crash-free at scale). Speak warm-up pool once each — suggested set W1, W6, W7, W3. Save W9–W12 for mental rehearsal. Purpose: activate recall, not learn new material. Follow-ups. Full warm-up pool location?:../04-questions.md Pools A–E. STAR in warm-up timed?: One full opener — 2 min max — then coding focus.. Skip warm-up?: Lose confidence ramp — keep 15 min..
+Next. Q4. What is the warm-up block for? Answer. 15 minutes before Coding: weak flashcards + one STAR opener (BookMyShow LE Bottom Sheet or BookMyShow I M O C + crash-free at scale). Speak warm-up pool once each — suggested set W1, W6, W7, W3. Save W9–W12 for mental rehearsal. Purpose: activate recall, not learn new material. Follow-ups. Full warm-up pool location?: 07-revision-qna.md Pools A–E. STAR in warm-up timed?: One full opener — 2 min max — then coding focus.. Skip warm-up?: Lose confidence ramp — keep 15 min..
 
 ## §4 Q5. What materials do you need before starting?
 

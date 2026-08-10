@@ -1,6 +1,6 @@
 # Day 23 sample — guided Q&A
 
-> Separate teaching sample. Does **not** replace the main Day 23 modules.  
+> Separate teaching sample. Does **not** replace the main Day 23 modules. 
 > Use this when you want hash/heap and mixed-pattern concepts explained as **question → module pointer → answer → follow-ups**.
 
 ## How to use
@@ -10,7 +10,7 @@
 3. Read the **Answer** in full.
 4. Cover the follow-up answers and try to speak them, then check.
 
-After the sample, practice in [`../04-questions.md`](../04-questions.md) and drills in [`../05-exercises.md`](../05-exercises.md).
+After the sample, practice in [`../07-revision-qna.md`](../07-revision-qna.md) and drills in [`../05-exercises.md`](../05-exercises.md).
 
 ## Module map
 
@@ -21,7 +21,7 @@ Full curriculum layout: [`../README.md`](../README.md#module-map)
 | Foundations | [01-foundations.md](../01-foundations.md) |
 | Deep dive | [02-deep-dive.md](../02-deep-dive.md) |
 | Production bridge | [03-production-bridge.md](../03-production-bridge.md) |
-| Questions | [04-questions.md](../04-questions.md) |
+| Questions | [07-revision-qna.md](../07-revision-qna.md) |
 | Exercises | [05-exercises.md](../05-exercises.md) |
 | Code | [code/](../code/) |
 
@@ -48,4 +48,4 @@ Full curriculum layout: [`../README.md`](../README.md#module-map)
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → `05` → then main [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → then main [`../07-revision-qna.md`](../07-revision-qna.md).

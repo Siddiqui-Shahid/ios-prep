@@ -1,13 +1,12 @@
 # Sample 02 — COW and enums (Q&A)
 
-> Guided teaching. Say the **Answer** out loud like you’re talking to an interviewer.  
-> Each answer ends with **How can I relate to my case** using named work — never S-codes.  
+> Guided teaching. Say the **Answer** out loud like you’re talking to an interviewer. 
+> Each answer ends with **How can I relate to my case** using named work — never S-codes. 
 > **Brain puzzles** at the bottom — cover the answer, think, then check.
 
 ---
 
 ### Q1. What is copy-on-write in plain words?
-
 **Answer:**
 
 > “COW means share storage until someone writes — then copy if needed. Assignment of an Array is cheap because two variables may share one buffer. Before mutating, Swift checks whether the buffer is uniquely referenced. If not, it copies first, then mutates the unique copy. Value semantics stay intact without paying a full deep copy on every assign.”
@@ -25,8 +24,7 @@
 
 ---
 
-### Q2. Walk through assign → read → mutate with Array
-
+### Q2. Walk through assign → read → mutate with Array?
 **Answer:**
 
 > “Assign: `var b = a` — both may share one buffer; cheap — pointer plus refcount. Read: either variable reads freely; still shared. Mutate: `b.append(4)` — if `b` is not the unique owner, copy the buffer first, then mutate. Result: `a` still `[1,2,3]`, `b` is `[1,2,3,4]`.”
@@ -37,7 +35,7 @@
 |---|---|
 | What if `a` mutates instead of `b`? | “Same rule — `a` may copy; `b` keeps the old buffer.” |
 | Does read trigger a copy? | “No — reads are free while sharing.” |
-| Runnable demo? | “See `COWDemo.arrayShareUntilWrite()` in [`code/COWDemo.swift`](../code/COWDemo.swift).” |
+| Runnable demo? | “See `COWDemo.arrayShareUntilWrite` in [`code/COWDemo.swift`](../code/COWDemo.swift).” |
 
 **How can I relate to my case:**
 - **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
@@ -45,7 +43,6 @@
 ---
 
 ### Q3. Which standard library types use COW?
-
 **Answer:**
 
 > “Know these names: Array, Dictionary, Set, String. They are value types with a reference-counted buffer under the hood. Custom structs do not get COW unless you implement it — often with a private class storage plus `isKnownUniquelyReferenced`.”
@@ -63,8 +60,7 @@
 
 ---
 
-### Q4. Walk handmade `COWList` / `isKnownUniquelyReferenced`
-
+### Q4. Walk handmade `COWList` / `isKnownUniquelyReferenced`?
 **Answer:**
 
 > “Pattern: value-type façade over a reference-counted Storage class. On assign, two COWList values share the same Storage. Before append, call `ensureUnique` — if `!isKnownUniquelyReferenced(&storage)`, replace storage with a copied buffer. Then mutate in place. After `var b = a; b.append(4)`, `a` still has the old items. That’s the interview sketch in [`code/COWDemo.swift`](../code/COWDemo.swift).”
@@ -83,7 +79,6 @@
 ---
 
 ### Q5. What breaks COW independence across variables?
-
 **Answer:**
 
 > “Separate Array COW from object identity. With `var b = a` as two Array values, mutating `b` copies if not unique, so `a` stays unchanged. If you wrap the array in a class — ArrayBox — and do `let box2 = box1`, both names share one box. Mutating `box2.values` changes `box1.values` too. The inner Array still COWs relative to *other* Array values, but aliases through the class share the same property path.”
@@ -94,7 +89,7 @@
 |---|---|
 | Symptom? | “‘I thought arrays were values’ — but the box is shared identity.” |
 | Production lesson? | “Don’t wrap collections in classes ‘for safety’ without thinking — you reintroduce shared mutation across UI aliases.” |
-| Demo? | “`COWDemo.classBoxBreaksIndependence()`.” |
+| Demo? | “`COWDemo.classBoxBreaksIndependence`.” |
 
 **How can I relate to my case:**
 - **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if the interviewer asks for production proof.
@@ -102,7 +97,6 @@
 ---
 
 ### Q6. Why do enums beat boolean flags for UI state?
-
 **Answer:**
 
 > “Boolean soup — `isLoading`, `data`, `error` all optional — allows illegal combinations: loading and loaded and error at once. That’s the impossible-state explosion. An enum with idle, loading, loaded(T), failed(Error) encodes only legal rows. The compiler’s exhaustiveness on switch forces you to handle every mode.”
@@ -121,7 +115,6 @@
 ---
 
 ### Q7. What are associated values on an enum?
-
 **Answer:**
 
 > “Each case can carry payload specific to that mode. `loaded(T)` holds the data; `failed(Error)` holds the error; `processing(message:)` holds the status string. You don’t keep a stray optional bookingID around during processing — the case owns exactly what the UI needs for that screen.”
@@ -140,7 +133,6 @@
 ---
 
 ### Q8. How would you model a payment processing popup as an enum?
-
 **Answer:**
 
 > “Cases: hidden, processing(message:), success(bookingID:), failure(...), timedOut(message:). Transitions come from events — userStartedCheckout, backendSuccess, timeout, dismiss. Illegal transitions are ignored or asserted in DEBUG. Full graph: hidden → processing on checkout; processing → success / failure / timedOut; any terminal or processing → hidden on dismiss. Label clearly: BookMyShow payment processing-status popup is the product intent; Design: payment status pattern is how I’d model it in Swift — not a claim that production shipped this enum by name.”
@@ -161,7 +153,6 @@
 ---
 
 ### Q9. When do you need `indirect` on an enum?
-
 **Answer:**
 
 > “Enums have a fixed size at compile time. A case that contains another value of the same enum — a recursive tree — needs a heap box. `indirect` tells Swift to store that associated value behind a reference so the layout stays finite. Useful for comment threads, nested feed sections, or FeedNode trees.”
@@ -180,7 +171,6 @@
 ---
 
 ### Q10. How do you map Result into UI state — and stay resilient when the backend adds modes?
-
 **Answer:**
 
 > “Keep Result at the networking edge — it models a one-shot success or failure. Map at the boundary into a UI enum like LoadState with idle, loading, loaded, failed. For backend-driven or versioned payloads — SDUI-ish headers — add an explicit unknown(type:raw:) fallback, or use `@unknown default` on frozen system enums, so new server modes degrade gracefully instead of crashing decode or switch. Domain enums communicate screen semantics; Result communicates attempt outcomes; unknown cases buy versioning resilience.”
@@ -198,8 +188,7 @@
 
 ---
 
-### Q11. Give the 45-second spoken agendas for COW and enum state
-
+### Q11. Give the 45-second spoken agendas for COW and enum state?
 **Answer:**
 
 > “COW agenda: share → uniqueness → mutate. Assignment of Array is cheap because buffers are shared. On mutation, if the buffer isn’t uniquely referenced, Swift copies first. Value semantics stay intact.

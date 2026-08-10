@@ -7,7 +7,6 @@
 ---
 
 ### Q1. Interviewer: “Design Search Autocomplete.” How do you open?
-
 **Answer:**
 
 > **Agenda (≤20s):** “I’ll take ~5 minutes clarifying scope and scale, then a four-layer client HLD with backend touchpoints and load, then API/data, two deep dives on **Debounce + cancel** and **Trie + FTS5 offline**, and close on failure modes, metrics, and kill switches. Does that work?”
@@ -35,7 +34,6 @@
 ---
 
 ### Q2. After clarify — what does the optimal flow look like?
-
 **Answer:**
 
 > **Scripted outcomes for this mock:** Autocomplete + full results; debounce 300ms; cancel in-flight; offline Trie/FTS; out: ML ranking.
@@ -56,8 +54,7 @@
 
 ---
 
-### Q3. Walk the HLD — client layers, backend, load.
-
+### Q3. Walk the HLD — client layers, backend, load?
 **Answer:**
 
 > **UI** Search bar → ViewModel → **local Trie/recent** first → remote autocomplete → results list with cursor.
@@ -77,8 +74,7 @@
 
 ---
 
-### Q4. Data / API — entities, endpoints, scale.
-
+### Q4. Data / API — entities, endpoints, scale?
 **Answer:**
 
 > `GET /v1/search/autocomplete?q=&limit=10`
@@ -99,7 +95,6 @@
 ---
 
 ### Q5. Deep dive 1 — Debounce + cancel?
-
 **Answer:**
 
 > Timer 300ms; cancel previous `URLSessionTask`/`Task`; race guard with request_id.
@@ -119,7 +114,6 @@
 ---
 
 ### Q6. Deep dive 2 — Trie + FTS5 offline?
-
 **Answer:**
 
 > Recent queries in Trie/memory; catalog slice in SQLite FTS5 (<10MB target).
@@ -139,7 +133,6 @@
 ---
 
 ### Q7. Ops — failures, metrics, rollout, load?
-
 **Answer:**
 
 > Autocomplete p50/p99, zero-result rate, offline freshness, cancel rate.
@@ -159,7 +152,6 @@
 ---
 
 ### Q8. Flow scorecard — did you hit the optimal spine?
-
 **Answer:**
 
 > **Pass bar:** clarify + agenda in ≤5; HLD shows 4 layers + backend + load; API has cursors/idempotency as needed; two deep dives; ops with kill switch and concrete metrics.
@@ -176,4 +168,3 @@
 
 **How can I relate to my case:**
 - **Concept-only — no shipped story.** Rehearse this scorecard after every timed mock.
-

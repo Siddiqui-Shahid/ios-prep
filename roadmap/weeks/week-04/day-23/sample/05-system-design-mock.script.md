@@ -9,13 +9,13 @@ Next. Q1. Interviewer: “Design Realtime Location / Ride Tracking.” How do yo
 
 Next. Q2. After clarify — what does the optimal flow look like? Answer. Scripted outcomes for this mock: CoreLocation filtered batching; WS; rider interpolation; offline queue; out: matching/payments. Good flow: agenda → clarify Qs → confirm → high level design (4 layers + backend + load) → A P I → two crisp dives → ops last 5. Weak flow: silent drawing, happy-path only, no QPS/TTL, invent metrics, skip ops. Follow-ups. They change scope mid-high level design?: Re-confirm in/out in 20s; adjust dives; protect ops.. Backend mesh deep-dive?: Out unless asked — sketch touchpoints, stay client-owned.. Forgot to ask offline?: State online-first + last-good cache as assumption; invite correction..
 
-## §2 Q3. Walk the HLD — client layers, backend, load.
+## §2 Q3. Walk the HLD — client layers, backend, load?
 
-Next. Q3. Walk the HLD — client layers, backend, load Answer. Driver: CL → filter/Kalman → batch → WS. Rider: WS → interpolate 4s → map polyline delta. Backend: WS; Kafka; ETA; Redis Geo. Load: 2–4s active / 15s BG; batch 3–4 pts/4s; heartbeat 30s. Follow-ups. Why not raw GPS every Hz?: Battery + noise — distanceFilter.. Map 60fps?: Interpolate; don’t redraw every point naively..
+Next. Q3. Walk the HLD — client layers, backend, load? Answer. Driver: CL → filter/Kalman → batch → WS. Rider: WS → interpolate 4s → map polyline delta. Backend: WS; Kafka; ETA; Redis Geo. Load: 2–4s active / 15s BG; batch 3–4 pts/4s; heartbeat 30s. Follow-ups. Why not raw GPS every Hz?: Battery + noise — distanceFilter.. Map 60fps?: Interpolate; don’t redraw every point naively..
 
-## §3 Q4. Data / API — entities, endpoints, scale.
+## §3 Q4. Data / API — entities, endpoints, scale?
 
-Next. Q4. Data / API — entities, endpoints, scale Answer. wss://…/trips/{id} location_batch, driver_update, eta_seconds. Follow-ups. Dead zone?: SQLite burst upload later.. Rider WS down?: HTTP poll 5s fallback..
+Next. Q4. Data / API — entities, endpoints, scale? Answer. wss://…/trips/{id} location_batch, driver_update, eta_seconds. Follow-ups. Dead zone?: SQLite burst upload later.. Rider WS down?: HTTP poll 5s fallback..
 
 ## §4 Q5. Deep dive 1 — CL + battery?
 

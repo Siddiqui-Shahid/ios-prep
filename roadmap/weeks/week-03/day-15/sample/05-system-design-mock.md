@@ -7,7 +7,6 @@
 ---
 
 ### Q1. Interviewer: “Design App Modularization & DI.” How do you open?
-
 **Answer:**
 
 > **Agenda (≤20s):** “I’ll take ~5 minutes clarifying scope and scale, then a four-layer client HLD with backend touchpoints and load, then API/data, two deep dives on **SDK boundary** and **Build & launch cost**, and close on failure modes, metrics, and kill switches. Does that work?”
@@ -33,7 +32,6 @@
 ---
 
 ### Q2. After clarify — what does the optimal flow look like?
-
 **Answer:**
 
 > **Scripted outcomes for this mock:** Stories-style feature module; Interface/Impl; host composition root; size/launch budgets.
@@ -53,8 +51,7 @@
 
 ---
 
-### Q3. Walk the HLD — client layers, backend, load.
-
+### Q3. Walk the HLD — client layers, backend, load?
 **Answer:**
 
 > Same module topology; emphasize **SDK boundary**: public Interface, private Impl, minimal Host API.
@@ -72,8 +69,7 @@
 
 ---
 
-### Q4. Data / API — entities, endpoints, scale.
-
+### Q4. Data / API — entities, endpoints, scale?
 **Answer:**
 
 > `StoriesSDK.start(dependency:)` ; host provides analytics/network protocols.
@@ -91,7 +87,6 @@
 ---
 
 ### Q5. Deep dive 1 — SDK boundary?
-
 **Answer:**
 
 > No leaking UIKit subclasses across boundary unless intentional; dependency inversion for network/analytics.
@@ -109,7 +104,6 @@
 ---
 
 ### Q6. Deep dive 2 — Build & launch cost?
-
 **Answer:**
 
 > Budget incremental builds; avoid resource duplication; measure pre-main.
@@ -127,7 +121,6 @@
 ---
 
 ### Q7. Ops — failures, metrics, rollout, load?
-
 **Answer:**
 
 > Size/launch gates in CI; flag to disable SDK entry.
@@ -145,7 +138,6 @@
 ---
 
 ### Q8. Flow scorecard — did you hit the optimal spine?
-
 **Answer:**
 
 > **Pass bar:** clarify + agenda in ≤5; HLD shows 4 layers + backend + load; API has cursors/idempotency as needed; two deep dives; ops with kill switch and concrete metrics.
@@ -162,4 +154,3 @@
 
 **How can I relate to my case:**
 - **Concept-only — no shipped story.** Rehearse this scorecard after every timed mock.
-

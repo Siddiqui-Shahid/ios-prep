@@ -1,23 +1,74 @@
-# 03 — Production Bridge: Machine Round ↔ Shipped Instincts
+# 03 — Production Bridge: Machine Round ↔ Shipped Instincts (Q&A)
+
+> Cover the answer, speak aloud, then check follow-ups. Simple language. Named work only — never S-codes in speech.
 
 ---
 
-## Verified · S3
+### Q1. Verified · S3? `(45–60s)`
+**Answer:**
 
-Search lists + backend-driven header → pagination/debounce instincts and SDUI fallback thinking (unknown components shouldn’t crash).
+> “Search lists + backend-driven header → pagination/debounce instincts and SDUI fallback thinking (unknown components shouldn’t crash).”
 
-## Verified · S9
+**Follow-ups:**
 
-AI may scaffold tests; **you** own architecture and review. Same rule in the machine round.
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-## Verified · S12
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
-Server-driven splash — schema flexibility + client resilience.
+---
 
-## ≤20s
+### Q2. Verified · S9? `(45–60s)`
+**Answer:**
 
-> “In machine rounds I optimize for a tested vertical slice — same bias shipping SDUI and list UX: contracts, fallbacks, and observable state.”
+> “AI may scaffold tests; you own architecture and review. Same rule in the machine round.”
 
-**Do not claim** the 3hr project is BookMyShow production code.
+**Follow-ups:**
 
-→ [`04-questions.md`](04-questions.md)
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q3. Verified · S12? `(45–60s)`
+**Answer:**
+
+> “Server-driven splash — schema flexibility + client resilience.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q4. ≤20s? `(45–60s)`
+**Answer:**
+
+> “In machine rounds I optimize for a tested vertical slice — same bias shipping SDUI and list UX: contracts, fallbacks, and observable state.” Do not claim the 3hr project is BookMyShow production code.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
+
+---

@@ -54,7 +54,7 @@ Do **not**: invent QPS; claim BookMyShow synchronised dictionaries alone caused 
 |---|---|---|
 | Must | [Sample Q&A](../../../weeks/week-03/day-21/sample/) | Mock prep cards |
 | Must | [02-deep-dive.md](../../../weeks/week-03/day-21/02-deep-dive.md) | Full spoken scripts |
-| Must | [04-questions](../../../weeks/week-03/day-21/04-questions.md) | Rubric + warm-up Qs |
+| Must | [07-revision-qna](../../../weeks/week-03/day-21/sample/07-revision-qna.md) | Rubric + warm-up Qs |
 | Live | [05-exercises](../../../weeks/week-03/day-21/05-exercises.md) | Full 45-min mock |
 
 ## 4. Map to your work
@@ -91,4 +91,4 @@ Do **not**: invent QPS; claim BookMyShow synchronised dictionaries alone caused 
 | Ops close (BookMyShow IMOC + crash-free at scale rollout gates) | 5 min |
 | Self-grade with rubric | 10 min |
 
-Run the full mock from [05-exercises](../../../weeks/week-03/day-21/05-exercises.md). Score with [04-questions](../../../weeks/week-03/day-21/04-questions.md) Part II.
+Run the full mock from [05-exercises](../../../weeks/week-03/day-21/05-exercises.md). Score with [07-revision-qna](../../../weeks/week-03/day-21/sample/07-revision-qna.md) Part II.

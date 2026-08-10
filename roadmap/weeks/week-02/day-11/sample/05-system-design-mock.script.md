@@ -9,13 +9,13 @@ Next. Q1. Interviewer: “Design Deep Linking & Universal Links.” How do you o
 
 Next. Q2. After clarify — what does the optimal flow look like? Answer. Scripted outcomes for this mock: UL + schemes; router+coordinator; cold-start pendingRoute; deferred optional; out: push deep design. Good flow: agenda → clarify Qs → confirm → high level design (4 layers + backend + load) → A P I → two crisp dives → ops last 5. Weak flow: silent drawing, happy-path only, no QPS/TTL, invent metrics, skip ops. Follow-ups. They change scope mid-high level design?: Re-confirm in/out in 20s; adjust dives; protect ops.. Backend mesh deep-dive?: Out unless asked — sketch touchpoints, stay client-owned.. Forgot to ask offline?: State online-first + last-good cache as assumption; invite correction..
 
-## §2 Q3. Walk the HLD — client layers, backend, load.
+## §2 Q3. Walk the HLD — client layers, backend, load?
 
-Next. Q3. Walk the HLD — client layers, backend, load Answer. OS openURL → AppDelegate/Scene → DeepLinkRouter match → Coordinator navigate. If U I not ready (<500ms), queue pendingRoute. Backend: AASA hosted; deferred fingerprint A P I. Load: AASA <128KB; OS caches ~24h; routing <100ms target. Follow-ups. Hybrid UIKit/SwiftUI?: One router owns path — Grizzlies interop lesson.. Push vs deeplink?: Same router — don’t fork navigation..
+Next. Q3. Walk the HLD — client layers, backend, load? Answer. OS openURL → AppDelegate/Scene → DeepLinkRouter match → Coordinator navigate. If U I not ready (<500ms), queue pendingRoute. Backend: AASA hosted; deferred fingerprint A P I. Load: AASA <128KB; OS caches ~24h; routing <100ms target. Follow-ups. Hybrid UIKit/SwiftUI?: One router owns path — Grizzlies interop lesson.. Push vs deeplink?: Same router — don’t fork navigation..
 
-## §3 Q4. Data / API — entities, endpoints, scale.
+## §3 Q4. Data / API — entities, endpoints, scale?
 
-Next. Q4. Data / API — entities, endpoints, scale Answer. AASA at /.well-known/apple-app-site-association. GET /v1/deep-link/deferred?fingerprint=. Route table: pattern → builder. Follow-ups. Unsigned links?: Validate path allowlist; strip dangerous query.. AASA fail?: Smart Banner / custom scheme fallback..
+Next. Q4. Data / API — entities, endpoints, scale? Answer. AASA at /.well-known/apple-app-site-association. GET /v1/deep-link/deferred?fingerprint=. Route table: pattern → builder. Follow-ups. Unsigned links?: Validate path allowlist; strip dangerous query.. AASA fail?: Smart Banner / custom scheme fallback..
 
 ## §4 Q5. Deep dive 1 — Router + Coordinator?
 

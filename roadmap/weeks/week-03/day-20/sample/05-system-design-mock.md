@@ -7,7 +7,6 @@
 ---
 
 ### Q1. Interviewer: “Design Push Notification System.” How do you open?
-
 **Answer:**
 
 > **Agenda (≤20s):** “I’ll take ~5 minutes clarifying scope and scale, then a four-layer client HLD with backend touchpoints and load, then API/data, two deep dives on **Token lifecycle** and **Silent push + deferred**, and close on failure modes, metrics, and kill switches. Does that work?”
@@ -33,7 +32,6 @@
 ---
 
 ### Q2. After clarify — what does the optimal flow look like?
-
 **Answer:**
 
 > **Scripted outcomes for this mock:** Token lifecycle; display/silent; router on tap; APNs fanout backend sketch; out: NSE deep, WS chat.
@@ -53,8 +51,7 @@
 
 ---
 
-### Q3. Walk the HLD — client layers, backend, load.
-
+### Q3. Walk the HLD — client layers, backend, load?
 **Answer:**
 
 > App ↔ Device token API ↔ Push Service ↔ APNs HTTP/2. Client: register, display, silent ≤30s, route.
@@ -72,8 +69,7 @@
 
 ---
 
-### Q4. Data / API — entities, endpoints, scale.
-
+### Q4. Data / API — entities, endpoints, scale?
 **Answer:**
 
 > `PUT /v1/devices/{userId}/push-token`, DELETE invalidate. Server→APNs. Client handles UNNotification.
@@ -91,7 +87,6 @@
 ---
 
 ### Q5. Deep dive 1 — Token lifecycle?
-
 **Answer:**
 
 > Register every launch; rotate on change; dedupe server-side; multi-device.
@@ -109,7 +104,6 @@
 ---
 
 ### Q6. Deep dive 2 — Silent push + deferred?
-
 **Answer:**
 
 > Silent ≤30s work; throttle; fallback BGAppRefresh. Deferred install links sister to deeplink doc.
@@ -127,7 +121,6 @@
 ---
 
 ### Q7. Ops — failures, metrics, rollout, load?
-
 **Answer:**
 
 > Delivery, CTR (labeled ranges only), invalidate on 410. Kill: stop campaign; collapse-id.
@@ -145,7 +138,6 @@
 ---
 
 ### Q8. Flow scorecard — did you hit the optimal spine?
-
 **Answer:**
 
 > **Pass bar:** clarify + agenda in ≤5; HLD shows 4 layers + backend + load; API has cursors/idempotency as needed; two deep dives; ops with kill switch and concrete metrics.
@@ -162,4 +154,3 @@
 
 **How can I relate to my case:**
 - **Concept-only — no shipped story.** Rehearse this scorecard after every timed mock.
-

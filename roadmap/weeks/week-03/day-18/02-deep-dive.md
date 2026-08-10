@@ -1,169 +1,261 @@
-# 02 — Deep Dive: Crash SDK, OOM, IMOC
+# 02 — Deep Dive: Crash SDK, OOM, IMOC (Q&A)
+
+> Cover the answer, speak aloud, then check follow-ups. Simple language. Named work only — never S-codes in speech.
 
 ---
 
-## 1. Signal handling (what “safe” means)
+### Q1. Handler responsibilities (conceptual)? `(45–60s)`
+**Answer:**
 
-### 1.1 Handler responsibilities (conceptual)
+> “text On fatal signal: 1. Suspend other threads (implementation-dependent; be honest it’s delicate) 2. Capture backtrace / registers into PREALLOCATED buffer 3. write to mmap / file descriptor — no malloc 4. Reset handler / abort to terminate.”
 
-```text
-On fatal signal:
-  1. Suspend other threads (implementation-dependent; be honest it’s delicate)
-  2. Capture backtrace / registers into PREALLOCATED buffer
-  3. write() to mmap / file descriptor — no malloc
-  4. Reset handler / abort to terminate
-```
+**Follow-ups:**
 
-### 1.2 Forbidden in-handler
-
-| Forbidden | Why |
+| Follow-up | Answer |
 |---|---|
-| `malloc` / new objects | Allocator locks / reentrancy |
-| Obj-C / many Swift runtime calls | May allocate or lock |
-| Normal logging (`OSLog`, print frameworks) | May deadlock |
-| Taking locks | Deadlock if crash held the lock |
-| Starting network upload | Not signal-safe; wrong time |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-### 1.3 Allowed mindset
-
-- Preallocate crash region at init
-- Async-signal-safe syscalls only (`write`, etc.)
-- Breadcrumbs already in a lock-free ring filled on the happy path
-
-**Interview line:**  
-> “The crash path is about surviving long enough to persist a report — not about doing a full-featured dump with normal APIs.”
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 2. Breadcrumbs
+### Q2. Forbidden in-handler? `(45–60s)`
+**Answer:**
 
-| Design | Detail |
+> “See the notes for this topic and speak the core idea in simple words.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
 |---|---|
-| Structure | Ring buffer, last N events (~50–100 class) |
-| Content | Navigations, key actions, HTTP status codes |
-| Scrub | Tokens, auth headers, PII — at source |
-| Concurrency | Lock-free / careful — crash may interrupt |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-**Privacy incident:** breadcrumbs with auth headers → treat as Sev; rotate; lint forbidden keys.
-
----
-
-## 3. Symbolication & dSYM
-
-```text
-Build UUID in report
-  → server finds matching dSYM
-  → load address + frame offset → function/file/line
-```
-
-| Failure | Symptom | Fix |
-|---|---|---|
-| Missing dSYM upload in CI | Unreadable stacks | Fix pipeline; re-upload |
-| Mismatched build | Wrong/partial symbols | UUID discipline |
-| Bitcode legacy confusion | Old advice | Modern: always upload dSYMs you ship |
-
-**CI link (Day 20):** every TestFlight/App Store build uploads symbols.
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 4. OOM detection (honest limits)
+### Q3. Allowed mindset? `(45–60s)`
+**Answer:**
 
-- `SIGKILL` from jetsam is **not** a normal catchable crash path
-- Next-launch heuristics: high last footprint + no clean exit + no crash file
-- MetricKit OOM / exit diagnostics arrive on delay
-- Memory Graph / Allocations (Day 17) for lab reproduction — **cycles ≠ Leaks**
+> “- Preallocate crash region at init - Async-signal-safe syscalls only (write, etc.) - Breadcrumbs already in a lock-free ring filled on the happy path Interview line: “The crash path is about surviving long enough to persist a report — not about doing a full-featured dump with normal APIs.”.”
 
----
+**Follow-ups:**
 
-## 5. Upload reliability
-
-| Do | Don’t |
+| Follow-up | Answer |
 |---|---|
-| Persist on crash; upload next cold start | Network inside signal handler |
-| Backoff + quota awareness | Delete last report naively before ack |
-| Cap pending reports | Unlimited disk fill |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 6. Non-fatals & alert hygiene
+### Q4. Breadcrumbs? `(45–60s)`
+**Answer:**
 
-- Group, sample, fix top offenders
-- Don’t equate non-fatal volume with CFS
-- Promote to P1 when user-impacting critical path (payments)
+> “Privacy incident: breadcrumbs with auth headers → treat as Sev; rotate; lint forbidden keys.”
 
----
+**Follow-ups:**
 
-## 7. IMOC deep dive — scripts you can speak
-
-### 7.1 First 10 minutes
-
-1. Confirm spike is real (not symbolication outage / bad deploy tag)
-2. Declare IMOC / channel
-3. Blast radius: version %, feature flag, geo, payment?
-4. Mitigate: pause phased release / kill switch / disable feature
-5. Comms cadence: next update in N minutes
-
-### 7.2 Mitigate vs hotfix
-
-| Lever | When |
+| Follow-up | Answer |
 |---|---|
-| Remote config / flag | Fast; preferred when path optional |
-| Pause phased rollout | Binary already bad for % |
-| Hotfix | Native crash on mandatory path; review latency trade-off |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-### 7.3 Cross-team blame spiral
-
-Force shared timeline + correlation IDs + % failing by layer. Mitigate user harm first (fallback, disable). RCA second.
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 8. S2 concurrency — correct framing
+### Q5. Symbolication & dSYM? `(45–60s)`
+**Answer:**
 
-**What S2 was:** shared async maps hit from multiple queues → races → intermittent crashes; fixed with **GCD serial queues** / RW locks and a safe API boundary.
+> “text Build UUID in report → server finds matching dSYM → load address + frame offset → function/file/line.”
 
-**What S2 was not:** the single explanation for org-wide **99.95% CFS**.
+**Follow-ups:**
 
-| OK to say | Not OK to say |
+| Follow-up | Answer |
 |---|---|
-| “Removed race crashes on that shared state path” | “S2 is why we have 99.95% CFS” |
-| “One reliability engineering input among triage + IMOC + others” | “Dictionaries alone held CFS” |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-> **Provenance:** Verified · S2 · path-scoped; Verified · S8 · CFS/IMOC system
-
-**Today’s Applied:** greenfield → Swift `actor` (S2-A1) with same API surface mindset.
-
----
-
-## 9. Trade-offs
-
-| Choice | When | Cost |
-|---|---|---|
-| Vendor Crashlytics | Fast symbolication pipeline | Vendor + privacy review |
-| In-house crash SDK | Staff SD / special needs | Signal-safety correctness risk |
-| Heavy breadcrumbs | Debuggability | CPU + PII risk |
-| Crash SDK first | Reliable launch reports | Must stay fast |
-| Non-fatal spam | Noise | Alert fatigue |
-| Always hotfix | Rare true need | Process cost; prefer flags |
-| Blame culture | Never | Kills reporting |
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 10. Failure modes
+### Q6. OOM detection (honest limits)? `(45–60s)`
+**Answer:**
 
-| Mode | Senior response |
+> “- SIGKILL from jetsam is not a normal catchable crash path - Next-launch heuristics: high last footprint + no clean exit + no crash file - MetricKit OOM / exit diagnostics arrive on delay - Memory Graph / Allocations (Day 17) for lab reproduction — cycles ≠ Leaks ---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
 |---|---|
-| try/catch will catch SEGV | No — signals/fatalError need handlers + discipline |
-| CFS fine, users freeze | Hang/OOM/MetricKit — Day 17 |
-| Unsymbolicated spike | dSYM CI break |
-| iOS vs backend war room | IMOC timeline, mitigate first |
-| Breadcrumbs logged tokens | Scrub + rotate + Sev |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 11. Optional citations
+### Q7. Upload reliability? `(45–60s)`
+**Answer:**
 
-- `ios-system-design/docs/crash-reporting-sdk.md`
-- Apple Understanding crashes / MetricKit diagnostics
-- Stories S8, S2
+> “---.”
 
-Chapter is self-contained without opening them.
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q8. Non-fatals & alert hygiene? `(45–60s)`
+**Answer:**
+
+> “- Group, sample, fix top offenders - Don’t equate non-fatal volume with CFS - Promote to P1 when user-impacting critical path (payments) ---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q9. First 10 minutes? `(45–60s)`
+**Answer:**
+
+> “1. Confirm spike is real (not symbolication outage / bad deploy tag) 2. Declare IMOC / channel 3. Blast radius: version %, feature flag, geo, payment? 4. Mitigate: pause phased release / kill switch / disable feature 5. Comms cadence: next update in N minutes.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q10. Mitigate vs hotfix? `(45–60s)`
+**Answer:**
+
+> “See the notes for this topic and speak the core idea in simple words.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q11. Cross-team blame spiral? `(45–60s)`
+**Answer:**
+
+> “Force shared timeline + correlation IDs + % failing by layer. Mitigate user harm first (fallback, disable). RCA second. ---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q12. S2 concurrency — correct framing? `(45–60s)`
+**Answer:**
+
+> “What was: shared async maps hit from multiple queues → races → intermittent crashes; fixed with GCD serial queues / RW locks and a safe API boundary. What was not: the single explanation for org-wide 99.95% CFS.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
+
+---
+
+### Q13. Trade-offs? `(45–60s)`
+**Answer:**
+
+> “---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q14. Failure modes? `(45–60s)`
+**Answer:**
+
+> “---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q15. Optional citations? `(45–60s)`
+**Answer:**
+
+> “- ios-system-design/docs/crash-reporting-sdk.md - Apple Understanding crashes / MetricKit diagnostics - Stories , Chapter is self-contained without opening them.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---

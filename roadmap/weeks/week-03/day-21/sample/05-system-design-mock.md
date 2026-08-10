@@ -7,7 +7,6 @@
 ---
 
 ### Q1. Interviewer: “Design Networking Layer + SSL Pinning.” How do you open?
-
 **Answer:**
 
 > **Agenda (≤20s):** “I’ll take ~5 minutes clarifying scope and scale, then a four-layer client HLD with backend touchpoints and load, then API/data, two deep dives on **Single-flight refresh** and **SPKI pin rotation**, and close on failure modes, metrics, and kill switches. Does that work?”
@@ -34,7 +33,6 @@
 ---
 
 ### Q2. After clarify — what does the optimal flow look like?
-
 **Answer:**
 
 > **Scripted outcomes for this mock:** Networking+pinning 45‑min mock; refresh actor; pin rotation design; SDUI is the other prompt — pick one live.
@@ -55,8 +53,7 @@
 
 ---
 
-### Q3. Walk the HLD — client layers, backend, load.
-
+### Q3. Walk the HLD — client layers, backend, load?
 **Answer:**
 
 > Features → protocols → APIClient → interceptors → URLSession + SPKI + allowlist → URLCache/Keychain/reachability.
@@ -75,8 +72,7 @@
 
 ---
 
-### Q4. Data / API — entities, endpoints, scale.
-
+### Q4. Data / API — entities, endpoints, scale?
 **Answer:**
 
 > APIEndpoint async throws; 401 refresh coordinator; retry only transient on idempotent GET; pin challenge.
@@ -95,7 +91,6 @@
 ---
 
 ### Q5. Deep dive 1 — Single-flight refresh?
-
 **Answer:**
 
 > Actor-owned refresh; waiters; success retry once; failure logout.
@@ -114,7 +109,6 @@
 ---
 
 ### Q6. Deep dive 2 — SPKI pin rotation?
-
 **Answer:**
 
 > Pin SHA-256 of SPKI DER; backup pins; client before server rotate; mismatch terminate + metric.
@@ -133,7 +127,6 @@
 ---
 
 ### Q7. Ops — failures, metrics, rollout, load?
-
 **Answer:**
 
 > p50/p90/p99, 5xx, refresh fail, pin fail. Kill retries; break-glass design. Score with Day 21 rubric.
@@ -152,7 +145,6 @@
 ---
 
 ### Q8. Flow scorecard — did you hit the optimal spine?
-
 **Answer:**
 
 > **Pass bar:** clarify + agenda in ≤5; HLD shows 4 layers + backend + load; API has cursors/idempotency as needed; two deep dives; ops with kill switch and concrete metrics.
@@ -169,4 +161,3 @@
 
 **How can I relate to my case:**
 - **Concept-only — no shipped story.** Rehearse this scorecard after every timed mock.
-

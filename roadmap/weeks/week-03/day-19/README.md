@@ -1,6 +1,6 @@
 # Day 19 — Security: ATS, SSL Pinning, Keychain & Persistence
 
-> Week 3 · Full study (self-contained) · ~4–5 hrs  
+> Week 3 · Full study (self-contained) · ~4–5 hrs 
 > Revision twin: [revision/weeks/week-03/day-19.md](../../../revision/weeks/week-03/day-19.md)
 
 ## Outcomes
@@ -19,7 +19,7 @@ By end of day, without notes, you can:
 2. [`02-deep-dive.md`](02-deep-dive.md) — SPKI mechanics, rotation design, auth client lens
 3. [`03-production-bridge.md`](03-production-bridge.md) — S4 STAR + S4-A1 honesty
 4. [`code/`](code/) — SPKI notes + persistence router sketch
-5. [`04-questions.md`](04-questions.md)
+5. [`sample/07-revision-qna.md`](sample/07-revision-qna.md)
 6. [`05-exercises.md`](05-exercises.md)
 7. Revision twin
 

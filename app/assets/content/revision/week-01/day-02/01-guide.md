@@ -59,7 +59,7 @@ Extension-only methods may **not** override through an existential — promote t
 |---|---|---|
 | Must | [Sample Q&A](../../../weeks/week-01/day-02/sample/) | Guided cards |
 | Must | Full modules [01–03](../../../weeks/week-01/day-02/01-foundations.md) | Gaps |
-| Drill | [04-questions](../../../weeks/week-01/day-02/04-questions.md) | Timed answers |
+| Drill | [07-revision-qna](../../../weeks/week-01/day-02/sample/07-revision-qna.md) | Timed answers |
 
 ## 4. Map to your work
 
@@ -89,4 +89,4 @@ Extension-only methods may **not** override through an existential — promote t
 | Four strategies for mixed protocol arrays | 90s |
 | Architecture whiteboard (ads pipeline) | 5 min |
 
-Expand from [sample cards](../../../weeks/week-01/day-02/sample/) and [04-questions](../../../weeks/week-01/day-02/04-questions.md) answer points.
+Expand from [sample cards](../../../weeks/week-01/day-02/sample/) and [07-revision-qna](../../../weeks/week-01/day-02/sample/07-revision-qna.md) answer points.

@@ -1,168 +1,332 @@
-# 02 — Deep Dive: Full Mock #1 Interviewer Script
+# 02 — Deep Dive: Full Mock #1 Interviewer Script (Q&A)
 
-> Print or split-screen this. **Interviewer** reads bold prompts. Timing visible.  
-> Candidate answers without notes. After each answer, optional follow-up from the ladder.
-
----
-
-## 0. Setup (2 min)
-
-**Interviewer says:**
-
-> “This is Mock #1 — Week 1 concurrency and memory. Agenda: short definitions, a deep dive, your synchronised-dictionaries story, then a social-feed HLD sketch. I’ll cut you off if you’re 2× over time — self-correct and continue. Ready?”
-
-Start timer for the whole mock.
+> Cover the answer, speak aloud, then check follow-ups. Simple language. Named work only — never S-codes in speech.
 
 ---
 
-## 1. Warm-up definitions (10 min)
+### Q1. Setup (2 min)? `(45–60s)`
+**Answer:**
 
-Ask **any 5** from the list. Budget ~45–60s each.  
-Full model answers: [`04-questions.md`](04-questions.md) W1–W12.
+> “Interviewer says: > “This is Mock #1 — Week 1 concurrency and memory. Agenda: short definitions, a deep dive, your synchronised-dictionaries story, then a social-feed HLD sketch. I’ll cut you off if you’re 2× over time — self-correct and continue. Ready?”.”
 
-### Scripted set A (default)
+**Follow-ups:**
 
-| # | Prompt | Budget |
-|---|---|---|
-| 1 | “Struct versus class — when do you choose each?” | 45s |
-| 2 | “What is copy-on-write?” | 45s |
-| 3 | “weak versus unowned?” | 45s |
-| 4 | “Serial versus concurrent queue?” | 45s |
-| 5 | “In one minute: how would you design a thread-safe dictionary?” | 60–90s |
-
-### Alternate set B
-
-POP in ads · Main-queue deadlock · Actor isolation · Sendable · Task cancellation
-
-**Interviewer notes:** Mark agenda? trade-off? provenance honesty?
-
----
-
-## 2. Deep dive (25 min)
-
-Ask **4–5** items. Allow follow-ups. Budgets 90–120s unless noted.
-
-### D1 — Actor reentrancy `(120s)`
-
-> “You `await` inside an actor method. Can another task mutate the actor’s state before you resume? What breaks if you assume continuity?”
-
-Follow-ups:
-- How do you harden load-if-missing?
-- Contrast with GCD serial queue (no await suspension in the same way)
-
-### D2 — Serial sync re-entry `(90s)`
-
-> “You’re on a private serial queue and call `queue.sync` again from nested code. What happens? Is this only a main-queue issue?”
-
-Follow-ups:
-- Unlocked internal pattern?
-- `dispatchPrecondition`?
-
-### D3 — Memory Graph vs Leaks `(90s)`
-
-> “Memory Graph shows a retain cycle but Leaks shows nothing. Why aren’t those tools synonyms?”
-
-Follow-ups:
-- Abandoned memory vs leak?
-- What do you do next in Xcode?
-
-### D4 — GCD → actor migration `(120s)`
-
-> “You have a GCD `SafeDict` in production. How would you migrate a module to an actor without a big-bang rewrite?”
-
-Follow-ups:
-- API surface stay sync somehow? (adapters / async façade)
-- Label Verified S2 vs Applied S2-A1
-
-### D5 — Pick one stretch
-
-Choose based on misses:
-
-- `@unchecked Sendable` ethics `(90s)`  
-- Type erasure cost in ads renderer `(90s)`  
-- Async write then sync read visibility `(90s)`  
-- Mixing `queue.sync` inside `async` functions `(90s)`  
-
-Model answers: [`04-questions.md`](04-questions.md) deep section.
-
----
-
-## 3. Story — S2 `(10 min)`
-
-### Prompt
-
-> “Tell me about a concurrency bug you fixed in production. You have three minutes.”
-
-Listen for STAR. Score with story rubric:
-
-| Beat | Present? |
+| Follow-up | Answer |
 |---|---|
-| Situation: shared dicts raced | |
-| Action: serial queues / RW / safe API | |
-| Result: path-specific crash reduction | |
-| Lesson + actor coda | |
-| No CFS ownership theft / no fake crash % | |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-### Required follow-up `(90s)`
-
-> “How would you design this today with Swift concurrency?”
-
-Expect **How I would apply it · S2-A1** — actor, same safe API, await, not “we rewrote everything as actors.”
-
-### Optional follow-up
-
-> “Why hide the queue instead of letting callers dispatch onto it?”
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 4. Mini system design — Social Feed `(20 min)`
+### Q2. Warm-up definitions (10 min)? `(45–60s)`
+**Answer:**
 
-### Prompt
+> “Ask any 5 from the list. Budget ~45–60s each. Full model answers: sample/07-revision-qna.md W1–W12.”
 
-> “Design the client side of a social/listing feed for a large consumer app — think BookMyShow-scale traffic. Clarify first, then high-level design only. No need for full LLD today.”
+**Follow-ups:**
 
-### Good clarifying questions (candidate should ask ~4–6)
-
-- Organic vs ads mixing rules?  
-- Pagination model (cursor vs offset)?  
-- Offline / stale content expectations?  
-- Image / video autoplay policy?  
-- Realtime invalidation vs pull-to-refresh?  
-- Approximate DAU / latency targets? (candidate may cite 30L+ DAU as **Verified · S8** scale context — not invent new numbers)
-
-### HLD bullets interviewer wants to hear
-
-| Area | Expect |
+| Follow-up | Answer |
 |---|---|
-| API | Cursor pagination request/response |
-| Caching | Memory + disk tiers; TTL/invalidation sketch |
-| Images | Prefetch; cancel on scroll away |
-| Concurrency | Don’t block main; cancel in-flight |
-| Failure | Empty/error/retry states |
-| Ads | Slot injection without forking feed pipeline (S1 instinct OK) |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-**Interviewer:** Cut at 20 min even if incomplete — note what was missing.
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 5. Retro `(10–15 min)`
+### Q3. Scripted set A (default)? `(45–60s)`
+**Answer:**
 
-1. Fill [`code/MockScorecard.md`](code/MockScorecard.md).  
-2. Average deep-dive scores.  
-3. List top 5 weak cards → pin to Week 2 warm-ups.  
-4. Optional encore: S1 Ads POP talk ≤5 min (preview Mock #2).
+> “See the notes for this topic and speak the core idea in simple words.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 6. Interlocutor “cut” lines (use sparingly)
+### Q4. Alternate set B? `(45–60s)`
+**Answer:**
 
-> “You’re at 2× — give me the trade-off in one sentence.”  
-> “Don’t invent a metric — what’s the honest result?”  
-> “Agenda first.”  
-> “Is that Verified or how you’d apply it?”
+> “POP in ads · Main-queue deadlock · Actor isolation · Sendable · Task cancellation Interviewer notes: Mark agenda? trade-off? provenance honesty?”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 7. Self-mock mode
+### Q5. Deep dive (25 min)? `(45–60s)`
+**Answer:**
 
-If solo: record voice memo; play back against `04-questions` Full spoken answers; still fill scorecard honestly.
+> “Ask 4–5 items. Allow follow-ups. Budgets 90–120s unless noted.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q6. D1 — Actor reentrancy `(120s)`? `(45–60s)`
+**Answer:**
+
+> “You await inside an actor method. Can another task mutate the actor’s state before you resume? What breaks if you assume continuity?” Follow-ups: - How do you harden load-if-missing? - Contrast with GCD serial queue (no await suspension in the same way).
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q7. D2 — Serial sync re-entry `(90s)`? `(45–60s)`
+**Answer:**
+
+> “You’re on a private serial queue and call queue.sync again from nested code. What happens? Is this only a main-queue issue?” Follow-ups: - Unlocked internal pattern? - dispatchPrecondition?
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q8. D3 — Memory Graph vs Leaks `(90s)`? `(45–60s)`
+**Answer:**
+
+> “Memory Graph shows a retain cycle but Leaks shows nothing. Why aren’t those tools synonyms?” Follow-ups: - Abandoned memory vs leak? - What do you do next in Xcode?
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q9. D4 — GCD → actor migration `(120s)`? `(45–60s)`
+**Answer:**
+
+> “You have a GCD SafeDict in production. How would you migrate a module to an actor without a big-bang rewrite?” Follow-ups: - API surface stay sync somehow? (adapters / async façade) - Label Verified vs Applied .
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
+
+---
+
+### Q10. D5 — Pick one stretch? `(45–60s)`
+**Answer:**
+
+> “Choose based on misses: - @unchecked Sendable ethics (90s) - Type erasure cost in ads renderer (90s) - Async write then sync read visibility (90s) - Mixing queue.sync inside async functions (90s).”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q11. Prompt? `(45–60s)`
+**Answer:**
+
+> “Tell me about a concurrency bug you fixed in production. You have three minutes.” Listen for STAR. Score with story rubric:.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q12. Required follow-up `(90s)`? `(45–60s)`
+**Answer:**
+
+> “How would you design this today with Swift concurrency?” Expect How I would apply it · — actor, same safe API, await, not “we rewrote everything as actors.”.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q13. Optional follow-up? `(45–60s)`
+**Answer:**
+
+> “Why hide the queue instead of letting callers dispatch onto it?” ---.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q14. Prompt? `(45–60s)`
+**Answer:**
+
+> “Design the client side of a social/listing feed for a large consumer app — think BookMyShow-scale traffic. Clarify first, then high-level design only. No need for full LLD today.”.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
+
+---
+
+### Q15. Good clarifying questions (candidate should ask ~4–6)? `(45–60s)`
+**Answer:**
+
+> “- Organic vs ads mixing rules? - Pagination model (cursor vs offset)? - Offline / stale content expectations? - Image / video autoplay policy? - Realtime invalidation vs pull-to-refresh? - Approximate DAU / latency targets? (candidate may cite 30L+ DAU as Verified · scale context — not invent new numbers).”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
+
+---
+
+### Q16. HLD bullets interviewer wants to hear? `(45–60s)`
+**Answer:**
+
+> “Interviewer: Cut at 20 min even if incomplete — note what was missing.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q17. Retro `(10–15 min)`? `(45–60s)`
+**Answer:**
+
+> “1. Fill code/MockScorecard.md. 2. Average deep-dive scores. 3. List top 5 weak cards → pin to Week 2 warm-ups. 4. Optional encore: Ads POP talk ≤5 min (preview Mock #2). ---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q18. Interlocutor “cut” lines (use sparingly)? `(45–60s)`
+**Answer:**
+
+> “You’re at 2× — give me the trade-off in one sentence.” “Don’t invent a metric — what’s the honest result?” “Agenda first.” “Is that Verified or how you’d apply it?” ---.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
+
+---
+
+### Q19. Self-mock mode? `(45–60s)`
+**Answer:**
+
+> “If solo: record voice memo; play back against 07-revision-qna Full spoken answers; still fill scorecard honestly.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---

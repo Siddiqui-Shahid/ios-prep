@@ -39,4 +39,4 @@ Next. 5. Flash prompts. 1. Stack vs queue — one example each + complexity 2. W
 
 ## §9 6. Timed drills
 
-Next. 6. Timed drills. Expand from sample cards and 04-questions answer points. Pick Ads or S D U I track tonight for Day 14.
+Next. 6. Timed drills. Expand from sample cards and 07-revision-qna answer points. Pick Ads or S D U I track tonight for Day 14.

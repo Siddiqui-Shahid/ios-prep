@@ -43,6 +43,12 @@
               "title": "Module leftovers: drills, flash recall, close-out (Q&A)",
               "markdown": "assets/content/week-01/day-01/06-module-drills.md",
               "script": "assets/content/week-01/day-01/06-module-drills.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-01) (Q&A)",
+              "markdown": "assets/content/week-01/day-01/07-revision-qna.md",
+              "script": "assets/content/week-01/day-01/07-revision-qna.script.md"
             }
           ],
           "code": [
@@ -99,6 +105,12 @@
               "title": "Module leftovers: drills, flash recall, close-out (Q&A)",
               "markdown": "assets/content/week-01/day-02/06-module-drills.md",
               "script": "assets/content/week-01/day-02/06-module-drills.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-02) (Q&A)",
+              "markdown": "assets/content/week-01/day-02/07-revision-qna.md",
+              "script": "assets/content/week-01/day-02/07-revision-qna.script.md"
             }
           ],
           "code": [
@@ -155,6 +167,12 @@
               "title": "Module leftovers: drills, flash recall, close-out (Q&A)",
               "markdown": "assets/content/week-01/day-03/06-module-drills.md",
               "script": "assets/content/week-01/day-03/06-module-drills.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-03) (Q&A)",
+              "markdown": "assets/content/week-01/day-03/07-revision-qna.md",
+              "script": "assets/content/week-01/day-03/07-revision-qna.script.md"
             }
           ],
           "code": [
@@ -205,6 +223,12 @@
               "title": "Module leftovers: drills, flash recall, close-out (Q&A)",
               "markdown": "assets/content/week-01/day-04/06-module-drills.md",
               "script": "assets/content/week-01/day-04/06-module-drills.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-04) (Q&A)",
+              "markdown": "assets/content/week-01/day-04/07-revision-qna.md",
+              "script": "assets/content/week-01/day-04/07-revision-qna.script.md"
             }
           ],
           "code": [
@@ -261,6 +285,12 @@
               "title": "Module leftovers: drills, flash recall, close-out (Q&A)",
               "markdown": "assets/content/week-01/day-05/06-module-drills.md",
               "script": "assets/content/week-01/day-05/06-module-drills.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-05) (Q&A)",
+              "markdown": "assets/content/week-01/day-05/07-revision-qna.md",
+              "script": "assets/content/week-01/day-05/07-revision-qna.script.md"
             }
           ],
           "code": [
@@ -305,6 +335,12 @@
               "title": "System-design mock: Search Autocomplete (Q&A)",
               "markdown": "assets/content/week-01/day-06/05-system-design-mock.md",
               "script": "assets/content/week-01/day-06/05-system-design-mock.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-06) (Q&A)",
+              "markdown": "assets/content/week-01/day-06/07-revision-qna.md",
+              "script": "assets/content/week-01/day-06/07-revision-qna.script.md"
             }
           ],
           "code": [
@@ -415,6 +451,12 @@
               "title": "System-design mock: Infinite Social Feed (Q&A)",
               "markdown": "assets/content/week-01/day-07/05-system-design-mock.md",
               "script": "assets/content/week-01/day-07/05-system-design-mock.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-07) (Q&A)",
+              "markdown": "assets/content/week-01/day-07/07-revision-qna.md",
+              "script": "assets/content/week-01/day-07/07-revision-qna.script.md"
             }
           ],
           "code": [
@@ -465,6 +507,12 @@
               "title": "System-design mock: App Modularization & DI (Q&A)",
               "markdown": "assets/content/week-02/day-08/05-system-design-mock.md",
               "script": "assets/content/week-02/day-08/05-system-design-mock.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-08) (Q&A)",
+              "markdown": "assets/content/week-02/day-08/07-revision-qna.md",
+              "script": "assets/content/week-02/day-08/07-revision-qna.script.md"
             }
           ],
           "code": [
@@ -521,6 +569,12 @@
               "title": "System-design mock: Networking Layer / HTTP Client (Q&A)",
               "markdown": "assets/content/week-02/day-09/05-system-design-mock.md",
               "script": "assets/content/week-02/day-09/05-system-design-mock.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-09) (Q&A)",
+              "markdown": "assets/content/week-02/day-09/07-revision-qna.md",
+              "script": "assets/content/week-02/day-09/07-revision-qna.script.md"
             }
           ],
           "code": [
@@ -565,6 +619,12 @@
               "title": "System-design mock: Server-Driven UI Engine (Q&A)",
               "markdown": "assets/content/week-02/day-10/05-system-design-mock.md",
               "script": "assets/content/week-02/day-10/05-system-design-mock.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-10) (Q&A)",
+              "markdown": "assets/content/week-02/day-10/07-revision-qna.md",
+              "script": "assets/content/week-02/day-10/07-revision-qna.script.md"
             }
           ],
           "code": [
@@ -621,6 +681,12 @@
               "title": "System-design mock: Deep Linking & Universal Links (Q&A)",
               "markdown": "assets/content/week-02/day-11/05-system-design-mock.md",
               "script": "assets/content/week-02/day-11/05-system-design-mock.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-11) (Q&A)",
+              "markdown": "assets/content/week-02/day-11/07-revision-qna.md",
+              "script": "assets/content/week-02/day-11/07-revision-qna.script.md"
             }
           ],
           "code": [
@@ -677,6 +743,12 @@
               "title": "System-design mock: Short-form Video Feed (Q&A)",
               "markdown": "assets/content/week-02/day-12/05-system-design-mock.md",
               "script": "assets/content/week-02/day-12/05-system-design-mock.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-12) (Q&A)",
+              "markdown": "assets/content/week-02/day-12/07-revision-qna.md",
+              "script": "assets/content/week-02/day-12/07-revision-qna.script.md"
             }
           ],
           "code": [
@@ -733,6 +805,12 @@
               "title": "System-design mock: Instant Messaging & Chat (Q&A)",
               "markdown": "assets/content/week-02/day-13/05-system-design-mock.md",
               "script": "assets/content/week-02/day-13/05-system-design-mock.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-13) (Q&A)",
+              "markdown": "assets/content/week-02/day-13/07-revision-qna.md",
+              "script": "assets/content/week-02/day-13/07-revision-qna.script.md"
             }
           ],
           "code": [
@@ -807,6 +885,12 @@
               "title": "System-design mock: Mobile Payment Checkout (Q&A)",
               "markdown": "assets/content/week-02/day-14/05-system-design-mock.md",
               "script": "assets/content/week-02/day-14/05-system-design-mock.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-14) (Q&A)",
+              "markdown": "assets/content/week-02/day-14/07-revision-qna.md",
+              "script": "assets/content/week-02/day-14/07-revision-qna.script.md"
             }
           ],
           "code": [
@@ -869,6 +953,12 @@
               "title": "System-design mock: App Modularization & DI (Q&A)",
               "markdown": "assets/content/week-03/day-15/05-system-design-mock.md",
               "script": "assets/content/week-03/day-15/05-system-design-mock.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-15) (Q&A)",
+              "markdown": "assets/content/week-03/day-15/07-revision-qna.md",
+              "script": "assets/content/week-03/day-15/07-revision-qna.script.md"
             }
           ],
           "code": [
@@ -925,6 +1015,12 @@
               "title": "System-design mock: Image Loading Library (Q&A)",
               "markdown": "assets/content/week-03/day-16/05-system-design-mock.md",
               "script": "assets/content/week-03/day-16/05-system-design-mock.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-16) (Q&A)",
+              "markdown": "assets/content/week-03/day-16/07-revision-qna.md",
+              "script": "assets/content/week-03/day-16/07-revision-qna.script.md"
             }
           ],
           "code": [
@@ -981,6 +1077,12 @@
               "title": "System-design mock: App Performance Monitoring (Q&A)",
               "markdown": "assets/content/week-03/day-17/05-system-design-mock.md",
               "script": "assets/content/week-03/day-17/05-system-design-mock.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-17) (Q&A)",
+              "markdown": "assets/content/week-03/day-17/07-revision-qna.md",
+              "script": "assets/content/week-03/day-17/07-revision-qna.script.md"
             }
           ],
           "code": [
@@ -1031,6 +1133,12 @@
               "title": "System-design mock: Crash Reporting SDK (Q&A)",
               "markdown": "assets/content/week-03/day-18/05-system-design-mock.md",
               "script": "assets/content/week-03/day-18/05-system-design-mock.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-18) (Q&A)",
+              "markdown": "assets/content/week-03/day-18/07-revision-qna.md",
+              "script": "assets/content/week-03/day-18/07-revision-qna.script.md"
             }
           ],
           "code": [
@@ -1081,6 +1189,12 @@
               "title": "System-design mock: Mobile Security & Zero-Trust Engine (Q&A)",
               "markdown": "assets/content/week-03/day-19/05-system-design-mock.md",
               "script": "assets/content/week-03/day-19/05-system-design-mock.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-19) (Q&A)",
+              "markdown": "assets/content/week-03/day-19/07-revision-qna.md",
+              "script": "assets/content/week-03/day-19/07-revision-qna.script.md"
             }
           ],
           "code": [
@@ -1131,6 +1245,12 @@
               "title": "System-design mock: Push Notification System (Q&A)",
               "markdown": "assets/content/week-03/day-20/05-system-design-mock.md",
               "script": "assets/content/week-03/day-20/05-system-design-mock.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-20) (Q&A)",
+              "markdown": "assets/content/week-03/day-20/07-revision-qna.md",
+              "script": "assets/content/week-03/day-20/07-revision-qna.script.md"
             }
           ],
           "code": [
@@ -1175,6 +1295,12 @@
               "title": "System-design mock: Networking Layer + SSL Pinning (Q&A)",
               "markdown": "assets/content/week-03/day-21/05-system-design-mock.md",
               "script": "assets/content/week-03/day-21/05-system-design-mock.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-21) (Q&A)",
+              "markdown": "assets/content/week-03/day-21/07-revision-qna.md",
+              "script": "assets/content/week-03/day-21/07-revision-qna.script.md"
             }
           ],
           "code": [
@@ -1231,6 +1357,12 @@
               "title": "System-design mock: Collaborative Document Editor (Q&A)",
               "markdown": "assets/content/week-04/day-22/05-system-design-mock.md",
               "script": "assets/content/week-04/day-22/05-system-design-mock.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-22) (Q&A)",
+              "markdown": "assets/content/week-04/day-22/07-revision-qna.md",
+              "script": "assets/content/week-04/day-22/07-revision-qna.script.md"
             }
           ],
           "code": [
@@ -1299,6 +1431,12 @@
               "title": "System-design mock: Realtime Location / Ride Tracking (Q&A)",
               "markdown": "assets/content/week-04/day-23/05-system-design-mock.md",
               "script": "assets/content/week-04/day-23/05-system-design-mock.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-23) (Q&A)",
+              "markdown": "assets/content/week-04/day-23/07-revision-qna.md",
+              "script": "assets/content/week-04/day-23/07-revision-qna.script.md"
             }
           ],
           "code": [
@@ -1349,6 +1487,12 @@
               "title": "System-design mock: On-Device LLM / AI Engine (Q&A)",
               "markdown": "assets/content/week-04/day-24/05-system-design-mock.md",
               "script": "assets/content/week-04/day-24/05-system-design-mock.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-24) (Q&A)",
+              "markdown": "assets/content/week-04/day-24/07-revision-qna.md",
+              "script": "assets/content/week-04/day-24/07-revision-qna.script.md"
             }
           ],
           "code": [
@@ -1411,6 +1555,12 @@
               "title": "System-design mock: E-Commerce Catalog & Discovery (Q&A)",
               "markdown": "assets/content/week-04/day-25/05-system-design-mock.md",
               "script": "assets/content/week-04/day-25/05-system-design-mock.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-25) (Q&A)",
+              "markdown": "assets/content/week-04/day-25/07-revision-qna.md",
+              "script": "assets/content/week-04/day-25/07-revision-qna.script.md"
             }
           ],
           "code": []
@@ -1448,6 +1598,12 @@
               "title": "System-design mock: Mobile Platform Engineering (EM/Staff) (Q&A)",
               "markdown": "assets/content/week-04/day-26/05-system-design-mock.md",
               "script": "assets/content/week-04/day-26/05-system-design-mock.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-26) (Q&A)",
+              "markdown": "assets/content/week-04/day-26/07-revision-qna.md",
+              "script": "assets/content/week-04/day-26/07-revision-qna.script.md"
             }
           ],
           "code": []
@@ -1485,6 +1641,12 @@
               "title": "System-design mock: Auth: OAuth2 PKCE + Biometrics (Q&A)",
               "markdown": "assets/content/week-04/day-27/05-system-design-mock.md",
               "script": "assets/content/week-04/day-27/05-system-design-mock.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-27) (Q&A)",
+              "markdown": "assets/content/week-04/day-27/07-revision-qna.md",
+              "script": "assets/content/week-04/day-27/07-revision-qna.script.md"
             }
           ],
           "code": []
@@ -1522,6 +1684,12 @@
               "title": "System-design mock: Social Feed (warm retrieval) (Q&A)",
               "markdown": "assets/content/week-04/day-28/05-system-design-mock.md",
               "script": "assets/content/week-04/day-28/05-system-design-mock.script.md"
+            },
+            {
+              "id": "07-revision-qna",
+              "title": "Revision Q&A (day-28) (Q&A)",
+              "markdown": "assets/content/week-04/day-28/07-revision-qna.md",
+              "script": "assets/content/week-04/day-28/07-revision-qna.script.md"
             }
           ],
           "code": []

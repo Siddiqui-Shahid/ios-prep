@@ -1,7 +1,7 @@
 # Day 06 — DSA: Arrays, Strings, Two Pointers, Sliding Window
 
-> Week 1 · Full study (self-contained) · ~5–6 hrs  
-> Revision twin: [revision/weeks/week-01/day-06.md](../../../revision/weeks/week-01/day-06.md)  
+> Week 1 · Full study (self-contained) · ~5–6 hrs 
+> Revision twin: [revision/weeks/week-01/day-06.md](../../../revision/weeks/week-01/day-06.md) 
 > Track index (optional): [`../../../coding/dsa-track.md`](../../../coding/dsa-track.md) — patterns are **embedded below**; you do not need to leave this chapter.
 
 ## Outcomes
@@ -16,13 +16,13 @@ By end of day, without notes, you can:
 
 ## How to study
 
-1. [`01-foundations.md`](01-foundations.md) — pattern signals + Swift tips + say-this-first  
-2. [`02-deep-dive.md`](02-deep-dive.md) — worked approaches for each core problem  
-3. [`03-production-bridge.md`](03-production-bridge.md) — how to talk DSA as a senior (BMS hooks light)  
-4. [`code/`](code/) — full Swift solutions; cover, re-implement from approach  
-5. [`04-questions.md`](04-questions.md) — two-layer pattern Q&A + approach scripts  
-6. [`05-exercises.md`](05-exercises.md) — timed solves + catch-up  
-7. Revision twin for spaced drills  
+1. [`01-foundations.md`](01-foundations.md) — pattern signals + Swift tips + say-this-first 
+2. [`02-deep-dive.md`](02-deep-dive.md) — worked approaches for each core problem 
+3. [`03-production-bridge.md`](03-production-bridge.md) — how to talk DSA as a senior (BMS hooks light) 
+4. [`code/`](code/) — full Swift solutions; cover, re-implement from approach 
+5. [`sample/07-revision-qna.md`](sample/07-revision-qna.md) — two-layer pattern Q&A + approach scripts 
+6. [`05-exercises.md`](05-exercises.md) — timed solves + catch-up 
+7. Revision twin for spaced drills 
 
 ## Module map
 
@@ -31,7 +31,7 @@ By end of day, without notes, you can:
 | Foundations | [01-foundations.md](01-foundations.md) |
 | Deep dive | [02-deep-dive.md](02-deep-dive.md) |
 | Production bridge | [03-production-bridge.md](03-production-bridge.md) |
-| Questions | [04-questions.md](04-questions.md) |
+| Questions | [sample/07-revision-qna.md](sample/07-revision-qna.md) |
 | Exercises | [05-exercises.md](05-exercises.md) |
 | Code | [code/](code/) Solutions.swift + per-problem files |
 | Sample Q&A (guided) | [sample/](sample/README.md) — concept teaching; does not replace modules above |
@@ -58,9 +58,9 @@ DSA rarely maps 1:1 to resume metrics. Use:
 
 ## Critical notes (pin)
 
-1. **Patterns are embedded in this chapter** — optional link to dsa-track is for spaced review across weeks only.  
-2. Speak **time and space** after every approach.  
-3. Swift `String` is not Int-indexed O(1) — convert to `[Character]` when needed and say the cost.  
+1. **Patterns are embedded in this chapter** — optional link to dsa-track is for spaced review across weeks only. 
+2. Speak **time and space** after every approach. 
+3. Swift `String` is not Int-indexed O(1) — convert to `[Character]` when needed and say the cost. 
 4. Communication grade > clever silent solve.
 
 ## Agenda openers

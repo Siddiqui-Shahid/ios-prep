@@ -27,7 +27,7 @@ Max study **~2–3 hrs** then rest. Close laptop when the cap hits.
 | Priority stories once each | Rewriting STARs from scratch |
 | Checklist + opener retrieval | “Just one more Medium” |
 | One 45s definition aloud | New SD HLD or WWDC deep dive |
-| Light [04-questions](../../../weeks/week-04/day-28/04-questions.md) (~5 max) | Caffeine experiments / all-nighter |
+| Light [07-revision-qna](../../../weeks/week-04/day-28/sample/07-revision-qna.md) (~5 max) | Caffeine experiments / all-nighter |
 
 ### 2.3 Metric trio (retrieval only)
 
@@ -51,7 +51,7 @@ Max study **~2–3 hrs** then rest. Close laptop when the cap hits.
 | Must | [01-foundations](../../../weeks/week-04/day-28/01-foundations.md) | Taper rules |
 | Must | [02-deep-dive](../../../weeks/week-04/day-28/02-deep-dive.md) | Checklist + opener cards |
 | Run | [05-exercises](../../../weeks/week-04/day-28/05-exercises.md) | Taper protocol → rest |
-| Light | [04-questions](../../../weeks/week-04/day-28/04-questions.md) | Max ~5, retrieval only |
+| Light | [07-revision-qna](../../../weeks/week-04/day-28/sample/07-revision-qna.md) | Max ~5, retrieval only |
 
 ## 4. Map to your work
 

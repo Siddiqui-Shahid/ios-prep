@@ -51,7 +51,7 @@ Phased rollout with pause criteria tied to **BookMyShow IMOC + crash-free at sca
 | Must | [Sample Q&A](../../../weeks/week-03/day-20/sample/) | Guided cards |
 | Must | Full modules [01–03](../../../weeks/week-03/day-20/01-foundations.md) | Gaps |
 | Deepen | [code/DeepLinkQueue.swift](../../../weeks/week-03/day-20/code/DeepLinkQueue.swift) | Queue sketch |
-| Drill | [04-questions](../../../weeks/week-03/day-20/04-questions.md) | Timed answers |
+| Drill | [07-revision-qna](../../../weeks/week-03/day-20/sample/07-revision-qna.md) | Timed answers |
 
 ## 4. Map to your work
 
@@ -87,4 +87,4 @@ Phased rollout with pause criteria tied to **BookMyShow IMOC + crash-free at sca
 | Rollout pause criteria | 45s |
 | Hybrid UI / deeplinks ≤20s pitch | 20s |
 
-Expand from [sample cards](../../../weeks/week-03/day-20/sample/) and [04-questions](../../../weeks/week-03/day-20/04-questions.md) answer points.
+Expand from [sample cards](../../../weeks/week-03/day-20/sample/) and [07-revision-qna](../../../weeks/week-03/day-20/sample/07-revision-qna.md) answer points.

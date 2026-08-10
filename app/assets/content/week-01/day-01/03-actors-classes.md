@@ -1,13 +1,12 @@
 # Sample 03 — Actors and classes (Q&A)
 
-> Guided teaching. Say the **Answer** out loud like you’re talking to an interviewer.  
-> Each answer ends with **How can I relate to my case** using named work — never S-codes.  
+> Guided teaching. Say the **Answer** out loud like you’re talking to an interviewer. 
+> Each answer ends with **How can I relate to my case** using named work — never S-codes. 
 > **Brain puzzles** at the bottom — cover the answer, think, then check.
 
 ---
 
 ### Q1. When is a class the right tool?
-
 **Answer:**
 
 > “Use a class when you need identity — the same service instance shared across the app, UIKit or AppKit objects, triple-equals checks, or ObjC and KVO runtime requirements. Otherwise prefer values plus a single owner — ViewModel, store. ‘One session object everyone must see updates on’ is the rare legitimate class model case.”
@@ -27,7 +26,6 @@
 ---
 
 ### Q2. What is an actor in one sentence?
-
 **Answer:**
 
 > “An actor is a reference type whose mutable state is isolated — you talk to it with await, and the runtime serializes access so concurrent tasks cannot data-race on its storage. Enough for Day 01: isolated reference type; await to touch state; prevents data races. Day 05 goes deeper on hops and reentrancy — today, awareness: after await, state may have changed.”
@@ -36,7 +34,7 @@
 
 | Follow-up | Answer |
 |---|---|
-| Minimal API shape? | “`await counter.increment()` — cross-actor calls suspend until the actor can run.” |
+| Minimal API shape? | “`await counter.increment` — cross-actor calls suspend until the actor can run.” |
 | Do actors replace all classes? | “No — UIKit stays class; actors isolate specific shared mutable cores.” |
 | What not to say today? | “‘Every ViewModel should be an actor’ — that’s a trap.” |
 
@@ -46,7 +44,6 @@
 ---
 
 ### Q3. How is an actor different from a plain class?
-
 **Answer:**
 
 > “Both are reference types. A class lets any task mutate shared properties if you forget synchronization — data races are your bug. An actor makes isolation part of the type system: mutable state is only accessible on the actor’s executor, usually via await. Inheritance is limited compared to classes.”
@@ -65,7 +62,6 @@
 ---
 
 ### Q4. How does an actor relate to a GCD serial queue?
-
 **Answer:**
 
 > “At BookMyShow, shared mutable maps were protected with GCD serial queues — BookMyShow synchronised dictionaries. Soft interview line: where you serialized dictionary access with a serial queue, a Swift actor is the language-native equivalent you’d evaluate for new code — same API surface idea, compile-time isolation instead of convention. Design: actor SafeDict is greenfield redesign; do not claim you rewrote production unless you did. And don’t migrate a stable queue module just for fashion — strangler at boundaries.”
@@ -86,7 +82,6 @@
 ---
 
 ### Q5. Why not make every ViewModel an actor?
-
 **Answer:**
 
 > “UI must update on the main actor. Common pattern: `@MainActor final class SearchViewModel` with published state. A custom actor for every VM adds await noise at every bind site. Isolate the shared mutable store — caches, in-flight maps — and keep UI-facing models on MainActor.”
@@ -105,7 +100,6 @@
 ---
 
 ### Q6. What is `@MainActor` vs a custom actor?
-
 **Answer:**
 
 > “MainActor is an isolation domain for main-thread and UI work — related to actors but aimed at UI affinity, not a general-purpose shared store. A custom actor serializes its own state on its executor. Use MainActor for ViewModels and UI types; use a dedicated actor when background tasks share mutable state that must not race.”
@@ -124,7 +118,6 @@
 ---
 
 ### Q7. Actor reentrancy — what must you say on Day 01?
-
 **Answer:**
 
 > “Actors prevent data races on isolated storage, but they are reentrant at await. While your method is suspended, another task can enter the same actor and change fields. No data race — still a logic bug if you trust pre-await snapshots blindly. Awareness today; wallet and cache deep dives on Day 05.”
@@ -142,7 +135,6 @@
 ---
 
 ### Q8. What goes wrong with class instances in a Set or Dictionary key?
-
 **Answer:**
 
 > “Prefer stable ID-based Hashable, or identity via ObjectIdentifier. Never mutate fields that participate in hash(into:) while the object sits in a collection — undefined behavior, lost entries, weird lookups. If selection state changes, hash on stable id only, not on isSelected. ObjectIdentifier is ‘same instance’; ID-based is ‘same business key across instances.’”
@@ -161,7 +153,6 @@
 ---
 
 ### Q9. What failure modes should you name in an interview?
-
 **Answer:**
 
 > “Class used for DTO → flaky UI after ‘copy.’ Nested class in struct → surprising shared side effects. Assume array assign deep-copies → wrong perf or wrong mental model. Boolean UI state → impossible screens. Actor on every type → contorted APIs. Mutating hashed fields in Set → lost objects. Fix mindset: match type to semantics, audit nested refs, isolate the real concurrent core.”
@@ -180,8 +171,7 @@
 
 ---
 
-### Q10. Give the 45-second spoken agenda for actor intro
-
+### Q10. Give the 45-second spoken agenda for actor intro?
 **Answer:**
 
 > “Agenda: race → isolation → bridge. An actor is a reference type that serializes access to its state. Call sites await. It’s the modern equivalent of the serial-queue boundary we used around BookMyShow synchronised dictionaries. For greenfield I’d evaluate Design: actor SafeDict — I won’t claim we rewrote production.”
@@ -205,10 +195,10 @@
 
 ```swift
 final class Seat: Hashable {
-    let id: String
-    var isSelected: Bool
-    static func == (l: Seat, r: Seat) -> Bool { l.id == r.id }
-    func hash(into hasher: inout Hasher) { hasher.combine(id); hasher.combine(isSelected) }
+ let id: String
+ var isSelected: Bool
+ static func == (l: Seat, r: Seat) -> Bool { l.id == r.id }
+ func hash(into hasher: inout Hasher) { hasher.combine(id); hasher.combine(isSelected) }
 }
 var set: Set<Seat> = [Seat(id: "A1")]
 let seat = set.first!

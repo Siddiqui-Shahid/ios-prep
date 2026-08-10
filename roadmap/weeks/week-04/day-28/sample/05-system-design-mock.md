@@ -7,7 +7,6 @@
 ---
 
 ### Q1. Interviewer: “Design Social Feed (warm retrieval).” How do you open?
-
 **Answer:**
 
 > **Agenda (≤20s):** “I’ll take ~5 minutes clarifying scope and scale, then a four-layer client HLD with backend touchpoints and load, then API/data, two deep dives on **Cheatsheet spine only** and **Pivot kit**, and close on failure modes, metrics, and kill switches. Does that work?”
@@ -33,7 +32,6 @@
 ---
 
 ### Q2. After clarify — what does the optimal flow look like?
-
 **Answer:**
 
 > **Scripted outcomes for this mock:** Warm retrieval: agenda, clarify Qs, spine times, kill-switch reminder. Pivot kit: FinTrack/GymFlow if AI. No new design invention.
@@ -54,8 +52,7 @@
 
 ---
 
-### Q3. Walk the HLD — client layers, backend, load.
-
+### Q3. Walk the HLD — client layers, backend, load?
 **Answer:**
 
 > **Do not draw a new full HLD today.** Skim remembered 4 layers + backend touchpoints for the likely prompt.
@@ -74,8 +71,7 @@
 
 ---
 
-### Q4. Data / API — entities, endpoints, scale.
-
+### Q4. Data / API — entities, endpoints, scale?
 **Answer:**
 
 > Retrieve only: cursor > offset; Idempotency-Key on payments; debounce search; single-flight refresh.
@@ -94,7 +90,6 @@
 ---
 
 ### Q5. Deep dive 1 — Cheatsheet spine only?
-
 **Answer:**
 
 > 0–5 clarify · 5–15 HLD · 15–25 API · 25–40 dives · 40–45 ops. Say it once aloud.
@@ -113,7 +108,6 @@
 ---
 
 ### Q6. Deep dive 2 — Pivot kit?
-
 **Answer:**
 
 > On-device AI: privacy, local RAG, thermal, fail-soft — FinTrack/GymFlow. Networking: refresh+pin. SDUI: registry+fallback.
@@ -132,7 +126,6 @@
 ---
 
 ### Q7. Ops — failures, metrics, rollout, load?
-
 **Answer:**
 
 > Remember: failure modes, concrete metrics, kill switch. Last five minutes sacred.
@@ -151,7 +144,6 @@
 ---
 
 ### Q8. Flow scorecard — did you hit the optimal spine?
-
 **Answer:**
 
 > **Light game-day retrieval only:** restate agenda + clarify list; skim HLD bullets — **do not** invent a new design from scratch.
@@ -168,4 +160,3 @@
 
 **How can I relate to my case:**
 - **Concept-only — no shipped story.** Rehearse this scorecard after every timed mock.
-

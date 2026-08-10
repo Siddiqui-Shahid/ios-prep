@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What is the ≤20s elevator pitch for BookMyShow synchronised dictionaries?
-
 **Answer:**
 
 > “We gated shared dictionaries behind a serial queue API so call sites couldn’t race the storage — crashes went away on that path.” Label **BookMyShow synchronised dictionaries · BookMyShow · synchronised dictionaries**. Do not claim sole ownership of 99.95% CFS from this story alone.
@@ -26,8 +25,7 @@
 
 ---
 
-### Q2. Walk the ≤3 min STAR beats.
-
+### Q2. Walk the ≤3 min STAR beats?
 **Answer:**
 
 > **Situation:** Shared dictionaries accessed from many threads on a high-traffic path — intermittent races/crashes. **Task:** Stop callers from touching unsynchronized storage. **Action:** Serial queue (or RW pattern) behind get/set/snapshot API; stress testing; Crashlytics to confirm path fixed. **Result:** Crashes eliminated on **that path** — qualitative, path-specific. **Lesson:** Hide concurrency; don’t trust every call site to dispatch correctly.
@@ -48,8 +46,7 @@
 
 ---
 
-### Q3. Required follow-up: “How would you design this today?”
-
+### Q3. Required follow-up: “How would you design this today?”?
 **Answer:**
 
 > **Design: actor SafeDict (not shipped):** Expose an **actor** with the same get/set/snapshot surface — callers `await`; isolation moves into the type system. Production was GCD; this is migration language, not “we rewrote everything as actors last quarter.”
@@ -71,7 +68,6 @@
 ---
 
 ### Q4. Why hide the queue instead of documenting “always dispatch here”?
-
 **Answer:**
 
 > Documentation does not survive scale — new call sites forget, copy-paste wrong queue, or mix sync/async. An API **forces** synchronization at compile/link boundaries. Same reason actors beat “please don’t touch my dict”: the type enforces the contract.
@@ -90,7 +86,6 @@
 ---
 
 ### Q5. What must you NOT claim in BookMyShow synchronised dictionaries?
-
 **Answer:**
 
 > Do not invent fill-rate, crash-percent, or “I single-handedly raised CFS to 99.95%.” Do not say Memory Graph was your primary prod tool unless labeled Applied. Honest result: **path-specific crash reduction** after serializing dictionary access. Use **BookMyShow IMOC + crash-free at scale** only for scale/reliability culture context.
@@ -112,7 +107,6 @@
 ---
 
 ### Q6. How is BookMyShow IMOC + crash-free at scale adjacent without stealing the story?
-
 **Answer:**
 
 > When asked why races matter at BMS scale: 30L+ DAU, 99.95%+ crash-free culture, Crashlytics / IMOC — **BookMyShow IMOC + crash-free at scale**. One or two sentences max. Do not paste CFS onto every answer or imply BookMyShow synchronised dictionaries alone delivered company-wide CFS.
@@ -134,7 +128,6 @@
 ---
 
 ### Q7. Score yourself on BookMyShow synchronised dictionaries — what earns a 4 or 5?
-
 **Answer:**
 
 > **4:** On time (≤3 min), clear STAR, trade-off or prod hook, honest provenance. **5:** All of 4 + crisp Verified vs Applied labels + ready for actor follow-up. **2 or below:** invented metrics, missing action mechanism, or CFS ownership theft. Target **BookMyShow synchronised dictionaries ≥4** for Mock #1 pass.
@@ -157,3 +150,22 @@ Next: [03-mock-interview.md](03-mock-interview.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — Walk the ≤3 min STAR beats
+
+**Ask yourself:** Walk the ≤3 min STAR beats?
+
+**Answer:** “**Situation:** Shared dictionaries accessed from many threads on a high-traffic path — intermittent races/crashes. **Task:** Stop callers from touching unsynchronized storage. **Action:** Serial queue (or RW pattern) behind get/set/snapshot API; stress testing; Crashlytics to confirm path fixed. **Result:** Crashes eliminated on **that path** — qualitative, path-specific. **Lesson:** Hide concurrency; don’t trust every call site to dispatch correctly.”
+
+### Puzzle B — Required follow-up: “How would you design this today?”
+
+**Ask yourself:** Required follow-up: “How would you design this today?”?
+
+**Answer:** “**Design: actor SafeDict (not shipped):** Expose an **actor** with the same get/set/snapshot surface — callers `await`; isolation moves into the type system. Production was GCD; this is migration language, not “we rewrote everything as actors last quarter.”
+
+### Puzzle C — Why hide the queue instead of documenting “always dispatch here”
+
+**Ask yourself:** Why hide the queue instead of documenting “always dispatch here”?
+
+**Answer:** “Documentation does not survive scale — new call sites forget, copy-paste wrong queue, or mix sync/async. An API **forces** synchronization at compile/link boundaries. Same reason actors beat “please don’t touch my dict”: the type enforces the contract.”

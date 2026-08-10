@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Rewrite sample Q&A + 04-questions + revision guides to named-case relate shape.
+"""Rewrite sample Q&A + 07-revision-qna + revision guides to named-case relate shape.
 
 Canonical sample / questions shape:
   ### Qn. …
@@ -418,7 +418,7 @@ def main() -> None:
             print(f"sample {src.relative_to(ROOT)}")
 
     q_n = 0
-    for qpath in sorted(WEEKS.glob("week-*/day-*/04-questions.md")):
+    for qpath in sorted(WEEKS.glob("week-*/day-*/sample/07-revision-qna.md")):
         new = rewrite_04_questions(qpath)
         qpath.write_text(new, encoding="utf-8")
         q_n += 1

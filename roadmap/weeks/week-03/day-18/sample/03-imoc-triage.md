@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What do you do in the first ten minutes of a P0?
-
 **Answer:**
 
 > (1) Confirm spike is **real** — not symbolication outage or bad deploy tag. (2) Declare **IMOC** / war-room channel. (3) **Blast radius:** version %, feature flag, geo, payment path? (4) **Mitigate:** pause phased release, kill switch, disable feature. (5) **Comms cadence:** next update in N minutes. User harm down before perfect RCA.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. Mitigate vs hotfix — when which lever?
-
 **Answer:**
 
 > **Remote config / feature flag** — fast, preferred when path is optional. **Pause phased rollout** — binary already bad for a %. **Hotfix** — native crash on mandatory path; trade review latency vs user harm. Staff default: flags and rollout pause before App Store emergency unless unavoidable.
@@ -43,7 +41,6 @@
 ---
 
 ### Q3. How do you stop iOS vs backend blame spirals?
-
 **Answer:**
 
 > Force **shared timeline** with correlation IDs and **% failing by layer**. Mitigate user harm first — fallback UI, disable feature, pause rollout. RCA second. IMOC owns the channel and cadence — not “my stack vs your stack.”
@@ -62,7 +59,6 @@
 ---
 
 ### Q4. How do you classify a Crashlytics spike?
-
 **Answer:**
 
 > New vs **regressed** (version compare). Top **symbolicated** stacks. **Affected version %** and device/OS matrix. **Journey tags** from breadcrumbs. Separate fatals (CFS) from non-fatals (quality). Confirm symbolication healthy before treating as new native bug.
@@ -84,7 +80,6 @@
 ---
 
 ### Q5. What is BookMyShow synchronised dictionaries’s correct technical framing?
-
 **Answer:**
 
 > **BookMyShow synchronised dictionaries was:** shared async maps hit from multiple queues → races → intermittent crashes; fixed with **GCD serial queues** / RW locks and safe API boundary. **BookMyShow synchronised dictionaries was not:** single explanation for org-wide **99.95% CFS**. OK: “Removed race crashes on that path.” Not OK: “BookMyShow synchronised dictionaries is why we have 99.95% CFS.”
@@ -106,7 +101,6 @@
 ---
 
 ### Q6. What IMOC pillars map to behavioral prompts?
-
 **Answer:**
 
 > **Conflict:** IMOC forces shared timeline vs blame. **Pressure / peak sale:** mitigate first, cadenced comms. **Leadership:** owner clarity, handoff, postmortem actions. **Technical depth:** add BookMyShow synchronised dictionaries path + signal-safety vocabulary — but BookMyShow IMOC + crash-free at scale STAR leads on incident ownership questions.
@@ -128,7 +122,6 @@
 ---
 
 ### Q7. Whiteboard the crash SDK in ten minutes — what to include?
-
 **Answer:**
 
 > Handlers → mmap writer → breadcrumb ring (happy path) → next-launch uploader → dSYM symbolication. Call out **signal safety** and **“no upload in handler.”** Init early but fast. Default interview assumption: **Crashlytics-class vendor** unless you evidence in-house SDK.
@@ -148,3 +141,22 @@ Next: [04-production-s8-s2.md](04-production-s8-s2.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — Mitigate vs hotfix — when which lever
+
+**Ask yourself:** Mitigate vs hotfix — when which lever?
+
+**Answer:** “**Remote config / feature flag** — fast, preferred when path is optional. **Pause phased rollout** — binary already bad for a %. **Hotfix** — native crash on mandatory path; trade review latency vs user harm. Staff default: flags and rollout pause before App Store emergency unless unavoidable.”
+
+### Puzzle B — How do you stop iOS vs backend blame spirals
+
+**Ask yourself:** How do you stop iOS vs backend blame spirals?
+
+**Answer:** “Force **shared timeline** with correlation IDs and **% failing by layer**. Mitigate user harm first — fallback UI, disable feature, pause rollout. RCA second. IMOC owns the channel and cadence — not “my stack vs your stack.”
+
+### Puzzle C — How do you classify a Crashlytics spike
+
+**Ask yourself:** How do you classify a Crashlytics spike?
+
+**Answer:** “New vs **regressed** (version compare). Top **symbolicated** stacks. **Affected version %** and device/OS matrix. **Journey tags** from breadcrumbs. Separate fatals (CFS) from non-fatals (quality). Confirm symbolication healthy before treating as new native bug.”

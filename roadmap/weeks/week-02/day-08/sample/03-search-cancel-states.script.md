@@ -1,9 +1,9 @@
 # Audio script — Sample 03 — Search MVVM: debounce, cancel, states (Q&A)
 > Listen-only sample Q&A from `03-search-cancel-states.md`. Spoken answers and follow-ups.
 
-## §0 Q1. Walk the happy path for debounced search in MVVM.
+## §0 Q1. Walk the happy path for debounced search in MVVM?
 
-Next. Q1. Walk the happy path for debounced search in MVVM Answer. User types in the search bar; the View forwards onQueryChange to the ViewModel. The VM debounces ~300ms, cancels any previous Task, sets state to.loading, and calls SearchRepository.search(query:). The repository hits remote (and maybe cache), returns domain models, and the VM maps to.results or.empty. The View renders from the enum — it never builds URLRequests or parses JSON. Follow-ups. Who owns ranking?: Usually the server; client filters only if product requires local filter.. Offline / timeout branch?: Map to.error with a retry intent — not a crash.. Task cancelled mid-flight?: Ignore — not user-facing error..
+Next. Q1. Walk the happy path for debounced search in MVVM? Answer. User types in the search bar; the View forwards onQueryChange to the ViewModel. The VM debounces ~300ms, cancels any previous Task, sets state to.loading, and calls SearchRepository.search(query:). The repository hits remote (and maybe cache), returns domain models, and the VM maps to.results or.empty. The View renders from the enum — it never builds URLRequests or parses JSON. Follow-ups. Who owns ranking?: Usually the server; client filters only if product requires local filter.. Offline / timeout branch?: Map to.error with a retry intent — not a crash.. Task cancelled mid-flight?: Ignore — not user-facing error..
 
 ## §1 Q2. Why does debounce belong in the ViewModel, not URLSession?
 
@@ -19,7 +19,7 @@ Next. Q4. What are the five presentation states search must name? Answer. Idle b
 
 ## §4 Q5. How does cancellation fit MVVM ownership?
 
-Next. Q5. How does cancellation fit MVVM ownership? Answer. The ViewModel owns the search Task handle: on new query, cancel previous work; on onDisappear, cancel in-flight search. The View may signal lifecycle; the VM executes policy. Repository/DataSource may propagate task cancellation to URLSession, but the decision to stop caring about a result is a screen concern. Async URLSession.data(for:) participates in Swift Task cancellation; callback APIs need explicit task.cancel() plus stale guards (Day 09). Follow-ups. [weak self] in search Task?: Yes for escaping async work tied to a screen.. Fire-and-forget Task { } without handle?: Orphan work can apply after dismiss — hold and cancel the Task.. BookMyShow backend-driven header & search verified claim?: Debounce, explicit states, M V V M binding, race-safer UX on BMS search..
+Next. Q5. How does cancellation fit MVVM ownership? Answer. The ViewModel owns the search Task handle: on new query, cancel previous work; on onDisappear, cancel in-flight search. The View may signal lifecycle; the VM executes policy. Repository/DataSource may propagate task cancellation to URLSession, but the decision to stop caring about a result is a screen concern. Async URLSession.data(for:) participates in Swift Task cancellation; callback APIs need explicit task.cancel plus stale guards (Day 09). Follow-ups. [weak self] in search Task?: Yes for escaping async work tied to a screen.. Fire-and-forget Task { } without handle?: Orphan work can apply after dismiss — hold and cancel the Task.. BookMyShow backend-driven header & search verified claim?: Debounce, explicit states, M V V M binding, race-safer UX on BMS search..
 
 ## §5 Q6. What does the Repository own in search vs the ViewModel?
 

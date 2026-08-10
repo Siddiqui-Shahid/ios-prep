@@ -1,6 +1,6 @@
 # Day 09 sample — guided Q&A
 
-> Separate teaching sample. Does **not** replace the main Day 09 modules.  
+> Separate teaching sample. Does **not** replace the main Day 09 modules. 
 > Use this when you want concepts explained as **question → module pointer → answer → follow-ups**.
 
 ## How to use
@@ -10,7 +10,7 @@
 3. Read the **Answer** in full.
 4. Cover the follow-up answers and try to speak them, then check.
 
-After the sample, practice interview timing in [`../04-questions.md`](../04-questions.md) and drills in [`../05-exercises.md`](../05-exercises.md).
+After the sample, practice interview timing in [`../07-revision-qna.md`](../07-revision-qna.md) and drills in [`../05-exercises.md`](../05-exercises.md).
 
 ## Topic map
 
@@ -29,7 +29,7 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 | Pipeline | Endpoint → build → intercept → execute → decode → map errors |
 | Single-flight | Many concurrent 401s share **one** refresh; retry originals **once** |
 | Async cancel | `URLSession.data(for:)` participates in `Task` cancellation |
-| Callback cancel | Explicit `task.cancel()` + generation/stale guard |
+| Callback cancel | Explicit `task.cancel` + generation/stale guard |
 | ATS ≠ pinning | ATS is HTTPS baseline; pinning is extra identity check |
 | SPKI | Hash **SPKI DER** — not raw `SecKeyCopyExternalRepresentation` bytes |
 | S4 verified | Alamofire → URLSession; HTTPS; SSL pinning; domain whitelist |
@@ -37,7 +37,7 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → `05` → then main [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → then main [`../07-revision-qna.md`](../07-revision-qna.md).
 
 ## App
 

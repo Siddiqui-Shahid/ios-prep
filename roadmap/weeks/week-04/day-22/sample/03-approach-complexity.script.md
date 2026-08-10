@@ -21,9 +21,9 @@ Next. Q4. What edge cases should I name every time? Answer. Null root. Single no
 
 Next. Q5. When must I state time and space complexity? Answer. In the “say this first” block before coding — not after as an apology. Say O(n) time and O(h) or O(w) space with worst case (skewed → O(n)). If using Morris or iterative, adjust auxiliary space claim. Mention removeFirst if using Swift Array as queue. Follow-ups. Follow-up “can you do O(1) space?”: Usually means Morris or iterative with O(h) stack — clarify which.. BFS “O(1) space”?: Wrong unless tree is a linked list level — queue dominates.. Amortized over all nodes?: Still O(n) total work — each node enqueued/dequeued once..
 
-## §5 Q6. Example spoken scripts for three classics.
+## §5 Q6. Example spoken scripts for three classics?
 
-Next. Q6. Example spoken scripts for three classics Answer. Level order: “BFS, level-size loop, empty → []. O(n)/O(w). Skewed + single node edges. Coding now.” LCA: “Postorder; both sides non-nil → current; else bubble. Both exist. O(n)/O(h).” Validate BST: “Bounds DFS, not parent-only; duplicate policy with interviewer. O(n)/O(h).” Follow-ups. Diameter script?: “DFS height; update global best with leftH+rightH at each node; confirm edge vs node count.”. Right side view?: “BFS last per level — or DFS right-first with depth map.”. Same tree?: “Mirror DFS on both roots; nil-nil true, one-nil false.”.
+Next. Q6. Example spoken scripts for three classics? Answer. Level order: “BFS, level-size loop, empty → []. O(n)/O(w). Skewed + single node edges. Coding now.” LCA: “Postorder; both sides non-nil → current; else bubble. Both exist. O(n)/O(h).” Validate BST: “Bounds DFS, not parent-only; duplicate policy with interviewer. O(n)/O(h).” Follow-ups. Diameter script?: “DFS height; update global best with leftH+rightH at each node; confirm edge vs node count.”. Right side view?: “BFS last per level — or DFS right-first with depth map.”. Same tree?: “Mirror DFS on both roots; nil-nil true, one-nil false.”.
 
 ## §6 Q7. What glossary terms should I speak cleanly?
 

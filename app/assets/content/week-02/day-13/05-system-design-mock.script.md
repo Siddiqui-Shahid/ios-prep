@@ -9,13 +9,13 @@ Next. Q1. Interviewer: “Design Instant Messaging & Chat.” How do you open? A
 
 Next. Q2. After clarify — what does the optimal flow look like? Answer. Scripted outcomes for this mock: WS realtime + REST history; SQLite; UUID idempotency; media presign; E2EE concepts only unless asked; out: calls. Good flow: agenda → clarify Qs → confirm → high level design (4 layers + backend + load) → A P I → two crisp dives → ops last 5. Weak flow: silent drawing, happy-path only, no QPS/TTL, invent metrics, skip ops. Follow-ups. They change scope mid-high level design?: Re-confirm in/out in 20s; adjust dives; protect ops.. Backend mesh deep-dive?: Out unless asked — sketch touchpoints, stay client-owned.. Forgot to ask offline?: State online-first + last-good cache as assumption; invite correction..
 
-## §2 Q3. Walk the HLD — client layers, backend, load.
+## §2 Q3. Walk the HLD — client layers, backend, load?
 
-Next. Q3. Walk the HLD — client layers, backend, load Answer. Chat U I → VM → MessageRepository (SQLite) → WSClient + REST. Presence optional. Backend: WS gateway; history service; S3 presign; pubsub. Load: history cursor 50; heartbeat 30s; reconnect ≤60s jitter; store <500MB. Follow-ups. Why WS?: Bidirectional low latency — cheatsheet transport table.. APNs?: Wake when backgrounded — push system sister prompt..
+Next. Q3. Walk the HLD — client layers, backend, load? Answer. Chat U I → VM → MessageRepository (SQLite) → WSClient + REST. Presence optional. Backend: WS gateway; history service; presign; pubsub. Load: history cursor 50; heartbeat 30s; reconnect ≤60s jitter; store <500MB. Follow-ups. Why WS?: Bidirectional low latency — cheatsheet transport table.. APNs?: Wake when backgrounded — push system sister prompt..
 
-## §3 Q4. Data / API — entities, endpoints, scale.
+## §3 Q4. Data / API — entities, endpoints, scale?
 
-Next. Q4. Data / API — entities, endpoints, scale Answer. wss://…/v1/chat events: send/ack/incoming. GET /threads, GET /threads/{id}/messages?cursor=. Client message UUID for idempotency. Follow-ups. Exactly-once?: At-least-once + idempotent UUID.. Ordering?: Server seq per thread; local pending bubble..
+Next. Q4. Data / API — entities, endpoints, scale? Answer. wss://…/v1/chat events: send/ack/incoming. GET /threads, GET /threads/{id}/messages?cursor=. Client message UUID for idempotency. Follow-ups. Exactly-once?: At-least-once + idempotent UUID.. Ordering?: Server seq per thread; local pending bubble..
 
 ## §4 Q5. Deep dive 1 — WS reconnect + heartbeat?
 

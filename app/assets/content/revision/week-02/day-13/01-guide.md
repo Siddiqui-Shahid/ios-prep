@@ -51,7 +51,7 @@ Interview skill + LRU design vocabulary — **not** everyday UITableView impleme
 |---|---|---|
 | Must | [Sample Q&A](../../../weeks/week-02/day-13/sample/) | Guided cards |
 | Must | Full modules [01–03](../../../weeks/week-02/day-13/01-foundations.md) | Gaps |
-| Drill | [04-questions](../../../weeks/week-02/day-13/04-questions.md) | Timed answers |
+| Drill | [07-revision-qna](../../../weeks/week-02/day-13/sample/07-revision-qna.md) | Timed answers |
 
 Suggested sample order: `01-stack-queue-basics` → `02-monotonic-patterns` → `03-linked-list-algos` → `04-production-bridges`.
 
@@ -86,4 +86,4 @@ Suggested sample order: `01-stack-queue-basics` → `02-monotonic-patterns` → 
 | Spoken agenda before any coding | 2–3 min |
 | Soft BookMyShow SSL pinning + URLSession migration waiter bridge | 30s |
 
-Expand from [sample cards](../../../weeks/week-02/day-13/sample/) and [04-questions](../../../weeks/week-02/day-13/04-questions.md) answer points. Pick Ads or SDUI track tonight for Day 14.
+Expand from [sample cards](../../../weeks/week-02/day-13/sample/) and [07-revision-qna](../../../weeks/week-02/day-13/sample/07-revision-qna.md) answer points. Pick Ads or SDUI track tonight for Day 14.

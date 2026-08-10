@@ -5,7 +5,6 @@
 ---
 
 ### Q1. Where does caching sit in the SDUI HLD?
-
 **Answer:**
 
 > **FallbackEngine** beside parser/registry/renderer: serves **last-good layout from disk** when network fails. Flow: CMS → Layout API → client → parse/registry/render → **cache** on success. Online-first default from clarify; cache is resilience + perceived speed — not sole source of truth for irreplaceable user actions.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. What is the SDUI cache/freshness policy?
-
 **Answer:**
 
 > **Last-good layout** with **TTL** and **stale-while-revalidate**: show cached immediately, fetch in background, swap when fresh arrives. First launch empty cache → **native scaffold** — don’t white-screen home. Major schema unsupported → disk cache or force-update — product call.
@@ -46,7 +44,6 @@
 ---
 
 ### Q3. Unknown component vs cache — how do they interact?
-
 **Answer:**
 
 > Cache stores parsed layout; on render, **unknown types → EmptyView/placeholder** + non-fatal metric `sdui_unknown_type` — **never crash** the tree. Cached layout with new CMS experiment types still renders partial UI. Server can strip unsupported components for old schema clients.
@@ -68,7 +65,6 @@
 ---
 
 ### Q4. How do lists scroll in SDUI — pagination model?
-
 **Answer:**
 
 > **Pagination inside list components** — cursor **`fetch_more`** action, not usually paginating the whole screen JSON. Keep screen payload **lean** (~50KB gzip mindset). List component requests next page via API; renderer appends rows — **scroll performance** stays native collection/table where possible.
@@ -87,7 +83,6 @@
 ---
 
 ### Q5. When do you deep-dive images vs scroll vs cache?
-
 **Answer:**
 
 > **Media-heavy layouts:** deep-dive **downsample, off-main decode, prefetch** — Day 16 family. **Otherwise:** name image pipeline once; spend dive time on **versioning, actions, cache**. Scroll jank → mention **frame budget**, parse off hot path, reuse cells. Timeboxed judgment — don’t draw buttons 20 minutes.
@@ -109,7 +104,6 @@
 ---
 
 ### Q6. Networking mock — where does cache sit?
-
 **Answer:**
 
 > **URLCache / app cache** beside URLSession pin layer and **Keychain token store**. Interceptors handle auth; cache policy per endpoint — GET feed vs never-cache POST. **Poison cache** and **idempotency** are failure modes in ops closer. Refresh single-flight prevents stampede — separate from cache but adjacent.
@@ -128,7 +122,6 @@
 ---
 
 ### Q7. Scroll + cache ops metrics to mention?
-
 **Answer:**
 
 > **SDUI:** layout fetch **p50/p90**, **fallback hit rate**, unknown-type rate, journey trace on home scroll, **CFS 99.95%+** bar. **Networking:** journey p50/p90 (BookMyShow Firebase Performance traces), pin failure rate, 401/refresh rate. Rollout: flags, phased %, **pause if p90 cliffs** — IMOC (BookMyShow IMOC + crash-free at scale). Averages alone don’t close a senior mock.
@@ -150,14 +143,13 @@
 ---
 
 ### Q8. Prompt B — full HLD / API / ops walkthrough?
-
 **Answer:**
 
-> **Clarify:** first-party networking + auth + SSL pinning; **30L+ DAU**; out: backend mesh / Android; dives: **single-flight refresh** + **SPKI rotation as design**; close on p50/p90.  
-> **HLD:** Features → protocols → **APIClient** (build → intercept → execute → decode → map errors) → Auth/Retry/Tracing interceptors → **URLSession + SPKI pin + domain allowlist** → URLCache / Keychain / reachability. Prefer URLSession when owning trust — **BookMyShow SSL pinning + URLSession migration Ads** proof.  
-> **API:** `APIEndpoint` + `request(_:) async throws`; 401 → refresh coordinator; retry only transient 408/429/5xx on idempotent GETs; never blind-retry charge POSTs.  
-> **Dive 1:** N parallel 401s → **one** actor-owned refresh; others await; success retries once; failure → logout.  
-> **Dive 2:** Pin **SHA-256 of SPKI DER** (not raw SecKey bytes); backup pins; ship client before rotate; break-glass — **design** (Design: pin rotation / break-glass (not shipped runbook)), not invented runbook.  
+> **Clarify:** first-party networking + auth + SSL pinning; **30L+ DAU**; out: backend mesh / Android; dives: **single-flight refresh** + **SPKI rotation as design**; close on p50/p90. 
+> **HLD:** Features → protocols → **APIClient** (build → intercept → execute → decode → map errors) → Auth/Retry/Tracing interceptors → **URLSession + SPKI pin + domain allowlist** → URLCache / Keychain / reachability. Prefer URLSession when owning trust — **BookMyShow SSL pinning + URLSession migration Ads** proof. 
+> **API:** `APIEndpoint` + `request(_:) async throws`; 401 → refresh coordinator; retry only transient 408/429/5xx on idempotent GETs; never blind-retry charge POSTs. 
+> **Dive 1:** N parallel 401s → **one** actor-owned refresh; others await; success retries once; failure → logout. 
+> **Dive 2:** Pin **SHA-256 of SPKI DER** (not raw SecKey bytes); backup pins; ship client before rotate; break-glass — **design** (Design: pin rotation / break-glass (not shipped runbook)), not invented runbook. 
 > **Ops:** pin mismatch, refresh stampede, poison cache; metrics journey p50/p90 (BookMyShow Firebase Performance traces), pin fail rate, 401/refresh, CFS; flag + pause on cliffs (BookMyShow IMOC + crash-free at scale).
 
 **Follow-ups:**
@@ -178,3 +170,22 @@ Next: [04-scoring-rubric.md](04-scoring-rubric.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What is the SDUI cache/freshness policy
+
+**Ask yourself:** What is the SDUI cache/freshness policy?
+
+**Answer:** “**Last-good layout** with **TTL** and **stale-while-revalidate**: show cached immediately, fetch in background, swap when fresh arrives. First launch empty cache → **native scaffold** — don’t white-screen home. Major schema unsupported → disk cache or force-update — product call.”
+
+### Puzzle B — Unknown component vs cache — how do they interact
+
+**Ask yourself:** Unknown component vs cache — how do they interact?
+
+**Answer:** “Cache stores parsed layout; on render, **unknown types → EmptyView/placeholder** + non-fatal metric `sdui_unknown_type` — **never crash** the tree. Cached layout with new CMS experiment types still renders partial UI. Server can strip unsupported components for old schema clients.”
+
+### Puzzle C — How do lists scroll in SDUI — pagination model
+
+**Ask yourself:** How do lists scroll in SDUI — pagination model?
+
+**Answer:** “**Pagination inside list components** — cursor **`fetch_more`** action, not usually paginating the whole screen JSON. Keep screen payload **lean** (~50KB gzip mindset). List component requests next page via API; renderer appends rows — **scroll performance** stays native collection/table where possible.”

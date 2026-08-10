@@ -1,6 +1,6 @@
 # Day 04 — GCD Queues, sync/async, Barriers, Thread-Safe Dictionary
 
-> Week 1 · Full study (self-contained) · ~4–5 hrs  
+> Week 1 · Full study (self-contained) · ~4–5 hrs 
 > Revision twin: [revision/weeks/week-01/day-04.md](../../../revision/weeks/week-01/day-04.md)
 
 ## Outcomes
@@ -22,7 +22,7 @@ By end of day, without notes, you can:
 3. [`03-production-bridge.md`](03-production-bridge.md) — Verified · S2 / S2-A1
 4. [`code/SafeDict.swift`](code/SafeDict.swift) — read, predict, then explain aloud
 5. [`sample/README.md`](sample/README.md) — spoken Q&A + **brain puzzles** (01–06)
-6. [`04-questions.md`](04-questions.md) — speak aloud; include **Tricky T1–T10**
+6. [`sample/07-revision-qna.md`](sample/07-revision-qna.md) — speak aloud; include **Tricky T1–T10**
 7. [`05-exercises.md`](05-exercises.md) — race demo + speaking drills
 8. Revision twin for flashcards / timed drill day-of
 
@@ -33,7 +33,7 @@ By end of day, without notes, you can:
 | Foundations | [01-foundations.md](01-foundations.md) | Queues, sync/async, QoS |
 | Deep dive | [02-deep-dive.md](02-deep-dive.md) | Deadlock, RW barriers, visibility |
 | Production bridge | [03-production-bridge.md](03-production-bridge.md) | S2 STAR + actor coda |
-| Questions | [04-questions.md](04-questions.md) | Normal + **Tricky T1–T10** |
+| Questions | [sample/07-revision-qna.md](sample/07-revision-qna.md) | Normal + **Tricky T1–T10** |
 | Exercises | [05-exercises.md](05-exercises.md) | Coding + speaking |
 | Code | [code/SafeDict.swift](code/SafeDict.swift), [code/BarrierDict.swift](code/BarrierDict.swift) | Learning-lab |
 | Sample Q&A | [sample/README.md](sample/README.md) | Guided teaching + brain puzzles + [06-module-drills](sample/06-module-drills.md) |
@@ -62,8 +62,8 @@ Do **not** invent crash counts or claim sole ownership of app-wide crash-free ra
 
 ## Critical correctness notes (pin)
 
-1. **Async write then sync read may not see the write until the write runs.** Prefer **sync write** when the caller needs read-after-write on the same API, or document ordering clearly.  
-2. Spell it **`final class`**, never `Final class`.  
+1. **Async write then sync read may not see the write until the write runs.** Prefer **sync write** when the caller needs read-after-write on the same API, or document ordering clearly. 
+2. Spell it **`final class`**, never `Final class`. 
 3. **Hide the queue** — expose safe methods only (S2 lesson).
 
 ## Agenda openers (pin these)

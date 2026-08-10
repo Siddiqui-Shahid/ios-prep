@@ -9,13 +9,13 @@ Next. Q1. Interviewer: “Design Auth: OAuth2 PKCE + Biometrics.” How do you o
 
 Next. Q2. After clarify — what does the optimal flow look like? Answer. Scripted outcomes for this mock: PKCE; Keychain tokens; actor refresh; Face ID step-up; logout revoke; out: IdP internals. Good flow: agenda → clarify Qs → confirm → high level design (4 layers + backend + load) → A P I → two crisp dives → ops last 5. Weak flow: silent drawing, happy-path only, no QPS/TTL, invent metrics, skip ops. Follow-ups. They change scope mid-high level design?: Re-confirm in/out in 20s; adjust dives; protect ops.. Backend mesh deep-dive?: Out unless asked — sketch touchpoints, stay client-owned.. Forgot to ask offline?: State online-first + last-good cache as assumption; invite correction..
 
-## §2 Q3. Walk the HLD — client layers, backend, load.
+## §2 Q3. Walk the HLD — client layers, backend, load?
 
-Next. Q3. Walk the HLD — client layers, backend, load Answer. Login U I → AuthService → ASWebAuth session → Keychain → APIClient interceptors. Backend: /authorize, /token, logout revoke. Load: access 15m–1h; Keychain no iCloud sync; SSO ~1–3s. Follow-ups. S D U I/network alt?: Expert may pick — same 45‑min spine.. Pinning?: Auth hosts high-value — security sister..
+Next. Q3. Walk the HLD — client layers, backend, load? Answer. Login U I → AuthService → ASWebAuth session → Keychain → APIClient interceptors. Backend: /authorize, /token, logout revoke. Load: access 15m–1h; Keychain no iCloud sync; SSO ~1–3s. Follow-ups. S D U I/network alt?: Expert may pick — same 45‑min spine.. Pinning?: Auth hosts high-value — security sister..
 
-## §3 Q4. Data / API — entities, endpoints, scale.
+## §3 Q4. Data / API — entities, endpoints, scale?
 
-Next. Q4. Data / API — entities, endpoints, scale Answer. PKCE authorize→token; refresh grant; logout revoke. Biometric gate before revealing refresh token usage for step-up. Follow-ups. Refresh fail?: Logout clear Keychain.. Multi-device revoke?: Server invalidate refresh family..
+Next. Q4. Data / API — entities, endpoints, scale? Answer. PKCE authorize→token; refresh grant; logout revoke. Biometric gate before revealing refresh token usage for step-up. Follow-ups. Refresh fail?: Logout clear Keychain.. Multi-device revoke?: Server invalidate refresh family..
 
 ## §4 Q5. Deep dive 1 — PKCE exchange?
 

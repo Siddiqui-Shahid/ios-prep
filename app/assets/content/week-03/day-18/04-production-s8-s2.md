@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What can you claim under BookMyShow IMOC + crash-free at scale?
-
 **Answer:**
 
 > **30+ lakh DAU**, sustained **99.95%+ crash-free sessions**, **Crashlytics triage** with structured workflows, **IMOC** coordination for **P0/P1** during high-traffic events. Mitigations first: feature guards, rollout pause, hotfix path, cadenced comms. CFS as sustained operational bar — not a slide metric. Forbidden: invented downtime minutes, “I wrote in-house signal handler” by default, “CFS proves no hangs.”
@@ -26,8 +25,7 @@
 
 ---
 
-### Q2. Walk the BookMyShow IMOC + crash-free at scale STAR spine
-
+### Q2. Walk the BookMyShow IMOC + crash-free at scale STAR spine?
 **Answer:**
 
 > **Opener:** Sustaining 99.95%+ CFS at 30L+ DAU. **S/T:** Consumer ticketing at very large DAU — reliability as product during peak; structured crash response and multi-team command. **Action:** Crashlytics triage workflow; IMOC across iOS/backend/QA; mitigate first; CFS as operational bar. **Result:** Sustained high CFS; reduced peak-event downtime impact through ownership and blast-radius thinking. **Lesson:** Owner + mitigate + comms — not stack reading alone.
@@ -49,7 +47,6 @@
 ---
 
 ### Q3. How do you add BookMyShow synchronised dictionaries without stealing BookMyShow IMOC + crash-free at scale?
-
 **Answer:**
 
 > **OK (≤90s add-on):** “Separately, shared async dictionaries had intermittent race crashes. We gated access with GCD serial queues and RW locks behind a safe API — removed concurrent-access crashes **on that path**. That contributed to reliability. I’m not claiming one fix is the whole 99.95% CFS story — triage, incident process, and many inputs including concurrency hygiene.” **Forbidden:** “We hit 99.95% because I synchronised dictionaries.”
@@ -71,7 +68,6 @@
 ---
 
 ### Q4. What must you never say about BookMyShow IMOC + crash-free at scale and BookMyShow synchronised dictionaries together?
-
 **Answer:**
 
 > Never: BookMyShow synchronised dictionaries alone caused/delivered 99.95% CFS. Never: in-house signal handler unless evidenced. Never: invented crash counts or downtime minutes. Never: CFS proves no hangs/OOM pain. Never: merge BookMyShow IMOC + crash-free at scale IMOC story into fake memory Graph war story.
@@ -93,7 +89,6 @@
 ---
 
 ### Q5. How do behavioral variants use the same facts?
-
 **Answer:**
 
 > **Conflict:** IMOC timeline vs blame spiral. **Pressure:** peak traffic mitigate-first + comms clock. **Leadership:** owner, handoff, postmortem actions. **Technical:** BookMyShow synchronised dictionaries races + signal-safety vocabulary as add-on — same BookMyShow IMOC + crash-free at scale spine, different emphasis per prompt.
@@ -115,7 +110,6 @@
 ---
 
 ### Q6. How does BookMyShow IMOC + crash-free at scale bridge to Days 17 and 20?
-
 **Answer:**
 
 > **Day 17:** CFS may be fine while users freeze — hang/OOM observability separate. Perf p90 culture (BookMyShow Firebase Performance traces) complements CFS — don’t trust crash-free alone for UX. **Day 20:** release trains pause on perf/CFS gates; dSYM upload CI. Reliability is ops + engineering — not one dictionary fix.
@@ -136,8 +130,7 @@
 
 ---
 
-### Q7. Give a full honest answer mixing BookMyShow IMOC + crash-free at scale and BookMyShow synchronised dictionaries
-
+### Q7. Give a full honest answer mixing BookMyShow IMOC + crash-free at scale and BookMyShow synchronised dictionaries?
 **Answer:**
 
 > “At 30L+ DAU we held 99.95%+ crash-free sessions through Crashlytics triage and IMOC coordination on P0/P1s (BookMyShow IMOC + crash-free at scale) — mitigate first, blast radius, cadenced comms. Separately, synchronised shared async dictionaries removed intermittent race crashes on that path (BookMyShow synchronised dictionaries) — one reliability input among many. I don’t collapse those into one causal story. Hangs and OOM still need their own observability even when CFS looks fine.”
@@ -159,7 +152,6 @@
 ---
 
 ### Q8. What is the one-minute CFS honesty drill?
-
 **Answer:**
 
 > Speak continuously: “Crash-free at ninety-nine point nine five percent on thirty-plus lakh DAU was sustained through Crashlytics triage workflows and IMOC coordination on P0/P1s during peak traffic. Separately, synchronised dictionaries removed intermittent race crashes on a shared async state path — that contributed to reliability. I don’t collapse those into one causal story.” **Stop.** If you said “because of dictionaries,” restart.
@@ -169,7 +161,7 @@
 | Follow-up | Answer |
 |---|---|
 | Why drill? | Interviews tempt false causality — muscle memory prevents it. |
-| After this sample? | Code notes, [`../04-questions.md`](../04-questions.md), [`../05-exercises.md`](../05-exercises.md). |
+| After this sample? | Code notes, [07-revision-qna.md](07-revision-qna.md), [`../05-exercises.md`](../05-exercises.md). |
 | Primary provenance? | BookMyShow IMOC + crash-free at scale IMOC/CFS system + BookMyShow synchronised dictionaries path honesty. |
 
 **How can I relate to my case:**
@@ -181,8 +173,27 @@
 ## After this sample
 
 1. Skim [`../code/BreadcrumbRing.swift`](../code/BreadcrumbRing.swift) and [`../code/CrashReportNotes.swift`](../code/CrashReportNotes.swift).
-2. Time BookMyShow IMOC + crash-free at scale STAR + BookMyShow synchronised dictionaries add-on from [`../04-questions.md`](../04-questions.md).
+2. Time BookMyShow IMOC + crash-free at scale STAR + BookMyShow synchronised dictionaries add-on from [07-revision-qna.md](07-revision-qna.md).
 3. Run the one-minute CFS honesty drill aloud until clean.
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — Walk the BookMyShow IMOC + crash-free at scale STAR spine
+
+**Ask yourself:** Walk the BookMyShow IMOC + crash-free at scale STAR spine?
+
+**Answer:** “**Opener:** Sustaining 99.95%+ CFS at 30L+ DAU. **S/T:** Consumer ticketing at very large DAU — reliability as product during peak; structured crash response and multi-team command. **Action:** Crashlytics triage workflow; IMOC across iOS/backend/QA; mitigate first; CFS as operational bar. **Result:** Sustained high CFS; reduced peak-event downtime impact through ownership and blast-radius thinking. **Lesson:** Owner + mitigate + comms — not stack reading alone.”
+
+### Puzzle B — How do you add BookMyShow synchronised dictionaries without stealing BookMyShow 
+
+**Ask yourself:** How do you add BookMyShow synchronised dictionaries without stealing BookMyShow IMOC + crash-free at scale?
+
+**Answer:** “**OK (≤90s add-on):** “Separately, shared async dictionaries had intermittent race crashes. We gated access with GCD serial queues and RW locks behind a safe API — removed concurrent-access crashes **on that path**. That contributed to reliability. I’m not claiming one fix is the whole 99.95% CFS story — triage, incident process, and many inputs including concurrency hygiene.” **Forbidden:** “We hit 99.95% because I synchronised dictionaries.”
+
+### Puzzle C — What must you never say about BookMyShow IMOC + crash-free at scale and BookMySh
+
+**Ask yourself:** What must you never say about BookMyShow IMOC + crash-free at scale and BookMyShow synchronised dictionaries together?
+
+**Answer:** “Never: BookMyShow synchronised dictionaries alone caused/delivered 99.95% CFS. Never: in-house signal handler unless evidenced. Never: invented crash counts or downtime minutes. Never: CFS proves no hangs/OOM pain. Never: merge BookMyShow IMOC + crash-free at scale IMOC story into fake memory Graph war story.”

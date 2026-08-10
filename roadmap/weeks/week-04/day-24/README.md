@@ -1,6 +1,6 @@
 # Day 24 — On-Device AI (FinTrack / GymFlow)
 
-> Week 4 · Full study (self-contained) · ~4–5 hrs  
+> Week 4 · Full study (self-contained) · ~4–5 hrs 
 > Revision twin: [revision/weeks/week-04/day-24.md](../../../revision/weeks/week-04/day-24.md)
 
 ## Outcomes
@@ -19,7 +19,7 @@ By end of day, without notes, you can:
 2. [`02-deep-dive.md`](02-deep-dive.md) — FinTrack + GymFlow full teaching + hybrid router + privacy
 3. [`03-production-bridge.md`](03-production-bridge.md) — Verified S15/S16 + Applied design + 30L DAU caution
 4. [`code/`](code/) — Swift teaching sketches (BM25-ish ranker, router, TF-IDF fallback, eligibility)
-5. [`04-questions.md`](04-questions.md) — two-layer Q&A
+5. [`sample/07-revision-qna.md`](sample/07-revision-qna.md) — two-layer Q&A
 6. [`05-exercises.md`](05-exercises.md) — HLD whiteboard + STAR timing
 7. Revision twin for flashcards
 

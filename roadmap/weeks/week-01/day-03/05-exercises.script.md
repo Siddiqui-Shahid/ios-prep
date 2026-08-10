@@ -66,4 +66,4 @@ Write one flashcard front/back for each: Leaks vs retain cycle Timer target reta
 
 Next. Done checklist.
 
-[ ] Explained automatic reference counting + weak/unowned aloud in &lt;45s [ ] Corrected someone (or yourself) on. Leaks vs cycles [ ] Fixed a timer + NC example without peeking [ ] Spoke Exercise E. with Verified/Applied labels [ ] Recorded timed subset from 04-questions.md Next: revision twin timed drill.../../../revision/weeks/week-01/day-03.md.
+[ ] Explained automatic reference counting + weak/unowned aloud in &lt;45s [ ] Corrected someone (or yourself) on. Leaks vs cycles [ ] Fixed a timer + NC example without peeking [ ] Spoke Exercise E. with Verified/Applied labels [ ] Recorded timed subset from sample/07-revision-qna.md Next: revision twin timed drill.../../../revision/weeks/week-01/day-03.md.

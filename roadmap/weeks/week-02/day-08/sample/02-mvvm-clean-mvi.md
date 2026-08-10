@@ -5,7 +5,6 @@
 ---
 
 ### Q1. Why use a state enum instead of boolean flags in a ViewModel?
-
 **Answer:**
 
 > Booleans like `isLoading`, `hasError`, and `isEmpty` can combine into impossible states — loading and error at once. An enum such as `idle`, `loading(query:)`, `results`, `empty`, and `error` makes illegal combinations unrepresentable. The View switches on one source of truth, which simplifies SwiftUI/UIKit binding and unit tests that assert transitions.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. When should you introduce a UseCase?
-
 **Answer:**
 
 > Introduce a UseCase when at least one is true: rules are non-trivial (eligibility, pricing, idempotency); the same action is shared across screens; you are migrating a fat VC/VM and need a stable seam; or you want cheap unit tests on policy. Skip when the screen is a settings toggle with no domain, or the UseCase would only pass through to one repository method with zero logic — that is ceremony, not architecture.
@@ -43,7 +41,6 @@
 ---
 
 ### Q3. What are the smells of a fat ViewModel and how do you surgery it?
-
 **Answer:**
 
 > Smells include stringly URLs in the VM, HTTP status switches, billing eligibility checks, direct `navigationController?.push`, and 800-line files that resist unit tests without URLProtocol hacks at the VM layer. Surgery order: freeze contracts; add characterization tests where risk is high; extract UseCase under the VM so behavior stays the same; unit test policy with fakes; extract Repository if DTO/HTTP still leaks; add Router/Coordinator for navigation; delete dead paths. Ship value while migrating — strangler, not big-bang rewrite.
@@ -65,7 +62,6 @@
 ---
 
 ### Q4. How does a feature assembler fit the DI graph?
-
 **Answer:**
 
 > The assembler is the composition root for one feature: it builds URLSession client → remote data source → repository → view model → view/controller. Production code uses the assembler once at module startup; tests skip it and inject fakes directly into the ViewModel or UseCase. That keeps wiring explicit without a global service locator.
@@ -84,7 +80,6 @@
 ---
 
 ### Q5. How do you test architecture layers without launching the app?
-
 **Answer:**
 
 > UseCase XCTest units are the cheapest net for policy regressions — fake the repository, assert eligibility and error mapping. ViewModel tests use fake repos to assert state transitions and cancellation. Repository tests use fake network clients or URLProtocol for mapping and cache policy. Reserve XCUITest for critical flows — District used AI-assisted test drafts, but human review was the gate. Prefer fakes over heavy mocks of value types.
@@ -103,7 +98,6 @@
 ---
 
 ### Q6. How does clear architecture relate to crash-free culture at scale?
-
 **Answer:**
 
 > Clear ownership, explicit fail-soft states, and fewer god objects reduce nil races and lifecycle bugs — at 30L+ DAU, force-unwraps in fat view controllers are incident fuel. Architecture shrinks blast radius: search shows `.error` with retry instead of crashing; SDUI skips unknown components (Day 10). It does not replace Crashlytics triage or IMOC — BookMyShow IMOC + crash-free at scale reliability culture still owns production metrics.
@@ -125,7 +119,6 @@
 ---
 
 ### Q7. What is the decision rule card for picking a pattern?
-
 **Answer:**
 
 > (1) UI mostly render + simple async → MVVM. (2) Non-trivial or shared domain rules → add UseCase. (3) Many async sources fight one state → consider MVI/unidirectional. (4) Dependencies: protocol + constructor; assembler at module edge. (5) Migrate with strangler; AI accelerates inside an envelope you own. Counterexample: a settings toggle stays MVVM — don’t Clean-ceremony everything.
@@ -144,7 +137,6 @@
 ---
 
 ### Q8. Who owns navigation — Coordinator vs Router vs `NavigationPath`?
-
 **Answer:**
 
 > There’s no absolute rule. For a simple push after a row tap, the ViewModel emits a `NavigationEvent` and the view or a thin router performs it. **Cross-feature flows, auth gates, and deeplinks** belong in a **Coordinator / app-edge Router** so VMs stay testable and you avoid dual stacks. In SwiftUI, `NavigationPath` and deeplink handlers live at the **app edge** — Grizzlies taught deliberate ownership (Hybrid UI / deeplinks adjacent). UseCases must never push UIKit controllers. Test ViewModels by asserting events, not by pushing real `UINavigationController`s. Sheet vs push stays a product/presentation choice (LE sheet / BookMyShow LE Bottom Sheet), not a domain decision.
@@ -168,3 +160,22 @@ Next: [03-search-cancel-states.md](03-search-cancel-states.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — When should you introduce a UseCase
+
+**Ask yourself:** When should you introduce a UseCase?
+
+**Answer:** “Introduce a UseCase when at least one is true: rules are non-trivial (eligibility, pricing, idempotency); the same action is shared across screens; you are migrating a fat VC/VM and need a stable seam; or you want cheap unit tests on policy. Skip when the screen is a settings toggle with no domain, or the UseCase would only pass through to one repository method with zero logic — that is ceremony, not architecture.”
+
+### Puzzle B — What are the smells of a fat ViewModel and how do you surgery it
+
+**Ask yourself:** What are the smells of a fat ViewModel and how do you surgery it?
+
+**Answer:** “Smells include stringly URLs in the VM, HTTP status switches, billing eligibility checks, direct `navigationController?.push`, and 800-line files that resist unit tests without URLProtocol hacks at the VM layer. Surgery order: freeze contracts; add characterization tests where risk is high; extract UseCase under the VM so behavior stays the same; unit test policy with fakes; extract Repository if DTO/HTTP still leaks; add Router/Coordinator for navigation; delete dead paths. Ship value while migrating — strangler, not big-bang rewrite.”
+
+### Puzzle C — How does a feature assembler fit the DI graph
+
+**Ask yourself:** How does a feature assembler fit the DI graph?
+
+**Answer:** “The assembler is the composition root for one feature: it builds URLSession client → remote data source → repository → view model → view/controller. Production code uses the assembler once at module startup; tests skip it and inject fakes directly into the ViewModel or UseCase. That keeps wiring explicit without a global service locator.”

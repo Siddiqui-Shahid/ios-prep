@@ -7,7 +7,7 @@ Next. Q1. What is SwiftUI view identity? Answer. Identity is how SwiftUI decides
 
 ## §1 Q2. What is the UUID-in-`body` bug?
 
-Next. Q2. What is the UUID-in-`body` bug? Answer. Writing.id(UUID()) inside body creates a new identity every render. Effects: text fields clear while typing, timers restart, Stories page resets mid-swipe, representables remake. Never generate UUIDs per body pass. Use stable model keys unless you intentionally want a full reset. Follow-ups. Symptom in search field?: Text clears on every keystroke — classic identity churn.. Stories S D K (Stories S D K (Raw / Miami Heat))?: Page identity must survive progress ticks — stable ids on pages.. Fix?: Stable Identifiable from server or model — not random UUID()..
+Next. Q2. What is the UUID-in-`body` bug? Answer. Writing.id(UUID) inside body creates a new identity every render. Effects: text fields clear while typing, timers restart, Stories page resets mid-swipe, representables remake. Never generate UUIDs per body pass. Use stable model keys unless you intentionally want a full reset. Follow-ups. Symptom in search field?: Text clears on every keystroke — classic identity churn.. Stories S D K (Stories S D K (Raw / Miami Heat))?: Page identity must survive progress ticks — stable ids on pages.. Fix?: Stable Identifiable from server or model — not random UUID..
 
 ## §2 Q3. Structural vs explicit identity — when to use which?
 
@@ -27,7 +27,7 @@ Next. Q6. What identity failures show up in production SDKs? Answer. Text clears
 
 ## §6 Q7. What is the identity decision card?
 
-Next. Q7. What is the identity decision card? Answer. IDs stable unless intentional reset. Never.id(UUID()) in body. ForEach uses stable Identifiable model keys. Logout/session change may force reset deliberately. Representables: stabilize parent; update props. S D U I: server node ids. Stories: page identity survives progress ticks. Follow-ups. Intentional vs accidental reset?: Session logout vs UUID() every render — only former is OK.. @State rule?: Lifetime follows identity — say this in every senior SwiftUI answer.. Next topic?: Lists and performance — 03-lists-performance.md..
+Next. Q7. What is the identity decision card? Answer. IDs stable unless intentional reset. Never.id(UUID) in body. ForEach uses stable Identifiable model keys. Logout/session change may force reset deliberately. Representables: stabilize parent; update props. S D U I: server node ids. Stories: page identity survives progress ticks. Follow-ups. Intentional vs accidental reset?: Session logout vs UUID every render — only former is OK.. @State rule?: Lifetime follows identity — say this in every senior SwiftUI answer.. Next topic?: Lists and performance — 03-lists-performance.md..
 
 ## §7 Q8. Animation causes a list jump — what are the causes?
 

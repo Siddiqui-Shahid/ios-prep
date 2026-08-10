@@ -36,7 +36,7 @@ List<MarkdownSection> splitMarkdownSections(String markdown) {
     }
     sawContent = true;
     if (line.startsWith('## ') ||
-        RegExp(r'^###\s+Q\d+\.').hasMatch(line)) {
+        RegExp(r'^###\s+[QIT]\d+\.').hasMatch(line)) {
       flush();
       heading = line.replaceFirst(RegExp(r'^#{2,3}\s+'), '').trim();
       buf.writeln(line);

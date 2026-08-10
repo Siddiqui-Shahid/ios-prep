@@ -7,7 +7,6 @@
 ---
 
 ### Q1. Interviewer: “Design Image Loading Library.” How do you open?
-
 **Answer:**
 
 > **Agenda (≤20s):** “I’ll take ~5 minutes clarifying scope and scale, then a four-layer client HLD with backend touchpoints and load, then API/data, two deep dives on **Downsample + cache tiers** and **Cancel / HeroWidget media**, and close on failure modes, metrics, and kill switches. Does that work?”
@@ -32,7 +31,6 @@
 ---
 
 ### Q2. After clarify — what does the optimal flow look like?
-
 **Answer:**
 
 > **Scripted outcomes for this mock:** Image pipeline deep; video-feed-streaming as follow-up if pulled; HeroWidget pause separate media contract.
@@ -52,8 +50,7 @@
 
 ---
 
-### Q3. Walk the HLD — client layers, backend, load.
-
+### Q3. Walk the HLD — client layers, backend, load?
 **Answer:**
 
 > Image pipeline as Day 03/spec; place beside feed repository. Video: AVPlayerPool sister doc if asked.
@@ -71,8 +68,7 @@
 
 ---
 
-### Q4. Data / API — entities, endpoints, scale.
-
+### Q4. Data / API — entities, endpoints, scale?
 **Answer:**
 
 > Image GET + library cancelable load. Video: feed cursor + stream URLs if pulled.
@@ -90,7 +86,6 @@
 ---
 
 ### Q5. Deep dive 1 — Downsample + cache tiers?
-
 **Answer:**
 
 > Cost eviction; memory warning clears L1; disk LRU. Never full-res decode.
@@ -108,7 +103,6 @@
 ---
 
 ### Q6. Deep dive 2 — Cancel / HeroWidget media?
-
 **Answer:**
 
 > Cancel on reuse; generation token. If video: pause on disappear/offscreen — HeroWidget lifecycle.
@@ -126,7 +120,6 @@
 ---
 
 ### Q7. Ops — failures, metrics, rollout, load?
-
 **Answer:**
 
 > Decode latency, OOM, hitch; video stall if pulled. Kill: disable prefetch.
@@ -144,7 +137,6 @@
 ---
 
 ### Q8. Flow scorecard — did you hit the optimal spine?
-
 **Answer:**
 
 > **Pass bar:** clarify + agenda in ≤5; HLD shows 4 layers + backend + load; API has cursors/idempotency as needed; two deep dives; ops with kill switch and concrete metrics.
@@ -161,4 +153,3 @@
 
 **How can I relate to my case:**
 - **Concept-only — no shipped story.** Rehearse this scorecard after every timed mock.
-

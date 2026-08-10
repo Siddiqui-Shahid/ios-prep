@@ -1,14 +1,13 @@
 # Sample 05 — System-design mock: Infinite Social Feed (Q&A)
 
-> Guided **mock interview** flow. Speak answers aloud against a 45‑min timer.  
-> **Source:** [`ios-system-design/docs/social-feed.md`](../../../../ios-system-design/docs/social-feed.md) · timing: [`cheatsheet.md`](../../../../ios-system-design/docs/cheatsheet.md)  
-> **Angle:** Week 1 Day 01 — **scope & clarify** muscle (Parallel SD: Social feed scope).  
+> Guided **mock interview** flow. Speak answers aloud against a 45‑min timer. 
+> **Source:** [`ios-system-design/docs/social-feed.md`](../../../../ios-system-design/docs/social-feed.md) · timing: [`cheatsheet.md`](../../../../ios-system-design/docs/cheatsheet.md) 
+> **Angle:** Week 1 Day 01 — **scope & clarify** muscle (Parallel SD: Social feed scope). 
 > **Brain puzzles** at the bottom — cover → think → check.
 
 ---
 
 ### Q1. Interviewer: “Design Infinite Social Feed.” How do you open?
-
 **Answer:**
 
 > “I’ll take about five minutes clarifying scope and scale. Then a four-layer client high-level design with backend touchpoints and load. Then API and data. Two deep dives: cursor pagination and prefetch, and optimistic like plus offline cache. I’ll close on failure modes, metrics, and kill switches. Does that plan work?
@@ -33,7 +32,6 @@ Do **not** draw until they answer or you state **labeled assumptions**. Keep bac
 ---
 
 ### Q2. After clarify — what does the good flow look like?
-
 **Answer:**
 
 > “For this mock: iOS social feed; cursor pagination; online-first plus SQLite last about two hundred; about thirty lakh DAU consumer context labeled; out: video streaming and ranking ML.
@@ -57,8 +55,7 @@ Do **not** draw until they answer or you state **labeled assumptions**. Keep bac
 
 ---
 
-### Q3. Walk the HLD — client layers, backend, load
-
+### Q3. Walk the HLD — client layers, backend, load?
 **Answer:**
 
 > “Presentation: UICollectionView with DiffableDataSource — or SwiftUI List with stable IDs. Domain: FeedViewModel — paging state, optimistic likes, impression dwell. Data: FeedRepository coordinates network and SQLite cache. Platform: URLSession, image pipeline with decode off main, analytics batcher.
@@ -82,8 +79,7 @@ Do **not** draw until they answer or you state **labeled assumptions**. Keep bac
 
 ---
 
-### Q4. Data / API — entities, endpoints, scale
-
+### Q4. Data / API — entities, endpoints, scale?
 **Answer:**
 
 > “Entities: Post with id, author, text, media thumbs, likeCount, cursor; LikeAction; ImpressionEvent. Endpoints: GET feed with limit and after_cursor; POST like — idempotent client UUID optional. Scale: page fifteen to twenty; field-mask thumbs not full images; gzip. Impressions batched — not per frame. Consistency: cursor opaque; mid-scroll inserts don’t shift offsets.”
@@ -102,7 +98,6 @@ Do **not** draw until they answer or you state **labeled assumptions**. Keep bac
 ---
 
 ### Q5. Deep dive 1 — Cursor pagination & prefetch?
-
 **Answer:**
 
 > “Trigger next page around seventy percent scroll depth; cancel or coalesce duplicate page requests; keep one in-flight next-page task. Prefetch image thumbs via the image pipeline for upcoming cells. Never decode full-res on main. If a page fails: keep the existing list, show inline retry — don’t blank the feed.”
@@ -121,7 +116,6 @@ Do **not** draw until they answer or you state **labeled assumptions**. Keep bac
 ---
 
 ### Q6. Deep dive 2 — Optimistic like + offline cache?
-
 **Answer:**
 
 > “Optimistic like flips UI immediately; persist intent; on failure rollback Diffable snapshot plus toast. Offline: load last about two hundred from SQLite off main thread; show Offline or Cached badge; queue like if product allows. Impressions: at least fifty percent visible for at least one second — batch upload.”
@@ -140,7 +134,6 @@ Do **not** draw until they answer or you state **labeled assumptions**. Keep bac
 ---
 
 ### Q7. Ops — failures, metrics, rollout, load?
-
 **Answer:**
 
 > “Metrics: scroll hitch rate, TTFF cached under one second target, cache hit over eighty percent as a target, page p99, like success rate. Failures: five-xx → show SQLite plus Cached; empty first launch offline → native empty plus retry. Rollout: flag to disable prefetch aggressiveness; kill switch → shorter page size. Load: after outage, jittered backoff so clients don’t thundering-herd the feed origin.”
@@ -159,7 +152,6 @@ Do **not** draw until they answer or you state **labeled assumptions**. Keep bac
 ---
 
 ### Q8. Flow scorecard — did you hit the optimal spine?
-
 **Answer:**
 
 > “Pass bar: clarify and agenda in five minutes or less; HLD shows four layers plus backend plus load; API has cursors and idempotency as needed; two deep dives; ops with kill switch and concrete metrics.
@@ -182,7 +174,6 @@ Do **not** draw until they answer or you state **labeled assumptions**. Keep bac
 ---
 
 ### Q9. Where do Day 01 type-choice instincts show up in the feed?
-
 **Answer:**
 
 > “Post and cursor models as value types so Diffable snapshots stay independent. Feed screen state as an enum — idle, loading, loaded, failed — not boolean soup. Like coordinator identity as a class or actor if concurrent; UI ViewModel on MainActor. Nested class caches inside Post DTOs are a trap — inject services at the boundary. Same north star as Ads listing models, applied to a design feed.”

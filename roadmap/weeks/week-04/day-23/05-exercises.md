@@ -1,63 +1,107 @@
-# 05 — Exercises: Hash / Heap / Mixed
+# 05 — Exercises: Hash / Heap / Mixed (Q&A)
+
+> Cover the answer, speak aloud, then check follow-ups. Simple language. Named work only — never S-codes in speech.
 
 ---
 
-## 1. Code lab
+### Q1. Code lab? `(45–60s)`
+**Answer:**
 
-| File | Extract |
+> “Cover → speak agenda → uncover.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
 |---|---|
-| [`code/HashPatterns.swift`](code/HashPatterns.swift) | Two Sum, Group Anagrams, Subarray Sum K, Longest Substring |
-| [`code/HeapPatterns.swift`](code/HeapPatterns.swift) | Top K Frequent, Kth Largest stream sketch, Merge K lists |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-Cover → speak agenda → uncover.
-
----
-
-## 2. Hash block (4–5)
-
-| # | Problem | Tag | Agenda Y/N | Time | Miss |
-|---|---|---|---|---|---|
-| 1 | Two Sum | | | | |
-| 2 | Group Anagrams | | | | |
-| 3 | Subarray Sum Equals K | | | | |
-| 4 | Longest Substring Without Repeating | | | | |
-| 5 | Top K Frequent (hash+heap bridge) | | | | |
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 3. Heap block (3–4)
+### Q2. Hash block (4–5)? `(45–60s)`
+**Answer:**
 
-| # | Problem | Tag | Agenda Y/N | Time | Miss |
-|---|---|---|---|---|---|
-| 1 | Kth Largest Element in an Array | | | | |
-| 2 | Merge K Sorted Lists | | | | |
-| 3 | K Closest Points to Origin | | | | |
-| 4 | Task Scheduler *(optional)* | | | | |
+> “---.”
 
----
+**Follow-ups:**
 
-## 4. Mixed simulation (mandatory)
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-1. Pick **6** unlabeled Mediums (include ≥1 tree from Day 22 leftovers; ≥1 “feels like DP but is hash/window”).
-2. Each: **90s timer — tag only** on paper.
-3. Goal **5/6** correct tags.
-4. Then fully solve **≥3** of them with spoken agendas.
-
-**Anti-perfectionism:** 25+ min stuck → write brute, state optimize idea, move on; log and revisit.
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 5. Timed Q drill
+### Q3. Heap block (3–4)? `(45–60s)`
+**Answer:**
 
-3 Normal + 2 Tricky from [`04-questions.md`](04-questions.md). Extra: one cold mixed Medium — **3-minute approach only** (no code). Grade classification.
+> “---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 6. Exit criteria
+### Q4. Mixed simulation (mandatory)? `(45–60s)`
+**Answer:**
 
-- [ ] Hash block ≥4, Heap block ≥3
-- [ ] Mixed tags 5/6
-- [ ] Two-layer Qs recorded
-- [ ] Revision twin skim: [../../../revision/weeks/week-04/day-23.md](../../../revision/weeks/week-04/day-23.md)
+> “1. Pick 6 unlabeled Mediums (include ≥1 tree from Day 22 leftovers; ≥1 “feels like DP but is hash/window”). 2. Each: 90s timer — tag only on paper. 3. Goal 5/6 correct tags. 4. Then fully solve ≥3 of them with spoken agendas. Anti-perfectionism: 25+ min stuck → write brute, state optimize idea, move on; log and revisit.”
 
-**Tomorrow:** Day 24 On-device AI — different muscle; DSA stays warm via flashcards only if weak.
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q5. Timed Q drill? `(45–60s)`
+**Answer:**
+
+> “3 Normal + 2 Tricky from sample/07-revision-qna.md. Extra: one cold mixed Medium — 3-minute approach only (no code). Grade classification. ---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q6. Exit criteria? `(45–60s)`
+**Answer:**
+
+> “- [ ] Hash block ≥4, Heap block ≥3 - [ ] Mixed tags 5/6 - [ ] Two-layer Qs recorded - [ ] Revision twin skim: ../../../revision/weeks/week-04/day-23.md Tomorrow: Day 24 On-device AI — different muscle; DSA stays warm via flashcards only if weak.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---

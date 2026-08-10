@@ -7,7 +7,7 @@ Next. Q1. When do I use `List` vs `LazyVStack` vs eager `VStack`? Answer. List: 
 
 ## §1 Q2. What are the row-level performance rules?
 
-Next. Q2. What are the row-level performance rules? Answer. Stable Identifiable — never UUID() per body. Avoid id: \.self when value equality changes often. Don’t observe entire catalog inside each row — pass row models. Precompute formatted strings in model. Images: async + decode/size budgets. Scope animations — don’t.animation the whole tree. Follow-ups. Format JSON in row body?: Bad — precompute in model or cached formatter.. Row observes root @Observable?: Pulls entire catalog invalidations into row — pass slice.. Shadows and blurs on every row?: Expensive — use sparingly; measure..
+Next. Q2. What are the row-level performance rules? Answer. Stable Identifiable — never UUID per body. Avoid id: \.self when value equality changes often. Don’t observe entire catalog inside each row — pass row models. Precompute formatted strings in model. Images: async + decode/size budgets. Scope animations — don’t.animation the whole tree. Follow-ups. Format JSON in row body?: Bad — precompute in model or cached formatter.. Row observes root @Observable?: Pulls entire catalog invalidations into row — pass slice.. Shadows and blurs on every row?: Expensive — use sparingly; measure..
 
 ## §2 Q3. What is an invalidation storm?
 

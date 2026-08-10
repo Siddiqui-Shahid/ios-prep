@@ -3,7 +3,7 @@
 
 ## §0 Q1. What is the preferred ads pipeline shape?
 
-Next. Q1. What is the preferred ads pipeline shape? Answer. “Keep the outer A P I generic so the compiler still sees a concrete creative type. Compose video-only behavior as an extra capability — PlaybackControllable — do not force image creatives to pretend they play video. Avoid as? VideoCreative on the revenue path. New types plug in by conforming, not by casting.” Follow-ups. Demo type?: “AdPipeline of C where C is Creative and AdTrackable — AdsPipeline.swift.”. What does install() do?: “Track impression, then makeBody — type-safe end to end.”. Why not Any cast ladder?: “Casts hide bugs until a new creative ships Friday night.”.
+Next. Q1. What is the preferred ads pipeline shape? Answer. “Keep the outer A P I generic so the compiler still sees a concrete creative type. Compose video-only behavior as an extra capability — PlaybackControllable — do not force image creatives to pretend they play video. Avoid as? VideoCreative on the revenue path. New types plug in by conforming, not by casting.” Follow-ups. Demo type?: “AdPipeline of C where C is Creative and AdTrackable — AdsPipeline.swift.”. What does install do?: “Track impression, then makeBody — type-safe end to end.”. Why not Any cast ladder?: “Casts hide bugs until a new creative ships Friday night.”.
 
 ## §1 Q2. How do where clauses help with associated types?
 
@@ -29,9 +29,9 @@ Next. Q6. What trade-offs should you memorize — including YAGNI vs revenue sca
 
 Next. Q7. What is a 5-minute whiteboard architecture spine? Answer. “Agenda: revenue ads path — inheritance problems, P O P contracts, generics pipeline, HeroWidget lifecycle, trade-offs. Problem: new creatives forking render code; video lifecycle bugs. Design: capability protocols plus Pipeline of C. Lifecycle: pause/play on visibility. Trade-off: generics inside; erasure only if mixed feed requires it. Honesty: no invented fill-rate percent; maintainable type-safe pipeline is the claim. Fifteen-second opener: highest-revenue Ads path — protocols, generics, and video lifecycle.” Follow-ups. Anti-pattern to avoid?: “Diving into Generics Manifesto trivia instead of safety → pipeline → lifecycle → trade-off.”. Next practice after code tour?: “Production bridge sample, then timed questions.”.
 
-## §7 Q8. Name five anti-patterns and their fixes
+## §7 Q8. Name five anti-patterns and their fixes?
 
-Next. Q8. Name five anti-patterns and their fixes Answer. “One: Any plus cast ladder — generic constraint or typed factory. Two: deep AdView tree — capability protocols. Three: erasing every generic — erase at boundary only. Four: extension-only overrides — promote to requirements. Five: structs can’t do P O P — structs are first-class adopters. Bonus: forgetting UIKit subclass needs — class for view identity, P O P for capabilities.” Follow-ups. Claiming any is free?: “Know existential plus associated-type limits.”. Claiming every creative was a struct?: “Don’t invent — video/player identity often needs a class.”. Done with code sample?: “Move to Ads plus HeroWidget interview language, then Stories soft bridge if asked.”.
+Next. Q8. Name five anti-patterns and their fixes? Answer. “One: Any plus cast ladder — generic constraint or typed factory. Two: deep AdView tree — capability protocols. Three: erasing every generic — erase at boundary only. Four: extension-only overrides — promote to requirements. Five: structs can’t do P O P — structs are first-class adopters. Bonus: forgetting UIKit subclass needs — class for view identity, P O P for capabilities.” Follow-ups. Claiming any is free?: “Know existential plus associated-type limits.”. Claiming every creative was a struct?: “Don’t invent — video/player identity often needs a class.”. Done with code sample?: “Move to Ads plus HeroWidget interview language, then Stories soft bridge if asked.”.
 
 ## §8 Q9. rethrows ergonomics on a pipeline mapper?
 

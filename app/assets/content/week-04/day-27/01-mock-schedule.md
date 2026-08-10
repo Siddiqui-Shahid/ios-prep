@@ -5,10 +5,9 @@
 ---
 
 ### Q1. What is Mock #4’s full day schedule?
-
 **Answer:**
 
-> **Warm-up 15 min** → **Coding 45** → break 10–15 → **iOS deep dive 45** → break 10–15 → **System design 45** → **debrief 45–60 min**.  
+> **Warm-up 15 min** → **Coding 45** → break 10–15 → **iOS deep dive 45** → break 10–15 → **System design 45** → **debrief 45–60 min**. 
 > Total ~4.5–5.5 hours. Timer visible. No notes in-frame. Debrief ends with **exactly three fix-forwards** — then **stop**.
 
 **Follow-ups:**
@@ -25,11 +24,10 @@
 ---
 
 ### Q2. What are the three main segments?
-
 **Answer:**
 
-> **Coding 45** — Medium DSA, unlabeled pattern preferred (trees/hash/heap/window fair).  
-> **iOS deep dive 45** — 4–6 topics: ARC, GCD vs actors, architecture, URLSession/pinning, SDUI, perf/crashes, SDK, on-device AI if pivoted.  
+> **Coding 45** — Medium DSA, unlabeled pattern preferred (trees/hash/heap/window fair). 
+> **iOS deep dive 45** — 4–6 topics: ARC, GCD vs actors, architecture, URLSession/pinning, SDUI, perf/crashes, SDK, on-device AI if pivoted. 
 > **System design 45** — SDUI **or** networking+pinning **or** on-device AI; staff timing with ops block protected.
 
 **Follow-ups:**
@@ -46,13 +44,12 @@
 ---
 
 ### Q3. How do you open each segment?
-
 **Answer:**
 
-> **Coding:** Clarify → brute → optimize → complexity → edges → code.  
-> **Deep dive:** Definition → mechanism → trade-off → production.  
-> **System design:** “I’ll spend 5 minutes on scope, then architecture, then deep-dive and ops. Does that work?”  
-> **Behavioral if pulled:** “I’ll take ~2 minutes — context, what I owned, outcome.”  
+> **Coding:** Clarify → brute → optimize → complexity → edges → code. 
+> **Deep dive:** Definition → mechanism → trade-off → production. 
+> **System design:** “I’ll spend 5 minutes on scope, then architecture, then deep-dive and ops. Does that work?” 
+> **Behavioral if pulled:** “I’ll take ~2 minutes — context, what I owned, outcome.” 
 > Rehearse each opener **30s** quietly before the segment starts.
 
 **Follow-ups:**
@@ -69,7 +66,6 @@
 ---
 
 ### Q4. What is the warm-up block for?
-
 **Answer:**
 
 > **15 minutes** before Coding: weak flashcards + one STAR opener (BookMyShow LE Bottom Sheet or BookMyShow IMOC + crash-free at scale). Speak warm-up pool once each — suggested set **W1, W6, W7, W3**. Save W9–W12 for mental rehearsal. Purpose: activate recall, not learn new material.
@@ -78,7 +74,7 @@
 
 | Follow-up | Answer |
 |---|---|
-| Full warm-up pool location? | [`../04-questions.md`](../04-questions.md) Pools A–E |
+| Full warm-up pool location? | [07-revision-qna.md](07-revision-qna.md) Pools A–E |
 | STAR in warm-up timed? | One full opener — 2 min max — then coding focus. |
 | Skip warm-up? | Lose confidence ramp — keep 15 min. |
 
@@ -91,7 +87,6 @@
 ---
 
 ### Q5. What materials do you need before starting?
-
 **Answer:**
 
 > Scorecards printed or in proctor notes doc (**not** in your frame). Timer, water, breaks planned. SD prompt chosen or expert-assigned. **Fresh** DSA problem — unlabeled Medium. DSA track reference for proctor: [`../../../coding/dsa-track.md`](../../../coding/dsa-track.md).
@@ -110,7 +105,6 @@
 ---
 
 ### Q6. What is Mock #4’s north star?
-
 **Answer:**
 
 > **Dress rehearsal.** Timer visible. No notes in-frame. **Agenda first every segment.** Debrief ends with **exactly three fix-forwards** — then stop. Not a learning day — a performance day with honest scoring.
@@ -129,7 +123,6 @@
 ---
 
 ### Q7. How do you recover when you blank?
-
 **Answer:**
 
 > Say an **assumption** → return to **requirements** → **draw** → offer **brute** → recover. **No apology spiral.** Burn zero time on “sorry, I’m nervous.” Seniors recover in one sentence and move.
@@ -149,3 +142,28 @@ Next: [02-segment-scorecards.md](02-segment-scorecards.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What are the three main segments
+
+**Ask yourself:** What are the three main segments?
+
+**Answer:** “**Coding 45** — Medium DSA, unlabeled pattern preferred (trees/hash/heap/window fair). 
+> **iOS deep dive 45** — 4–6 topics: ARC, GCD vs actors, architecture, URLSession/pinning, SDUI, perf/crashes, SDK, on-device AI if pivoted. 
+> **System design 45** — SDUI **or** networking+pinning **or** on-device AI; staff timing with ops block protected.”
+
+### Puzzle B — How do you open each segment
+
+**Ask yourself:** How do you open each segment?
+
+**Answer:** “**Coding:** Clarify → brute → optimize → complexity → edges → code. 
+> **Deep dive:** Definition → mechanism → trade-off → production. 
+> **System design:** “I’ll spend 5 minutes on scope, then architecture, then deep-dive and ops. Does that work?” 
+> **Behavioral if pulled:** “I’ll take ~2 minutes — context, what I owned, outcome.” 
+> Rehearse each opener **30s** quietly before the segment starts.”
+
+### Puzzle C — What is the warm-up block for
+
+**Ask yourself:** What is the warm-up block for?
+
+**Answer:** “**15 minutes** before Coding: weak flashcards + one STAR opener (BookMyShow LE Bottom Sheet or BookMyShow IMOC + crash-free at scale). Speak warm-up pool once each — suggested set **W1, W6, W7, W3**. Save W9–W12 for mental rehearsal. Purpose: activate recall, not learn new material.”

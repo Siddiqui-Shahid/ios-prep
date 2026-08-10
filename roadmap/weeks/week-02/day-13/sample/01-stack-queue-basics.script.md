@@ -5,9 +5,9 @@
 
 Next. Q1. What is a stack vs a queue, in one sentence each? Answer. Stack: last in, first out (LIFO) — like a stack of plates; push and pop from the top. Queue: first in, first out (FIFO) — like a ticket line; enqueue at the rear, dequeue from the front. Deque adds push/pop at both ends. Pick the structure that matches the problem’s access pattern before you code. Follow-ups. Kitchen metaphors?: Stack = plates from top; queue = serve front of line.. DFS vs BFS?: DFS uses stack or recursion; BFS uses queue.. Swift default stack?: Array with append / removeLast..
 
-## §1 Q2. Why is `Array.removeFirst()` a bad default queue?
+## §1 Q2. Why is `Array.removeFirst` a bad default queue?
 
-Next. Q2. Why is `Array.removeFirst()` a bad default queue? Answer. removeFirst() shifts every remaining element → O(n) per dequeue. Fine for tiny n or rare calls. Wrong for BFS hot paths and interview silence. Alternatives: two-stack queue (amortized O(1)), head index + compact, ring buffer, or Swift Collections Deque. Follow-ups. When is removeFirst OK?: Small n, prototype, or you explicitly call out O(n).. Production Swift?: Often Deque if dependency OK; two-stack for interviews.. Interviewer trap?: Claiming Array queue is O(1) — wrong..
+Next. Q2. Why is `Array.removeFirst` a bad default queue? Answer. removeFirst shifts every remaining element → O(n) per dequeue. Fine for tiny n or rare calls. Wrong for BFS hot paths and interview silence. Alternatives: two-stack queue (amortized O(1)), head index + compact, ring buffer, or Swift Collections Deque. Follow-ups. When is removeFirst OK?: Small n, prototype, or you explicitly call out O(n).. Production Swift?: Often Deque if dependency OK; two-stack for interviews.. Interviewer trap?: Claiming Array queue is O(1) — wrong..
 
 ## §2 Q3. What are the complexity targets to say aloud?
 

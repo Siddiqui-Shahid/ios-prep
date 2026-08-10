@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What are fix-forwards and why ≤3?
-
 **Answer:**
 
 > **Fix-forwards** = flashcard **fronts only** for gaps Mock #4 exposed — not new study plans. Write **exactly three** after debrief; Day 28 pulls **only** those cards (+ chronic gotchas). More than three creates cram anxiety and breaks taper rules. Park everything else until after interviews.
@@ -27,7 +26,6 @@
 ---
 
 ### Q2. How do you run the debrief?
-
 **Answer:**
 
 > **45–60 min** after SD. Fill table: Coding / iOS / SD — score avg, agenda score, one note each. Then write **three fix-forward fronts**. Check exit: three scorecards filled, ≤3 fix-forwards written. **Hard stop** — no new frameworks, no Day 25 rewrite.
@@ -46,7 +44,6 @@
 ---
 
 ### Q3. What is the hard stop after Mock #4?
-
 **Answer:**
 
 > No new frameworks. No Day 25 app rewrite. No extra LeetCode volume. **One STAR** only if an iOS answer needed a story and failed timing — otherwise **rest**. Tomorrow is game day taper — trust the reps.
@@ -65,12 +62,11 @@
 ---
 
 ### Q4. What proof trio stays loaded under pressure?
-
 **Answer:**
 
-> 1. **30L+ DAU** context (BookMyShow IMOC + crash-free at scale).  
-> 2. **99.95%+ crash-free** (BookMyShow IMOC + crash-free at scale).  
-> 3. **30%+ nav** LE sheet (BookMyShow LE Bottom Sheet).  
+> 1. **30L+ DAU** context (BookMyShow IMOC + crash-free at scale). 
+> 2. **99.95%+ crash-free** (BookMyShow IMOC + crash-free at scale). 
+> 3. **30%+ nav** LE sheet (BookMyShow LE Bottom Sheet). 
 > ≤20s before mock: “I’ll run this like a real loop — agenda first, trade-offs, and metrics I actually shipped.”
 
 **Follow-ups:**
@@ -90,7 +86,6 @@
 ---
 
 ### Q5. How do you pivot proofs by topic?
-
 **Answer:**
 
 > SDUI → BookMyShow backend-driven header & search/Audio streaming + server-driven splash (Aces) + schema fallback. Networking security → BookMyShow SSL pinning + URLSession migration pinning. Concurrency → BookMyShow synchronised dictionaries. Architecture migration / AI tools → District Free Parking + Clean/MVVM + AI tooling. On-device AI → FinTrack on-device AI/GymFlow on-device AI. SDK → Stories SDK (Raw / Miami Heat). Hybrid UI → Hybrid UI / deeplinks. Keep pivot **one sentence** then resume mechanism + trade-off.
@@ -112,7 +107,6 @@
 ---
 
 ### Q6. Interviewer challenges a BMS metric — what now?
-
 **Answer:**
 
 > Clarify **what the number measures** — crash-free sessions vs nav reduction on targeted flows. **Don’t generalize** beyond resume. Offer a related proof if they want another angle. Calm scope beats defensive inflation.
@@ -131,7 +125,6 @@
 ---
 
 ### Q7. Coding still O(n²) near time — what now?
-
 **Answer:**
 
 > Stop polishing the suboptimal path. State the **O(n)** approach and complexity, **sketch the key function**, note what you’d change. Communication recovers points; silent rewrite from zero usually doesn’t finish.
@@ -151,3 +144,25 @@ Next: [`../05-exercises.md`](../05-exercises.md) to run the mock · [`../../day-
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — How do you run the debrief
+
+**Ask yourself:** How do you run the debrief?
+
+**Answer:** “**45–60 min** after SD. Fill table: Coding / iOS / SD — score avg, agenda score, one note each. Then write **three fix-forward fronts**. Check exit: three scorecards filled, ≤3 fix-forwards written. **Hard stop** — no new frameworks, no Day 25 rewrite.”
+
+### Puzzle B — What is the hard stop after Mock #4
+
+**Ask yourself:** What is the hard stop after Mock #4?
+
+**Answer:** “No new frameworks. No Day 25 app rewrite. No extra LeetCode volume. **One STAR** only if an iOS answer needed a story and failed timing — otherwise **rest**. Tomorrow is game day taper — trust the reps.”
+
+### Puzzle C — What proof trio stays loaded under pressure
+
+**Ask yourself:** What proof trio stays loaded under pressure?
+
+**Answer:** “1. **30L+ DAU** context (BookMyShow IMOC + crash-free at scale). 
+> 2. **99.95%+ crash-free** (BookMyShow IMOC + crash-free at scale). 
+> 3. **30%+ nav** LE sheet (BookMyShow LE Bottom Sheet). 
+> ≤20s before mock: “I’ll run this like a real loop — agenda first, trade-offs, and metrics I actually shipped.”

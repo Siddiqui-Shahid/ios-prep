@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What can you claim under Stories SDK (Raw / Miami Heat)?
-
 **Answer:**
 
 > You designed a **standalone reusable Stories SDK** with a **clear public API** and **isolation from app-specific networking where possible** via injectable boundaries. Drove adoption across **portfolio** apps (Raw / Miami Heat). Result: one implementation leveraged by multiple apps → faster feature parity. Lesson: SDK quality = API surface + versioning + independence from host shortcuts.
@@ -27,7 +26,6 @@
 ---
 
 ### Q2. What must you never invent for Stories SDK (Raw / Miami Heat)?
-
 **Answer:**
 
 > Do not invent exact install counts or latency percentages. Do not claim the SDK hardcodes Kingfisher/Alamofire as verified requirement. Do not conflate Stories SDK (Raw / Miami Heat) with District Free Parking + Clean/MVVM + AI tooling District AI tooling story. Do not claim Observation macros as a resume bullet for Stories SDK (Raw / Miami Heat). Stable page IDs and pause policy are senior **design** beats — label Learning-lab shape if illustrating API sketches.
@@ -49,7 +47,6 @@
 ---
 
 ### Q3. How should the Stories SDK public API be shaped?
-
 **Answer:**
 
 > Entry player, **DataSource protocol** (host supplies groups/pages), **ImageLoading / VideoLoading protocols** (injectable), event callbacks (`onOpen`, `onClose`, `onCTA`, `onPage`), theming hooks, versioned module boundary. Host gets callbacks for analytics and navigation — SDK does not hardcode host networking or push tickets VC internally.
@@ -71,7 +68,6 @@
 ---
 
 ### Q4. How do identity and pause policy prove SDK quality?
-
 **Answer:**
 
 > **Stable page IDs** across progress updates — no UUID in body. Progress driven from **model timeline**, not scattered view timers. **Pause on disappear**, scene background, user hold — same lifecycle discipline as HeroWidget (BookMyShow Ads pipeline + HeroWidget lifecycle cousin). These are SDK correctness requirements, not optional polish.
@@ -93,7 +89,6 @@
 ---
 
 ### Q5. How do interviewer pushes map to strong replies?
-
 **Answer:**
 
 > **Copy-paste UI?** Parity + bugfix cost; one SDK. **SDK own network?** Hosts differ; testability; isolation. **SwiftUI-only?** SwiftUI-first + UIKit hosting façade. **Progress desync?** Model timeline + stable identity. **UUID ids?** Never in body; stable model keys.
@@ -115,7 +110,6 @@
 ---
 
 ### Q6. How does Stories SDK (Raw / Miami Heat) relate to other Week 2 stories?
-
 **Answer:**
 
 > **Hybrid UI / deeplinks:** hybrid hosts may embed SDK via UIHostingController — identity/lifecycle sibling. **BookMyShow Ads pipeline + HeroWidget lifecycle:** pause/play lifecycle cousin for media. **Stories SDK (Raw / Miami Heat)** is the product proof for modular reusable UI — Day 15 SPM deepens packaging, but Stories SDK (Raw / Miami Heat) is the interview story. Do not merge Stories SDK (Raw / Miami Heat) into District Free Parking + Clean/MVVM + AI tooling AI or invent portfolio metrics.
@@ -126,7 +120,7 @@
 |---|---|
 | Environment DI in SDK? | Prefer explicit injectable protocols over host AppModel in Environment. |
 | Testing? | XCTest player model primary; UITests golden path open/close. |
-| Full questions? | [`../04-questions.md`](../04-questions.md) for timed practice. |
+| Full questions? | [07-revision-qna.md](07-revision-qna.md) for timed practice. |
 
 **How can I relate to my case:**
 - **Shipped:** Stories SDK (Raw / Miami Heat); Hybrid UI / deeplinks; BookMyShow Ads pipeline + HeroWidget lifecycle; District Free Parking + Clean/MVVM + AI tooling
@@ -138,3 +132,22 @@ Back to: [README.md](README.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What must you never invent for Stories SDK (Raw / Miami Heat)
+
+**Ask yourself:** What must you never invent for Stories SDK (Raw / Miami Heat)?
+
+**Answer:** “Do not invent exact install counts or latency percentages. Do not claim the SDK hardcodes Kingfisher/Alamofire as verified requirement. Do not conflate Stories SDK (Raw / Miami Heat) with District Free Parking + Clean/MVVM + AI tooling District AI tooling story. Do not claim Observation macros as a resume bullet for Stories SDK (Raw / Miami Heat). Stable page IDs and pause policy are senior **design** beats — label Learning-lab shape if illustrating API sketches.”
+
+### Puzzle B — How should the Stories SDK public API be shaped
+
+**Ask yourself:** How should the Stories SDK public API be shaped?
+
+**Answer:** “Entry player, **DataSource protocol** (host supplies groups/pages), **ImageLoading / VideoLoading protocols** (injectable), event callbacks (`onOpen`, `onClose`, `onCTA`, `onPage`), theming hooks, versioned module boundary. Host gets callbacks for analytics and navigation — SDK does not hardcode host networking or push tickets VC internally.”
+
+### Puzzle C — How do identity and pause policy prove SDK quality
+
+**Ask yourself:** How do identity and pause policy prove SDK quality?
+
+**Answer:** “**Stable page IDs** across progress updates — no UUID in body. Progress driven from **model timeline**, not scattered view timers. **Pause on disappear**, scene background, user hold — same lifecycle discipline as HeroWidget (BookMyShow Ads pipeline + HeroWidget lifecycle cousin). These are SDK correctness requirements, not optional polish.”

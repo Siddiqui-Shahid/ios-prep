@@ -1,7 +1,7 @@
 # Mock #1 Scorecard
 
-**Date:** _______________  
-**Mode:** partner / self-record  
+**Date:** _______________ 
+**Mode:** partner / self-record 
 **Total mock time:** _______________
 
 ## Warm-up (score 1–5 each)
@@ -26,7 +26,7 @@ Warm-up average: _____
 | D4 | GCD→actor | | | | |
 | D5 | Stretch | | | | |
 
-Deep average: _____  (pass ≥3.5)
+Deep average: _____ (pass ≥3.5)
 
 ## Story — S2
 
@@ -69,10 +69,10 @@ SD notes: _______________________________________________
 
 ## Top 5 weak cards → Week 2 warm-up
 
-1. _______________  
-2. _______________  
-3. _______________  
-4. _______________  
+1. _______________ 
+2. _______________ 
+3. _______________ 
+4. _______________ 
 5. _______________
 
 ## Retro one-liner

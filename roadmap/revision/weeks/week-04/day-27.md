@@ -63,7 +63,7 @@ From debrief, write **exactly ≤3** flashcard fronts — chronic gotcha, one pa
 | Must | [Sample Q&A](../../../weeks/week-04/day-27/sample/) | Schedule + scorecards |
 | Must | [02-deep-dive](../../../weeks/week-04/day-27/02-deep-dive.md) | Segment playbooks + rubrics |
 | Run | [05-exercises](../../../weeks/week-04/day-27/05-exercises.md) | Full mock loop |
-| Warm-up | [04-questions](../../../weeks/week-04/day-27/04-questions.md) | Two-layer Q pools |
+| Warm-up | [07-revision-qna](../../../weeks/week-04/day-27/sample/07-revision-qna.md) | Two-layer Q pools |
 
 No `code/` kit — fresh DSA problem day-of.
 

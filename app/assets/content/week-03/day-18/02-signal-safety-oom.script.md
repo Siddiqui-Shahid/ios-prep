@@ -7,7 +7,7 @@ Next. Q1. What does async-signal-safe mean in the crash path? Answer. In a signa
 
 ## §1 Q2. What happens conceptually inside the handler?
 
-Next. Q2. What happens conceptually inside the handler? Answer. On fatal signal: suspend other threads (implementation-dependent — be honest it’s delicate) → capture backtrace/registers into preallocated buffer → write() to mmap/file descriptor → reset handler / abort to terminate. Breadcrumbs were already recorded on the happy path into a lock-free ring. Follow-ups. Upload when?: Next cold start — backoff, quota — never in handler.. Suspend threads caveat?: Delicate — vendor SDKs differ; don’t overclaim custom handler expertise.. Learning-lab?:../code/CrashReportNotes.swift.
+Next. Q2. What happens conceptually inside the handler? Answer. On fatal signal: suspend other threads (implementation-dependent — be honest it’s delicate) → capture backtrace/registers into preallocated buffer → write to mmap/file descriptor → reset handler / abort to terminate. Breadcrumbs were already recorded on the happy path into a lock-free ring. Follow-ups. Upload when?: Next cold start — backoff, quota — never in handler.. Suspend threads caveat?: Delicate — vendor SDKs differ; don’t overclaim custom handler expertise.. Learning-lab?:../code/CrashReportNotes.swift.
 
 ## §2 Q3. How should breadcrumbs be designed?
 

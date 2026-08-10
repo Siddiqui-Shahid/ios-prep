@@ -11,11 +11,11 @@ Next. Q2. Which two prompts — pick how? Answer. Prompt A — S D U I engine: C
 
 ## §2 Q3. How do you run the live mock (Exercise 4)?
 
-Next. Q3. How do you run the live mock (Exercise 4)? Answer. 1. Coin flip Prompt A or B. 2. Timer 45:00. Blank paper only — no notes. 3. Record audio + photo of diagram. 4. Force ops in final 5:00. 5. Score with Part II rubric in 04-questions.md — be harsh. Follow-ups. Script rehearsal first?: Exercise 2: read aloud one full script 30–40 min while drawing.. Lightning alternate?: Exercise 5: other prompt — clarify + high level design + one dive + ops (20 min).. Pass checklist?: ≥70 total, ops ≥6/10, no fabricated metrics, provenance labels correct..
+Next. Q3. How do you run the live mock (Exercise 4)? Answer. 1. Coin flip Prompt A or B. 2. Timer 45:00. Blank paper only — no notes. 3. Record audio + photo of diagram. 4. Force ops in final 5:00. 5. Score with Part II rubric in 07-revision-qna.md — be harsh. Follow-ups. Script rehearsal first?: Exercise 2: read aloud one full script 30–40 min while drawing.. Lightning alternate?: Exercise 5: other prompt — clarify + high level design + one dive + ops (20 min).. Pass checklist?: ≥70 total, ops ≥6/10, no fabricated metrics, provenance labels correct..
 
 ## §3 Q4. What communication habits score senior?
 
-Next. Q4. What communication habits score senior? Answer. Checkpoint each phase — “OK to deep-dive refresh next?” Cut dive to save ops — ops is scored. Negotiate if asked both prompts — primary + secondary. Interfaces over code dumps — sketch pin challenge, schema enum, refresh actor — not table view cells. Follow-ups. Silent interviewer?: Ask rather than monologue past misunderstanding — T8 in 04-questions.. Pulled into pixel U I?: Park pixels; one component example; return to schema/reliability — timebox 5 min.. End on class diagram?: Anti-pattern — close on failures + SLIs + pause..
+Next. Q4. What communication habits score senior? Answer. Checkpoint each phase — “OK to deep-dive refresh next?” Cut dive to save ops — ops is scored. Negotiate if asked both prompts — primary + secondary. Interfaces over code dumps — sketch pin challenge, schema enum, refresh actor — not table view cells. Follow-ups. Silent interviewer?: Ask rather than monologue past misunderstanding — T8 in 07-revision-qna.. Pulled into pixel U I?: Park pixels; one component example; return to schema/reliability — timebox 5 min.. End on class diagram?: Anti-pattern — close on failures + SLIs + pause..
 
 ## §4 Q5. What should you rehearse before the timed mock?
 
@@ -27,4 +27,4 @@ Next. Q6. What are shared anti-patterns for both prompts? Answer. Don’t: draw 
 
 ## §6 Q7. After-action — what do you log?
 
-Next. Q7. After-action — what do you log? Answer. Top 3 misses → flashcards / Week 4 Day 27. Self-review: p50/p90 said? rotation labeled design? unknown component handled? fabricated metrics? Rest voice. Pass requires ≥70, ops ≥6/10, zero fake numbers, SPKI ≠ SecKey, Design: pin rotation / break-glass (not shipped runbook) ≠ “shipped runbook.” Follow-ups. Timed warm-up before mock?: 04-questions: Q1, Q4, Q5 + T3, T6 — then full 45.. Week 4 link?: Day 27 gap logging from after-action.. Next sample topic?: Clarify phase — 02-clarify-phase.md..
+Next. Q7. After-action — what do you log? Answer. Top 3 misses → flashcards / Week 4 Day 27. Self-review: p50/p90 said? rotation labeled design? unknown component handled? fabricated metrics? Rest voice. Pass requires ≥70, ops ≥6/10, zero fake numbers, SPKI ≠ SecKey, Design: pin rotation / break-glass (not shipped runbook) ≠ “shipped runbook.” Follow-ups. Timed warm-up before mock?: 07-revision-qna: Q1, Q4, Q5 + T3, T6 — then full 45.. Week 4 link?: Day 27 gap logging from after-action.. Next sample topic?: Clarify phase — 02-clarify-phase.md..

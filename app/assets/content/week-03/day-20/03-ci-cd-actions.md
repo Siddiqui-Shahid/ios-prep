@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What is the BMS CI/CD pipeline shape?
-
 **Answer:**
 
 > **PR → GitHub Actions** (lint, build, unit tests) → merge → **archive + sign** → **TestFlight** (internal/external) → phased **App Store** → monitor CFS/perf → **pause** if needed. Verified BMS claim: automated Actions for build, lint, TestFlight — cut manual release ceremony.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. What runs on every PR?
-
 **Answer:**
 
 > **Lint + build + unit tests** on macOS runners. With modularization: selective test targets when safe. **Quarantine flakes** — don’t train team to ignore red CI. Green PR is merge gate; not optional “best effort.”
@@ -46,7 +44,6 @@
 ---
 
 ### Q3. How do you handle signing in CI?
-
 **Answer:**
 
 > Encrypted certs/profiles (match-style or cloud signing). Secrets in **CI secret store** / OIDC — **never commit `.p12` in clear**. Deterministic `CODE_SIGNING` settings. **Never log secrets** in build output. Rotate if leaked.
@@ -65,7 +62,6 @@
 ---
 
 ### Q4. Why upload dSYM on every user-facing build?
-
 **Answer:**
 
 > **Day 18 triage depends on it** — Crashlytics symbolication without dSYM = useless stacks. Upload every build that can reach TestFlight or App Store users. Gate release on upload success when possible.
@@ -84,7 +80,6 @@
 ---
 
 ### Q5. TestFlight workflow — internal vs external?
-
 **Answer:**
 
 > **Internal smoke** first (team, fast feedback) → **external** beta when stable → then App Store phased %. TF crash-loop while CI green? Check release flags, entitlements, environment — **smoke TF before wide phased**.
@@ -103,7 +98,6 @@
 ---
 
 ### Q6. How does AI-assisted PR review fit (District Free Parking + Clean/MVVM + AI tooling)?
-
 **Answer:**
 
 > “AI accelerates review for **obvious regressions**; humans still own **architecture, security, and product trade-offs**. I never say ‘AI approved so it’s fine.’” District Free Parking + Clean/MVVM + AI tooling judgment — assist, don’t own. Forbidden: “AI approved the release.”
@@ -125,7 +119,6 @@
 ---
 
 ### Q7. CI failure modes?
-
 **Answer:**
 
 > | Mode | Response |
@@ -153,3 +146,22 @@ Next: [04-release-trains.md](04-release-trains.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What runs on every PR
+
+**Ask yourself:** What runs on every PR?
+
+**Answer:** “**Lint + build + unit tests** on macOS runners. With modularization: selective test targets when safe. **Quarantine flakes** — don’t train team to ignore red CI. Green PR is merge gate; not optional “best effort.”
+
+### Puzzle B — How do you handle signing in CI
+
+**Ask yourself:** How do you handle signing in CI?
+
+**Answer:** “Encrypted certs/profiles (match-style or cloud signing). Secrets in **CI secret store** / OIDC — **never commit `.p12` in clear**. Deterministic `CODE_SIGNING` settings. **Never log secrets** in build output. Rotate if leaked.”
+
+### Puzzle C — Why upload dSYM on every user-facing build
+
+**Ask yourself:** Why upload dSYM on every user-facing build?
+
+**Answer:** “**Day 18 triage depends on it** — Crashlytics symbolication without dSYM = useless stacks. Upload every build that can reach TestFlight or App Store users. Gate release on upload success when possible.”

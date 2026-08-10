@@ -1,6 +1,6 @@
 # Day 14 sample — guided Q&A
 
-> Separate teaching sample. Does **not** replace the main Day 14 modules.  
+> Separate teaching sample. Does **not** replace the main Day 14 modules. 
 > Use this when you want revision and Mock #2 prep as **question → module pointer → answer → follow-ups**.
 
 ## How to use
@@ -45,3 +45,8 @@ The Flutter audiobook app lists **these sample Q&A chapters only** for Day 14 (n
 python3 app/scripts/generate_sample_scripts.py
 ./app/scripts/sync_content.sh
 ```
+
+
+## Revision
+
+Thick speak practice: [07-revision-qna.md](07-revision-qna.md) — Normal + Indirect + Tricky.

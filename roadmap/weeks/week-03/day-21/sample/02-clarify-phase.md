@@ -5,7 +5,6 @@
 ---
 
 ### Q1. How do you start any mobile SD interview?
-
 **Answer:**
 
 > Propose a **timed agenda** — clarify, HLD, API, two deep dives, ops — **confirm** it matches what they want. Then ask **scale, offline, explicit out-of-scope**. Drawing silently without a plan is how seniors look junior. Target **≤5 minutes** for clarify.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. What scale numbers can you use honestly?
-
 **Answer:**
 
 > **30+ lakh DAU** when BMS-like consumer context — from resume. **99.95%+ CFS** as ops constraint when rollout discussed (BookMyShow IMOC + crash-free at scale). **Don’t invent precise QPS.** If forced to estimate, label assumptions transparently from DAU and session length — never fake precision as fact.
@@ -46,7 +44,6 @@
 ---
 
 ### Q3. What do you cut from scope by default?
-
 **Answer:**
 
 > Default **out of scope** unless interviewer pulls you in: **web CMS admin**, **Android parity**, **ML ranking**, **pixel-perfect design-tool export**, **arbitrary script execution on device**. Platform: **iOS** (SwiftUI/UIKit as relevant). State cuts explicitly — scope negotiation is senior signal.
@@ -65,7 +62,6 @@
 ---
 
 ### Q4. SDUI clarify script — what do you say?
-
 **Answer:**
 
 > “I’ll design an iOS **server-driven UI engine** for CMS-driven home surfaces — header, splash-style screens — not full web admin. Scale: **~30L DAU** context. Assume **online-first with last-good cache** unless you want offline-first. Deep dives: **schema versioning + unknown-component fallback** and **action routing**. Ops with flags and crash-free pause. **Does that match?**”
@@ -87,7 +83,6 @@
 ---
 
 ### Q5. Networking + pinning clarify script?
-
 **Answer:**
 
 > “I’ll design a **first-party networking layer** with auth and SSL pinning for high-traffic consumer APIs — ads/checkout-adjacent. Scale: **30L+ DAU**. Out of scope: full backend mesh, Android. Deep dives: **single-flight token refresh** and **SPKI pinning with rotation as design**. Close on **p50/p90 observability**. Match?”
@@ -109,7 +104,6 @@
 ---
 
 ### Q6. What do you ask about offline during clarify?
-
 **Answer:**
 
 > **Ask in clarify — don’t assume.** Default: **last-good layout cache** with TTL and stale-while-revalidate; **native scaffold** if cache empty on first launch. Splash can be server-driven for freshness without blocking forever. Networking mock: offline queue + reachability — idempotency on POSTs.
@@ -131,7 +125,6 @@
 ---
 
 ### Q7. How is clarify scored?
-
 **Answer:**
 
 > **Excellent (15 pts):** states plan aloud; asks scale/offline/in-out; gets **yes** before drawing; **≤5 min**. **Weak:** silent boxing or clarifying fifteen minutes. Structure layer — combined with HLD, API, dives, ops for **≥70 pass** with **ops ≥6/10**.
@@ -150,7 +143,6 @@
 ---
 
 ### Q8. SDUI action routing — worked deep-dive answer?
-
 **Answer:**
 
 > Actions are **data, not code**. **Allowlisted types only** — CMS cannot invent arbitrary native paths. Deeplink actions enter the **same DeepLinkRouter** as Universal Links and push — **one table** — so CMS doesn’t create a second navigation world. Sensitive routes still **auth-gate**. Analytics maps on components let PM change event names without an app release. **Kill switch** via remote config disables SDUI surfaces and falls back to native scaffolding.
@@ -170,3 +162,22 @@ Next: [03-cache-scroll.md](03-cache-scroll.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What scale numbers can you use honestly
+
+**Ask yourself:** What scale numbers can you use honestly?
+
+**Answer:** “**30+ lakh DAU** when BMS-like consumer context — from resume. **99.95%+ CFS** as ops constraint when rollout discussed (BookMyShow IMOC + crash-free at scale). **Don’t invent precise QPS.** If forced to estimate, label assumptions transparently from DAU and session length — never fake precision as fact.”
+
+### Puzzle B — What do you cut from scope by default
+
+**Ask yourself:** What do you cut from scope by default?
+
+**Answer:** “Default **out of scope** unless interviewer pulls you in: **web CMS admin**, **Android parity**, **ML ranking**, **pixel-perfect design-tool export**, **arbitrary script execution on device**. Platform: **iOS** (SwiftUI/UIKit as relevant). State cuts explicitly — scope negotiation is senior signal.”
+
+### Puzzle C — SDUI clarify script — what do you say
+
+**Ask yourself:** SDUI clarify script — what do you say?
+
+**Answer:** “I’ll design an iOS **server-driven UI engine** for CMS-driven home surfaces — header, splash-style screens — not full web admin. Scale: **~30L DAU** context. Assume **online-first with last-good cache** unless you want offline-first. Deep dives: **schema versioning + unknown-component fallback** and **action routing**. Ops with flags and crash-free pause. **Does that match?**”

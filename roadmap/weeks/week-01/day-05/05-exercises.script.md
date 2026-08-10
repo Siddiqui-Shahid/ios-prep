@@ -42,4 +42,4 @@ Front: Back. Structured concurrency: Parent owns children. cancel propagates · 
 
 Next. F. Day close-out checklist.
 
-[ ] Explained reentrancy without notes [ ] Stated Sendable stored-property rule correctly [ ] Delivered S2 STAR. ≤3 min with honest metrics scope [ ] Delivered S2-A1 migration as applied. not shipped rewrite [ ] Tied debounce cancellation to S3 [ ] Qualified Swift 6 / Approachable Concurrency. / default MainActor as settings when enabled [ ] Read SafeDictActor.swift aloud line-by-line once [ ] Completed timed. set from 04-questions.md.
+[ ] Explained reentrancy without notes [ ] Stated Sendable stored-property rule correctly [ ] Delivered S2 STAR. ≤3 min with honest metrics scope [ ] Delivered S2-A1 migration as applied. not shipped rewrite [ ] Tied debounce cancellation to S3 [ ] Qualified Swift 6 / Approachable Concurrency. / default MainActor as settings when enabled [ ] Read SafeDictActor.swift aloud line-by-line once [ ] Completed timed. set from sample/07-revision-qna.md.

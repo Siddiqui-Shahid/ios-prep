@@ -5,13 +5,12 @@
 ---
 
 ### Q1. How is the coding segment timed (45 min)?
-
 **Answer:**
 
-> **0–3 min:** Clarify + say-this-first agenda.  
-> **3–35 min:** Code + narrate continuously.  
-> **35–42 min:** Edges / tests aloud; fix bugs.  
-> **42–45 min:** Complexity recap + mention alternative approach.  
+> **0–3 min:** Clarify + say-this-first agenda. 
+> **3–35 min:** Code + narrate continuously. 
+> **35–42 min:** Edges / tests aloud; fix bugs. 
+> **42–45 min:** Complexity recap + mention alternative approach. 
 > Prefer **mixed unknown** Medium — trees, hash, heap, sliding window fair game.
 
 **Follow-ups:**
@@ -28,12 +27,11 @@
 ---
 
 ### Q2. What does the coding scorecard measure?
-
 **Answer:**
 
-> Six criteria, each **1 / 3 / 5**: Clarify + agenda · Correctness · Complexity · Communication · Edges/tests · Time use.  
-> **5** = explicit timed agenda, passes cases, accurate complexity, continuous narration, edges covered, buffer left.  
-> **3** = partial on most rows. **1** = jumped to code, wrong approach, silent, incomplete core.  
+> Six criteria, each **1 / 3 / 5**: Clarify + agenda · Correctness · Complexity · Communication · Edges/tests · Time use. 
+> **5** = explicit timed agenda, passes cases, accurate complexity, continuous narration, edges covered, buffer left. 
+> **3** = partial on most rows. **1** = jumped to code, wrong approach, silent, incomplete core. 
 > **Target:** average ≥**3.5**; agenda ≥**4**.
 
 **Follow-ups:**
@@ -50,11 +48,10 @@
 ---
 
 ### Q3. How is the iOS deep dive scored?
-
 **Answer:**
 
-> **4–6 topics** — answers **30–45s** or **90–120s**; one architecture answer **3–5 min** if “design X.”  
-> Criteria: Timing · Mechanism · Trade-off · Production proof · Agenda on long answers · Honesty.  
+> **4–6 topics** — answers **30–45s** or **90–120s**; one architecture answer **3–5 min** if “design X.” 
+> Criteria: Timing · Mechanism · Trade-off · Production proof · Agenda on long answers · Honesty. 
 > **Target:** ≥**4** on Normals; ≥**3** on Trickies; ≥**2** production hooks (BMS/Raw/District).
 
 **Follow-ups:**
@@ -74,10 +71,9 @@
 ---
 
 ### Q4. What topics appear in the iOS pool?
-
 **Answer:**
 
-> ARC/retain cycles · GCD vs actors · MVVM–Clean–DI · URLSession/pinning · SDUI fallbacks · SwiftUI identity/hybrid · Instruments p50/p90 · Crash/IMOC **99.95%** · SPM/Stories SDK · On-device AI fail-soft if pivoted (keep tight).  
+> ARC/retain cycles · GCD vs actors · MVVM–Clean–DI · URLSession/pinning · SDUI fallbacks · SwiftUI identity/hybrid · Instruments p50/p90 · Crash/IMOC **99.95%** · SPM/Stories SDK · On-device AI fail-soft if pivoted (keep tight). 
 > Every answer: definition → mechanism → trade-off → production proof.
 
 **Follow-ups:**
@@ -97,14 +93,13 @@
 ---
 
 ### Q5. How is system design timed (45 min)?
-
 **Answer:**
 
-> **0–5** Clarify: scope, DAU, offline?, iOS-only?, latency SLO.  
-> **5–15** HLD: 4-layer client + data flow.  
-> **15–25** Data/API: entities, pagination, payloads, idempotency.  
-> **25–40** Deep dive: 2–3 hardest subsystems.  
-> **40–45** Ops: failure modes, metrics, rollout, kill switch.  
+> **0–5** Clarify: scope, DAU, offline?, iOS-only?, latency SLO. 
+> **5–15** HLD: 4-layer client + data flow. 
+> **15–25** Data/API: entities, pagination, payloads, idempotency. 
+> **25–40** Deep dive: 2–3 hardest subsystems. 
+> **40–45** Ops: failure modes, metrics, rollout, kill switch. 
 > Prompt options: SDUI engine · Networking+pinning · On-device AI · Image/feed.
 
 **Follow-ups:**
@@ -121,11 +116,10 @@
 ---
 
 ### Q6. What is the system design scorecard target?
-
 **Answer:**
 
-> Criteria: Clarify · HLD (4 layers) · Deep dive (2 crisp) · Failure modes · Metrics/rollout · Timing · Personal proof.  
-> **Target:** average ≥**3.5**; clarify + failure modes ≥**4**.  
+> Criteria: Clarify · HLD (4 layers) · Deep dive (2 crisp) · Failure modes · Metrics/rollout · Timing · Personal proof. 
+> **Target:** average ≥**3.5**; clarify + failure modes ≥**4**. 
 > **5** on HLD = four layers with clear data flow; **5** on ops = kill switch, degrade path, concrete metrics.
 
 **Follow-ups:**
@@ -142,12 +136,11 @@
 ---
 
 ### Q7. What does 5 vs 3 vs 1 mean across segments?
-
 **Answer:**
 
-> **5** = on time, explicit agenda, correct mechanism, trade-off stated, production proof with honest provenance, follow-up ready.  
-> **3** = correct core but fuzzy trade-off, weak timing (±30%), light production hook, or partial edges.  
-> **1** = blank, wrong, bluff, silent, happy-path-only SD, or jumped in without clarify.  
+> **5** = on time, explicit agenda, correct mechanism, trade-off stated, production proof with honest provenance, follow-up ready. 
+> **3** = correct core but fuzzy trade-off, weak timing (±30%), light production hook, or partial edges. 
+> **1** = blank, wrong, bluff, silent, happy-path-only SD, or jumped in without clarify. 
 > Mock pass = segment averages meet targets + **≤3** fix-forwards logged.
 
 **Follow-ups:**
@@ -164,7 +157,6 @@
 ---
 
 ### Q8. What are meta trade-offs for Mock #4?
-
 **Answer:**
 
 > **Expert human** = best signal, costs scheduling. **Self + recorded** = always on, blind spots remain. **Fresh DSA** = realism and stress — intended. **Reuse Day 25 app** = comfort but weaker coding signal. Choose fresh problem and honest debrief over comfort.
@@ -184,3 +176,28 @@ Next: [03-warmup-recovery.md](03-warmup-recovery.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What does the coding scorecard measure
+
+**Ask yourself:** What does the coding scorecard measure?
+
+**Answer:** “Six criteria, each **1 / 3 / 5**: Clarify + agenda · Correctness · Complexity · Communication · Edges/tests · Time use. 
+> **5** = explicit timed agenda, passes cases, accurate complexity, continuous narration, edges covered, buffer left. 
+> **3** = partial on most rows. **1** = jumped to code, wrong approach, silent, incomplete core. 
+> **Target:** average ≥**3.5**; agenda ≥**4**.”
+
+### Puzzle B — How is the iOS deep dive scored
+
+**Ask yourself:** How is the iOS deep dive scored?
+
+**Answer:** “**4–6 topics** — answers **30–45s** or **90–120s**; one architecture answer **3–5 min** if “design X.” 
+> Criteria: Timing · Mechanism · Trade-off · Production proof · Agenda on long answers · Honesty. 
+> **Target:** ≥**4** on Normals; ≥**3** on Trickies; ≥**2** production hooks (BMS/Raw/District).”
+
+### Puzzle C — What topics appear in the iOS pool
+
+**Ask yourself:** What topics appear in the iOS pool?
+
+**Answer:** “ARC/retain cycles · GCD vs actors · MVVM–Clean–DI · URLSession/pinning · SDUI fallbacks · SwiftUI identity/hybrid · Instruments p50/p90 · Crash/IMOC **99.95%** · SPM/Stories SDK · On-device AI fail-soft if pivoted (keep tight). 
+> Every answer: definition → mechanism → trade-off → production proof.”

@@ -1,12 +1,11 @@
 # Sample 06 — Module leftovers: drills, flash recall, close-out (Q&A)
 
-> Pulled from `01-foundations`, `02-deep-dive`, `03-production-bridge`, `05-exercises`, and the day README — anything easy to miss if you only read samples 01–05.  
+> Pulled from `01-foundations`, `02-deep-dive`, `03-production-bridge`, `05-exercises`, and the day README — anything easy to miss if you only read samples 01–05. 
 > Say answers like a conversation. Then do the real coding drills in [`../05-exercises.md`](../05-exercises.md).
 
 ---
 
-### Q1. Walk the mini ads pipeline aloud (exercise 1)
-
+### Q1. Walk the mini ads pipeline aloud (exercise 1)?
 **Answer:**
 
 > “Capabilities first — Creative with associated Body, plus AdTrackable. ImageCreative is a struct; VideoCreative is a class that also adopts PlaybackControllable. AdPipeline of C constrained to Creative and AdTrackable installs type-safe — track then makeBody. bindPlayback only for Creative and PlaybackControllable. Stretch: CarouselCreative plugs in by conformance without touching pipeline body.”
@@ -24,8 +23,7 @@
 
 ---
 
-### Q2. Type eraser drill — speak costs in ≤30s (exercise 2)
-
+### Q2. Type eraser drill — speak costs in ≤30s (exercise 2)?
 **Answer:**
 
 > “AnyTrackable stores id and a _track closure. Banner and Interstitial both land in one array. Costs: heap allocation, indirection, lost specialization, narrower API. Prefer generic install inside; erase at mixed list or boundary. Honesty: learning-lab, not shipped BMS.”
@@ -42,8 +40,7 @@
 
 ---
 
-### Q3. Extension dispatch surprise — predict then fix (exercise 3)
-
+### Q3. Extension dispatch surprise — predict then fix (exercise 3)?
 **Answer:**
 
 > “I write Greeter with wave only in an extension, Person defines its own wave, call through any Greeter — I predict default, not person. Fix: promote wave to a protocol requirement so witness-table dispatch hits Person. Speak: requirements witness-dispatch; extension-only methods may bind statically.”
@@ -59,8 +56,7 @@
 
 ---
 
-### Q4. HeroWidget lifecycle sketch (exercise 4)
-
+### Q4. HeroWidget lifecycle sketch (exercise 4)?
 **Answer:**
 
 > “HeroWidget owns a video creative or player façade. didEnterVisibleViewport plays; didLeave pauses. Conform to PlaybackControllable. Ninety-second Action slice ties widget to the typed ads pipeline. Honesty: no fill-rate percent — lifecycle-correct video is the claim.”
@@ -77,8 +73,7 @@
 
 ---
 
-### Q5. Open vs closed registry (exercise 5)
-
+### Q5. Open vs closed registry (exercise 5)?
 **Answer:**
 
 > “Sketch enum AdKind image/video with switch renderer — simple, exhaustive, release for every new case. Sketch AdRegistry with AdComponentFactory and unknown fallback placeholder — open, CMS-friendly. Ninety seconds: trade-offs; soft mention backend-driven header; unknown fallback as design when Applied.”
@@ -95,8 +90,7 @@
 
 ---
 
-### Q6. Stories SDK boundary bullets (exercise 7)
-
+### Q6. Stories SDK boundary bullets (exercise 7)?
 **Answer:**
 
 > “Five rules: expose protocols not a forest of concretes; carefully chosen value models; version breaking requirements with defaults or a v2 protocol; don’t leak internal player types; document unknown/fallback policy for host apps. Twenty-second soft bridge after writing — portfolio reuse, no invented client counts. Don’t let Stories steal the Ads answer.”
@@ -113,8 +107,7 @@
 
 ---
 
-### Q7. Flash recall — fire front → back like cards
-
+### Q7. Flash recall — fire front → back like cards?
 **Answer:**
 
 > “POP — capabilities over inheritance; trap is never use classes; prod is Ads pipeline contracts.
@@ -157,25 +150,23 @@
 ---
 
 ### Q8. Day close-out — can you check these off?
-
 **Answer:**
 
-> “Without notes: I can explain POP versus inheritance with an ads example. I contrast associated type versus generic parameter in twenty seconds. I name four erasure costs. I demo the extension-default trap. I deliver Ads plus HeroWidget Action under three minutes without inventing fill-rate. I soft-bridge Stories without replacing Ads. I walk AdsPipeline and TypeErasureDemo as lab. I ran a timed set from 04-questions including T1 through T5. If any box is open, that’s my next drill — not more reading.”
+> “Without notes: I can explain POP versus inheritance with an ads example. I contrast associated type versus generic parameter in twenty seconds. I name four erasure costs. I demo the extension-default trap. I deliver Ads plus HeroWidget Action under three minutes without inventing fill-rate. I soft-bridge Stories without replacing Ads. I walk AdsPipeline and TypeErasureDemo as lab. I ran a timed set from 07-revision-qna including T1 through T5. If any box is open, that’s my next drill — not more reading.”
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
 | Where to practice code? | [../05-exercises.md](../05-exercises.md) exercises 1–5 |
-| Where to time speak? | [../04-questions.md](../04-questions.md) T1–T10 |
+| Where to time speak? | [07-revision-qna.md](07-revision-qna.md) T1–T10 |
 
 **How can I relate to my case:**
 - **Concept-only — no shipped story.** Rehearse after every Day 02 study block.
 
 ---
 
-### Q9. What should you be able to do by end of Day 02? (README outcomes)
-
+### Q9. What should you be able to do by end of Day 02? (README outcomes)?
 **Answer:**
 
 > “Explain protocol-oriented design versus inheritance for UI and ad pipelines. Use generics, associated types, and where clauses and say when each belongs. Contrast some versus any, and when associated types force generics or type erasure. Explain type erasure and its cost. Deliver a five-minute architecture talk on BookMyShow Ads and HeroWidget without inventing fill-rate metrics. Soft-bridge to Stories SDK for reusable protocol APIs at a boundary.”
@@ -191,8 +182,7 @@
 
 ---
 
-### Q10. Static / witness / @objc triad in one breath
-
+### Q10. Static / witness / @objc triad in one breath?
 **Answer:**
 
 > “Concrete, final, or specialized generics can static-dispatch. Protocol requirements called through an existential go through a witness table. @objc uses Objective-C message send. Extension-only methods that aren’t requirements may bind to the static type — that’s why any Greeter can miss Person.wave.”
@@ -224,7 +214,7 @@ You need Pair to be Equatable only when both sides are — and also a one-off he
 
 ```swift
 protocol VideoAdRenderable: AdRenderable, PlaybackControllable {
-    var duration: TimeInterval { get }
+ var duration: TimeInterval { get }
 }
 ```
 

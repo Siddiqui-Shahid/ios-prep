@@ -57,7 +57,7 @@ Explain aloud, in plain sentences:
 |---|---|---|
 | Must | [Sample Q&A](../../../weeks/week-01/day-04/sample/) | Guided cards |
 | Must | Full modules [01–03](../../../weeks/week-01/day-04/01-foundations.md) | Gaps |
-| Drill | [04-questions](../../../weeks/week-01/day-04/04-questions.md) | Timed answers |
+| Drill | [07-revision-qna](../../../weeks/week-01/day-04/sample/07-revision-qna.md) | Timed answers |
 
 ## 4. Map to your work
 
@@ -89,4 +89,4 @@ Explain aloud, in plain sentences:
 | BookMyShow synchronised dictionaries full STAR | 3 min |
 | Design: actor SafeDict (not shipped) migration coda | 60s |
 
-Expand from [sample cards](../../../weeks/week-01/day-04/sample/), [SafeDict.swift](../../../weeks/week-01/day-04/code/SafeDict.swift), and [04-questions](../../../weeks/week-01/day-04/04-questions.md).
+Expand from [sample cards](../../../weeks/week-01/day-04/sample/), [SafeDict.swift](../../../weeks/week-01/day-04/code/SafeDict.swift), and [07-revision-qna](../../../weeks/week-01/day-04/sample/07-revision-qna.md).

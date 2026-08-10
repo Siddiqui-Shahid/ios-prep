@@ -5,9 +5,9 @@
 
 Next. Q1. What problem does GymFlow solve? Answer. Workout recommendations without cloud LLM cost, latency, or privacy drag. On-device ranking over exercise catalog with trainer routine as RAG-style context. Follow-ups. Cloud LLM dependency?: Not claimed.. Generative chat?: Rank/recommend — not required to stream tokens.. Day 23 link?: Top-K cosine = heap mental model..
 
-## §1 Q2. Defend the GymFlow architecture.
+## §1 Q2. Defend the GymFlow architecture?
 
-Next. Q2. Defend the GymFlow architecture Answer. (1) INT8 MiniLM TFLite + WordPiece tokenizer (Dart in shipped app). (2) Embed query/user context; cosine similarity over exercise catalog; trainer routine as retrieval context. (3) Fail-soft: TF-IDF lexical fallback if TFLite missing, slow, or thermal-limited. Principle: retrieval + ranking + degradation — not “call an LLM.” Follow-ups. ≤20s line?: “GymFlow ranks exercises with on-device MiniLM embeddings and falls back to TF-IDF when the model path can’t run.”. INT8 why?: Fits mobile RAM; quality trade-off vs FP32.. STAR?: story-bank #GymFlow on-device AI..
+Next. Q2. Defend the GymFlow architecture? Answer. (1) INT8 MiniLM TFLite + WordPiece tokenizer (Dart in shipped app). (2) Embed query/user context; cosine similarity over exercise catalog; trainer routine as retrieval context. (3) Fail-soft: TF-IDF lexical fallback if TFLite missing, slow, or thermal-limited. Principle: retrieval + ranking + degradation — not “call an LLM.” Follow-ups. ≤20s line?: “GymFlow ranks exercises with on-device MiniLM embeddings and falls back to TF-IDF when the model path can’t run.”. INT8 why?: Fits mobile RAM; quality trade-off vs FP32.. STAR?: story-bank #GymFlow on-device AI..
 
 ## §2 Q3. How does cosine top-K work?
 

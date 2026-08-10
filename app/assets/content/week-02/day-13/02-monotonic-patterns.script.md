@@ -3,7 +3,7 @@
 
 ## §0 Q1. How does valid parentheses work on a stack?
 
-Next. Q1. How does valid parentheses work on a stack? Answer. Push opening brackets. On a closer, pop and check it matches the expected opener. End with empty stack ⇒ valid. Brute force with counters fails on ordering — ([)]. Complexity: O(n) time, O(n) space. Edges: empty string → true; only closers → false; odd length → false; mixed types ()[]{}. Follow-ups. Approach script opener?: Clarify bracket pairs → brute ordering failure → stack map → O(n)/O(n) → edges → code.. Undo/redo cousin?: Stack of states — same LIFO discipline.. Nested CMS JSON?: Different problem — still “matching/nesting” instinct..
+Next. Q1. How does valid parentheses work on a stack? Answer. Push opening brackets. On a closer, pop and check it matches the expected opener. End with empty stack ⇒ valid. Brute force with counters fails on ordering — ([)]. Complexity: O(n) time, O(n) space. Edges: empty string → true; only closers → false; odd length → false; mixed types []{}. Follow-ups. Approach script opener?: Clarify bracket pairs → brute ordering failure → stack map → O(n)/O(n) → edges → code.. Undo/redo cousin?: Stack of states — same LIFO discipline.. Nested CMS JSON?: Different problem — still “matching/nesting” instinct..
 
 ## §1 Q2. What is a monotonic stack?
 

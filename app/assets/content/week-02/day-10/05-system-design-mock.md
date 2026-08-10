@@ -7,7 +7,6 @@
 ---
 
 ### Q1. Interviewer: “Design Server-Driven UI Engine.” How do you open?
-
 **Answer:**
 
 > **Agenda (≤20s):** “I’ll take ~5 minutes clarifying scope and scale, then a four-layer client HLD with backend touchpoints and load, then API/data, two deep dives on **Schema versioning + unknown fallback** and **Action routing**, and close on failure modes, metrics, and kill switches. Does that work?”
@@ -33,7 +32,6 @@
 ---
 
 ### Q2. After clarify — what does the optimal flow look like?
-
 **Answer:**
 
 > **Scripted outcomes for this mock:** SDUI engine client; schema versioning; FallbackEngine; ActionHandler; out: CMS/JS.
@@ -53,8 +51,7 @@
 
 ---
 
-### Q3. Walk the HLD — client layers, backend, load.
-
+### Q3. Walk the HLD — client layers, backend, load?
 **Answer:**
 
 > CMS → Layout API/CDN → Network → Parser → Version check → Registry → LayoutResolver → SwiftUI/UIKit → ActionHandler + analytics.
@@ -72,8 +69,7 @@
 
 ---
 
-### Q4. Data / API — entities, endpoints, scale.
-
+### Q4. Data / API — entities, endpoints, scale?
 **Answer:**
 
 > Screen JSON tree; actions: deeplink, API, dismiss; analytics envelopes server-defined.
@@ -92,7 +88,6 @@
 ---
 
 ### Q5. Deep dive 1 — Schema versioning + unknown fallback?
-
 **Answer:**
 
 > Major mismatch → force update or last-good. Unknown component → EmptyView + metric. Never crash parse of one bad node.
@@ -110,7 +105,6 @@
 ---
 
 ### Q6. Deep dive 2 — Action routing?
-
 **Answer:**
 
 > ActionHandler routes deeplink/native/web; validates allowlist; fires analytics then navigate.
@@ -129,7 +123,6 @@
 ---
 
 ### Q7. Ops — failures, metrics, rollout, load?
-
 **Answer:**
 
 > fetch latency, cache hit, unknown_component, crash-free. Kill → native scaffold.
@@ -147,7 +140,6 @@
 ---
 
 ### Q8. Flow scorecard — did you hit the optimal spine?
-
 **Answer:**
 
 > **Pass bar:** clarify + agenda in ≤5; HLD shows 4 layers + backend + load; API has cursors/idempotency as needed; two deep dives; ops with kill switch and concrete metrics.
@@ -164,4 +156,3 @@
 
 **How can I relate to my case:**
 - **Concept-only — no shipped story.** Rehearse this scorecard after every timed mock.
-

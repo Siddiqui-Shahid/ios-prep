@@ -9,13 +9,13 @@ Next. Q1. Interviewer: “Design Mobile Security & Zero-Trust Engine.” How do 
 
 Next. Q2. After clarify — what does the optimal flow look like? Answer. Scripted outcomes for this mock: SPKI pinning; Secure Enclave/Keychain; App Attest; SQLCipher optional; jailbreak policy; out: server HSM. Good flow: agenda → clarify Qs → confirm → high level design (4 layers + backend + load) → A P I → two crisp dives → ops last 5. Weak flow: silent drawing, happy-path only, no QPS/TTL, invent metrics, skip ops. Follow-ups. They change scope mid-high level design?: Re-confirm in/out in 20s; adjust dives; protect ops.. Backend mesh deep-dive?: Out unless asked — sketch touchpoints, stay client-owned.. Forgot to ask offline?: State online-first + last-good cache as assumption; invite correction..
 
-## §2 Q3. Walk the HLD — client layers, backend, load.
+## §2 Q3. Walk the HLD — client layers, backend, load?
 
-Next. Q3. Walk the HLD — client layers, backend, load Answer. Trust layer beside networking: pin delegate, attest assertions on critical ops, encrypted storage. Backend: gateway verifies attest; pin high-value hosts only. Load: attest token <2KB; cache keyId; don’t re-gen key every request. Follow-ups. Pin all hosts?: No — high-value; backup pins; rotation.. Persistence tree?: Secrets→Keychain; not UserDefaults..
+Next. Q3. Walk the HLD — client layers, backend, load? Answer. Trust layer beside networking: pin delegate, attest assertions on critical ops, encrypted storage. Backend: gateway verifies attest; pin high-value hosts only. Load: attest token <2KB; cache keyId; don’t re-gen key every request. Follow-ups. Pin all hosts?: No — high-value; backup pins; rotation.. Persistence tree?: Secrets→Keychain; not UserDefaults..
 
-## §3 Q4. Data / API — entities, endpoints, scale.
+## §3 Q4. Data / API — entities, endpoints, scale?
 
-Next. Q4. Data / API — entities, endpoints, scale Answer. Attestation challenge → Apple attest; generateAssertion on sensitive calls. Pinning via URLSession challenge. Follow-ups. Pin fail?: Fail closed; metric; backup pin.. Biometry reset?: Keys invalidate — re-enroll..
+Next. Q4. Data / API — entities, endpoints, scale? Answer. Attestation challenge → Apple attest; generateAssertion on sensitive calls. Pinning via URLSession challenge. Follow-ups. Pin fail?: Fail closed; metric; backup pin.. Biometry reset?: Keys invalidate — re-enroll..
 
 ## §4 Q5. Deep dive 1 — Secure Enclave + biometrics?
 

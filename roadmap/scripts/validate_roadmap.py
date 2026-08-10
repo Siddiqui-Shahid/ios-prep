@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate self-contained chapter roadmap."""
+"""Validate self-contained chapter roadmap (Q&A + sample revision)."""
 from __future__ import annotations
 import re
 import sys
@@ -12,7 +12,6 @@ REQUIRED = [
     "01-foundations.md",
     "02-deep-dive.md",
     "03-production-bridge.md",
-    "04-questions.md",
     "05-exercises.md",
 ]
 DAYS = {
@@ -34,6 +33,11 @@ BANNED = [
     re.compile(r"go read .+ (first|before)", re.I),
     re.compile(r"\*\*Skeleton:\*\*", re.I),
 ]
+CARD = re.compile(r"^###\s+([QIT])(\d+)\.", re.M)
+
+
+def count_cards(text: str, prefix: str) -> int:
+    return len(re.findall(rf"^###\s+{prefix}\d+\.", text, flags=re.M))
 
 
 def main() -> int:
@@ -48,25 +52,41 @@ def main() -> int:
             for name in REQUIRED:
                 if not (folder / name).exists():
                     errors.append(f"{key}: missing {name}")
-            q = folder / "04-questions.md"
-            if q.exists():
-                text = q.read_text(encoding="utf-8")
-                points = len(re.findall(r"Answer points", text))
-                spoken = len(re.findall(r"Full spoken answer", text, flags=re.I))
-                if points == 0 or spoken == 0:
-                    errors.append(f"{key}: need Answer points + Full spoken answer")
-                elif abs(points - spoken) > 3:
+            if (folder / "04-questions.md").exists():
+                errors.append(
+                    f"{key}: root 04-questions.md should move to sample/07-revision-qna.md"
+                )
+            rev = folder / "sample" / "07-revision-qna.md"
+            if not rev.exists():
+                errors.append(f"{key}: missing sample/07-revision-qna.md")
+            else:
+                text = rev.read_text(encoding="utf-8")
+                if "## Normal questions" not in text:
+                    errors.append(f"{key}: revision missing ## Normal questions")
+                if "## Indirect questions" not in text:
+                    errors.append(f"{key}: revision missing ## Indirect questions")
+                if "## Tricky questions" not in text:
+                    errors.append(f"{key}: revision missing ## Tricky questions")
+                n_q = count_cards(text, "Q")
+                n_i = count_cards(text, "I")
+                n_t = count_cards(text, "T")
+                if n_q < 10:
+                    errors.append(f"{key}: revision Normal Q count {n_q} (want ≥10)")
+                if n_i < 6:
+                    errors.append(f"{key}: revision Indirect I count {n_i} (want ≥6)")
+                if n_t < 10:
+                    errors.append(f"{key}: revision Tricky T count {n_t} (want ≥10)")
+                if key in TECHNICAL and text.count("**Answer:**") < 20:
                     errors.append(
-                        f"{key}: Answer points ({points}) vs Full spoken ({spoken}) mismatch"
+                        f"{key}: technical revision has few **Answer:** blocks "
+                        f"({text.count('**Answer:**')}, want ≥20)"
                     )
-                if key in TECHNICAL and spoken < 12:
-                    errors.append(f"{key}: technical day has only {spoken} full answers (want ≥12)")
                 for pat in BANNED:
                     if pat.search(text):
                         errors.append(f"{key}: banned pattern {pat.pattern}")
-            rev = ROOT / "revision" / "weeks" / week / f"day-{d}.md"
-            if not rev.exists():
-                errors.append(f"missing revision twin {rev}")
+            rev_twin = ROOT / "revision" / "weeks" / week / f"day-{d}.md"
+            if not rev_twin.exists():
+                errors.append(f"missing revision twin {rev_twin}")
 
     anki = ROOT / "flashcards" / "anki-import.csv"
     if anki.exists():
@@ -81,7 +101,7 @@ def main() -> int:
         for e in errors:
             print(" -", e)
         return 1
-    print("OK — all 28 chapters present with two-layer Q&A")
+    print("OK — all 28 chapters present with sample revision Q&A (Normal/Indirect/Tricky)")
     return 0
 
 

@@ -9,13 +9,13 @@ Next. Q1. Interviewer: “Design Server-Driven UI Engine.” How do you open? An
 
 Next. Q2. After clarify — what does the optimal flow look like? Answer. Scripted outcomes for this mock: S D U I engine client; schema versioning; FallbackEngine; ActionHandler; out: CMS/JS. Good flow: agenda → clarify Qs → confirm → high level design (4 layers + backend + load) → A P I → two crisp dives → ops last 5. Weak flow: silent drawing, happy-path only, no QPS/TTL, invent metrics, skip ops. Follow-ups. They change scope mid-high level design?: Re-confirm in/out in 20s; adjust dives; protect ops.. Backend mesh deep-dive?: Out unless asked — sketch touchpoints, stay client-owned.. Forgot to ask offline?: State online-first + last-good cache as assumption; invite correction..
 
-## §2 Q3. Walk the HLD — client layers, backend, load.
+## §2 Q3. Walk the HLD — client layers, backend, load?
 
-Next. Q3. Walk the HLD — client layers, backend, load Answer. CMS → Layout A P I/CDN → Network → Parser → Version check → Registry → LayoutResolver → SwiftUI/UIKit → ActionHandler + analytics. Load: <50KB gzip; parse <16ms; cache <50ms; refresh_ttl; stale-while-revalidate. Follow-ups. Native vs S D U I trade-off?: S D U I for CMS velocity; native for critical path performance.. Ads HeroWidget?: Protocolised native widgets can sit beside S D U I nodes..
+Next. Q3. Walk the HLD — client layers, backend, load? Answer. CMS → Layout A P I/CDN → Network → Parser → Version check → Registry → LayoutResolver → SwiftUI/UIKit → ActionHandler + analytics. Load: <50KB gzip; parse <16ms; cache <50ms; refresh_ttl; stale-while-revalidate. Follow-ups. Native vs S D U I trade-off?: S D U I for CMS velocity; native for critical path performance.. Ads HeroWidget?: Protocolised native widgets can sit beside S D U I nodes..
 
-## §3 Q4. Data / API — entities, endpoints, scale.
+## §3 Q4. Data / API — entities, endpoints, scale?
 
-Next. Q4. Data / API — entities, endpoints, scale Answer. Screen JSON tree; actions: deeplink, A P I, dismiss; analytics envelopes server-defined. Client-Version header; force-refresh query. Follow-ups. A/B layouts?: Server returns experiment component tree; client logs exposure.. Nested lists?: fetch_more contract — don’t boil pagination inside every node..
+Next. Q4. Data / API — entities, endpoints, scale? Answer. Screen JSON tree; actions: deeplink, A P I, dismiss; analytics envelopes server-defined. Client-Version header; force-refresh query. Follow-ups. A/B layouts?: Server returns experiment component tree; client logs exposure.. Nested lists?: fetch_more contract — don’t boil pagination inside every node..
 
 ## §4 Q5. Deep dive 1 — Schema versioning + unknown fallback?
 

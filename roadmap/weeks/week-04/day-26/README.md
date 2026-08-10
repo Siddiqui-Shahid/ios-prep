@@ -1,6 +1,6 @@
 # Day 26 — Behavioral Leadership STAR
 
-> Week 4 · Full study (self-contained) · ~4–5 hrs  
+> Week 4 · Full study (self-contained) · ~4–5 hrs 
 > Revision twin: [revision/weeks/week-04/day-26.md](../../../revision/weeks/week-04/day-26.md)
 
 ## Outcomes
@@ -15,7 +15,7 @@
 1. [`01-foundations.md`](01-foundations.md) — STAR rhythm + prompt router
 2. [`02-deep-dive.md`](02-deep-dive.md) — conflict / incident / mentorship / AI judgment
 3. [`03-production-bridge.md`](03-production-bridge.md) — provenance walls
-4. [`04-questions.md`](04-questions.md) — two-layer prompts + **full scripts**
+4. [`sample/07-revision-qna.md`](sample/07-revision-qna.md) — two-layer prompts + **full scripts**
 5. [`05-exercises.md`](05-exercises.md) — record reps (no coding day)
 6. No `code/` — voice memos are the artifact
 

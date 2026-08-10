@@ -1,6 +1,6 @@
 # Day 16 — Image/Video Pipelines, Caching & Memory Pressure
 
-> Week 3 · Full study (self-contained) · ~4–5 hrs  
+> Week 3 · Full study (self-contained) · ~4–5 hrs 
 > Revision twin: [revision/weeks/week-03/day-16.md](../../../revision/weeks/week-03/day-16.md)
 
 ## Outcomes
@@ -16,13 +16,13 @@ By end of day, without notes, you can:
 
 ## How to study (in Cursor only)
 
-1. `01-foundations.md` — mental model + glossary + **cache tiers embedded**  
-2. `02-deep-dive.md` — full pipeline, ImageIO, video/audio distinctions  
-3. `03-production-bridge.md` — S1 + S12 STAR tracks  
-4. `code/` — cache actor sketch + HeroWidget lifecycle  
-5. `04-questions.md` — two-layer Q&A  
-6. `05-exercises.md` — HLD + speaking  
-7. Revision twin for timed recall  
+1. `01-foundations.md` — mental model + glossary + **cache tiers embedded** 
+2. `02-deep-dive.md` — full pipeline, ImageIO, video/audio distinctions 
+3. `03-production-bridge.md` — S1 + S12 STAR tracks 
+4. `code/` — cache actor sketch + HeroWidget lifecycle 
+5. `sample/07-revision-qna.md` — two-layer Q&A 
+6. `05-exercises.md` — HLD + speaking 
+7. Revision twin for timed recall 
 
 ## Module map
 
@@ -31,7 +31,7 @@ By end of day, without notes, you can:
 | Foundations | [01-foundations.md](01-foundations.md) |
 | Deep dive | [02-deep-dive.md](02-deep-dive.md) |
 | Production bridge | [03-production-bridge.md](03-production-bridge.md) |
-| Questions | [04-questions.md](04-questions.md) |
+| Questions | [sample/07-revision-qna.md](sample/07-revision-qna.md) |
 | Exercises | [05-exercises.md](05-exercises.md) |
 | Code | [code/](code/) |
 | Sample Q&A | [sample/README.md](sample/README.md) |

@@ -39,4 +39,4 @@ Next. 5. Flash prompts. 1. Week 2 one-sentence thread connecting Days 08–13 2.
 
 ## §9 6. Timed drills
 
-Next. 6. Timed drills. Expand from sample cards, Week2Warmups, and 04-questions.
+Next. 6. Timed drills. Expand from sample cards, Week2Warmups, and 07-revision-qna.

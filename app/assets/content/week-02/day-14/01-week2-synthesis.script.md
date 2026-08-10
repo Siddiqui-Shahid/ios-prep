@@ -23,8 +23,8 @@ Next. Q5. What is search cancel discipline in 20 seconds? Answer. Debounce in vi
 
 ## §5 Q6. What is SwiftUI identity in 20 seconds for mock warm-ups?
 
-Next. Q6. What is SwiftUI identity in 20 seconds for mock warm-ups? Answer. Stable IDs preserve @State and representables. Never.id(UUID()) in body — text clears, players restart. Stories pages need stable identity across progress ticks (Stories S D K (Raw / Miami Heat)). S D U I leaves use server node ids, not array indices. Follow-ups. Intentional reset?: Logout.id(session) — deliberate.. Hybrid link?: Representable remake — Day 11.. List jump?: Unstable ForEach ids..
+Next. Q6. What is SwiftUI identity in 20 seconds for mock warm-ups? Answer. Stable IDs preserve @State and representables. Never.id(UUID) in body — text clears, players restart. Stories pages need stable identity across progress ticks (Stories S D K (Raw / Miami Heat)). S D U I leaves use server node ids, not array indices. Follow-ups. Intentional reset?: Logout.id(session) — deliberate.. Hybrid link?: Representable remake — Day 11.. List jump?: Unstable ForEach ids..
 
 ## §6 Q7. What is Array-as-queue in 15 seconds?
 
-Next. Q7. What is Array-as-queue in 15 seconds? Answer. Array.removeFirst() is O(n) per dequeue — shifts all elements. Name it or use Deque, two-stack queue, or ring buffer. BFS hot paths need honest queue cost. D S A composure: don’t let basics block architecture talk. Follow-ups. Two-stack?: Amortized O(1) — say amortized.. Mock warm-up?: One D S A composure question in Block 1.. Next topic?: Mock format — 02-mock-format.md..
+Next. Q7. What is Array-as-queue in 15 seconds? Answer. Array.removeFirst is O(n) per dequeue — shifts all elements. Name it or use Deque, two-stack queue, or ring buffer. BFS hot paths need honest queue cost. D S A composure: don’t let basics block architecture talk. Follow-ups. Two-stack?: Amortized O(1) — say amortized.. Mock warm-up?: One D S A composure question in Block 1.. Next topic?: Mock format — 02-mock-format.md..

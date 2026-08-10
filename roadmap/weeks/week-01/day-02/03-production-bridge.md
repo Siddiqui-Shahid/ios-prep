@@ -1,174 +1,231 @@
-# 03 — Production Bridge
+# 03 — Production Bridge (Q&A)
 
-> Turn Day 02 ideas into honest interview lines.  
-> Labels: **Verified** = resume-backed · **How I would apply it** = design extension · **Learning-lab** = demo code.
-
----
-
-## 1. Story map for today
-
-| Concept | Story | Label |
-|---|---|---|
-| POP + generics type-safe ads pipeline | Ads module refactor | **Verified · S1** |
-| Video pause/play tied to visibility | HeroWidget | **Verified · S1** |
-| Reusable protocol APIs at SDK boundary | Stories SDK | **Verified · S10** |
-| Protocol-driven header / open components | Backend-driven header | **Verified · S3** (soft) |
-| Unknown component fallback | SDUI versioning design | **How I would apply it · S3-A1** (soft) |
-| Mini pipeline / eraser demos | Local snippets | **Learning-lab** |
-
-Full STAR: [`../../../stories/story-bank.md`](../../../stories/story-bank.md) (S1, S10; S3 optional).
+> Cover the answer, speak aloud, then check follow-ups. Simple language. Named work only — never S-codes in speech.
 
 ---
 
-## 2. Verified · S1 — Ads / HeroWidget (core)
+### Q1. Story map for today? `(45–60s)`
+**Answer:**
 
-### What you can say (safe)
+> “Full STAR: ../../../stories/story-bank.md (, ; optional).”
 
-- The Ads module was highest-revenue and needed a safer, reusable rendering path.
-- You refactored around **protocol** contracts and **generics** so the pipeline stayed **type-safe**.
-- New ad types plugged into the pipeline instead of forking the revenue path.
-- You built reusable **HeroWidget** with explicit pause/play tied to visibility / view-controller lifecycle.
-- Stakeholder coordination mattered because behavior changes on a revenue surface are not casual.
-- Lesson: for revenue-critical UI, prefer POP + generics over inheritance trees; lifecycle is part of the product contract.
+**Follow-ups:**
 
-### What you must **not** invent
-
-- Fill-rate percentages, revenue deltas, CTR, exact crash rates for ads
-- “We type-erased every renderer” (unless personally true — prefer Learning-lab for erasure demos)
-- “Every creative was a struct”
-- Fake team size, sprint counts, or App Store rankings
-
-### Interview lines
-
-**≤20s pitch:**
-
-> “We made ad rendering a generic protocol pipeline so new creatives plugged in without forking the revenue path — and HeroWidget tied video playback to visibility.”
-
-**Architecture talk opener (5–10s):**
-
-> “I’ll walk through our highest-revenue Ads refactor — protocols, generics, and video lifecycle.”
-
-**≈90s Action slice (STAR):**
-
-> “The Ads module was highest-revenue and needed a safer reusable rendering path. I refactored rendering around protocol contracts and generics so the pipeline stayed type-safe as creatives grew — new types conformed and plugged in instead of forking bind code. Separately, video inside HeroWidget needed correct pause and play against visibility and view-controller lifecycle, so we made that lifecycle explicit on the widget. Stakeholder coordination mattered because behavior changes on a revenue surface aren’t casual. The result was a maintainable type-safe pipeline and fewer playback glitches on video creatives.”
-
-**Result (honest):**
-
-> “Shipped a maintainable, type-safe ads pipeline; lifecycle-correct video reduced wasted playback and UI glitches on a module that mattered for revenue.”
-
-**Trade-off to volunteer:**
-
-> “Generics inside the pipeline for safety and specialization; I’d only type-erase at a mixed list or module boundary — erasure isn’t free.”
-
-> **Provenance:** Verified · S1 · BookMyShow · Ads POP + Generics / HeroWidget
-
----
-
-## 3. Mapping concepts → S1 lines
-
-| If they ask… | Lead with… | Support with… |
-|---|---|---|
-| What is POP? | Capability composition | S1 pipeline contracts |
-| Why generics? | Compile-time safety vs `Any` casts | Revenue path correctness |
-| Associated-type pain | Keep generic / erase at the edge | Learning-lab eraser if asked “how” |
-| Inheritance vs POP | Fragile base on ad variants | S1 lesson line |
-| Video lifecycle | HeroWidget pause/play | Class identity + protocol capability |
-| `some` vs `any` | Opaque vs existential | Prefer generics in hot bind |
-| Extension dispatch | Requirement vs default | Shared `track` defaults |
-
----
-
-## 4. Verified · S10 — Stories SDK soft bridge
-
-### What you can say (safe)
-
-- Built a Stories SDK reused across a portfolio of apps
-- Reusable surfaces / modularity mattered
-- Same instinct: **contracts at the boundary**, concretes inside
-
-### What you must **not** invent
-
-- Number of client apps as a precise metric unless you know it
-- Latency / engagement % for stories
-
-**≤20s bridge:**
-
-> “Same POP instinct showed up later in a Stories SDK — reusable protocol-oriented surfaces across brands rather than copy-pasted concretes.”
-
-> **Provenance:** Verified · S10 · Raw / Miami Heat · Stories SDK portfolio reuse
-
-Use S10 when asked “Have you designed reusable module APIs?” — not as a replacement for S1 on ads-specific questions.
-
----
-
-## 5. Soft · S3 / S3-A1 — open registries
-
-Only if the interviewer pivots to SDUI / CMS components:
-
-**Verified · S3:** backend-driven header; generalised protocol-driven main-screen implementation.
-
-**Applied · S3-A1:** how you’d handle unknown component types (fallback + versioning) — say it is design, not a shipped claim.
-
-**One liner:**
-
-> “An open protocol registry matches CMS growth better than a forever-closed enum — with an explicit unknown fallback. That’s the design I’d apply for versioning (S3-A1); the shipped header work was protocol-driven (S3).”
-
-Do not let this hijack Day 02 — keep S1 as the spine.
-
----
-
-## 6. Learning-lab — what the code files are
-
-| File | Claim level |
+| Follow-up | Answer |
 |---|---|
-| [`code/AdsPipeline.swift`](code/AdsPipeline.swift) | Teaching sketch of S1 shape — **not** shipped BMS source |
-| [`code/TypeErasureDemo.swift`](code/TypeErasureDemo.swift) | Erasure mechanics demo |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-If asked “Did you write it like this?”:
-
-> “This is the teaching shape of the contracts we used — protocol + generic pipeline. I’m not claiming this file is production source.”
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
 
 ---
 
-## 7. Anti-patterns in interviews
+### Q2. What you can say (safe)? `(45–60s)`
+**Answer:**
 
-| Anti-pattern | Fix |
+> “- The Ads module was highest-revenue and needed a safer, reusable rendering path. - You refactored around protocol contracts and generics so the pipeline stayed type-safe. - New ad types plugged into the pipeline instead of forking the revenue path. - You built reusable HeroWidget with explicit pause/play tied to visibility / view-controller lifecycle. - Stakeholder coordination mattered because behavior changes on a revenue surface are not casual. - Lesson: for revenue-critical UI, prefer POP + generics over inheritance trees; lifecycle is part of the product contract.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
 |---|---|
-| Inventing fill-rate % | Qualitative: revenue-critical, maintainable, type-safe |
-| “POP means never use classes” | HeroWidget is a class; capabilities are protocols |
-| “Type erasure is free abstraction” | Name allocation + lost specialization |
-| Diving into Generics Manifesto trivia | Stay: safety → pipeline → lifecycle → trade-off |
-| Skipping agenda on architecture Q | Always agenda in 10s |
-| Claiming actors/SwiftUI for S1 | Don’t invent stack; stick to POP + generics + lifecycle |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 8. Flash “map to your work” card
+### Q3. What you must **not** invent? `(45–60s)`
+**Answer:**
 
-**Company / feature:** BookMyShow — Ads module / HeroWidget
+> “- Fill-rate percentages, revenue deltas, CTR, exact crash rates for ads - “We type-erased every renderer” (unless personally true — prefer Learning-lab for erasure demos) - “Every creative was a struct” - Fake team size, sprint counts, or App Store rankings.”
 
-**What you did:** Refactored highest-revenue module with POP + Generics for type-safe rendering; video pause/play lifecycle on HeroWidget.
+**Follow-ups:**
 
-**Interview line (≤20s):**
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-> “We made ad rendering a generic protocol pipeline so new creatives plugged in without forking the revenue path.”
-
-→ STAR: [S1](../../../stories/story-bank.md#s1--ads-module-refactor--herowidget-bookmyshow) · optional [S10](../../../stories/story-bank.md#s10--stories-sdk-raw--miami-heat)
-
----
-
-## 9. Timed story drills
-
-| Drill | Budget | Pass bar |
-|---|---|---|
-| S1 ≤20s pitch | 20s | Protocols + generics + HeroWidget |
-| S1 Action only | 90s | No invented metrics; trade-off optional |
-| Full S1 STAR | ≤3 min | Agenda + result + lesson |
-| Architecture dry-run | ≤5 min | Whiteboard flow from deep dive §11 |
-| S10 bridge | 20s | Boundary protocols; no fake numbers |
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## Next
+### Q4. Interview lines? `(45–60s)`
+**Answer:**
 
-Drill spoken answers in [`04-questions.md`](04-questions.md). Speak from **Answer points** first; then compare to **Full spoken answer**.
+> “≤20s pitch: > “We made ad rendering a generic protocol pipeline so new creatives plugged in without forking the revenue path — and HeroWidget tied video playback to visibility.”.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
+
+---
+
+### Q5. Mapping concepts → S1 lines? `(45–60s)`
+**Answer:**
+
+> “---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q6. What you can say (safe)? `(45–60s)`
+**Answer:**
+
+> “- Built a Stories SDK reused across a portfolio of apps - Reusable surfaces / modularity mattered - Same instinct: contracts at the boundary, concretes inside.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q7. What you must **not** invent? `(45–60s)`
+**Answer:**
+
+> “- Number of client apps as a precise metric unless you know it - Latency / engagement % for stories ≤20s bridge:.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
+
+---
+
+### Q8. Soft · S3 / S3-A1 — open registries? `(45–60s)`
+**Answer:**
+
+> “Only if the interviewer pivots to SDUI / CMS components: Verified · : backend-driven header; generalised protocol-driven main-screen implementation.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
+
+---
+
+### Q9. Learning-lab — what the code files are? `(45–60s)`
+**Answer:**
+
+> “If asked “Did you write it like this?”:.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q10. Anti-patterns in interviews? `(45–60s)`
+**Answer:**
+
+> “---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q11. Flash “map to your work” card? `(45–60s)`
+**Answer:**
+
+> “Company / feature: BookMyShow — Ads module / HeroWidget What you did: Refactored highest-revenue module with POP + Generics for type-safe rendering; video pause/play lifecycle on HeroWidget.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
+
+---
+
+### Q12. Timed story drills? `(45–60s)`
+**Answer:**
+
+> “---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q13. Next? `(45–60s)`
+**Answer:**
+
+> “Drill spoken answers in sample/07-revision-qna.md. Speak from Answer points first; then compare to Full spoken answer.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---

@@ -54,4 +54,4 @@ Drill: Budget. ≤20s pitch: 20s. Full S2 STAR: ≤3 min. SafeDict whiteboard: 2
 
 Next. Next.
 
-04-questions.md. Answer points first, then Full spoken answer.
+sample/07-revision-qna.md. Answer points first, then Full spoken answer.

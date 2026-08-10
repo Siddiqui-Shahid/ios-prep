@@ -4,8 +4,7 @@
 
 ---
 
-### Q1. Walk the happy path for debounced search in MVVM.
-
+### Q1. Walk the happy path for debounced search in MVVM?
 **Answer:**
 
 > User types in the search bar; the View forwards `onQueryChange` to the ViewModel. The VM debounces ~300ms, cancels any previous `Task`, sets state to `.loading`, and calls `SearchRepository.search(query:)`. The repository hits remote (and maybe cache), returns domain models, and the VM maps to `.results` or `.empty`. The View renders from the enum — it never builds URLRequests or parses JSON.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. Why does debounce belong in the ViewModel, not URLSession?
-
 **Answer:**
 
 > Debounce cadence is a UX/presentation choice tied to keystrokes — it lives with the screen that owns the search bar. The transport layer may cancel in-flight tasks when asked, but it should not know about 300ms keystroke timing. Putting debounce in the repository leaks presentation policy into data access and makes reuse across surfaces awkward.
@@ -43,7 +41,6 @@
 ---
 
 ### Q3. What is the stale-response race and how do you fix it?
-
 **Answer:**
 
 > Without cancel or generation tokens, query `"a"` can return after `"av"` already displayed — the UI flashes old results. Fix by cancelling the prior `Task` on each new query (preferred with structured concurrency), then checking `Task.isCancelled` before applying state. Alternative: monotonic request IDs and ignore stale generations. BMS search (BookMyShow backend-driven header & search) shipped debounce + cancel + explicit states specifically to make this race-safer on a high-traffic surface.
@@ -65,7 +62,6 @@
 ---
 
 ### Q4. What are the five presentation states search must name?
-
 **Answer:**
 
 > **Idle** before meaningful input. **Loading** while a debounced query is in flight. **Results** with hits. **Empty** when the server returned successfully but zero matches — not an error. **Error** for offline, timeout, or decode/contract breaks with retry. Cancellation returns to idle or stays on the latest query — never masquerades as error.
@@ -84,10 +80,9 @@
 ---
 
 ### Q5. How does cancellation fit MVVM ownership?
-
 **Answer:**
 
-> The ViewModel owns the search `Task` handle: on new query, cancel previous work; on `onDisappear`, cancel in-flight search. The View may signal lifecycle; the VM executes policy. Repository/DataSource may propagate task cancellation to URLSession, but the decision to stop caring about a result is a screen concern. Async `URLSession.data(for:)` participates in Swift `Task` cancellation; callback APIs need explicit `task.cancel()` plus stale guards (Day 09).
+> The ViewModel owns the search `Task` handle: on new query, cancel previous work; on `onDisappear`, cancel in-flight search. The View may signal lifecycle; the VM executes policy. Repository/DataSource may propagate task cancellation to URLSession, but the decision to stop caring about a result is a screen concern. Async `URLSession.data(for:)` participates in Swift `Task` cancellation; callback APIs need explicit `task.cancel` plus stale guards (Day 09).
 
 **Follow-ups:**
 
@@ -106,7 +101,6 @@
 ---
 
 ### Q6. What does the Repository own in search vs the ViewModel?
-
 **Answer:**
 
 > The **SearchRepository** fetches remote/cached results and maps DTOs to domain `Movie` (or row) models — it hides endpoints and decode. The **SearchViewModel** owns debounce, cancel, the state enum, and mapping domain rows to display rows (images, subtitles). Neither layer should embed ranking policy unless product demands client-side filter — ranking is usually server-side.
@@ -125,7 +119,6 @@
 ---
 
 ### Q7. What is the 45-second agenda opener for search design?
-
 **Answer:**
 
 > “I’d put debounce and cancellation in the search ViewModel, keep ranking server-side unless product needs local filter, and model idle/loading/results/empty/error explicitly — that’s how we made BMS search race-safer.” Pair with layer diagram: View ↔ VM ↔ Repository. Mention stale-response race without cancel as the bug you’re preventing.
@@ -148,3 +141,22 @@ Next: [04-production-s9-s3.md](04-production-s9-s3.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — Why does debounce belong in the ViewModel, not URLSession
+
+**Ask yourself:** Why does debounce belong in the ViewModel, not URLSession?
+
+**Answer:** “Debounce cadence is a UX/presentation choice tied to keystrokes — it lives with the screen that owns the search bar. The transport layer may cancel in-flight tasks when asked, but it should not know about 300ms keystroke timing. Putting debounce in the repository leaks presentation policy into data access and makes reuse across surfaces awkward.”
+
+### Puzzle B — What is the stale-response race and how do you fix it
+
+**Ask yourself:** What is the stale-response race and how do you fix it?
+
+**Answer:** “Without cancel or generation tokens, query `"a"` can return after `"av"` already displayed — the UI flashes old results. Fix by cancelling the prior `Task` on each new query (preferred with structured concurrency), then checking `Task.isCancelled` before applying state. Alternative: monotonic request IDs and ignore stale generations. BMS search (BookMyShow backend-driven header & search) shipped debounce + cancel + explicit states specifically to make this race-safer on a high-traffic surface.”
+
+### Puzzle C — What are the five presentation states search must name
+
+**Ask yourself:** What are the five presentation states search must name?
+
+**Answer:** “**Idle** before meaningful input. **Loading** while a debounced query is in flight. **Results** with hits. **Empty** when the server returned successfully but zero matches — not an error. **Error** for offline, timeout, or decode/contract breaks with retry. Cancellation returns to idle or stays on the latest query — never masquerades as error.”

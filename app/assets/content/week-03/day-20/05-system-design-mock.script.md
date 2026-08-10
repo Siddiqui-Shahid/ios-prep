@@ -9,13 +9,13 @@ Next. Q1. Interviewer: “Design Push Notification System.” How do you open? A
 
 Next. Q2. After clarify — what does the optimal flow look like? Answer. Scripted outcomes for this mock: Token lifecycle; display/silent; router on tap; APNs fanout backend sketch; out: NSE deep, WS chat. Good flow: agenda → clarify Qs → confirm → high level design (4 layers + backend + load) → A P I → two crisp dives → ops last 5. Weak flow: silent drawing, happy-path only, no QPS/TTL, invent metrics, skip ops. Follow-ups. They change scope mid-high level design?: Re-confirm in/out in 20s; adjust dives; protect ops.. Backend mesh deep-dive?: Out unless asked — sketch touchpoints, stay client-owned.. Forgot to ask offline?: State online-first + last-good cache as assumption; invite correction..
 
-## §2 Q3. Walk the HLD — client layers, backend, load.
+## §2 Q3. Walk the HLD — client layers, backend, load?
 
-Next. Q3. Walk the HLD — client layers, backend, load Answer. App ↔ Device token A P I ↔ Push Service ↔ APNs HTTP/2. Client: register, display, silent ≤30s, route. Load: payload ≤4KB; silent ~3/hr; priority 10 vs 5; collapse-id. Follow-ups. Same as deeplink?: Tap → same DeepLinkRouter.. CI/CD?: Mention phased release — don’t boil CI unless asked..
+Next. Q3. Walk the HLD — client layers, backend, load? Answer. App ↔ Device token A P I ↔ Push Service ↔ APNs HTTP/2. Client: register, display, silent ≤30s, route. Load: payload ≤4KB; silent ~3/hr; priority 10 vs 5; collapse-id. Follow-ups. Same as deeplink?: Tap → same DeepLinkRouter.. CI/CD?: Mention phased release — don’t boil CI unless asked..
 
-## §3 Q4. Data / API — entities, endpoints, scale.
+## §3 Q4. Data / API — entities, endpoints, scale?
 
-Next. Q4. Data / API — entities, endpoints, scale Answer. PUT /v1/devices/{userId}/push-token, DELETE invalidate. Server→APNs. Client handles UNNotification. Follow-ups. 410 Unregistered?: Invalidate token server-side.. Denied permission?: Settings CTA — don’t spam..
+Next. Q4. Data / API — entities, endpoints, scale? Answer. PUT /v1/devices/{userId}/push-token, DELETE invalidate. Server→APNs. Client handles UNNotification. Follow-ups. 410 Unregistered?: Invalidate token server-side.. Denied permission?: Settings CTA — don’t spam..
 
 ## §4 Q5. Deep dive 1 — Token lifecycle?
 

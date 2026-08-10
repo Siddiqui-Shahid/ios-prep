@@ -9,13 +9,13 @@ Next. Q1. Interviewer: “Design On-Device LLM / AI Engine.” How do you open? 
 
 Next. Q2. After clarify — what does the optimal flow look like? Answer. Scripted outcomes for this mock: HybridAIRouter; on-device RAG; thermal/memory guards; streaming; PII scrub before cloud; out: training. Good flow: agenda → clarify Qs → confirm → high level design (4 layers + backend + load) → A P I → two crisp dives → ops last 5. Weak flow: silent drawing, happy-path only, no QPS/TTL, invent metrics, skip ops. Follow-ups. They change scope mid-high level design?: Re-confirm in/out in 20s; adjust dives; protect ops.. Backend mesh deep-dive?: Out unless asked — sketch touchpoints, stay client-owned.. Forgot to ask offline?: State online-first + last-good cache as assumption; invite correction..
 
-## §2 Q3. Walk the HLD — client layers, backend, load.
+## §2 Q3. Walk the HLD — client layers, backend, load?
 
-Next. Q3. Walk the HLD — client layers, backend, load Answer. U I stream ← Router ← (local ANE model + vector store) OR cloud SSE. Unmap weights on memory warning. Load: cloud if ~2k tokens or thermal serious; KV-cache example ~128MB; TTFT <100ms class. Follow-ups. FinTrack vs GymFlow?: Same shape — BM25 vs MiniLM knobs.. Tooling AI?: District Copilot ≠ product on-device — separate story..
+Next. Q3. Walk the HLD — client layers, backend, load? Answer. U I stream ← Router ← (local ANE model + vector store) OR cloud SSE. Unmap weights on memory warning. Load: cloud if ~2k tokens or thermal serious; KV-cache example ~128MB; TTFT <100ms class. Follow-ups. FinTrack vs GymFlow?: Same shape — BM25 vs MiniLM knobs.. Tooling AI?: District Copilot ≠ product on-device — separate story..
 
-## §3 Q4. Data / API — entities, endpoints, scale.
+## §3 Q4. Data / API — entities, endpoints, scale?
 
-Next. Q4. Data / API — entities, endpoints, scale Answer. Local AsyncSequence tokens; cloud SSE TLS; never log raw financial text. Follow-ups. Fail-soft?: Rules/TF-IDF if model absent.. Kill?: Remote disable generative; retrieval-only..
+Next. Q4. Data / API — entities, endpoints, scale? Answer. Local AsyncSequence tokens; cloud SSE TLS; never log raw financial text. Follow-ups. Fail-soft?: Rules/TF-IDF if model absent.. Kill?: Remote disable generative; retrieval-only..
 
 ## §4 Q5. Deep dive 1 — HybridAIRouter?
 

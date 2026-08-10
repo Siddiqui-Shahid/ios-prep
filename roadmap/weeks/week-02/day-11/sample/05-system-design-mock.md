@@ -7,7 +7,6 @@
 ---
 
 ### Q1. Interviewer: “Design Deep Linking & Universal Links.” How do you open?
-
 **Answer:**
 
 > **Agenda (≤20s):** “I’ll take ~5 minutes clarifying scope and scale, then a four-layer client HLD with backend touchpoints and load, then API/data, two deep dives on **Router + Coordinator** and **Deferred + cold-start queue**, and close on failure modes, metrics, and kill switches. Does that work?”
@@ -33,7 +32,6 @@
 ---
 
 ### Q2. After clarify — what does the optimal flow look like?
-
 **Answer:**
 
 > **Scripted outcomes for this mock:** UL + schemes; router+coordinator; cold-start pendingRoute; deferred optional; out: push deep design.
@@ -53,8 +51,7 @@
 
 ---
 
-### Q3. Walk the HLD — client layers, backend, load.
-
+### Q3. Walk the HLD — client layers, backend, load?
 **Answer:**
 
 > OS openURL → AppDelegate/Scene → DeepLinkRouter match → Coordinator navigate. If UI not ready (<500ms), queue pendingRoute.
@@ -73,8 +70,7 @@
 
 ---
 
-### Q4. Data / API — entities, endpoints, scale.
-
+### Q4. Data / API — entities, endpoints, scale?
 **Answer:**
 
 > AASA at `/.well-known/apple-app-site-association`. `GET /v1/deep-link/deferred?fingerprint=`.
@@ -93,7 +89,6 @@
 ---
 
 ### Q5. Deep dive 1 — Router + Coordinator?
-
 **Answer:**
 
 > Parse URL → typed Route → Coordinator presents. Unknown route → metric + home fallback.
@@ -111,7 +106,6 @@
 ---
 
 ### Q6. Deep dive 2 — Deferred + cold-start queue?
-
 **Answer:**
 
 > Pending route until root ready; deferred match within ~72h; fail → organic open.
@@ -129,7 +123,6 @@
 ---
 
 ### Q7. Ops — failures, metrics, rollout, load?
-
 **Answer:**
 
 > Open rate, unknown route %, routing latency. Kill: disable deferred; UL only.
@@ -147,7 +140,6 @@
 ---
 
 ### Q8. Flow scorecard — did you hit the optimal spine?
-
 **Answer:**
 
 > **Pass bar:** clarify + agenda in ≤5; HLD shows 4 layers + backend + load; API has cursors/idempotency as needed; two deep dives; ops with kill switch and concrete metrics.
@@ -164,4 +156,3 @@
 
 **How can I relate to my case:**
 - **Concept-only — no shipped story.** Rehearse this scorecard after every timed mock.
-

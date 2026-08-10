@@ -1,85 +1,230 @@
-# 03 — Production Bridge: Stories SDK (S10)
+# 03 — Production Bridge: Stories SDK (S10) (Q&A)
 
-> Interview stories without overclaiming.
+> Cover the answer, speak aloud, then check follow-ups. Simple language. Named work only — never S-codes in speech.
 
-## 1. Provenance map
+---
 
-| ID | Label | Exact claim |
-|---|---|---|
-| **S10** | Verified | Designed **standalone reusable Stories SDK**; **clear public API**; **isolation from app-specific networking where possible**; adopted across **portfolio** apps (Raw / Miami Heat) |
-| **S13** | Verified | Hybrid hosts may embed SDK via hosting — identity/lifecycle sibling |
-| **S1** | Verified | Pause/play lifecycle cousin for media |
-| Learning-lab | Illustrative | Player model / identity samples |
+### Q1. Provenance map? `(45–60s)`
+**Answer:**
 
-### Forbidden
+> “See the notes for this topic and speak the core idea in simple words.”
 
-- Invented install counts / “N apps” exact beyond “portfolio”
-- “SDK hardcodes Kingfisher/Alamofire only” as verified
-- Claiming SwiftUI Observation macros as a resume bullet for S10
-- Conflating S10 tooling with S9 District AI story
+**Follow-ups:**
 
-## 2. S10 STAR (2–3 min)
-
-### Opener (~10s)
-
-> “I’ll walk through building a reusable Stories SDK — stable public API and host isolation — so multiple NBA/WNBA apps shared one Instagram-style stories implementation.”
-
-### Situation / Task
-
-Need Instagram-style fan Stories across a client portfolio — not one-off UI per app.
-
-### Action
-
-1. Designed a **standalone reusable Stories SDK**.  
-2. Clear **public API**; **isolation from app-specific networking** where possible via injectable boundaries.  
-3. Drove adoption across portfolio apps with shared implementation.
-
-### Result
-
-One implementation leveraged by multiple apps → faster feature parity.
-
-### Lesson
-
-SDK quality = API surface + versioning + independence from host app shortcuts. Stable identity/state for pages/progress is part of that quality.
-
-> **Provenance:** Verified · S10 · Raw/Miami Heat · Stories SDK portfolio reuse
-
-## 3. Technical beats you may elaborate (honest)
-
-| Beat | How to speak |
+| Follow-up | Answer |
 |---|---|
-| Public API | Entry player, data source, events — learning-lab shape OK if labeled illustrative |
-| Injectable loaders | Design judgment aligned with “isolation from app networking” |
-| Pause on background | Lifecycle discipline — cousin to S1; don’t invent Aces metrics |
-| Stable page IDs | Senior SwiftUI correctness — teaching + SDK necessity |
-| `@Observable` | Teaching for modern hosts; **not** a verified S10 resume API name |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-## 4. Interview line ≤20s
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
 
-> “I built a reusable Stories SDK — clear public API and host isolation — so multiple NBA/WNBA portfolio apps shared one stories implementation.”
+---
 
-## 5. Cross-app reuse challenges (speak as design)
+### Q2. Forbidden? `(45–60s)`
+**Answer:**
 
-Theming, analytics hooks, media formats, nav/CTA exits, dependency versions — solve with protocols + defaults. Modularization Week 3/Day 15 deepens SPM, but S10 is the product proof.
+> “- Invented install counts / “N apps” exact beyond “portfolio” - “SDK hardcodes Kingfisher/Alamofire only” as verified - Claiming SwiftUI Observation macros as a resume bullet for - Conflating tooling with District AI story.”
 
-## 6. Interviewer pushes
+**Follow-ups:**
 
-| Push | Strong reply |
+| Follow-up | Answer |
 |---|---|
-| “Why not copy-paste UI?” | Parity + bugfix cost; one SDK. |
-| “Why not SDK own network?” | Hosts differ; testability; isolation claim. |
-| “SwiftUI-only?” | SwiftUI-first + UIKit hosting façade for legacy. |
-| “Progress desync?” | Model timeline + stable identity — not more view timers. |
-| “UUID ids?” | Never in body; stable model keys. |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-## 7. Practice
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
 
-**60s:** portfolio need → SDK API + isolation → reuse → lesson API quality.  
-**3 min:** add state machine, pause policy, identity, injectable image/video, hybrid host note.
+---
 
-## 8. Links
+### Q3. Opener (~10s)? `(45–60s)`
+**Answer:**
 
-- Code: [code/](code/)
-- Questions: [04-questions.md](04-questions.md)
-- Revision: [../../../revision/weeks/week-02/day-12.md](../../../revision/weeks/week-02/day-12.md)
-- Story: [S10](../../../stories/story-bank.md)#s10--stories-sdk-raw--miami-heat
+> “I’ll walk through building a reusable Stories SDK — stable public API and host isolation — so multiple NBA/WNBA apps shared one Instagram-style stories implementation.”.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q4. Situation / Task? `(45–60s)`
+**Answer:**
+
+> “Need Instagram-style fan Stories across a client portfolio — not one-off UI per app.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q5. Action? `(45–60s)`
+**Answer:**
+
+> “1. Designed a standalone reusable Stories SDK. 2. Clear public API; isolation from app-specific networking where possible via injectable boundaries. 3. Drove adoption across portfolio apps with shared implementation.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q6. Result? `(45–60s)`
+**Answer:**
+
+> “One implementation leveraged by multiple apps → faster feature parity.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q7. Lesson? `(45–60s)`
+**Answer:**
+
+> “SDK quality = API surface + versioning + independence from host app shortcuts. Stable identity/state for pages/progress is part of that quality. > Provenance: Verified · · Raw/Miami Heat · Stories SDK portfolio reuse.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
+
+---
+
+### Q8. Technical beats you may elaborate (honest)? `(45–60s)`
+**Answer:**
+
+> “See the notes for this topic and speak the core idea in simple words.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
+
+---
+
+### Q9. Interview line ≤20s? `(45–60s)`
+**Answer:**
+
+> “I built a reusable Stories SDK — clear public API and host isolation — so multiple NBA/WNBA portfolio apps shared one stories implementation.”.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q10. Cross-app reuse challenges (speak as design)? `(45–60s)`
+**Answer:**
+
+> “Theming, analytics hooks, media formats, nav/CTA exits, dependency versions — solve with protocols + defaults. Modularization Week 3/Day 15 deepens SPM, but is the product proof.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q11. Interviewer pushes? `(45–60s)`
+**Answer:**
+
+> “See the notes for this topic and speak the core idea in simple words.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q12. Practice? `(45–60s)`
+**Answer:**
+
+> “60s: portfolio need → SDK API + isolation → reuse → lesson API quality. 3 min: add state machine, pause policy, identity, injectable image/video, hybrid host note.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q13. Links? `(45–60s)`
+**Answer:**
+
+> “- Code: code/ - Questions: sample/07-revision-qna.md - Revision: ../../../revision/weeks/week-02/day-12.md - Story: #s10--stories-sdk-raw--miami-heat.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---

@@ -55,7 +55,7 @@ Query → debounce (~300ms) → cancel previous `Task` → repository → state 
 |---|---|---|
 | Must | [Sample Q&A](../../../weeks/week-02/day-08/sample/) | Guided cards |
 | Must | Full modules [01–03](../../../weeks/week-02/day-08/01-foundations.md) | Gaps |
-| Drill | [04-questions](../../../weeks/week-02/day-08/04-questions.md) | Timed answers |
+| Drill | [07-revision-qna](../../../weeks/week-02/day-08/sample/07-revision-qna.md) | Timed answers |
 
 Suggested sample order: `01-layer-stack-di` → `02-mvvm-clean-mvi` → `03-search-cancel-states` → `04-production-s9-s3`.
 
@@ -89,4 +89,4 @@ Suggested sample order: `01-layer-stack-di` → `02-mvvm-clean-mvi` → `03-sear
 | District Free Parking + Clean/MVVM + AI tooling ≤20s pitch — AI envelope wording | 20s |
 | District Free Parking + Clean/MVVM + AI tooling full STAR | 2–3 min |
 
-Expand from [sample cards](../../../weeks/week-02/day-08/sample/) and [04-questions](../../../weeks/week-02/day-08/04-questions.md) answer points.
+Expand from [sample cards](../../../weeks/week-02/day-08/sample/) and [07-revision-qna](../../../weeks/week-02/day-08/sample/07-revision-qna.md) answer points.

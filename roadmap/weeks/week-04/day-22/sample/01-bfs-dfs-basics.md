@@ -5,7 +5,6 @@
 ---
 
 ### Q1. When do I pick BFS vs DFS?
-
 **Answer:**
 
 > **BFS** when the prompt cares about **levels, width, or unweighted shortest path** — level order, zigzag, right-side view, cousins at a depth. **DFS** when it cares about **paths, subtrees, or combining results after children** — path sum, same tree, symmetric, LCA, diameter, validate BST, serialize. BFS uses a queue (FIFO); DFS uses recursion or an explicit stack.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. What is the level-size BFS idiom?
-
 **Answer:**
 
 > Snapshot `queue.count` at the start of each wave, then process exactly that many nodes before starting the next level. Without it, zigzag, right-side view, and level averages turn into messy index math. Empty root → `[]`; enqueue only non-nil children.
@@ -33,7 +31,7 @@
 
 | Follow-up | Answer |
 |---|---|
-| Swift `removeFirst()` cost? | O(n) on `Array` — fine in interviews if you mention a deque or index head if pushed. |
+| Swift `removeFirst` cost? | O(n) on `Array` — fine in interviews if you mention a deque or index head if pushed. |
 | Zigzag variant? | Same BFS; reverse odd levels (or insert at front). |
 | Right side view? | Last node dequeued each level — or DFS right-before-left with depth tracking. |
 
@@ -43,7 +41,6 @@
 ---
 
 ### Q3. What are the three DFS return styles?
-
 **Answer:**
 
 > **Void / side-effect:** build a path array, push before recurse, pop after (Path Sum II). **Return a value:** height, boolean, optional node (max depth, same tree, LCA). **Return + global update:** return height but also update a global best (diameter). Decide up front: accumulating down, combining up, or both.
@@ -62,7 +59,6 @@
 ---
 
 ### Q4. Binary tree vs BST — why does it matter?
-
 **Answer:**
 
 > A **binary tree** only guarantees ≤2 children. A **BST** adds left < node < right (clarify duplicates). BST unlocks bounds validation, inorder sorted order, O(h) BST LCA walk, and k-th smallest via inorder. Using BST LCA on a plain binary tree is wrong.
@@ -81,7 +77,6 @@
 ---
 
 ### Q5. What complexity should I say for tree problems?
-
 **Answer:**
 
 > n = number of nodes. Visit each once → **O(n)** time. Recursion depth or queue holds up to **O(h)** height or **O(w)** max width; skewed tree → O(n) space; balanced → O(log n) height. Never say “O(1) space” for recursive DFS without noting the call stack is O(h).
@@ -99,8 +94,7 @@
 
 ---
 
-### Q6. Walk BFS and DFS on a tiny tree.
-
+### Q6. Walk BFS and DFS on a tiny tree?
 **Answer:**
 
 > Tree: root 1, children 2 and 3, 2 has 4 and 5. **BFS visit order:** 1, then 2–3, then 4–5 → levels `[[1],[2,3],[4,5]]`. **DFS preorder:** 1,2,4,5,3. **Inorder:** 4,2,5,1,3. **Postorder:** 4,5,2,3,1. Say aloud: “BFS answers width; DFS answers structure; inorder is special for BSTs.”
@@ -119,7 +113,6 @@
 ---
 
 ### Q7. What should I know before opening Deep Dive?
-
 **Answer:**
 
 > Draw BFS vs DFS on a 5-node tree. Recite complexity without “O(1) recursive.” Know BST ≠ binary tree for LCA and validate. Speak the 6-step “say this first” agenda. Know level-size = `for _ in 0..<queue.count`.
@@ -139,3 +132,22 @@ Next: [02-tree-patterns-skeletons.md](02-tree-patterns-skeletons.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What is the level-size BFS idiom
+
+**Ask yourself:** What is the level-size BFS idiom?
+
+**Answer:** “Snapshot `queue.count` at the start of each wave, then process exactly that many nodes before starting the next level. Without it, zigzag, right-side view, and level averages turn into messy index math. Empty root → `[]`; enqueue only non-nil children.”
+
+### Puzzle B — What are the three DFS return styles
+
+**Ask yourself:** What are the three DFS return styles?
+
+**Answer:** “**Void / side-effect:** build a path array, push before recurse, pop after (Path Sum II). **Return a value:** height, boolean, optional node (max depth, same tree, LCA). **Return + global update:** return height but also update a global best (diameter). Decide up front: accumulating down, combining up, or both.”
+
+### Puzzle C — Binary tree vs BST — why does it matter
+
+**Ask yourself:** Binary tree vs BST — why does it matter?
+
+**Answer:** “A **binary tree** only guarantees ≤2 children. A **BST** adds left < node < right (clarify duplicates). BST unlocks bounds validation, inorder sorted order, O(h) BST LCA walk, and k-th smallest via inorder. Using BST LCA on a plain binary tree is wrong.”

@@ -1,13 +1,12 @@
 # Sample 04 — Ads pipeline, HeroWidget & payment status popup (Q&A)
 
-> Guided teaching. Say the **Answer** out loud like you’re talking to an interviewer.  
-> Separates **shipped** named cases from **design-if-asked** and **lab-only** so you never blur them.  
+> Guided teaching. Say the **Answer** out loud like you’re talking to an interviewer. 
+> Separates **shipped** named cases from **design-if-asked** and **lab-only** so you never blur them. 
 > **Brain puzzles** at the bottom — cover the answer, think, then check.
 
 ---
 
 ### Q1. What can you claim under BookMyShow Ads pipeline + HeroWidget lifecycle?
-
 **Answer:**
 
 > “Highest-revenue Ads module work: a type-safe pipeline with protocol-oriented contracts and generics so new creatives plug into one rendering path. HeroWidget with explicit pause and play tied to visibility and lifecycle. I may say I prefer value-friendly models so accidental shared mutation does not corrupt revenue UI across cells and widgets. I may not claim every ad model was a struct unless I personally know that — and I never invent fill-rate or revenue percentages.”
@@ -27,7 +26,6 @@
 ---
 
 ### Q2. How do you connect Ads pipeline + HeroWidget to struct vs class?
-
 **Answer:**
 
 > “Lead with type safety and composition — protocols plus generics — then extend to model choice: structs and enums for render data keep copies independent; classes stay at UIKit and shared services. Video ads need identity and lifecycle — HeroWidget owning pause and play against visibility is a reference-type story, not an argument against value semantics elsewhere.”
@@ -47,7 +45,6 @@
 ---
 
 ### Q3. What is BookMyShow payment processing-status popup about?
-
 **Answer:**
 
 > “Checkout delays caused drop-off and support load when status was unclear. We designed a lightweight popup for real-time processing status with distinct processing, success, failure, and timeout messaging, coordinated with backend signals. Intent: reduce ambiguity — silent waiting was the product defect. I do not invent measured drop-off percent, conversion lift, or support ticket deltas.”
@@ -67,7 +64,6 @@
 ---
 
 ### Q4. How do you apply Design: payment status pattern — the enum state machine?
-
 **Answer:**
 
 > “Say explicitly: how I would apply it. Model hidden, processing(message:), success(bookingID:), failure, timedOut as associated-value enum cases so illegal UI combinations cannot exist and switches stay exhaustive. Optional apply(event) for transitions — full graph in LoadState.swift. Do not say we shipped it as a Swift enum state machine unless that is personally true.”
@@ -89,7 +85,6 @@
 ---
 
 ### Q5. What is BookMyShow synchronised dictionaries — and how does Day 01 use it?
-
 **Answer:**
 
 > “Shared async state hit from multiple queues caused races and intermittent crashes. Fix: synchronised dictionaries behind GCD serial queues — RW locks where read-heavy — with a standardized access API so call sites could not touch raw storage. Day 01 uses this only as a soft bridge to actors — not a full concurrency deep dive. That is Day 05.”
@@ -109,7 +104,6 @@
 ---
 
 ### Q6. How do you bridge synchronised dictionaries to actors?
-
 **Answer:**
 
 > “Verified: serial queue around shared dictionaries. Design: actor SafeDict — for greenfield code, expose the same API behind a Swift actor so isolation is checked by the compiler instead of only by convention. Same boundary idea — different enforcement. Do not claim you rewrote production dictionaries as actors unless you did.”
@@ -130,7 +124,6 @@
 ---
 
 ### Q7. How do you combine Day 01 stories without metric inflation?
-
 **Answer:**
 
 > “Match question flavor to story. Struct vs class → Ads pipeline value-friendly models plus HeroWidget as identity. Enums vs booleans → payment status pattern design plus payment processing-status popup product intent. COW and arrays → listing scale without fake numbers — avoid defensive copies; trust COW. Actors → SafeDict design with synchronised dictionaries as prior art. Scale stats like thirty-plus lakh DAU belong to IMOC and crash-free-at-scale reliability culture — use only when the question is about production risk, not as decoration on every answer. Never combine stories to invent a bigger metric.”
@@ -151,7 +144,6 @@
 ---
 
 ### Q8. What is the flash “map to your work” card for Day 01?
-
 **Answer:**
 
 > “Company feature: BookMyShow — Ads and listing models; payment processing popup. What I did: kept render models in a type-safe ads pipeline; modeled processing UI as explicit states rather than silent waiting. Interview line under twenty seconds: I default to structs for ad and listing models so accidental shared mutation can’t corrupt revenue UI; classes and actors only at identity or concurrency boundaries. Then STAR: Ads pipeline plus HeroWidget, payment processing-status popup in the story bank.”
@@ -162,7 +154,7 @@
 |---|---|
 | Labels to speak aloud? | “Verified versus how I would apply it — especially payment status pattern and actor SafeDict.” |
 | Provenance source? | “[`../../../provenance/README.md`](../../../provenance/README.md) — only Verified IDs from there.” |
-| After this sample? | “Drill timing in [`../04-questions.md`](../04-questions.md).” |
+| After this sample? | “Drill timing in [07-revision-qna.md](07-revision-qna.md).” |
 
 **How can I relate to my case:**
 - **Shipped:** BookMyShow Ads pipeline + HeroWidget lifecycle; BookMyShow synchronised dictionaries; BookMyShow payment processing-status popup

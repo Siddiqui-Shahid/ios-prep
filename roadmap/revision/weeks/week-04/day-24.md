@@ -61,7 +61,7 @@ Seniors design **degradation paths** before the happy path. Money amounts come f
 |---|---|---|
 | Must | [Sample Q&A](../../../weeks/week-04/day-24/sample/) | Guided cards |
 | Must | Full modules [01–03](../../../weeks/week-04/day-24/01-foundations.md) | FinTrack + GymFlow depth |
-| Drill | [04-questions](../../../weeks/week-04/day-24/04-questions.md) | Timed answers |
+| Drill | [07-revision-qna](../../../weeks/week-04/day-24/sample/07-revision-qna.md) | Timed answers |
 | Code | [code/](../../../weeks/week-04/day-24/code/) | BM25, router, TF-IDF sketches |
 
 ## 4. Map to your work
@@ -97,4 +97,4 @@ Seniors design **degradation paths** before the happy path. Money amounts come f
 | Fail-soft trade-off | 60s |
 | SD opener (privacy→retrieve→infer→ops) | 45s |
 
-Expand from [sample cards](../../../weeks/week-04/day-24/sample/) and [04-questions](../../../weeks/week-04/day-24/04-questions.md) answer points.
+Expand from [sample cards](../../../weeks/week-04/day-24/sample/) and [07-revision-qna](../../../weeks/week-04/day-24/sample/07-revision-qna.md) answer points.

@@ -5,7 +5,6 @@
 ---
 
 ### Q1. Why treat Stories as a product SDK, not a copied folder?
-
 **Answer:**
 
 > Portfolio apps (NBA/WNBA) needed Instagram-style fan Stories without copy-paste UI per brand. A **standalone package** with a **stable public API** lets one implementation serve multiple hosts. Hosts inject theme, analytics, and media loaders. Internals stay hidden; entry points, callbacks, and errors are explicit. Versioning and adoption discipline turn modularization into **product leverage**, not just compile-time tidiness.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. What is the extraction sequence you can whiteboard?
-
 **Answer:**
 
 > Identify the public surface → inject host dependencies (theme, analytics, content, loaders) → build a demo app host → prove second production host → semantic version the package → deprecate breaking changes carefully. Each step reduces risk before portfolio-wide adoption.
@@ -46,7 +44,6 @@
 ---
 
 ### Q3. Should the Stories SDK own the image pipeline?
-
 **Answer:**
 
 > **No** — don’t hardcode Kingfisher (or any loader) inside the SDK forever. Inject `ImageLoading` from the host so every portfolio app shares one cache policy, downsample rules, and memory pressure behavior. The SDK stays reusable; hosts control media infrastructure.
@@ -68,7 +65,6 @@
 ---
 
 ### Q4. How do you keep Core from becoming a junk drawer?
-
 **Answer:**
 
 > Put true shared entities (User id) in a small kernel. Keep checkout-only DTOs in Checkout Interface/Impl. Reject “maybe useful someday” types in Core — that recreates hidden coupling and slows every dependent module. Shared models need the same discipline as shared UI.
@@ -87,7 +83,6 @@
 ---
 
 ### Q5. Build times got worse after many modules — why?
-
 **Answer:**
 
 > Common causes: Interface targets changing too often (every Impl rebuilds), over-fine package splits, too many dynamic frameworks, poor CI caching. Fix by measuring Build Timing Summary, merging leaf packages, stabilizing Interfaces, and preferring static internal linking. Modularization is a trade-off — measure, don’t assume more targets = faster.
@@ -106,7 +101,6 @@
 ---
 
 ### Q6. How does modularization connect to testability?
-
 **Answer:**
 
 > Features that depend on protocols can be tested with injected fakes — no live network or singletons. Clean/MVVM inside the module boundary (District Free Parking + Clean/MVVM + AI tooling soft) keeps AI and juniors inside an architecture envelope. Module boundaries are where you enforce “no `.shared` in Impl.”
@@ -128,7 +122,6 @@
 ---
 
 ### Q7. What SDK versioning mistakes hurt portfolio adoption?
-
 **Answer:**
 
 > Breaking public API without major version bumps; hiding internal VCs that hosts started reaching into; hardcoding host branding; owning third-party dependencies permanently. SDK quality = **API surface + versioning + independence from host shortcuts** — that’s the Stories SDK (Raw / Miami Heat) lesson, not just “we moved files into a package.”
@@ -151,3 +144,22 @@ Next: [04-production-s10.md](04-production-s10.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What is the extraction sequence you can whiteboard
+
+**Ask yourself:** What is the extraction sequence you can whiteboard?
+
+**Answer:** “Identify the public surface → inject host dependencies (theme, analytics, content, loaders) → build a demo app host → prove second production host → semantic version the package → deprecate breaking changes carefully. Each step reduces risk before portfolio-wide adoption.”
+
+### Puzzle B — Should the Stories SDK own the image pipeline
+
+**Ask yourself:** Should the Stories SDK own the image pipeline?
+
+**Answer:** “**No** — don’t hardcode Kingfisher (or any loader) inside the SDK forever. Inject `ImageLoading` from the host so every portfolio app shares one cache policy, downsample rules, and memory pressure behavior. The SDK stays reusable; hosts control media infrastructure.”
+
+### Puzzle C — How do you keep Core from becoming a junk drawer
+
+**Ask yourself:** How do you keep Core from becoming a junk drawer?
+
+**Answer:** “Put true shared entities (User id) in a small kernel. Keep checkout-only DTOs in Checkout Interface/Impl. Reject “maybe useful someday” types in Core — that recreates hidden coupling and slows every dependent module. Shared models need the same discipline as shared UI.”

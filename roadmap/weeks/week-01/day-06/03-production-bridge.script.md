@@ -60,4 +60,4 @@ What you practice today: Pattern I D + narration + Swift solutions in code/. Int
 
 Next. Next.
 
-04-questions.md. pattern Q&A + full approach scripts as Full spoken answers.
+sample/07-revision-qna.md. pattern Q&A + full approach scripts as Full spoken answers.

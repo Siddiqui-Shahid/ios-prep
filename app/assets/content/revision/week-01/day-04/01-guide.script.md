@@ -39,4 +39,4 @@ Next. 5. Flash prompts. 1. Serial vs concurrent in one sentence each 2. Why main
 
 ## §9 6. Timed drills
 
-Next. 6. Timed drills. Expand from sample cards, SafeDict.swift, and 04-questions.
+Next. 6. Timed drills. Expand from sample cards, SafeDict.swift, and 07-revision-qna.

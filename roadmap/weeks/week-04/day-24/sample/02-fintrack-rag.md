@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What problem does FinTrack solve?
-
 **Answer:**
 
 > Expense **coach** that must **not** ship ledger data to a cloud LLM by default. Local-first personal finance with retrieval-grounded advice and deterministic fallback when generative paths unavailable.
@@ -23,8 +22,7 @@
 
 ---
 
-### Q2. Defend the FinTrack architecture in layers.
-
+### Q2. Defend the FinTrack architecture in layers?
 **Answer:**
 
 > **(1)** Local store: Hive; biometric lock; **no cloud sync** of financial records. **(2)** Retrieval: **BM25** over local spending index — lexical, offline, explainable. **(3)** Generation: `flutter_native_ai` → Apple Foundation Models / platform AI when available. **(4)** Fail-soft: **deterministic rule engine** (budget thresholds, category heuristics). **(5)** Privacy: on-device preferred; any cloud design needs PII sanitize + consent + minimize.
@@ -46,7 +44,6 @@
 ---
 
 ### Q3. What is BM25 enough for in interviews?
-
 **Answer:**
 
 > BM25 scores documents against a query using term frequency, document length normalization, and inverse document frequency. **Do not derive the formula live.** Say: “BM25 ranks local spend notes and category text by lexical relevance — offline, explainable, no embedder binary. Weaker on paraphrase (‘UBER’ vs ‘rideshare’) — accepted trade-off for FinTrack’s text.”
@@ -65,7 +62,6 @@
 ---
 
 ### Q4. How do you ground money and stop hallucination?
-
 **Answer:**
 
 > Generative text is **never** source of truth for balances or amounts. Prompt: only use provided context. UI shows retrieved rows / citations. **Rules path reads DB deterministically.** Analytics log coarse events — not raw transactions.
@@ -84,7 +80,6 @@
 ---
 
 ### Q5. What failures trigger FinTrack fallback?
-
 **Answer:**
 
 > No Foundation Model / capability flag false → rules; hide generative chrome. Model file missing / checksum fail → same. Thermal serious / Low Power → pause infer; rules. Memory warning → unload weights. Retrieval empty → honest empty + generic tips. Cloud (if designed) → timeout → local message.
@@ -103,7 +98,6 @@
 ---
 
 ### Q6. What is the 90s privacy-first script?
-
 **Answer:**
 
 > “Financial and health-adjacent data stays on device. Retrieval runs locally. Generative models are optional accelerators behind capability checks. Analytics get coarse events — coach_shown, fallback_rule — not raw transactions. If hybrid cloud is required, it’s consent-gated, field-minimized, and never the only path.”
@@ -122,7 +116,6 @@
 ---
 
 ### Q7. What must I NOT claim for FinTrack on-device AI?
-
 **Answer:**
 
 > **Forbidden:** invented accuracy %, latency SLOs, “fine-tuned on user ledgers,” cloud sync of financial data. **Verified:** Hive local-first, BM25 + rule fallback, Apple FM bridge, no cloud financial sync.
@@ -145,3 +138,22 @@ Next: [03-gymflow-embeddings.md](03-gymflow-embeddings.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — Defend the FinTrack architecture in layers
+
+**Ask yourself:** Defend the FinTrack architecture in layers?
+
+**Answer:** “**(1)** Local store: Hive; biometric lock; **no cloud sync** of financial records. **(2)** Retrieval: **BM25** over local spending index — lexical, offline, explainable. **(3)** Generation: `flutter_native_ai` → Apple Foundation Models / platform AI when available. **(4)** Fail-soft: **deterministic rule engine** (budget thresholds, category heuristics). **(5)** Privacy: on-device preferred; any cloud design needs PII sanitize + consent + minimize.”
+
+### Puzzle B — What is BM25 enough for in interviews
+
+**Ask yourself:** What is BM25 enough for in interviews?
+
+**Answer:** “BM25 scores documents against a query using term frequency, document length normalization, and inverse document frequency. **Do not derive the formula live.** Say: “BM25 ranks local spend notes and category text by lexical relevance — offline, explainable, no embedder binary. Weaker on paraphrase (‘UBER’ vs ‘rideshare’) — accepted trade-off for FinTrack’s text.”
+
+### Puzzle C — How do you ground money and stop hallucination
+
+**Ask yourself:** How do you ground money and stop hallucination?
+
+**Answer:** “Generative text is **never** source of truth for balances or amounts. Prompt: only use provided context. UI shows retrieved rows / citations. **Rules path reads DB deterministically.** Analytics log coarse events — not raw transactions.”

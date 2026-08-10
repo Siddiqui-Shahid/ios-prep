@@ -60,7 +60,7 @@ Explain aloud, in plain sentences:
 | Priority | Resource | Why |
 |---|---|---|
 | Must | [Sample Q&A](../../../weeks/week-04/day-26/sample/) | STAR rhythm + conflict/incident cards |
-| Must | [04-questions](../../../weeks/week-04/day-26/04-questions.md) | Full spoken scripts |
+| Must | [07-revision-qna](../../../weeks/week-04/day-26/sample/07-revision-qna.md) | Full spoken scripts |
 | Drill | [05-exercises](../../../weeks/week-04/day-26/05-exercises.md) | Voice memo reps |
 | Bank | [story-bank.md](../../stories/story-bank.md) | BookMyShow Ads pipeline + HeroWidget lifecycle, BookMyShow LE Bottom Sheet, BookMyShow IMOC + crash-free at scale, District Free Parking + Clean/MVVM + AI tooling source |
 

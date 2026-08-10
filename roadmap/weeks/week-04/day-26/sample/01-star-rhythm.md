@@ -5,13 +5,12 @@
 ---
 
 ### Q1. What is the STAR timing rhythm?
-
 **Answer:**
 
-> **Situation + Task ~20s** — scale and your ownership, not company history.  
-> **Action ~90s** — 3–5 concrete steps plus one trade-off; say what *you* did.  
-> **Result ~30s** — one real metric or crisp outcome.  
-> **Lesson ~20s** — reusable principle, not a humble-brag essay.  
+> **Situation + Task ~20s** — scale and your ownership, not company history. 
+> **Action ~90s** — 3–5 concrete steps plus one trade-off; say what *you* did. 
+> **Result ~30s** — one real metric or crisp outcome. 
+> **Lesson ~20s** — reusable principle, not a humble-brag essay. 
 > Total target: **2–3 minutes**. Leadership means ownership clarity, not title theater.
 
 **Follow-ups:**
@@ -28,11 +27,10 @@
 ---
 
 ### Q2. How do I open a behavioral answer?
-
 **Answer:**
 
-> Lead with the agenda:  
-> “I’ll take ~2 minutes on [X] — context, what I owned, outcome.”  
+> Lead with the agenda: 
+> “I’ll take ~2 minutes on [X] — context, what I owned, outcome.” 
 > That signals clock discipline and gives the interviewer permission to interrupt cleanly. Use the same opener for conflict (BookMyShow LE Bottom Sheet), incident (BookMyShow IMOC + crash-free at scale), AI judgment (District Free Parking + Clean/MVVM + AI tooling), and hard technical (BookMyShow Ads pipeline + HeroWidget lifecycle).
 
 **Follow-ups:**
@@ -52,16 +50,15 @@
 ---
 
 ### Q3. How does the prompt → story router work?
-
 **Answer:**
 
-> Map the prompt to a story ID in **≤10 seconds**:  
-> Hard technical → **BookMyShow Ads pipeline + HeroWidget lifecycle** (Ads/HeroWidget).  
-> Conflict → **BookMyShow LE Bottom Sheet** (LE sheet) or **BookMyShow IMOC + crash-free at scale** (IMOC).  
-> Incident / on-call → **BookMyShow IMOC + crash-free at scale**.  
-> Mentorship without title → BookMyShow LE Bottom Sheet, Stories SDK (Raw / Miami Heat), Platform upgrade, or **BookMyShow Ads pipeline + HeroWidget lifecycle**.  
-> AI / productivity tools → **District Free Parking + Clean/MVVM + AI tooling** (District) — contrast FinTrack on-device AI if product AI.  
-> Why senior / impact → BookMyShow LE Bottom Sheet **30%+**, BookMyShow IMOC + crash-free at scale **99.95%**, **30L+ DAU**.  
+> Map the prompt to a story ID in **≤10 seconds**: 
+> Hard technical → **BookMyShow Ads pipeline + HeroWidget lifecycle** (Ads/HeroWidget). 
+> Conflict → **BookMyShow LE Bottom Sheet** (LE sheet) or **BookMyShow IMOC + crash-free at scale** (IMOC). 
+> Incident / on-call → **BookMyShow IMOC + crash-free at scale**. 
+> Mentorship without title → BookMyShow LE Bottom Sheet, Stories SDK (Raw / Miami Heat), Platform upgrade, or **BookMyShow Ads pipeline + HeroWidget lifecycle**. 
+> AI / productivity tools → **District Free Parking + Clean/MVVM + AI tooling** (District) — contrast FinTrack on-device AI if product AI. 
+> Why senior / impact → BookMyShow LE Bottom Sheet **30%+**, BookMyShow IMOC + crash-free at scale **99.95%**, **30L+ DAU**. 
 > Failure → real miss + process change — never a fake hero failure.
 
 **Follow-ups:**
@@ -81,11 +78,10 @@
 ---
 
 ### Q4. What is the metric trio?
-
 **Answer:**
 
-> One clean sentence you can say anywhere:  
-> “I’ve owned features on BookMyShow at **30L+ DAU**, helped drive **99.95%+ crash-free** discipline on my paths, and shipped UX like the LE bottom sheet that cut full-screen navigations by **30%+** on targeted flows.”  
+> One clean sentence you can say anywhere: 
+> “I’ve owned features on BookMyShow at **30L+ DAU**, helped drive **99.95%+ crash-free** discipline on my paths, and shipped UX like the LE bottom sheet that cut full-screen navigations by **30%+** on targeted flows.” 
 > Use it in “tell me about yourself,” “biggest impact,” and “why senior” — always with honest scope wording.
 
 **Follow-ups:**
@@ -105,11 +101,10 @@
 ---
 
 ### Q5. How do I separate AI tooling from product AI?
-
 **Answer:**
 
-> One breath:  
-> “District District Free Parking + Clean/MVVM + AI tooling is how I use AI as an engineer — context and review. FinTrack/GymFlow are product on-device systems. I don’t conflate them.”  
+> One breath: 
+> “District District Free Parking + Clean/MVVM + AI tooling is how I use AI as an engineer — context and review. FinTrack/GymFlow are product on-device systems. I don’t conflate them.” 
 > District Free Parking + Clean/MVVM + AI tooling = Cursor/Copilot acceleration inside module boundaries and a review bar. FinTrack on-device AI/GymFlow on-device AI = privacy-first on-device inference, RAG, fail-soft — only if they ask product AI.
 
 **Follow-ups:**
@@ -129,7 +124,6 @@
 ---
 
 ### Q6. What should I NOT do in a STAR?
-
 **Answer:**
 
 > Don’t run past **4 minutes** — looks junior. Don’t say “we” for ten sentences without your role. Don’t invent metrics (fill-rate %, company-wide nav −30%). Don’t turn conflict into winning a taste argument. Don’t claim sole credit for company-wide crash-free. Don’t use a humblebrag “failure.” Don’t conflate District Free Parking + Clean/MVVM + AI tooling tooling with FinTrack on-device AI product AI.
@@ -151,11 +145,10 @@
 ---
 
 ### Q7. How long should “tell me about yourself” be?
-
 **Answer:**
 
-> **90–120 seconds** — one breath per career chapter, not four full STARs.  
-> Spine: BookMyShow scale + reliability + delivery metrics → District architecture + AI judgment → Raw SDK/hybrid → FinTrack/GymFlow → target senior ownership.  
+> **90–120 seconds** — one breath per career chapter, not four full STARs. 
+> Spine: BookMyShow scale + reliability + delivery metrics → District architecture + AI judgment → Raw SDK/hybrid → FinTrack/GymFlow → target senior ownership. 
 > End with what you want next: senior roles owning architecture, reliability, and delivery end-to-end.
 
 **Follow-ups:**
@@ -174,11 +167,10 @@
 
 ---
 
-### Q8. Speak the full BookMyShow LE Bottom Sheet STAR script (conflict / impact, ~2–3 min)
-
+### Q8. Speak the full BookMyShow LE Bottom Sheet STAR script (conflict / impact, ~2–3 min)?
 **Answer:**
 
-> “I’ll take ~2 minutes on the LE bottom sheet — cross-functional delivery and the navigation impact. On BookMyShow, users were taking full-screen navigations for event overview more often than they needed to — friction on high-traffic flows I shared ownership of. I led an end-to-end lightweight overview as a bottom sheet. That meant aligning Product, Design, and Backend on the API contract and content rules so we weren’t debating pixels without data. I shipped it as a reusable component and integrated it into the targeted flows. The resume outcome is that we reduced full-screen navigations for **30%+ of user flows** in that scope. The lesson I reuse is that a small UI surface with clear contracts often beats a large navigation rewrite — and conflict gets resolved by making the user impact and the interface contract explicit, not by winning a taste argument.”  
+> “I’ll take ~2 minutes on the LE bottom sheet — cross-functional delivery and the navigation impact. On BookMyShow, users were taking full-screen navigations for event overview more often than they needed to — friction on high-traffic flows I shared ownership of. I led an end-to-end lightweight overview as a bottom sheet. That meant aligning Product, Design, and Backend on the API contract and content rules so we weren’t debating pixels without data. I shipped it as a reusable component and integrated it into the targeted flows. The resume outcome is that we reduced full-screen navigations for **30%+ of user flows** in that scope. The lesson I reuse is that a small UI surface with clear contracts often beats a large navigation rewrite — and conflict gets resolved by making the user impact and the interface contract explicit, not by winning a taste argument.” 
 > **Provenance:** BookMyShow LE Bottom Sheet · BookMyShow · LE Bottom Sheet
 
 **Follow-ups:**
@@ -197,11 +189,10 @@
 
 ---
 
-### Q9. Speak the full BookMyShow IMOC + crash-free at scale STAR script (incident / leadership, ~2–3 min)
-
+### Q9. Speak the full BookMyShow IMOC + crash-free at scale STAR script (incident / leadership, ~2–3 min)?
 **Answer:**
 
-> “I’ll cover incident ownership at BookMyShow scale — IMOC and crash-free discipline. BookMyShow consumer iOS sits at **30+ lakh DAU**, so reliability isn’t abstract — we held a **99.95%+ crash-free** bar and needed fast P0/P1 response during high-traffic events. I worked Crashlytics triage with structured crash workflows, and as **IMOC** I coordinated iOS, backend, and QA when incidents hit: stabilize first, communicate blast radius, then root cause and prevent. That looked like feature guards, hotfix paths, and clear ownership instead of everyone debugging in a pile. The result was sustaining high crash-free sessions and minimizing downtime when traffic spiked. My lesson is that incident leadership is clarity of owner, blast radius, and rollback — hero debugging alone doesn’t scale.”  
+> “I’ll cover incident ownership at BookMyShow scale — IMOC and crash-free discipline. BookMyShow consumer iOS sits at **30+ lakh DAU**, so reliability isn’t abstract — we held a **99.95%+ crash-free** bar and needed fast P0/P1 response during high-traffic events. I worked Crashlytics triage with structured crash workflows, and as **IMOC** I coordinated iOS, backend, and QA when incidents hit: stabilize first, communicate blast radius, then root cause and prevent. That looked like feature guards, hotfix paths, and clear ownership instead of everyone debugging in a pile. The result was sustaining high crash-free sessions and minimizing downtime when traffic spiked. My lesson is that incident leadership is clarity of owner, blast radius, and rollback — hero debugging alone doesn’t scale.” 
 > **Provenance:** BookMyShow IMOC + crash-free at scale · BookMyShow · IMOC / CFS
 
 **Follow-ups:**
@@ -222,3 +213,33 @@ Next: [02-conflict-incident.md](02-conflict-incident.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — How do I open a behavioral answer
+
+**Ask yourself:** How do I open a behavioral answer?
+
+**Answer:** “Lead with the agenda: 
+> “I’ll take ~2 minutes on [X] — context, what I owned, outcome.” 
+> That signals clock discipline and gives the interviewer permission to interrupt cleanly. Use the same opener for conflict (BookMyShow LE Bottom Sheet), incident (BookMyShow IMOC + crash-free at scale), AI judgment (District Free Parking + Clean/MVVM + AI tooling), and hard technical (BookMyShow Ads pipeline + HeroWidget lifecycle).”
+
+### Puzzle B — How does the prompt → story router work
+
+**Ask yourself:** How does the prompt → story router work?
+
+**Answer:** “Map the prompt to a story ID in **≤10 seconds**: 
+> Hard technical → **BookMyShow Ads pipeline + HeroWidget lifecycle** (Ads/HeroWidget). 
+> Conflict → **BookMyShow LE Bottom Sheet** (LE sheet) or **BookMyShow IMOC + crash-free at scale** (IMOC). 
+> Incident / on-call → **BookMyShow IMOC + crash-free at scale**. 
+> Mentorship without title → BookMyShow LE Bottom Sheet, Stories SDK (Raw / Miami Heat), Platform upgrade, or **BookMyShow Ads pipeline + HeroWidget lifecycle**. 
+> AI / productivity tools → **District Free Parking + Clean/MVVM + AI tooling** (District) — contrast FinTrack on-device AI if product AI. 
+> Why senior / impact → BookMyShow LE Bottom Sheet **30%+**, BookMyShow IMOC + crash-free at scale **99.95%**, **30L+ DAU**. 
+> Failure → real miss + process change — never a fake hero failure.”
+
+### Puzzle C — What is the metric trio
+
+**Ask yourself:** What is the metric trio?
+
+**Answer:** “One clean sentence you can say anywhere: 
+> “I’ve owned features on BookMyShow at **30L+ DAU**, helped drive **99.95%+ crash-free** discipline on my paths, and shipped UX like the LE bottom sheet that cut full-screen navigations by **30%+** on targeted flows.” 
+> Use it in “tell me about yourself,” “biggest impact,” and “why senior” — always with honest scope wording.”

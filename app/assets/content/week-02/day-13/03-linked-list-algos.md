@@ -5,7 +5,6 @@
 ---
 
 ### Q1. How do I reverse a linked list iteratively?
-
 **Answer:**
 
 > Three pointers: `prev = nil`, `curr = head`. While `curr`: save `next = curr.next`, set `curr.next = prev`, advance `prev = curr`, `curr = next`. Return `prev` as new head. **O(n) time, O(1) space.** Save `next` before rewiring — classic bug if you skip. Empty and single-node are no-ops.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. How does Floyd cycle detection work?
-
 **Answer:**
 
 > **Slow** pointer +1, **fast** +2 per step. If they meet, a cycle exists. Optional phase 2: reset one pointer to head, both advance +1 → cycle entrance. **O(n) time, O(1) space.** Hash-set alternative: O(n) space but simpler to narrate under time pressure.
@@ -43,7 +41,6 @@
 ---
 
 ### Q3. How do I find the middle of a linked list?
-
 **Answer:**
 
 > Same slow/fast: when fast reaches end, slow is middle. **State even-length policy aloud** — lower mid vs upper mid (problem dependent). Off-by-one on even lists kills candidates who stay silent.
@@ -62,7 +59,6 @@
 ---
 
 ### Q4. How do I merge two sorted linked lists?
-
 **Answer:**
 
 > **Dummy head** node simplifies edge cases. Compare heads, append smaller to tail, advance that list. Attach remainder when one list exhausts. **O(n+m) time, O(1) extra** (excluding output links). Narrate pointer updates — off-by-ones are the failure mode.
@@ -81,7 +77,6 @@
 ---
 
 ### Q5. What is reverse k-group and why is it tricky?
-
 **Answer:**
 
 > Count k nodes available; if fewer than k, leave segment intact. Reverse the k segment. Reconnect previous tail → new head; iterate. Off-by-ones and losing `next` during segment reverse kill this problem — narrate links aloud.
@@ -100,7 +95,6 @@
 ---
 
 ### Q6. What is the universal coding opener?
-
 **Answer:**
 
 > “Let me restate, confirm constraints, then I’ll give brute, optimize, complexity, and edges before coding.” Sequence: restate + clarifying questions → brute + complexity → optimized structure + why → edges + API shape → “I’ll code the optimized version now.” ~2–3 minutes. If you skip in practice, restart the problem.
@@ -119,7 +113,6 @@
 ---
 
 ### Q7. What linked-list traps should I name before coding?
-
 **Answer:**
 
 > Lose `next` while reversing. Even-length mid ambiguity — state policy. k-group leftover reversed incorrectly. Hash cycle vs Floyd — pick one. Claim O(1) Array queue. If interviewer pivots to SDUI mid-problem: park coding state, answer versioning + unknown skip (Day 10), offer to resume — composure beat.
@@ -139,3 +132,22 @@ Next: [04-production-bridges.md](04-production-bridges.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — How does Floyd cycle detection work
+
+**Ask yourself:** How does Floyd cycle detection work?
+
+**Answer:** “**Slow** pointer +1, **fast** +2 per step. If they meet, a cycle exists. Optional phase 2: reset one pointer to head, both advance +1 → cycle entrance. **O(n) time, O(1) space.** Hash-set alternative: O(n) space but simpler to narrate under time pressure.”
+
+### Puzzle B — How do I find the middle of a linked list
+
+**Ask yourself:** How do I find the middle of a linked list?
+
+**Answer:** “Same slow/fast: when fast reaches end, slow is middle. **State even-length policy aloud** — lower mid vs upper mid (problem dependent). Off-by-one on even lists kills candidates who stay silent.”
+
+### Puzzle C — How do I merge two sorted linked lists
+
+**Ask yourself:** How do I merge two sorted linked lists?
+
+**Answer:** “**Dummy head** node simplifies edge cases. Compare heads, append smaller to tail, advance that list. Attach remainder when one list exhausts. **O(n+m) time, O(1) extra** (excluding output links). Narrate pointer updates — off-by-ones are the failure mode.”

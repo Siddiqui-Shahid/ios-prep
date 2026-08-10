@@ -9,13 +9,13 @@ Next. Q1. Interviewer: “Design Search Autocomplete.” How do you open? Answer
 
 Next. Q2. After clarify — what does the optimal flow look like? Answer. Scripted outcomes for this mock: Autocomplete + full results; debounce 300ms; cancel in-flight; offline Trie/FTS; out: ML ranking. Good flow: agenda → clarify Qs → confirm → high level design (4 layers + backend + load) → A P I → two crisp dives → ops last 5. Weak flow: silent drawing, happy-path only, no QPS/TTL, invent metrics, skip ops. Follow-ups. They change scope mid-high level design?: Re-confirm in/out in 20s; adjust dives; protect ops.. Backend mesh deep-dive?: Out unless asked — sketch touchpoints, stay client-owned.. Forgot to ask offline?: State online-first + last-good cache as assumption; invite correction..
 
-## §2 Q3. Walk the HLD — client layers, backend, load.
+## §2 Q3. Walk the HLD — client layers, backend, load?
 
-Next. Q3. Walk the HLD — client layers, backend, load Answer. U I Search bar → ViewModel → local Trie/recent first → remote autocomplete → results list with cursor. Backend: autocomplete service (often Redis/ES) + search service behind gateway. Load: Debounce 300ms cuts QPS massively; limit 10 suggest / 20 results; drop stale by request_id. Follow-ups. Why local first?: Perceived latency <10ms; works offline.. D S A link?: Two-pointer/window intuition ≠ Trie — say cancel/debounce maps to concurrency story..
+Next. Q3. Walk the HLD — client layers, backend, load? Answer. U I Search bar → ViewModel → local Trie/recent first → remote autocomplete → results list with cursor. Backend: autocomplete service (often Redis/ES) + search service behind gateway. Load: Debounce 300ms cuts QPS massively; limit 10 suggest / 20 results; drop stale by request_id. Follow-ups. Why local first?: Perceived latency <10ms; works offline.. D S A link?: Two-pointer/window intuition ≠ Trie — say cancel/debounce maps to concurrency story..
 
-## §3 Q4. Data / API — entities, endpoints, scale.
+## §3 Q4. Data / API — entities, endpoints, scale?
 
-Next. Q4. Data / API — entities, endpoints, scale Answer. GET /v1/search/autocomplete?q=&limit=10 GET /v1/search/results?q=&cursor=&limit=20 Client sends monotonic request_id; ignore older responses. Follow-ups. Empty query?: Show recent/local only — no remote storm.. Rate limit 429?: Backoff; keep last good suggestions..
+Next. Q4. Data / API — entities, endpoints, scale? Answer. GET /v1/search/autocomplete?q=&limit=10 GET /v1/search/results?q=&cursor=&limit=20 Client sends monotonic request_id; ignore older responses. Follow-ups. Empty query?: Show recent/local only — no remote storm.. Rate limit 429?: Backoff; keep last good suggestions..
 
 ## §4 Q5. Deep dive 1 — Debounce + cancel?
 

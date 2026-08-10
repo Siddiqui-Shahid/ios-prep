@@ -48,4 +48,4 @@ Anti-pattern: Fix. New topics mid-mock: Redirect to Week 1. Metric invention: Qu
 
 Next. Next.
 
-Drill warm-up pool in 04-questions.md before the timed mock if any card is shaky.
+Drill warm-up pool in sample/07-revision-qna.md before the timed mock if any card is shaky.

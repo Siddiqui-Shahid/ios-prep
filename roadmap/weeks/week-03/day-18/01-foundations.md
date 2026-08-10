@@ -1,132 +1,194 @@
-# 01 — Foundations: Crash Reporting & Incidents
+# 01 — Foundations: Crash Reporting & Incidents (Q&A)
 
-> Mental model first. Hard rule burned in early: **S2 ≠ sole cause of CFS**.
-
----
-
-## 0. North star
-
-**Catch fatals safely, make stacks readable, triage with process, lead incidents with mitigate-first ownership — and never attribute org-wide CFS to a single dictionary fix.**
+> Cover the answer, speak aloud, then check follow-ups. Simple language. Named work only — never S-codes in speech.
 
 ---
 
-## 1. Crash SDK pipeline
+### Q1. North star? `(45–60s)`
+**Answer:**
 
-```text
-Init (<~10ms class) → register handlers → breadcrumb ring
-Crash (signal / uncaught / fatalError path)
-  → async-signal-safe write to preallocated mmap/disk
-  → terminate
-Next launch → discover report → upload → server symbolicates with dSYM
-```
+> “Catch fatals safely, make stacks readable, triage with process, lead incidents with mitigate-first ownership — and never attribute org-wide CFS to a single dictionary fix. ---.”
 
-| Keyword | Why interviewers listen |
+**Follow-ups:**
+
+| Follow-up | Answer |
 |---|---|
-| `sigaction` / signal handlers | POSIX fatals (SEGV, ABRT, …) |
-| Uncaught Obj-C / Swift fatal paths | Not covered by `try` |
-| **Async-signal-safe** | No alloc, ObjC, Swift runtime, locks in handler |
-| Lock-free breadcrumb buffer | Safe-ish context for last N events |
-| dSYM UUID match | Readable stacks in Crashlytics |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 2. What crash-free sessions (CFS) means
+### Q2. Crash SDK pipeline? `(45–60s)`
+**Answer:**
 
-- **CFS:** sessions without a **fatal crash** (vendor definitions vary slightly — say Crashlytics sessions)
-- **Verified · S8:** sustained **99.95%+** at **30+ lakh DAU** — operational excellence under peak load
-- Non-fatals ≠ crashes — still triage if user-impacting
-- **OOM / jetsam:** often no clean client stack; heuristics + MetricKit exit reasons (Day 17)
-- **Hangs:** may not count against CFS — users still churn
+> “text Init (<~10ms class) → register handlers → breadcrumb ring Crash (signal / uncaught / fatalError path) → async-signal-safe write to preallocated mmap/disk → terminate Next launch → discover report → upload → server symbolicates with dSYM.”
 
-### Honesty bound (memorize)
+**Follow-ups:**
 
-```text
-S8  = CFS + Crashlytics triage + IMOC (system of reliability)
-S2  = synchronised dictionaries fixed races on a shared-state PATH
-S2 ⊂ reliability work, but S2 ⇏ "I alone made 99.95% CFS"
-```
-
-**Say aloud:** “Synchronised dictionaries removed intermittent race crashes on that shared state path. Crash-free at 99.95% was sustained by triage workflows, incident command, and many fixes — not one API.”
-
-> **Provenance:** Verified · S8 · CFS/IMOC; Verified · S2 · path-scoped races — do not merge into one causal claim
-
----
-
-## 3. Triage workflow
-
-1. **Detect** — spike / CFS drop alert
-2. **Classify** — new vs regressed; top stacks; version %; journey tags
-3. **Reproduce** — symbolicated stack + breadcrumbs + device/OS matrix
-4. **Mitigate** — flag off, pause phased rollout, hotfix path
-5. **Fix** — root cause + regression test
-6. **Write-up** — blameless postmortem for P0/P1
-
----
-
-## 4. IMOC (leadership proof)
-
-As **IMOC**, coordinate **iOS + backend + QA** on **P0/P1** during high-traffic events.
-
-| Pillar | Meaning |
+| Follow-up | Answer |
 |---|---|
-| Single owner | One incident commander / clear channel |
-| Blast radius | Feature, %, geo, payment path? |
-| Mitigate first | User harm down before perfect RCA |
-| Cadenced comms | Ops/customer updates on a clock |
-| Handoff + postmortem | Actions: alerts, tests, runbooks |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 5. Glossary
+### Q3. What crash-free sessions (CFS) means? `(45–60s)`
+**Answer:**
 
-| Term | Meaning |
+> “- CFS: sessions without a fatal crash (vendor definitions vary slightly — say Crashlytics sessions) - Verified · : sustained 99.95%+ at 30+ lakh DAU — operational excellence under peak load - Non-fatals ≠ crashes — still triage if user-impacting - OOM / jetsam: often no clean client stack; heuristics + MetricKit exit reasons (Day 17) - Hangs: may not count against CFS — users still churn.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
 |---|---|
-| Async-signal-safe | APIs safe inside signal handlers |
-| Breadcrumb | Last-N event trail for context |
-| dSYM | Debug symbols for symbolication |
-| Symbolication | Map addresses → functions/lines |
-| Non-fatal | Caught/logged error, not session crash |
-| Jetsam / OOM | Memory pressure kill |
-| IMOC | Incident Management On-Call / commander role |
-| Blast radius | Scope of user impact |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
 
 ---
 
-## 6. Crash vs OOM vs hang
+### Q4. Honesty bound (memorize)? `(45–60s)`
+**Answer:**
 
-| | Crash | OOM | Hang |
-|---|---|---|---|
-| Typical signal | Fatal signal/exception | SIGKILL / jetsam | Main blocked |
-| Clean stack? | Often yes (if handlers work) | Often heuristic | Hang detector / MetricKit |
-| Moves CFS? | Yes (fatal) | Vendor-dependent / often separate | Often **no** |
+> “Synchronised dictionaries removed intermittent race crashes on that shared state path. Crash-free at 99.95% was sustained by triage workflows, incident command, and many fixes — not one API.”
 
-**Trap:** “CFS is fine so the app isn’t freezing.”
+**Follow-ups:**
 
----
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-## 7. Launch ordering preview
-
-- Prefer **crash SDK early** so launch crashes report
-- Keep init **fast** (budget milliseconds-class)
-- Defer heavy analytics (Day 17 launch budget)
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
 
 ---
 
-## 8. Teach-back checklist
+### Q5. Triage workflow? `(45–60s)`
+**Answer:**
 
-1. Pipeline: capture → persist → upload → symbolicate  
-2. Async-signal-safe one-liner  
-3. CFS definition + 99.95% / 30L context (S8)  
-4. **S2 contributes; does not solely cause CFS**  
-5. IMOC pillars  
-6. Hang gap vs CFS  
+> “1. Detect — spike / CFS drop alert 2. Classify — new vs regressed; top stacks; version %; journey tags 3. Reproduce — symbolicated stack + breadcrumbs + device/OS matrix 4. Mitigate — flag off, pause phased rollout, hotfix path 5. Fix — root cause + regression test 6. Write-up — blameless postmortem for P0/P1 ---.”
 
-## 9. One-minute CFS honesty drill
+**Follow-ups:**
 
-Speak continuously:
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-> “Crash-free at ninety-nine point nine five percent on thirty-plus lakh DAU was sustained through Crashlytics triage workflows and IMOC coordination on P0/P1s during peak traffic. Separately, synchronised dictionaries removed intermittent race crashes on a shared async state path — that contributed to reliability. I don’t collapse those into one causal story.”
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
-Stop. If you said “because of dictionaries,” restart.
+---
 
-Next: [`02-deep-dive.md`](02-deep-dive.md).
+### Q6. IMOC (leadership proof)? `(45–60s)`
+**Answer:**
+
+> “As IMOC, coordinate iOS + backend + QA on P0/P1 during high-traffic events.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q7. Glossary? `(45–60s)`
+**Answer:**
+
+> “---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q8. Crash vs OOM vs hang? `(45–60s)`
+**Answer:**
+
+> “Trap: “CFS is fine so the app isn’t freezing.”.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q9. Launch ordering preview? `(45–60s)`
+**Answer:**
+
+> “- Prefer crash SDK early so launch crashes report - Keep init fast (budget milliseconds-class) - Defer heavy analytics (Day 17 launch budget) ---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q10. Teach-back checklist? `(45–60s)`
+**Answer:**
+
+> “1. Pipeline: capture → persist → upload → symbolicate 2. Async-signal-safe one-liner 3. CFS definition + 99.95% / 30L context 4. contributes; does not solely cause CFS 5. IMOC pillars 6. Hang gap vs CFS.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q11. One-minute CFS honesty drill? `(45–60s)`
+**Answer:**
+
+> “Speak continuously: > “Crash-free at ninety-nine point nine five percent on thirty-plus lakh DAU was sustained through Crashlytics triage workflows and IMOC coordination on P0/P1s during peak traffic. Separately, synchronised dictionaries removed intermittent race crashes on a shared async state path — that contributed to reliability. I don’t collapse those into one causal story.”.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---

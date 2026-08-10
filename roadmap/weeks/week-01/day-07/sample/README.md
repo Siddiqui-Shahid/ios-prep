@@ -1,6 +1,6 @@
 # Day 07 sample — guided Q&A
 
-> Separate teaching sample. Does **not** replace the main Day 07 modules.  
+> Separate teaching sample. Does **not** replace the main Day 07 modules. 
 > Use this when you want revision and mock prep as **question → module pointer → answer → follow-ups**.
 
 ## How to use
@@ -31,7 +31,7 @@ After the sample, run the full mock from [`../02-deep-dive.md`](../02-deep-dive.
 | Score 5 | On time + trade-off + prod proof + honest provenance |
 | S2-A1 | Actor migration is **How I would apply it** — not “we rewrote prod” |
 | No invention | Zero fake fill-rate / crash-% ownership |
-| Full answers | Warm-up/deep **Answer points** live in [`../04-questions.md`](../04-questions.md) |
+| Full answers | Warm-up/deep **Answer points** live in [`../07-revision-qna.md`](../07-revision-qna.md) |
 
 ## Suggested order
 

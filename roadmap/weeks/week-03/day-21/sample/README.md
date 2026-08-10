@@ -1,6 +1,6 @@
 # Day 21 sample — guided Q&A
 
-> Separate teaching sample. Does **not** replace the main Day 21 modules.  
+> Separate teaching sample. Does **not** replace the main Day 21 modules. 
 > Use this when you want Mock #3 prep as **question → module pointer → answer → follow-ups**.
 
 ## How to use
@@ -10,7 +10,7 @@
 3. Read the **Answer** in full.
 4. Cover the follow-up answers and try to speak them, then check.
 
-After the sample, run the full 45-min mock from [`../02-deep-dive.md`](../02-deep-dive.md) and score with Part II in [`../04-questions.md`](../04-questions.md).
+After the sample, run the full 45-min mock from [`../02-deep-dive.md`](../02-deep-dive.md) and score with Part II in [`../07-revision-qna.md`](../07-revision-qna.md).
 
 ## Module map
 
@@ -19,7 +19,7 @@ After the sample, run the full 45-min mock from [`../02-deep-dive.md`](../02-dee
 | Foundations | [01-foundations.md](../01-foundations.md) |
 | Deep dive (full scripts) | [02-deep-dive.md](../02-deep-dive.md) |
 | Production bridge | [03-production-bridge.md](../03-production-bridge.md) |
-| Questions + rubric | [04-questions.md](../04-questions.md) |
+| Questions + rubric | [07-revision-qna.md](../07-revision-qna.md) |
 | Exercises (live mock) | [05-exercises.md](../05-exercises.md) |
 | Code | [code/SDUISketch.swift](../code/SDUISketch.swift) · [code/NetworkPinSketch.swift](../code/NetworkPinSketch.swift) |
 

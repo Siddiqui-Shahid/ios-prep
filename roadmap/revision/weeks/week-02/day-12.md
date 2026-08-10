@@ -54,7 +54,7 @@ Large data → `List` or `LazyVStack` with **stable** `Identifiable` IDs. Eager 
 |---|---|---|
 | Must | [Sample Q&A](../../../weeks/week-02/day-12/sample/) | Guided cards |
 | Must | Full modules [01–03](../../../weeks/week-02/day-12/01-foundations.md) | Gaps |
-| Drill | [04-questions](../../../weeks/week-02/day-12/04-questions.md) | Timed answers |
+| Drill | [07-revision-qna](../../../weeks/week-02/day-12/sample/07-revision-qna.md) | Timed answers |
 
 Suggested sample order: `01-state-ownership` → `02-identity-traps` → `03-lists-performance` → `04-production-s10`.
 
@@ -87,4 +87,4 @@ Suggested sample order: `01-state-ownership` → `02-identity-traps` → `03-lis
 | Stories SDK (Raw / Miami Heat) ≤20s pitch | 20s |
 | Stories SDK (Raw / Miami Heat) full STAR | 2–3 min |
 
-Expand from [sample cards](../../../weeks/week-02/day-12/sample/) and [04-questions](../../../weeks/week-02/day-12/04-questions.md) answer points.
+Expand from [sample cards](../../../weeks/week-02/day-12/sample/) and [07-revision-qna](../../../weeks/week-02/day-12/sample/07-revision-qna.md) answer points.

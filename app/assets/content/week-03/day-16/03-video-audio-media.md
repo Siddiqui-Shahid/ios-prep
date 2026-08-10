@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What is the HeroWidget video contract?
-
 **Answer:**
 
 > Revenue Ads video in HeroWidget must **pause** when partially or fully off-screen (pager/scroll), on `viewWillDisappear`, when app backgrounds, and on cell `prepareForReuse`. **POP + Generics** ad protocols prevent creative-type forks — but lifecycle is a **product contract**, not an implementation detail. Ads vs editorial autoplay may differ (viewability for billing vs mute-autoplay) — encode policy in protocol, don’t assume one rule.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. How do video retain cycles show up in ads?
-
 **Answer:**
 
 > AVPlayer + KVO/notification observers + escaping closures capturing `self` can form cycles. Pause stops playback but doesn’t guarantee deallocation. Fix: weak captures, invalidate observers, nil player on teardown. If players persist across navigation, use Allocations + Memory Graph — pause ≠ release.
@@ -43,7 +41,6 @@
 ---
 
 ### Q3. How is live audio different from image caching?
-
 **Answer:**
 
 > Images: L1/L2 bitmaps/bytes, cancel on reuse, retry thumbnail. Live audio: continuous buffer/player item, **AVAudioSession** category, **interruptions** (phone calls), route changes, buffering failures, optional background modes. You don’t LRU-cache a live stream like a JPEG. Failure modes and lifecycle are entirely different pipelines.
@@ -62,7 +59,6 @@
 ---
 
 ### Q4. What is server-driven splash in the Aces context?
-
 **Answer:**
 
 > Splash content from server for freshness/flexibility — measure **time-to-interactive (TTI)**, not vanity first-frame alone. Cache last-good splash if network is slow. **Do not invent ms numbers** in interviews — speak categories: product surface, TTI mindset, fail-soft if payload bad (BookMyShow backend-driven header & search soft).
@@ -84,7 +80,6 @@
 ---
 
 ### Q5. How does memory pressure differ for video vs images?
-
 **Answer:**
 
 > Images: trim decoded L1, stop prefetch/decode. Video: pause non-visible players, tear down off-screen AV layers, watch player item buffers. Both: listen for `UIApplication.didReceiveMemoryWarningNotification`. Neither: delete user Documents or sync massive purge on main.
@@ -103,7 +98,6 @@
 ---
 
 ### Q6. What trade-offs belong in a staff media interview?
-
 **Answer:**
 
 > NSCache L1 vs custom LRU actor. Downsample always vs full-res for zoom/edit. Store original bytes vs per-size on disk. Aggressive prefetch vs fling storms. Third-party loader vs in-house (know internals). Pause offscreen video vs visibility tracking complexity. Each choice has a **when** and a **cost** — don’t pick one globally.
@@ -122,7 +116,6 @@
 ---
 
 ### Q7. What production stories preview on this day?
-
 **Answer:**
 
 > **BookMyShow Ads pipeline + HeroWidget lifecycle Verified:** HeroWidget pause/play on highest-revenue Ads — POP+Generics pipeline. **Audio streaming + server-driven splash (Aces) Verified:** Live audio + server-driven splash on Aces — TTI mindset, no invented ms. **Stories SDK (Raw / Miami Heat) soft:** Inject image loader into Stories. Next sample covers STAR language for BookMyShow Ads pipeline + HeroWidget lifecycle/Audio streaming + server-driven splash (Aces).
@@ -145,3 +138,22 @@ Next: [04-production-s1-s12.md](04-production-s1-s12.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — How do video retain cycles show up in ads
+
+**Ask yourself:** How do video retain cycles show up in ads?
+
+**Answer:** “AVPlayer + KVO/notification observers + escaping closures capturing `self` can form cycles. Pause stops playback but doesn’t guarantee deallocation. Fix: weak captures, invalidate observers, nil player on teardown. If players persist across navigation, use Allocations + Memory Graph — pause ≠ release.”
+
+### Puzzle B — How is live audio different from image caching
+
+**Ask yourself:** How is live audio different from image caching?
+
+**Answer:** “Images: L1/L2 bitmaps/bytes, cancel on reuse, retry thumbnail. Live audio: continuous buffer/player item, **AVAudioSession** category, **interruptions** (phone calls), route changes, buffering failures, optional background modes. You don’t LRU-cache a live stream like a JPEG. Failure modes and lifecycle are entirely different pipelines.”
+
+### Puzzle C — What is server-driven splash in the Aces context
+
+**Ask yourself:** What is server-driven splash in the Aces context?
+
+**Answer:** “Splash content from server for freshness/flexibility — measure **time-to-interactive (TTI)**, not vanity first-frame alone. Cache last-good splash if network is slow. **Do not invent ms numbers** in interviews — speak categories: product surface, TTI mindset, fail-soft if payload bad (BookMyShow backend-driven header & search soft).”

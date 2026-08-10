@@ -7,7 +7,6 @@
 ---
 
 ### Q1. Interviewer: “Design Mobile Payment Checkout.” How do you open?
-
 **Answer:**
 
 > **Agenda (≤20s):** “I’ll take ~5 minutes clarifying scope and scale, then a four-layer client HLD with backend touchpoints and load, then API/data, two deep dives on **Idempotency exactly-once** and **Poller + mid-kill recovery**, and close on failure modes, metrics, and kill switches. Does that work?”
@@ -36,7 +35,6 @@
 ---
 
 ### Q2. After clarify — what does the optimal flow look like?
-
 **Answer:**
 
 > **Scripted outcomes for this mock:** Tokenized checkout; Idempotency-Key; payment FSM + SQLite recovery; poll status; 3DS; out: acquiring internals. Search = follow-up only.
@@ -57,8 +55,7 @@
 
 ---
 
-### Q3. Walk the HLD — client layers, backend, load.
-
+### Q3. Walk the HLD — client layers, backend, load?
 **Answer:**
 
 > Checkout UI → Payment VM (FSM) → Repository (SQLite intent) → Merchant API → PSP (Stripe/Adyen). Pinning on payment hosts.
@@ -78,8 +75,7 @@
 
 ---
 
-### Q4. Data / API — entities, endpoints, scale.
-
+### Q4. Data / API — entities, endpoints, scale?
 **Answer:**
 
 > `POST /v1/payments/initiate` + `Idempotency-Key`. `GET /v1/payments/{id}/status`. 3DS challenge URL handling.
@@ -98,7 +94,6 @@
 ---
 
 ### Q5. Deep dive 1 — Idempotency exactly-once?
-
 **Answer:**
 
 > Client UUID key persisted before call; retries reuse key; server dedupe 24h.
@@ -117,7 +112,6 @@
 ---
 
 ### Q6. Deep dive 2 — Poller + mid-kill recovery?
-
 **Answer:**
 
 > Persist FSM in SQLite; on launch resume poll until terminal. Timeout → poll not fail toast.
@@ -136,7 +130,6 @@
 ---
 
 ### Q7. Ops — failures, metrics, rollout, load?
-
 **Answer:**
 
 > Success >99.5% target, latency, 3ds rate. Kill: disable method; maintenance banner.
@@ -155,7 +148,6 @@
 ---
 
 ### Q8. Flow scorecard — did you hit the optimal spine?
-
 **Answer:**
 
 > **Pass bar:** clarify + agenda in ≤5; HLD shows 4 layers + backend + load; API has cursors/idempotency as needed; two deep dives; ops with kill switch and concrete metrics.
@@ -172,4 +164,3 @@
 
 **How can I relate to my case:**
 - **Concept-only — no shipped story.** Rehearse this scorecard after every timed mock.
-

@@ -9,13 +9,13 @@ Next. Q1. Interviewer: “Design Collaborative Document Editor.” How do you op
 
 Next. Q2. After clarify — what does the optimal flow look like? Answer. Scripted outcomes for this mock: OT transforms; WS sequencer; offline op queue; presence; out: rich ACLs/folders. Good flow: agenda → clarify Qs → confirm → high level design (4 layers + backend + load) → A P I → two crisp dives → ops last 5. Weak flow: silent drawing, happy-path only, no QPS/TTL, invent metrics, skip ops. Follow-ups. They change scope mid-high level design?: Re-confirm in/out in 20s; adjust dives; protect ops.. Backend mesh deep-dive?: Out unless asked — sketch touchpoints, stay client-owned.. Forgot to ask offline?: State online-first + last-good cache as assumption; invite correction..
 
-## §2 Q3. Walk the HLD — client layers, backend, load.
+## §2 Q3. Walk the HLD — client layers, backend, load?
 
-Next. Q3. Walk the HLD — client layers, backend, load Answer. Editor U I → OT engine → pending op queue → WS → server sequencer. Snapshot store periodically. Load: presence ~500ms; batch ops ~500ms; snapshot ~100 ops; sync <100ms target. Follow-ups. CRDT instead?: Valid — state trade-off; pick one and go deep.. Tree D S A link?: Op transform ≠ tree problem — don’t force..
+Next. Q3. Walk the HLD — client layers, backend, load? Answer. Editor U I → OT engine → pending op queue → WS → server sequencer. Snapshot store periodically. Load: presence ~500ms; batch ops ~500ms; snapshot ~100 ops; sync <100ms target. Follow-ups. CRDT instead?: Valid — state trade-off; pick one and go deep.. Tree D S A link?: Op transform ≠ tree problem — don’t force..
 
-## §3 Q4. Data / API — entities, endpoints, scale.
+## §3 Q4. Data / API — entities, endpoints, scale?
 
-Next. Q4. Data / API — entities, endpoints, scale Answer. GET /docs/{id}/snapshot; WS submit_ops / apply_ops / presence. Follow-ups. Desync?: Hash mismatch → full snapshot reload.. ACL?: Out unless asked..
+Next. Q4. Data / API — entities, endpoints, scale? Answer. GET /docs/{id}/snapshot; WS submit_ops / apply_ops / presence. Follow-ups. Desync?: Hash mismatch → full snapshot reload.. ACL?: Out unless asked..
 
 ## §4 Q5. Deep dive 1 — OT transform engine?
 

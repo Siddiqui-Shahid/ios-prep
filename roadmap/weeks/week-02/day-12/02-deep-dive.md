@@ -1,220 +1,430 @@
-# 02 — Deep Dive: Observation, Identity, Lists, Stories SDK
+# 02 — Deep Dive: Observation, Identity, Lists, Stories SDK (Q&A)
 
-> Senior depth. Assumes [01-foundations.md](01-foundations.md). Self-contained.  
-> **Version:** `@Observable` requires **iOS 17+**.
+> Cover the answer, speak aloud, then check follow-ups. Simple language. Named work only — never S-codes in speech.
 
-## 1. State ownership decision tree
+---
 
-```text
-Is it pure ephemeral UI for one view?
-  yes → @State
-  no ↓
-Do child controls need to write it?
-  yes → @Binding into parent/@Bindable model
-  no ↓
-Is it screen/feature async or shared across children?
-  yes → @Observable model (iOS 17+) / ObservableObject (legacy)
-  no ↓
-Is it tree-wide theme/locale?
-  yes → Environment
-  no → You’re over-abstracting — keep it simple
-```
+### Q1. State ownership decision tree? `(45–60s)`
+**Answer:**
 
-### Anti-patterns
+> “text Is it pure ephemeral UI for one view? yes → @State no ↓ Do child controls need to write it? yes → @Binding into parent/@Bindable model no ↓ Is it screen/feature async or shared across children? yes → @Observable model (iOS 17+) / ObservableObject (legacy) no ↓ Is it tree-wide theme/locale? yes → Environment no → You’re over-abstracting — keep it simple.”
 
-| Anti-pattern | Fix |
+**Follow-ups:**
+
+| Follow-up | Answer |
 |---|---|
-| Every toggle in VM | Keep chrome `@State` |
-| Fetch inside `body` | Model/Task on appear; never side-effect in `body` |
-| One `AppModel` for entire app | Split by feature — invalidation storms |
-| Environment NetworkClient only | Explicit init for testable/SDK seams |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-## 2. Observation vs ObservableObject
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
-| | `@Observable` (iOS 17+) | `ObservableObject` |
-|---|---|---|
-| Tracking | Property access fine-grained | Often `objectWillChange` whole object |
-| Boilerplate | Macro `@Observable` | `: ObservableObject` + `@Published` |
-| Bindings | `@Bindable` | `$` projected values |
-| Deployment | iOS 17+ | Older OS |
+---
 
-**Interview sentence:** Prefer Observation on modern targets; still explain `@Published` when asked about legacy codebases.
+### Q2. Anti-patterns? `(45–60s)`
+**Answer:**
 
-### Granularity and storms
+> “See the notes for this topic and speak the core idea in simple words.”
 
-A monolithic observable with 50 fields used by a root view can invalidate huge trees when any field changes. Split models (player vs chrome vs catalog). Pass slices into children.
+**Follow-ups:**
 
-## 3. Identity mechanics
-
-See [code/IdentityTraps.swift](code/IdentityTraps.swift).
-
-### Structural identity
-
-```swift
-VStack {
-  Header()   // structural position 0
-  Content()  // structural position 1
-}
-```
-
-Swap order conditionally without IDs → SwiftUI may treat views as different → state jumps.
-
-### Explicit identity
-
-```swift
-ForEach(pages) { page in  // Identifiable stable id
-  StoryPageView(page: page)
-}
-```
-
-### Forced new identity (intentional)
-
-Logout → `.id(userSessionID)` so forms reset. **Intentional** reset ≠ accidental UUID churn.
-
-### Representable link (Day 11)
-
-Parent identity churn → `makeUIViewController` storms → players restart. Stabilize IDs; update props.
-
-## 4. Lists & performance
-
-See [code/LazyListNotes.swift](code/LazyListNotes.swift).
-
-### Container choice
-
-| Container | Use |
+| Follow-up | Answer |
 |---|---|
-| `List` | Platform list behaviors, edit modes |
-| `LazyVStack` in `ScrollView` | Custom scrolls, large stacks |
-| Eager `VStack` | Tiny static content only |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-### Row rules
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
-1. Stable `Identifiable` — never `UUID()` per `body`  
-2. Avoid `id: \.self` when value equality changes often  
-3. Don’t observe entire catalog inside each row — pass row models  
-4. Precompute formatted strings in model  
-5. Images: async + decode/size budgets (Week 3)  
-6. Scope animations — don’t `.animation` the universe  
+---
 
-### When Lazy still janks
+### Q3. Observation vs ObservableObject? `(45–60s)`
+**Answer:**
 
-Profile: image decode, main-thread JSON, overlapping observations, expensive shadows, unbounded prefetch. Fix **data path**, not only container choice.
+> “Interview sentence: Prefer Observation on modern targets; still explain @Published when asked about legacy codebases.”
 
-## 5. `body` purity
+**Follow-ups:**
 
-`body` is called often — that’s normal. Problem is **heavy work** or **side effects** inside.
-
-| OK in body | Not OK |
+| Follow-up | Answer |
 |---|---|
-| Compose views from state | Start network |
-| Cheap formatting already cached | Sort 10k rows every call |
-| Branch on enum state | Write to disk |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-## 6. Animation & transitions
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
-- Prefer identity-preserving updates for smooth animation  
-- Destroy/recreate (identity change) feels like jump cuts  
-- Drive Stories progress from **model timeline**, not scattered `onAppear` timers  
-- Use explicit `withAnimation` / transactions for intentional motion  
+---
 
-## 7. Stories SDK design (S10 shape)
+### Q4. Granularity and storms? `(45–60s)`
+**Answer:**
 
-See [code/StoriesPlayerModel.swift](code/StoriesPlayerModel.swift).
+> “A monolithic observable with 50 fields used by a root view can invalidate huge trees when any field changes. Split models (player vs chrome vs catalog). Pass slices into children.”
 
-### Public API sketch
+**Follow-ups:**
 
-```text
-StoriesPlayer
-  ├─ DataSource protocol  (host supplies groups/pages)
-  ├─ ImageLoading / VideoLoading protocols (injectable)
-  ├─ Event callbacks (onOpen, onClose, onCTA, onPage)
-  ├─ Theming hooks
-  └─ Versioned module boundary
-```
-
-### State machine
-
-```text
-idle → loading → playing ⇄ paused → finished
-                     ↓
-                 failed (retry)
-```
-
-Pause on: `onDisappear`, scene background, user hold — same lifecycle discipline as Ads video (S1 cousin).
-
-### Why not hardcode networking?
-
-Portfolio apps differ (Heat / other Raw apps). Injectable clients → testability + host variance. SDK quality = independence from host shortcuts.
-
-### UIKit hosts
-
-SwiftUI-first OK; offer `UIHostingController` façade for legacy. Public API shouldn’t force one nav paradigm (S13 hosts).
-
-## 8. SDUI leaf identity (Day 10 crossover)
-
-Registry views should use **server-stable node ids** for `ForEach` / `.id`. Array indices break when CMS inserts a banner above.
-
-## 9. Testing SwiftUI logic
-
-| Layer | How |
+| Follow-up | Answer |
 |---|---|
-| Observable model / UseCase | XCTest — primary |
-| Snapshots | Critical chrome sparingly |
-| UITests | Open/close Stories golden path |
-| ViewInspector etc. | Optional; don’t rely exclusively |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-Theater UITests with `sleep` are AI smell (Day 08/S9 culture).
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
-## 10. Equatable View — micro-opt
+---
 
-Useful for expensive rare-changing subtrees. Don’t sprinkle early. Prefer smaller observed state first. Measure.
+### Q5. Structural identity? `(45–60s)`
+**Answer:**
 
-## 11. Trade-offs
+> “swift VStack { Header // structural position 0 Content // structural position 1 } Swap order conditionally without IDs → SwiftUI may treat views as different → state jumps.”
 
-| Choice | When | Cost |
-|---|---|---|
-| `@Observable` VM | Feature screens iOS 17+ | Over-observation if monolithic |
-| All `@State` | Tiny UI | Untestable async spaghetti |
-| `AnyView` erasure | Rare need | Kills optimization / clarity |
-| Eager VStack | Tiny lists | Jank at scale |
-| SDK owns networking | Convenience | Couples hosts |
-| `.id(UUID())` per body | Never | Resets state every frame |
-| SwiftUI-only SDK | Modern hosts | Legacy need façade |
+**Follow-ups:**
 
-## 12. Whiteboard scripts
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-**A.** State ownership table + one wrong placement  
-**B.** Identity: UUID trap vs stable page ids  
-**C.** Stories SDK boundary + state machine + pause  
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
-Agenda: README opener.
+---
 
-## 13. Failure modes
+### Q6. Explicit identity? `(45–60s)`
+**Answer:**
 
-| Failure | Cause | Fix |
-|---|---|---|
-| Text clears while typing | Identity churn | Stable id |
-| Progress bar desync | Timers in views / id reset | Model timeline |
-| List jump | Unstable ForEach ids | Stable Identifiable |
-| Whole screen redraws | God observable | Split models |
-| Representable remake | Parent id churn | Stabilize; update props |
-| Background audio | No scene-phase pause | Pause policy |
+> “swift ForEach(pages) { page in // Identifiable stable id StoryPageView(page: page) }.”
 
-## 14. Decision rule card
+**Follow-ups:**
 
-```text
-1. Pure UI → @State; async/domain → @Observable (iOS 17+)
-2. IDs stable unless intentional reset
-3. Large lists → lazy + cheap body + stable ids
-4. Split models to avoid invalidation storms
-5. SDK: protocols in, events out, pause on disappear
-6. Say the iOS 17+ caveat aloud
-```
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-## 15. Optional citations
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
-Apple State and Data Flow; Observation framework; WWDC Demystify SwiftUI / SwiftUI performance; `app-modularization.md` — appendix only.
+---
 
-## 16. Bridge
+### Q7. Forced new identity (intentional)? `(45–60s)`
+**Answer:**
 
-→ [03-production-bridge.md](03-production-bridge.md)
+> “Logout → .id(userSessionID) so forms reset. Intentional reset ≠ accidental UUID churn.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q8. Representable link (Day 11)? `(45–60s)`
+**Answer:**
+
+> “Parent identity churn → makeUIViewController storms → players restart. Stabilize IDs; update props.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q9. Container choice? `(45–60s)`
+**Answer:**
+
+> “See the notes for this topic and speak the core idea in simple words.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q10. Row rules? `(45–60s)`
+**Answer:**
+
+> “1. Stable Identifiable — never UUID per body 2. Avoid id: \.self when value equality changes often 3. Don’t observe entire catalog inside each row — pass row models 4. Precompute formatted strings in model 5. Images: async + decode/size budgets (Week 3) 6. Scope animations — don’t .animation the universe.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q11. When Lazy still janks? `(45–60s)`
+**Answer:**
+
+> “Profile: image decode, main-thread JSON, overlapping observations, expensive shadows, unbounded prefetch. Fix data path, not only container choice.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q12. `body` purity? `(45–60s)`
+**Answer:**
+
+> “body is called often — that’s normal. Problem is heavy work or side effects inside.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q13. Animation & transitions? `(45–60s)`
+**Answer:**
+
+> “- Prefer identity-preserving updates for smooth animation - Destroy/recreate (identity change) feels like jump cuts - Drive Stories progress from model timeline, not scattered onAppear timers - Use explicit withAnimation / transactions for intentional motion.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q14. Public API sketch? `(45–60s)`
+**Answer:**
+
+> “text StoriesPlayer ├─ DataSource protocol (host supplies groups/pages) ├─ ImageLoading / VideoLoading protocols (injectable) ├─ Event callbacks (onOpen, onClose, onCTA, onPage) ├─ Theming hooks └─ Versioned module boundary.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q15. State machine? `(45–60s)`
+**Answer:**
+
+> “text idle → loading → playing ⇄ paused → finished ↓ failed (retry) Pause on: onDisappear, scene background, user hold — same lifecycle discipline as Ads video ( cousin).”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q16. Why not hardcode networking? `(45–60s)`
+**Answer:**
+
+> “Portfolio apps differ (Heat / other Raw apps). Injectable clients → testability + host variance. SDK quality = independence from host shortcuts.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q17. UIKit hosts? `(45–60s)`
+**Answer:**
+
+> “SwiftUI-first OK; offer UIHostingController façade for legacy. Public API shouldn’t force one nav paradigm ( hosts).”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q18. SDUI leaf identity (Day 10 crossover)? `(45–60s)`
+**Answer:**
+
+> “Registry views should use server-stable node ids for ForEach / .id. Array indices break when CMS inserts a banner above.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q19. Testing SwiftUI logic? `(45–60s)`
+**Answer:**
+
+> “Theater UITests with sleep are AI smell (Day 08/ culture).”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q20. Equatable View — micro-opt? `(45–60s)`
+**Answer:**
+
+> “Useful for expensive rare-changing subtrees. Don’t sprinkle early. Prefer smaller observed state first. Measure.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q21. Trade-offs? `(45–60s)`
+**Answer:**
+
+> “See the notes for this topic and speak the core idea in simple words.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q22. Whiteboard scripts? `(45–60s)`
+**Answer:**
+
+> “A. State ownership table + one wrong placement B. Identity: UUID trap vs stable page ids C. Stories SDK boundary + state machine + pause Agenda: README opener.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q23. Failure modes? `(45–60s)`
+**Answer:**
+
+> “See the notes for this topic and speak the core idea in simple words.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q24. Decision rule card? `(45–60s)`
+**Answer:**
+
+> “text 1. Pure UI → @State; async/domain → @Observable (iOS 17+) 2. IDs stable unless intentional reset 3. Large lists → lazy + cheap body + stable ids 4. Split models to avoid invalidation storms 5. SDK: protocols in, events out, pause on disappear 6. Say the iOS 17+ caveat aloud.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q25. Optional citations? `(45–60s)`
+**Answer:**
+
+> “Apple State and Data Flow; Observation framework; WWDC Demystify SwiftUI / SwiftUI performance; app-modularization.md — appendix only.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---

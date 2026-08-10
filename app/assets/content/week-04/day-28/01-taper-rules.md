@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What is game day taper’s north star?
-
 **Answer:**
 
 > **Protect sleep and confidence.** Fresh recall beats last-minute cram. You already ran four weeks of reps and Mock #4 — today **retrieves**, not learns. **~2–3 hours max**, then rest. Zero new topics.
@@ -24,10 +23,9 @@
 ---
 
 ### Q2. What is allowed vs forbidden on Day 28?
-
 **Answer:**
 
-> **Allowed:** Weak flashcards (≤30–40 cards), story bank **once each**, skim timing budgets (5 min), checklist + environment, light walk/meal prep, early sleep.  
+> **Allowed:** Weak flashcards (≤30–40 cards), story bank **once each**, skim timing budgets (5 min), checklist + environment, light walk/meal prep, early sleep. 
 > **Forbidden:** Entire Anki binge, rewriting STARs from scratch, new SD HLD, Day 25 rewrite, “just one more Medium,” late caffeine, all-nighter.
 
 **Follow-ups:**
@@ -44,7 +42,6 @@
 ---
 
 ### Q3. What is the weak-card protocol?
-
 **Answer:**
 
 > **45–60 min cap.** (1) Open gotchas + Mock #4 three fix-forwards. (2) Pull **only** matching cards. (3) Round 1: front → say back → check. (4) Round 2: misses only. (5) **Box closed** — no third round.
@@ -63,7 +60,6 @@
 ---
 
 ### Q4. How much total time on Day 28?
-
 **Answer:**
 
 > **~2–3 hrs max** then rest. Block budget: weak flashcards 45–60 · story bank once each 40–50 · checklist + environment 15 · skim timing table 5 · **Stop**. Log: “Day 28 complete — tapered.”
@@ -82,7 +78,6 @@
 ---
 
 ### Q5. What if anxiety says “study more”?
-
 **Answer:**
 
 > Do **one** 45s definition aloud, then **close the laptop**. If X was a Mock #4 fix-forward → one flashcard. Otherwise **park it**. In the interview: clarify, assume, relate to nearest shipped system. Anxiety is not a signal to open new LC patterns.
@@ -101,7 +96,6 @@
 ---
 
 ### Q6. Can you run a full mock on Day 28?
-
 **Answer:**
 
 > **Only if Mock #4 was missed entirely** — and even then **prefer rest**. Full mock today costs fatigue before real interviews. Default: weak cards + story once each + checklist. Trust Mock #4 debrief and fix-forwards.
@@ -120,7 +114,6 @@
 ---
 
 ### Q7. Which stories get one run-through?
-
 **Answer:**
 
 > Order: **BookMyShow LE Bottom Sheet** (30%+ nav) → **BookMyShow IMOC + crash-free at scale** (99.95%) → **District Free Parking + Clean/MVVM + AI tooling** (AI judgment) → **BookMyShow Ads pipeline + HeroWidget lifecycle** (POP/Ads) → **BookMyShow backend-driven header & search or BookMyShow SSL pinning + URLSession migration** (SDUI or pinning — pick target company) → **Stories SDK (Raw / Miami Heat) or FinTrack on-device AI** (SDK or on-device AI). Optional micro: “Tell me about yourself” 30–45s. **Once each — then stop.**
@@ -141,18 +134,17 @@
 
 ---
 
-### Q8. Optional micro “Tell me about yourself” (30–45s)
-
+### Q8. Optional micro “Tell me about yourself” (30–45s)?
 **Answer:**
 
-> “BookMyShow at **30L+ DAU** across ads, reliability, and delivery metrics like **30%+** nav reduction and **99.95%+** crash-free culture → District architecture + AI judgment → Raw SDK/hybrid apps → FinTrack/GymFlow on-device AI → I want senior ownership of systems and trade-offs.”  
+> “BookMyShow at **30L+ DAU** across ads, reliability, and delivery metrics like **30%+** nav reduction and **99.95%+** crash-free culture → District architecture + AI judgment → Raw SDK/hybrid apps → FinTrack/GymFlow on-device AI → I want senior ownership of systems and trade-offs.” 
 > One breath per chapter — not four full STARs. Use once in the story run-through block, then stop.
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
-| Full 90–120s? | Day 26 Q1 / `04-questions` — today is micro only. |
+| Full 90–120s? | Day 26 Q1 / `07-revision-qna` — today is micro only. |
 | Repeat full BookMyShow LE Bottom Sheet inside? | No — cite 30%+ in one clause. |
 | Skip if tired? | OK — priority STARs first. |
 
@@ -166,3 +158,23 @@ Next: [02-checklist-openers.md](02-checklist-openers.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What is allowed vs forbidden on Day 28
+
+**Ask yourself:** What is allowed vs forbidden on Day 28?
+
+**Answer:** “**Allowed:** Weak flashcards (≤30–40 cards), story bank **once each**, skim timing budgets (5 min), checklist + environment, light walk/meal prep, early sleep. 
+> **Forbidden:** Entire Anki binge, rewriting STARs from scratch, new SD HLD, Day 25 rewrite, “just one more Medium,” late caffeine, all-nighter.”
+
+### Puzzle B — What is the weak-card protocol
+
+**Ask yourself:** What is the weak-card protocol?
+
+**Answer:** “**45–60 min cap.** (1) Open gotchas + Mock #4 three fix-forwards. (2) Pull **only** matching cards. (3) Round 1: front → say back → check. (4) Round 2: misses only. (5) **Box closed** — no third round.”
+
+### Puzzle C — How much total time on Day 28
+
+**Ask yourself:** How much total time on Day 28?
+
+**Answer:** “**~2–3 hrs max** then rest. Block budget: weak flashcards 45–60 · story bank once each 40–50 · checklist + environment 15 · skim timing table 5 · **Stop**. Log: “Day 28 complete — tapered.”

@@ -1,161 +1,260 @@
-# 02 — Deep Dive: Routing, Airship, CI Gates
+# 02 — Deep Dive: Routing, Airship, CI Gates (Q&A)
+
+> Cover the answer, speak aloud, then check follow-ups. Simple language. Named work only — never S-codes in speech.
 
 ---
 
-## 1. Universal Links debugging checklist
+### Q1. Universal Links debugging checklist? `(45–60s)`
+**Answer:**
 
-When links open Safari instead of the app:
+> “When links open Safari instead of the app: 1. AASA reachable over HTTPS; correct content-type 2. appID = TEAMID.bundle 3. Paths match (not excluded) 4. Entitlements associated domains 5. Apple CDN / device cache delay after AASA changes 6. User long-press “Open in Safari” preference 7. Universal Links vs opening from notes/apps quirks.”
 
-1. AASA reachable over HTTPS; correct content-type
-2. `appID` = `TEAMID.bundle`
-3. Paths match (not excluded)
-4. Entitlements associated domains
-5. Apple CDN / device cache delay after AASA changes
-6. User long-press “Open in Safari” preference
-7. Universal Links vs opening from notes/apps quirks
+**Follow-ups:**
 
-**Trap:** “iOS bug” as first answer.
-
----
-
-## 2. Router architecture
-
-```text
-Entrypoints: UL | custom scheme | push tap | Spotlight (optional)
-     ↓
- DeepLinkParser → AppRoute (typed enum)
-     ↓
- AuthGate / Validate params
-     ↓
- Coordinator.navigate(route)  OR PendingDeepLinkStore.enqueue
-```
-
-**Why one table:** dual routers (push vs UL) drift — checkout works from one entry and 404s from another.
-
-**Hybrid UI (S13):** SwiftUI hosted in UIKit (or reverse) — coordinator owns stack identity; don’t ad-hoc `UIHostingController` without lifecycle plan.
-
----
-
-## 3. Deferred deep links
-
-- Install attribution window; first launch fetches pending route
-- Expiry (industry often ~days, not forever)
-- Privacy / probabilistic matching limits — don’t overclaim certainty
-- Prefer first-party login then route when identity matters
-
----
-
-## 4. Push deep dive
-
-| Concern | Practice |
+| Follow-up | Answer |
 |---|---|
-| Permission timing | Contextual, not instant first launch |
-| Token every launch | Tokens change; upsert server-side |
-| 410 Unregistered | Invalidate token in DB |
-| Malformed payload | Defensive decode → home; protect CFS |
-| Rich images | Extension memory budgets |
-| Silent push | Limited wake budget; don’t rely as cron |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-**Airship vs Mixpanel (S13):** Airship = push/engagement; Mixpanel = analytics product behavior — complementary, not synonyms.
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 5. CI/CD deep dive
+### Q2. Router architecture? `(45–60s)`
+**Answer:**
 
-### 5.1 PR checks
+> “text Entrypoints: UL Spotlight (optional) ↓ DeepLinkParser → AppRoute (typed enum) ↓ AuthGate / Validate params ↓ Coordinator.navigate(route) OR PendingDeepLinkStore.enqueue Why one table: dual routers (push vs UL) drift — checkout works from one entry and 404s from another.”
 
-Lint + build + unit tests on macOS runners; selective tests when modularized; quarantine flakes.
+**Follow-ups:**
 
-### 5.2 Signing
-
-Encrypted certs/profiles (match-style); CI secrets / OIDC; `CODE_SIGNING` deterministic; never log secrets.
-
-### 5.3 TestFlight + phased release
-
-- Internal smoke before external
-- Phased % with **stop criteria**: CFS drop, pin-fail spike, journey p90 cliff
-- Feature flags decouple binary ship from exposure
-
-### 5.4 dSYM
-
-Upload every build that can reach users — Day 18 triage depends on it.
-
-### 5.5 AI on PRs (S9)
-
-> “AI accelerates review for obvious regressions; humans own architecture, security, and product trade-offs. I never say ‘AI approved so it’s fine.’”
-
----
-
-## 6. Secure checkout link
-
-- Auth gate
-- Server-authoritative cart/price
-- Ignore spoofed query prices
-- Confirm destructive actions
-
----
-
-## 7. Trade-offs
-
-| Choice | When | Cost |
-|---|---|---|
-| Universal Links | Consumer production | AASA/CDN debug pain |
-| Custom schemes | Legacy/internal | Hijack risk |
-| Central router | Multi-feature | Must stay module-friendly |
-| Airship | Speed + marketing tools | Vendor; still know APNs |
-| Manual TestFlight | Tiny team | Human error |
-| Fully auto prod | Only with strong gates | Risk if gates weak |
-| AI PR review | Diff noise reduction | Must not replace ownership |
-
----
-
-## 8. Failure modes
-
-| Mode | Response |
+| Follow-up | Answer |
 |---|---|
-| Dual routers drifted | Unify table |
-| Push JSON crash | Defensive parse |
-| TF crash-loop, CI green | Release flags / entitlements / race — smoke TF |
-| CFS drop at 10% phased | Pause — IMOC (S8) |
-| Secrets in git | Rotate; move to CI secrets |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 9. End-to-end story you can draw in 3 minutes
+### Q3. Deferred deep links? `(45–60s)`
+**Answer:**
 
-```text
-Campaign https link  ──► AASA / UL
-Airship push tap     ──► payload route
-        \                 /
-         → DeepLinkParser → AppRoute
-                ↓
-         AuthGate (checkout?)
-                ↓
-     Coordinator (hybrid UIKit/SwiftUI stack)
-                ↓
-     Mixpanel screen event  |  Airship engagement attribution
+> “- Install attribution window; first launch fetches pending route - Expiry (industry often ~days, not forever) - Privacy / probabilistic matching limits — don’t overclaim certainty - Prefer first-party login then route when identity matters ---.”
 
-Meanwhile release train:
-  PR Actions → TestFlight → phased % → CFS/p90 monitors → pause/IMOC
-```
+**Follow-ups:**
 
-**Say:** “Entrypoints differ; routing and release gates are shared disciplines.”
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 10. BMS CI elevator (45s) + Grizzlies (90s) back-to-back
+### Q4. Push deep dive? `(45–60s)`
+**Answer:**
 
-**CI:**  
-> “We automated GitHub Actions for lint, build, and TestFlight upload so the release path stopped depending on who remembered the manual checklist. Signing secrets stay in CI — not the repo. Phased rollout still needs human stop criteria on crash-free and perf.”
+> “Airship vs Mixpanel: Airship = push/engagement; Mixpanel = analytics product behavior — complementary, not synonyms.”
 
-**Grizzlies:**  
-> “On Grizzlies I designed hybrid SwiftUI/UIKit surfaces with real navigation ownership, deep links into that stack, Mixpanel for product analytics, and Airship for push engagement — one router mindset so campaigns and https links don’t drift.”
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 11. Optional citations
+### Q5. PR checks? `(45–60s)`
+**Answer:**
 
-- deep-linking / push / mobile-ci-cd docs  
-- Stories S13, S8, S9  
+> “Lint + build + unit tests on macOS runners; selective tests when modularized; quarantine flakes.”
 
-Self-contained without opens.
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q6. Signing? `(45–60s)`
+**Answer:**
+
+> “Encrypted certs/profiles (match-style); CI secrets / OIDC; CODE_SIGNING deterministic; never log secrets.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q7. TestFlight + phased release? `(45–60s)`
+**Answer:**
+
+> “- Internal smoke before external - Phased % with stop criteria: CFS drop, pin-fail spike, journey p90 cliff - Feature flags decouple binary ship from exposure.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q8. dSYM? `(45–60s)`
+**Answer:**
+
+> “Upload every build that can reach users — Day 18 triage depends on it.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q9. AI on PRs (S9)? `(45–60s)`
+**Answer:**
+
+> “AI accelerates review for obvious regressions; humans own architecture, security, and product trade-offs. I never say ‘AI approved so it’s fine.’” ---.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q10. Secure checkout link? `(45–60s)`
+**Answer:**
+
+> “- Auth gate - Server-authoritative cart/price - Ignore spoofed query prices - Confirm destructive actions ---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q11. Trade-offs? `(45–60s)`
+**Answer:**
+
+> “---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q12. Failure modes? `(45–60s)`
+**Answer:**
+
+> “---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q13. End-to-end story you can draw in 3 minutes? `(45–60s)`
+**Answer:**
+
+> “text Campaign https link ──► AASA / UL Airship push tap ──► payload route \ / → DeepLinkParser → AppRoute ↓ AuthGate (checkout?) ↓ Coordinator (hybrid UIKit/SwiftUI stack) ↓ Mixpanel screen event | Airship engagement attribution Meanwhile release train: PR Actions → TestFlight → phased % → CFS/p90 monitors → pause/IMOC.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q14. BMS CI elevator (45s) + Grizzlies (90s) back-to-back? `(45–60s)`
+**Answer:**
+
+> “CI: “We automated GitHub Actions for lint, build, and TestFlight upload so the release path stopped depending on who remembered the manual checklist. Signing secrets stay in CI — not the repo. Phased rollout still needs human stop criteria on crash-free and perf.” Grizzlies: “On Grizzlies I designed hybrid SwiftUI/UIKit surfaces with real navigation ownership, deep links into that stack, Mixpanel for product analytics, and Airship for push engagement — one router mindset so campaigns and https links don’t drift.”.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q15. Optional citations? `(45–60s)`
+**Answer:**
+
+> “- deep-linking / push / mobile-ci-cd docs - Stories , , Self-contained without opens.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---

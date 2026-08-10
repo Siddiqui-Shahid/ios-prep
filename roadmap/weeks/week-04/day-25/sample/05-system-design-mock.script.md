@@ -9,13 +9,13 @@ Next. Q1. Interviewer: “Design E-Commerce Catalog & Discovery.” How do you o
 
 Next. Q2. After clarify — what does the optimal flow look like? Answer. Scripted outcomes for this mock: Catalog grid; image pipeline; cursor; search debounce; optimistic cart; out: checkout payments (sister). Good flow: agenda → clarify Qs → confirm → high level design (4 layers + backend + load) → A P I → two crisp dives → ops last 5. Weak flow: silent drawing, happy-path only, no QPS/TTL, invent metrics, skip ops. Follow-ups. They change scope mid-high level design?: Re-confirm in/out in 20s; adjust dives; protect ops.. Backend mesh deep-dive?: Out unless asked — sketch touchpoints, stay client-owned.. Forgot to ask offline?: State online-first + last-good cache as assumption; invite correction..
 
-## §2 Q3. Walk the HLD — client layers, backend, load.
+## §2 Q3. Walk the HLD — client layers, backend, load?
 
-Next. Q3. Walk the HLD — client layers, backend, load Answer. Catalog U I → VM → CatalogRepo (network+cache) + ImagePipeline + CartQueue. Backend: Catalog A P I + CDN; cart sync; ETag 304. Load: limit 20; debounce 300ms; L1 images ~50MB; thumbs 50–100KB WebP. Follow-ups. Brief B S D U I?: Different machine brief — don’t build both in 3h.. Diffable?: Stable product ids..
+Next. Q3. Walk the HLD — client layers, backend, load? Answer. Catalog U I → VM → CatalogRepo (network+cache) + ImagePipeline + CartQueue. Backend: Catalog A P I + CDN; cart sync; ETag 304. Load: limit 20; debounce 300ms; L1 images ~50MB; thumbs 50–100KB WebP. Follow-ups. Brief B S D U I?: Different machine brief — don’t build both in 3h.. Diffable?: Stable product ids..
 
-## §3 Q4. Data / API — entities, endpoints, scale.
+## §3 Q4. Data / API — entities, endpoints, scale?
 
-Next. Q4. Data / API — entities, endpoints, scale Answer. GET /v1/catalog?cursor=&limit=20&category=&sort= ; POST /v1/cart/items ; search with debounce. Follow-ups. Stale price?: ETag/If-None-Match; invalidate on focus.. Page fail?: Inline retry; keep list..
+Next. Q4. Data / API — entities, endpoints, scale? Answer. GET /v1/catalog?cursor=&limit=20&category=&sort= ; POST /v1/cart/items ; search with debounce. Follow-ups. Stale price?: ETag/If-None-Match; invalidate on focus.. Page fail?: Inline retry; keep list..
 
 ## §4 Q5. Deep dive 1 — Image grid + prefetch?
 

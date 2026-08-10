@@ -9,13 +9,13 @@ Next. Q1. Interviewer: “Design App Modularization & DI.” How do you open? An
 
 Next. Q2. After clarify — what does the optimal flow look like? Answer. Scripted outcomes for this mock: App→Feature→Domain→Core; Interface vs Impl; composition-root DI; static preferred; out: CI deep dive. Good flow: agenda → clarify Qs → confirm → high level design (4 layers + backend + load) → A P I → two crisp dives → ops last 5. Weak flow: silent drawing, happy-path only, no QPS/TTL, invent metrics, skip ops. Follow-ups. They change scope mid-high level design?: Re-confirm in/out in 20s; adjust dives; protect ops.. Backend mesh deep-dive?: Out unless asked — sketch touchpoints, stay client-owned.. Forgot to ask offline?: State online-first + last-good cache as assumption; invite correction..
 
-## §2 Q3. Walk the HLD — client layers, backend, load.
+## §2 Q3. Walk the HLD — client layers, backend, load?
 
-Next. Q3. Walk the HLD — client layers, backend, load Answer. Topology: App composition root wires Feature interfaces; Features depend on Domain protocols; Core = network/storage/design system. No feature→feature Impl deps. Backend N/A beyond shared Network client. Load/build: 100–300 modules possible; incremental <30s target; ≤~6 dynamic historically — prefer static. Follow-ups. Clean vs modules?: Modules are boundaries; Clean/M V V M live inside features.. Circular deps?: Break with Interface modules — compile-time fail is good..
+Next. Q3. Walk the HLD — client layers, backend, load? Answer. Topology: App composition root wires Feature interfaces; Features depend on Domain protocols; Core = network/storage/design system. No feature→feature Impl deps. Backend N/A beyond shared Network client. Load/build: 100–300 modules possible; incremental <30s target; ≤~6 dynamic historically — prefer static. Follow-ups. Clean vs modules?: Modules are boundaries; Clean/M V V M live inside features.. Circular deps?: Break with Interface modules — compile-time fail is good..
 
-## §3 Q4. Data / API — entities, endpoints, scale.
+## §3 Q4. Data / API — entities, endpoints, scale?
 
-Next. Q4. Data / API — entities, endpoints, scale Answer. Protocol contracts: CheckoutBuildable, CheckoutDependency. Factory/Needle components at composition root. Network as APIClientProtocol in Core — features never import URLSession directly if avoidable. Follow-ups. Test seams?: Swap Impl in tests via Interface.. Binary size?: Track mb; avoid duplicate symbols across dynamics..
+Next. Q4. Data / API — entities, endpoints, scale? Answer. Protocol contracts: CheckoutBuildable, CheckoutDependency. Factory/Needle components at composition root. Network as APIClientProtocol in Core — features never import URLSession directly if avoidable. Follow-ups. Test seams?: Swap Impl in tests via Interface.. Binary size?: Track mb; avoid duplicate symbols across dynamics..
 
 ## §4 Q5. Deep dive 1 — Interface / Impl split?
 

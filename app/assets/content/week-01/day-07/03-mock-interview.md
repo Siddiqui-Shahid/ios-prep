@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What is Mock #1’s agenda and total time?
-
 **Answer:**
 
 > ~60–90 minutes: **defs** (10 min) → **concurrency + memory deep dive** (25 min) → **BookMyShow synchronised dictionaries story** (10 min) → **Social Feed HLD** (20 min) → **retro** (10–15 min). Opener: “Defs → concurrency + memory deep dive → BookMyShow synchronised dictionaries story → feed HLD → retro.” Interviewer may cut at 2× budget — self-correct and continue.
@@ -15,7 +14,7 @@
 | Follow-up | Answer |
 |---|---|
 | Candidate uses notes? | No — mock is closed-book. |
-| Solo mode? | Record voice memo; score against 04-questions full answers. |
+| Solo mode? | Record voice memo; score against 07-revision-qna full answers. |
 | Script source? | Interviewer reads [`02-deep-dive.md`](../02-deep-dive.md). |
 
 **How can I relate to my case:**
@@ -27,10 +26,9 @@
 ---
 
 ### Q2. How does the warm-up block work?
-
 **Answer:**
 
-> Ask **any 5** from warm-up pool — ~45–60s each (~10 min total). Default set A: struct vs class, COW, weak vs unowned, serial vs concurrent, thread-safe dictionary design. Alternate set B: POP, deadlock, actor, Sendable, cancellation. Full spoken answers in [`04-questions.md`](../04-questions.md) — sample gives recall; 04 gives timing-grade detail.
+> Ask **any 5** from warm-up pool — ~45–60s each (~10 min total). Default set A: struct vs class, COW, weak vs unowned, serial vs concurrent, thread-safe dictionary design. Alternate set B: POP, deadlock, actor, Sendable, cancellation. Full spoken answers in [`07-revision-qna.md`](07-revision-qna.md) — sample gives recall; 04 gives timing-grade detail.
 
 **Follow-ups:**
 
@@ -46,7 +44,6 @@
 ---
 
 ### Q3. What is in the deep dive block?
-
 **Answer:**
 
 > **4–5 items**, 90–120s each: actor reentrancy, serial sync re-entry deadlock, Memory Graph vs Leaks, GCD→actor migration, plus one stretch (Sendable ethics, type erasure, async/sync visibility). Follow-ups allowed. Model answers in 04 deep section. Target average **≥3.5** on deep-dive scores.
@@ -68,7 +65,6 @@
 ---
 
 ### Q4. How does the 1–5 scoring rubric work?
-
 **Answer:**
 
 > **1** blank/wrong. **2** partial or invented claim. **3** correct core, weak structure or overtime. **4** on time, agenda, trade-off or prod hook. **5** = 4 + crisp provenance + follow-up ready. Fill scorecard after mock; average deep-dive rows; **BookMyShow synchronised dictionaries ≥4** required for pass.
@@ -89,8 +85,7 @@
 
 ---
 
-### Q5. How do I practice from “Answer points” in 04-questions?
-
+### Q5. How do I practice from “Answer points” in 07-revision-qna?
 **Answer:**
 
 > **Exercise 2 flow:** Read question only → speak from **Answer points** (bullets, not full prose) → uncover **Full spoken answer** → compare structure, provenance, time. Repeat until points match full answer shape. This is how you avoid skeleton-only prep — points are cues, not substitutes.
@@ -109,7 +104,6 @@
 ---
 
 ### Q6. What are Mock #1 pass criteria?
-
 **Answer:**
 
 > Deep-dive average ≥3.5. BookMyShow synchronised dictionaries score ≥4. No answer >2× budget without self-correction. At least one explicit **trade-off** in concurrency discussion. **Zero** invented fill-rate / crash-% claims. Optional: BookMyShow Ads pipeline + HeroWidget lifecycle encore ≤5 min after retro.
@@ -131,7 +125,6 @@
 ---
 
 ### Q7. What should the retro include?
-
 **Answer:**
 
 > Fill MockScorecard (warm-up, deep, BookMyShow synchronised dictionaries, mini SD). Average deep scores. List **top 5 weak cards** for Week 2 warm-ups. One retro one-liner: what improved vs what to drill. Optional BookMyShow Ads pipeline + HeroWidget lifecycle encore if energy remains.
@@ -153,7 +146,6 @@
 ---
 
 ### Q8. D1 — Actor reentrancy after await?
-
 **Answer:**
 
 > Actors prevent data races on isolated state, but they are **reentrant across await**. If I read a key, await a loader, then write, another task may have entered and changed that key meanwhile. Re-validate after await — check again, use a generation token, or load outside and apply a short synchronous set. Race-freedom ≠ logic-correctness.
@@ -172,7 +164,6 @@
 ---
 
 ### Q9. D2 — sync serial re-entry deadlock?
-
 **Answer:**
 
 > Any serial queue can deadlock if you’re already executing on it and call `sync` again — you’re waiting for yourself. Main is the famous case, but private queues fail the same way when APIs nest. Split public sync wrappers from unlocked internals, or schedule nested work async. `dispatchPrecondition` helps catch mistakes.
@@ -191,7 +182,6 @@
 ---
 
 ### Q10. D3 — Memory Graph cycle vs Leaks?
-
 **Answer:**
 
 > Leaks finds objects with no pointers — true leaks. A retain cycle keeps objects reachable from each other, so they may never appear as classic leaks even though they won’t deallocate. Memory Graph shows those cycles visually; Allocations helps with abandoned growth. Treat as reliability work — without inventing a memory-only metric.
@@ -210,7 +200,6 @@
 ---
 
 ### Q11. D4 — `@unchecked Sendable` ethics?
-
 **Answer:**
 
 > `@unchecked Sendable` tells the compiler to trust you without verifying. Sometimes needed at legacy boundaries, but it’s an ethics and review issue — document the invariant that makes crossing threads safe, or you reintroduce races under a green build. Prefer wrapping mutable legacy state in an actor or exposing immutable snapshots.
@@ -229,7 +218,6 @@
 ---
 
 ### Q12. D5 — Type erasure cost in a renderer?
-
 **Answer:**
 
 > Type erasure boxes disparate conformers into one type — useful for heterogeneous ad lists — but you pay allocation, indirection, and lost generic specialization, and you often collapse associated types to a common denominator. Keep generics inside the hot pipeline; erase only at the boundary that needs heterogeneity. POP + generics first — don’t claim every renderer was erased.
@@ -248,7 +236,6 @@
 ---
 
 ### Q13. D6 — COW uniqueness traps?
-
 **Answer:**
 
 > After `var b = a` on an Array, they may share a buffer. Mutating `b` copies if the buffer isn’t unique — `a` stays old. If something else holds a reference that breaks uniqueness, you pay a copy. A struct containing a class still shares that class on “copy.” COW = cheap share until write; uniqueness decides.
@@ -267,7 +254,6 @@
 ---
 
 ### Q14. D7 — GCD sync inside async contexts?
-
 **Answer:**
 
 > Calling `queue.sync` from an async function blocks a thread until the queue runs the block. In the cooperative concurrency model that can starve other work. Prefer awaiting an actor or continuation-based async wrappers that schedule with async, not sync. Correctness without blocking the async world is the goal.
@@ -286,7 +272,6 @@
 ---
 
 ### Q15. D8 — Migrating SafeDict GCD → actor?
-
 **Answer:**
 
 > Production synchronised dictionaries used GCD — that’s **Verified**. Migration without big-bang: introduce an actor with the same get/set/snapshot semantics behind a protocol, move one module at a time, and let call sites await. Optional temporary GCD façade bridging to the actor. Validate under concurrency stress. Label Design: actor SafeDict (not shipped) — don’t claim the migration already shipped.
@@ -309,3 +294,22 @@ Next: [04-warmup-hld.md](04-warmup-hld.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — How does the warm-up block work
+
+**Ask yourself:** How does the warm-up block work?
+
+**Answer:** “Ask **any 5** from warm-up pool — ~45–60s each (~10 min total). Default set A: struct vs class, COW, weak vs unowned, serial vs concurrent, thread-safe dictionary design. Alternate set B: POP, deadlock, actor, Sendable, cancellation. Full spoken answers in [`07-revision-qna.md`](07-revision-qna.md) — sample gives recall; 04 gives timing-grade detail.”
+
+### Puzzle B — What is in the deep dive block
+
+**Ask yourself:** What is in the deep dive block?
+
+**Answer:** “**4–5 items**, 90–120s each: actor reentrancy, serial sync re-entry deadlock, Memory Graph vs Leaks, GCD→actor migration, plus one stretch (Sendable ethics, type erasure, async/sync visibility). Follow-ups allowed. Model answers in 04 deep section. Target average **≥3.5** on deep-dive scores.”
+
+### Puzzle C — How does the 1–5 scoring rubric work
+
+**Ask yourself:** How does the 1–5 scoring rubric work?
+
+**Answer:** “**1** blank/wrong. **2** partial or invented claim. **3** correct core, weak structure or overtime. **4** on time, agenda, trade-off or prod hook. **5** = 4 + crisp provenance + follow-up ready. Fill scorecard after mock; average deep-dive rows; **BookMyShow synchronised dictionaries ≥4** required for pass.”

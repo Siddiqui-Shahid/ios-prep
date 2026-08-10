@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What is server-driven UI, in plain words?
-
 **Answer:**
 
 > The backend or CMS sends a **structured description** of what to show — node types, props, children, actions — and the app maps those types to **native** SwiftUI/UIKit components through a registry. It is **not** evaluating JavaScript from the CMS, not “just a WebView for the whole app,” and not shipping arbitrary executable code in JSON. Think LEGO instructions (schema) plus official bricks (native views). Unknown brick types are skipped, not force-fit into crashes.
@@ -23,8 +22,7 @@
 
 ---
 
-### Q2. Walk the happy path for a backend-driven header.
-
+### Q2. Walk the happy path for a backend-driven header?
 **Answer:**
 
 > ViewModel asks the repository for header payload. Repository returns network JSON or cached last-known-good. Version gate checks `schemaVersion` against client max-supported. Parser builds a tree. Registry maps `logo`, `promoBanner`, `searchEntry` to native views. Unknown `type: "sparkle_v9"` skips with a metric; siblings still render. User taps CTA → allowlisted action (e.g. `open_deeplink`) → router. ViewModel owns fetch/cache UI state; registry owns type→view mapping.
@@ -46,7 +44,6 @@
 ---
 
 ### Q3. What sad paths must the client survive?
-
 **Answer:**
 
 > **Offline:** show last-known-good if fresh enough, else baked default. **Major version too new:** hard fallback + `schema_reject` metric. **Unknown node mid-tree:** skip + metric; continue siblings. **Empty root after skips:** hard fallback — never blank chrome. **Unknown action type:** no-op + metric. **Parse error:** fallback + metric. At 30L+ DAU and 99.95% crash-free culture, SDUI without fallbacks is an incident generator.
@@ -65,7 +62,6 @@
 ---
 
 ### Q4. What are the wins and costs of SDUI?
-
 **Answer:**
 
 > **Wins:** experiment without App Store review for layout/content; personalize surfaces; share contracts across iOS/Android; marketers iterate in CMS. **Costs:** schema discipline; capability matrix; QA combinatorics; offline/fallback engineering; action security; every new **type** still needs a client release. Bad fit: highly custom animation-heavy one-offs, revenue video lifecycle needing native pause/play guarantees (BookMyShow Ads pipeline + HeroWidget lifecycle HeroWidget — use SDUI for config/placement, keep media native).
@@ -87,7 +83,6 @@
 ---
 
 ### Q5. How does SDUI differ from WebView and native Ads?
-
 **Answer:**
 
 > **SDUI native registry:** dynamic layout with perf/a11y budgets. **WebView:** rare docs/legal islands — not primary chrome. **Native Ads (BookMyShow Ads pipeline + HeroWidget lifecycle):** revenue media lifecycle (pause/play, memory) stays native; SDUI may configure **placement** or promos around it. Strong reply to “Isn’t that a WebView?” — native registry + schema; WebView is a tool, not the architecture.
@@ -109,7 +104,6 @@
 ---
 
 ### Q6. Why do interviewers care about SDUI at scale?
-
 **Answer:**
 
 > SDUI proves you can ship content velocity **without** sacrificing crash-free sessions — compatibility is a product feature. You must design version gates, unknown skip, allowlisted actions, cache privacy, and honest Verified vs Applied labels (BookMyShow backend-driven header & search vs BookMyShow backend-driven header & search-A1). Senior candidates explain fail-soft policies and metrics, not “we render JSON and hope.” Registry + skip is how CMS velocity doesn’t become crash velocity.
@@ -131,7 +125,6 @@
 ---
 
 ### Q7. What should you say in the 90-second teaching script?
-
 **Answer:**
 
 > “SDUI maps a versioned schema to native components through a registry. Unknown types skip with metrics; incompatible majors fall back. Actions are allowlisted. Cached last-known-good protects offline and bad payloads. On BMS I worked a backend-driven header; on Aces a server-driven splash. Schema versioning and unknown fallbacks I’d insist on as design so CMS velocity doesn’t become crash velocity.”
@@ -154,3 +147,22 @@ Next: [02-schema-version-fallbacks.md](02-schema-version-fallbacks.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — Walk the happy path for a backend-driven header
+
+**Ask yourself:** Walk the happy path for a backend-driven header?
+
+**Answer:** “ViewModel asks the repository for header payload. Repository returns network JSON or cached last-known-good. Version gate checks `schemaVersion` against client max-supported. Parser builds a tree. Registry maps `logo`, `promoBanner`, `searchEntry` to native views. Unknown `type: "sparkle_v9"` skips with a metric; siblings still render. User taps CTA → allowlisted action (e.g. `open_deeplink`) → router. ViewModel owns fetch/cache UI state; registry owns type→view mapping.”
+
+### Puzzle B — What sad paths must the client survive
+
+**Ask yourself:** What sad paths must the client survive?
+
+**Answer:** “**Offline:** show last-known-good if fresh enough, else baked default. **Major version too new:** hard fallback + `schema_reject` metric. **Unknown node mid-tree:** skip + metric; continue siblings. **Empty root after skips:** hard fallback — never blank chrome. **Unknown action type:** no-op + metric. **Parse error:** fallback + metric. At 30L+ DAU and 99.95% crash-free culture, SDUI without fallbacks is an incident generator.”
+
+### Puzzle C — What are the wins and costs of SDUI
+
+**Ask yourself:** What are the wins and costs of SDUI?
+
+**Answer:** “**Wins:** experiment without App Store review for layout/content; personalize surfaces; share contracts across iOS/Android; marketers iterate in CMS. **Costs:** schema discipline; capability matrix; QA combinatorics; offline/fallback engineering; action security; every new **type** still needs a client release. Bad fit: highly custom animation-heavy one-offs, revenue video lifecycle needing native pause/play guarantees (BookMyShow Ads pipeline + HeroWidget lifecycle HeroWidget — use SDUI for config/placement, keep media native).”

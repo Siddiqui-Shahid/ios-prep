@@ -70,7 +70,7 @@
 
 ## Spice openers
 
-**S4 (~15s):** Ads Alamofire → URLSession with HTTPS, pinning, whitelist.  
-**S12 (~20–40s):** Aces live audio + server-driven splash; optimize time-to-interactive.  
-**S9 (~30–45s):** District Clean/MVVM migration; AI inside human-owned envelope + tests.  
+**S4 (~15s):** Ads Alamofire → URLSession with HTTPS, pinning, whitelist. 
+**S12 (~20–40s):** Aces live audio + server-driven splash; optimize time-to-interactive. 
+**S9 (~30–45s):** District Clean/MVVM migration; AI inside human-owned envelope + tests. 
 **S6 (~20s):** Bottom sheet → 30%+ fewer full-screen navs on targeted flows.

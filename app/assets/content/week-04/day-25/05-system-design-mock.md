@@ -7,7 +7,6 @@
 ---
 
 ### Q1. Interviewer: “Design E-Commerce Catalog & Discovery.” How do you open?
-
 **Answer:**
 
 > **Agenda (≤20s):** “I’ll take ~5 minutes clarifying scope and scale, then a four-layer client HLD with backend touchpoints and load, then API/data, two deep dives on **Image grid + prefetch** and **Optimistic cart offline**, and close on failure modes, metrics, and kill switches. Does that work?”
@@ -34,7 +33,6 @@
 ---
 
 ### Q2. After clarify — what does the optimal flow look like?
-
 **Answer:**
 
 > **Scripted outcomes for this mock:** Catalog grid; image pipeline; cursor; search debounce; optimistic cart; out: checkout payments (sister).
@@ -55,8 +53,7 @@
 
 ---
 
-### Q3. Walk the HLD — client layers, backend, load.
-
+### Q3. Walk the HLD — client layers, backend, load?
 **Answer:**
 
 > Catalog UI → VM → CatalogRepo (network+cache) + ImagePipeline + CartQueue.
@@ -76,8 +73,7 @@
 
 ---
 
-### Q4. Data / API — entities, endpoints, scale.
-
+### Q4. Data / API — entities, endpoints, scale?
 **Answer:**
 
 > `GET /v1/catalog?cursor=&limit=20&category=&sort=` ; `POST /v1/cart/items` ; search with debounce.
@@ -96,7 +92,6 @@
 ---
 
 ### Q5. Deep dive 1 — Image grid + prefetch?
-
 **Answer:**
 
 > Downsample; prefetch next page at 70%; cancel reuse — machine-round vertical slice.
@@ -115,7 +110,6 @@
 ---
 
 ### Q6. Deep dive 2 — Optimistic cart offline?
-
 **Answer:**
 
 > Local queue; sync when online; conflict merge; don’t pretend payment.
@@ -134,7 +128,6 @@
 ---
 
 ### Q7. Ops — failures, metrics, rollout, load?
-
 **Answer:**
 
 > scroll_hitch, image_cache_hit, search_latency, cart_add_success. Kill: disable prefetch.
@@ -153,7 +146,6 @@
 ---
 
 ### Q8. Flow scorecard — did you hit the optimal spine?
-
 **Answer:**
 
 > **Pass bar:** clarify + agenda in ≤5; HLD shows 4 layers + backend + load; API has cursors/idempotency as needed; two deep dives; ops with kill switch and concrete metrics.
@@ -170,4 +162,3 @@
 
 **How can I relate to my case:**
 - **Concept-only — no shipped story.** Rehearse this scorecard after every timed mock.
-

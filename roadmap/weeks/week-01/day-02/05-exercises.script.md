@@ -54,7 +54,7 @@ Prompt: Write 5 bullet A P I rules for a reusable Stories S D K surface (protoco
 
 Next. Solutions pointers.
 
-Exercise: 1, 4: code/AdsPipeline.swift. 2: code/TypeErasureDemo.swift. 3: Deep dive §3.2. 5: Deep dive §6. 6: 04-questions.md. 7: Production bridge §4.
+Exercise: 1, 4: code/AdsPipeline.swift. 2: code/TypeErasureDemo.swift. 3: Deep dive §3.2. 5: Deep dive §6. 6: sample/07-revision-qna.md. 7: Production bridge §4.
 
 ## §9 Exit criteria
 

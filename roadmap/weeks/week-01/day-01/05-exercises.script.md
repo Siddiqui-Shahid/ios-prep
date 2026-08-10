@@ -54,7 +54,7 @@ SD spine warm-up (requirements only mindset): Write 5 clarifying questions you w
 
 Next. Solutions pointers (don’t spoil yourself).
 
-Exercise: 1. 2: code/LoadState.swift. 3: code/COWDemo.swift. 4: Deep dive §3 nested references. 5: Deep dive §6. production bridge §5. 6: 04-questions.md full answers. 7: Your notes. Week 1 SD spine later.
+Exercise: 1. 2: code/LoadState.swift. 3: code/COWDemo.swift. 4: Deep dive §3 nested references. 5: Deep dive §6. production bridge §5. 6: sample/07-revision-qna.md full answers. 7: Your notes. Week 1 SD spine later.
 
 ## §9 Exit criteria
 

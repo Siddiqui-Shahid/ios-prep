@@ -1,6 +1,6 @@
 # Day 02 — Protocols, POP, Generics, Associated Types, Type Erasure
 
-> Week 1 · Full study (self-contained) · ~4–5 hrs  
+> Week 1 · Full study (self-contained) · ~4–5 hrs 
 > Revision twin: [revision/weeks/week-01/day-02.md](../../../revision/weeks/week-01/day-02.md)
 
 ## Outcomes
@@ -21,7 +21,7 @@ By end of day, without notes, you can:
 3. [`03-production-bridge.md`](03-production-bridge.md) — Ads + HeroWidget + Stories soft bridge
 4. [`code/`](code/) — mini ads pipeline; walk through aloud
 5. [`sample/`](sample/README.md) — spoken Q&A + brain puzzles (`01`–`06`; `06` folds exercise/flash-recall leftovers)
-6. [`04-questions.md`](04-questions.md) — normal Qs + tricky **T1–T10** brain puzzles; speak aloud
+6. [`sample/07-revision-qna.md`](sample/07-revision-qna.md) — normal Qs + tricky **T1–T10** brain puzzles; speak aloud
 7. [`05-exercises.md`](05-exercises.md) — coding + speaking drills (still do the hands-on exercises here)
 8. Revision twin for flashcards / timed drill day-of
 
@@ -32,7 +32,7 @@ By end of day, without notes, you can:
 | Foundations | [01-foundations.md](01-foundations.md) | POP mental model + first generics |
 | Deep dive | [02-deep-dive.md](02-deep-dive.md) | associatedtype, some/any, erasure, dispatch |
 | Production bridge | [03-production-bridge.md](03-production-bridge.md) | Ads + HeroWidget + Stories soft bridge |
-| Questions | [04-questions.md](04-questions.md) | Normal + tricky **T1–T10** |
+| Questions | [sample/07-revision-qna.md](sample/07-revision-qna.md) | Normal + tricky **T1–T10** |
 | Exercises | [05-exercises.md](05-exercises.md) | Coding + speaking drills |
 | Code | [code/AdsPipeline.swift](code/AdsPipeline.swift), [code/TypeErasureDemo.swift](code/TypeErasureDemo.swift) | Runnable mental models |
 | Sample Q&A (guided) | [sample/](sample/README.md) | Includes **06-module-drills** leftovers from these modules |
@@ -76,6 +76,6 @@ In spoken answers and relate sections, prefer **named work** (BookMyShow Ads pip
 
 ## Timed drill (after full study)
 
-1. Speak Q1, Q4, Q6, T1, T5 from `04-questions.md` on a timer (timed sets cite **T1–T5**).
+1. Speak Q1, Q4, Q6, T1, T5 from `sample/07-revision-qna.md` on a timer (timed sets cite **T1–T5**).
 2. 5 min whiteboard: Ads inheritance pain → POP → generics pipeline → HeroWidget → trade-offs.
 3. Score against [answer-timing-guide.md](../../../timing/answer-timing-guide.md); log misses.

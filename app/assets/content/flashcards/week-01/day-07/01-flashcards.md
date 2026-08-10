@@ -48,6 +48,6 @@
 
 **Answer:**
 
-> Warm-up/deep Answer points live in ../04-questions.md
+> Warm-up/deep Answer points live in 07-revision-qna.md
 
 ---

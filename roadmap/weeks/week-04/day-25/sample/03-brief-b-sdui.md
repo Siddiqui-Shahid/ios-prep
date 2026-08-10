@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What is Brief B asking for?
-
 **Answer:**
 
 > Server-driven UI renderer: JSON document of components (`type`, `props`, optional `children`) → native views. Support ≥**3** types (e.g. `text`, `image`, `button` / `vstack`). Unknown `type` → **safe fallback**. Include `schemaVersion` check. Unit-test decoding + unknown-type fallback.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. What architecture in 90s?
-
 **Answer:**
 
 > JSON → **SDUIDocument** (Codable, schemaVersion) → **ComponentNode** enum/protocol + **factory** → **SDUIRenderer** → SwiftUI/UIKit. Unknown → PlaceholderView + log stub. Say: “Tests: decode fixture, three types, unknown doesn’t throw. Cut: actions DSL, live reload.”
@@ -43,7 +41,6 @@
 ---
 
 ### Q3. Must-have acceptance for Brief B?
-
 **Answer:**
 
 > **(1)** Decode sample JSON. **(2)** Render ≥3 types. **(3)** Unknown type does **not** crash — placeholder + analytics stub. **(4)** Nested children for one container. **(5)** Tests: decoder + factory fallback.
@@ -65,7 +62,6 @@
 ---
 
 ### Q4. Decode + factory — what to whiteboard?
-
 **Answer:**
 
 > `SDUIDocument { schemaVersion, root: ComponentDTO }`. DTO: `type`, `props`, `children`. Factory `switch type` → `.text`, `.image`, `.vstack`, `default: .unknown(type)`. Renderer never force-unwraps. Maps to Day 22 serialize reversibility + Day 24 SDUI versioning instinct.
@@ -84,7 +80,6 @@
 ---
 
 ### Q5. How do unknown components connect to production BookMyShow backend-driven header & search?
-
 **Answer:**
 
 > Backend-driven header/search — unknown CMS component types must **not** crash app. Same fail-soft as Brief B placeholder. ≤20s: “Machine round SDUI slice mirrors shipped instinct: contracts, fallbacks, observable state.” **Do not claim** the 3hr project is BookMyShow production code.
@@ -106,7 +101,6 @@
 ---
 
 ### Q6. Meaningful tests for Brief B?
-
 **Answer:**
 
 > `test_decodeSampleJSON`, `test_rendersTextImageVStack`, `test_unknownTypeMapsToPlaceholder`, optional `test_schemaVersionMismatch`. Test **decoder + factory** — renderer smoke optional. Unknown path must not throw.
@@ -125,7 +119,6 @@
 ---
 
 ### Q7. Brief B trade-offs?
-
 **Answer:**
 
 > SwiftUI `AnyView` faster than UIKit factory in 3 hrs — say assumption. Recursive render depth unbounded → mention iterative or max-depth **design**. Actions DSL and live reload are cut lines. Figma pixel parity loses to safe decode + 3 types.
@@ -145,3 +138,22 @@ Next: [04-debrief-structure.md](04-debrief-structure.md) · or run Brief B in [`
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What architecture in 90s
+
+**Ask yourself:** What architecture in 90s?
+
+**Answer:** “JSON → **SDUIDocument** (Codable, schemaVersion) → **ComponentNode** enum/protocol + **factory** → **SDUIRenderer** → SwiftUI/UIKit. Unknown → PlaceholderView + log stub. Say: “Tests: decode fixture, three types, unknown doesn’t throw. Cut: actions DSL, live reload.”
+
+### Puzzle B — Must-have acceptance for Brief B
+
+**Ask yourself:** Must-have acceptance for Brief B?
+
+**Answer:** “**(1)** Decode sample JSON. **(2)** Render ≥3 types. **(3)** Unknown type does **not** crash — placeholder + analytics stub. **(4)** Nested children for one container. **(5)** Tests: decoder + factory fallback.”
+
+### Puzzle C — Decode + factory — what to whiteboard
+
+**Ask yourself:** Decode + factory — what to whiteboard?
+
+**Answer:** “`SDUIDocument { schemaVersion, root: ComponentDTO }`. DTO: `type`, `props`, `children`. Factory `switch type` → `.text`, `.image`, `.vstack`, `default: .unknown(type)`. Renderer never force-unwraps. Maps to Day 22 serialize reversibility + Day 24 SDUI versioning instinct.”

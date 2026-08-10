@@ -1,31 +1,91 @@
-# 05 — Exercises
+# 05 — Exercises (Q&A)
 
-## Exercise 1 — Persistence recite `(10 min)`
+> Cover the answer, speak aloud, then check follow-ups. Simple language. Named work only — never S-codes in speech.
 
-Recite all 7 rows of the decision tree twice without notes. Record once.
+---
 
-## Exercise 2 — SPKI true/false `(10 min)`
+### Q1. Exercise 1 — Persistence recite `(10 min)`? `(45–60s)`
+**Answer:**
 
-1. SPKI pinning hashes Subject Public Key Info DER.  
-2. `SecKeyCopyExternalRepresentation` bytes equal SPKI DER.  
-3. SPKI pins always survive key rotation.  
-4. ATS equals pinning.  
-5. S4-A1 rotation is Verified shipped runbook.
+> “Recite all 7 rows of the decision tree twice without notes. Record once.”
 
-**Answers:** T, F, F (only if key unchanged / still need design), F, F (design)
+**Follow-ups:**
 
-## Exercise 3 — Pin challenge whiteboard `(15 min)`
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-Draw URLSession trust challenge → SPKI hash → allowlist → fail closed. Annotate S4 shipped vs S4-A1 design.
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
-## Exercise 4 — Code `(15 min)`
+---
 
-Read [`code/SPKIPinningNotes.swift`](code/SPKIPinningNotes.swift) and [`code/PersistenceDecision.swift`](code/PersistenceDecision.swift). Speak the router choices for token/theme/image/feed.
+### Q2. Exercise 2 — SPKI true/false `(10 min)`? `(45–60s)`
+**Answer:**
 
-## Exercise 5 — S4 STAR `(12 min)`
+> “1. SPKI pinning hashes Subject Public Key Info DER. 2. SecKeyCopyExternalRepresentation bytes equal SPKI DER. 3. SPKI pins always survive key rotation. 4. ATS equals pinning. 5. rotation is Verified shipped runbook. Answers: T, F, F (only if key unchanged / still need design), F, F (design).”
 
-Record STAR; end with one breath of S4-A1 honesty.
+**Follow-ups:**
 
-## Timed drill
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-Q2, Q4, Q6 + T1, T8.
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
+
+---
+
+### Q3. Exercise 3 — Pin challenge whiteboard `(15 min)`? `(45–60s)`
+**Answer:**
+
+> “Draw URLSession trust challenge → SPKI hash → allowlist → fail closed. Annotate shipped vs design.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q4. Exercise 4 — Code `(15 min)`? `(45–60s)`
+**Answer:**
+
+> “Read code/SPKIPinningNotes.swift and code/PersistenceDecision.swift. Speak the router choices for token/theme/image/feed.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q5. Exercise 5 — S4 STAR `(12 min)`? `(45–60s)`
+**Answer:**
+
+> “Record STAR; end with one breath of honesty.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---

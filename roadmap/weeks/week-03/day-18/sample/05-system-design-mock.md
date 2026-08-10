@@ -7,7 +7,6 @@
 ---
 
 ### Q1. Interviewer: “Design Crash Reporting SDK.” How do you open?
-
 **Answer:**
 
 > **Agenda (≤20s):** “I’ll take ~5 minutes clarifying scope and scale, then a four-layer client HLD with backend touchpoints and load, then API/data, two deep dives on **Signal-safe handler** and **OOM + breadcrumbs**, and close on failure modes, metrics, and kill switches. Does that work?”
@@ -33,7 +32,6 @@
 ---
 
 ### Q2. After clarify — what does the optimal flow look like?
-
 **Answer:**
 
 > **Scripted outcomes for this mock:** Async-signal-safe write; breadcrumbs; OOM next launch; upload; out: backend grouping deep dive.
@@ -53,8 +51,7 @@
 
 ---
 
-### Q3. Walk the HLD — client layers, backend, load.
-
+### Q3. Walk the HLD — client layers, backend, load?
 **Answer:**
 
 > Handlers → mmap crash file → next launch uploader → ingest + dSYM.
@@ -72,8 +69,7 @@
 
 ---
 
-### Q4. Data / API — entities, endpoints, scale.
-
+### Q4. Data / API — entities, endpoints, scale?
 **Answer:**
 
 > `POST /v1/crashes/report`, non-fatal endpoint. Missing dSYM hold ~7d.
@@ -91,7 +87,6 @@
 ---
 
 ### Q5. Deep dive 1 — Signal-safe handler?
-
 **Answer:**
 
 > POSIX signals write preallocated buffer only; never lock/malloc.
@@ -109,7 +104,6 @@
 ---
 
 ### Q6. Deep dive 2 — OOM + breadcrumbs?
-
 **Answer:**
 
 > Next-launch heuristic if jetsam; ring ~100 breadcrumbs <1µs write.
@@ -127,7 +121,6 @@
 ---
 
 ### Q7. Ops — failures, metrics, rollout, load?
-
 **Answer:**
 
 > Crash-free sessions/users, symbolication %, upload success. Kill: disable nonfatal spam.
@@ -145,7 +138,6 @@
 ---
 
 ### Q8. Flow scorecard — did you hit the optimal spine?
-
 **Answer:**
 
 > **Pass bar:** clarify + agenda in ≤5; HLD shows 4 layers + backend + load; API has cursors/idempotency as needed; two deep dives; ops with kill switch and concrete metrics.
@@ -162,4 +154,3 @@
 
 **How can I relate to my case:**
 - **Concept-only — no shipped story.** Rehearse this scorecard after every timed mock.
-

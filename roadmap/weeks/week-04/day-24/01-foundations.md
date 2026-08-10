@@ -1,94 +1,159 @@
-# 01 — Foundations: On-Device AI Primer
+# 01 — Foundations: On-Device AI Primer (Q&A)
 
-> Teach-back target: an intern can explain RAG + quantization + fail-soft before you deep-dive FinTrack/GymFlow.
-
----
-
-## 0. North star
-
-**On-device AI is retrieval + guarded inference + an explicit degrade path — not “call an LLM.” Private data stays local; models are optional accelerators behind capability checks.**
+> Cover the answer, speak aloud, then check follow-ups. Simple language. Named work only — never S-codes in speech.
 
 ---
 
-## 1. Staff-level pipeline (draw every time)
+### Q1. North star? `(45–60s)`
+**Answer:**
 
-```text
-User query
-  → Device eligibility (OS, Neural Engine, memory, thermal, Low Power)
-  → Retrieve local context (BM25 / vector / rules)
-  → Assemble prompt (budget tokens; minimize PII for any cloud path)
-  → Local generate OR cloud fallback OR deterministic template
-  → Stream tokens to UI (AsyncSequence / partial updates)
-  → Log quality + failure reason (not raw private prompts)
-```
+> “On-device AI is retrieval + guarded inference + an explicit degrade path — not “call an LLM.” Private data stays local; models are optional accelerators behind capability checks. ---.”
 
----
+**Follow-ups:**
 
-## 2. Primer glossary (45–60s each aloud)
-
-| Concept | One-liner + mobile sting |
+| Follow-up | Answer |
 |---|---|
-| **Token** | Model I/O unit ≈ ¾ word; context window is a hard budget |
-| **Quantization** | FP16 3B ≈ huge RAM; INT4/INT8 makes on-device feasible; quality trade-off |
-| **Embedding** | Fixed-dim vector of meaning; cosine ≈ semantic closeness |
-| **RAG** | Retrieve private/local chunks → stuff into prompt; model not “trained” on your Hive DB |
-| **KV-cache** | Speeds decode; eats RAM; drop under memory pressure |
-| **Hybrid router** | Local first; cloud/rules when thermal, complexity, or capability fails |
-| **BM25** | Classical lexical retrieval — strong offline, no embedder required |
-| **TF-IDF** | Lexical weighting — GymFlow’s fail-soft cousin |
-| **Fail-soft** | Feature degrades to a useful subset; never hard-crashes the app |
-| **ANE / NPU** | Hardware path for inference; not always available / not always free thermally |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-### Quantization intuition (say cleanly)
-
-> “Unquantized multi-billion-parameter weights blow mobile RAM budgets. INT8/INT4 shrink weights so mmap + Neural Engine can run. You trade some quality for fit — and you still need a path when the model file is missing.”
-
-### RAG intuition (say cleanly)
-
-> “The model doesn’t know the user’s ledger. I retrieve relevant local rows or docs, put them in the prompt, and ground answers in that context. Numbers for money come from the database, not from free-form generation.”
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 3. Two products, one principle
+### Q2. Staff-level pipeline (draw every time)? `(45–60s)`
+**Answer:**
 
-| | FinTrack (S15) | GymFlow (S16) |
-|---|---|---|
-| Domain | Personal finance coach | Workout recommender |
-| Retrieve | **BM25** over local spend index | **MiniLM** embeddings + cosine |
-| Generate / rank | Apple Intelligence / FM when present | Embedding similarity top-K |
-| Fail-soft | **Deterministic rules** | **TF-IDF** |
-| Privacy invariant | **No cloud sync** of financial records | Prefer on-device; no cloud LLM required |
+> “text User query → Device eligibility (OS, Neural Engine, memory, thermal, Low Power) → Retrieve local context (BM25 / vector / rules) → Assemble prompt (budget tokens; minimize PII for any cloud path) → Local generate OR cloud fallback OR deterministic template → Stream tokens to UI (AsyncSequence / partial updates) → Log quality + failure reason (not raw private prompts) ---.”
 
-**Say aloud:** “Same architecture shape — different retrieval and fallback knobs.”
+**Follow-ups:**
 
----
-
-## 4. Fail-soft before happy path (senior habit)
-
-| Failure | Fallback |
+| Follow-up | Answer |
 |---|---|
-| No Foundation Model / no TFLite | Rules / TF-IDF; hide generative chrome |
-| Model missing / checksum fail | Same |
-| Thermal / Low Power | Pause infer; lexical or cached tips |
-| Memory warning | Unload weights; clear KV |
-| Empty retrieval | Honest empty + generic tips — **don’t hallucinate** |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 5. Product AI vs tooling AI (do not conflate)
+### Q3. Primer glossary (45–60s each aloud)? `(45–60s)`
+**Answer:**
 
-| | Product (S15/S16) | Tooling (S9 District) |
-|---|---|---|
-| Who uses it | End user in the app | You as engineer |
-| Risk | Privacy, hallucination, thermal | Bad tests, false greens |
-| Story | Architecture + fail-soft | Context engineering + review |
+> “See the notes for this topic and speak the core idea in simple words.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 6. Complexity / ops scripts
+### Q4. Quantization intuition (say cleanly)? `(45–60s)`
+**Answer:**
 
-**Privacy 90s** (memorize spine): local-first → retrieve local → generative optional → analytics coarse → cloud only consent + minimize.
+> “Unquantized multi-billion-parameter weights blow mobile RAM budgets. INT8/INT4 shrink weights so mmap + Neural Engine can run. You trade some quality for fit — and you still need a path when the model file is missing.”.
 
-**SD agenda 10s:** privacy → retrieve → infer → fallback → metrics.
+**Follow-ups:**
 
-→ [`02-deep-dive.md`](02-deep-dive.md)
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q5. RAG intuition (say cleanly)? `(45–60s)`
+**Answer:**
+
+> “The model doesn’t know the user’s ledger. I retrieve relevant local rows or docs, put them in the prompt, and ground answers in that context. Numbers for money come from the database, not from free-form generation.” ---.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q6. Two products, one principle? `(45–60s)`
+**Answer:**
+
+> “Same architecture shape — different retrieval and fallback knobs.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q7. Fail-soft before happy path (senior habit)? `(45–60s)`
+**Answer:**
+
+> “---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q8. Product AI vs tooling AI (do not conflate)? `(45–60s)`
+**Answer:**
+
+> “---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
+
+---
+
+### Q9. Complexity / ops scripts? `(45–60s)`
+**Answer:**
+
+> “Privacy 90s (memorize spine): local-first → retrieve local → generative optional → analytics coarse → cloud only consent + minimize. SD agenda 10s: privacy → retrieve → infer → fallback → metrics.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---

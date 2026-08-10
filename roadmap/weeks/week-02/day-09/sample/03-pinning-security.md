@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What is the security ladder and why not collapse rungs?
-
 **Answer:**
 
 > Rungs: (1) HTTPS only — no cleartext API traffic. (2) ATS baseline — system policy preferring secure connections. (3) Default certificate validation via system trust. (4) Optional **pinning** — extra identity check for high-value traffic. (5) **Domain whitelist** — client only calls approved hosts. **ATS ≠ pinning.** ATS pushes TLS and blocks insecure cleartext; pinning says “among TLS servers, only these SPKI hashes/certs are acceptable for our API hosts.” You can have ATS without pinning; pinning without HTTPS is nonsense.
@@ -27,7 +26,6 @@
 ---
 
 ### Q2. What is SPKI pinning and what must you NOT hash?
-
 **Answer:**
 
 > **SPKI** = Subject Public Key Info — the DER-encoded structure inside the X.509 certificate describing the public key. Pin value is commonly `Base64(SHA256(spkiDER))`. Flow: TLS handshake → inspect server cert → extract SPKI DER → hash → compare to embedded allow-list (primary + backup pins). **Wrong:** hash raw bytes from `SecKeyCopyExternalRepresentation` and call it SPKI — that API exports key material in a key-type-specific format, not the SPKI DER blob; it breaks interoperability with standard pin generators.
@@ -46,7 +44,6 @@
 ---
 
 ### Q3. Where does SSL pinning hook in URLSession?
-
 **Answer:**
 
 > Implement `URLSessionDelegate` method `urlSession(_:didReceive:completionHandler:)` for server trust challenges (`NSURLAuthenticationMethodServerTrust`). System presents server trust; you evaluate certificates in the chain; compute pin(s); compare to allow-list; call `completionHandler(.useCredential, credential)` on match or `.cancelAuthenticationChallenge` on mismatch — **fail closed**. At BMS Ads (BookMyShow SSL pinning + URLSession migration), pinning was added on the URLSession stack alongside HTTPS enforcement and domain whitelist after migrating off Alamofire.
@@ -68,7 +65,6 @@
 ---
 
 ### Q4. What is a domain whitelist and why Ads needed it?
-
 **Answer:**
 
 > Central builder validation: if `url.host` is not in `allowedHosts`, throw `hostNotAllowed` **before** the session sends bytes. Even with pinning, a CMS typo or malicious config could point API traffic at unexpected hosts — whitelist reduces misconfig risk. Ads modules face elevated “unexpected URL” pressure from third-party creative ecosystems; **API** hosts still deserve strict allow-lists separate from CDN image loads.
@@ -87,7 +83,6 @@
 ---
 
 ### Q5. What is Design: pin rotation / break-glass (not shipped runbook) and how do you speak pin rotation?
-
 **Answer:**
 
 > **Design: pin rotation / break-glass (not shipped runbook)** is **How I would apply it** — design judgment, not a verified shipped runbook. When interviewers ask “cert rotates?”, answer with **backup pins** (≥2 SPKI hashes), pin set ownership, staged/canary exposure, monitored **break-glass** (build flag or remote config, time-boxed), and fail-closed default. Pinning without rotation thinking is an outage generator when keys change. You shipped pinning on Ads (BookMyShow SSL pinning + URLSession migration); you **design** rotation — don’t claim you shipped the full ops runbook unless verified later.
@@ -109,7 +104,6 @@
 ---
 
 ### Q6. How do you test networking security without flaky CI?
-
 **Answer:**
 
 > Protocol-wrap `NetworkSession` with fixture responses; `URLProtocol` subclass for integration-ish tests through real session config; fake `TokenStore` and refresher to drive 401→refresh→retry; assert single refresh under parallel 401s; assert whitelist rejects bad hosts before send; assert cancel doesn’t hit UI error path. For pin failures, confirm your generator hashes **SPKI DER** in unit tests against known fixtures — not raw SecKey export bytes.
@@ -131,7 +125,6 @@
 ---
 
 ### Q7. What must you never say about BookMyShow SSL pinning + URLSession migration and security together?
-
 **Answer:**
 
 > Do **not** claim: shipped pin-rotation runbook, shadow traffic rollout, “pinning alone fixed crash-free,” “ATS is pinning,” or hashing `SecKeyCopyExternalRepresentation` as SPKI. **Do** claim: Ads migrated Alamofire → URLSession; enforced HTTPS; added SSL pinning; domain whitelist — first-party control on a high-traffic revenue module. Pair with Design: pin rotation / break-glass (not shipped runbook) rotation **design** when pushed on ops.
@@ -154,3 +147,22 @@ Next: [04-production-s4.md](04-production-s4.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What is SPKI pinning and what must you NOT hash
+
+**Ask yourself:** What is SPKI pinning and what must you NOT hash?
+
+**Answer:** “**SPKI** = Subject Public Key Info — the DER-encoded structure inside the X.509 certificate describing the public key. Pin value is commonly `Base64(SHA256(spkiDER))`. Flow: TLS handshake → inspect server cert → extract SPKI DER → hash → compare to embedded allow-list (primary + backup pins). **Wrong:** hash raw bytes from `SecKeyCopyExternalRepresentation` and call it SPKI — that API exports key material in a key-type-specific format, not the SPKI DER blob; it breaks interoperability with standard pin generators.”
+
+### Puzzle B — Where does SSL pinning hook in URLSession
+
+**Ask yourself:** Where does SSL pinning hook in URLSession?
+
+**Answer:** “Implement `URLSessionDelegate` method `urlSession(_:didReceive:completionHandler:)` for server trust challenges (`NSURLAuthenticationMethodServerTrust`). System presents server trust; you evaluate certificates in the chain; compute pin(s); compare to allow-list; call `completionHandler(.useCredential, credential)` on match or `.cancelAuthenticationChallenge` on mismatch — **fail closed**. At BMS Ads (BookMyShow SSL pinning + URLSession migration), pinning was added on the URLSession stack alongside HTTPS enforcement and domain whitelist after migrating off Alamofire.”
+
+### Puzzle C — What is a domain whitelist and why Ads needed it
+
+**Ask yourself:** What is a domain whitelist and why Ads needed it?
+
+**Answer:** “Central builder validation: if `url.host` is not in `allowedHosts`, throw `hostNotAllowed` **before** the session sends bytes. Even with pinning, a CMS typo or malicious config could point API traffic at unexpected hosts — whitelist reduces misconfig risk. Ads modules face elevated “unexpected URL” pressure from third-party creative ecosystems; **API** hosts still deserve strict allow-lists separate from CDN image loads.”

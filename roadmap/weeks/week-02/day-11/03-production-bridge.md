@@ -1,113 +1,300 @@
-# 03 — Production Bridge: Grizzlies Hybrid + LE Bottom Sheet
+# 03 — Production Bridge: Grizzlies Hybrid + LE Bottom Sheet (Q&A)
 
-> Interview stories without overclaiming.
+> Cover the answer, speak aloud, then check follow-ups. Simple language. Named work only — never S-codes in speech.
 
-## 1. Provenance map
+---
 
-| ID | Label | Exact claim |
-|---|---|---|
-| **S13** | Verified | Memphis Grizzlies: **SwiftUI + UIKit** interop architecture; **deeplinks** + navigation/lifecycle; **Mixpanel** + **Airship** |
-| **S6** | Verified | BMS **LE Bottom Sheet**; reduced full-screen navigations for **30%+ of user flows** |
-| **S1** | Verified | Ads **HeroWidget** pause/play with visibility / VC lifecycle |
-| Learning-lab | Illustrative | Cell/prefetch/hosting code samples |
+### Q1. Provenance map? `(45–60s)`
+**Answer:**
 
-### Forbidden
+> “See the notes for this topic and speak the core idea in simple words.”
 
-- Invent nav % other than resume **30%+**
-- “Dual stacks in sync continuously” as best practice
-- Claim Airship/Mixpanel without lifecycle discipline story when asked nav
-- Invent Grizzlies crash-free % 
+**Follow-ups:**
 
-## 2. S13 STAR (2–3 min)
-
-### Opener
-
-> “On Grizzlies I designed SwiftUI↔UIKit interop with deliberate lifecycle and deeplink ownership — not ad-hoc hosting.”
-
-### Situation
-
-Production NBA app needed modern SwiftUI features beside existing UIKit, plus growth tooling (analytics/push).
-
-### Action
-
-1. Architected key UI with **SwiftUI + UIKit interoperability** — hosting/representables with sizing and lifecycle considered.
-2. Deep linking with **navigation/lifecycle handling**; cold-start readiness queue mindset.
-3. Integrated **Mixpanel** + **Airship** so taps route through the same navigation story.
-
-### Result
-
-Shipped hybrid UI with production navigation and engagement stack.
-
-### Lesson
-
-Interop costs (identity, lifecycle, hosting) must be **designed**, not bolted.
-
-> **Provenance:** Verified · S13 · Raw/Grizzlies · hybrid UI + deeplinks + Mixpanel/Airship
-
-## 3. S6 STAR beat (2–3 min or impact answer)
-
-### Opener
-
-> “I’ll cover the LE Bottom Sheet — a lightweight event overview that cut full-screen navigations for 30%+ of user flows.”
-
-### Action
-
-1. Led end-to-end lightweight event-overview bottom sheet.  
-2. Aligned PM, Design, Backend on API contracts and content.  
-3. Shipped reusable component into high-traffic flows.
-
-### Result
-
-**30%+** fewer full-screen navigations for user flows (resume metric).
-
-### Lesson
-
-Small UI surfaces with clear contracts beat large rewrites for navigation pain.
-
-> **Provenance:** Verified · S6 · BookMyShow · LE Bottom Sheet · 30%+ nav
-
-## 4. S1 lifecycle hook (30–45s insert)
-
-When asked where ads video pauses: disappear / offscreen / background — HeroWidget protocolised behavior.
-
-> **Provenance:** Verified · S1 · HeroWidget lifecycle
-
-## 5. Interview lines ≤20s
-
-**S13:** “On Grizzlies I designed SwiftUI↔UIKit interop with deliberate lifecycle and deeplink ownership — not ad-hoc hosting.”
-
-**S6:** “I shipped a reusable LE Bottom Sheet that reduced full-screen navigations for 30%+ of user flows by keeping event overview in context.”
-
-## 6. Topic mapping
-
-| Topic | Verified? | Speak |
-|---|---|---|
-| Hybrid architecture | S13 | Yes |
-| Deeplink router ownership | S13 | Yes — designed handling |
-| Mixpanel/Airship | S13 | Yes |
-| Exact hosting sizingOptions API | Learning-lab | Teaching detail |
-| LE sheet + 30%+ | S6 | Yes — resume metric |
-| HeroWidget pause | S1 | Yes |
-
-## 7. Interviewer pushes
-
-| Push | Strong reply |
+| Follow-up | Answer |
 |---|---|
-| “Why not pure SwiftUI?” | Legacy UIKit + ship velocity; hybrid with one nav owner. |
-| “Why not a new tab for LE?” | Tabs change IA; sheet fixes local friction; 30%+ metric. |
-| “Hosting height broken?” | Intrinsic/sizing ownership; avoid nested scroll fights. |
-| “Prefetch caused data bills.” | Bound concurrency; cancel; Low Data Mode. |
-| “Push opened wrong screen.” | Single router; same path as deeplinks. |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-## 8. Practice
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
 
-**60s S13:** hybrid need → interop + deeplink owner → Mixpanel/Airship same path → lesson design costs.  
-**60s S6:** nav fatigue → sheet + contracts → 30%+ → small surface lesson.  
-**3 min:** add cell reuse / ads pause if asked.
+---
 
-## 9. Links
+### Q2. Forbidden? `(45–60s)`
+**Answer:**
 
-- Code: [code/](code/)
-- Questions: [04-questions.md](04-questions.md)
-- Revision: [../../../revision/weeks/week-02/day-11.md](../../../revision/weeks/week-02/day-11.md)
-- Stories: [S13](../../../stories/story-bank.md)#s13--swiftuiuikit--deeplinks--analyticspush-raw--memphis-grizzlies · [S6](../../../stories/story-bank.md)#s6--le-bottom-sheet-bookmyshow
+> “- Invent nav % other than resume 30%+ - “Dual stacks in sync continuously” as best practice - Claim Airship/Mixpanel without lifecycle discipline story when asked nav - Invent Grizzlies crash-free %.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q3. Opener? `(45–60s)`
+**Answer:**
+
+> “On Grizzlies I designed SwiftUI↔UIKit interop with deliberate lifecycle and deeplink ownership — not ad-hoc hosting.”.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q4. Situation? `(45–60s)`
+**Answer:**
+
+> “Production NBA app needed modern SwiftUI features beside existing UIKit, plus growth tooling (analytics/push).”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q5. Action? `(45–60s)`
+**Answer:**
+
+> “1. Architected key UI with SwiftUI + UIKit interoperability — hosting/representables with sizing and lifecycle considered. 2. Deep linking with navigation/lifecycle handling; cold-start readiness queue mindset. 3. Integrated Mixpanel + Airship so taps route through the same navigation story.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q6. Result? `(45–60s)`
+**Answer:**
+
+> “Shipped hybrid UI with production navigation and engagement stack.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q7. Lesson? `(45–60s)`
+**Answer:**
+
+> “Interop costs (identity, lifecycle, hosting) must be designed, not bolted. > Provenance: Verified · · Raw/Grizzlies · hybrid UI + deeplinks + Mixpanel/Airship.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
+
+---
+
+### Q8. Opener? `(45–60s)`
+**Answer:**
+
+> “I’ll cover the LE Bottom Sheet — a lightweight event overview that cut full-screen navigations for 30%+ of user flows.”.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q9. Action? `(45–60s)`
+**Answer:**
+
+> “1. Led end-to-end lightweight event-overview bottom sheet. 2. Aligned PM, Design, Backend on API contracts and content. 3. Shipped reusable component into high-traffic flows.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q10. Result? `(45–60s)`
+**Answer:**
+
+> “30%+ fewer full-screen navigations for user flows (resume metric).”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q11. Lesson? `(45–60s)`
+**Answer:**
+
+> “Small UI surfaces with clear contracts beat large rewrites for navigation pain. > Provenance: Verified · · BookMyShow · LE Bottom Sheet · 30%+ nav.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
+
+---
+
+### Q12. S1 lifecycle hook (30–45s insert)? `(45–60s)`
+**Answer:**
+
+> “When asked where ads video pauses: disappear / offscreen / background — HeroWidget protocolised behavior. > Provenance: Verified · · HeroWidget lifecycle.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
+
+---
+
+### Q13. Interview lines ≤20s? `(45–60s)`
+**Answer:**
+
+> “: “On Grizzlies I designed SwiftUI↔UIKit interop with deliberate lifecycle and deeplink ownership — not ad-hoc hosting.” : “I shipped a reusable LE Bottom Sheet that reduced full-screen navigations for 30%+ of user flows by keeping event overview in context.”.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q14. Topic mapping? `(45–60s)`
+**Answer:**
+
+> “See the notes for this topic and speak the core idea in simple words.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
+
+---
+
+### Q15. Interviewer pushes? `(45–60s)`
+**Answer:**
+
+> “See the notes for this topic and speak the core idea in simple words.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q16. Practice? `(45–60s)`
+**Answer:**
+
+> “60s : hybrid need → interop + deeplink owner → Mixpanel/Airship same path → lesson design costs. 60s : nav fatigue → sheet + contracts → 30%+ → small surface lesson. 3 min: add cell reuse / ads pause if asked.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q17. Links? `(45–60s)`
+**Answer:**
+
+> “- Code: code/ - Questions: sample/07-revision-qna.md - Revision: ../../../revision/weeks/week-02/day-11.md - Stories: #s13--swiftuiuikit--deeplinks--analyticspush-raw--memphis-grizzlies · #s6--le-bottom-sheet-bookmyshow.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
+
+---

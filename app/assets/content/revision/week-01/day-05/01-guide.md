@@ -61,7 +61,7 @@ Types safe to share across concurrency domains. Value types are Sendable **only 
 |---|---|---|
 | Must | [Sample Q&A](../../../weeks/week-01/day-05/sample/) | Guided cards |
 | Must | Full modules [01–03](../../../weeks/week-01/day-05/01-foundations.md) | Gaps |
-| Drill | [04-questions](../../../weeks/week-01/day-05/04-questions.md) | Timed answers |
+| Drill | [07-revision-qna](../../../weeks/week-01/day-05/sample/07-revision-qna.md) | Timed answers |
 
 ## 4. Map to your work
 
@@ -93,4 +93,4 @@ Types safe to share across concurrency domains. Value types are Sendable **only 
 | Task cancellation (BookMyShow backend-driven header & search debounce) | 60s |
 | BookMyShow synchronised dictionaries → actor migration pitch | 90s |
 
-Expand from [sample cards](../../../weeks/week-01/day-05/sample/), [SafeDictActor.swift](../../../weeks/week-01/day-05/code/SafeDictActor.swift), and [04-questions](../../../weeks/week-01/day-05/04-questions.md).
+Expand from [sample cards](../../../weeks/week-01/day-05/sample/), [SafeDictActor.swift](../../../weeks/week-01/day-05/code/SafeDictActor.swift), and [07-revision-qna](../../../weeks/week-01/day-05/sample/07-revision-qna.md).

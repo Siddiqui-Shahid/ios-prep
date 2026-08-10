@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What is a stack vs a queue, in one sentence each?
-
 **Answer:**
 
 > **Stack:** last in, first out (LIFO) — like a stack of plates; push and pop from the top. **Queue:** first in, first out (FIFO) — like a ticket line; enqueue at the rear, dequeue from the front. **Deque** adds push/pop at both ends. Pick the structure that matches the problem’s access pattern before you code.
@@ -23,11 +22,10 @@
 
 ---
 
-### Q2. Why is `Array.removeFirst()` a bad default queue?
-
+### Q2. Why is `Array.removeFirst` a bad default queue?
 **Answer:**
 
-> `removeFirst()` shifts every remaining element → **O(n)** per dequeue. Fine for tiny n or rare calls. Wrong for BFS hot paths and interview silence. Alternatives: **two-stack queue** (amortized O(1)), head index + compact, **ring buffer**, or Swift Collections **`Deque`**.
+> `removeFirst` shifts every remaining element → **O(n)** per dequeue. Fine for tiny n or rare calls. Wrong for BFS hot paths and interview silence. Alternatives: **two-stack queue** (amortized O(1)), head index + compact, **ring buffer**, or Swift Collections **`Deque`**.
 
 **Follow-ups:**
 
@@ -43,7 +41,6 @@
 ---
 
 ### Q3. What are the complexity targets to say aloud?
-
 **Answer:**
 
 > Array stack push/pop: **amortized O(1)**. Array queue via removeFirst: **O(n)** dequeue. Two-stack queue: **amortized O(1)** enqueue/dequeue. Deque/ring ends: **O(1)**. Linked list local insert/delete given node: **O(1)**; access by index: **O(n)**. Reverse list iterative: O(n) time, O(1) space.
@@ -62,7 +59,6 @@
 ---
 
 ### Q4. How do I implement a stack in Swift?
-
 **Answer:**
 
 > Default: `var stack: [Int] = []`; `append` to push; `removeLast` or `popLast` to pop; `last` to peek. Say: append/removeLast are amortized O(1) because capacity doubles geometrically — occasional O(n) copy amortized away. A small `Stack<Element>` wrapper is fine in interviews for clarity.
@@ -81,7 +77,6 @@
 ---
 
 ### Q5. What is the pattern → structure map?
-
 **Answer:**
 
 > Matching/nesting/undo → **stack** (valid parentheses). Next greater/smaller → **monotonic stack**. Level-order/shortest unweighted → **queue** (BFS). Sliding window max → **monotonic deque**. Cycle/middle/reverse/merge → **linked list pointers**. LRU preview → hash + doubly linked list.
@@ -100,7 +95,6 @@
 ---
 
 ### Q6. Why do interviewers ask stack/queue in iOS rounds?
-
 **Answer:**
 
 > To see if you **name structure and complexity before code**, avoid Swift footguns, narrate pointer updates cleanly, and distinguish amortized vs worst-case. Senior line: “I practice these for interviews; in iOS product code I default to Array unless designing something like LRU — I won’t pretend the feed was a linked list.”
@@ -122,7 +116,6 @@
 ---
 
 ### Q7. What is linked list honesty in Swift apps?
-
 **Answer:**
 
 > Arrays win on cache locality, value semantics, and stdlib algorithms. Linked lists shine for **interview pointer skill**, O(1) splice when you already hold the node, and designs like LRU (dict + node list). Honest senior line: practice LL for interviews; default to Array in product UI unless designing specialized structures.
@@ -141,7 +134,6 @@
 ---
 
 ### Q8. How do you design a hit counter / recent-requests queue?
-
 **Answer:**
 
 > Store timestamps in a queue. On hit, enqueue now; while the front is older than the window, dequeue. The count is the queue’s size — memory stays proportional to hits in the window. Unbounded growth is the footgun. If multiple threads call in, isolate behind an **actor** (Learning-lab design — not a Verified shipped hit counter). Soft prod note: budget cardinality and sampling in real analytics.
@@ -160,7 +152,6 @@
 ---
 
 ### Q9. How do you approach a calculator / expression stack problem?
-
 **Answer:**
 
 > First clarify the grammar — which operators, precedence, associativity, integers only or not. Then either **shunting-yard** to RPN, or a **values stack plus an operators stack**. State assumptions before coding and mention integer overflow. Diving into code without the grammar is how calculator problems implode.
@@ -180,3 +171,22 @@ Next: [02-monotonic-patterns.md](02-monotonic-patterns.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — Why is `Array.removeFirst` a bad default queue
+
+**Ask yourself:** Why is `Array.removeFirst` a bad default queue?
+
+**Answer:** “`removeFirst` shifts every remaining element → **O(n)** per dequeue. Fine for tiny n or rare calls. Wrong for BFS hot paths and interview silence. Alternatives: **two-stack queue** (amortized O(1)), head index + compact, **ring buffer**, or Swift Collections **`Deque`**.”
+
+### Puzzle B — What are the complexity targets to say aloud
+
+**Ask yourself:** What are the complexity targets to say aloud?
+
+**Answer:** “Array stack push/pop: **amortized O(1)**. Array queue via removeFirst: **O(n)** dequeue. Two-stack queue: **amortized O(1)** enqueue/dequeue. Deque/ring ends: **O(1)**. Linked list local insert/delete given node: **O(1)**; access by index: **O(n)**. Reverse list iterative: O(n) time, O(1) space.”
+
+### Puzzle C — How do I implement a stack in Swift
+
+**Ask yourself:** How do I implement a stack in Swift?
+
+**Answer:** “Default: `var stack: [Int] = []`; `append` to push; `removeLast` or `popLast` to pop; `last` to peek. Say: append/removeLast are amortized O(1) because capacity doubles geometrically — occasional O(n) copy amortized away. A small `Stack<Element>` wrapper is fine in interviews for clarity.”

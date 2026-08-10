@@ -1,297 +1,430 @@
-# 02 — Deep Dive: Worked Approaches (then code/)
+# 02 — Deep Dive: Worked Approaches (then code/) (Q&A)
 
-> Read the approach script → hide it → re-speak → implement from [`code/`](code/).  
-> Full solutions live in code; this file is the **thinking** layer.
-
----
-
-## 1. Two Sum
-
-**Prompt:** Given `nums` and `target`, return indices `i, j` with `nums[i] + nums[j] == target`.
-
-**Say this first (60s):**  
-> “Constraints? Duplicates? Guaranteed one answer?  
-> Brute: try all pairs O(n²).  
-> Sorting loses original indices unless I store pairs.  
-> I’ll scan once: for each value look up `target - value` in a dictionary of value→index, else store current.  
-> Time O(n), space O(n). Edges: empty, no pair, negatives, duplicates.”
-
-**Invariant:** Map holds values seen so far with an index.
-
-**Dry-run:** `nums = [2,7,11,15], target = 9` → at 7 find 2 → `[0,1]`.
-
-**Trap:** Returning values instead of indices; using the same element twice.
-
-**Code:** [`code/TwoSum.swift`](code/TwoSum.swift)
+> Cover the answer, speak aloud, then check follow-ups. Simple language. Named work only — never S-codes in speech.
 
 ---
 
-## 2. Best Time to Buy and Sell Stock
+### Q1. Two Sum? `(45–60s)`
+**Answer:**
 
-**Prompt:** Max profit from one buy + one later sell; else 0.
+> “Prompt: Given nums and target, return indices i, j with nums[i] + nums[j] == target. Say this first (60s): “Constraints? Duplicates? Guaranteed one answer? Brute: try all pairs O(n²). Sorting loses original indices unless I store pairs. I’ll scan once: for each value look up target - value in a dictionary of value→index, else store current. Time O(n), space O(n). Edges: empty, no pair, negatives, duplicates.”.”
 
-**Say this first:**  
-> “One transaction. Brute all pairs O(n²).  
-> Track minimum price so far and max profit = price - min.  
-> O(n)/O(1). Edges: length 1, strictly decreasing → 0.”
+**Follow-ups:**
 
-**Trap:** Selling before buying; resetting min after computing profit wrong order.
-
-**Code:** [`code/MaxProfit.swift`](code/MaxProfit.swift)
-
----
-
-## 3. Valid Palindrome
-
-**Prompt:** Alphanumeric only, case-insensitive palindrome?
-
-**Say this first:**  
-> “Two pointers from ends. Skip non-alnum; compare lowercased.  
-> O(n)/O(1) extra if we index the string carefully — in Swift I’ll use `Array(s)` for clarity O(n) space, or walk String.Index.  
-> Edges: empty, all punctuation, unicode — I’ll clarify charset; LeetCode is ASCII alnum.”
-
-**Trap:** Forgetting to skip; comparing uppercase vs lower.
-
-**Code:** [`code/ValidPalindrome.swift`](code/ValidPalindrome.swift)
-
----
-
-## 4. Container With Most Water
-
-**Prompt:** Heights at indices; max `min(h[l],h[r]) * (r-l)`.
-
-**Say this first:**  
-> “Brute all pairs O(n²).  
-> Start at ends — max width. Move the shorter side inward; only a taller short-side can improve.  
-> O(n)/O(1). Edges: n=2, all equal.”
-
-**Why move shorter:** Width shrinks by 1 always; height limited by min. Moving taller can’t increase min; moving shorter might.
-
-**Code:** [`code/ContainerWater.swift`](code/ContainerWater.swift)
-
----
-
-## 5. Longest Substring Without Repeating Characters
-
-**Prompt:** Length of longest substring with all unique chars.
-
-**Say this first:**  
-> “Variable window. Expand right; if duplicate, shrink left until unique — typically with last-seen index map.  
-> Each index moves at most once → O(n). Space O(min(n, alphabet)).  
-> Edges: empty, all unique, all same.”
-
-**Invariant:** `s[left...right]` has unique characters.
-
-**Trap:** Off-by-one when updating left to `lastIndex + 1`; not taking max with current left.
-
-**Code:** [`code/LengthOfLongestSubstring.swift`](code/LengthOfLongestSubstring.swift)
-
----
-
-## 6. Maximum Subarray (Kadane)
-
-**Prompt:** Contiguous subarray with largest sum.
-
-**Say this first:**  
-> “Brute O(n²) sums. Kadane: running sum; if running < 0 reset to 0 before adding next — actually classic: `running = max(x, running+x)`; track global max.  
-> All-negative: answer is largest element — the `max(x, running+x)` form handles it.  
-> O(n)/O(1).”
-
-**Trap:** Resetting to 0 when all negative (wrong if you force non-empty and reset poorly).
-
-**Code:** [`code/MaxSubArray.swift`](code/MaxSubArray.swift)
-
----
-
-## 7. Product of Array Except Self
-
-**Prompt:** `out[i] = product of all except i`; no division; O(n).
-
-**Say this first:**  
-> “Left products pass into output; right products multiply on the way back.  
-> O(n) time, O(1) extra if output doesn’t count.  
-> Edges: zeros (one zero, two zeros), negatives.”
-
-**Trap:** Using division; O(n) extra left/right arrays without mentioning you can optimize.
-
-**Code:** [`code/ProductExceptSelf.swift`](code/ProductExceptSelf.swift)
-
----
-
-## 8. Move Zeroes
-
-**Prompt:** Move zeroes to end in place; keep relative order of non-zeroes.
-
-**Say this first:**  
-> “Write pointer: write non-zeroes forward, then fill zeroes.  
-> O(n)/O(1). Edges: no zeroes, all zeroes, already packed.”
-
-**Code:** [`code/MoveZeroes.swift`](code/MoveZeroes.swift)
-
----
-
-## 9. 3Sum (stretch)
-
-**Say this first:**  
-> “Sort O(n log n). Fix i; two-sum on remainder with left/right; skip duplicates.  
-> O(n²). Edges: all zero, <3 elements, many dups.”
-
-**Code:** [`code/ThreeSum.swift`](code/ThreeSum.swift)
-
----
-
-## 10. Minimum Size Subarray Sum (stretch)
-
-**Say this first:**  
-> “Positive nums assumed for two-pointer window. Expand until sum ≥ target; shrink left; track min length.  
-> Impossible → 0. O(n).”
-
-**Code:** [`code/MinSubArrayLen.swift`](code/MinSubArrayLen.swift)
-
----
-
-## 11. Group Anagrams (bridge)
-
-**Say this first:**  
-> “Key by sorted string or 26-count signature; bucket in dictionary.  
-> O(n·k log k) sorted keys or O(n·k) counts.”
-
-**Code:** [`code/GroupAnagrams.swift`](code/GroupAnagrams.swift)
-
----
-
-## 12. Pattern ID drills (no code)
-
-| Prompt fragment | Reach for |
+| Follow-up | Answer |
 |---|---|
-| “indices of two numbers” | Hash map |
-| “longest substring with at most K” | Variable window |
-| “sorted array, pairs” | Opposite pointers |
-| “maximum subarray sum” | Kadane |
-| “in-place remove / compact” | Write pointer |
-| “product except self / no division” | Prefix-suffix |
-| “anagrams” | Frequency signature |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 13. When interviewer changes constraints mid-flight
+### Q2. Best Time to Buy and Sell Stock? `(45–60s)`
+**Answer:**
 
-| Change | Response |
+> “Prompt: Max profit from one buy + one later sell; else 0. Say this first: “One transaction. Brute all pairs O(n²). Track minimum price so far and max profit = price - min. O(n)/O(1). Edges: length 1, strictly decreasing → 0.”.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
 |---|---|
-| Need O(1) space after map solution | Restate trade-off; ask if sort/mutate OK; propose alt |
-| Want brute coded too | Sketch brute verbally; code optimal; note n≤20 brute OK |
-| Streaming input | Discuss what breaks (need full array?) |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-**Trap:** Silent panic rewrite.
-
----
-
-## 14. Off-by-one window checklist
-
-Before submitting mentally:
-
-1. Is `right` inclusive in length `right - left + 1`?  
-2. When duplicate at `right`, is `left = last[c] + 1`?  
-3. Did you `max(left, …)` so left never moves backward?  
-4. Dry-run `"abba"` for longest unique substring.
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 15. Full dry-runs (speak these once)
+### Q3. Valid Palindrome? `(45–60s)`
+**Answer:**
 
-### 15.1 Two Sum — `[2,7,11,15], target 9`
+> “Prompt: Alphanumeric only, case-insensitive palindrome? Say this first: “Two pointers from ends. Skip non-alnum; compare lowercased. O(n)/O(1) extra if we index the string carefully — in Swift I’ll use Array(s) for clarity O(n) space, or walk String.Index. Edges: empty, all punctuation, unicode — I’ll clarify charset; LeetCode is ASCII alnum.”.”
 
-| i | value | need | seen before step | action |
-|---|---|---|---|---|
-| 0 | 2 | 7 | {} | store 2→0 |
-| 1 | 7 | 2 | {2:0} | found → `[0,1]` |
+**Follow-ups:**
 
-### 15.2 Longest substring — `"abba"`
-
-| right | ch | last | left before | left after | best |
-|---|---|---|---|---|---|
-| 0 | a | — | 0 | 0 | 1 |
-| 1 | b | — | 0 | 0 | 2 |
-| 2 | b | 1 | 0 | max(0,2)=2 | 2 |
-| 3 | a | 0 | 2 | max(2,1)=2 | 2 |
-
-Answer length **2** (`"bb"` or `"ba"` depending on window — length 2).
-
-### 15.3 Kadane — `[-2,1,-3,4,-1,2,1,-5,4]`
-
-Track `running` / `best` through each element; best ends at **6** (`[4,-1,2,1]`).
-
-### 15.4 Container water — `[1,8,6,2,5,4,8,3,7]`
-
-Start `l=0,r=8` → min(1,7)*8=8; move left (shorter). Continue until best **49**.
-
-### 15.5 Product except self — `[1,2,3,4]`
-
-Left pass out=`[1,1,2,6]`; right multiply → `[24,12,8,6]`.
-
----
-
-## 16. Brute → optimal comparison table
-
-| Problem | Brute | Optimal | What you say |
-|---|---|---|---|
-| Two Sum | O(n²) pairs | O(n) map | “Indices → map beats sort+scan unless O(1) space forced” |
-| Stock | O(n²) pairs | O(n) min | “Running min is enough for one transaction” |
-| Palindrome | Build cleaned string + reverse | Two pointers | “Same O(n); pointers save an allocation” |
-| Water | O(n²) | O(n) ends | “Move shorter; width shrinks anyway” |
-| Unique substring | O(n²) check sets | O(n) window | “Each index moves ≤ once” |
-| Max subarray | O(n²)/O(n³) | O(n) Kadane | “Reset when extending loses” |
-| Product | Divide by nums[i] | Prefix/suffix | “Division fails on zeros; prompt forbids it” |
-| Move zeroes | Extra array | Write pointer | “Stable compact in place” |
-| 3Sum | O(n³) | Sort + O(n²) | “Pay n log n to enable two-sum” |
-| Min subarray | O(n²) | O(n) window | “Positives → shrink safely” |
-
----
-
-## 17. Edge-case bank (quiz yourself)
-
-| Problem | Edge | Expected intuition |
-|---|---|---|
-| Two Sum | Duplicate values, distinct indices | Map stores latest or first — be consistent with “one answer” |
-| Stock | Strictly decreasing | Profit 0 |
-| Palindrome | `",."` | true |
-| Water | n=2 | Only one container |
-| Unique substring | `""` / `" "` | 0 / 1 |
-| Kadane | All negative | Largest (least negative) element |
-| Product | `[0,0,1]` | Careful zeros |
-| Move zeroes | `[0,0,0]` | Still all zeroes |
-| 3Sum | `[-1,-1,2]` | One triplet; skip dups |
-| Min window sum | Target larger than total | 0 |
-
----
-
-## 18. Narration anti-patterns
-
-| Anti-pattern | Fix |
+| Follow-up | Answer |
 |---|---|
-| Coding while silent | Forced 60s plan |
-| “I’ve seen this” then blank | Still state pattern + invariant |
-| Ignoring interviewer hints | Rephrase hint into plan change |
-| Optimizing microconstants | Big-O + clarity first |
-| Swift `s[i]` with Int | `[Character]` honesty |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 19. Link to dsa-track (optional)
+### Q4. Container With Most Water? `(45–60s)`
+**Answer:**
 
-Canonical list also lives in [`../../../coding/dsa-track.md`](../../../coding/dsa-track.md).  
-**This chapter embeds Week 1 patterns and solutions** — use the track for spaced review across weeks, not as a blocker today.
+> “Prompt: Heights at indices; max min(h[l],h[r]) (r-l). Say this first: “Brute all pairs O(n²). Start at ends — max width. Move the shorter side inward; only a taller short-side can improve. O(n)/O(1). Edges: n=2, all equal.”.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## Next
+### Q5. Longest Substring Without Repeating Characters? `(45–60s)`
+**Answer:**
 
-Implement from memory using [`code/`](code/), then [`03-production-bridge.md`](03-production-bridge.md).
+> “Prompt: Length of longest substring with all unique chars. Say this first: “Variable window. Expand right; if duplicate, shrink left until unique — typically with last-seen index map. Each index moves at most once → O(n). Space O(min(n, alphabet)). Edges: empty, all unique, all same.”.”
 
-### Exit checklist (deep dive)
+**Follow-ups:**
 
-- [ ] Spoke Two Sum + window + Kadane approaches without peeking  
-- [ ] Dry-ran `"abba"` and one Kadane array  
-- [ ] Named brute vs optimal for each core problem once  
-- [ ] Opened at least 6 files under `code/` and explained them aloud  
-- [ ] Recited say-this-first from memory once more before coding block  
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q6. Maximum Subarray (Kadane)? `(45–60s)`
+**Answer:**
+
+> “Prompt: Contiguous subarray with largest sum. Say this first: “Brute O(n²) sums. Kadane: running sum; if running < 0 reset to 0 before adding next — actually classic: running = max(x, running+x); track global max. All-negative: answer is largest element — the max(x, running+x) form handles it. O(n)/O(1).”.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q7. Product of Array Except Self? `(45–60s)`
+**Answer:**
+
+> “Prompt: out[i] = product of all except i; no division; O(n). Say this first: “Left products pass into output; right products multiply on the way back. O(n) time, O(1) extra if output doesn’t count. Edges: zeros (one zero, two zeros), negatives.”.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q8. Move Zeroes? `(45–60s)`
+**Answer:**
+
+> “Prompt: Move zeroes to end in place; keep relative order of non-zeroes. Say this first: “Write pointer: write non-zeroes forward, then fill zeroes. O(n)/O(1). Edges: no zeroes, all zeroes, already packed.”.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q9. 3Sum (stretch)? `(45–60s)`
+**Answer:**
+
+> “Say this first: “Sort O(n log n). Fix i; two-sum on remainder with left/right; skip duplicates. O(n²). Edges: all zero, <3 elements, many dups.” Code: code/ThreeSum.swift.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q10. Minimum Size Subarray Sum (stretch)? `(45–60s)`
+**Answer:**
+
+> “Say this first: “Positive nums assumed for two-pointer window. Expand until sum ≥ target; shrink left; track min length. Impossible → 0. O(n).” Code: code/MinSubArrayLen.swift.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q11. Group Anagrams (bridge)? `(45–60s)`
+**Answer:**
+
+> “Say this first: “Key by sorted string or 26-count signature; bucket in dictionary. O(n·k log k) sorted keys or O(n·k) counts.” Code: code/GroupAnagrams.swift.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q12. Pattern ID drills (no code)? `(45–60s)`
+**Answer:**
+
+> “---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q13. When interviewer changes constraints mid-flight? `(45–60s)`
+**Answer:**
+
+> “Trap: Silent panic rewrite.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q14. Off-by-one window checklist? `(45–60s)`
+**Answer:**
+
+> “Before submitting mentally: 1. Is right inclusive in length right - left + 1? 2. When duplicate at right, is left = last[c] + 1? 3. Did you max(left, …) so left never moves backward? 4. Dry-run "abba" for longest unique substring.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q15. Two Sum — `[2,7,11,15], target 9`? `(45–60s)`
+**Answer:**
+
+> “See the notes for this topic and speak the core idea in simple words.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q16. Longest substring — `"abba"`? `(45–60s)`
+**Answer:**
+
+> “Answer length 2 ("bb" or "ba" depending on window — length 2).”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q17. Kadane — `[-2,1,-3,4,-1,2,1,-5,4]`? `(45–60s)`
+**Answer:**
+
+> “Track running / best through each element; best ends at 6 ([4,-1,2,1]).”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q18. Container water — `[1,8,6,2,5,4,8,3,7]`? `(45–60s)`
+**Answer:**
+
+> “Start l=0,r=8 → min(1,7)8=8; move left (shorter). Continue until best 49.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q19. Product except self — `[1,2,3,4]`? `(45–60s)`
+**Answer:**
+
+> “Left pass out=[1,1,2,6]; right multiply → [24,12,8,6]. ---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q20. Brute → optimal comparison table? `(45–60s)`
+**Answer:**
+
+> “---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q21. Edge-case bank (quiz yourself)? `(45–60s)`
+**Answer:**
+
+> “---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q22. Narration anti-patterns? `(45–60s)`
+**Answer:**
+
+> “---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q23. Link to dsa-track (optional)? `(45–60s)`
+**Answer:**
+
+> “Canonical list also lives in ../../../coding/dsa-track.md. This chapter embeds Week 1 patterns and solutions — use the track for spaced review across weeks, not as a blocker today. ---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q24. Next? `(45–60s)`
+**Answer:**
+
+> “Implement from memory using code/, then 03-production-bridge.md.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q25. Exit checklist (deep dive)? `(45–60s)`
+**Answer:**
+
+> “- [ ] Spoke Two Sum + window + Kadane approaches without peeking - [ ] Dry-ran "abba" and one Kadane array - [ ] Named brute vs optimal for each core problem once - [ ] Opened at least 6 files under code/ and explained them aloud - [ ] Recited say-this-first from memory once more before coding block.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---

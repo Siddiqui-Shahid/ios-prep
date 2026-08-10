@@ -1,6 +1,6 @@
 # Day 21 — System-Design Mock #3 (45 min)
 
-> Week 3 · Full study (self-contained) · ~5–6 hrs (weekend-style)  
+> Week 3 · Full study (self-contained) · ~5–6 hrs (weekend-style) 
 > Revision twin: [revision/weeks/week-03/day-21.md](../../../revision/weeks/week-03/day-21.md)
 
 ## Outcomes
@@ -17,7 +17,7 @@ By end of day you can:
 1. [`01-foundations.md`](01-foundations.md) — 45-min spine + agenda openers
 2. [`02-deep-dive.md`](02-deep-dive.md) — **full spoken scripts** for Prompt A & B
 3. [`03-production-bridge.md`](03-production-bridge.md) — which stories for which prompt
-4. [`04-questions.md`](04-questions.md) — warm-up Qs **and** scoring-layer questions
+4. [`sample/07-revision-qna.md`](sample/07-revision-qna.md) — warm-up Qs **and** scoring-layer questions
 5. [`05-exercises.md`](05-exercises.md) — live mock procedure
 6. Optional [`code/`](code/) — tiny schema / client interfaces for whiteboard crutches
 7. Revision twin

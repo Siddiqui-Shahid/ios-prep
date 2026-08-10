@@ -1,6 +1,6 @@
 # Day 12 — SwiftUI State, Identity, @Observable, Lists, Performance
 
-> Week 2 · Full study (self-contained) · ~4–5 hrs  
+> Week 2 · Full study (self-contained) · ~4–5 hrs 
 > Revision twin: [revision/weeks/week-02/day-12.md](../../../revision/weeks/week-02/day-12.md)
 
 ## Outcomes
@@ -19,7 +19,7 @@ By end of day, without notes, you can:
 2. `02-deep-dive.md` — identity, Observation, lists, SDK state machine
 3. `03-production-bridge.md` — Verified S10 + honest API claims
 4. `code/` — `StoriesPlayerModel.swift`, `IdentityTraps.swift`, `LazyListNotes.swift`
-5. `04-questions.md` — Answer points → full spoken
+5. `sample/07-revision-qna.md` — Answer points → full spoken
 6. `05-exercises.md`
 7. Revision twin
 
@@ -30,7 +30,7 @@ By end of day, without notes, you can:
 | Foundations | [01-foundations.md](01-foundations.md) |
 | Deep dive | [02-deep-dive.md](02-deep-dive.md) |
 | Production bridge | [03-production-bridge.md](03-production-bridge.md) |
-| Questions | [04-questions.md](04-questions.md) |
+| Questions | [sample/07-revision-qna.md](sample/07-revision-qna.md) |
 | Exercises | [05-exercises.md](05-exercises.md) |
 | Code | [code/StoriesPlayerModel.swift](code/StoriesPlayerModel.swift), [code/IdentityTraps.swift](code/IdentityTraps.swift), [code/LazyListNotes.swift](code/LazyListNotes.swift) |
 | Sample Q&A | [sample/README.md](sample/README.md) |

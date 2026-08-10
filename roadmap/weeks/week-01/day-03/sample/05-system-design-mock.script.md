@@ -9,13 +9,13 @@ Next. Q1. Interviewer: “Design Image Loading Library.” How do you open? Answ
 
 Next. Q2. After clarify — what does the good flow look like? Answer. “For this mock: still-image pipeline; L1 around 50MB NSCache plus disk around 500MB; cancel on reuse. Out: GIF/video decode, upload, CDN design. Good flow: agenda, clarify, confirm, high level design with four layers plus backend plus load, A P I, two deep dives, last five minutes ops. Weak flow: drawing in silence, only happy path, inventing QPS as fact, skipping ops.” Follow-ups. Scope changes mid-high level design?: “Re-confirm in/out in twenty seconds. Adjust dives. Protect ops.”. Forgot offline?: “Assumption: online-first plus last-good cache — correct me if wrong.”.
 
-## §2 Q3. Walk the HLD — client layers, backend, load
+## §2 Q3. Walk the HLD — client layers, backend, load?
 
-Next. Q3. Walk the HLD — client layers, backend, load Answer. “Pipeline: URL, then dedupe, then L1 NSCache, then L2 disk, then network CDN, then ImageIO downsample, then display. Download and decode off main; MainActor only for UIImage assignment. Load: Cache-Control max-age around seven days; Accept webp/avif; decoded cost is width times height times four — always downsample to view size. Where A R C bites: retain cycles in completion handlers; cancel tokens on deinit and reuse.” Follow-ups. Three tiers?: “Memory, disk, network — write-around for decoded often.”. Forever L1?: “NSCache with a cost limit and memory warnings — not a singleton forever map of VCs.”.
+Next. Q3. Walk the HLD — client layers, backend, load? Answer. “Pipeline: URL, then dedupe, then L1 NSCache, then L2 disk, then network CDN, then ImageIO downsample, then display. Download and decode off main; MainActor only for UIImage assignment. Load: Cache-Control max-age around seven days; Accept webp/avif; decoded cost is width times height times four — always downsample to view size. Where A R C bites: retain cycles in completion handlers; cancel tokens on deinit and reuse.” Follow-ups. Three tiers?: “Memory, disk, network — write-around for decoded often.”. Forever L1?: “NSCache with a cost limit and memory warnings — not a singleton forever map of VCs.”.
 
-## §3 Q4. Data / API — entities, endpoints, scale
+## §3 Q4. Data / API — entities, endpoints, scale?
 
-Next. Q4. Data / API — entities, endpoints, scale Answer. “GET the image URL with Cache-Control. Library A P I: load with url, target size, priority — returns a cancelable Task. Dedupe identical in-flight URLs; priority boost for on-screen. Completions capture weak owners so a recycled cell doesn’t keep a request graph alive forever.” Follow-ups. Same URL two cells?: “One download; fan-out completions.”. Auth images?: “Inject headers via session; don’t put tokens in URL query if avoidable.”.
+Next. Q4. Data / API — entities, endpoints, scale? Answer. “GET the image URL with Cache-Control. Library A P I: load with url, target size, priority — returns a cancelable Task. Dedupe identical in-flight URLs; priority boost for on-screen. Completions capture weak owners so a recycled cell doesn’t keep a request graph alive forever.” Follow-ups. Same URL two cells?: “One download; fan-out completions.”. Auth images?: “Inject headers via session; don’t put tokens in URL query if avoidable.”.
 
 ## §4 Q5. Deep dive 1 — 3-tier cache?
 

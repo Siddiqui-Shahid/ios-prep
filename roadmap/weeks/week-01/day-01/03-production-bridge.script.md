@@ -60,4 +60,4 @@ Company / feature: BookMyShow. Ads / listing models. Payment processing popup Wh
 
 Next. Next.
 
-Drill spoken answers in 04-questions.md. Speak from Answer points first. then compare to Full spoken answer.
+Drill spoken answers in sample/07-revision-qna.md. Speak from Answer points first. then compare to Full spoken answer.

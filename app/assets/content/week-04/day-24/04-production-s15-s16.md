@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What can you claim under FinTrack on-device AI?
-
 **Answer:**
 
 > Flutter + Hive; biometric; **no cloud sync of financial data**. BM25 offline RAG + **rule fallback**. Bridge to Apple Foundation Models / platform AI. Play Store ops awareness (Crashlytics, Remote Config, AdMob) — qualitative. **Forbidden:** invented accuracy %, latency SLOs.
@@ -27,7 +26,6 @@
 ---
 
 ### Q2. What can you claim under GymFlow on-device AI?
-
 **Answer:**
 
 > INT8 MiniLM TFLite + WordPiece. Cosine top-K + trainer context. TF-IDF fail-soft. **Not claimed:** cloud LLM dependency, invented model accuracy %.
@@ -49,7 +47,6 @@
 ---
 
 ### Q3. How do you contrast District Free Parking + Clean/MVVM + AI tooling District tooling?
-
 **Answer:**
 
 > “District was context engineering for migrations/tests. FinTrack/GymFlow are product on-device systems with privacy and fail-soft. I don’t conflate Cursor with RAG.” Use District Free Parking + Clean/MVVM + AI tooling only to **separate** concerns when asked “how do you use AI?”
@@ -71,7 +68,6 @@
 ---
 
 ### Q4. What is soft BookMyShow IMOC + crash-free at scale applied to AI features?
-
 **Answer:**
 
 > Kill switches, capability flags, not crashing on model load — **crash-free culture** applied to AI features. At 30L+ DAU, unconstrained on-device LLM on critical flows is a reliability/battery risk. FinTrack/GymFlow are personal-scale architecture proofs; BMS teaches when *not* to be reckless.
@@ -93,7 +89,6 @@
 ---
 
 ### Q5. What is the 45s bridge script?
-
 **Answer:**
 
 > “I treat on-device AI as retrieval plus guarded inference with an explicit degrade path — FinTrack BM25 and GymFlow MiniLM both ship that way. Money and recommendations stay grounded; models are optional.”
@@ -115,7 +110,6 @@
 ---
 
 ### Q6. Anti-patterns in AI interview answers?
-
 **Answer:**
 
 > Don’t say “we fine-tuned on user ledgers.” Don’t invent latency ms or accuracy %. Don’t claim cloud sync of financial data. Don’t lead with District Cursor stories for product AI SD. Don’t skip fail-soft — seniors design degradation before happy path. Don’t treat generative text as financial source of truth.
@@ -126,7 +120,7 @@
 |---|---|
 | Always-cloud demo? | Fast demo, fails privacy bar. |
 | Skip retrieval? | Model doesn’t know Hive DB — RAG required. |
-| After sample? | [`../04-questions.md`](../04-questions.md) two-layer Q&A. |
+| After sample? | [07-revision-qna.md](07-revision-qna.md) two-layer Q&A. |
 
 **How can I relate to my case:**
 - **Shipped:** None for this prompt — keep it conceptual unless they ask for a case.
@@ -134,7 +128,26 @@
 - **Lab only:** N/A for this prompt.
 - **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
-Next: main [`../04-questions.md`](../04-questions.md)
+Next: main [07-revision-qna.md](07-revision-qna.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What can you claim under GymFlow on-device AI
+
+**Ask yourself:** What can you claim under GymFlow on-device AI?
+
+**Answer:** “INT8 MiniLM TFLite + WordPiece. Cosine top-K + trainer context. TF-IDF fail-soft. **Not claimed:** cloud LLM dependency, invented model accuracy %.”
+
+### Puzzle B — How do you contrast District Free Parking + Clean/MVVM + AI tooling District too
+
+**Ask yourself:** How do you contrast District Free Parking + Clean/MVVM + AI tooling District tooling?
+
+**Answer:** “District was context engineering for migrations/tests. FinTrack/GymFlow are product on-device systems with privacy and fail-soft. I don’t conflate Cursor with RAG.” Use District Free Parking + Clean/MVVM + AI tooling only to **separate** concerns when asked “how do you use AI?”
+
+### Puzzle C — What is soft BookMyShow IMOC + crash-free at scale applied to AI features
+
+**Ask yourself:** What is soft BookMyShow IMOC + crash-free at scale applied to AI features?
+
+**Answer:** “Kill switches, capability flags, not crashing on model load — **crash-free culture** applied to AI features. At 30L+ DAU, unconstrained on-device LLM on critical flows is a reliability/battery risk. FinTrack/GymFlow are personal-scale architecture proofs; BMS teaches when *not* to be reckless.”

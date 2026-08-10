@@ -7,7 +7,7 @@ Next. Q1. When do I pick BFS vs DFS? Answer. BFS when the prompt cares about lev
 
 ## §1 Q2. What is the level-size BFS idiom?
 
-Next. Q2. What is the level-size BFS idiom? Answer. Snapshot queue.count at the start of each wave, then process exactly that many nodes before starting the next level. Without it, zigzag, right-side view, and level averages turn into messy index math. Empty root → []; enqueue only non-nil children. Follow-ups. Swift removeFirst() cost?: O(n) on Array — fine in interviews if you mention a deque or index head if pushed.. Zigzag variant?: Same BFS; reverse odd levels (or insert at front).. Right side view?: Last node dequeued each level — or DFS right-before-left with depth tracking..
+Next. Q2. What is the level-size BFS idiom? Answer. Snapshot queue.count at the start of each wave, then process exactly that many nodes before starting the next level. Without it, zigzag, right-side view, and level averages turn into messy index math. Empty root → []; enqueue only non-nil children. Follow-ups. Swift removeFirst cost?: O(n) on Array — fine in interviews if you mention a deque or index head if pushed.. Zigzag variant?: Same BFS; reverse odd levels (or insert at front).. Right side view?: Last node dequeued each level — or DFS right-before-left with depth tracking..
 
 ## §2 Q3. What are the three DFS return styles?
 
@@ -21,9 +21,9 @@ Next. Q4. Binary tree vs BST — why does it matter? Answer. A binary tree only 
 
 Next. Q5. What complexity should I say for tree problems? Answer. n = number of nodes. Visit each once → O(n) time. Recursion depth or queue holds up to O(h) height or O(w) max width; skewed tree → O(n) space; balanced → O(log n) height. Never say “O(1) space” for recursive DFS without noting the call stack is O(h). Follow-ups. BFS space?: O(w) for the queue — can be Θ(n) on a wide bushy level.. DFS space?: O(h) call stack — O(n) if skewed.. Morris inorder?: O(1) auxiliary besides mutations — rare mention..
 
-## §5 Q6. Walk BFS and DFS on a tiny tree.
+## §5 Q6. Walk BFS and DFS on a tiny tree?
 
-Next. Q6. Walk BFS and DFS on a tiny tree Answer. Tree: root 1, children 2 and 3, 2 has 4 and 5. BFS visit order: 1, then 2–3, then 4–5 → levels [[1],[2,3],[4,5]]. DFS preorder: 1,2,4,5,3. Inorder: 4,2,5,1,3. Postorder: 4,5,2,3,1. Say aloud: “BFS answers width; DFS answers structure; inorder is special for BSTs.” Follow-ups. Why draw this every time?: Proves you know level vs depth vs visit order — not just memorizing one template.. Single-node tree?: BFS/DFS both visit once; depth = 1 (confirm node vs edge definition).. Null root?: Return empty / 0 / false per prompt — name it in edges..
+Next. Q6. Walk BFS and DFS on a tiny tree? Answer. Tree: root 1, children 2 and 3, 2 has 4 and 5. BFS visit order: 1, then 2–3, then 4–5 → levels [[1],[2,3],[4,5]]. DFS preorder: 1,2,4,5,3. Inorder: 4,2,5,1,3. Postorder: 4,5,2,3,1. Say aloud: “BFS answers width; DFS answers structure; inorder is special for BSTs.” Follow-ups. Why draw this every time?: Proves you know level vs depth vs visit order — not just memorizing one template.. Single-node tree?: BFS/DFS both visit once; depth = 1 (confirm node vs edge definition).. Null root?: Return empty / 0 / false per prompt — name it in edges..
 
 ## §6 Q7. What should I know before opening Deep Dive?
 

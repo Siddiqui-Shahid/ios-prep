@@ -1,6 +1,6 @@
 # Day 27 sample — guided Q&A
 
-> Separate teaching sample. Does **not** replace the main Day 27 modules.  
+> Separate teaching sample. Does **not** replace the main Day 27 modules. 
 > Use this when you want Mock #4 prep as **question → module pointer → answer → follow-ups**.
 
 ## How to use
@@ -36,3 +36,8 @@ After the sample, run the full loop in [`../05-exercises.md`](../05-exercises.md
 ## Suggested order
 
 `01` → `02` → `03` → `04` → `05` → then run Mock #4 in [`../05-exercises.md`](../05-exercises.md).
+
+
+## Revision
+
+Thick speak practice: [07-revision-qna.md](07-revision-qna.md) — Normal + Indirect + Tricky.

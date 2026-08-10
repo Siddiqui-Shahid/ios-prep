@@ -1,12 +1,11 @@
 # Sample 02 — Associated types, dispatch, type erasure (Q&A)
 
-> Guided teaching. Prefer saying **“protocol with associated type”** in speech — not unexplained PAT letter-soup.  
+> Guided teaching. Prefer saying **“protocol with associated type”** in speech — not unexplained PAT letter-soup. 
 > Say the **Answer** out loud. **Brain puzzles** at the bottom.
 
 ---
 
 ### Q1. How is an associated type different from a generic parameter?
-
 **Answer:**
 
 > “A generic parameter is filled in by the caller — Renderer of ImageCreative. An associated type is filled in by the type that adopts the protocol — ImageAd decides what its ContentView is. Generics: I tell the function what T is. Associated types: the adopter decides.”
@@ -25,7 +24,6 @@
 ---
 
 ### Q2. Why does a “simple protocol variable” stop working with associated types?
-
 **Answer:**
 
 > “Each adopter may pick a different Model and ContentView. Three situations get hard: mixed arrays — image and video in one list; returning the protocol from a function — which associated types came back?; storing a property typed only as the protocol — same unknown shape. The language needs a concrete answer or a strategy that hides the differences. Self and associated types also block unconstrained any for some operations.”
@@ -44,7 +42,6 @@
 ---
 
 ### Q3. What do primary associated types buy you — and what don’t they?
-
 **Answer:**
 
 > “Primary associated types let you pin down part of the shape — for example any AdRenderable of HeroModel. That helps some call sites. It does not magically make every protocol with associated types free as an unconstrained any-P array for every operation. If ContentView still differs, mixed storage can still hurt.”
@@ -63,17 +60,16 @@
 ---
 
 ### Q4. What is the extension-default dispatch trap — and the static / witness / @objc triad?
-
 **Answer:**
 
-> “Requirements called through an existential go through a witness table — dynamic, protocol-scoped. Extension-only methods may bind to the static type. So let p: any Greeter = Person(); p.wave() can call the extension default, not Person.wave, if wave was never a requirement. Triad: concrete, final, or specialized generics → static dispatch; protocol requirements via existential → witness table; @objc → message send. Fix: declare methods you need to customize as requirements.”
+> “Requirements called through an existential go through a witness table — dynamic, protocol-scoped. Extension-only methods may bind to the static type. So let p: any Greeter = Person; p.wave can call the extension default, not Person.wave, if wave was never a requirement. Triad: concrete, final, or specialized generics → static dispatch; protocol requirements via existential → witness table; @objc → message send. Fix: declare methods you need to customize as requirements.”
 
 **Follow-ups:**
 
 | Follow-up | Answer |
 |---|---|
 | One interview sentence? | “Generics can specialize; existentials use witness tables; extension defaults that aren’t requirements may bind statically.” |
-| Ads angle? | “Shared identical track() defaults in an extension are fine; custom per-creative overrides must be requirements.” |
+| Ads angle? | “Shared identical track defaults in an extension are fine; custom per-creative overrides must be requirements.” |
 | Why mention @objc? | “ObjC message send is a third dispatch story — don’t conflate it with Swift witness tables.” |
 
 **How can I relate to my case:**
@@ -82,7 +78,6 @@
 ---
 
 ### Q5. What is type erasure, and when do you need it?
-
 **Answer:**
 
 > “Type erasure builds one concrete box — like AnyAd or AnyTrackable — that can hold different adopters behind a common interface. You need it when you want an array of mixed ads but the original protocol has associated types that block a plain mixed array. Prefer generics inside the hot pipeline; erase at module boundaries or heterogeneous lists only.”
@@ -101,7 +96,6 @@
 ---
 
 ### Q6. What costs of type erasure must you say aloud?
-
 **Answer:**
 
 > “Name four costs: allocation — closures and the box often on the heap; indirection — extra call through a stored function; lost specialization — compiler sees AnyAd, not VideoAd; and a narrower API — rich associated types shrink to a common denominator. Erasure is not free abstraction.”
@@ -120,7 +114,6 @@
 ---
 
 ### Q7. Open registry vs closed enum — when each?
-
 **Answer:**
 
 > “A closed enum of known creatives is simple and exhaustive — but every new type is an app release plus an enum edit. An open protocol registry of factories matches CMS growth better — with an explicit unknown fallback and versioning. Soft bridge to backend-driven header and search at BookMyShow; keep Day 02 centered on Ads pipeline plus HeroWidget lifecycle.”
@@ -141,7 +134,6 @@
 ---
 
 ### Q8. How do some and any differ once associated types enter?
-
 **Answer:**
 
 > “Opaque some still means one concrete type — specialization-friendly, but the caller cannot swap types. Existential any may hold different adopters, yet operations involving Self or associated types may be unavailable unless constrained. When associated types block you, reach for generics, erasure, or constrained any — not wishful unconstrained any-P for everything.”
@@ -159,8 +151,7 @@
 
 ---
 
-### Q9. Stay generic vs erase vs closed enum — decision aloud
-
+### Q9. Stay generic vs erase vs closed enum — decision aloud?
 **Answer:**
 
 > “Hot path with one creative shape at a time — stay generic end-to-end so the compiler sees the real type. True mixed feed or plugin boundary — erase to one concrete box, accepting allocation and lost specialization. Stable small set of creatives — closed enum with exhaustive switches; every new case is a release. Primary associated types help pin Model but don’t replace that decision.”
@@ -183,10 +174,10 @@
 
 ```swift
 protocol AdRenderable {
-    associatedtype ContentView: UIView
-    func makeView() -> ContentView
+ associatedtype ContentView: UIView
+ func makeView -> ContentView
 }
-// let feed: [AdRenderable] = [ImageAd(), VideoAd()]  // ?
+// let feed: [AdRenderable] = [ImageAd, VideoAd] // ?
 ```
 
 **Ask:** Why is this awkward or illegal as a plain mixed array?

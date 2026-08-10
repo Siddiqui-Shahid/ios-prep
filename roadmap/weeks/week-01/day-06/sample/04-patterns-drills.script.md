@@ -13,9 +13,9 @@ Next. Q2. What is the prefix / suffix product pattern? Answer. Output[i] = produ
 
 Next. Q3. What is the Week 1 minimum core set? Answer. Eight problems minimum today: Two Sum (hash), Best Time Buy/Sell Stock (running min), Valid Palindrome (two pointers), Container Water (opposite ends), Longest Substring (variable window), Maximum Subarray (Kadane), Product Except Self (prefix/suffix), Move Zeroes (write pointer). Stretch: 3Sum, Min Size Subarray Sum, Group Anagrams. Follow-ups. Solve cold how?: Read approach once → hide → re-speak → implement from code/.. Timed target?: 30–40 min per problem including approach script.. Which 3 if short on time?: Two Sum, Longest Substring, Max Subarray — pattern spread..
 
-## §3 Q4. Say time and space for each core pattern.
+## §3 Q4. Say time and space for each core pattern?
 
-Next. Q4. Say time and space for each core pattern Answer. Hash one-pass: O(n) / O(n). Opposite two pointers (after sort): O(n log n) + O(n) scan, O(1) extra. Variable window: O(n) / O(alphabet). Kadane: O(n) / O(1). Prefix/suffix: O(n) / O(1) extra. Write pointer in-place: O(n) / O(1). Running min (stock): O(n) / O(1). Follow-ups. 3Sum overall?: Sort O(n log n) + two-pointer pass O(n²) worst case.. Longest substring space?: O(min(n, charset size)).. Two Sum brute?: O(n²) time, O(1) space — contrast when optimizing..
+Next. Q4. Say time and space for each core pattern? Answer. Hash one-pass: O(n) / O(n). Opposite two pointers (after sort): O(n log n) + O(n) scan, O(1) extra. Variable window: O(n) / O(alphabet). Kadane: O(n) / O(1). Prefix/suffix: O(n) / O(1) extra. Write pointer in-place: O(n) / O(1). Running min (stock): O(n) / O(1). Follow-ups. 3Sum overall?: Sort O(n log n) + two-pointer pass O(n²) worst case.. Longest substring space?: O(min(n, charset size)).. Two Sum brute?: O(n²) time, O(1) space — contrast when optimizing..
 
 ## §4 Q5. Best Time to Buy/Sell Stock — one-pass state?
 

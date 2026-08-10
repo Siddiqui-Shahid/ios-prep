@@ -1,6 +1,6 @@
 # Day 17 — Performance: Instruments, MetricKit, Startup & Scrolling (p50/p90)
 
-> Week 3 · Full study (self-contained) · ~4–5 hrs  
+> Week 3 · Full study (self-contained) · ~4–5 hrs 
 > Revision twin: [revision/weeks/week-03/day-17.md](../../../revision/weeks/week-03/day-17.md)
 
 ## Outcomes
@@ -19,7 +19,7 @@ By end of day, without notes, you can:
 2. [`02-deep-dive.md`](02-deep-dive.md) — Instruments matrix, MetricKit, startup, hitches, APM shape
 3. [`03-production-bridge.md`](03-production-bridge.md) — Verified S5 + adjacent hooks
 4. [`code/`](code/) — journey trace sketch + Instruments tool cheat
-5. [`04-questions.md`](04-questions.md) — speak from **Answer points**; compare to **Full spoken**
+5. [`sample/07-revision-qna.md`](sample/07-revision-qna.md) — speak from **Answer points**; compare to **Full spoken**
 6. [`05-exercises.md`](05-exercises.md) — drills + timed practice
 7. Revision twin for flashcards / day-of recall
 
@@ -30,7 +30,7 @@ By end of day, without notes, you can:
 | Foundations | [01-foundations.md](01-foundations.md) | Perf loop, percentiles, lab vs field |
 | Deep dive | [02-deep-dive.md](02-deep-dive.md) | Instruments (correct tools), MetricKit, startup, scroll |
 | Production bridge | [03-production-bridge.md](03-production-bridge.md) | S5 STAR + honesty bounds |
-| Questions | [04-questions.md](04-questions.md) | Two-layer Q&A (12N + 8T) |
+| Questions | [sample/07-revision-qna.md](sample/07-revision-qna.md) | Two-layer Q&A (12N + 8T) |
 | Exercises | [05-exercises.md](05-exercises.md) | Whiteboard + speaking drills |
 | Code | [code/JourneyTrace.swift](code/JourneyTrace.swift), [code/InstrumentsToolMap.swift](code/InstrumentsToolMap.swift) | Teaching sketches |
 | Sample Q&A | [sample/README.md](sample/README.md) |

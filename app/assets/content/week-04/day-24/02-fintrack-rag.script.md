@@ -5,9 +5,9 @@
 
 Next. Q1. What problem does FinTrack solve? Answer. Expense coach that must not ship ledger data to a cloud LLM by default. Local-first personal finance with retrieval-grounded advice and deterministic fallback when generative paths unavailable. Follow-ups. Verified stack?: Flutter + Hive; biometric; no cloud sync of financial data.. Invented fine-tune?: Forbidden — “fine-tuned on user ledgers.”. Play Store ops?: Crashlytics, Remote Config, AdMob — qualitative verified..
 
-## §1 Q2. Defend the FinTrack architecture in layers.
+## §1 Q2. Defend the FinTrack architecture in layers?
 
-Next. Q2. Defend the FinTrack architecture in layers Answer. (1) Local store: Hive; biometric lock; no cloud sync of financial records. (2) Retrieval: BM25 over local spending index — lexical, offline, explainable. (3) Generation: flutter_native_ai → Apple Foundation Models / platform AI when available. (4) Fail-soft: deterministic rule engine (budget thresholds, category heuristics). (5) Privacy: on-device preferred; any cloud design needs PII sanitize + consent + minimize. Follow-ups. ≤20s line?: “Local-first — BM25 RAG over Hive, Apple Intelligence when present, rules when not; financial data doesn’t leave the device.”. Android path?: Platform AI abstraction — don’t invent identical FM on Android.. STAR?: story-bank #FinTrack on-device AI — full timing on exercise day..
+Next. Q2. Defend the FinTrack architecture in layers? Answer. (1) Local store: Hive; biometric lock; no cloud sync of financial records. (2) Retrieval: BM25 over local spending index — lexical, offline, explainable. (3) Generation: flutter_native_ai → Apple Foundation Models / platform AI when available. (4) Fail-soft: deterministic rule engine (budget thresholds, category heuristics). (5) Privacy: on-device preferred; any cloud design needs PII sanitize + consent + minimize. Follow-ups. ≤20s line?: “Local-first — BM25 RAG over Hive, Apple Intelligence when present, rules when not; financial data doesn’t leave the device.”. Android path?: Platform AI abstraction — don’t invent identical FM on Android.. STAR?: story-bank #FinTrack on-device AI — full timing on exercise day..
 
 ## §2 Q3. What is BM25 enough for in interviews?
 

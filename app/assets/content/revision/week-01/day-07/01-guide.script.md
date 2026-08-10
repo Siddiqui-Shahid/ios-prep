@@ -35,4 +35,4 @@ Next. 5. Flash prompts. 1. Mock agenda in order — one breath 2. struct vs clas
 
 ## §8 6. Timed drills
 
-Next. 6. Timed drills. Run full Mock #1 from 02-deep-dive and score with MockScorecard.md. Expand warm-up/deep pools from 04-questions. Pass criteria: deep-dive average ≥3.5 · BookMyShow synchronised dictionaries ≥4 · no answer >2× budget without self-correction · at least one explicit concurrency trade-off.
+Next. 6. Timed drills. Run full Mock #1 from 02-deep-dive and score with MockScorecard.md. Expand warm-up/deep pools from 07-revision-qna. Pass criteria: deep-dive average ≥3.5 · BookMyShow synchronised dictionaries ≥4 · no answer >2× budget without self-correction · at least one explicit concurrency trade-off.

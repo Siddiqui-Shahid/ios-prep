@@ -1,12 +1,11 @@
 # Sample 04 — Synchronised dictionaries & actor SafeDict design (Q&A)
 
-> Guided teaching. Separates **shipped** named cases from **design-if-asked** and **lab-only**.  
+> Guided teaching. Separates **shipped** named cases from **design-if-asked** and **lab-only**. 
 > Say answers out loud. **Brain puzzles** at the bottom keep claims honest.
 
 ---
 
 ### Q1. What can you claim under BookMyShow synchronised dictionaries?
-
 **Answer:**
 
 > “At BookMyShow, shared async state was hitting dictionaries from multiple places. We gated them with GCD serial queues — and read-write locks where reads dominated. I introduced a closed access API so call sites couldn’t touch the raw storage. That killed concurrent-access crashes on that shared-state path, and we reused the pattern where mutable maps were shared. What I don’t claim: that this alone produced app-wide 99.95% crash-free. That’s IMOC and crash-free culture at scale — different scope.”
@@ -28,7 +27,6 @@
 ---
 
 ### Q2. What was the fix, technically?
-
 **Answer:**
 
 > “Hide storage behind an API. Writes go on a serial queue. Reads sync for a safe snapshot. RW lock where reads dominated. Call sites never touch the raw dictionary. Lesson: serialize mutation at the boundary — don’t sprinkle locks everywhere. Trade-offs: sync reads can deadlock if you misuse the same queue; extreme read contention may need a different strategy.”
@@ -50,7 +48,6 @@
 ---
 
 ### Q3. What is Design: actor SafeDict — and what is it not?
-
 **Answer:**
 
 > “That’s ‘how I would apply it’ — not a verified org-wide BMS rewrite. For greenfield shared maps, I’d expose the same safe get/set surface on a Swift actor so isolation is compiler-checked. Keep the API idea from synchronised dictionaries — hide storage, serialize mutation — change the implementation to language-native isolation. The pitfall shifts from queue.sync deadlock to actor reentrancy. I’d train the team to re-validate after await.”
@@ -71,8 +68,7 @@
 
 ---
 
-### Q4. Pitch S2 → actor migration in 45–60 seconds
-
+### Q4. Pitch S2 → actor migration in 45–60 seconds?
 **Answer:**
 
 > “Production fix was GCD serial-queue dictionaries — BookMyShow synchronised dictionaries. For greenfield shared maps I’d use an actor with the same get/set surface so isolation is compiler-checked. I wouldn’t rewrite stable modules for fashion — strangler-migrate at boundaries. Trade-off: reentrancy at await instead of sync deadlock — state must be re-validated after await.” Mention snapshot/get/remove API parity with SafeDictActor.swift.
@@ -94,7 +90,6 @@
 ---
 
 ### Q5. How does BookMyShow search tie to Task cancellation?
-
 **Answer:**
 
 > “Backend-driven header & search at BookMyShow covers the header, search debounce, clear loading/empty/error state, and MVVM. For Day 05 the slice is: debounce is not only sleep — cancel the previous in-flight Task so a slower older response can’t overwrite fresher results. Treat CancellationError as normal. Unstructured Task at the UI/VM boundary, cooperative cancel on each query change.”
@@ -116,7 +111,6 @@
 ---
 
 ### Q6. What must you never invent?
-
 **Answer:**
 
 > “I can say: GCD synchronised dictionaries at BMS. Search debounce and MVVM from backend-driven header & search. I cannot say: we shipped an org-wide actor rewrite — that’s design-only SafeDict. I don’t invent debounce milliseconds. I don’t hang 99.95% CFS on the dictionary fix alone. Check provenance before you speak, and label verified vs how-I-would-apply it out loud.”
@@ -138,7 +132,6 @@
 ---
 
 ### Q7. How do you compare GCD SafeDict vs actor SafeDict?
-
 **Answer:**
 
 > “Legacy: SafeDict plus serial queue, sync get / async set, manual discipline, sync-deadlock risk. Greenfield design: actor SafeDict, await get / await set, compiler isolation, reentrancy across await. Same boundary idea — hide storage, one writer path — different enforcement and different pitfall.”
@@ -159,8 +152,7 @@
 
 ---
 
-### Q8. Full honest answer mixing all three stories
-
+### Q8. Full honest answer mixing all three stories?
 **Answer:**
 
 > “Shared maps at BookMyShow raced under async access — we fixed that with synchronised dictionaries on serial queues and a closed API. For new modules I’d expose the same surface on a Swift actor — design, not shipped org-wide — and train on reentrancy. Search UX used debounce with MVVM, and the concurrency piece I care about is cancelling the previous Task so stale network responses don’t clobber newer queries. I don’t claim we rewrote every dictionary to actors.”
@@ -171,7 +163,7 @@
 |---|---|
 | What’s verified? | “Dictionary race fix; search debounce / MVVM.” |
 | What’s applied judgment? | “Actor SafeDict for greenfield.” |
-| After this? | SafeDictActor.swift, then ../04-questions.md. |
+| After this? | SafeDictActor.swift, then 07-revision-qna.md. |
 
 **How can I relate to my case:**
 - **Shipped:** BookMyShow synchronised dictionaries; BookMyShow backend-driven header & search
@@ -181,8 +173,7 @@
 
 ---
 
-### Q9. Give the full S2 STAR in about two minutes
-
+### Q9. Give the full S2 STAR in about two minutes?
 **Answer:**
 
 > “Situation: shared maps were read and written from multiple async contexts, which caused intermittent crashes. Task: stop the races on that path. Action: we hid storage behind a synchronised-dictionary API — writes on a serial queue, reads synchronized for a safe snapshot, reader-writer where reads dominated. Call sites never touched the raw dictionary. Result: that race class went away on that path; we reused the pattern where mutable maps were shared. Trade-off: sync reads can deadlock if you misuse the same queue, and heavy read contention may need another strategy. Today, for greenfield modules, I’d consider a Swift actor with the same API surface. I don’t claim this alone produced app-wide crash-free percent.”
@@ -200,8 +191,7 @@
 
 ---
 
-### Q10. Speak the three short bridges — GCD, cancel, settings
-
+### Q10. Speak the three short bridges — GCD, cancel, settings?
 **Answer:**
 
 > “Bridge A — GCD to actors: we serialized dictionary access with GCD. Actors are the language-native equivalent for new code: same boundary idea, compiler isolation, but revalidate after await.
@@ -238,7 +228,7 @@ Interviewer: “So you fixed crash-free sessions with actors at BookMyShow?”
 
 ```swift
 queue.async {
-    queue.sync { /* update dict */ }  // same serial queue
+ queue.sync { /* update dict */ } // same serial queue
 }
 ```
 
@@ -251,8 +241,8 @@ What happens?
 ### Puzzle C — Returning the dictionary
 
 ```swift
-func allValues() -> [String: Item] {
-    queue.sync { storage }  // returns the live dictionary reference?
+func allValues -> [String: Item] {
+ queue.sync { storage } // returns the live dictionary reference?
 }
 ```
 
@@ -266,5 +256,5 @@ If `storage` is a class-backed map and you return it without copying…
 
 1. Read [SafeDictActor.swift](../code/SafeDictActor.swift) line by line.
 2. Continue to [05-system-design-mock.md](05-system-design-mock.md), then [06-module-drills.md](06-module-drills.md).
-3. Speak from [`../04-questions.md`](../04-questions.md).
+3. Speak from [07-revision-qna.md](07-revision-qna.md).
 4. Do timed drills in [`../05-exercises.md`](../05-exercises.md).

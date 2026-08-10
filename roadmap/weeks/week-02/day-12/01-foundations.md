@@ -1,140 +1,243 @@
-# 01 — Foundations: SwiftUI State & Identity Mental Model
+# 01 — Foundations: SwiftUI State & Identity Mental Model (Q&A)
 
-> Intern → mid. Read before deep dive.
+> Cover the answer, speak aloud, then check follow-ups. Simple language. Named work only — never S-codes in speech.
 
-## 1. Plain-English mental model
+---
 
-SwiftUI is a **state → UI** engine. You describe views as a function of state; the framework diffs and updates. Most “SwiftUI is buggy” reports are **state in the wrong place** or **identity that resets**.
+### Q1. Plain-English mental model? `(45–60s)`
+**Answer:**
 
-Think of a theater:
+> “SwiftUI is a state → UI engine. You describe views as a function of state; the framework diffs and updates. Most “SwiftUI is buggy” reports are state in the wrong place or identity that resets. Think of a theater:.”
 
-| Theater | SwiftUI |
+**Follow-ups:**
+
+| Follow-up | Answer |
 |---|---|
-| Script (what’s true) | Your model / `@State` / `@Observable` |
-| Stage directions | `body` — cheap description |
-| Actor’s continuity | **Identity** — same character across scenes |
-| New casting each night | `.id(UUID())` — state amnesia |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-If you recast (new identity) every frame, the actor forgets their lines (`@State` resets), animations restart, and representables remake (Day 11 pain).
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
-## 2. Glossary
+---
 
-| Term | Meaning |
+### Q2. Glossary? `(45–60s)`
+**Answer:**
+
+> “See the notes for this topic and speak the core idea in simple words.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
 |---|---|
-| **`@State`** | View-owned private storage; lifetime tied to view identity |
-| **`@Binding`** | Two-way reference to someone else’s state |
-| **`@Observable`** | iOS 17+ Observation macro for models; tracks property access |
-| **`@Bindable`** | Bridge for bindings into observable fields |
-| **`ObservableObject` / `@Published`** | Combine-era observation (pre-Observation / legacy) |
-| **Environment** | Values propagated down the tree (theme, locale, DI-lite) |
-| **Structural identity** | Same position/type in view tree ⇒ same identity |
-| **Explicit identity** | `.id(...)` / `ForEach(id:)` |
-| **Invalidation** | SwiftUI re-asking `body` because depended state changed |
-| **Invalidation storm** | Giant observed object → huge subtree redraws |
-| **Lazy container** | `List` / `LazyVStack` — build views on demand |
-| **Eager `VStack`** | Builds all children — fine for tiny; death for thousands |
-| **Stable ID** | Model key that doesn’t change across updates |
-| **Stories page** | One story unit in a group; identity must survive progress ticks |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-## 3. State ownership table (memorize)
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
-| Tool | Owner | Use |
-|---|---|---|
-| `@State` | View (private) | Ephemeral UI — toggle chrome, local draft text |
-| `@Binding` | Child writes parent | Controls |
-| `@Observable` model | Often VM / feature model | Async + shared screen state (**iOS 17+**) |
-| `@Bindable` | Bridge | Forms into observable fields |
-| Environment | Tree-wide | Theme, layout direction — not every NetworkClient |
-| `ObservableObject` | Legacy path | Know for interviews / older OS |
+---
 
-**Rule:** View-local for pure UI; hoist async/domain to observable VM (Day 08). Don’t duplicate every toggle into VM.
+### Q3. State ownership table (memorize)? `(45–60s)`
+**Answer:**
 
-## 4. Identity — the senior differentiator
+> “Rule: View-local for pure UI; hoist async/domain to observable VM (Day 08). Don’t duplicate every toggle into VM.”
 
-SwiftUI recognizes “same view” by identity:
+**Follow-ups:**
 
-- **Structural:** type + place in hierarchy  
-- **Explicit:** `.id("profile")` / `ForEach(stories)` with stable `Identifiable`  
-
-**`@State` lifetime follows identity.** Change `id` → state resets.
-
-**Classic bug:** `.id(UUID())` inside `body` → new identity every render → text fields clear, timers restart, Stories page resets mid-swipe.
-
-**Stories SDK implication (S10):** page identity must be stable across progress updates; don’t regenerate UUIDs each render.
-
-## 5. Intern path: happy Stories player
-
-1. Host app supplies story groups via data source protocol.  
-2. `StoriesPlayerModel` (`@Observable`) owns timeline: idle → loading → playing → paused → finished.  
-3. Views render progress from model — not ad-hoc view timers alone.  
-4. `onDisappear` / scene phase → pause AV + timers.  
-5. Adjacent media prefetch carefully (budget — Day 11 lesson).  
-6. Host gets callbacks: open/close/CTA — injectable analytics.
-
-## 6. Lists — intern path
-
-| Do | Don’t |
+| Follow-up | Answer |
 |---|---|
-| `List` / `LazyVStack` for large data | `VStack` of 10k rows |
-| Stable `Identifiable` | `id: \.self` on mutating values |
-| Cheap `body` | Format JSON in every row `body` |
-| Async images with size budgets | Decode huge images on main in `body` |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-## 7. `@Observable` version note (say this)
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
-> “For new code on iOS 17+ I prefer `@Observable`. On older deployment targets I’d use `ObservableObject` and `@Published`. In interviews I can explain both.”
+---
 
-## 8. Environment DI — light touch
+### Q4. Identity — the senior differentiator? `(45–60s)`
+**Answer:**
 
-| OK | Risky |
+> “SwiftUI recognizes “same view” by identity: - Structural: type + place in hierarchy - Explicit: .id("profile") / ForEach(stories) with stable Identifiable.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
 |---|---|
-| Theme, color scheme | Sole hidden `NetworkClient` |
-| Layout direction | Service-locator EnvironmentKey soup |
-| Feature-scoped store passed deliberately | SDK forcing host AppModel |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-S10: SDK prefers **explicit injectable** networking/image loading protocols.
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
-## 9. Production anchor — S10
+---
 
-Standalone reusable Stories SDK; clear public API; isolation from app-specific networking where possible; adopted across portfolio apps. SDK quality = API surface + versioning + independence from host shortcuts.
+### Q5. Intern path: happy Stories player? `(45–60s)`
+**Answer:**
 
-## 10. Self-check
+> “1. Host app supplies story groups via data source protocol. 2. StoriesPlayerModel (@Observable) owns timeline: idle → loading → playing → paused → finished. 3. Views render progress from model — not ad-hoc view timers alone. 4. onDisappear / scene phase → pause AV + timers. 5. Adjacent media prefetch carefully (budget — Day 11 lesson). 6. Host gets callbacks: open/close/CTA — injectable analytics.”
 
-1. `@State` vs `@Observable` placement  
-2. Why UUID in `.id` breaks state  
-3. Lazy vs eager lists  
-4. iOS 17+ note for Observation  
-5. Stories pause + stable page IDs  
+**Follow-ups:**
 
-## 11. Flash preview
-
-| Front | Back |
+| Follow-up | Answer |
 |---|---|
-| `@State` | Local ephemeral UI |
-| `@Observable` | Feature/async model · iOS 17+ |
-| Identity | Stable IDs preserve state |
-| Lazy | Large collections |
-| S10 | SDK API + isolation |
-| Trap | `.id(UUID())` in body |
-'''
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
-## 12. Observation access tracking (intuition)
+---
 
-With `@Observable`, SwiftUI tracks which properties `body` read. Changing an unread property shouldn’t invalidate that view. Stuffing unused fields onto a model the root reads widely still causes storms — split models.
+### Q6. Lists — intern path? `(45–60s)`
+**Answer:**
 
-Legacy `ObservableObject` often broadcasts more coarsely via `objectWillChange`.
+> “See the notes for this topic and speak the core idea in simple words.”
 
-## 13. Stories UI chrome vs domain
+**Follow-ups:**
 
-| State | Placement |
+| Follow-up | Answer |
 |---|---|
-| Progress 0…1 | Player model |
-| Phase playing/paused | Player model |
-| “Hold educational tooltip seen” | `@State` or lightly persisted host pref |
-| CTA destination | Host callback — SDK doesn’t push tickets VC |
-| Image bytes | Injectable loader |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-## 14. 90-second teaching script
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
-> “SwiftUI state belongs either view-local or in an observable feature model — @Observable on iOS 17+, ObservableObject when you must support older OS. Identity preserves @State and representables; UUID-in-body resets everything. Lists need lazy containers and stable IDs. The Stories SDK I built exposes a clear API with injectable loading and host isolation so portfolio apps share one player — pause on disappear, stable page ids, progress owned by the model.”
+---
+
+### Q7. `@Observable` version note (say this)? `(45–60s)`
+**Answer:**
+
+> “For new code on iOS 17+ I prefer @Observable. On older deployment targets I’d use ObservableObject and @Published. In interviews I can explain both.”.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q8. Environment DI — light touch? `(45–60s)`
+**Answer:**
+
+> “: SDK prefers explicit injectable networking/image loading protocols.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q9. Production anchor — S10? `(45–60s)`
+**Answer:**
+
+> “Standalone reusable Stories SDK; clear public API; isolation from app-specific networking where possible; adopted across portfolio apps. SDK quality = API surface + versioning + independence from host shortcuts.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q10. Self-check? `(45–60s)`
+**Answer:**
+
+> “1. @State vs @Observable placement 2. Why UUID in .id breaks state 3. Lazy vs eager lists 4. iOS 17+ note for Observation 5. Stories pause + stable page IDs.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q11. Flash preview? `(45–60s)`
+**Answer:**
+
+> “'''.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q12. Observation access tracking (intuition)? `(45–60s)`
+**Answer:**
+
+> “With @Observable, SwiftUI tracks which properties body read. Changing an unread property shouldn’t invalidate that view. Stuffing unused fields onto a model the root reads widely still causes storms — split models. Legacy ObservableObject often broadcasts more coarsely via objectWillChange.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q13. Stories UI chrome vs domain? `(45–60s)`
+**Answer:**
+
+> “See the notes for this topic and speak the core idea in simple words.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q14. 90-second teaching script? `(45–60s)`
+**Answer:**
+
+> “SwiftUI state belongs either view-local or in an observable feature model — @Observable on iOS 17+, ObservableObject when you must support older OS. Identity preserves @State and representables; UUID-in-body resets everything. Lists need lazy containers and stable IDs. The Stories SDK I built exposes a clear API with injectable loading and host isolation so portfolio apps share one player — pause on disappear, stable page ids, progress owned by the model.”.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---

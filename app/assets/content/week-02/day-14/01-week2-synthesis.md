@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What is the Week 2 narrative in one flow?
-
 **Answer:**
 
 > Day 08: layers / DI / search VM → Day 09: URLSession / refresh / pin / cancel → Day 10: SDUI schema / registry / fallback → Day 11: lifecycle / cells / hybrid / bottom sheet → Day 12: SwiftUI state / identity / Stories SDK → Day 13: stack · queue · LL composure. One senior sentence: clear layers and DI, own networking with cancellation and security, SDUI where content velocity matters with fail-soft schema, UIKit/SwiftUI lifecycle and identity as production contracts.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. What is the Week 2 one-liner to memorize?
-
 **Answer:**
 
 > “I structure features with clear layers and DI, own networking with cancellation and security, use SDUI where content velocity matters with fail-soft schema, and treat UIKit/SwiftUI lifecycle and identity as production contracts — proven on BMS, District, and Raw apps.” Adjust provenance per story — don’t claim every bullet on every employer.
@@ -46,7 +44,6 @@
 ---
 
 ### Q3. What is single-flight refresh in 30 seconds?
-
 **Answer:**
 
 > N concurrent 401s shouldn’t each start refresh. **One refresh Task**; other callers become **waiters** that await the same result. Retry once on success path; on failure → logout fan-out. FIFO queue of continuations mental model (Day 13 soft bridge). Verified: BookMyShow SSL pinning + URLSession migration URLSession ownership on Ads — not invented stampede metrics.
@@ -68,7 +65,6 @@
 ---
 
 ### Q4. What is unknown SDUI handling in 20 seconds?
-
 **Answer:**
 
 > Unknown component type → **skip + metric**; never crash the shell. Schema version gate on fetch. Empty root after parse → **hard fallback** header/splash. Last-known-good cache when network fails. Allowlisted actions only — no arbitrary URL schemes from CMS. BookMyShow backend-driven header & search-A1 emphasizes versioning + fallback as design emphasis.
@@ -90,7 +86,6 @@
 ---
 
 ### Q5. What is search cancel discipline in 20 seconds?
-
 **Answer:**
 
 > Debounce in view model. Cancel in-flight `Task` on new query. **Cancellation ≠ user-facing error** — ignore stale results. MVVM binding for loading/empty/error. BookMyShow backend-driven header & search: backend-driven header + search debounce/state/MVVM.
@@ -112,10 +107,9 @@
 ---
 
 ### Q6. What is SwiftUI identity in 20 seconds for mock warm-ups?
-
 **Answer:**
 
-> Stable IDs preserve `@State` and representables. **Never `.id(UUID())` in body** — text clears, players restart. Stories pages need stable identity across progress ticks (Stories SDK (Raw / Miami Heat)). SDUI leaves use server node ids, not array indices.
+> Stable IDs preserve `@State` and representables. **Never `.id(UUID)` in body** — text clears, players restart. Stories pages need stable identity across progress ticks (Stories SDK (Raw / Miami Heat)). SDUI leaves use server node ids, not array indices.
 
 **Follow-ups:**
 
@@ -134,10 +128,9 @@
 ---
 
 ### Q7. What is Array-as-queue in 15 seconds?
-
 **Answer:**
 
-> `Array.removeFirst()` is **O(n)** per dequeue — shifts all elements. Name it or use **Deque**, two-stack queue, or ring buffer. BFS hot paths need honest queue cost. DSA composure: don’t let basics block architecture talk.
+> `Array.removeFirst` is **O(n)** per dequeue — shifts all elements. Name it or use **Deque**, two-stack queue, or ring buffer. BFS hot paths need honest queue cost. DSA composure: don’t let basics block architecture talk.
 
 **Follow-ups:**
 
@@ -154,3 +147,22 @@ Next: [02-mock-format.md](02-mock-format.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What is the Week 2 one-liner to memorize
+
+**Ask yourself:** What is the Week 2 one-liner to memorize?
+
+**Answer:** “I structure features with clear layers and DI, own networking with cancellation and security, use SDUI where content velocity matters with fail-soft schema, and treat UIKit/SwiftUI lifecycle and identity as production contracts — proven on BMS, District, and Raw apps.” Adjust provenance per story — don’t claim every bullet on every employer.
+
+### Puzzle B — What is single-flight refresh in 30 seconds
+
+**Ask yourself:** What is single-flight refresh in 30 seconds?
+
+**Answer:** “N concurrent 401s shouldn’t each start refresh. **One refresh Task**; other callers become **waiters** that await the same result. Retry once on success path; on failure → logout fan-out. FIFO queue of continuations mental model (Day 13 soft bridge). Verified: BookMyShow SSL pinning + URLSession migration URLSession ownership on Ads — not invented stampede metrics.”
+
+### Puzzle C — What is unknown SDUI handling in 20 seconds
+
+**Ask yourself:** What is unknown SDUI handling in 20 seconds?
+
+**Answer:** “Unknown component type → **skip + metric**; never crash the shell. Schema version gate on fetch. Empty root after parse → **hard fallback** header/splash. Last-known-good cache when network fails. Allowlisted actions only — no arbitrary URL schemes from CMS. BookMyShow backend-driven header & search-A1 emphasizes versioning + fallback as design emphasis.”

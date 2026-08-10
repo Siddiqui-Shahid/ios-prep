@@ -5,7 +5,6 @@
 ---
 
 ### Q1. How do you embed SwiftUI inside UIKit?
-
 **Answer:**
 
 > Use `UIHostingController` as a **child view controller**. Correct containment: `addChild(hosting)`, add `hosting.view` with constraints, `hosting.didMove(toParent:)`. On remove: `willMove`, remove view, `removeFromParent`. Pass observable models; do not rebuild the hosting VC on every bind. Parent appear/disappear should inform pause policies for nested players.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. How do you embed UIKit inside SwiftUI?
-
 **Answer:**
 
 > Use `UIViewControllerRepresentable` or `UIViewRepresentable`. **`make`** creates once; **`update`** pushes new props — do not recreate the UIKit object every SwiftUI pass. Use a **Coordinator** for delegates and target-action. Avoid parent `.id` churn that triggers `make` storms. Do not let a representable silently own a second navigation stack.
@@ -43,7 +41,6 @@
 ---
 
 ### Q3. Why is dual navigation an anti-pattern?
-
 **Answer:**
 
 > `NavigationPath` and `UINavigationController` both mutating from deeplinks and push taps → double present, lost back stack, analytics double-count. **Pick one root navigation owner**; bridge at edges. Deeplinks, Airship taps, and in-app routing must all write to that single router (Hybrid UI / deeplinks lesson).
@@ -65,7 +62,6 @@
 ---
 
 ### Q4. How should deeplinks flow in a hybrid app?
-
 **Answer:**
 
 > URL → parse at app edge → typed Intent → single Router → ensure root ready (queue on cold start) → push/present UIKit host **or** SwiftUI host. Push notification taps use the **same** router as universal links. Mixpanel/Airship must not invent a second navigation path.
@@ -87,7 +83,6 @@
 ---
 
 ### Q5. What is the UIHostingController containment checklist?
-
 **Answer:**
 
 > 1) `addChild(hosting)` 2) Add `hosting.view` with constraints 3) `hosting.didMove(toParent: self)` 4) Forward appearance if nested players need it 5) On remove: `willMove`, remove view, `removeFromParent`. Skipping steps breaks rotation, safe area, and child lifecycle callbacks.
@@ -109,10 +104,9 @@
 ---
 
 ### Q6. How do representable `update` storms connect to SwiftUI identity?
-
 **Answer:**
 
-> Parent identity churn or non-Equatable inputs cause `updateUIViewController` spam — jank and players restart. Causes: parent state churn, `.id(UUID())` in body, heavy work inside `update`. Fixes: stabilize IDs, reduce observed state, move heavy work out, pass Equatable props where measured (Day 12 deepens).
+> Parent identity churn or non-Equatable inputs cause `updateUIViewController` spam — jank and players restart. Causes: parent state churn, `.id(UUID)` in body, heavy work inside `update`. Fixes: stabilize IDs, reduce observed state, move heavy work out, pass Equatable props where measured (Day 12 deepens).
 
 **Follow-ups:**
 
@@ -128,7 +122,6 @@
 ---
 
 ### Q7. Sheet vs push — when which?
-
 **Answer:**
 
 > **Sheet:** glanceable overview, keep list context, shallow depth (1–2 actions), high-frequency overview taps — BookMyShow LE Bottom Sheet LE Bottom Sheet reduced full-screen navigations for **30%+ of user flows**. **Push:** deep multi-step hierarchy, checkout wizards, tools needing strong back-stack history. Do not use sheet for deep checkout flows.
@@ -151,3 +144,22 @@ Next: [04-production-s13-s6.md](04-production-s13-s6.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — How do you embed UIKit inside SwiftUI
+
+**Ask yourself:** How do you embed UIKit inside SwiftUI?
+
+**Answer:** “Use `UIViewControllerRepresentable` or `UIViewRepresentable`. **`make`** creates once; **`update`** pushes new props — do not recreate the UIKit object every SwiftUI pass. Use a **Coordinator** for delegates and target-action. Avoid parent `.id` churn that triggers `make` storms. Do not let a representable silently own a second navigation stack.”
+
+### Puzzle B — Why is dual navigation an anti-pattern
+
+**Ask yourself:** Why is dual navigation an anti-pattern?
+
+**Answer:** “`NavigationPath` and `UINavigationController` both mutating from deeplinks and push taps → double present, lost back stack, analytics double-count. **Pick one root navigation owner**; bridge at edges. Deeplinks, Airship taps, and in-app routing must all write to that single router (Hybrid UI / deeplinks lesson).”
+
+### Puzzle C — How should deeplinks flow in a hybrid app
+
+**Ask yourself:** How should deeplinks flow in a hybrid app?
+
+**Answer:** “URL → parse at app edge → typed Intent → single Router → ensure root ready (queue on cold start) → push/present UIKit host **or** SwiftUI host. Push notification taps use the **same** router as universal links. Mixpanel/Airship must not invent a second navigation path.”

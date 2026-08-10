@@ -1,43 +1,56 @@
-# 01 — Foundations: Taper Rules
+# 01 — Foundations: Taper Rules (Q&A)
+
+> Cover the answer, speak aloud, then check follow-ups. Simple language. Named work only — never S-codes in speech.
 
 ---
 
-## Allowed vs forbidden
+### Q1. Allowed vs forbidden? `(45–60s)`
+**Answer:**
 
-| Allowed | Forbidden |
+> “If anxiety says “study more,” do one 45s definition aloud, then close the laptop.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
 |---|---|
-| Weak flashcards (≤30–40 cards) | Entire deck binge |
-| Story bank **once each** (priority set) | Rewriting STARs from scratch |
-| Skim timing budgets (5 min) | New SD HLD from scratch |
-| Checklist + environment setup | Day 25 rewrite |
-| Light walk / meal prep | “Just one more Medium” |
-| Early sleep | Late caffeine / all-nighter |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-If anxiety says “study more,” do **one** 45s definition aloud, then close the laptop.
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## Weak-card protocol (45–60 min cap)
+### Q2. Weak-card protocol (45–60 min cap)? `(45–60s)`
+**Answer:**
 
-1. Open gotchas + Mock #4 three fix-forwards.  
-2. Pull **only** matching cards.  
-3. Round 1: front → say back → check.  
-4. Round 2: misses only.  
-5. Box closed.
+> “1. Open gotchas + Mock #4 three fix-forwards. 2. Pull only matching cards. 3. Round 1: front → say back → check. 4. Round 2: misses only. 5. Box closed. ---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## Priority stories (once each)
+### Q3. Priority stories (once each)? `(45–60s)`
+**Answer:**
 
-| Order | ID | Why |
-|---|---|---|
-| 1 | S6 | **30%+ nav** |
-| 2 | S8 | **99.95%** ownership |
-| 3 | S9 | AI judgment without worship |
-| 4 | S1 | Hard technical + POP |
-| 5 | S3 or S4 | SDUI **or** pinning (target-company pick) |
-| 6 | S10 or S15 | SDK **or** on-device AI |
+> “Optional micro 30–45s: “Tell me about yourself” spine.”
 
-Optional micro 30–45s: “Tell me about yourself” spine.
+**Follow-ups:**
 
-→ [`02-deep-dive.md`](02-deep-dive.md)
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---

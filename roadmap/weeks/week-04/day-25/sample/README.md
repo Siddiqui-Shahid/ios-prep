@@ -1,6 +1,6 @@
 # Day 25 sample — guided Q&A
 
-> Separate teaching sample. Does **not** replace the main Day 25 modules.  
+> Separate teaching sample. Does **not** replace the main Day 25 modules. 
 > Use this when you want **machine-round structure** explained as **question → module pointer → answer → follow-ups** — Briefs A & B, timing, debrief.
 
 ## How to use
@@ -10,7 +10,7 @@
 3. Read the **Answer** in full.
 4. Cover the follow-up answers and try to speak them, then check.
 
-After the sample, **run** the 3hr session in [`../05-exercises.md`](../05-exercises.md) and debrief with [`../04-questions.md`](../04-questions.md).
+After the sample, **run** the 3hr session in [`../05-exercises.md`](../05-exercises.md) and debrief with [`../07-revision-qna.md`](../07-revision-qna.md).
 
 ## Module map
 
@@ -21,7 +21,7 @@ Full curriculum layout: [`../README.md`](../README.md)
 | Foundations | [01-foundations.md](../01-foundations.md) |
 | Deep dive | [02-deep-dive.md](../02-deep-dive.md) — **Brief A & B specs** |
 | Production bridge | [03-production-bridge.md](../03-production-bridge.md) |
-| Questions | [04-questions.md](../04-questions.md) — sample architecture answers |
+| Questions | [07-revision-qna.md](../07-revision-qna.md) — sample architecture answers |
 | Exercises | [05-exercises.md](../05-exercises.md) — **3hr timed build** |
 
 No `code/` folder today — your Xcode project is the artifact.
@@ -49,4 +49,4 @@ No `code/` folder today — your Xcode project is the artifact.
 
 ## Suggested order
 
-`01` → pick A or B (`02` or `03`) → run [`../05-exercises.md`](../05-exercises.md) → `04` debrief → `05` (catalog SD mock) → [`../04-questions.md`](../04-questions.md).
+`01` → pick A or B (`02` or `03`) → run [`../05-exercises.md`](../05-exercises.md) → `04` debrief → `05` (catalog SD mock) → [`../07-revision-qna.md`](../07-revision-qna.md).

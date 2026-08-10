@@ -9,13 +9,13 @@ Next. Q1. Interviewer: “Design Short-form Video Feed.” How do you open? Answ
 
 Next. Q2. After clarify — what does the optimal flow look like? Answer. Scripted outcomes for this mock: 3-player pool; prefetch ~80%; ABR + Low Power; cursor feed; out: upload/transcode. Good flow: agenda → clarify Qs → confirm → high level design (4 layers + backend + load) → A P I → two crisp dives → ops last 5. Weak flow: silent drawing, happy-path only, no QPS/TTL, invent metrics, skip ops. Follow-ups. They change scope mid-high level design?: Re-confirm in/out in 20s; adjust dives; protect ops.. Backend mesh deep-dive?: Out unless asked — sketch touchpoints, stay client-owned.. Forgot to ask offline?: State online-first + last-good cache as assumption; invite correction..
 
-## §2 Q3. Walk the HLD — client layers, backend, load.
+## §2 Q3. Walk the HLD — client layers, backend, load?
 
-Next. Q3. Walk the HLD — client layers, backend, load Answer. Feed VM → page cursor → AVPlayerPool (prev/current/next) → Video CDN. Thumb pipeline separate. Backend: Feed service + Redis; Video CDN. Load: limit 10; JSON <15KB; ~15MB/player; memory <150MB; TTFF <300ms target. Follow-ups. Why pool?: Avoid alloc/teardown hitch each swipe.. SwiftUI identity?: Stable IDs for cells; don’t recreate players on identity churn..
+Next. Q3. Walk the HLD — client layers, backend, load? Answer. Feed VM → page cursor → AVPlayerPool (prev/current/next) → Video CDN. Thumb pipeline separate. Backend: Feed service + Redis; Video CDN. Load: limit 10; JSON <15KB; ~15MB/player; memory <150MB; TTFF <300ms target. Follow-ups. Why pool?: Avoid alloc/teardown hitch each swipe.. SwiftUI identity?: Stable IDs for cells; don’t recreate players on identity churn..
 
-## §3 Q4. Data / API — entities, endpoints, scale.
+## §3 Q4. Data / API — entities, endpoints, scale?
 
-Next. Q4. Data / API — entities, endpoints, scale Answer. GET /v1/feed?cursor=&limit=10 with stream URLs + thumb. Optional X-Network-Quality. Follow-ups. Tokenized CDN URLs?: Refresh before expiry; don’t log secrets.. Prefetch bytes?: One ahead; not entire catalog..
+Next. Q4. Data / API — entities, endpoints, scale? Answer. GET /v1/feed?cursor=&limit=10 with stream URLs + thumb. Optional X-Network-Quality. Follow-ups. Tokenized CDN URLs?: Refresh before expiry; don’t log secrets.. Prefetch bytes?: One ahead; not entire catalog..
 
 ## §4 Q5. Deep dive 1 — AVPlayerPool sliding window?
 

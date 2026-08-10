@@ -7,7 +7,6 @@
 ---
 
 ### Q1. Interviewer: “Design Instant Messaging & Chat.” How do you open?
-
 **Answer:**
 
 > **Agenda (≤20s):** “I’ll take ~5 minutes clarifying scope and scale, then a four-layer client HLD with backend touchpoints and load, then API/data, two deep dives on **WS reconnect + heartbeat** and **Message state machine**, and close on failure modes, metrics, and kill switches. Does that work?”
@@ -34,7 +33,6 @@
 ---
 
 ### Q2. After clarify — what does the optimal flow look like?
-
 **Answer:**
 
 > **Scripted outcomes for this mock:** WS realtime + REST history; SQLite; UUID idempotency; media presign; E2EE concepts only unless asked; out: calls.
@@ -54,12 +52,11 @@
 
 ---
 
-### Q3. Walk the HLD — client layers, backend, load.
-
+### Q3. Walk the HLD — client layers, backend, load?
 **Answer:**
 
 > Chat UI → VM → MessageRepository (SQLite) → WSClient + REST. Presence optional.
-> **Backend:** WS gateway; history service; S3 presign; pubsub.
+> **Backend:** WS gateway; history service; presign; pubsub.
 > **Load:** history cursor 50; heartbeat 30s; reconnect ≤60s jitter; store <500MB.
 
 **Follow-ups:**
@@ -74,8 +71,7 @@
 
 ---
 
-### Q4. Data / API — entities, endpoints, scale.
-
+### Q4. Data / API — entities, endpoints, scale?
 **Answer:**
 
 > `wss://…/v1/chat` events: send/ack/incoming. `GET /threads`, `GET /threads/{id}/messages?cursor=`.
@@ -94,7 +90,6 @@
 ---
 
 ### Q5. Deep dive 1 — WS reconnect + heartbeat?
-
 **Answer:**
 
 > 30s ping; detect zombie; exponential backoff + jitter; resume with last_ack seq.
@@ -112,7 +107,6 @@
 ---
 
 ### Q6. Deep dive 2 — Message state machine?
-
 **Answer:**
 
 > local→sending→sent→delivered→read; fail→failed+retry. Offline enqueue. Media: upload presign then send message referencing URL.
@@ -130,7 +124,6 @@
 ---
 
 ### Q7. Ops — failures, metrics, rollout, load?
-
 **Answer:**
 
 > Delivery p99, queue depth, WS drop rate. Kill: force polling mode.
@@ -148,7 +141,6 @@
 ---
 
 ### Q8. Flow scorecard — did you hit the optimal spine?
-
 **Answer:**
 
 > **Pass bar:** clarify + agenda in ≤5; HLD shows 4 layers + backend + load; API has cursors/idempotency as needed; two deep dives; ops with kill switch and concrete metrics.
@@ -165,4 +157,3 @@
 
 **How can I relate to my case:**
 - **Concept-only — no shipped story.** Rehearse this scorecard after every timed mock.
-

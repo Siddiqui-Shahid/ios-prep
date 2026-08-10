@@ -5,11 +5,10 @@
 ---
 
 ### Q1. Keychain vs UserDefaults — when which?
-
 **Answer:**
 
-> **Keychain:** tokens, secrets, cryptographic keys — protected by system ACLs.  
-> **UserDefaults:** theme, flags, non-sensitive preferences — essentially plaintext plist.  
+> **Keychain:** tokens, secrets, cryptographic keys — protected by system ACLs. 
+> **UserDefaults:** theme, flags, non-sensitive preferences — essentially plaintext plist. 
 > **Hard rule:** **Tokens ≠ UserDefaults.** Plist backups and jailbreak tooling expose UD; Keychain is the correct store for auth material.
 
 **Follow-ups:**
@@ -26,11 +25,10 @@
 ---
 
 ### Q2. Where do access and refresh tokens live?
-
 **Answer:**
 
-> **Refresh token:** **Keychain only**; typically `synchronizable = false` for auth tokens.  
-> **Access token:** short-lived; memory + Keychain as needed for relaunch.  
+> **Refresh token:** **Keychain only**; typically `synchronizable = false` for auth tokens. 
+> **Access token:** short-lived; memory + Keychain as needed for relaunch. 
 > **Logout:** clear Keychain locally **and** server revoke. Never stash either token in UserDefaults “for convenience.”
 
 **Follow-ups:**
@@ -47,7 +45,6 @@
 ---
 
 ### Q3. What Keychain accessibility should you mention?
-
 **Answer:**
 
 > Common choice: **`kSecAttrAccessibleAfterFirstUnlock`** — available after first device unlock post-reboot. Stricter options when threat model requires (e.g. passcode-gated). Match accessibility to UX: background refresh vs maximum lockdown. Keys wrapping encrypted DBs also live in Keychain/SEP.
@@ -66,7 +63,6 @@
 ---
 
 ### Q4. How do biometrics fit the auth model?
-
 **Answer:**
 
 > Biometrics are **step-up / unlock Keychain item** — not primary identity by themselves. Pattern: `LocalAuthentication` + `SecAccessControl` on a Keychain item. User still has server-side session/token model. Don’t claim you “store Face ID in the app.”
@@ -85,7 +81,6 @@
 ---
 
 ### Q5. What goes wrong if tokens sit in UserDefaults?
-
 **Answer:**
 
 > Tokens in UserDefaults are readable from plist backups, debugging, and many jailbreak scenarios. Interview line: “UD ‘encrypted’ token” → move to Keychain and rotate. This is a **P0 security fix**, not a style preference. Same chapter forbids inventing that BMS stored prod tokens in UD unless verified.
@@ -104,7 +99,6 @@
 ---
 
 ### Q6. How does Keychain fit the networking HLD?
-
 **Answer:**
 
 > In a networking layer diagram: **Token store (Keychain)** sits beside URLSession/cache/reachability. Interceptors read access token from memory/Keychain; refresh writes back to Keychain on success. Features never touch UserDefaults for secrets. Ads URLSession path (BookMyShow SSL pinning + URLSession migration) assumes this split.
@@ -126,7 +120,6 @@
 ---
 
 ### Q7. Keychain teach-back in one breath?
-
 **Answer:**
 
 > “Secrets, tokens, and keys live in Keychain with appropriate accessibility — never UserDefaults. Prefs and flags live in UserDefaults. Biometrics unlock Keychain items; they aren’t stored in the app. Logout clears Keychain and revokes server-side. End every persistence answer with: **tokens never in UserDefaults.**”
@@ -146,3 +139,24 @@ Next: [04-persistence-tree.md](04-persistence-tree.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — Where do access and refresh tokens live
+
+**Ask yourself:** Where do access and refresh tokens live?
+
+**Answer:** “**Refresh token:** **Keychain only**; typically `synchronizable = false` for auth tokens. 
+> **Access token:** short-lived; memory + Keychain as needed for relaunch. 
+> **Logout:** clear Keychain locally **and** server revoke. Never stash either token in UserDefaults “for convenience.”
+
+### Puzzle B — What Keychain accessibility should you mention
+
+**Ask yourself:** What Keychain accessibility should you mention?
+
+**Answer:** “Common choice: **`kSecAttrAccessibleAfterFirstUnlock`** — available after first device unlock post-reboot. Stricter options when threat model requires (e.g. passcode-gated). Match accessibility to UX: background refresh vs maximum lockdown. Keys wrapping encrypted DBs also live in Keychain/SEP.”
+
+### Puzzle C — How do biometrics fit the auth model
+
+**Ask yourself:** How do biometrics fit the auth model?
+
+**Answer:** “Biometrics are **step-up / unlock Keychain item** — not primary identity by themselves. Pattern: `LocalAuthentication` + `SecAccessControl` on a Keychain item. User still has server-side session/token model. Don’t claim you “store Face ID in the app.”

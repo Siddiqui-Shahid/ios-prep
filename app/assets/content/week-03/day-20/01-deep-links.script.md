@@ -9,9 +9,9 @@ Next. Q1. Universal Links vs custom URL scheme — when which? Answer. Universal
 
 Next. Q2. What is AASA, and what can go wrong? Answer. apple-app-site-association JSON at https://domain/.well-known/apple-app-site-association — lists appIDs (TEAMID.bundle) and paths. Must be HTTPS with correct content-type. CDN/OS caching can delay fixes after you deploy AASA changes. Size limits apply — keep file lean. Follow-ups. Link opens Safari not app?: Checklist: AASA reachable, appID, paths, entitlements, cache delay, user preference.. “i O S bug” first answer?: Trap — verify AASA and entitlements first.. Path excluded?: Link won’t open app even if domain matches..
 
-## §2 Q3. Describe the deep link pipeline end-to-end.
+## §2 Q3. Describe the deep link pipeline end-to-end?
 
-Next. Q3. Describe the deep link pipeline end-to-end Answer. https:// or myapp:// → Scene / onOpenURL → DeepLinkParser (validate, match) → typed AppRoute → AuthGate if needed → AppCoordinator.navigate OR PendingDeepLinkStore.enqueue if nav not ready. One table for every entrypoint. Follow-ups. Why typed enum route?: Parser produces AppRoute; coordinator doesn’t parse strings ad hoc.. Invalid link?: Safe home + metric — don’t crash on bad params.. Dual routers problem?: Push vs UL drift — checkout works from one, 404s from other..
+Next. Q3. Describe the deep link pipeline end-to-end? Answer. https:// or myapp:// → Scene / onOpenURL → DeepLinkParser (validate, match) → typed AppRoute → AuthGate if needed → AppCoordinator.navigate OR PendingDeepLinkStore.enqueue if nav not ready. One table for every entrypoint. Follow-ups. Why typed enum route?: Parser produces AppRoute; coordinator doesn’t parse strings ad hoc.. Invalid link?: Safe home + metric — don’t crash on bad params.. Dual routers problem?: Push vs UL drift — checkout works from one, 404s from other..
 
 ## §3 Q4. What is the cold-start race, and how do you fix it?
 
@@ -29,9 +29,9 @@ Next. Q6. Hybrid SwiftUI/UIKit — what does routing need? Answer. Coordinator o
 
 Next. Q7. Deferred deep links — what to claim honestly? Answer. Post-install attribution: first launch fetches pending route with expiry (industry often ~days, not forever). Privacy and probabilistic matching limits — don’t overclaim certainty. Prefer first-party login then route when identity matters. Same router flushes when ready. Follow-ups. Forever pending route?: Bad — expire and fall back to home.. Branch/Adjust internals?: Know concept; don’t invent CTR %.. Organic install?: No deferred route — native onboarding..
 
-## §7 Q8. “Two routers drifted” — tell it as a first-class failure story
+## §7 Q8. “Two routers drifted” — tell it as a first-class failure story?
 
-Next. Q8. “Two routers drifted” — tell it as a first-class failure story Answer. Push and Universal Links are entrypoints only. One DeepLinkRouter and one AppRoute table own behavior. Duplication is how checkout works from a campaign banner and 404s from an https campaign — tables drifted. Symptom: marketing says “push works, links broken” (or the reverse). Fix: unify the routing table; modules register routes through interfaces (Day 15 modular thinking). Hybrid U I / deeplinks lesson: interop costs must be designed; routing is shared discipline. Follow-ups. Who owns the table?: App coordinator / routing module — not each feature switch.. Push payload?: Small route id or URL → same parser.. Test for drift?: Contract tests: same AppRoute from UL fixture and push fixture..
+Next. Q8. “Two routers drifted” — tell it as a first-class failure story? Answer. Push and Universal Links are entrypoints only. One DeepLinkRouter and one AppRoute table own behavior. Duplication is how checkout works from a campaign banner and 404s from an https campaign — tables drifted. Symptom: marketing says “push works, links broken” (or the reverse). Fix: unify the routing table; modules register routes through interfaces (Day 15 modular thinking). Hybrid U I / deeplinks lesson: interop costs must be designed; routing is shared discipline. Follow-ups. Who owns the table?: App coordinator / routing module — not each feature switch.. Push payload?: Small route id or URL → same parser.. Test for drift?: Contract tests: same AppRoute from UL fixture and push fixture..
 
 ## §8 Q9. Marketing wants `myapp://` everywhere — how do you push back?
 

@@ -5,10 +5,9 @@
 ---
 
 ### Q1. Metric trio — light retrieval?
-
 **Answer:**
 
-> “**30L+ DAU** context at BookMyShow, **99.95%+ crash-free** discipline on my paths, and **30%+** fewer full-screen navigations from the LE bottom sheet on targeted flows.”  
+> “**30L+ DAU** context at BookMyShow, **99.95%+ crash-free** discipline on my paths, and **30%+** fewer full-screen navigations from the LE bottom sheet on targeted flows.” 
 > **30–45s** — speak once, check wording against resume, stop.
 
 **Follow-ups:**
@@ -25,10 +24,9 @@
 ---
 
 ### Q2. Coding opener — light retrieval?
-
 **Answer:**
 
-> “Clarify constraints, brute force, optimized pattern, complexity, edges, then code.”  
+> “Clarify constraints, brute force, optimized pattern, complexity, edges, then code.” 
 > **30s** — same spine as Mock #4; no new pattern study.
 
 **Follow-ups:**
@@ -45,10 +43,9 @@
 ---
 
 ### Q3. System design opener — light retrieval?
-
 **Answer:**
 
-> “Five minutes on scope, then architecture, deep dives, and ops — starting with clarifying questions.”  
+> “Five minutes on scope, then architecture, deep dives, and ops — starting with clarifying questions.” 
 > **30s** — protects ops block mentally before you walk in.
 
 **Follow-ups:**
@@ -68,10 +65,9 @@
 ---
 
 ### Q4. AI tools — light retrieval?
-
 **Answer:**
 
-> “I use AI as an accelerator inside context and review — District lesson. I’m still author of record on architecture and critical tests. Product on-device AI is a different story.”  
+> “I use AI as an accelerator inside context and review — District lesson. I’m still author of record on architecture and critical tests. Product on-device AI is a different story.” 
 > **45s** — District Free Parking + Clean/MVVM + AI tooling compressed; no tool-worship.
 
 **Follow-ups:**
@@ -91,10 +87,9 @@
 ---
 
 ### Q5. What will you NOT do tonight?
-
 **Answer:**
 
-> “No new topics. Sleep.”  
+> “No new topics. Sleep.” 
 > **20s** — say it aloud as a commitment, then execute.
 
 **Follow-ups:**
@@ -111,7 +106,6 @@
 ---
 
 ### Q6. Anxiety: “I didn’t cover X” — what now?
-
 **Answer:**
 
 > If X was a Mock #4 fix-forward → **one flashcard**, Round 1–2 only. Otherwise **park it**. In interview: clarify, state an assumption, relate to nearest shipped system. Then **close the laptop** — anxiety is not a syllabus gap to fix at midnight.
@@ -130,10 +124,9 @@
 ---
 
 ### Q7. What is the ≤20s production bridge line?
-
 **Answer:**
 
-> “I’m ready to talk ownership, trade-offs, and systems I’ve shipped — I’ll keep answers timed and concrete.”  
+> “I’m ready to talk ownership, trade-offs, and systems I’ve shipped — I’ll keep answers timed and concrete.” 
 > Optional before join call. **No new claims. No new metrics.** Retrieve from story bank only.
 
 **Follow-ups:**
@@ -151,3 +144,25 @@ Next: [`../05-exercises.md`](../05-exercises.md) taper protocol → log “Day 2
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — Coding opener — light retrieval
+
+**Ask yourself:** Coding opener — light retrieval?
+
+**Answer:** “Clarify constraints, brute force, optimized pattern, complexity, edges, then code.” 
+> **30s** — same spine as Mock #4; no new pattern study.
+
+### Puzzle B — System design opener — light retrieval
+
+**Ask yourself:** System design opener — light retrieval?
+
+**Answer:** “Five minutes on scope, then architecture, deep dives, and ops — starting with clarifying questions.” 
+> **30s** — protects ops block mentally before you walk in.
+
+### Puzzle C — AI tools — light retrieval
+
+**Ask yourself:** AI tools — light retrieval?
+
+**Answer:** “I use AI as an accelerator inside context and review — District lesson. I’m still author of record on architecture and critical tests. Product on-device AI is a different story.” 
+> **45s** — District Free Parking + Clean/MVVM + AI tooling compressed; no tool-worship.

@@ -1,6 +1,6 @@
 # Day 03 — ARC, Retain Cycles, weak/unowned, Instruments
 
-> Week 1 · Full study (self-contained) · ~4–5 hrs  
+> Week 1 · Full study (self-contained) · ~4–5 hrs 
 > Revision twin: [revision/weeks/week-01/day-03.md](../../../revision/weeks/week-01/day-03.md)
 
 ## Outcomes
@@ -21,7 +21,7 @@ By end of day, without notes, you can:
 3. `03-production-bridge.md` — reliability culture + Applied triage playbook
 4. `code/RetainCycleDemo.swift` — read the cycle, then the fixes
 5. `sample/` — spoken Q&A + brain puzzles (`01`–`06`; `06` folds exercise/flash-recall leftovers)
-6. `04-questions.md` — normal Qs + tricky **T1–T10** brain puzzles; timed cites **T1, T5, T8**
+6. `sample/07-revision-qna.md` — normal Qs + tricky **T1–T10** brain puzzles; timed cites **T1, T5, T8**
 7. `05-exercises.md` — drills with in-repo solutions (still do the hands-on work here)
 8. Revision twin for timed drill under pressure
 
@@ -32,7 +32,7 @@ By end of day, without notes, you can:
 | Foundations | [01-foundations.md](01-foundations.md) |
 | Deep dive | [02-deep-dive.md](02-deep-dive.md) |
 | Production bridge | [03-production-bridge.md](03-production-bridge.md) |
-| Questions | [04-questions.md](04-questions.md) |
+| Questions | [sample/07-revision-qna.md](sample/07-revision-qna.md) |
 | Exercises | [05-exercises.md](05-exercises.md) |
 | Code | [code/RetainCycleDemo.swift](code/RetainCycleDemo.swift) |
 | Sample Q&A (guided) | [sample/](sample/README.md) — includes **06-module-drills** leftovers from these modules |
@@ -71,6 +71,6 @@ In sample **relate** sections use **named work only** — never S-codes.
 
 ## Timed drill (after full study)
 
-1. Speak Q1, Q2, Q5, Q11, **T1, T5, T8** from `04-questions.md` on a timer.
+1. Speak Q1, Q2, Q5, Q11, **T1, T5, T8** from `sample/07-revision-qna.md` on a timer.
 2. 60s: Verified reliability culture + Applied Graph triage (honesty labels).
 3. Score against [answer-timing-guide.md](../../../timing/answer-timing-guide.md); log misses.

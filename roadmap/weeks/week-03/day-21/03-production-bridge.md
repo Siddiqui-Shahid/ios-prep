@@ -1,41 +1,73 @@
-# 03 — Production Bridge: Which Story for Which Prompt
+# 03 — Production Bridge: Which Story for Which Prompt (Q&A)
 
-## 1. Prompt A — SDUI
+> Cover the answer, speak aloud, then check follow-ups. Simple language. Named work only — never S-codes in speech.
 
-| Story | Use |
+---
+
+### Q1. Prompt A — SDUI? `(45–60s)`
+**Answer:**
+
+> “≤20s grounding line: “I’ll ground this in patterns I’ve shipped — protocol-driven backend header/search and server-driven splash — then generalise the engine cleanly.”.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
 |---|---|
-| **S3** | Backend-driven header; search debounce/MVVM — primary SDUI proof |
-| **S12** | Server-driven splash / cold-start product surface |
-| **S6** | Optional: lightweight LE sheet for 30%+ flows — product UX, not whole engine |
-| **S3-A1** | Applied: schema versioning + unknown-component fallback design |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-**≤20s grounding line:**  
-> “I’ll ground this in patterns I’ve shipped — protocol-driven backend header/search and server-driven splash — then generalise the engine cleanly.”
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
-## 2. Prompt B — Networking + pinning
+---
 
-| Story | Use |
+### Q2. Prompt B — Networking + pinning? `(45–60s)`
+**Answer:**
+
+> “≤20s grounding line: “I’ll ground this in Ads URLSession ownership with HTTPS, pinning, and allowlisting — plus percentile latency culture — then generalise the client.”.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
 |---|---|
-| **S4** | Alamofire → URLSession; HTTPS; pinning; domain whitelist |
-| **S4-A1** | Rotation/backup/break-glass as **design** |
-| **S5** | Firebase Performance p50/p90 journeys |
-| **S2** | Only if token/shared-map races — **path-scoped**, not sole CFS |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-**≤20s grounding line:**  
-> “I’ll ground this in Ads URLSession ownership with HTTPS, pinning, and allowlisting — plus percentile latency culture — then generalise the client.”
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
-## 3. Ops vocabulary (both)
+---
 
-- **30L+ DAU** scale context  
-- **99.95%+ CFS** + IMOC pause (S8)  
-- Journey **p50/p90** (S5)  
-- Never fabricate QPS or drop-off %
+### Q3. Ops vocabulary (both)? `(45–60s)`
+**Answer:**
 
-## 4. Forbidden mash-ups
+> “- 30L+ DAU scale context - 99.95%+ CFS + IMOC pause - Journey p50/p90 - Never fabricate QPS or drop-off %.”
 
-| Slip | Fix |
+**Follow-ups:**
+
+| Follow-up | Answer |
 |---|---|
-| S2 caused CFS | Contributor only |
-| S4-A1 “we shipped runbook” | Design label |
-| SecKey = SPKI | DER hash |
-| Averages only in ops | Percentiles |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q4. Forbidden mash-ups? `(45–60s)`
+**Answer:**
+
+> “See the notes for this topic and speak the core idea in simple words.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---

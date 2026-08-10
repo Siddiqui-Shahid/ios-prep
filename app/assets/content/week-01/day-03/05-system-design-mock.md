@@ -1,14 +1,13 @@
 # Sample 05 — System-design mock: Image Loading Library (Q&A)
 
-> Guided **mock interview** flow. Speak answers aloud against a 45‑min timer.  
-> **Source:** [`ios-system-design/docs/image-loading-library.md`](../../../../ios-system-design/docs/image-loading-library.md) · timing: [`cheatsheet.md`](../../../../ios-system-design/docs/cheatsheet.md)  
-> **Angle:** Day 03 — **memory / decode** (ARC & Instruments parallel).  
+> Guided **mock interview** flow. Speak answers aloud against a 45‑min timer. 
+> **Source:** [`ios-system-design/docs/image-loading-library.md`](../../../../ios-system-design/docs/image-loading-library.md) · timing: [`cheatsheet.md`](../../../../ios-system-design/docs/cheatsheet.md) 
+> **Angle:** Day 03 — **memory / decode** (ARC & Instruments parallel). 
 > **Brain puzzles** at the bottom — ownership twists interviewers love.
 
 ---
 
 ### Q1. Interviewer: “Design Image Loading Library.” How do you open?
-
 **Answer:**
 
 > “I’ll take about five minutes clarifying scope and scale. Then a four-layer client high-level design with backend touchpoints and load. Then API and data. Two deep dives: three-tier cache, and downsample plus dedupe plus cancel. I’ll close on failures, metrics, and kill switches. Does that plan work?
@@ -32,7 +31,6 @@ Do **not** draw until they answer or you state labeled assumptions. Keep backend
 ---
 
 ### Q2. After clarify — what does the good flow look like?
-
 **Answer:**
 
 > “For this mock: still-image pipeline; L1 around 50MB NSCache plus disk around 500MB; cancel on reuse. Out: GIF/video decode, upload, CDN design.
@@ -54,8 +52,7 @@ Do **not** draw until they answer or you state labeled assumptions. Keep backend
 
 ---
 
-### Q3. Walk the HLD — client layers, backend, load
-
+### Q3. Walk the HLD — client layers, backend, load?
 **Answer:**
 
 > “Pipeline: URL, then dedupe, then L1 NSCache, then L2 disk, then network CDN, then ImageIO downsample, then display. Download and decode off main; MainActor only for UIImage assignment. Load: Cache-Control max-age around seven days; Accept webp/avif; decoded cost is width times height times four — always downsample to view size. Where ARC bites: retain cycles in completion handlers; cancel tokens on deinit and reuse.”
@@ -73,8 +70,7 @@ Do **not** draw until they answer or you state labeled assumptions. Keep backend
 
 ---
 
-### Q4. Data / API — entities, endpoints, scale
-
+### Q4. Data / API — entities, endpoints, scale?
 **Answer:**
 
 > “GET the image URL with Cache-Control. Library API: load with url, target size, priority — returns a cancelable Task. Dedupe identical in-flight URLs; priority boost for on-screen. Completions capture weak owners so a recycled cell doesn’t keep a request graph alive forever.”
@@ -93,7 +89,6 @@ Do **not** draw until they answer or you state labeled assumptions. Keep backend
 ---
 
 ### Q5. Deep dive 1 — 3-tier cache?
-
 **Answer:**
 
 > “L1 cost-based NSCache around 50MB responds to memory warnings. L2 disk LRU around 500MB. Network last. Combined hit target above 80%; L1 above 40%. On memory warning clear L1, keep disk. Disk full — LRU free about 20% and continue. This is bounded cache design — not a singleton that forever retains screens.”
@@ -112,7 +107,6 @@ Do **not** draw until they answer or you state labeled assumptions. Keep backend
 ---
 
 ### Q6. Deep dive 2 — Downsample, dedupe, cancel?
-
 **Answer:**
 
 > “ImageIO create thumbnail at display size — never full decode then scale. Cancel on prepareForReuse; generation token ignores stale completions. Decode p50 under 10ms / p99 under 50ms as labeled targets from the spec. Same cancel discipline as Task-outlives-screen on Day 03 — don’t let a completion strongly own the cell or VC.”
@@ -131,7 +125,6 @@ Do **not** draw until they answer or you state labeled assumptions. Keep backend
 ---
 
 ### Q7. Ops — failures, metrics, rollout, load?
-
 **Answer:**
 
 > “Track L1/L2 hit rates, decode latency, OOM rate under 0.1% as a target, scroll hitch. Kill switch: disable high-res prefetch under memory pressure. Instruments angle from Day 03: Allocations for decode spikes and abandoned heaps; Memory Graph if a loader completion keeps a VC alive; Crashlytics for jetsam clusters — Graph doesn’t replace fleet signals.”
@@ -151,7 +144,6 @@ Do **not** draw until they answer or you state labeled assumptions. Keep backend
 ---
 
 ### Q8. Flow scorecard — did you hit the optimal spine?
-
 **Answer:**
 
 > “Pass bar: clarify plus agenda in five minutes or less; HLD shows four layers plus backend plus load; API has cancel and dedupe; two deep dives; ops with kill switch and concrete metrics. Anti-patterns: main-thread decode; unbounded Dictionary cache; inventing QPS as fact; never reaching ops; blob architecture with no data flow. Spine: zero to five clarify, five to fifteen HLD, fifteen to twenty-five API, twenty-five to forty dives, forty to forty-five ops.”
@@ -182,7 +174,7 @@ Loader stores `onSuccess` that strongly captures the cell/VC. User scrolls away;
 
 ### Puzzle B — Forever Dictionary “cache”
 
-Someone uses `static var cache = [URL: UIImage]()` with no eviction.
+Someone uses `static var cache = [URL: UIImage]` with no eviction.
 
 **Ask:** Cycle or abandoned?
 

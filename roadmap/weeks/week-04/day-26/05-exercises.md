@@ -1,45 +1,90 @@
-# 05 — Exercises (Behavioral Day)
+# 05 — Exercises (Behavioral Day) (Q&A)
 
-> No coding. Voice memos are the deliverable.
-
----
-
-## 1. Full pass (priority)
-
-Record each once with timer 2:30:
-
-1. S6  
-2. S8  
-3. S9  
-4. S1  
-
-Re-record any >3:15 — cut Action to 3 bullets.
+> Cover the answer, speak aloud, then check follow-ups. Simple language. Named work only — never S-codes in speech.
 
 ---
 
-## 2. Second pass
+### Q1. Full pass (priority)? `(45–60s)`
+**Answer:**
 
-S10, S14, S15, S2 — once each if energy remains; else park for Day 28.
+> “Record each once with timer 2:30: 1. 2. 3. 4. .”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 3. Cold prompts
+### Q2. Second pass? `(45–60s)`
+**Answer:**
 
-Partner throws Q1–Q6 / T1–T5; you may only answer with bank stories.
+> “, , , — once each if energy remains; else park for Day 28. ---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 4. Timed drill
+### Q3. Cold prompts? `(45–60s)`
+**Answer:**
 
-5 STARs including conflict, incident, AI tooling. Score ≥4 on timing guide behavioral rubric.
+> “Partner throws Q1–Q6 / T1–T5; you may only answer with bank stories. ---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 5. Exit
+### Q4. Timed drill? `(45–60s)`
+**Answer:**
 
-- [ ] Four priority scripts clean
-- [ ] Metric trio once
-- [ ] No tool-worship slip on S9
-- [ ] Revision twin: [../../../revision/weeks/week-04/day-26.md](../../../revision/weeks/week-04/day-26.md)
+> “5 STARs including conflict, incident, AI tooling. Score ≥4 on timing guide behavioral rubric. ---.”
 
-**Tomorrow:** Expert Mock #4 — sleep.
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q5. Exit? `(45–60s)`
+**Answer:**
+
+> “- [ ] Four priority scripts clean - [ ] Metric trio once - [ ] No tool-worship slip on - [ ] Revision twin: ../../../revision/weeks/week-04/day-26.md Tomorrow: Expert Mock #4 — sleep.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---

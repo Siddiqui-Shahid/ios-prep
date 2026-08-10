@@ -5,7 +5,6 @@
 ---
 
 ### Q1. How does schema versioning work in 60 seconds?
-
 **Answer:**
 
 > Payloads carry `schemaVersion`. Client compares against min/max supported. **Major too new:** reject → hard fallback + metric. **Major too old:** fallback or force-upgrade messaging (product call). **Within range:** parse and render. **Unknown JSON fields:** ignore — forward compatible additive change. **Unknown component types:** skip + metric — not reject whole tree unless root becomes empty. **Breaking structural change:** bump major + dual-publish old and new until old clients fall below threshold.
@@ -27,7 +26,6 @@
 ---
 
 ### Q2. What happens at the version gate for each case?
-
 **Answer:**
 
 > | Case | Gate | UI |
@@ -53,7 +51,6 @@
 ---
 
 ### Q3. What is the unknown-component policy?
-
 **Answer:**
 
 > Server sends `type: "countdownTimer"` but client registry only knows `{logo, promoBanner, searchEntry}`. **Policy:** skip that node, emit `sdui_unknown_component` metric with type name and schemaVersion, **continue rendering siblings**. Never `fatalError` on CMS strings. New types require an app release to register the factory; until then, skip is the crash-free contract. Server should use capability flags to avoid sending unsupported types when possible.
@@ -72,7 +69,6 @@
 ---
 
 ### Q4. What does FallbackEngine provide?
-
 **Answer:**
 
 > Layers: **memory cache** for fast revisit (lost on process death); **disk last-known-good** for offline/5xx/parse fail (TTL + version stamp — stale content risk); **baked default** in bundle when no cache; **feature-flag kill** to native default if bad schema in wild. Offline shows LKG if fresh enough; else baked default. Never leave header/splash as blank chrome — empty root triggers hard fallback.
@@ -90,8 +86,7 @@
 
 ---
 
-### Q5. Walk schema evolution: additive, new type, breaking.
-
+### Q5. Walk schema evolution: additive, new type, breaking?
 **Answer:**
 
 > **Additive:** optional `props.subtitle` on existing `promoBanner` — old clients ignore unknown keys; banner still renders. **New type:** `countdownTimer` — old clients skip + metric; new clients register after App Store ships; CMS enables only for builds advertising capability. **Breaking:** renaming `children` to `nodes` without major bump breaks parsers — ship `schemaVersion: 4`, dual-publish v3 and v4, or keep additive shape instead.
@@ -110,7 +105,6 @@
 ---
 
 ### Q6. How do you test SDUI without combinatorial UITest explosion?
-
 **Answer:**
 
 > Unit: fixture per schema version through gate + parser; registry tests for known types; chaos payload with unknown types asserts no crash; empty-root fixture asserts hard fallback; action allowlist tests for unknown action no-op. Snapshots for critical chrome layouts. Few XCUITest golden paths (launch → header visible). Don’t UITest every CMS combination — combinatorial explosion. Prefer contract tests + skip-path unit tests.
@@ -129,7 +123,6 @@
 ---
 
 ### Q7. What is the decision rule card for SDUI?
-
 **Answer:**
 
 > (1) Dynamic content/layout + native quality → SDUI hybrid. (2) Always: version gate + unknown skip + fallback. (3) Actions allowlisted; no script exec. (4) Splash: cache + timeout default. (5) New types need app release — CMS isn’t infinite. (6) Speak BookMyShow backend-driven header & search verified; BookMyShow backend-driven header & search-A1 as design for versioning/fallback discipline.
@@ -151,7 +144,6 @@
 ---
 
 ### Q8. Personalized SDUI cache — how do you prevent a privacy leak?
-
 **Answer:**
 
 > Personalized payloads must **not** live in a single global disk slot. Cache keys include **user or session**, and **logout clears** them. Be intentional about what splash or header may contain and how long it persists. Guest versus logged-in variants are different keys. A shared cache is how you leak another user’s promo — or worse — across accounts on a family device.
@@ -170,7 +162,6 @@
 ---
 
 ### Q9. How do you keep iOS / Android SDUI parity?
-
 **Answer:**
 
 > Parity is **negotiated**, not hoped. It comes from a **shared schema spec**, **capability negotiation**, and **contract tests in CI** against each platform’s registry. Temporary capability gaps are OK if the server targets correctly. A new component ships in native apps first, then CMS starts using it. Copy-pasting JSON and hoping is how iOS renders a banner Android skips into a lopsided experiment.
@@ -190,3 +181,27 @@ Next: [03-registry-actions-splash.md](03-registry-actions-splash.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What happens at the version gate for each case
+
+**Ask yourself:** What happens at the version gate for each case?
+
+**Answer:** “| Case | Gate | UI |
+> |---|---|---|
+> | Version within client min/max | accept | Render tree |
+> | `payload.version > clientMax` | reject_too_new | FallbackEngine |
+> | `payload.version < clientMin` | reject_too_old | Fallback or upgrade UX |
+> | Missing version on legacy | documented v1 policy | Treat as legacy default |”
+
+### Puzzle B — What is the unknown-component policy
+
+**Ask yourself:** What is the unknown-component policy?
+
+**Answer:** “Server sends `type: "countdownTimer"` but client registry only knows `{logo, promoBanner, searchEntry}`. **Policy:** skip that node, emit `sdui_unknown_component` metric with type name and schemaVersion, **continue rendering siblings**. Never `fatalError` on CMS strings. New types require an app release to register the factory; until then, skip is the crash-free contract. Server should use capability flags to avoid sending unsupported types when possible.”
+
+### Puzzle C — What does FallbackEngine provide
+
+**Ask yourself:** What does FallbackEngine provide?
+
+**Answer:** “Layers: **memory cache** for fast revisit (lost on process death); **disk last-known-good** for offline/5xx/parse fail (TTL + version stamp — stale content risk); **baked default** in bundle when no cache; **feature-flag kill** to native default if bad schema in wild. Offline shows LKG if fresh enough; else baked default. Never leave header/splash as blank chrome — empty root triggers hard fallback.”

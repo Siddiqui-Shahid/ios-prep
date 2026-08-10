@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What does async-signal-safe mean in the crash path?
-
 **Answer:**
 
 > In a signal handler you may only use APIs guaranteed **async-signal-safe** — typically preallocated buffers and syscalls like `write`. **Forbidden:** malloc, ObjC/Swift runtime calls, normal logging, locks, network upload. The crash path survives long enough to **persist a report** — not to run a full-featured dump with normal frameworks.
@@ -24,10 +23,9 @@
 ---
 
 ### Q2. What happens conceptually inside the handler?
-
 **Answer:**
 
-> On fatal signal: suspend other threads (implementation-dependent — be honest it’s delicate) → capture backtrace/registers into **preallocated** buffer → `write()` to mmap/file descriptor → reset handler / abort to terminate. Breadcrumbs were already recorded on the happy path into a lock-free ring.
+> On fatal signal: suspend other threads (implementation-dependent — be honest it’s delicate) → capture backtrace/registers into **preallocated** buffer → `write` to mmap/file descriptor → reset handler / abort to terminate. Breadcrumbs were already recorded on the happy path into a lock-free ring.
 
 **Follow-ups:**
 
@@ -43,7 +41,6 @@
 ---
 
 ### Q3. How should breadcrumbs be designed?
-
 **Answer:**
 
 > **Ring buffer**, last N events (~50–100 class): navigations, key actions, HTTP status codes — **scrub** tokens, auth headers, PII at source. Filled on happy path with lock-free / careful concurrency — crash may interrupt mid-write. Privacy incident if auth headers logged → Sev, rotate, lint forbidden keys.
@@ -62,7 +59,6 @@
 ---
 
 ### Q4. How does symbolication work and fail?
-
 **Answer:**
 
 > Report carries **build UUID** → server finds matching **dSYM** → load address + frame offset → function/file/line. Failures: missing dSYM upload in CI (unreadable stacks), mismatched build UUID, legacy bitcode confusion. **Day 20 CI link:** every TestFlight/App Store build uploads symbols.
@@ -81,7 +77,6 @@
 ---
 
 ### Q5. What are honest limits of OOM detection?
-
 **Answer:**
 
 > Jetsam `SIGKILL` is **not** a normal catchable crash path. Use next-launch heuristics (high last footprint + no clean exit + no crash file), **MetricKit** OOM/exit diagnostics on delay, and lab **Memory Graph / Allocations** for reproduction. Be honest: OOM stacks are often heuristic, not as clean as SEGV with good handlers.
@@ -100,7 +95,6 @@
 ---
 
 ### Q6. What are upload reliability rules?
-
 **Answer:**
 
 > **Do:** persist on crash; upload next cold start; backoff + quota; cap pending reports. **Don’t:** network inside signal handler; delete last report before server ack; unlimited disk fill from queued reports.
@@ -119,7 +113,6 @@
 ---
 
 ### Q7. What non-fatal error hygiene matters?
-
 **Answer:**
 
 > Group, sample, fix top offenders. Don’t equate non-fatal volume with CFS. Promote to P1 when user-impacting on critical path (payments). Alert fatigue kills incident response — same discipline as breadcrumb PII.
@@ -138,7 +131,6 @@
 ---
 
 ### Q8. Why is OSLog / logging inside a signal handler a trap?
-
 **Answer:**
 
 > **OSLog and normal logging frameworks are not async-signal-safe.** Calling them from a signal handler is how you get a **secondary crash or deadlock**. The crash writer must use a **precomputed path** — mmap and safe writes — without allocating. **Breadcrumbs are recorded earlier on the happy path** so the handler only persists what’s already there. Common wrong answer: “Just OSLog from the signal handler.”
@@ -158,3 +150,22 @@ Next: [03-imoc-triage.md](03-imoc-triage.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What happens conceptually inside the handler
+
+**Ask yourself:** What happens conceptually inside the handler?
+
+**Answer:** “On fatal signal: suspend other threads (implementation-dependent — be honest it’s delicate) → capture backtrace/registers into **preallocated** buffer → `write` to mmap/file descriptor → reset handler / abort to terminate. Breadcrumbs were already recorded on the happy path into a lock-free ring.”
+
+### Puzzle B — How should breadcrumbs be designed
+
+**Ask yourself:** How should breadcrumbs be designed?
+
+**Answer:** “**Ring buffer**, last N events (~50–100 class): navigations, key actions, HTTP status codes — **scrub** tokens, auth headers, PII at source. Filled on happy path with lock-free / careful concurrency — crash may interrupt mid-write. Privacy incident if auth headers logged → Sev, rotate, lint forbidden keys.”
+
+### Puzzle C — How does symbolication work and fail
+
+**Ask yourself:** How does symbolication work and fail?
+
+**Answer:** “Report carries **build UUID** → server finds matching **dSYM** → load address + frame offset → function/file/line. Failures: missing dSYM upload in CI (unreadable stacks), mismatched build UUID, legacy bitcode confusion. **Day 20 CI link:** every TestFlight/App Store build uploads symbols.”

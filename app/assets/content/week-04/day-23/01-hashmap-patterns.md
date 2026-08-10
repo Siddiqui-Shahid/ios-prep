@@ -5,7 +5,6 @@
 ---
 
 ### Q1. When does a HashMap beat nested loops?
-
 **Answer:**
 
 > When you need **O(1) expected lookups** instead of rescanning: “have I seen X?”, “where was X?”, “how many X?”, “group by signature”, “prefix sum → count”, or sliding-window counts. Brute nested loops is O(n²); one pass with a map is expected O(n) time, O(n) space.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. How does Two Sum work as the intern demo?
-
 **Answer:**
 
 > For each `nums[i]`, if `target - nums[i]` is already in the map, return indices. Else store `nums[i] → i`. One pass, expected O(n). Say aloud: “Hash when I need indices or unsorted input; sort alternative when memory is tight and indices don’t matter.”
@@ -43,7 +41,6 @@
 ---
 
 ### Q3. Subarray sum equals K — why prefix + hash?
-
 **Answer:**
 
 > Maintain running `prefix` and count how many earlier prefixes equal `prefix - K`. Map `prefix → frequency`. **Negatives break** sliding-window monotonicity — don’t use two pointers here. O(n) time, O(n) space.
@@ -62,7 +59,6 @@
 ---
 
 ### Q4. How do I group anagrams or isomorphic strings?
-
 **Answer:**
 
 > Build a **canonical key** — sorted string O(k log k) or count tuple O(k) — map key → list of originals. Isomorphic: map char pattern consistently. Expected O(n · k) time, O(n · k) space.
@@ -81,7 +77,6 @@
 ---
 
 ### Q5. Sliding window + hash — what hygiene matters?
-
 **Answer:**
 
 > Track counts in current window; shrink left when invariant breaks. When a key’s count hits **zero, remove it** from the map so `map.count` reflects distinct keys — forgetting this breaks “exactly K distinct” variants. O(n) time, O(Σ) or O(n) space.
@@ -100,7 +95,6 @@
 ---
 
 ### Q6. What complexity script do I say for hash problems?
-
 **Answer:**
 
 > “Dictionary lookup is **expected O(1)**. Pathological collisions can degrade toward O(n) — theoretical in interviews; I design good keys and state **expected O(n)** total. Space O(n).” For group anagrams: O(n · k log k) sorted keys or O(n · k) counts.
@@ -119,7 +113,6 @@
 ---
 
 ### Q7. What is the hash “say this first” script?
-
 **Answer:**
 
 > “Clarify uniqueness and whether order matters. Brute nested loops O(n²). Optimized: hash complements / frequencies for expected O(n). Edges: empties, duplicates, negatives, unicode keys if strings. Coding now.”
@@ -138,7 +131,6 @@
 ---
 
 ### Q8. Design O(1) insert, delete, and getRandom?
-
 **Answer:**
 
 > A hash map alone doesn’t give **uniform random in O(1)**, and an array alone makes **delete O(n)**. Keep an **array of values** plus a **dictionary from value → index**. **Insert:** append and record the index. **Delete:** swap target with the last element, update the map for the swapped value, pop — O(1). **getRandom:** pick a random index into the array. If **duplicates** are allowed, store **sets of indices** per value. Opener: “Array for random, map for index — swap-delete.”
@@ -161,3 +153,22 @@ Next: [02-heap-patterns.md](02-heap-patterns.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — How does Two Sum work as the intern demo
+
+**Ask yourself:** How does Two Sum work as the intern demo?
+
+**Answer:** “For each `nums[i]`, if `target - nums[i]` is already in the map, return indices. Else store `nums[i] → i`. One pass, expected O(n). Say aloud: “Hash when I need indices or unsorted input; sort alternative when memory is tight and indices don’t matter.”
+
+### Puzzle B — Subarray sum equals K — why prefix + hash
+
+**Ask yourself:** Subarray sum equals K — why prefix + hash?
+
+**Answer:** “Maintain running `prefix` and count how many earlier prefixes equal `prefix - K`. Map `prefix → frequency`. **Negatives break** sliding-window monotonicity — don’t use two pointers here. O(n) time, O(n) space.”
+
+### Puzzle C — How do I group anagrams or isomorphic strings
+
+**Ask yourself:** How do I group anagrams or isomorphic strings?
+
+**Answer:** “Build a **canonical key** — sorted string O(k log k) or count tuple O(k) — map key → list of originals. Isomorphic: map char pattern consistently. Expected O(n · k) time, O(n · k) space.”

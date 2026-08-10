@@ -1,13 +1,12 @@
 # Sample 04 — Synchronised dictionaries & actor SafeDict design (Q&A)
 
-> Guided teaching. Say the **Answer** out loud like you’re talking to an interviewer.  
-> Separates **shipped** named cases from **design-if-asked** and **lab-only** so you never blur them.  
+> Guided teaching. Say the **Answer** out loud like you’re talking to an interviewer. 
+> Separates **shipped** named cases from **design-if-asked** and **lab-only** so you never blur them. 
 > **Brain puzzles** at the bottom — cover the answer, think, then check.
 
 ---
 
 ### Q1. What can you claim for BookMyShow synchronised dictionaries?
-
 **Answer:**
 
 > “Shared async state at BookMyShow was hit from multiple queues — data races and intermittent crashes. I introduced synchronised dictionary wrappers gated by GCD serial queues, and read-write locks where access was read-heavy. We standardized the access API so call sites could not touch raw storage, validated under concurrency stress and Crashlytics watch, and eliminated concurrent-access crashes on that path. Pattern reused for similar shared maps.”
@@ -28,7 +27,6 @@
 ---
 
 ### Q2. What must you NOT invent for BookMyShow synchronised dictionaries?
-
 **Answer:**
 
 > “Do not invent exact crash counts or percentages fixed by this work alone. Do not say I alone brought the app to 99.95% crash-free — that’s BookMyShow IMOC and crash-free-at-scale culture, not dictionary attribution. Do not claim every dictionary in the app was converted. Do not claim production used the Learning-lab SafeDict.swift file literally.”
@@ -48,7 +46,6 @@
 ---
 
 ### Q3. What is the full BookMyShow synchronised dictionaries STAR Action (~90s)?
-
 **Answer:**
 
 > “Shared mutable dictionaries were accessed from multiple queues, which produced data races and intermittent crashes. I introduced synchronised dictionary wrappers gated by GCD serial queues — and read-write locking where the access pattern was read-heavy — and standardized the access API so call sites could not touch raw storage. We validated under concurrency stress and watched Crashlytics. The races on that path went away, and we reused the pattern wherever shared async maps showed up.”
@@ -69,7 +66,6 @@
 ---
 
 ### Q4. What is the actor SafeDict design coda (not shipped)?
-
 **Answer:**
 
 > “Design direction, not a shipped rewrite: production used GCD. How I’d apply it in a new module is an actor SafeDict with get/set/snapshot — callers await, isolation is in the type system, same boundary idea. Point at Day 05 SafeDictActor as Learning-lab. Say design, not shipped aloud so the interviewer hears honesty.”
@@ -91,7 +87,6 @@
 ---
 
 ### Q5. How do BookMyShow synchronised dictionaries concepts map to interview questions?
-
 **Answer:**
 
 > “Serial vs concurrent — definitions; SafeDict uses serial. Thread-safe dict — private queue API from BookMyShow synchronised dictionaries. Async vs sync write — visibility caveat; prefer sync for read-after-write. Barrier — RW pattern for read-heavy. Deadlock — sync re-entry on any serial queue. Actors — Design: actor SafeDict coda. Why hide queue — call sites re-race if they touch storage or queue.”
@@ -112,7 +107,6 @@
 ---
 
 ### Q6. What are the BookMyShow synchronised dictionaries anti-patterns to avoid?
-
 **Answer:**
 
 > “Saying fixed all crashes at BMS — path-specific race elimination only. Inventing crash percent — stick to qualitative intermittent races eliminated on path. Spelling Final class — it’s final class lowercase. Claiming async set is always visible on the next line — teach sync set. Skipping the actor coda when asked modern approach — give Design: actor SafeDict with an honest label.”
@@ -133,7 +127,6 @@
 ---
 
 ### Q7. How does synchronised dictionaries relate to IMOC / crash-free culture without stealing credit?
-
 **Answer:**
 
 > “BookMyShow synchronised dictionaries is the specific fix — synchronised dictionaries, races on that path. BookMyShow IMOC and crash-free at scale is reliability culture — Crashlytics triage, high crash-free bar at scale. I may say validation included watching Crashlytics. I may not attribute app-wide 99.95% CFS solely to dictionaries or use culture metrics as if they were dictionary results.”
@@ -153,7 +146,6 @@
 ---
 
 ### Q8. What should you deliver in a timed synchronised dictionaries drill?
-
 **Answer:**
 
 > “Twenty seconds: serial-queue API, races gone on path. Three-minute STAR: problem — multi-queue shared dicts — action — serial queue or RW, standardized API, stress plus Crashlytics — result — path clean, pattern reused — lesson — serialize at boundary — then actor coda as design-only SafeDict actor. Flash card: BookMyShow synchronised dictionaries; GCD serial or RW; safe access API.”
@@ -162,7 +154,7 @@
 
 | Follow-up | Answer |
 |---|---|
-| After the drill? | “Main 04-questions for two-layer Q&A timing — including T1 through T10.” |
+| After the drill? | “Main 07-revision-qna for two-layer Q&A timing — including T1 through T10.” |
 | Code aloud? | “Tour SafeDict.swift line-by-line — Learning-lab.” |
 | Actor coda honesty? | “Say design, not shipped — never invent a big-bang rewrite.” |
 

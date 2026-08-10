@@ -1,9 +1,9 @@
 # Audio script — Sample 02 — Push notifications (Q&A)
 > Listen-only sample Q&A from `02-push-notifications.md`. Spoken answers and follow-ups.
 
-## §0 Q1. Walk the push pipeline in order.
+## §0 Q1. Walk the push pipeline in order?
 
-Next. Q1. Walk the push pipeline in order Answer. Permission (contextual, not instant first launch) → register for remote notifications → APNs device token → upload to backend / Airship → campaign or transactional push → user tap → parse payload → same DeepLinkRouter as Universal Links. Foreground delivery uses different handlers but should still unify routing. Follow-ups. Airship vs APNs?: Airship is engagement layer on APNs — segments, journeys; you still know APNs.. Token every launch?: Tokens change; upsert server-side on each register.. Silent push as cron?: Limited wake budget — don’t rely..
+Next. Q1. Walk the push pipeline in order? Answer. Permission (contextual, not instant first launch) → register for remote notifications → APNs device token → upload to backend / Airship → campaign or transactional push → user tap → parse payload → same DeepLinkRouter as Universal Links. Foreground delivery uses different handlers but should still unify routing. Follow-ups. Airship vs APNs?: Airship is engagement layer on APNs — segments, journeys; you still know APNs.. Token every launch?: Tokens change; upsert server-side on each register.. Silent push as cron?: Limited wake budget — don’t rely..
 
 ## §1 Q2. Why must push and Universal Links share one router?
 

@@ -1,6 +1,6 @@
 # Day 25 — Machine Round 3hr (Briefs A & B)
 
-> Week 4 · Full study + timed build (self-contained) · ~3 hrs machine + ~1 hr debrief  
+> Week 4 · Full study + timed build (self-contained) · ~3 hrs machine + ~1 hr debrief 
 > Revision twin: [revision/weeks/week-04/day-25.md](../../../revision/weeks/week-04/day-25.md)
 
 ## Outcomes
@@ -15,7 +15,7 @@
 1. [`01-foundations.md`](01-foundations.md) — operating system + anti-perfectionism
 2. [`02-deep-dive.md`](02-deep-dive.md) — Brief A & B full specs, architectures, cut lines
 3. [`03-production-bridge.md`](03-production-bridge.md) — S3 / S9 / S12 hooks (honest)
-4. [`04-questions.md`](04-questions.md) — two-layer Q&A + **sample architecture answers**
+4. [`sample/07-revision-qna.md`](sample/07-revision-qna.md) — two-layer Q&A + **sample architecture answers**
 5. [`05-exercises.md`](05-exercises.md) — run the 3hr session + debrief (adapted “exercises”)
 6. No `code/` folder — your Xcode project *is* the artifact today
 

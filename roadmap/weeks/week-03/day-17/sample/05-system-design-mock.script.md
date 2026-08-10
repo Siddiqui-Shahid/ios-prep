@@ -9,13 +9,13 @@ Next. Q1. Interviewer: “Design App Performance Monitoring.” How do you open?
 
 Next. Q2. After clarify — what does the optimal flow look like? Answer. Scripted outcomes for this mock: APM client: cold start, hang 250ms, network templates, MetricKit; crash separate; batch gzip upload. Good flow: agenda → clarify Qs → confirm → high level design (4 layers + backend + load) → A P I → two crisp dives → ops last 5. Weak flow: silent drawing, happy-path only, no QPS/TTL, invent metrics, skip ops. Follow-ups. They change scope mid-high level design?: Re-confirm in/out in 20s; adjust dives; protect ops.. Backend mesh deep-dive?: Out unless asked — sketch touchpoints, stay client-owned.. Forgot to ask offline?: State online-first + last-good cache as assumption; invite correction..
 
-## §2 Q3. Walk the HLD — client layers, backend, load.
+## §2 Q3. Walk the HLD — client layers, backend, load?
 
-Next. Q3. Walk the HLD — client layers, backend, load Answer. Instrumentation S D K → ring buffers → batch uploader → ingest/TSDB. Never block main. Load: batch ≤~500KB gzip; background upload; sampling under load. Follow-ups. URL template anti-pattern?: Normalize /users/123 → /users/{id} or cardinality explodes.. Firebase Performance?: BMS traces — listing/checkout/search..
+Next. Q3. Walk the HLD — client layers, backend, load? Answer. Instrumentation S D K → ring buffers → batch uploader → ingest/TSDB. Never block main. Load: batch ≤~500KB gzip; background upload; sampling under load. Follow-ups. URL template anti-pattern?: Normalize /users/123 → /users/{id} or cardinality explodes.. Firebase Performance?: BMS traces — listing/checkout/search..
 
-## §3 Q4. Data / API — entities, endpoints, scale.
+## §3 Q4. Data / API — entities, endpoints, scale?
 
-Next. Q4. Data / API — entities, endpoints, scale Answer. POST /v1/metrics/batch gzip. Local persistence if offline. Follow-ups. PII in spans?: Scrub — no tokens/emails.. Kill switch?: Remote disable S D K if it hangs..
+Next. Q4. Data / API — entities, endpoints, scale? Answer. POST /v1/metrics/batch gzip. Local persistence if offline. Follow-ups. PII in spans?: Scrub — no tokens/emails.. Kill switch?: Remote disable S D K if it hangs..
 
 ## §4 Q5. Deep dive 1 — Cold start measurement?
 

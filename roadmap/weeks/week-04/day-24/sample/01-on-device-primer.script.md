@@ -5,9 +5,9 @@
 
 Next. Q1. What is on-device AI in one sentence? Answer. Retrieval + guarded inference + an explicit degrade path — not “call an LLM.” Private data stays local; models are optional accelerators behind capability checks. Draw the pipeline every time: eligibility → retrieve → prompt → local infer / fallback → stream → metrics. Follow-ups. Always generate?: No — rank-only (GymFlow) or rules (FinTrack fallback) are valid outputs.. Cloud default?: Fails senior privacy + offline bars for finance/health-adjacent data.. SD agenda 10s?: Privacy → retrieve → infer → fallback → metrics..
 
-## §1 Q2. Walk the staff-level pipeline.
+## §1 Q2. Walk the staff-level pipeline?
 
-Next. Q2. Walk the staff-level pipeline Answer. User query → device eligibility (OS, Neural Engine, memory, thermal, Low Power) → retrieve local context (BM25 / vector / rules) → assemble prompt (token budget; minimize PII for any cloud path) → local generate OR cloud fallback OR deterministic template → stream tokens to U I → log quality + failure reason (not raw private prompts). Follow-ups. Eligibility examples?: No FM, thermal serious, memory warning → skip infer.. Stream U I?: AsyncSequence / partial updates; cancel on navigate away.. Metrics?: Coarse events — coach_shown, fallback_rule — not ledger text..
+Next. Q2. Walk the staff-level pipeline? Answer. User query → device eligibility (OS, Neural Engine, memory, thermal, Low Power) → retrieve local context (BM25 / vector / rules) → assemble prompt (token budget; minimize PII for any cloud path) → local generate OR cloud fallback OR deterministic template → stream tokens to U I → log quality + failure reason (not raw private prompts). Follow-ups. Eligibility examples?: No FM, thermal serious, memory warning → skip infer.. Stream U I?: AsyncSequence / partial updates; cancel on navigate away.. Metrics?: Coarse events — coach_shown, fallback_rule — not ledger text..
 
 ## §2 Q3. What do token, quantization, and embedding mean on mobile?
 

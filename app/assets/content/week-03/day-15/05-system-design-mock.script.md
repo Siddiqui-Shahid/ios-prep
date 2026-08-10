@@ -9,13 +9,13 @@ Next. Q1. Interviewer: “Design App Modularization & DI.” How do you open? An
 
 Next. Q2. After clarify — what does the optimal flow look like? Answer. Scripted outcomes for this mock: Stories-style feature module; Interface/Impl; host composition root; size/launch budgets. Good flow: agenda → clarify Qs → confirm → high level design (4 layers + backend + load) → A P I → two crisp dives → ops last 5. Weak flow: silent drawing, happy-path only, no QPS/TTL, invent metrics, skip ops. Follow-ups. They change scope mid-high level design?: Re-confirm in/out in 20s; adjust dives; protect ops.. Backend mesh deep-dive?: Out unless asked — sketch touchpoints, stay client-owned.. Forgot to ask offline?: State online-first + last-good cache as assumption; invite correction..
 
-## §2 Q3. Walk the HLD — client layers, backend, load.
+## §2 Q3. Walk the HLD — client layers, backend, load?
 
-Next. Q3. Walk the HLD — client layers, backend, load Answer. Same module topology; emphasize S D K boundary: public Interface, private Impl, minimal Host A P I. Metrics: binary_size, dyld, incremental build. Follow-ups. Static vs dynamic for S D K?: Static often simpler; dynamic if replacement needed.. Versioning?: Semver Interface; avoid breaking hosts..
+Next. Q3. Walk the HLD — client layers, backend, load? Answer. Same module topology; emphasize S D K boundary: public Interface, private Impl, minimal Host A P I. Metrics: binary_size, dyld, incremental build. Follow-ups. Static vs dynamic for S D K?: Static often simpler; dynamic if replacement needed.. Versioning?: Semver Interface; avoid breaking hosts..
 
-## §3 Q4. Data / API — entities, endpoints, scale.
+## §3 Q4. Data / API — entities, endpoints, scale?
 
-Next. Q4. Data / API — entities, endpoints, scale Answer. StoriesSDK.start(dependency:) ; host provides analytics/network protocols. Follow-ups. Callback hell?: Async sequences / delegates thin.. Tests?: Host fakes via Interface..
+Next. Q4. Data / API — entities, endpoints, scale? Answer. StoriesSDK.start(dependency:) ; host provides analytics/network protocols. Follow-ups. Callback hell?: Async sequences / delegates thin.. Tests?: Host fakes via Interface..
 
 ## §4 Q5. Deep dive 1 — SDK boundary?
 

@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What is ATS, in plain words?
-
 **Answer:**
 
 > **App Transport Security (ATS)** is Apple’s default policy that blocks accidental cleartext HTTP and pushes modern TLS expectations. It is the **floor** for transport — not a substitute for certificate pinning or a guarantee against MITM in hostile trust scenarios. Think: “HTTPS by default, no casual plaintext.”
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. What is the full transport security stack?
-
 **Answer:**
 
 > Stack bottom to top: **ATS** (HTTPS/TLS defaults) → **system certificate chain trust** → optional **SPKI pinning** in URLSession delegate → **domain allowlist** (only call/pin known hosts). Each layer adds policy; none replaces the layer below.
@@ -43,7 +41,6 @@
 ---
 
 ### Q3. What are ATS exceptions, and how should you treat them?
-
 **Answer:**
 
 > ATS exceptions in Info.plist (e.g. allowing arbitrary loads or domain-specific cleartext) are **technical debt**. Justify each one — legacy partner, migration plan, expiry date. Never ship “Allow Arbitrary Loads” casually in production. Senior stance: exceptions need an owner and a sunset.
@@ -62,7 +59,6 @@
 ---
 
 ### Q4. What is a domain allowlist, and why pair it with pinning?
-
 **Answer:**
 
 > A **domain allowlist** restricts which hosts the app calls or pins. You only pin hosts you own or tightly control. Pairing allowlist + pinning prevents accidental calls to unvetted CDNs and keeps pin rotation scoped. Don’t pin arbitrary third-party CDNs you don’t operate — vendor cert rotation becomes your outage.
@@ -84,12 +80,11 @@
 ---
 
 ### Q5. ATS vs pinning vs system trust — quick contrast?
-
 **Answer:**
 
-> **ATS:** blocks cleartext; sets TLS expectations — baseline policy.  
-> **System trust:** CA chain validation — standard HTTPS.  
-> **Pinning:** app-defined SPKI hash must match — extra identity check on sensitive APIs.  
+> **ATS:** blocks cleartext; sets TLS expectations — baseline policy. 
+> **System trust:** CA chain validation — standard HTTPS. 
+> **Pinning:** app-defined SPKI hash must match — extra identity check on sensitive APIs. 
 > **Allowlist:** only approved hosts. Senior line: “ATS is the floor; pinning is an extra check on sensitive hosts.”
 
 **Follow-ups:**
@@ -109,7 +104,6 @@
 ---
 
 ### Q6. What should I say in a ≤20s transport opener?
-
 **Answer:**
 
 > “ATS gives us HTTPS-by-default and modern TLS — that’s the baseline, not pinning. On sensitive modules like Ads we moved to URLSession with HTTPS, SSL pinning, and a domain allowlist so we own trust evaluation end-to-end. Pinning without rotation thinking is an outage generator — that’s separate design work.”
@@ -131,7 +125,6 @@
 ---
 
 ### Q7. What transport mistakes fail senior interviews?
-
 **Answer:**
 
 > Top fails: (1) “ATS = pinning,” (2) pinning without HTTPS, (3) pinning every CDN, (4) soft-fail forever on Ads/auth (silent security regression), (5) ATS exceptions with no expiry plan. Correct stance: layered policy, fail closed on sensitive paths, ops mindset for rotation.
@@ -151,3 +144,22 @@ Next: [02-ssl-pinning-spki.md](02-ssl-pinning-spki.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What is the full transport security stack
+
+**Ask yourself:** What is the full transport security stack?
+
+**Answer:** “Stack bottom to top: **ATS** (HTTPS/TLS defaults) → **system certificate chain trust** → optional **SPKI pinning** in URLSession delegate → **domain allowlist** (only call/pin known hosts). Each layer adds policy; none replaces the layer below.”
+
+### Puzzle B — What are ATS exceptions, and how should you treat them
+
+**Ask yourself:** What are ATS exceptions, and how should you treat them?
+
+**Answer:** “ATS exceptions in Info.plist (e.g. allowing arbitrary loads or domain-specific cleartext) are **technical debt**. Justify each one — legacy partner, migration plan, expiry date. Never ship “Allow Arbitrary Loads” casually in production. Senior stance: exceptions need an owner and a sunset.”
+
+### Puzzle C — What is a domain allowlist, and why pair it with pinning
+
+**Ask yourself:** What is a domain allowlist, and why pair it with pinning?
+
+**Answer:** “A **domain allowlist** restricts which hosts the app calls or pins. You only pin hosts you own or tightly control. Pairing allowlist + pinning prevents accidental calls to unvetted CDNs and keeps pin rotation scoped. Don’t pin arbitrary third-party CDNs you don’t operate — vendor cert rotation becomes your outage.”

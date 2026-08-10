@@ -48,4 +48,4 @@ When the behavioral question is incident ownership, lead with S8 STAR (see story
 
 Next. 7. Checklist before you speak in an interview.
 
-[ ] Did I label Verified vs Applied? [ ] Did I avoid “cycles show in Leaks”? [ ] Did I mention Timer retain + invalidate? [ ] Did I mention NC tokens for the block A P I? [ ] Did I invent a BMS Memory Graph war story?. rewrite as Applied Next: code/RetainCycleDemo.swift, then 04-questions.md.
+[ ] Did I label Verified vs Applied? [ ] Did I avoid “cycles show in Leaks”? [ ] Did I mention Timer retain + invalidate? [ ] Did I mention NC tokens for the block A P I? [ ] Did I invent a BMS Memory Graph war story?. rewrite as Applied Next: code/RetainCycleDemo.swift, then sample/07-revision-qna.md.

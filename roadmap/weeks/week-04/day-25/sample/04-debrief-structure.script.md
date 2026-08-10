@@ -27,7 +27,7 @@ Next. Q6. Production bridge — what may I say after the round? Answer. ≤20s: 
 
 ## §6 Q7. Exit — what should I record after debrief?
 
-Next. Q7. Exit — what should I record after debrief? Answer. Rubric scores written. 60s demo recording or bullet script. Three architecture Q&A spoken from../04-questions.md. Cut lines README committed. One improvement for next machine round (e.g. “tests before 2:30”, “SWR stated at 0:18”). Pass/fail against bar — if fail, one focused redo block scheduled. Follow-ups. Build both briefs later?: Second session — don’t combine in one 3hr.. No Xcode artifact?: Today’s artifact is the project — no code/ folder.. Week 4 exit?: Day 26+ behavioral/architecture — this day is build muscle..
+Next. Q7. Exit — what should I record after debrief? Answer. Rubric scores written. 60s demo recording or bullet script. Three architecture Q&A spoken from 07-revision-qna.md. Cut lines README committed. One improvement for next machine round (e.g. “tests before 2:30”, “SWR stated at 0:18”). Pass/fail against bar — if fail, one focused redo block scheduled. Follow-ups. Build both briefs later?: Second session — don’t combine in one 3hr.. No Xcode artifact?: Today’s artifact is the project — no code/ folder.. Week 4 exit?: Day 26+ behavioral/architecture — this day is build muscle..
 
 ## §7 Q8. Tricky debrief T1 — cache served stale event prices; defend?
 

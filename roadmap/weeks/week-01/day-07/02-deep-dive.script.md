@@ -18,13 +18,13 @@ Interviewer says: “This is Mock #1. Week 1 concurrency and memory. Agenda: sho
 
 Next. 1. Warm-up definitions (10 min).
 
-Ask any 5 from the list. Budget ~45. 60s each. Full model answers: 04-questions.md W1. W12. Scripted set A (default) #: Prompt, Budget. 1: “Struct versus class. when do you choose each?”, 45s. 2: “What is copy-on-write?”, 45s. 3: “weak versus unowned?”, 45s. 4: “Serial versus concurrent queue?”, 45s. 5: “In one minute: how would you design a thread-safe dictionary?”, 60. 90s. Alternate set B P O P in ads · Main-queue deadlock · Actor isolation · Sendable · Task. cancellation Interviewer notes: Mark agenda? trade-off? provenance honesty?
+Ask any 5 from the list. Budget ~45. 60s each. Full model answers: sample/07-revision-qna.md W1. W12. Scripted set A (default) #: Prompt, Budget. 1: “Struct versus class. when do you choose each?”, 45s. 2: “What is copy-on-write?”, 45s. 3: “weak versus unowned?”, 45s. 4: “Serial versus concurrent queue?”, 45s. 5: “In one minute: how would you design a thread-safe dictionary?”, 60. 90s. Alternate set B P O P in ads · Main-queue deadlock · Actor isolation · Sendable · Task. cancellation Interviewer notes: Mark agenda? trade-off? provenance honesty?
 
 ## §3 2. Deep dive (25 min)
 
 Next. 2. Deep dive (25 min).
 
-Ask 4. 5 items. Allow follow-ups. Budgets 90. 120s unless noted. D1. Actor reentrancy (120s) “You await inside an actor method. Can another task mutate the actor’s state before you resume? What breaks if you assume continuity?” Follow-ups: How do you harden load-if-missing? Contrast with G C D serial queue (no await suspension in the same way) D2. Serial sync re-entry (90s) “You’re on a private serial queue and call queue.sync again from nested code. What happens? Is this only a main-queue issue?” Follow-ups: Unlocked internal pattern? dispatchPrecondition? D3. Memory Graph vs Leaks (90s) “Memory Graph shows a retain cycle but Leaks shows nothing. Why aren’t those tools synonyms?” Follow-ups: Abandoned memory vs leak? What do you do next in X code? D4. G C D. actor migration (120s) “You have a G C D SafeDict in production. How would you migrate a module to an actor without a big-bang rewrite?” Follow-ups: A P I surface. stay sync somehow? (adapters / async façade) Label Verified S2 vs Applied S2-A1 D5. Pick one stretch Choose based on misses: @unchecked Sendable ethics (90s) Type erasure cost in ads renderer (90s). Async write then sync read visibility (90s) Mixing queue.sync inside async functions (90s) Model answers: 04-questions.md deep section.
+Ask 4. 5 items. Allow follow-ups. Budgets 90. 120s unless noted. D1. Actor reentrancy (120s) “You await inside an actor method. Can another task mutate the actor’s state before you resume? What breaks if you assume continuity?” Follow-ups: How do you harden load-if-missing? Contrast with G C D serial queue (no await suspension in the same way) D2. Serial sync re-entry (90s) “You’re on a private serial queue and call queue.sync again from nested code. What happens? Is this only a main-queue issue?” Follow-ups: Unlocked internal pattern? dispatchPrecondition? D3. Memory Graph vs Leaks (90s) “Memory Graph shows a retain cycle but Leaks shows nothing. Why aren’t those tools synonyms?” Follow-ups: Abandoned memory vs leak? What do you do next in X code? D4. G C D. actor migration (120s) “You have a G C D SafeDict in production. How would you migrate a module to an actor without a big-bang rewrite?” Follow-ups: A P I surface. stay sync somehow? (adapters / async façade) Label Verified S2 vs Applied S2-A1 D5. Pick one stretch Choose based on misses: @unchecked Sendable ethics (90s) Type erasure cost in ads renderer (90s). Async write then sync read visibility (90s) Mixing queue.sync inside async functions (90s) Model answers: sample/07-revision-qna.md deep section.
 
 ## §4 3. Story — S2 `(10 min)`
 
@@ -54,4 +54,4 @@ Next. 6. Interlocutor “cut” lines (use sparingly).
 
 Next. 7. Self-mock mode.
 
-If solo: record voice memo. play back against 04-questions Full spoken answers. still fill scorecard honestly.
+If solo: record voice memo. play back against 07-revision-qna Full spoken answers. still fill scorecard honestly.

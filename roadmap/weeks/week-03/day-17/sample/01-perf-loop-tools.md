@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What is the one-sentence north star for performance work?
-
 **Answer:**
 
 > **Define a user journey SLI, measure with percentiles in the field, attribute with the right lab tool, fix the smallest high-leverage cause, then re-verify p50/p90.** Never optimize from a single desk iPhone anecdote at consumer scale — field distributions lie differently than your device.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. What are the five steps of the performance loop?
-
 **Answer:**
 
 > (1) Define user journey + SLI. (2) Pull field percentiles OR reproduce in lab. (3) Attribute: CPU / wait / network / layout / decode / lock / memory. (4) Fix smallest high-leverage cause. (5) Re-measure p50/p90 and watch the next release. Say aloud: field percentiles decide priority; lab Instruments attribute.
@@ -43,7 +41,6 @@
 ---
 
 ### Q3. Lab vs field — when do you use which?
-
 **Answer:**
 
 > **Lab** (Instruments, local repro): precise attribution, signposts — not representative of all devices/networks. **Field** (MetricKit, Firebase Performance, hang proxies): fleet truth, percentiles — coarser, delayed, sampled. Rare field-only regressions → field first to locate segment, then lab to attribute root cause.
@@ -65,7 +62,6 @@
 ---
 
 ### Q4. Why p50 and p90 instead of averages?
-
 **Answer:**
 
 > **Average** hides tails. **p50** is the typical user. **p90** is the worst 10% — weak devices, peak traffic, slow networks where pain concentrates. **p99** helps extreme Sev paths but is noisy on mobile. Interview trap: shipping because “average FPS improved” — check hitch rate and field percentiles instead.
@@ -87,7 +83,6 @@
 ---
 
 ### Q5. Which Instruments tools for which problems (first pass)?
-
 **Answer:**
 
 > **Time Profiler** — CPU hot paths. **Signposts / Points of Interest** — custom journey intervals. **Allocations** — growth over time, image spikes. **Leaks** — unreachable memory only. **Memory Graph** — ownership edges, cycles, abandoned VCs. **Hitches** — scroll jank. **Network** — payload/latency. **App Launch** — pre-main vs post-main. **Core Animation** — overdraw, offscreen rendering.
@@ -106,7 +101,6 @@
 ---
 
 ### Q6. Why don’t retain cycles show in Leaks?
-
 **Answer:**
 
 > Retain cycles keep objects **reachable** — they point at each other — so Leaks often stays **clean**. Those objects are **abandoned** (UI gone) but not unreachable. Use **Memory Graph** for edges and **Allocations** for persistent growth across navigation generations. Say aloud: “Cycles are Graph and Allocations, not Leaks.”
@@ -125,7 +119,6 @@
 ---
 
 ### Q7. What is MetricKit’s role at a high level?
-
 **Answer:**
 
 > Subscribe via `MXMetricManager` for OS aggregates: hang/hitch diagnostics, CPU/memory histograms, disk write exceptions, exit reasons (pairs with Day 18). **Daily-ish** cadence — not realtime. Privacy-preserving fleet metrics. **Weak alone** for product journey SLIs — combine with custom traces (Firebase Performance).
@@ -144,7 +137,6 @@
 ---
 
 ### Q8. Which tool first — mini decision tree?
-
 **Answer:**
 
 > “App feels slow” → desk repro? **Instruments** (Time Profiler / Hitches / Launch). Only some users/devices? **Field first** (Firebase p90 segment, MetricKit). Memory climbs on navigate? **Allocations + Memory Graph**. Scroll jank? **Hitches** on main. Checkout/search latency? **Journey traces (BookMyShow Firebase Performance traces)** + Network if lab.
@@ -167,3 +159,22 @@ Next: [02-instruments-metrickit.md](02-instruments-metrickit.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What are the five steps of the performance loop
+
+**Ask yourself:** What are the five steps of the performance loop?
+
+**Answer:** “(1) Define user journey + SLI. (2) Pull field percentiles OR reproduce in lab. (3) Attribute: CPU / wait / network / layout / decode / lock / memory. (4) Fix smallest high-leverage cause. (5) Re-measure p50/p90 and watch the next release. Say aloud: field percentiles decide priority; lab Instruments attribute.”
+
+### Puzzle B — Lab vs field — when do you use which
+
+**Ask yourself:** Lab vs field — when do you use which?
+
+**Answer:** “**Lab** (Instruments, local repro): precise attribution, signposts — not representative of all devices/networks. **Field** (MetricKit, Firebase Performance, hang proxies): fleet truth, percentiles — coarser, delayed, sampled. Rare field-only regressions → field first to locate segment, then lab to attribute root cause.”
+
+### Puzzle C — Why p50 and p90 instead of averages
+
+**Ask yourself:** Why p50 and p90 instead of averages?
+
+**Answer:** “**Average** hides tails. **p50** is the typical user. **p90** is the worst 10% — weak devices, peak traffic, slow networks where pain concentrates. **p99** helps extreme Sev paths but is noisy on mobile. Interview trap: shipping because “average FPS improved” — check hitch rate and field percentiles instead.”

@@ -56,7 +56,7 @@ Expected **O(1)** lookup; pathological collisions → worst **O(n)**. Say **expe
 |---|---|---|
 | Must | [Sample Q&A](../../../weeks/week-04/day-23/sample/) | Guided cards |
 | Must | Full modules [01–03](../../../weeks/week-04/day-23/01-foundations.md) | Catalogs + mixed drill |
-| Drill | [04-questions](../../../weeks/week-04/day-23/04-questions.md) | Timed answers |
+| Drill | [07-revision-qna](../../../weeks/week-04/day-23/sample/07-revision-qna.md) | Timed answers |
 | Code | [code/](../../../weeks/week-04/day-23/code/) | Two Sum, prefix+K, top-K |
 
 ## 4. Map to your work
@@ -93,4 +93,4 @@ Do **not** claim “our search is Two Sum” or invent latency % from heap choic
 | Expected vs worst complexity | 45s |
 | GymFlow on-device AI top-K mapping ≤20s | 20s |
 
-Expand from [sample cards](../../../weeks/week-04/day-23/sample/) and [04-questions](../../../weeks/week-04/day-23/04-questions.md) answer points.
+Expand from [sample cards](../../../weeks/week-04/day-23/sample/) and [07-revision-qna](../../../weeks/week-04/day-23/sample/07-revision-qna.md) answer points.

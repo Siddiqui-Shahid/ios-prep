@@ -39,4 +39,4 @@ Next. 5. Flash prompts. 1. On-device pipeline — six stages + degrade arrow 2. 
 
 ## §9 6. Timed drills
 
-Next. 6. Timed drills. Expand from sample cards and 04-questions answer points.
+Next. 6. Timed drills. Expand from sample cards and 07-revision-qna answer points.

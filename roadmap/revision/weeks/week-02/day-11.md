@@ -54,7 +54,7 @@ Prefetch warms ahead but must **cancel** on scroll-away and **bound** concurrenc
 |---|---|---|
 | Must | [Sample Q&A](../../../weeks/week-02/day-11/sample/) | Guided cards |
 | Must | Full modules [01–03](../../../weeks/week-02/day-11/01-foundations.md) | Gaps |
-| Drill | [04-questions](../../../weeks/week-02/day-11/04-questions.md) | Timed answers |
+| Drill | [07-revision-qna](../../../weeks/week-02/day-11/sample/07-revision-qna.md) | Timed answers |
 
 Suggested sample order: `01-lifecycle-hooks` → `02-cells-reuse-prefetch` → `03-hybrid-interop` → `04-production-s13-s6`.
 
@@ -89,4 +89,4 @@ Suggested sample order: `01-lifecycle-hooks` → `02-cells-reuse-prefetch` → `
 | BookMyShow LE Bottom Sheet ≤20s impact pitch | 20s |
 | Hybrid UI / deeplinks full STAR | 2–3 min |
 
-Expand from [sample cards](../../../weeks/week-02/day-11/sample/) and [04-questions](../../../weeks/week-02/day-11/04-questions.md) answer points.
+Expand from [sample cards](../../../weeks/week-02/day-11/sample/) and [07-revision-qna](../../../weeks/week-02/day-11/sample/07-revision-qna.md) answer points.

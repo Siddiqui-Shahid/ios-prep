@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What can you claim under Stories SDK (Raw / Miami Heat)?
-
 **Answer:**
 
 > You designed a **standalone reusable Stories SDK** with a deliberate **public API** surface. You kept **isolation** from app-specific networking shortcuts — hosts inject content, analytics, and loaders. You drove **adoption across portfolio apps** (NBA/WNBA) so feature parity did not mean copy-paste forks. You may **not** invent “N apps × M% faster build” without evidence, claim Needle open-source unless true, or collapse Stories SDK (Raw / Miami Heat) and Live in-arena scoreboard (Raw) (scoreboard) into one careless claim.
@@ -26,8 +25,7 @@
 
 ---
 
-### Q2. Walk the Stories SDK (Raw / Miami Heat) STAR spine in under three minutes
-
+### Q2. Walk the Stories SDK (Raw / Miami Heat) STAR spine in under three minutes?
 **Answer:**
 
 > **Opener:** Standalone Stories SDK for portfolio reuse. **S/T:** Instagram-style fan Stories across NBA/WNBA apps — not one-off UI per app. **Action:** Public API; host-injected deps; hidden internals; portfolio adoption; versioning as quality. **Result:** One implementation leveraged by multiple apps → faster feature parity. **Lesson:** SDK quality = API + versioning + independence from host shortcuts.
@@ -49,7 +47,6 @@
 ---
 
 ### Q3. How do Applied extensions extend Stories SDK (Raw / Miami Heat) without overclaiming?
-
 **Answer:**
 
 > Label **How I would apply it** when describing design detail beyond Verified facts. Examples: host injects `ImageLoading` for shared cache policy (Day 16); UIHostingController façade for UIKit hosts (Hybrid UI / deeplinks soft); protocolised theme tokens instead of hardcoded Heat colors. These extend boundaries — they are not substitute proof for portfolio adoption.
@@ -71,7 +68,6 @@
 ---
 
 ### Q4. How do BookMyShow Ads pipeline + HeroWidget lifecycle and BookMyShow SSL pinning + URLSession migration hook softly without stealing Stories SDK (Raw / Miami Heat)?
-
 **Answer:**
 
 > **BookMyShow Ads pipeline + HeroWidget lifecycle soft:** Ads as revenue module with POP+Generics API — modularization of *behavior* even if packaging was pod-era. **BookMyShow SSL pinning + URLSession migration soft:** Packaging vs architecture — Ads networking ownership lived behind a module boundary; CocoaPods vs SPM is not the same question as “is the boundary clean?” **District Free Parking + Clean/MVVM + AI tooling soft:** Independently testable modules. Keep Stories SDK (Raw / Miami Heat) as the hero modularization proof; use soft hooks only when the interviewer pivots.
@@ -93,7 +89,6 @@
 ---
 
 ### Q5. What must you never say about Stories modularization?
-
 **Answer:**
 
 > Do not invent build-time or adoption percentages. Do not claim you open-sourced an internal Needle fork unless true. Do not merge Stories SDK (Raw / Miami Heat) Stories SDK with Live in-arena scoreboard (Raw) scoreboard as one undifferentiated “Raw modules” story. Do not describe Learning-lab Package.swift as “what we shipped to production” without labeling it.
@@ -115,7 +110,6 @@
 ---
 
 ### Q6. How does Stories SDK (Raw / Miami Heat) answer “design a reusable feature module”?
-
 **Answer:**
 
 > Whiteboard: standalone package → public entry + callbacks + errors → inject theme, analytics, content provider, image loader → demo host → second production host → semver. Tie to Verified: you did this for Stories across portfolio apps. Emphasize **what crosses the boundary** (protocols) vs **what stays internal** (VCs, SwiftUI, networking shortcuts).
@@ -136,8 +130,7 @@
 
 ---
 
-### Q7. Give a full honest answer mixing architecture and Stories SDK (Raw / Miami Heat)
-
+### Q7. Give a full honest answer mixing architecture and Stories SDK (Raw / Miami Heat)?
 **Answer:**
 
 > “Features depend on peer Interfaces, never Impls — App is the composition root. For portfolio reuse I shipped Stories as a standalone SDK (Stories SDK (Raw / Miami Heat)): public API, host-injected theme/analytics/loaders, adoption across NBA/WNBA apps. I’d extend that boundary with injected `ImageLoading` and protocolised theming (Applied) — SDK quality is API stability and host independence, not folder moves.”
@@ -148,7 +141,7 @@
 |---|---|
 | Where is Verified? | Standalone SDK, public API, portfolio adoption. |
 | Where is Applied? | Image loader and theme injection design detail. |
-| After this sample? | [`../code/`](../code/), then [`../04-questions.md`](../04-questions.md). |
+| After this sample? | [`../code/`](../code/), then [07-revision-qna.md](07-revision-qna.md). |
 
 **How can I relate to my case:**
 - **Shipped:** Stories SDK (Raw / Miami Heat)
@@ -159,8 +152,27 @@
 ## After this sample
 
 1. Skim [`../code/Package.swift`](../code/Package.swift) and [`../code/StoriesPublicAPI.swift`](../code/StoriesPublicAPI.swift).
-2. Speak Stories SDK (Raw / Miami Heat) STAR timed from **Answer points** in [`../04-questions.md`](../04-questions.md).
+2. Speak Stories SDK (Raw / Miami Heat) STAR timed from **Answer points** in [07-revision-qna.md](07-revision-qna.md).
 3. Whiteboard Interface/Impl + composition root in [`../05-exercises.md`](../05-exercises.md).
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — Walk the Stories SDK (Raw / Miami Heat) STAR spine in under three minutes
+
+**Ask yourself:** Walk the Stories SDK (Raw / Miami Heat) STAR spine in under three minutes?
+
+**Answer:** “**Opener:** Standalone Stories SDK for portfolio reuse. **S/T:** Instagram-style fan Stories across NBA/WNBA apps — not one-off UI per app. **Action:** Public API; host-injected deps; hidden internals; portfolio adoption; versioning as quality. **Result:** One implementation leveraged by multiple apps → faster feature parity. **Lesson:** SDK quality = API + versioning + independence from host shortcuts.”
+
+### Puzzle B — How do Applied extensions extend Stories SDK (Raw / Miami Heat) without overclai
+
+**Ask yourself:** How do Applied extensions extend Stories SDK (Raw / Miami Heat) without overclaiming?
+
+**Answer:** “Label **How I would apply it** when describing design detail beyond Verified facts. Examples: host injects `ImageLoading` for shared cache policy (Day 16); UIHostingController façade for UIKit hosts (Hybrid UI / deeplinks soft); protocolised theme tokens instead of hardcoded Heat colors. These extend boundaries — they are not substitute proof for portfolio adoption.”
+
+### Puzzle C — How do BookMyShow Ads pipeline + HeroWidget lifecycle and BookMyShow SSL pinning
+
+**Ask yourself:** How do BookMyShow Ads pipeline + HeroWidget lifecycle and BookMyShow SSL pinning + URLSession migration hook softly without stealing Stories SDK (Raw / Miami Heat)?
+
+**Answer:** “**BookMyShow Ads pipeline + HeroWidget lifecycle soft:** Ads as revenue module with POP+Generics API — modularization of *behavior* even if packaging was pod-era. **BookMyShow SSL pinning + URLSession migration soft:** Packaging vs architecture — Ads networking ownership lived behind a module boundary; CocoaPods vs SPM is not the same question as “is the boundary clean?” **District Free Parking + Clean/MVVM + AI tooling soft:** Independently testable modules. Keep Stories SDK (Raw / Miami Heat) as the hero modularization proof; use soft hooks only when the interviewer pivots.”

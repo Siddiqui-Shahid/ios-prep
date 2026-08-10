@@ -7,7 +7,6 @@
 ---
 
 ### Q1. Interviewer: “Design Mobile Platform Engineering (EM/Staff).” How do you open?
-
 **Answer:**
 
 > **Agenda (≤20s):** “I’ll take ~5 minutes clarifying scope and scale, then a four-layer client HLD with backend touchpoints and load, then API/data, two deep dives on **Phased rollout gates** and **Sev-1 triage**, and close on failure modes, metrics, and kill switches. Does that work?”
@@ -34,7 +33,6 @@
 ---
 
 ### Q2. After clarify — what does the optimal flow look like?
-
 **Answer:**
 
 > **Scripted outcomes for this mock:** Phased 1→100% rollout; auto-pause gates; flag kill <5m; Sev-1 playbook; build budgets.
@@ -55,8 +53,7 @@
 
 ---
 
-### Q3. Walk the HLD — client layers, backend, load.
-
+### Q3. Walk the HLD — client layers, backend, load?
 **Answer:**
 
 > Platform view: monorepo modules → CI budgets → ASC phased release → Remote Config kill → IMOC.
@@ -75,8 +72,7 @@
 
 ---
 
-### Q4. Data / API — entities, endpoints, scale.
-
+### Q4. Data / API — entities, endpoints, scale?
 **Answer:**
 
 > Remote Config kill-switch; ASC halt rollout; expedited review path (process).
@@ -95,7 +91,6 @@
 ---
 
 ### Q5. Deep dive 1 — Phased rollout gates?
-
 **Answer:**
 
 > 1→2→5→10→20→50→100%; auto pause; don’t vibe-ship.
@@ -114,7 +109,6 @@
 ---
 
 ### Q6. Deep dive 2 — Sev-1 triage?
-
 **Answer:**
 
 > Flag kill <5m → halt ASC → communicate → hotfix train. Breadcrumbs from crash SDK.
@@ -133,7 +127,6 @@
 ---
 
 ### Q7. Ops — failures, metrics, rollout, load?
-
 **Answer:**
 
 > CFS >99.9% target, hang <0.1%, kill SLA, CI time. This *is* the ops-heavy prompt.
@@ -152,7 +145,6 @@
 ---
 
 ### Q8. Flow scorecard — did you hit the optimal spine?
-
 **Answer:**
 
 > **Pass bar:** clarify + agenda in ≤5; HLD shows 4 layers + backend + load; API has cursors/idempotency as needed; two deep dives; ops with kill switch and concrete metrics.
@@ -169,4 +161,3 @@
 
 **How can I relate to my case:**
 - **Concept-only — no shipped story.** Rehearse this scorecard after every timed mock.
-

@@ -41,7 +41,7 @@ Score 5 = on time + trade-off + prod proof + **honest provenance** (Verified vs 
 | Score 5 | On time + trade-off + prod proof + honest provenance |
 | Design: actor SafeDict (not shipped) | Actor migration is **How I would apply it** — not “we rewrote prod” |
 | No invention | Zero fake fill-rate / crash-% ownership |
-| Full answers | Warm-up/deep answer points live in 04-questions |
+| Full answers | Warm-up/deep answer points live in 07-revision-qna |
 
 ## 3. Read these
 
@@ -49,7 +49,7 @@ Score 5 = on time + trade-off + prod proof + **honest provenance** (Verified vs 
 |---|---|---|
 | Must | [Sample Q&A](../../../weeks/week-01/day-07/sample/) | Guided cards |
 | Must | Full modules [01–03](../../../weeks/week-01/day-07/01-foundations.md) | Gaps |
-| Drill | [04-questions](../../../weeks/week-01/day-07/04-questions.md) | Timed answers |
+| Drill | [07-revision-qna](../../../weeks/week-01/day-07/sample/07-revision-qna.md) | Timed answers |
 
 ## 4. Map to your work
 
@@ -87,6 +87,6 @@ Today’s narrative spine: **reliability under concurrency at BMS scale** — ve
 | Social Feed HLD clarify + bullets | 20 min |
 | Mock retro + weak-card list | 15 min |
 
-Run full Mock #1 from [02-deep-dive](../../../weeks/week-01/day-07/02-deep-dive.md) and score with [MockScorecard.md](../../../weeks/week-01/day-07/code/MockScorecard.md). Expand warm-up/deep pools from [04-questions](../../../weeks/week-01/day-07/04-questions.md).
+Run full Mock #1 from [02-deep-dive](../../../weeks/week-01/day-07/02-deep-dive.md) and score with [MockScorecard.md](../../../weeks/week-01/day-07/code/MockScorecard.md). Expand warm-up/deep pools from [07-revision-qna](../../../weeks/week-01/day-07/sample/07-revision-qna.md).
 
 **Pass criteria:** deep-dive average ≥3.5 · BookMyShow synchronised dictionaries ≥4 · no answer >2× budget without self-correction · at least one explicit concurrency trade-off.

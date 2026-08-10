@@ -1,6 +1,6 @@
 # Day 05 — async/await, Structured Concurrency, Actors, Sendable
 
-> Week 1 · Full study (self-contained) · ~4–5 hrs  
+> Week 1 · Full study (self-contained) · ~4–5 hrs 
 > Revision twin: [revision/weeks/week-01/day-05.md](../../../revision/weeks/week-01/day-05.md)
 
 ## Outcomes
@@ -22,7 +22,7 @@ By end of day, without notes, you can:
 3. `03-production-bridge.md` — S2 / S2-A1 / S3 hooks and interview lines
 4. `code/SafeDictActor.swift` — read, then explain aloud line by line
 5. `sample/` — spoken Q&A + brain puzzles (`01`–`06`; `06` folds exercise/flash-recall leftovers)
-6. `04-questions.md` — normal Qs + tricky **T1–T10** brain puzzles; speak aloud
+6. `sample/07-revision-qna.md` — normal Qs + tricky **T1–T10** brain puzzles; speak aloud
 7. `05-exercises.md` — coding + speaking drills (still do the hands-on B1–B3 here)
 8. Revision twin for timed drill after the full read
 
@@ -33,7 +33,7 @@ By end of day, without notes, you can:
 | Foundations | [01-foundations.md](01-foundations.md) |
 | Deep dive | [02-deep-dive.md](02-deep-dive.md) |
 | Production bridge | [03-production-bridge.md](03-production-bridge.md) |
-| Questions | [04-questions.md](04-questions.md) |
+| Questions | [sample/07-revision-qna.md](sample/07-revision-qna.md) |
 | Exercises | [05-exercises.md](05-exercises.md) |
 | Code | [code/SafeDictActor.swift](code/SafeDictActor.swift) |
 | Sample Q&A (guided) | [sample/](sample/README.md) — includes **06-module-drills** leftovers from these modules |
@@ -55,6 +55,6 @@ Teaching targets **Swift concurrency as available in modern Xcode** (async/await
 
 ## Timed drill (after full study)
 
-1. Speak Q4, Q5, T1, T3 from `04-questions.md` on a timer.
+1. Speak Q4, Q5, T1, T3 from `sample/07-revision-qna.md` on a timer.
 2. 90s pitch: “How would you migrate synchronised dictionaries to actors?” (S2 → S2-A1).
 3. Score against [answer-timing-guide.md](../../../timing/answer-timing-guide.md); log misses.

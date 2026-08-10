@@ -1,59 +1,162 @@
-# 03 — Production Bridge: S13 Grizzlies + BMS CI
+# 03 — Production Bridge: S13 Grizzlies + BMS CI (Q&A)
 
-## 1. Provenance map
+> Cover the answer, speak aloud, then check follow-ups. Simple language. Named work only — never S-codes in speech.
 
-| ID / claim | Label | Exact claim |
-|---|---|---|
-| **S13** | Verified | Grizzlies: **SwiftUI↔UIKit**; **deeplinks**; **Mixpanel**; **Airship** |
-| **BMS CI** | Verified (resume) | **GitHub Actions** automation for build/lint/**TestFlight** |
-| **S9** | Verified | AI tooling / Context Engineering judgment — assist ≠ own |
-| **S8** | Verified | Soft bridge — pause on CFS during rollout |
+---
 
-### Forbidden
+### Q1. Provenance map? `(45–60s)`
+**Answer:**
 
-- Invented CTR %, opt-in %, or “zero release incidents”
-- Claiming you built Airship itself
-- “AI approved the release”
+> “See the notes for this topic and speak the core idea in simple words.”
 
-## 2. Verified S13 — STAR (2–3 min)
+**Follow-ups:**
 
-### Opener
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-> “I’ll cover hybrid SwiftUI/UIKit navigation on the Grizzlies app with production deeplinks and the Airship/Mixpanel engagement stack.”
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
 
-### Situation / Task
+---
 
-NBA consumer app needing modern UI atop existing UIKit, plus growth tooling — deeplinks, analytics, push.
+### Q2. Forbidden? `(45–60s)`
+**Answer:**
 
-### Action
+> “- Invented CTR %, opt-in %, or “zero release incidents” - Claiming you built Airship itself - “AI approved the release”.”
 
-1. Architected key surfaces with **SwiftUI + UIKit interoperability** — hosting/lifecycle designed, not bolted.
-2. Deep linking + navigation/lifecycle handling into a coherent routing approach.
-3. Integrated **Mixpanel** (analytics) and **Airship** (push/engagement).
+**Follow-ups:**
 
-### Result
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-Shipped hybrid UI with production navigation and engagement stack.
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
-### Lesson
+---
 
-Interop costs — identity, lifecycle, hosting — must be designed. Push and Universal Links should share one routing table.
+### Q3. Opener? `(45–60s)`
+**Answer:**
 
-> **Provenance:** Verified · S13 · Raw / Memphis Grizzlies
+> “I’ll cover hybrid SwiftUI/UIKit navigation on the Grizzlies app with production deeplinks and the Airship/Mixpanel engagement stack.”.
 
-## 3. Interview lines
+**Follow-ups:**
 
-**S13 ≤20s:**  
-> “On Grizzlies I owned deeplinks and Airship push atop hybrid SwiftUI/UIKit navigation, with Mixpanel for analytics.”
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-**BMS CI ≤20s:**  
-> “At BookMyShow I automated GitHub Actions for build, lint, and TestFlight so releases weren’t a manual ceremony.”
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
-**Combined ≤25s:**  
-> “On Grizzlies I shipped deeplinks and Airship on hybrid UI; at BMS I automated GitHub Actions into TestFlight — entrypoints and release trains as one reliability story.”
+---
 
-## 4. AI review breath (S9)
+### Q4. Situation / Task? `(45–60s)`
+**Answer:**
 
-> “We used AI-assisted PR review to catch regressions faster; humans still owned architecture and security calls.”
+> “NBA consumer app needing modern UI atop existing UIKit, plus growth tooling — deeplinks, analytics, push.”
 
-> **Provenance:** Verified · S9 · judgment
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q5. Action? `(45–60s)`
+**Answer:**
+
+> “1. Architected key surfaces with SwiftUI + UIKit interoperability — hosting/lifecycle designed, not bolted. 2. Deep linking + navigation/lifecycle handling into a coherent routing approach. 3. Integrated Mixpanel (analytics) and Airship (push/engagement).”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q6. Result? `(45–60s)`
+**Answer:**
+
+> “Shipped hybrid UI with production navigation and engagement stack.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q7. Lesson? `(45–60s)`
+**Answer:**
+
+> “Interop costs — identity, lifecycle, hosting — must be designed. Push and Universal Links should share one routing table. > Provenance: Verified · · Raw / Memphis Grizzlies.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
+
+---
+
+### Q8. Interview lines? `(45–60s)`
+**Answer:**
+
+> “ ≤20s: “On Grizzlies I owned deeplinks and Airship push atop hybrid SwiftUI/UIKit navigation, with Mixpanel for analytics.” BMS CI ≤20s: “At BookMyShow I automated GitHub Actions for build, lint, and TestFlight so releases weren’t a manual ceremony.”.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
+
+---
+
+### Q9. AI review breath (S9)? `(45–60s)`
+**Answer:**
+
+> “We used AI-assisted PR review to catch regressions faster; humans still owned architecture and security calls.” > Provenance: Verified · · judgment.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
+
+---

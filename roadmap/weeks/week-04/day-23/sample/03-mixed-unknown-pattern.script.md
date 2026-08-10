@@ -19,7 +19,7 @@ Next. Q4. What is the unknown-pattern spoken script? Answer. “I’ll classify 
 
 ## §4 Q5. Approach scripts for two-layer Q&A?
 
-Next. Q5. Approach scripts for two-layer Q&A? Answer. Use as Answer points spines: Two Sum — indices? hash complement; else sort+two pointer. Anagrams — sorted or count key. Subarray sum K — negatives? prefix+hash. Top K freq — count → heap K or bucket. Merge K — heap heads O(N log K). Unknown — clarify → brute → classify → pick → edges. Follow-ups. Where practiced?:../04-questions.md two-layer format.. 60s vs 90s?: Classification 90s; family-specific script ~60s inside.. Record yourself?: Suggested record set in questions module..
+Next. Q5. Approach scripts for two-layer Q&A? Answer. Use as Answer points spines: Two Sum — indices? hash complement; else sort+two pointer. Anagrams — sorted or count key. Subarray sum K — negatives? prefix+hash. Top K freq — count → heap K or bucket. Merge K — heap heads O(N log K). Unknown — clarify → brute → classify → pick → edges. Follow-ups. Where practiced?: 07-revision-qna.md two-layer format.. 60s vs 90s?: Classification 90s; family-specific script ~60s inside.. Record yourself?: Suggested record set in questions module..
 
 ## §5 Q6. What trade-offs belong in mixed problems?
 

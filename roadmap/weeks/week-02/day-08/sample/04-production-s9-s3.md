@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What can you claim under District Free Parking + Clean/MVVM + AI tooling?
-
 **Answer:**
 
 > District Free Parking + Clean/MVVM + AI tooling is District **Free Parking** billing adjustments shipped while **migrating MVVM↔Clean incrementally**; **Context Engineering** with Cursor/Claude/Copilot inside boundaries you owned; AI-assisted **reviews and XCTest/XCUITest drafts** with human review; **structured logging** for on-call production fixes. You may **not** say “AI wrote our architecture,” claim the entire District app was Clean-ified, or invent velocity or billing savings percentages.
@@ -27,7 +26,6 @@
 ---
 
 ### Q2. How do you speak about AI tooling without sounding like you outsourced design?
-
 **Answer:**
 
 > Say AI was an **accelerator inside a strict architectural envelope**: you fed layering rules, exemplar PRs, and acceptance intent; AI drafted scaffolding and tests; you reviewed for boundary violations, races, and naming. Tests were a gate, not a substitute for judgment. You are author of record — the tool is not. Context Engineering is the control plane, not “the model designed Free Parking.”
@@ -49,7 +47,6 @@
 ---
 
 ### Q3. What is the District Free Parking + Clean/MVVM + AI tooling STAR story in plain steps?
-
 **Answer:**
 
 > **Situation:** Ship Free Parking billing adjustments while moving patterns across MVVM and Clean without a regression cliff. **Action:** Deliver the feature; extract UseCase boundaries where domain rules lived; leave simple UI as MVVM; use Context Engineering so AI stayed inside protocols; accelerate test drafts with review; use structured logging on-call. **Result:** Feature shipped; migration progressed with velocity and discipline — not “AI shipped it.” **Lesson:** Boundaries first; AI accelerates typing once the envelope is clear.
@@ -71,7 +68,6 @@
 ---
 
 ### Q4. What can you claim under BookMyShow backend-driven header & search for search?
-
 **Answer:**
 
 > BookMyShow backend-driven header & search for today’s beat: BMS search used **MVVM** with **debounce**, **in-flight cancellation**, and explicit **loading/empty/error** (plus idle/results) states — race-safer UX on a high-traffic surface. Repository hid networking; View bound state only. Backend-driven **header SDUI** is a sibling story on Day 10 — don’t claim deep header mechanics as today’s only proof.
@@ -92,8 +88,7 @@
 
 ---
 
-### Q5. How do you answer “Isn’t Clean overengineering?”
-
+### Q5. How do you answer “Isn’t Clean overengineering?”?
 **Answer:**
 
 > Scope it — UseCases where rules and migration risk live; MVVM for simple UI. At District you extracted where **billing rules** hurt, not ceremony on every toggle. Counterexample: a settings switch stays MVVM. Clean here means dependency rule and testable policy, not folder theater or a DI-container religion.
@@ -115,7 +110,6 @@
 ---
 
 ### Q6. What must you never blur between District Free Parking + Clean/MVVM + AI tooling and learning-lab code?
-
 **Answer:**
 
 > You may say you shipped Free Parking and incremental MVVM/Clean migration (District Free Parking + Clean/MVVM + AI tooling). You may **not** present illustrative `AdjustFreeParkingBilling` or `FeatureAssembler` class names as exact production types unless you later verify them. Exact folder layout, invented AI velocity %, and “AI never needed review” are all forbidden. Label learning-lab when walking whiteboard code.
@@ -137,7 +131,6 @@
 ---
 
 ### Q7. What should you be able to say after Day 08 sample + modules?
-
 **Answer:**
 
 > “I default to MVVM for feature UI, add UseCases where domain or migration risk demands, and inject dependencies with protocols and constructors. At District I shipped Free Parking while migrating incrementally — AI accelerated inside an envelope I owned. On BMS search, debounce and cancel live in the ViewModel with explicit states so races don’t win.”
@@ -156,7 +149,26 @@
 - **Lab only:** N/A for this prompt.
 - **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
-Back to: [README.md](README.md) · Main questions: [../04-questions.md](../04-questions.md)
+Back to: [README.md](README.md) · Main questions: [07-revision-qna.md](07-revision-qna.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — How do you speak about AI tooling without sounding like you outsourced design
+
+**Ask yourself:** How do you speak about AI tooling without sounding like you outsourced design?
+
+**Answer:** “Say AI was an **accelerator inside a strict architectural envelope**: you fed layering rules, exemplar PRs, and acceptance intent; AI drafted scaffolding and tests; you reviewed for boundary violations, races, and naming. Tests were a gate, not a substitute for judgment. You are author of record — the tool is not. Context Engineering is the control plane, not “the model designed Free Parking.”
+
+### Puzzle B — What is the District Free Parking + Clean/MVVM + AI tooling STAR story in plain 
+
+**Ask yourself:** What is the District Free Parking + Clean/MVVM + AI tooling STAR story in plain steps?
+
+**Answer:** “**Situation:** Ship Free Parking billing adjustments while moving patterns across MVVM and Clean without a regression cliff. **Action:** Deliver the feature; extract UseCase boundaries where domain rules lived; leave simple UI as MVVM; use Context Engineering so AI stayed inside protocols; accelerate test drafts with review; use structured logging on-call. **Result:** Feature shipped; migration progressed with velocity and discipline — not “AI shipped it.” **Lesson:** Boundaries first; AI accelerates typing once the envelope is clear.”
+
+### Puzzle C — What can you claim under BookMyShow backend-driven header & search for search
+
+**Ask yourself:** What can you claim under BookMyShow backend-driven header & search for search?
+
+**Answer:** “BookMyShow backend-driven header & search for today’s beat: BMS search used **MVVM** with **debounce**, **in-flight cancellation**, and explicit **loading/empty/error** (plus idle/results) states — race-safer UX on a high-traffic surface. Repository hid networking; View bound state only. Backend-driven **header SDUI** is a sibling story on Day 10 — don’t claim deep header mechanics as today’s only proof.”

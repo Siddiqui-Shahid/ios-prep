@@ -56,7 +56,7 @@ At 30L+ DAU, small leaks in navigation or ad paths become memory pressure and je
 |---|---|---|
 | Must | [Sample Q&A](../../../weeks/week-01/day-03/sample/) | Guided cards |
 | Must | Full modules [01–03](../../../weeks/week-01/day-03/01-foundations.md) | Gaps |
-| Drill | [04-questions](../../../weeks/week-01/day-03/04-questions.md) | Timed answers |
+| Drill | [07-revision-qna](../../../weeks/week-01/day-03/sample/07-revision-qna.md) | Timed answers |
 
 ## 4. Map to your work
 
@@ -87,4 +87,4 @@ At 30L+ DAU, small leaks in navigation or ad paths become memory pressure and je
 | Timer + NotificationCenter fixes | 90s |
 | BookMyShow IMOC + crash-free at scale reliability ≤90s | 90s |
 
-Expand from [sample cards](../../../weeks/week-01/day-03/sample/) and [04-questions](../../../weeks/week-01/day-03/04-questions.md) answer points.
+Expand from [sample cards](../../../weeks/week-01/day-03/sample/) and [07-revision-qna](../../../weeks/week-01/day-03/sample/07-revision-qna.md) answer points.

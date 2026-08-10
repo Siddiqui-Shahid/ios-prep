@@ -62,7 +62,7 @@ An actor is a reference type with **isolated** mutable state — callers `await`
 |---|---|---|
 | Must | [Sample Q&A](../../../weeks/week-01/day-01/sample/) | Guided cards |
 | Must | Full modules [01–03](../../../weeks/week-01/day-01/01-foundations.md) | Gaps |
-| Drill | [04-questions](../../../weeks/week-01/day-01/04-questions.md) | Timed answers |
+| Drill | [07-revision-qna](../../../weeks/week-01/day-01/sample/07-revision-qna.md) | Timed answers |
 
 ## 4. Map to your work
 
@@ -95,4 +95,4 @@ An actor is a reference type with **isolated** mutable state — callers `await`
 | actor intro + GCD bridge | 45s |
 | BookMyShow Ads pipeline + HeroWidget lifecycle ≤20s pitch | 20s |
 
-Expand from [sample cards](../../../weeks/week-01/day-01/sample/) and [04-questions](../../../weeks/week-01/day-01/04-questions.md) answer points.
+Expand from [sample cards](../../../weeks/week-01/day-01/sample/) and [07-revision-qna](../../../weeks/week-01/day-01/sample/07-revision-qna.md) answer points.

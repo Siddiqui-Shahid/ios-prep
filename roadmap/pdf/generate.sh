@@ -33,7 +33,7 @@ assemble_full() {
       for dir in weeks/week-$week/day-*/; do
         [ -d "$dir" ] || continue
         echo
-        for f in README.md 01-foundations.md 02-deep-dive.md 03-production-bridge.md 04-questions.md 05-exercises.md; do
+        for f in README.md 01-foundations.md 02-deep-dive.md 03-production-bridge.md sample/07-revision-qna.md 05-exercises.md; do
           [ -f "$dir$f" ] || continue
           cat "$dir$f"
           echo; echo "---"; echo

@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What is on-device AI in one sentence?
-
 **Answer:**
 
 > **Retrieval + guarded inference + an explicit degrade path** — not “call an LLM.” Private data stays local; models are optional accelerators behind capability checks. Draw the pipeline every time: eligibility → retrieve → prompt → local infer / fallback → stream → metrics.
@@ -23,8 +22,7 @@
 
 ---
 
-### Q2. Walk the staff-level pipeline.
-
+### Q2. Walk the staff-level pipeline?
 **Answer:**
 
 > User query → **device eligibility** (OS, Neural Engine, memory, thermal, Low Power) → **retrieve local context** (BM25 / vector / rules) → **assemble prompt** (token budget; minimize PII for any cloud path) → **local generate OR cloud fallback OR deterministic template** → **stream tokens to UI** → **log quality + failure reason** (not raw private prompts).
@@ -43,7 +41,6 @@
 ---
 
 ### Q3. What do token, quantization, and embedding mean on mobile?
-
 **Answer:**
 
 > **Token:** model I/O unit ≈ ¾ word; context window is a hard budget. **Quantization:** FP16 multi-B weights blow RAM; INT8/INT4 shrink weights for mmap + Neural Engine — quality trade-off. **Embedding:** fixed-dim meaning vector; cosine ≈ semantic closeness. **KV-cache:** speeds decode, eats RAM — drop under memory pressure.
@@ -62,7 +59,6 @@
 ---
 
 ### Q4. What is RAG in plain words?
-
 **Answer:**
 
 > Retrieve relevant **local** chunks (ledger rows, exercises, docs), put them in the prompt, ground answers in that context. The model is not “trained on your Hive DB.” For money, **numbers come from the database**, not free-form generation.
@@ -81,7 +77,6 @@
 ---
 
 ### Q5. What is fail-soft and why before happy path?
-
 **Answer:**
 
 > Feature degrades to a useful subset — never hard-crashes the app. Seniors design degrade paths first: no FM/TFLite → rules/TF-IDF; thermal/Low Power → pause infer; memory warning → unload weights; empty retrieval → honest empty state. Hide generative chrome when infer unavailable.
@@ -103,7 +98,6 @@
 ---
 
 ### Q6. Product AI vs tooling AI (District Free Parking + Clean/MVVM + AI tooling)?
-
 **Answer:**
 
 > **Product (FinTrack on-device AI/GymFlow on-device AI):** end user in app — risks are privacy, hallucination, thermal. **Tooling (District Free Parking + Clean/MVVM + AI tooling District):** engineer uses AI for migrations/tests — risks are bad tests, false greens. Don’t conflate Cursor/context engineering with FinTrack RAG.
@@ -125,7 +119,6 @@
 ---
 
 ### Q7. FinTrack vs GymFlow — same shape, different knobs?
-
 **Answer:**
 
 > **FinTrack:** BM25 lexical retrieve; Apple FM when present; **deterministic rules** fail-soft; **no cloud sync** of financial records. **GymFlow:** INT8 MiniLM embeddings + cosine top-K; **TF-IDF** fail-soft; on-device, no cloud LLM required. Say aloud: “Same architecture shape — different retrieval and fallback knobs.”
@@ -144,7 +137,6 @@
 ---
 
 ### Q8. How do you stream tokens to UI without jank?
-
 **Answer:**
 
 > Run inference **off the main thread** and stream tokens through an **AsyncSequence** or callback into **MainActor** UI updates. **Cancel** the task when the user navigates away so work doesn’t outlive the screen. **Batch** rapid tokens to avoid layout thrash. Partial answers stay on screen if we pause for thermal. Agenda: “Background infer, main append, cancelable.”
@@ -163,7 +155,6 @@
 ---
 
 ### Q9. Thermal throttling mid-generation — design the behavior?
-
 **Answer:**
 
 > Observe **ProcessInfo thermal** and **Low Power**. On **serious** pressure: **pause** local generation, keep the **last partial answer** on screen, and switch to **rules or TF-IDF** rather than spinning until Jetsam. GymFlow can **skip embedding refresh** and serve lexical recommendations. Emit coarse metrics — `throttle_events`, `completion_rate` — not raw prompts. Agenda: “Pause, degrade, keep partial — don’t melt.”
@@ -183,3 +174,22 @@ Next: [02-fintrack-rag.md](02-fintrack-rag.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — Walk the staff-level pipeline
+
+**Ask yourself:** Walk the staff-level pipeline?
+
+**Answer:** “User query → **device eligibility** (OS, Neural Engine, memory, thermal, Low Power) → **retrieve local context** (BM25 / vector / rules) → **assemble prompt** (token budget; minimize PII for any cloud path) → **local generate OR cloud fallback OR deterministic template** → **stream tokens to UI** → **log quality + failure reason** (not raw private prompts).”
+
+### Puzzle B — What do token, quantization, and embedding mean on mobile
+
+**Ask yourself:** What do token, quantization, and embedding mean on mobile?
+
+**Answer:** “**Token:** model I/O unit ≈ ¾ word; context window is a hard budget. **Quantization:** FP16 multi-B weights blow RAM; INT8/INT4 shrink weights for mmap + Neural Engine — quality trade-off. **Embedding:** fixed-dim meaning vector; cosine ≈ semantic closeness. **KV-cache:** speeds decode, eats RAM — drop under memory pressure.”
+
+### Puzzle C — What is RAG in plain words
+
+**Ask yourself:** What is RAG in plain words?
+
+**Answer:** “Retrieve relevant **local** chunks (ledger rows, exercises, docs), put them in the prompt, ground answers in that context. The model is not “trained on your Hive DB.” For money, **numbers come from the database**, not free-form generation.”

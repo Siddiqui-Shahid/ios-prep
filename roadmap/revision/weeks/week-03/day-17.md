@@ -56,7 +56,7 @@ At **30L+ DAU**, optimize from **field percentiles**, not desk anecdotes or aver
 | Must | [Sample Q&A](../../../weeks/week-03/day-17/sample/) | Guided cards |
 | Must | Full modules [01–03](../../../weeks/week-03/day-17/01-foundations.md) | Gaps |
 | Deepen | [cheatsheet.md](../../../ios-system-design/docs/cheatsheet.md) — perf snippets | Tool vocabulary |
-| Drill | [04-questions](../../../weeks/week-03/day-17/04-questions.md) | Timed answers |
+| Drill | [07-revision-qna](../../../weeks/week-03/day-17/sample/07-revision-qna.md) | Timed answers |
 
 ## 4. Map to your work
 
@@ -91,4 +91,4 @@ At **30L+ DAU**, optimize from **field percentiles**, not desk anecdotes or aver
 | Journey p50/p90 pitch (BookMyShow Firebase Performance traces) | 60s |
 | BookMyShow Firebase Performance traces ≤20s pitch | 20s |
 
-Expand from [sample cards](../../../weeks/week-03/day-17/sample/) and [04-questions](../../../weeks/week-03/day-17/04-questions.md) answer points.
+Expand from [sample cards](../../../weeks/week-03/day-17/sample/) and [07-revision-qna](../../../weeks/week-03/day-17/sample/07-revision-qna.md) answer points.

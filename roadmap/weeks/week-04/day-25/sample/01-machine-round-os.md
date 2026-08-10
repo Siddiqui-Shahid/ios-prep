@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What is the north star for a 3-hour machine round?
-
 **Answer:**
 
 > **Ship a tested happy path with documented cut lines.** A polished unfinished cathedral loses to a demoable core. If you cannot demo in 60 seconds — load, show data, one secondary behavior (next page **or** unknown fallback), mention a test — you do not have a slice yet.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. What is the 3-hour clock?
-
 **Answer:**
 
 > **0:00–0:15 Clarify** — restate, API shape, offline?, UIKit/SwiftUI, tests; don’t code yet. **0:15–0:20 Agenda** — layers + milestones aloud. **0:20–0:45 Skeleton** — types, protocols, empty UI, fake repo. **0:45–2:00 Vertical slice** — one happy path E2E. **2:00–2:30 Depth** — cache **or** 2nd component. **2:30–2:50 Tests** — 3–6 meaningful unit tests. **2:50–3:00 Buffer** — trade-offs + known gaps README.
@@ -43,7 +41,6 @@
 ---
 
 ### Q3. What is a vertical slice in practice?
-
 **Answer:**
 
 > End-to-end path a proctor can watch: UI triggers ViewModel → repository returns data → UI updates. Plus **one** depth feature: append page 2 (Brief A) or render unknown component safely (Brief B). Mention at least one test by name in buffer.
@@ -62,7 +59,6 @@
 ---
 
 ### Q4. Anti-perfectionism — what should trigger a stop?
-
 **Answer:**
 
 > Styling fonts while pagination broken → **stop**. Cannot demo in 60s now → **slice**. After 2:30 with zero tests → **write two now**. Haven’t narrated cache/SDUI policy → **say in buffer**. Renaming for beauty → **stop**.
@@ -81,7 +77,6 @@
 ---
 
 ### Q5. Brief A or Brief B — how do I choose?
-
 **Answer:**
 
 > **Choose A** if weaker on networking/state/cache — list UX proof. **Choose B** if weaker on SDUI/decoding/fallbacks — high ROI before Day 27 SDUI system design. Do not build both in 3 hours.
@@ -103,7 +98,6 @@
 ---
 
 ### Q6. What do graders hear at key minutes?
-
 **Answer:**
 
 > **0:10** — restated brief + 2 clarifying Qs. **0:18** — layer plan + cut lines. **1:00** — “happy path compiling.” **2:10** — cache policy or unknown-type policy named. **2:40** — test names aloud while writing. **2:55** — known gaps README.
@@ -125,7 +119,6 @@
 ---
 
 ### Q7. What should I say at 0:15 (proctor opener)?
-
 **Answer:**
 
 > “I’ll clarify briefly, then build a vertical slice: UI → ViewModel → protocol repository — fake data first. I’ll leave time for tests and document cut lines.” Then pick Brief A or B 90s plan from sample 02 or 03.
@@ -145,3 +138,22 @@ Next: [02-brief-a-pagination.md](02-brief-a-pagination.md) · [03-brief-b-sdui.m
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What is the 3-hour clock
+
+**Ask yourself:** What is the 3-hour clock?
+
+**Answer:** “**0:00–0:15 Clarify** — restate, API shape, offline?, UIKit/SwiftUI, tests; don’t code yet. **0:15–0:20 Agenda** — layers + milestones aloud. **0:20–0:45 Skeleton** — types, protocols, empty UI, fake repo. **0:45–2:00 Vertical slice** — one happy path E2E. **2:00–2:30 Depth** — cache **or** 2nd component. **2:30–2:50 Tests** — 3–6 meaningful unit tests. **2:50–3:00 Buffer** — trade-offs + known gaps README.”
+
+### Puzzle B — What is a vertical slice in practice
+
+**Ask yourself:** What is a vertical slice in practice?
+
+**Answer:** “End-to-end path a proctor can watch: UI triggers ViewModel → repository returns data → UI updates. Plus **one** depth feature: append page 2 (Brief A) or render unknown component safely (Brief B). Mention at least one test by name in buffer.”
+
+### Puzzle C — Anti-perfectionism — what should trigger a stop
+
+**Ask yourself:** Anti-perfectionism — what should trigger a stop?
+
+**Answer:** “Styling fonts while pagination broken → **stop**. Cannot demo in 60s now → **slice**. After 2:30 with zero tests → **write two now**. Haven’t narrated cache/SDUI policy → **say in buffer**. Renaming for beauty → **stop**.”

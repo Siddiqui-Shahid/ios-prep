@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What is Track B’s 5-minute agenda opener?
-
 **Answer:**
 
 > “I’ll define SDUI scope, schema and versioning, registry and allowlisted actions, fail-soft fallback and cache, then BMS header and Aces splash — and limits versus native Ads.” First **20 seconds**. Scope CMS-driven UI shell — not entire app rewrite.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. What problem does SDUI solve?
-
 **Answer:**
 
 > **Content and layout velocity** without app releases for many changes. Personalisation and experimentation on shell UI. Requirement: **crash-free rendering** — bad CMS payload must not take down the app. BMS header/search (BookMyShow backend-driven header & search) and Aces splash (Audio streaming + server-driven splash (Aces)) as production examples — no invented splash milliseconds.
@@ -46,7 +44,6 @@
 ---
 
 ### Q3. What is the SDUI pipeline architecture?
-
 **Answer:**
 
 > Fetch → **version gate** → parse → **component registry** (type → renderer) → layout → **allowlisted actions only**. Registry maps server type strings to native views. Actions are enumerated — no arbitrary deep links or URL schemes from JSON without allowlist. Injectable dependencies at registry boundary.
@@ -65,7 +62,6 @@
 ---
 
 ### Q4. How does fail-soft resilience work?
-
 **Answer:**
 
 > Unknown type → **skip + metric**; never throw into crash. **Last-known-good cache** when network fails. Empty root after parse → **hard fallback** header/splash shell. BookMyShow backend-driven header & search-A1: emphasize schema versioning + unknown fallback as **design** when pressed. Measure stability and time-to-interactive — not vanity first-frame alone.
@@ -87,7 +83,6 @@
 ---
 
 ### Q5. What are the BMS and Aces production beats?
-
 **Answer:**
 
 > **BookMyShow backend-driven header & search:** backend-driven header; search with debounce, loading/empty/error, MVVM; content iteration without release for many header cases. **Audio streaming + server-driven splash (Aces):** Aces live audio streaming + **server-driven splash** for cold-start content freshness — measure **time-to-interactive**, not invented splash ms. Both require fail-soft mindset.
@@ -109,7 +104,6 @@
 ---
 
 ### Q6. What trade-offs close Track B vs native Ads?
-
 **Answer:**
 
 > SDUI wins velocity on shell/header/splash. **Revenue video Ads often stay native (BookMyShow Ads pipeline + HeroWidget lifecycle)** — lifecycle, viewability, typed players. New widget types still need release. Bridge: SDUI **configures** placement; native **HeroWidget renders** video. Invite questions at 5:00.
@@ -131,7 +125,6 @@
 ---
 
 ### Q7. What SDUI failure modes should I mention if time allows?
-
 **Answer:**
 
 > Major schema mismatch → version gate + hard fallback. Unknown node → skip, don’t throw. Action injection → allowlist only. Slow splash fetch → cached last-good splash. Mention 2–3 in trade-offs window — preserve agenda in first 20s.
@@ -154,3 +147,22 @@ Back to: [README.md](README.md) · Ads track: [03-ads-architecture.md](03-ads-ar
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What problem does SDUI solve
+
+**Ask yourself:** What problem does SDUI solve?
+
+**Answer:** “**Content and layout velocity** without app releases for many changes. Personalisation and experimentation on shell UI. Requirement: **crash-free rendering** — bad CMS payload must not take down the app. BMS header/search (BookMyShow backend-driven header & search) and Aces splash (Audio streaming + server-driven splash (Aces)) as production examples — no invented splash milliseconds.”
+
+### Puzzle B — What is the SDUI pipeline architecture
+
+**Ask yourself:** What is the SDUI pipeline architecture?
+
+**Answer:** “Fetch → **version gate** → parse → **component registry** (type → renderer) → layout → **allowlisted actions only**. Registry maps server type strings to native views. Actions are enumerated — no arbitrary deep links or URL schemes from JSON without allowlist. Injectable dependencies at registry boundary.”
+
+### Puzzle C — How does fail-soft resilience work
+
+**Ask yourself:** How does fail-soft resilience work?
+
+**Answer:** “Unknown type → **skip + metric**; never throw into crash. **Last-known-good cache** when network fails. Empty root after parse → **hard fallback** header/splash shell. BookMyShow backend-driven header & search-A1: emphasize schema versioning + unknown fallback as **design** when pressed. Measure stability and time-to-interactive — not vanity first-frame alone.”

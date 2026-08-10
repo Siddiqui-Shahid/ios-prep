@@ -1,6 +1,6 @@
 # Day 01 — Value vs Reference, COW, Enums, Actors Intro
 
-> Week 1 · Full study (self-contained) · ~4–5 hrs  
+> Week 1 · Full study (self-contained) · ~4–5 hrs 
 > Revision twin: [revision/weeks/week-01/day-01.md](../../../revision/weeks/week-01/day-01.md)
 
 ## Outcomes
@@ -20,7 +20,7 @@ By end of day, without notes, you can:
 3. [`03-production-bridge.md`](03-production-bridge.md) — Verified / Applied hooks
 4. [`code/`](code/) — read `LoadState.swift` and `COWDemo.swift`
 5. [`sample/`](sample/) — spoken Q&A + brain puzzles (`01`–`06`; `06` folds exercise/flash-recall leftovers)
-6. [`04-questions.md`](04-questions.md) — normal Qs + tricky **T1–T10** brain puzzles; speak aloud
+6. [`sample/07-revision-qna.md`](sample/07-revision-qna.md) — normal Qs + tricky **T1–T10** brain puzzles; speak aloud
 7. [`05-exercises.md`](05-exercises.md) — coding + speaking drills (still do the hands-on exercises here)
 8. Revision twin for flashcards / timed drill day-of
 
@@ -31,7 +31,7 @@ By end of day, without notes, you can:
 | Foundations | [01-foundations.md](01-foundations.md) | Mental model + glossary + first examples |
 | Deep dive | [02-deep-dive.md](02-deep-dive.md) | COW internals, nested refs, enum machines, actors intro |
 | Production bridge | [03-production-bridge.md](03-production-bridge.md) | Ads / payment / dictionaries → interview lines |
-| Questions | [04-questions.md](04-questions.md) | Normal + tricky **T1–T10** |
+| Questions | [sample/07-revision-qna.md](sample/07-revision-qna.md) | Normal + tricky **T1–T10** |
 | Exercises | [05-exercises.md](05-exercises.md) | Coding + speaking drills |
 | Code | [code/LoadState.swift](code/LoadState.swift), [code/COWDemo.swift](code/COWDemo.swift) | Runnable mental models |
 | Sample Q&A | [sample/](sample/README.md) | Guided spoken cards — includes **06-module-drills** leftovers |
@@ -72,7 +72,7 @@ Do **not** invent fill-rate %, drop-off %, or latency numbers. In answers, speak
 
 ## Timed drill (after full study)
 
-1. Speak Q1, Q2, Q3, T1, T3 from `04-questions.md` on a timer.
+1. Speak Q1, Q2, Q3, T1, T3 from `sample/07-revision-qna.md` on a timer.
 2. 90s: payment processing-status popup + Design: payment status pattern (honest labels).
 3. 45s: synchronised dictionaries → Design: actor SafeDict (when not to migrate).
 4. Score against [answer-timing-guide.md](../../../timing/answer-timing-guide.md); log misses.

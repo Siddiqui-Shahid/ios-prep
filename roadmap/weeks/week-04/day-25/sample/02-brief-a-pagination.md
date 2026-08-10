@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What is Brief A asking for?
-
 **Answer:**
 
 > Paginated remote list (cursor or page number). Loading / empty / error states. Pull-to-refresh and next-page on scroll. **Cache** so revisiting shows last-good data quickly, then refresh. **Unit tests** for pagination and cache policy.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. What architecture should I sketch in 90s?
-
 **Answer:**
 
 > SwiftUI List (or UIKit equivalent) → **ListViewModel** (items, page/cursor, isLoading, error) → **ListRepository protocol** → RemoteDataSource + CacheDataSource. Say: “Stub remote and memory SWR cache. Page-based pagination with in-flight guard and request generation id. Three unit tests. Cut: images, disk, auth.”
@@ -43,7 +41,6 @@
 ---
 
 ### Q3. What are must-have acceptance criteria?
-
 **Answer:**
 
 > **(1)** First page renders from network/stub. **(2)** Next page appends without wiping. **(3)** Failure on page 2 keeps page 1 visible. **(4)** Cache: cold open shows stale then refresh — **define policy aloud**. **(5)** Tests: pagination reducer/repository with mock — not only UI snapshots.
@@ -62,7 +59,6 @@
 ---
 
 ### Q4. What cache policy should I pick and defend?
-
 **Answer:**
 
 > **Memory LRU only** — fast interview slice; lost on kill. **Memory + disk (Codable)** — stronger senior story; serialization cost. **Stale-while-revalidate** — best UX; need generation/TTL. Pick one at 0:18 and repeat at 2:10.
@@ -81,7 +77,6 @@
 ---
 
 ### Q5. What is the pagination state machine?
-
 **Answer:**
 
 > idle → loadingFirst → loaded | empty | error. loaded → loadingMore | refreshing. loadingMore → loaded (append) or loaded (keep + nonblocking error). refreshing → loaded (replace) or loaded (keep stale + error). **Stale response:** fetch captures generation; commit only if `generation == viewModel.generation`.
@@ -100,7 +95,6 @@
 ---
 
 ### Q6. What tests are “meaningful” for Brief A?
-
 **Answer:**
 
 > Test **ViewModel** or **repository** with injected fakes: append pagination, failed page 2 preserves page 1, cache SWR or stale-then-refresh, generation id ignores stale response. **3+ fast unit tests** — not snapshot-only, not 100% coverage chase.
@@ -122,7 +116,6 @@
 ---
 
 ### Q7. Brief A trade-offs to narrate?
-
 **Answer:**
 
 > SwiftUI list faster slice; UIKit shop may want Diffable — state assumption. Protocol + fake repo first — progress + tests. Real network impressive but flaky. Perfect Clean Architecture rarely fits 3 hrs.
@@ -133,7 +126,7 @@
 |---|---|
 | BookMyShow backend-driven header & search production hook? | Pagination/debounce instincts — not claim this project is BMS. |
 | Image loading? | Cut line. |
-| Debrief? | Sample 04 + [`../04-questions.md`](../04-questions.md). |
+| Debrief? | Sample 04 + [07-revision-qna.md](07-revision-qna.md). |
 
 **How can I relate to my case:**
 - **Shipped:** BookMyShow backend-driven header & search
@@ -145,3 +138,22 @@ Next: [03-brief-b-sdui.md](03-brief-b-sdui.md) · or run Brief A in [`../05-exer
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What architecture should I sketch in 90s
+
+**Ask yourself:** What architecture should I sketch in 90s?
+
+**Answer:** “SwiftUI List (or UIKit equivalent) → **ListViewModel** (items, page/cursor, isLoading, error) → **ListRepository protocol** → RemoteDataSource + CacheDataSource. Say: “Stub remote and memory SWR cache. Page-based pagination with in-flight guard and request generation id. Three unit tests. Cut: images, disk, auth.”
+
+### Puzzle B — What are must-have acceptance criteria
+
+**Ask yourself:** What are must-have acceptance criteria?
+
+**Answer:** “**(1)** First page renders from network/stub. **(2)** Next page appends without wiping. **(3)** Failure on page 2 keeps page 1 visible. **(4)** Cache: cold open shows stale then refresh — **define policy aloud**. **(5)** Tests: pagination reducer/repository with mock — not only UI snapshots.”
+
+### Puzzle C — What cache policy should I pick and defend
+
+**Ask yourself:** What cache policy should I pick and defend?
+
+**Answer:** “**Memory LRU only** — fast interview slice; lost on kill. **Memory + disk (Codable)** — stronger senior story; serialization cost. **Stale-while-revalidate** — best UX; need generation/TTL. Pick one at 0:18 and repeat at 2:10.”

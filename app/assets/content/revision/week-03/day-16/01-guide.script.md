@@ -39,4 +39,4 @@ Next. 5. Flash prompts. 1. L1 / L2 / L3 cache tiers — what each holds 2. Decod
 
 ## §9 6. Timed drills
 
-Next. 6. Timed drills. Expand from sample cards and 04-questions answer points.
+Next. 6. Timed drills. Expand from sample cards and 07-revision-qna answer points.

@@ -15,7 +15,7 @@ Next. Q3. What is unstructured concurrency, and when is it OK? Answer. “Task {
 
 ## §3 Q4. How does Task cancellation work?
 
-Next. Q4. How does Task cancellation work? Answer. “Cancellation is cooperative — not ‘kill the thread now.’ Something calls task.cancel(), or a parent cancels. The task gets marked cancelled. Work actually stops when you hit a cancellable await that throws CancellationError, or you check Task.isCancelled / try Task.checkCancellation(), or you exit early on purpose. A tight CPU loop with no checks can ignore cancel completely.” Follow-ups. Like pthread kill?: “No. Swift concurrency doesn’t yank the thread mid-instruction.”. CancellationError in debounce?: “Often expected — don’t treat it like a real failure.”. Parent cancelled — children?: “Structured kids get the signal too — they still have to cooperate.”.
+Next. Q4. How does Task cancellation work? Answer. “Cancellation is cooperative — not ‘kill the thread now.’ Something calls task.cancel, or a parent cancels. The task gets marked cancelled. Work actually stops when you hit a cancellable await that throws CancellationError, or you check Task.isCancelled / try Task.checkCancellation, or you exit early on purpose. A tight CPU loop with no checks can ignore cancel completely.” Follow-ups. Like pthread kill?: “No. Swift concurrency doesn’t yank the thread mid-instruction.”. CancellationError in debounce?: “Often expected — don’t treat it like a real failure.”. Parent cancelled — children?: “Structured kids get the signal too — they still have to cooperate.”.
 
 ## §4 Q5. Why must search debounce cancel in-flight work?
 
@@ -23,7 +23,7 @@ Next. Q5. Why must search debounce cancel in-flight work? Answer. “User types 
 
 ## §5 Q6. What about URLSession and cancellation?
 
-Next. Q6. What about URLSession and cancellation? Answer. “Async URLSession APIs like data(for:) participate in Task cancellation — cancel the Task and the request usually cancels too. Old callback dataTask style needs explicit URLSessionTask.cancel() and stale-response guards. I don’t claim ‘all networking magically cancels’ — I say which A P I family I’m on.” Follow-ups. Belt-and-suspenders?: “Generation token, or only apply if the query still matches after await.”. Migrating callbacks?: “Async path composes with structured cancel. Callbacks need manual wiring.”. Stale guard without cancel?: “Possible but fragile. Cancel is the primary fix.”.
+Next. Q6. What about URLSession and cancellation? Answer. “Async URLSession APIs like data(for:) participate in Task cancellation — cancel the Task and the request usually cancels too. Old callback dataTask style needs explicit URLSessionTask.cancel and stale-response guards. I don’t claim ‘all networking magically cancels’ — I say which A P I family I’m on.” Follow-ups. Belt-and-suspenders?: “Generation token, or only apply if the query still matches after await.”. Migrating callbacks?: “Async path composes with structured cancel. Callbacks need manual wiring.”. Stale guard without cancel?: “Possible but fragile. Cancel is the primary fix.”.
 
 ## §6 Q7. What failure modes should I name?
 
@@ -41,9 +41,9 @@ Next. Q9. What do you say about Task priority / QoS? Answer. “Tasks carry prio
 
 Next. Q10. Why is GCD `sync` inside async risky? Answer. “Swift concurrency multiplexes many tasks onto a thread pool. If async code calls DispatchQueue.sync and blocks, you can starve that pool and hang. Sync onto main is especially sharp — deadlock or long stalls. In mixed codebases I wrap legacy queue APIs with async façades using continuations, resume exactly once, and avoid sync bridges from async paths. At BMS we still have G C D dictionary isolation — the lesson is serialize at the boundary without blocking the world.” Follow-ups. When is sync OK?: “Tiny known sync contexts — not as the spine of your async design.”. Prefer instead?: “Continuations, actors, async methods end-to-end.”. Symptom?: “Hang, watchdog, or ‘async but everything stalled.’”.
 
-## §10 Q11. Walk a real search ViewModel like you’d code it
+## §10 Q11. Walk a real search ViewModel like you’d code it?
 
-Next. Q11. Walk a real search ViewModel like you’d code it Answer. “I’d keep a @MainActor ViewModel with a stored searchTask. On each query change I cancel the old task, then start a new one. Inside: sleep for debounce, try Task.checkCancellation(), await the A P I, assign results. I catch CancellationError as normal — not an error banner. Other errors map to U I error state. That’s the BookMyShow search shape: unstructured Task at the U I boundary, cooperative cancel on every keystroke.” Follow-ups. Why MainActor VM?: “Published U I state stays on main while the Task cancels and restarts.”. Generation token?: “Optional belt-and-suspenders — only apply if the query still matches.”. Invent 300ms from prod?: “No. I may demo 300ms in a lab; I don’t claim a production constant.”.
+Next. Q11. Walk a real search ViewModel like you’d code it? Answer. “I’d keep a @MainActor ViewModel with a stored searchTask. On each query change I cancel the old task, then start a new one. Inside: sleep for debounce, try Task.checkCancellation, await the A P I, assign results. I catch CancellationError as normal — not an error banner. Other errors map to U I error state. That’s the BookMyShow search shape: unstructured Task at the U I boundary, cooperative cancel on every keystroke.” Follow-ups. Why MainActor VM?: “Published U I state stays on main while the Task cancels and restarts.”. Generation token?: “Optional belt-and-suspenders — only apply if the query still matches.”. Invent 300ms from prod?: “No. I may demo 300ms in a lab; I don’t claim a production constant.”.
 
 ## §11 Q12. What failure modes should I name in production thinking?
 
@@ -53,9 +53,9 @@ Next. Q12. What failure modes should I name in production thinking? Answer. “F
 
 Next. Q13. How do you wrap a legacy GCD API into async? Answer. “I expose an async façade with a continuation. The G C D callback resumes the continuation — and I resume exactly once. No double-resume, no forget-to-resume. From async code I await that façade. I avoid calling DispatchQueue.sync from the middle of async/await paths, especially sync to main. Prefer await MainActor.run or a MainActor method for U I hops.” Follow-ups. Why resume-once?: “Double resume crashes; never resume leaves the await hung forever.”. Still use G C D underneath?: “Yes — strangler. Stable queue stays; new callers see async.”.
 
-## §13 Q14. `async let` venue page — say it like a story
+## §13 Q14. `async let` venue page — say it like a story?
 
-Next. Q14. `async let` venue page — say it like a story Answer. “Loading a venue page I need details, showtimes, and offers — fixed three. I write three async lets so they start together, then try await them into one page model. If the parent is cancelled — user left — the children get cancelled too. That’s structured fan-out for a known small set. If I’m prefetching N poster URLs, that’s TaskGroup, and I name the stampede risk and cap concurrency.” Follow-ups. One child throws?: “The parent’s try await surfaces it; structure keeps errors in one place.”. Cap how?: “Chunk URLs, or limit in-flight adds — interviewers care that you name the risk.”.
+Next. Q14. `async let` venue page — say it like a story? Answer. “Loading a venue page I need details, showtimes, and offers — fixed three. I write three async lets so they start together, then try await them into one page model. If the parent is cancelled — user left — the children get cancelled too. That’s structured fan-out for a known small set. If I’m prefetching N poster URLs, that’s TaskGroup, and I name the stampede risk and cap concurrency.” Follow-ups. One child throws?: “The parent’s try await surfaces it; structure keeps errors in one place.”. Cap how?: “Chunk URLs, or limit in-flight adds — interviewers care that you name the risk.”.
 
 ## §14 Q15. Timeouts — what do you say?
 

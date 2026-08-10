@@ -1,13 +1,12 @@
 # Sample 02 — Thread-safe dictionary (Q&A)
 
-> Guided teaching. Say the **Answer** out loud like you’re talking to an interviewer.  
-> Each answer ends with **How can I relate to my case** using named work — never S-codes.  
+> Guided teaching. Say the **Answer** out loud like you’re talking to an interviewer. 
+> Each answer ends with **How can I relate to my case** using named work — never S-codes. 
 > **Brain puzzles** at the bottom — cover the answer, think, then check.
 
 ---
 
 ### Q1. What is Pattern A — serial queue SafeDict?
-
 **Answer:**
 
 > “A `final class` wrapper with private storage and a private serial `DispatchQueue`. Reads use `queue.sync { storage[key] }` so they return a value and wait for prior enqueued work. Writes use `queue.sync` or a carefully documented `queue.async`. Callers never see the queue or raw dictionary — only safe methods like get, set, and snapshot.”
@@ -29,7 +28,6 @@
 ---
 
 ### Q2. Why must storage and queue be private?
-
 **Answer:**
 
 > “Private storage stops callers from reading or mutating the dictionary outside your synchronization. Private queue stops them from dispatching their own work onto your queue in an order you don’t control. At BookMyShow we standardized the access API precisely so call sites could not touch raw storage — that was the production fix.”
@@ -50,7 +48,6 @@
 ---
 
 ### Q3. What is the async write / sync read visibility rule?
-
 **Answer:**
 
 > “If set uses async, it only schedules the write and returns immediately. A sync get on the same thread usually sees the write because the async block was enqueued before the sync block — but you must not treat ‘async set’ as ‘write completed.’ For read-after-write certainty at the call site, use sync set or a single sync transaction. Interview line: async write then sync read may not see the write until the write runs.”
@@ -69,7 +66,6 @@
 ---
 
 ### Q4. When should set be sync vs async?
-
 **Answer:**
 
 > “Sync set when the caller needs read-after-write, or when correctness beats throughput for that API. Async set when fire-and-forget is OK and callers won’t assume immediate visibility — document that clearly. Default teaching and BookMyShow synchronised dictionaries interviews: prefer sync set unless you have a measured reason for async writes.”
@@ -90,7 +86,6 @@
 ---
 
 ### Q5. What is Pattern B — concurrent queue + barrier?
-
 **Answer:**
 
 > “A concurrent queue where reads use plain sync or async — they may overlap with other reads — and writes use `async(flags: .barrier)` for an exclusive section. The barrier waits for prior readers and blocks new readers and writers until done. Reader-writer pattern for read-heavy maps. See BarrierDict.swift.”
@@ -112,7 +107,6 @@
 ---
 
 ### Q6. What is writer starvation on a barrier queue?
-
 **Answer:**
 
 > “If readers constantly enter, a barrier writer may wait a long time — new reads keep arriving before the writer gets exclusivity. Mitigations: QoS tuning, batching writes, or falling back to a serial queue if simplicity beats read parallelism. Another reason serial SafeDict is the default interview answer.”
@@ -131,7 +125,6 @@
 ---
 
 ### Q7. Why never return a mutable interior reference?
-
 **Answer:**
 
 > “Returning the dictionary directly or an inout escape lets callers mutate outside the queue — all synchronization bypassed. Prefer snapshot — queue.sync returns a value copy; Dictionary copy-on-write helps. Hand out values, not live storage.”
@@ -150,7 +143,6 @@
 ---
 
 ### Q8. How do you whiteboard SafeDict in 45 seconds?
-
 **Answer:**
 
 > “final class, private dictionary, private serial queue. Sync get and sync set so read-after-write is defined. Snapshot returns a copy. Call sites never see storage or the queue — that was the BookMyShow fix for raced shared maps. Optional coda: barrier RW for read-heavy; actor for greenfield — Design: actor SafeDict, not shipped.”
@@ -210,7 +202,7 @@ Read-heavy BarrierDict: continuous readers, occasional writes. Writers take seco
 
 ```swift
 func mutate(_ body: (inout [Key: Value]) -> Void) {
-    // body escapes and stores the inout elsewhere
+ // body escapes and stores the inout elsewhere
 }
 ```
 

@@ -56,7 +56,7 @@ Two Sum · Best Time to Buy/Sell Stock · Valid Palindrome · Container With Mos
 |---|---|---|
 | Must | [Sample Q&A](../../../weeks/week-01/day-06/sample/) | Guided cards |
 | Must | Full modules [01–03](../../../weeks/week-01/day-06/01-foundations.md) | Gaps |
-| Drill | [04-questions](../../../weeks/week-01/day-06/04-questions.md) | Timed answers |
+| Drill | [07-revision-qna](../../../weeks/week-01/day-06/sample/07-revision-qna.md) | Timed answers |
 
 ## 4. Map to your work
 

@@ -1,97 +1,108 @@
-# 01 — Foundations: Deeplinks, Push, Release Trains
+# 01 — Foundations: Deeplinks, Push, Release Trains (Q&A)
+
+> Cover the answer, speak aloud, then check follow-ups. Simple language. Named work only — never S-codes in speech.
 
 ---
 
-## 0. North star
+### Q1. North star? `(45–60s)`
+**Answer:**
 
-**One router for every entrypoint; queue links until navigation is ready; automate the train; keep a stop button for CFS/perf.**
+> “One router for every entrypoint; queue links until navigation is ready; automate the train; keep a stop button for CFS/perf. ---.”
 
----
+**Follow-ups:**
 
-## 1. Deep linking pipeline
-
-```text
-https://domain/path?params  (Universal Link if AASA ok)
-  OR myapp://…              (custom scheme — hijackable)
-  → Scene / onOpenURL
-  → DeepLinkRouter (parse, validate, match)
-  → AppCoordinator (nav ready?)
-  → Target screen OR queue until warm
-```
-
-| | Universal Links | Custom scheme |
-|---|---|---|
-| Security | Domain association via AASA | Hijackable by other apps |
-| UX | https works in browser too | `myapp://` only |
-| Setup | AASA + entitlements | URL types in Info |
-
-**AASA:** JSON at `/.well-known/apple-app-site-association` over HTTPS; lists appIDs + paths; size limits; CDN caching can delay fixes (~OS cache).
-
-**Cold start race:** link arrives before DI/nav ready → **queue** intent; flush when root UI ready; invalid → safe home + metric.
-
-**Security:** validate params; auth-gate checkout; never trust URL for price/user authority.
-
----
-
-## 2. Push pipeline
-
-```text
-Permission (contextual) → register for remote notifications
-  → APNs device token → backend / Airship
-  → Campaign / transactional push
-  → Tap → deep link / category action → SAME router as UL
-```
-
-| Topic | Senior line |
+| Follow-up | Answer |
 |---|---|
-| Airship | Engagement layer on APNs — segments/journeys; still know APNs |
-| Payload | Small; route id/URL; defensive decode (CFS!) |
-| Token lifecycle | Register; upload; refresh on reinstall/OS; invalidate old |
-| Foreground vs tap | Different handlers; unify routing |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-**Verified · S13:** Memphis Grizzlies — deeplinks + **Airship** + **Mixpanel** atop hybrid SwiftUI/UIKit navigation.
-
----
-
-## 3. CI/CD & release trains
-
-```text
-PR → GitHub Actions (lint, build, unit tests)
-  → merge → archive + sign
-  → TestFlight (internal/external)
-  → phased App Store
-  → monitor CFS / perf → PAUSE if needed
-```
-
-**BMS proof:** automated **GitHub Actions** for build, lint, **TestFlight** — cut manual release overhead.
-
-**Gates:** tests green, size budget, **dSYM upload** (Day 18), CFS/perf thresholds on phased rollout, feature flags.
-
-**Signing:** secrets in CI — never commit `.p12` in clear.
-
-**AI PR review:** accelerate regression spotting; humans own architecture/security (**S9** judgment).
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 4. Glossary
+### Q2. Deep linking pipeline? `(45–60s)`
+**Answer:**
 
-| Term | Meaning |
+> “text https://domain/path?params (Universal Link if AASA ok) OR myapp://… (custom scheme — hijackable) → Scene / onOpenURL → DeepLinkRouter (parse, validate, match) → AppCoordinator (nav ready?) → Target screen OR queue until warm.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
 |---|---|
-| AASA | apple-app-site-association |
-| Deferred deep link | Post-install route attribution |
-| APNs | Apple Push Notification service |
-| Collapse id | Collapse related notifications |
-| Release train | Cadenced ship + phased % |
-| match / signing | Cert/profile management in CI |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 5. Teach-back
+### Q3. Push pipeline? `(45–60s)`
+**Answer:**
 
-1. UL vs scheme  
-2. One router for UL + push  
-3. Cold-start queue  
-4. Actions → TestFlight + pause criteria  
-5. S13 one-liner  
+> “text Permission (contextual) → register for remote notifications → APNs device token → backend / Airship → Campaign / transactional push → Tap → deep link / category action → SAME router as UL.”
 
-Next: [`02-deep-dive.md`](02-deep-dive.md).
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
+
+---
+
+### Q4. CI/CD & release trains? `(45–60s)`
+**Answer:**
+
+> “text PR → GitHub Actions (lint, build, unit tests) → merge → archive + sign → TestFlight (internal/external) → phased App Store → monitor CFS / perf → PAUSE if needed BMS proof: automated GitHub Actions for build, lint, TestFlight — cut manual release overhead.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q5. Glossary? `(45–60s)`
+**Answer:**
+
+> “---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q6. Teach-back? `(45–60s)`
+**Answer:**
+
+> “1. UL vs scheme 2. One router for UL + push 3. Cold-start queue 4. Actions → TestFlight + pause criteria 5. one-liner Next: 02-deep-dive.md.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---

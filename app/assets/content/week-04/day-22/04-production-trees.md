@@ -5,7 +5,6 @@
 ---
 
 ### Q1. How do trees show up in SDUI / header work (BookMyShow backend-driven header & search)?
-
 **Answer:**
 
 > CMS and header documents are **nested component trees**. Walking parent/child layout is DFS-shaped; processing each section depth can feel BFS-like. Schema versioning and unknown-type fallbacks matter more than naming LeetCode level-order. **Do not claim:** “We used LeetCode BFS in the header renderer.”
@@ -27,7 +26,6 @@
 ---
 
 ### Q2. What is the Stories SDK tree angle (Stories SDK (Raw / Miami Heat))?
-
 **Answer:**
 
 > Stories SDK has story/page/frame hierarchy — a tree of ownership and isolation boundaries. Traversal thinking helps debug nested presenters, but this is **not** a DSA flex. ≤20s: “Nested page/frame structure forced clear ownership — same discipline as bounding recursion depth.”
@@ -49,7 +47,6 @@
 ---
 
 ### Q3. How do deeplinks relate to tree walks (Hybrid UI / deeplinks)?
-
 **Answer:**
 
 > Deeplink destinations and nested coordinators form a **route tree**. Resolving a specific path is DFS-like; listing siblings at a navigation level is BFS-like. Same clarify-first habit as interview tree problems: path vs level concern.
@@ -71,7 +68,6 @@
 ---
 
 ### Q4. What metrics may I mention on a DSA tree day?
-
 **Answer:**
 
 > **Allowed** if behavioral drift: **30L+ DAU**, **99.95% crash-free**, **30%+ nav** as company context. Qualitative: reusable SDK, hybrid nav shipped. **Not allowed:** invented “solved N trees in prod” or fake latency % from traversal choice.
@@ -92,8 +88,7 @@
 
 ---
 
-### Q5. What is the 45s bridge if asked “when do you use this at work?”
-
+### Q5. What is the 45s bridge if asked “when do you use this at work?”?
 **Answer:**
 
 > “I don’t force interview patterns into product code for sport. Where trees appear — SDUI documents, view hierarchies, deeplink graphs — I use the same rule: level-aware work leans BFS-shaped; path and subtree decisions lean DFS-shaped. In production I budget depth and prefer iterative walks when input is untrusted CMS depth, because crash-free sessions beat clever recursion.”
@@ -115,7 +110,6 @@
 ---
 
 ### Q6. What production anti-patterns should I avoid?
-
 **Answer:**
 
 > Don’t map every LC problem to a resume bullet. Don’t invent fill-rate or latency ms from traversal choice. Don’t claim Instruments proved a “tree optimization.” Don’t blur learning-lab Swift with BookMyShow production. Keep hooks ≤20s while coding; save STAR for behavioral days.
@@ -126,7 +120,7 @@
 |---|---|
 | Honest framing for depth guard? | “I’d design fail-soft — tie to 99.95% mindset, not ‘I shipped this guard.’” |
 | STAR pointers? | BookMyShow backend-driven header & search header, Stories SDK (Raw / Miami Heat) SDK, Hybrid UI / deeplinks deeplink, BookMyShow IMOC + crash-free at scale reliability — story-bank IDs. |
-| After sample? | [`../04-questions.md`](../04-questions.md) for timed two-layer Q&A. |
+| After sample? | [07-revision-qna.md](07-revision-qna.md) for timed two-layer Q&A. |
 
 **How can I relate to my case:**
 - **Shipped:** Stories SDK (Raw / Miami Heat); Hybrid UI / deeplinks; BookMyShow backend-driven header & search; BookMyShow IMOC + crash-free at scale
@@ -134,7 +128,26 @@
 - **Lab only:** Learning-lab demos / sketches only — not production source.
 - **Don’t claim:** Attributing 99.95%+ CFS to a single ticket; inventing DAU figures.
 
-Next: main [`../04-questions.md`](../04-questions.md)
+Next: main [07-revision-qna.md](07-revision-qna.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What is the Stories SDK tree angle (Stories SDK (Raw / Miami Heat))
+
+**Ask yourself:** What is the Stories SDK tree angle (Stories SDK (Raw / Miami Heat))?
+
+**Answer:** “Stories SDK has story/page/frame hierarchy — a tree of ownership and isolation boundaries. Traversal thinking helps debug nested presenters, but this is **not** a DSA flex. ≤20s: “Nested page/frame structure forced clear ownership — same discipline as bounding recursion depth.”
+
+### Puzzle B — How do deeplinks relate to tree walks (Hybrid UI / deeplinks)
+
+**Ask yourself:** How do deeplinks relate to tree walks (Hybrid UI / deeplinks)?
+
+**Answer:** “Deeplink destinations and nested coordinators form a **route tree**. Resolving a specific path is DFS-like; listing siblings at a navigation level is BFS-like. Same clarify-first habit as interview tree problems: path vs level concern.”
+
+### Puzzle C — What metrics may I mention on a DSA tree day
+
+**Ask yourself:** What metrics may I mention on a DSA tree day?
+
+**Answer:** “**Allowed** if behavioral drift: **30L+ DAU**, **99.95% crash-free**, **30%+ nav** as company context. Qualitative: reusable SDK, hybrid nav shipped. **Not allowed:** invented “solved N trees in prod” or fake latency % from traversal choice.”

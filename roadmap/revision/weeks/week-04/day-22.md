@@ -51,7 +51,7 @@ Say “auxiliary O(1) besides call stack O(h)” — not “O(1) recursive.”
 |---|---|---|
 | Must | [Sample Q&A](../../../weeks/week-04/day-22/sample/) | Guided cards |
 | Must | Full modules [01–03](../../../weeks/week-04/day-22/01-foundations.md) | Pattern catalog + skeletons |
-| Drill | [04-questions](../../../weeks/week-04/day-22/04-questions.md) | Timed answers |
+| Drill | [07-revision-qna](../../../weeks/week-04/day-22/sample/07-revision-qna.md) | Timed answers |
 | Code | [code/](../../../weeks/week-04/day-22/code/) | BFS, LCA, validate BST |
 
 ## 4. Map to your work
@@ -88,4 +88,4 @@ Do **not** claim “we used LeetCode level-order in prod.” Resume trio (**30L+
 | Complexity + edges | 45s |
 | BookMyShow backend-driven header & search tree mapping ≤20s | 20s |
 
-Expand from [sample cards](../../../weeks/week-04/day-22/sample/) and [04-questions](../../../weeks/week-04/day-22/04-questions.md) answer points.
+Expand from [sample cards](../../../weeks/week-04/day-22/sample/) and [07-revision-qna](../../../weeks/week-04/day-22/sample/07-revision-qna.md) answer points.

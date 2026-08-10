@@ -5,7 +5,6 @@
 ---
 
 ### Q1. Why do large iOS apps need modules?
-
 **Answer:**
 
 > Without boundaries, everything imports everything. That slows incremental builds, creates merge conflicts in the project file, hides singletons like `NetworkManager.shared`, and makes reuse across apps (copy-paste Stories UI per brand) painful. **Modularization** splits the app into packages or targets with an **allowed import graph**. **DI** means the App target wires implementations into features that only know **protocols**.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. What is Feature Interface vs Feature Impl?
-
 **Answer:**
 
 > **Feature Interface** holds protocols, lightweight DTOs, and builder types — no heavy UI or network implementation. **Feature Impl** holds views, view models, and feature use-cases for one feature. Other features may depend on your Interface; they must **not** import your Impl. The App target registers the concrete builder at the composition root.
@@ -43,7 +41,6 @@
 ---
 
 ### Q3. What is the golden dependency rule?
-
 **Answer:**
 
 > Feature implementations may depend on **other features’ Interfaces** and on **Core** — never on another feature’s **Impl**. The App target sits at the top and wires concrete builders. **Forbidden:** `FeatureA Impl` imports `FeatureB Impl`. That creates compile-time cycles, hidden coupling, and impossible reuse.
@@ -62,7 +59,6 @@
 ---
 
 ### Q4. What is a composition root?
-
 **Answer:**
 
 > The **composition root** is the App target that constructs the full DI graph. It creates shared services (network, analytics), fulfills dependency protocols for each feature component, and registers feature builders. Features receive dependencies through **constructor injection** or a typed component tree — they do not reach for global singletons.
@@ -81,7 +77,6 @@
 ---
 
 ### Q5. What is Core, and what must it not become?
-
 **Answer:**
 
 > **Core** holds shared infrastructure abstractions: network, storage, design system tokens, analytics interfaces — and **carefully** shared domain models. It must **not** become a junk drawer for “maybe useful someday” DTOs. Checkout-only types belong in Checkout Interface/Impl; true shared entities (User id) may live in a small `DomainModels` kernel.
@@ -100,7 +95,6 @@
 ---
 
 ### Q6. What should the 60-second HLD show?
-
 **Answer:**
 
 > Draw App at the top as DI root and deeplink router. Below: feature Impl boxes (Checkout, Search, Stories SDK) each pointing down to their Interface layer. Interfaces converge on CoreNetwork / CoreAnalytics. No Impl-to-Impl arrows. App wires concrete builders at the edges. That diagram shows enforcement, parallelism, and reuse in one picture.
@@ -119,7 +113,6 @@
 ---
 
 ### Q7. What should I say after foundations?
-
 **Answer:**
 
 > “Interface is the contract other modules may import; Impl is how one feature implements it. DI lives in the App composition root — constructor or tree wiring, not feature-level singletons. Folders don’t enforce anything; SPM/Xcode targets and the import graph do. Features never import peer Impls.”
@@ -139,3 +132,22 @@ Next: [02-spm-di-graphs.md](02-spm-di-graphs.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What is Feature Interface vs Feature Impl
+
+**Ask yourself:** What is Feature Interface vs Feature Impl?
+
+**Answer:** “**Feature Interface** holds protocols, lightweight DTOs, and builder types — no heavy UI or network implementation. **Feature Impl** holds views, view models, and feature use-cases for one feature. Other features may depend on your Interface; they must **not** import your Impl. The App target registers the concrete builder at the composition root.”
+
+### Puzzle B — What is the golden dependency rule
+
+**Ask yourself:** What is the golden dependency rule?
+
+**Answer:** “Feature implementations may depend on **other features’ Interfaces** and on **Core** — never on another feature’s **Impl**. The App target sits at the top and wires concrete builders. **Forbidden:** `FeatureA Impl` imports `FeatureB Impl`. That creates compile-time cycles, hidden coupling, and impossible reuse.”
+
+### Puzzle C — What is a composition root
+
+**Ask yourself:** What is a composition root?
+
+**Answer:** “The **composition root** is the App target that constructs the full DI graph. It creates shared services (network, analytics), fulfills dependency protocols for each feature component, and registers feature builders. Features receive dependencies through **constructor injection** or a typed component tree — they do not reach for global singletons.”

@@ -9,13 +9,13 @@ Next. Q1. Interviewer: “Design Networking Layer / HTTP Client.” How do you o
 
 Next. Q2. After clarify — what does the optimal flow look like? Answer. Scripted outcomes for this mock: URLSession APIClient; auth interceptor; single-flight refresh; SPKI pinning; retries on idempotent GET; out: GraphQL/WS, image S D K. Good flow: agenda → clarify Qs → confirm → high level design (4 layers + backend + load) → A P I → two crisp dives → ops last 5. Weak flow: silent drawing, happy-path only, no QPS/TTL, invent metrics, skip ops. Follow-ups. They change scope mid-high level design?: Re-confirm in/out in 20s; adjust dives; protect ops.. Backend mesh deep-dive?: Out unless asked — sketch touchpoints, stay client-owned.. Forgot to ask offline?: State online-first + last-good cache as assumption; invite correction..
 
-## §2 Q3. Walk the HLD — client layers, backend, load.
+## §2 Q3. Walk the HLD — client layers, backend, load?
 
-Next. Q3. Walk the HLD — client layers, backend, load Answer. Features → APIClient (build→intercept→execute→decode→map errors) → Auth/Retry/Tracing → URLSession + SPKI + allowlist → URLCache/Keychain. Backend: A P I gateway; /auth/refresh. Load: HTTP/2 multiplex; gzip; timeout ~30s; paginate huge JSON; pin rotation 60–90d. Follow-ups. Alamofire?: Prefer URLSession when owning trust/pinning — BMS migration story.. Where pinning sits?: URLSessionDelegate challenge — before bytes..
+Next. Q3. Walk the HLD — client layers, backend, load? Answer. Features → APIClient (build→intercept→execute→decode→map errors) → Auth/Retry/Tracing → URLSession + SPKI + allowlist → URLCache/Keychain. Backend: A P I gateway; /auth/refresh. Load: HTTP/2 multiplex; gzip; timeout ~30s; paginate huge JSON; pin rotation 60–90d. Follow-ups. Alamofire?: Prefer URLSession when owning trust/pinning — BMS migration story.. Where pinning sits?: URLSessionDelegate challenge — before bytes..
 
-## §3 Q4. Data / API — entities, endpoints, scale.
+## §3 Q4. Data / API — entities, endpoints, scale?
 
-Next. Q4. Data / API — entities, endpoints, scale Answer. APIEndpoint + request(_:) async throws. 401 → refresh coordinator; retry 408/429/5xx on idempotent GET only; never blind-retry charge POST. Follow-ups. Idempotency-Key?: For mutations that must be exactly-once.. Tracing?: X-Request-ID on all calls..
+Next. Q4. Data / API — entities, endpoints, scale? Answer. APIEndpoint + request(_:) async throws. 401 → refresh coordinator; retry 408/429/5xx on idempotent GET only; never blind-retry charge POST. Follow-ups. Idempotency-Key?: For mutations that must be exactly-once.. Tracing?: X-Request-ID on all calls..
 
 ## §4 Q5. Deep dive 1 — Interceptor pipeline?
 

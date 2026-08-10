@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What can you claim under Hybrid UI / deeplinks?
-
 **Answer:**
 
 > Memphis Grizzlies: you **designed SwiftUI + UIKit interop architecture** with deliberate lifecycle and sizing — not ad-hoc hosting. **Deep linking** with navigation/lifecycle handling and cold-start readiness queue mindset. **Mixpanel** and **Airship** integrated so push taps route through the **same navigation story** as deeplinks. Lesson: interop costs (identity, lifecycle, hosting) must be **designed**, not bolted.
@@ -27,7 +26,6 @@
 ---
 
 ### Q2. What can you claim under BookMyShow LE Bottom Sheet?
-
 **Answer:**
 
 > BookMyShow **LE Bottom Sheet**: lightweight event overview surface. Led end-to-end delivery; aligned PM, Design, Backend on API/content contracts. Shipped reusable component into high-traffic flows. Result: **30%+ fewer full-screen navigations** for user flows (resume metric). Lesson: small UI surfaces with clear contracts beat large rewrites for navigation pain.
@@ -49,7 +47,6 @@
 ---
 
 ### Q3. How do you insert BookMyShow Ads pipeline + HeroWidget lifecycle lifecycle in a hybrid/cells answer?
-
 **Answer:**
 
 > When asked where ads video pauses: disappear, offscreen, background — **HeroWidget** protocolised that behavior on the revenue-critical Ads module. Tie to `viewWillDisappear`, visibility threshold, and `prepareForReuse` stopping the player in cells. Lifecycle is part of the product contract (BookMyShow Ads pipeline + HeroWidget lifecycle).
@@ -71,7 +68,6 @@
 ---
 
 ### Q4. What must you never invent for Day 11 production stories?
-
 **Answer:**
 
 > Do not invent nav reduction % beyond resume **30%+**. Do not claim continuous dual NavigationPath + UINavigationController sync as best practice. Do not claim Airship/Mixpanel integration without lifecycle discipline when asked about navigation. Do not invent Grizzlies crash-free percentages or exact hosting API trivia as verified production war stories unless labeled Learning-lab.
@@ -93,7 +89,6 @@
 ---
 
 ### Q5. How do interviewer pushes map to strong replies?
-
 **Answer:**
 
 > **Pure SwiftUI?** Legacy + ship velocity; hybrid with one owner. **New tab for LE?** Tabs change IA; sheet fixes local friction; 30%+ metric. **Hosting height broken?** Intrinsic/sizing ownership; nested scroll fights. **Prefetch bills?** Bound concurrency, cancel, Low Data Mode. **Push wrong screen?** Single router; same path as deeplinks.
@@ -115,7 +110,6 @@
 ---
 
 ### Q6. What is the Day 11 production topic mapping?
-
 **Answer:**
 
 > Hybrid architecture → **Hybrid UI / deeplinks** Verified. Deeplink router ownership → **Hybrid UI / deeplinks** Verified. Mixpanel/Airship → **Hybrid UI / deeplinks** Verified. LE sheet + 30%+ → **BookMyShow LE Bottom Sheet** Verified. HeroWidget pause → **BookMyShow Ads pipeline + HeroWidget lifecycle** Verified. Cell/prefetch/hosting code samples → **Learning-lab**. Exact hosting sizingOptions → Learning-lab unless you personally shipped that API choice.
@@ -126,7 +120,7 @@
 |---|---|
 | Hybrid UI / deeplinks + BookMyShow LE Bottom Sheet same interview? | Yes — hybrid nav (Hybrid UI / deeplinks) and sheet metric (BookMyShow LE Bottom Sheet) are different beats; don’t merge into one fake project. |
 | Analytics double-count? | Pick one screen owner — hybrid risk (Deep dive §20). |
-| Full questions? | [`../04-questions.md`](../04-questions.md) for timed practice. |
+| Full questions? | [07-revision-qna.md](07-revision-qna.md) for timed practice. |
 
 **How can I relate to my case:**
 - **Shipped:** Hybrid UI / deeplinks; BookMyShow Ads pipeline + HeroWidget lifecycle; BookMyShow LE Bottom Sheet
@@ -137,7 +131,6 @@
 ---
 
 ### Q7. How do you keep Mixpanel screen-name / analytics from double-counting?
-
 **Answer:**
 
 > Hybrid risk: UIKit parent and SwiftUI child both fire `screen_view`. **Pick one screen owner per visible surface.** Fire screen analytics from appear/disappear with that owner in mind. Representable `update` storms must not re-fire viewed events on every body pass. Route Airship push taps through the **same deeplink router** as universal links so engagement and navigation share one story (Hybrid UI / deeplinks). Gate SDK init on privacy consent.
@@ -159,7 +152,6 @@
 ---
 
 ### Q8. What engineering details matter for a bottom sheet (detents, VoiceOver, analytics)?
-
 **Answer:**
 
 > **Detents:** medium for overview, large for expanded details; grabber aids discoverability and accessibility. **VoiceOver:** move focus to the sheet title on present; restore focus on dismiss. **Analytics:** fire open / CTA / dismiss — do **not** count the underlying list screen as finished while the sheet is up. Keyboard must not cover inputs if the sheet has search. Reuse a shared component API across listing surfaces (BookMyShow LE Bottom Sheet LE pattern). Label detent/VoiceOver details Learning-lab unless you personally shipped those choices; the Verified resume beat is the **30%+** fewer full-screen navigations.
@@ -182,3 +174,22 @@ Back to: [README.md](README.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What can you claim under BookMyShow LE Bottom Sheet
+
+**Ask yourself:** What can you claim under BookMyShow LE Bottom Sheet?
+
+**Answer:** “BookMyShow **LE Bottom Sheet**: lightweight event overview surface. Led end-to-end delivery; aligned PM, Design, Backend on API/content contracts. Shipped reusable component into high-traffic flows. Result: **30%+ fewer full-screen navigations** for user flows (resume metric). Lesson: small UI surfaces with clear contracts beat large rewrites for navigation pain.”
+
+### Puzzle B — How do you insert BookMyShow Ads pipeline + HeroWidget lifecycle lifecycle in a 
+
+**Ask yourself:** How do you insert BookMyShow Ads pipeline + HeroWidget lifecycle lifecycle in a hybrid/cells answer?
+
+**Answer:** “When asked where ads video pauses: disappear, offscreen, background — **HeroWidget** protocolised that behavior on the revenue-critical Ads module. Tie to `viewWillDisappear`, visibility threshold, and `prepareForReuse` stopping the player in cells. Lifecycle is part of the product contract (BookMyShow Ads pipeline + HeroWidget lifecycle).”
+
+### Puzzle C — What must you never invent for Day 11 production stories
+
+**Ask yourself:** What must you never invent for Day 11 production stories?
+
+**Answer:** “Do not invent nav reduction % beyond resume **30%+**. Do not claim continuous dual NavigationPath + UINavigationController sync as best practice. Do not claim Airship/Mixpanel integration without lifecycle discipline when asked about navigation. Do not invent Grizzlies crash-free percentages or exact hosting API trivia as verified production war stories unless labeled Learning-lab.”

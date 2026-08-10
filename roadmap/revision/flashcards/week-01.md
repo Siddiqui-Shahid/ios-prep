@@ -93,4 +93,4 @@ Guided teaching: `../weeks/week-01/day-NN/sample/` · Drill twins: `../revision/
 | Score 5 | On time + trade-off + prod proof + honest provenance |
 | Design: actor SafeDict (not shipped) | Actor migration is How I would apply it — not “we rewrote prod” |
 | No invention | Zero fake fill-rate / crash-% ownership |
-| Full answers | Warm-up/deep Answer points live in `../04-questions.md` |
+| Full answers | Warm-up/deep Answer points live in `07-revision-qna.md` |

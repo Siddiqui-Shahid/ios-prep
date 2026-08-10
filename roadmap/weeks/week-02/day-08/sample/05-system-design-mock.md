@@ -7,7 +7,6 @@
 ---
 
 ### Q1. Interviewer: “Design App Modularization & DI.” How do you open?
-
 **Answer:**
 
 > **Agenda (≤20s):** “I’ll take ~5 minutes clarifying scope and scale, then a four-layer client HLD with backend touchpoints and load, then API/data, two deep dives on **Interface / Impl split** and **Composition-root DI**, and close on failure modes, metrics, and kill switches. Does that work?”
@@ -35,7 +34,6 @@
 ---
 
 ### Q2. After clarify — what does the optimal flow look like?
-
 **Answer:**
 
 > **Scripted outcomes for this mock:** App→Feature→Domain→Core; Interface vs Impl; composition-root DI; static preferred; out: CI deep dive.
@@ -56,8 +54,7 @@
 
 ---
 
-### Q3. Walk the HLD — client layers, backend, load.
-
+### Q3. Walk the HLD — client layers, backend, load?
 **Answer:**
 
 > **Topology:** App composition root wires Feature interfaces; Features depend on Domain protocols; Core = network/storage/design system.
@@ -77,8 +74,7 @@
 
 ---
 
-### Q4. Data / API — entities, endpoints, scale.
-
+### Q4. Data / API — entities, endpoints, scale?
 **Answer:**
 
 > Protocol contracts: `CheckoutBuildable`, `CheckoutDependency`. Factory/Needle components at composition root.
@@ -98,7 +94,6 @@
 ---
 
 ### Q5. Deep dive 1 — Interface / Impl split?
-
 **Answer:**
 
 > FeatureAInterface exposed to App; FeatureAImpl private. Prevents secretly coupled features and speeds compile.
@@ -117,7 +112,6 @@
 ---
 
 ### Q6. Deep dive 2 — Composition-root DI?
-
 **Answer:**
 
 > Construct graph once at launch; pass dependencies down. Avoid service locators in features.
@@ -137,7 +131,6 @@
 ---
 
 ### Q7. Ops — failures, metrics, rollout, load?
-
 **Answer:**
 
 > build_time_seconds, binary_size_mb, dyld_launch_time. Fail CI on new circular deps.
@@ -157,7 +150,6 @@
 ---
 
 ### Q8. Flow scorecard — did you hit the optimal spine?
-
 **Answer:**
 
 > **Pass bar:** clarify + agenda in ≤5; HLD shows 4 layers + backend + load; API has cursors/idempotency as needed; two deep dives; ops with kill switch and concrete metrics.
@@ -174,4 +166,3 @@
 
 **How can I relate to my case:**
 - **Concept-only — no shipped story.** Rehearse this scorecard after every timed mock.
-

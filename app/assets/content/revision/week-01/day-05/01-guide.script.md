@@ -43,4 +43,4 @@ Next. 5. Flash prompts. 1. await in one sentence — suspension, not background 
 
 ## §10 6. Timed drills
 
-Next. 6. Timed drills. Expand from sample cards, SafeDictActor.swift, and 04-questions.
+Next. 6. Timed drills. Expand from sample cards, SafeDictActor.swift, and 07-revision-qna.

@@ -5,11 +5,10 @@
 ---
 
 ### Q1. What is two-layer scoring?
-
 **Answer:**
 
-> **Layer A — Structure:** how you used 45 minutes (agenda, HLD, API, dives, ops, communication).  
-> **Layer B — Content honesty:** resume-true hooks, correct provenance labels, technical correctness (SPKI DER, unknown components, etc.).  
+> **Layer A — Structure:** how you used 45 minutes (agenda, HLD, API, dives, ops, communication). 
+> **Layer B — Content honesty:** resume-true hooks, correct provenance labels, technical correctness (SPKI DER, unknown components, etc.). 
 > **Pass Mock #3 at ≥70** with **ops ≥6/10** and **zero fabricated metrics**. Beautiful diagram with fake QPS and no ops **still fails**.
 
 **Follow-ups:**
@@ -26,7 +25,6 @@
 ---
 
 ### Q2. Full 100-point rubric — dimensions?
-
 **Answer:**
 
 > | Dimension | Pts |
@@ -53,7 +51,6 @@
 ---
 
 ### Q3. What does “excellent agenda & clarify” look like?
-
 **Answer:**
 
 > Stated plan aloud; asked **scale, offline, in/out**; got interviewer **yes** before drawing; finished within **≤5 min**. Weak: silent boxing or **15-minute clarify**. Score yourself **15/15** only if all four hold.
@@ -72,7 +69,6 @@
 ---
 
 ### Q4. What fails HLD clarity?
-
 **Answer:**
 
 > **Mystery boxes** without labels; **no data-flow arrows**; peer cannot narrate request path from CMS/client to UI. Buzzword list without layers scores poorly regardless of ornament. Excellent: layered diagram + clear flow — **20/20** when narratable in 30s by a stranger.
@@ -91,7 +87,6 @@
 ---
 
 ### Q5. How do you score deep dive quality (25 pts)?
-
 **Answer:**
 
 > **Excellent:** 2–3 **hard** subsystems with **trade-offs** and **failure modes inside the dive** — unknown components, refresh single-flight, SPKI rotation design. **Poor:** six shallow topics, happy-path only. Equal time on every box looks **junior** — seniors choose hard seams.
@@ -110,7 +105,6 @@
 ---
 
 ### Q6. How do you score production grounding?
-
 **Answer:**
 
 > Full points: SDUI cites **BookMyShow backend-driven header & search/Audio streaming + server-driven splash (Aces)**-style proof or networking cites **BookMyShow SSL pinning + URLSession migration/BookMyShow Firebase Performance traces** without fake QPS; **Design: pin rotation / break-glass (not shipped runbook) labeled design** when discussing rotation; **BookMyShow synchronised dictionaries path-scoped** only — not sole CFS. Caps score: invented metrics, “BookMyShow synchronised dictionaries caused 99.95% CFS,” “shipped pin runbook,” SecKey as SPKI.
@@ -132,7 +126,6 @@
 ---
 
 ### Q7. Why is ops weighted even in the last 5 minutes?
-
 **Answer:**
 
 > Ops shows you **ship**, not just draw. **10 pts** — but **pass needs ops ≥6/10**. Zero ops — no metrics, no pause criteria — **fails pass bar** even with pretty boxes. Practice **60s closer:** failures, CFS/p90, flags, phased rollout, IMOC pause. **Cut dive rather than skip ops** — T6 in 04.
@@ -152,3 +145,30 @@ Next: [`../05-exercises.md`](../05-exercises.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — Full 100-point rubric — dimensions
+
+**Ask yourself:** Full 100-point rubric — dimensions?
+
+**Answer:** “| Dimension | Pts |
+> | Agenda & clarify | 15 |
+> | HLD clarity | 20 |
+> | API / data model | 15 |
+> | Deep dive quality | 25 |
+> | Production grounding | 10 |
+> | Ops / rollout | 10 |
+> | Communication | 5 |
+> **Pass:** ≥70 total, **ops ≥6/10**, no fabricated metrics.”
+
+### Puzzle B — What does “excellent agenda & clarify” look like
+
+**Ask yourself:** What does “excellent agenda & clarify” look like?
+
+**Answer:** “Stated plan aloud; asked **scale, offline, in/out**; got interviewer **yes** before drawing; finished within **≤5 min**. Weak: silent boxing or **15-minute clarify**. Score yourself **15/15** only if all four hold.”
+
+### Puzzle C — What fails HLD clarity
+
+**Ask yourself:** What fails HLD clarity?
+
+**Answer:** “**Mystery boxes** without labels; **no data-flow arrows**; peer cannot narrate request path from CMS/client to UI. Buzzword list without layers scores poorly regardless of ornament. Excellent: layered diagram + clear flow — **20/20** when narratable in 30s by a stranger.”

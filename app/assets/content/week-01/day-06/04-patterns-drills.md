@@ -5,7 +5,6 @@
 ---
 
 ### Q1. When do I reach for a hash map?
-
 **Answer:**
 
 > When you need **complements**, **counts**, or **last-seen indices** in one pass — and sorting would destroy index information or cost too much. Two Sum, Group Anagrams, window duplicate tracking. Typical: O(n) time, O(n) space. Say what the key and value mean before coding.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. What is the prefix / suffix product pattern?
-
 **Answer:**
 
 > Output[i] = product of all elements except nums[i] without division. Two passes: prefix products left-to-right, suffix right-to-left (or one output array + one scalar). O(n) time, O(1) extra aside from output. Edges: zeros — at most one zero affects non-zero entries.
@@ -43,7 +41,6 @@
 ---
 
 ### Q3. What is the Week 1 minimum core set?
-
 **Answer:**
 
 > Eight problems minimum today: Two Sum (hash), Best Time Buy/Sell Stock (running min), Valid Palindrome (two pointers), Container Water (opposite ends), Longest Substring (variable window), Maximum Subarray (Kadane), Product Except Self (prefix/suffix), Move Zeroes (write pointer). Stretch: 3Sum, Min Size Subarray Sum, Group Anagrams.
@@ -61,8 +58,7 @@
 
 ---
 
-### Q4. Say time and space for each core pattern.
-
+### Q4. Say time and space for each core pattern?
 **Answer:**
 
 > Hash one-pass: O(n) / O(n). Opposite two pointers (after sort): O(n log n) + O(n) scan, O(1) extra. Variable window: O(n) / O(alphabet). Kadane: O(n) / O(1). Prefix/suffix: O(n) / O(1) extra. Write pointer in-place: O(n) / O(1). Running min (stock): O(n) / O(1).
@@ -81,7 +77,6 @@
 ---
 
 ### Q5. Best Time to Buy/Sell Stock — one-pass state?
-
 **Answer:**
 
 > One transaction max. Track minimum price so far and max profit = price - min. O(n)/O(1). Edges: length 1 → 0; strictly decreasing → 0. Trap: sell before buy; update min before computing profit at each step.
@@ -100,7 +95,6 @@
 ---
 
 ### Q6. 3Sum — how do hash, sort, and pointers combine?
-
 **Answer:**
 
 > Sort array O(n log n). Fix index i, run opposite pointers on i+1..<n for sum zero. Skip duplicate i and duplicate l/r after hits. O(n²) time typical. Say sort cost up front. Not a hash problem — pointers after sort handle duplicates cleanly.
@@ -119,7 +113,6 @@
 ---
 
 ### Q7. How do I drill pattern ID without coding?
-
 **Answer:**
 
 > Read prompt only → say pattern + 60s approach + time/space → no IDE. Use the decision tree: complements → hash; contiguous constraint → window; sorted/ends → pointers; in-place compact → write; max subarray → Kadane; range product → prefix/suffix. 15-minute flash sets in exercises.
@@ -138,7 +131,6 @@
 ---
 
 ### Q8. How does DSA connect to iOS interview talk (honestly)?
-
 **Answer:**
 
 > DSA in this repo is a **communication skill** — approach narration under uncertainty. Do not claim “I used Kadane in production ads.” Soft honest bridges: cancel in-flight work ≈ debounce (BookMyShow backend-driven header & search); pagination ≈ listing windows later. Grade is process + complexity speech, not resume metric invention.
@@ -157,7 +149,26 @@
 - **Lab only:** N/A for this prompt.
 - **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
-Back to: [README.md](README.md) · Main modules: [`../04-questions.md`](../04-questions.md)
+Back to: [README.md](README.md) · Main modules: [07-revision-qna.md](07-revision-qna.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What is the prefix / suffix product pattern
+
+**Ask yourself:** What is the prefix / suffix product pattern?
+
+**Answer:** “Output[i] = product of all elements except nums[i] without division. Two passes: prefix products left-to-right, suffix right-to-left (or one output array + one scalar). O(n) time, O(1) extra aside from output. Edges: zeros — at most one zero affects non-zero entries.”
+
+### Puzzle B — What is the Week 1 minimum core set
+
+**Ask yourself:** What is the Week 1 minimum core set?
+
+**Answer:** “Eight problems minimum today: Two Sum (hash), Best Time Buy/Sell Stock (running min), Valid Palindrome (two pointers), Container Water (opposite ends), Longest Substring (variable window), Maximum Subarray (Kadane), Product Except Self (prefix/suffix), Move Zeroes (write pointer). Stretch: 3Sum, Min Size Subarray Sum, Group Anagrams.”
+
+### Puzzle C — Say time and space for each core pattern
+
+**Ask yourself:** Say time and space for each core pattern?
+
+**Answer:** “Hash one-pass: O(n) / O(n). Opposite two pointers (after sort): O(n log n) + O(n) scan, O(1) extra. Variable window: O(n) / O(alphabet). Kadane: O(n) / O(1). Prefix/suffix: O(n) / O(1) extra. Write pointer in-place: O(n) / O(1). Running min (stock): O(n) / O(1).”

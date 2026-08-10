@@ -9,13 +9,13 @@ Next. Q1. Interviewer: “Design Infinite Social Feed.” How do you open? Answe
 
 Next. Q2. After clarify — what does the optimal flow look like? Answer. Scripted outcomes for this mock: Full 45‑min feed mock; dives: pagination/prefetch + optimistic like/offline; impressions batched; out: video/ranking. Good flow: agenda → clarify Qs → confirm → high level design (4 layers + backend + load) → A P I → two crisp dives → ops last 5. Weak flow: silent drawing, happy-path only, no QPS/TTL, invent metrics, skip ops. Follow-ups. They change scope mid-high level design?: Re-confirm in/out in 20s; adjust dives; protect ops.. Backend mesh deep-dive?: Out unless asked — sketch touchpoints, stay client-owned.. Forgot to ask offline?: State online-first + last-good cache as assumption; invite correction..
 
-## §2 Q3. Walk the HLD — client layers, backend, load.
+## §2 Q3. Walk the HLD — client layers, backend, load?
 
-Next. Q3. Walk the HLD — client layers, backend, load Answer. Draw end-to-end: CDN images → Feed A P I → Repository (SQLite + network) → VM → Diffable list. Call out memory <150MB, 60 FPS, page <500ms p99, TTL 5m, last 200 offline — from spec NFRs. Load: cursor pages 15–20; prefetch one page; single-flight refresh. Follow-ups. Timebox high level design?: ≤10 min — then A P I.. Skip backend?: At least gateway + feed + like + analytics — one box each..
+Next. Q3. Walk the HLD — client layers, backend, load? Answer. Draw end-to-end: CDN images → Feed A P I → Repository (SQLite + network) → VM → Diffable list. Call out memory <150MB, 60 FPS, page <500ms p99, TTL 5m, last 200 offline — from spec NFRs. Load: cursor pages 15–20; prefetch one page; single-flight refresh. Follow-ups. Timebox high level design?: ≤10 min — then A P I.. Skip backend?: At least gateway + feed + like + analytics — one box each..
 
-## §3 Q4. Data / API — entities, endpoints, scale.
+## §3 Q4. Data / API — entities, endpoints, scale?
 
-Next. Q4. Data / API — entities, endpoints, scale Answer. Full contract: feed page JSON shape, cursor opaque, like POST, impression batch POST. Error model: retry idempotent GET; careful POST like. Follow-ups. Idempotent like?: Client mutation id or server toggle semantics — state aloud.. Field masking?: List payload thumbs only..
+Next. Q4. Data / API — entities, endpoints, scale? Answer. Full contract: feed page JSON shape, cursor opaque, like POST, impression batch POST. Error model: retry idempotent GET; careful POST like. Follow-ups. Idempotent like?: Client mutation id or server toggle semantics — state aloud.. Field masking?: List payload thumbs only..
 
 ## §4 Q5. Deep dive 1 — Pagination LLD?
 

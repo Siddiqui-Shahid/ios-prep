@@ -1,112 +1,141 @@
-# 01 — Foundations: Week 1 Revision Map + Mock Format
+# 01 — Foundations: Week 1 Revision Map + Mock Format (Q&A)
 
-> No new topics. Compress Week 1 into speakable atoms, then run Mock #1.
-
----
-
-## 0. North star
-
-**Prove you can retrieve and trade-off Week 1 under a timer — with resume-honest provenance.**
+> Cover the answer, speak aloud, then check follow-ups. Simple language. Named work only — never S-codes in speech.
 
 ---
 
-## 1. Revision map (must-nail)
+### Q1. North star? `(45–60s)`
+**Answer:**
 
-| Topic | Day | Must-nail line |
-|---|---|---|
-| struct/class/COW/enum | 01 | Value semantics; payment states as enums (S7-A1 design) |
-| POP/generics/type erasure | 02 | Ads pipeline rationale (S1); erasure costs |
-| ARC/cycles/Instruments | 03 | weak vs unowned; Graph vs Leaks |
-| GCD SafeDict | 04 | Serial API; deadlock; async-write visibility; `final class` |
-| async/await/actors/Sendable | 05 | Reentrancy; cancel; S2-A1 |
-| DSA patterns | 06 | Window + two pointers + say-this-first |
+> “Prove you can retrieve and trade-off Week 1 under a timer — with resume-honest provenance. ---.”
 
----
+**Follow-ups:**
 
-## 2. Flashcard strategy (morning)
-
-1. Full Week 1 deck: [`../../../flashcards/week-01.md`](../../../flashcards/week-01.md)  
-2. Mark misses.  
-3. Re-speak misses as 20s answers (not silent reread).  
-4. Target ≥80% correct on second pass.
-
-Meta cards for today:
-
-| Front | Back |
+| Follow-up | Answer |
 |---|---|
-| Mock agenda | Defs → concurrency/memory → S2 → feed HLD → retro |
-| S2 time box | ≤3 min STAR |
-| Score 5 | On time + trade-off + prod proof + honest provenance |
-| Weak topic rule | Re-drill before Week 2 |
-| SD clarify first | DAU, offline, pagination, ads mix |
-| No new topics | Revision only |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 3. Mock #1 format (60–90 min)
+### Q2. Revision map (must-nail)? `(45–60s)`
+**Answer:**
 
-| Block | Time | Content |
-|---|---|---|
-| Warm-up defs | 10 min | 5× ~45s from warm-up pool |
-| Deep dive | 25 min | Concurrency + memory follow-ups |
-| Story | 10 min | S2 full STAR + actor migration follow-up |
-| Mini SD | 20 min | Social feed: clarify + HLD only |
-| Retro | 10–15 min | Score with rubric |
+> “---.”
 
-Partner or self: interviewer reads from [`02-deep-dive.md`](02-deep-dive.md). Candidate uses **no notes**.
+**Follow-ups:**
 
----
-
-## 4. Scoring rubric (1–5)
-
-| Score | Meaning |
+| Follow-up | Answer |
 |---|---|
-| 1 | Blank / wrong concept |
-| 2 | Partial; major hole or invented claim |
-| 3 | Correct core; weak structure or overtime |
-| 4 | On time; agenda; trade-off or prod hook |
-| 5 | 4 + crisp provenance + follow-up ready |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-Use [`../../../timing/answer-timing-guide.md`](../../../timing/answer-timing-guide.md) for budgets.
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 5. Warm-up pool (IDs — full answers in 04)
+### Q3. Flashcard strategy (morning)? `(45–60s)`
+**Answer:**
 
-1. struct vs class  
-2. COW  
-3. weak vs unowned  
-4. serial vs concurrent  
-5. async/await vs GCD  
-6. thread-safe dictionary design  
-7. actor isolation  
-8. Sendable  
-9. retain cycle examples  
-10. Main-queue deadlock  
-11. Task cancellation  
-12. POP in ads pipeline  
+> “1. Full Week 1 deck: ../../../flashcards/week-01.md 2. Mark misses. 3. Re-speak misses as 20s answers (not silent reread). 4. Target ≥80% correct on second pass. Meta cards for today:.”
 
----
+**Follow-ups:**
 
-## 6. Deep pool (IDs)
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-1. Actor reentrancy after await  
-2. sync to serial queue re-entry deadlock  
-3. Memory Graph cycle vs Leaks  
-4. `@unchecked Sendable` ethics  
-5. Type erasure cost in renderer  
-6. COW uniqueness traps  
-7. Mixing GCD sync inside async contexts  
-8. Migrating SafeDict GCD → actor without big-bang  
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 7. Self-check before mock
+### Q4. Mock #1 format (60–90 min)? `(45–60s)`
+**Answer:**
 
-- [ ] S2 ≤20s pitch cold  
-- [ ] Async write / sync read caveat one sentence  
-- [ ] weak vs unowned one sentence  
-- [ ] Actor reentrancy one sentence  
-- [ ] S1 ≤20s available as optional encore  
+> “Partner or self: interviewer reads from 02-deep-dive.md. Candidate uses no notes.”
 
-→ [`02-deep-dive.md`](02-deep-dive.md) for the live script.
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q5. Scoring rubric (1–5)? `(45–60s)`
+**Answer:**
+
+> “Use ../../../timing/answer-timing-guide.md for budgets.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q6. Warm-up pool (IDs — full answers in 04)? `(45–60s)`
+**Answer:**
+
+> “1. struct vs class 2. COW 3. weak vs unowned 4. serial vs concurrent 5. async/await vs GCD 6. thread-safe dictionary design 7. actor isolation 8. Sendable 9. retain cycle examples 10. Main-queue deadlock 11. Task cancellation 12. POP in ads pipeline ---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q7. Deep pool (IDs)? `(45–60s)`
+**Answer:**
+
+> “1. Actor reentrancy after await 2. sync to serial queue re-entry deadlock 3. Memory Graph cycle vs Leaks 4. @unchecked Sendable ethics 5. Type erasure cost in renderer 6. COW uniqueness traps 7. Mixing GCD sync inside async contexts 8. Migrating SafeDict GCD → actor without big-bang ---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q8. Self-check before mock? `(45–60s)`
+**Answer:**
+
+> “- [ ] ≤20s pitch cold - [ ] Async write / sync read caveat one sentence - [ ] weak vs unowned one sentence - [ ] Actor reentrancy one sentence - [ ] ≤20s available as optional encore → 02-deep-dive.md for the live script.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---

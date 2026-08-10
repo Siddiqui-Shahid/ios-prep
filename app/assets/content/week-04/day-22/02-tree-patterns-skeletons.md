@@ -5,7 +5,6 @@
 ---
 
 ### Q1. How do I map prompt phrases to algorithms?
-
 **Answer:**
 
 > “Level by level”, zigzag, right side view → **BFS + level-size**. Unweighted shortest path → **BFS**. Path sum, all paths → **DFS preorder + backtrack**. Same tree, symmetric → **DFS compare two pointers**. LCA binary tree → **DFS postorder markers**. LCA on BST → **value walk O(h)**. Validate BST → **bounds DFS or inorder**. Diameter / balanced → **DFS return height + side effect**. Serialize → **DFS/BFS with null markers**.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. How does LCA work on a binary tree?
-
 **Answer:**
 
 > Postorder DFS: if node is nil or equals p or q, return that node. Recurse left and right. If both sides return non-nil, current node is LCA. Otherwise return whichever side found a target. O(n) time, O(h) space. Clarify: both nodes exist? unique values? parent pointers available?
@@ -43,7 +41,6 @@
 ---
 
 ### Q3. Why does validate BST need bounds, not just parent?
-
 **Answer:**
 
 > Parent-only check fails when a node in the right subtree is less than an ancestor above the parent — e.g. 5 with right child 6 whose left child is 4. Pass low/high bounds (or inorder strictly increasing). O(n)/O(h).
@@ -62,7 +59,6 @@
 ---
 
 ### Q4. How do I compute diameter correctly?
-
 **Answer:**
 
 > Diameter is the longest path between any two nodes — confirm edges vs nodes definition. At **every** node: leftH + rightH contributes to best; return 1 + max(leftH, rightH) as height. Root-only without scanning all nodes misses diameters entirely in one subtree.
@@ -81,7 +77,6 @@
 ---
 
 ### Q5. How do I serialize and deserialize a tree?
-
 **Answer:**
 
 > Preorder values alone are ambiguous — encode **null markers** (`"#"` / `"null"`) or BFS with null children. Deserialize with queue or index pointer. O(n) time and space. Same reversibility instinct as SDUI JSON with schemaVersion + unknown-type fallback.
@@ -100,7 +95,6 @@
 ---
 
 ### Q6. Path Sum II — what is the backtracking pattern?
-
 **Answer:**
 
 > Push `node.val` onto path. At leaf, if remaining equals val, copy path to answers. Recurse left/right with `remaining - val`. Pop after both children — restore invariant for other branches. DFS preorder + explicit undo.
@@ -119,7 +113,6 @@
 ---
 
 ### Q7. What trade-offs should seniors mention?
-
 **Answer:**
 
 > BFS vs DFS for same problem (max depth): same O(n), different space h vs w. Recursive vs iterative: clarity vs stack depth on skewed input. Array queue vs deque: acknowledge `removeFirst` cost. Failure modes: BST tricks on plain trees, forgetting null markers in serialize, diameter at root only, Morris without restore.
@@ -138,7 +131,6 @@
 ---
 
 ### Q8. Construct tree from preorder + inorder — full approach?
-
 **Answer:**
 
 > **Preorder[0] is the root.** Find that value in **inorder** to split left/right subtree sizes; recurse on matching preorder slices. Build a **hashmap value→index** for O(n) total if values are unique — don’t rescan inorder each time (that’s O(n²)). Clarify unique values. Time O(n), space O(n) for the map + O(h) recursion.
@@ -157,7 +149,6 @@
 ---
 
 ### Q9. Symmetric tree — full approach?
-
 **Answer:**
 
 > A single comparison of the root’s children is **nowhere near enough**. Need a **mirror predicate**: two nodes match if values are equal and **left of one matches right of the other** recursively — including **nulls**. Alternatively **BFS with a queue of pairs**. Time O(n), space O(h) or O(w). Agenda opener: “Mirror recursively — not one root check.”
@@ -177,3 +168,22 @@ Next: [03-approach-complexity.md](03-approach-complexity.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — How does LCA work on a binary tree
+
+**Ask yourself:** How does LCA work on a binary tree?
+
+**Answer:** “Postorder DFS: if node is nil or equals p or q, return that node. Recurse left and right. If both sides return non-nil, current node is LCA. Otherwise return whichever side found a target. O(n) time, O(h) space. Clarify: both nodes exist? unique values? parent pointers available?”
+
+### Puzzle B — Why does validate BST need bounds, not just parent
+
+**Ask yourself:** Why does validate BST need bounds, not just parent?
+
+**Answer:** “Parent-only check fails when a node in the right subtree is less than an ancestor above the parent — e.g. 5 with right child 6 whose left child is 4. Pass low/high bounds (or inorder strictly increasing). O(n)/O(h).”
+
+### Puzzle C — How do I compute diameter correctly
+
+**Ask yourself:** How do I compute diameter correctly?
+
+**Answer:** “Diameter is the longest path between any two nodes — confirm edges vs nodes definition. At **every** node: leftH + rightH contributes to best; return 1 + max(leftH, rightH) as height. Root-only without scanning all nodes misses diameters entirely in one subtree.”

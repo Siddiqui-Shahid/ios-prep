@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What is the UIViewController lifecycle order?
-
 **Answer:**
 
 > Say aloud: `init` → `loadView` → `viewDidLoad` → `viewWillAppear` → `viewIsAppearing` (iOS 17+) → `viewDidAppear` → layout callbacks → `viewWillDisappear` → `viewDidDisappear` → `deinit`. Load runs once per VC instance load. Appear/disappear run every time the screen becomes visible or leaves — including tab switches.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. What belongs in `viewDidLoad` vs appear hooks?
-
 **Answer:**
 
 > **`viewDidLoad`:** one-time setup — add subviews, bind view model once, configure static UI. Do not assume final bounds; do not fire “forever” network here. **`viewWillAppear`:** refresh data every show — scores, headers, throttled refetch. **`viewDidAppear`:** analytics “screen viewed”; start players only when actually visible. **`viewWillDisappear`:** pause video, cancel in-flight search, stop ads playback.
@@ -43,7 +41,6 @@
 ---
 
 ### Q3. What is the tab bar “load once, appear many” trap?
-
 **Answer:**
 
 > Tab view controllers often load a child VC once but call appear/disappear every tab switch. If you fetch only in `viewDidLoad`, data goes stale forever when the user returns. Put refresh policy in appear hooks with caching or throttle (e.g. refetch if older than N seconds).
@@ -61,8 +58,7 @@
 
 ---
 
-### Q4. Where should HeroWidget pause/play tie in? (BookMyShow Ads pipeline + HeroWidget lifecycle)
-
+### Q4. Where should HeroWidget pause/play tie in? (BookMyShow Ads pipeline + HeroWidget lifecycle)?
 **Answer:**
 
 > Revenue contract: visible enough → play; below threshold, disappear, or app background → pause. Implement with VC `viewWillDisappear` / `viewDidDisappear` for full-screen players, collection visibility % for in-feed ads, and background notifications as a third signal. Lifecycle is part of the product contract, not optional plumbing.
@@ -84,7 +80,6 @@
 ---
 
 ### Q5. What work should never wait for `deinit`?
-
 **Answer:**
 
 > Critical cleanup — timers, observers, players, network tasks — belongs in `viewWillDisappear` or explicit teardown. `deinit` proves retain cycles in DEBUG but may run late or never if something still holds the VC. Do not rely on it for user-visible behavior.
@@ -103,7 +98,6 @@
 ---
 
 ### Q6. How do custom containers break lifecycle?
-
 **Answer:**
 
 > If you swap child VCs in a custom container without forwarding `beginAppearanceTransition` / `endAppearanceTransition`, child `viewWillAppear` and pause/play logic never run. UINavigationController and UITabBarController do this for you; your clever container might not — analytics and media pause break silently.
@@ -122,7 +116,6 @@
 ---
 
 ### Q7. What should I be able to say after lifecycle foundations?
-
 **Answer:**
 
 > “UIKit separates one-time load from every-show appear work. Pause and cancel on disappear. Tabs load once but appear many — refresh on appear. For revenue video, visibility and VC lifecycle are the product contract. Custom containers must forward appearance or child hooks break.”
@@ -145,3 +138,22 @@ Next: [02-cells-reuse-prefetch.md](02-cells-reuse-prefetch.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What belongs in `viewDidLoad` vs appear hooks
+
+**Ask yourself:** What belongs in `viewDidLoad` vs appear hooks?
+
+**Answer:** “**`viewDidLoad`:** one-time setup — add subviews, bind view model once, configure static UI. Do not assume final bounds; do not fire “forever” network here. **`viewWillAppear`:** refresh data every show — scores, headers, throttled refetch. **`viewDidAppear`:** analytics “screen viewed”; start players only when actually visible. **`viewWillDisappear`:** pause video, cancel in-flight search, stop ads playback.”
+
+### Puzzle B — What is the tab bar “load once, appear many” trap
+
+**Ask yourself:** What is the tab bar “load once, appear many” trap?
+
+**Answer:** “Tab view controllers often load a child VC once but call appear/disappear every tab switch. If you fetch only in `viewDidLoad`, data goes stale forever when the user returns. Put refresh policy in appear hooks with caching or throttle (e.g. refetch if older than N seconds).”
+
+### Puzzle C — Where should HeroWidget pause/play tie in? (BookMyShow Ads pipeline + HeroWidget
+
+**Ask yourself:** Where should HeroWidget pause/play tie in? (BookMyShow Ads pipeline + HeroWidget lifecycle)?
+
+**Answer:** “Revenue contract: visible enough → play; below threshold, disappear, or app background → pause. Implement with VC `viewWillDisappear` / `viewDidDisappear` for full-screen players, collection visibility % for in-feed ads, and background notifications as a third signal. Lifecycle is part of the product contract, not optional plumbing.”

@@ -54,7 +54,7 @@ Load → data visible → one secondary behavior → “here’s a test covering
 | Must | [Sample Q&A](../../../weeks/week-04/day-25/sample/) | OS + brief specs |
 | Must | [02-deep-dive](../../../weeks/week-04/day-25/02-deep-dive.md) | Brief A & B full specs |
 | Run | [05-exercises](../../../weeks/week-04/day-25/05-exercises.md) | 3hr timed build |
-| Debrief | [04-questions](../../../weeks/week-04/day-25/04-questions.md) | Sample architecture answers |
+| Debrief | [07-revision-qna](../../../weeks/week-04/day-25/sample/07-revision-qna.md) | Sample architecture answers |
 
 No `code/` folder — your Xcode project is the artifact.
 

@@ -1,12 +1,11 @@
 # Sample 03 — Actors, reentrancy, and Sendable (Q&A)
 
-> Guided teaching. Say the **Answer** out loud.  
+> Guided teaching. Say the **Answer** out loud. 
 > **Brain puzzles** at the bottom — these are the interview favorites.
 
 ---
 
 ### Q1. What is an actor, in plain words?
-
 **Answer:**
 
 > “An actor is a reference type that locks its mutable state behind a door. Only one task at a time runs the actor’s isolated methods. From outside you usually `await` to get in — you might wait your turn. Inside, you touch state without writing locks yourself. Actors stop **data races** on that storage. They do **not** freeze time across an `await` inside a method — that’s reentrancy, next question.”
@@ -16,7 +15,7 @@
 | Follow-up | Answer |
 |---|---|
 | Locks for actor state? | “Not for isolated properties — the serial executor handles mutual exclusion.” |
-| Call from outside? | “`await counter.increment()` — hop onto the actor.” |
+| Call from outside? | “`await counter.increment` — hop onto the actor.” |
 | vs GCD serial queue? | “Same ‘one writer at a time’ idea — compiler-enforced for actors. Design: actor SafeDict if asked.” |
 
 **How can I relate to my case:**
@@ -28,7 +27,6 @@
 ---
 
 ### Q2. What is reentrancy, and why do seniors miss it?
-
 **Answer:**
 
 > “When an actor method suspends at `await`, another task may enter that same actor before the first method resumes. So balances, flags, caches may have changed. There’s still no data race on the storage — but your **logic** can be wrong if you assume ‘I was alone, so nothing moved.’ Actors are reentrant at suspension points on purpose, so the actor doesn’t deadlock while waiting on the network.”
@@ -47,7 +45,6 @@
 ---
 
 ### Q3. How do I harden actor code across `await`?
-
 **Answer:**
 
 > “Snapshot into locals before await if you only need the old value. Re-check invariants after await — balance, flags, generation. Don’t leave long awaits while a boolean ‘lock’ is set without re-checking. Do heavy async work outside, then apply a short sync update on the actor. Use generation tokens for single-flight refresh. Rule: after every await in an actor, assume state may have changed.”
@@ -66,7 +63,6 @@
 ---
 
 ### Q4. When `@MainActor` vs a custom actor?
-
 **Answer:**
 
 > “`@MainActor` for UI-affined state — ViewModels, UIKit/SwiftUI updates. Custom `actor` for shared mutable stuff off the UI path — caches, session stores, sync engines. Don’t run heavy CPU on main ‘because it’s an actor.’ MainActor serializes onto the UI executor — you’ll get jank or watchdogs if you block it.”
@@ -85,7 +81,6 @@
 ---
 
 ### Q5. Actor vs GCD serial queue vs lock?
-
 **Answer:**
 
 > “GCD serial queue — manual discipline; `sync` on the same queue deadlocks; that’s what we shipped for BookMyShow synchronised dictionaries. Locks — fine for tiny critical sections; easy to forget unlock or ordering. Actor — compiler isolation; the pitfall becomes reentrancy, not forgotten locks. Actors don’t mean rewrite every stable GCD module — strangler migration for new boundaries. Design: actor SafeDict if they ask.”
@@ -107,7 +102,6 @@
 ---
 
 ### Q6. What does Sendable mean?
-
 **Answer:**
 
 > “Sendable means ‘this value can cross concurrency domains without introducing a data race.’ Prefer sending copies — values — or keep mutable references inside actors. The compiler is basically asking: if two tasks hold this, can they race?”
@@ -126,7 +120,6 @@
 ---
 
 ### Q7. Are all structs automatically Sendable?
-
 **Answer:**
 
 > “No. A struct is Sendable when the compiler can prove it — usually when **all stored properties** are Sendable. A struct holding a mutable class still shares that class across copies. Concurrent mutation of the class is a race. Trap phrase: ‘All value types are Sendable.’ Correct phrase: ‘Value types are Sendable when their stored properties are.’”
@@ -145,7 +138,6 @@
 ---
 
 ### Q8. What about Swift 6 / default MainActor settings?
-
 **Answer:**
 
 > “Treat Swift 6 language mode, Approachable Concurrency, and default MainActor isolation as **project settings when enabled** — not universal law. Under strict checking, Sendable and isolation mistakes become errors. The concepts stay the same either way: isolation domains, Sendable, reentrancy, structured cancellation. If they ask ‘Does Swift 6 put everything on MainActor?’ — I say it depends on target settings, and I write isolation explicitly for UI and shared state.”
@@ -167,7 +159,6 @@
 ---
 
 ### Q9. Sendable across modules / public classes?
-
 **Answer:**
 
 > “Across modules, Sendable is a design problem. If a public class isn’t Sendable, don’t slap `@unchecked` just to call an actor. Prefer Sendable value DTOs at the boundary, or keep the reference inside an isolated domain and only expose async methods that return values. UIKit types: hop to MainActor — don’t pretend `UIView` is a free Sendable token.”
@@ -186,7 +177,6 @@
 ---
 
 ### Q10. Does awaiting MainActor from an actor deadlock like GCD?
-
 **Answer:**
 
 > “People map GCD instincts onto actors wrongly. With GCD, syncing onto the queue you’re already on deadlocks. Awaiting MainActor from a custom actor is different — your actor method suspends, reentrancy can happen, and MainActor work can proceed. You can still hang yourself with `DispatchQueue.main.sync` from the pool, or long circular waits. Prefer async hops end-to-end. And while you await MainActor, other tasks may enter your actor — re-validate.”
@@ -204,8 +194,7 @@
 
 ---
 
-### Q11. Explain reentrancy with the “private office” story
-
+### Q11. Explain reentrancy with the “private office” story?
 **Answer:**
 
 > “Think of an actor as a private office. People knock with await — one person talks at a time. If that person steps out to take a phone call — that’s an await on the network — someone else can enter the office before the first person returns. When the first person comes back, the desk may look different. That’s reentrancy. No two people shout over each other at the desk — no data race — but your notes on the whiteboard may have changed.”
@@ -223,7 +212,6 @@
 ---
 
 ### Q12. What decision rules do you actually speak?
-
 **Answer:**
 
 > “One: new shared mutable state → prefer an actor, or MainActor if it’s UI-only. Two: legacy GCD that works → don’t rewrite for fashion; wrap at edges. Three: UI state on MainActor; heavy work elsewhere. Four: known small parallel kids → async let; dynamic N → TaskGroup, bound if needed. Five: any repeated user request → cancel the previous Task. Six: after every await in an actor → assume state changed. Seven: Sendable means values with Sendable stored props; isolate mutable classes. Eight: Swift 6 / Approachable Concurrency / default MainActor — say ‘when enabled.’”
@@ -242,7 +230,6 @@
 ---
 
 ### Q13. Prefer `MainActor.run` or `DispatchQueue.main.sync`?
-
 **Answer:**
 
 > “From async code I prefer `await MainActor.run { … }` or calling a `@MainActor` function. Sync hops to main are how you deadlock or stall. Same idea as Day 04: don’t bridge with sync from a context that must stay responsive.”
@@ -259,8 +246,7 @@
 
 ---
 
-### Q14. Narrate SafeDictActor like you’re reading the file aloud
-
+### Q14. Narrate SafeDictActor like you’re reading the file aloud?
 **Answer:**
 
 > “It’s an actor with Sendable Key and Value. get, set, remove, snapshot, merge — snapshot returns a value copy so callers can’t race the interior. There’s a brokenLoadIfMissing teaching method: await a loader, then re-check storage before set, because another task may have filled the key during await. Interview pitch: production maps at BMS used GCD queues; for greenfield I’d expose this actor surface. Learning-lab only — I don’t claim this file shipped.”
@@ -285,13 +271,13 @@
 
 ```swift
 actor Wallet {
-    var balance = 100
+ var balance = 100
 
-    func spend(_ amount: Int) async throws {
-        guard balance >= amount else { throw Err.insufficient }
-        await bank.authorize(amount)   // suspension
-        balance -= amount              // safe?
-    }
+ func spend(_ amount: Int) async throws {
+ guard balance >= amount else { throw Err.insufficient }
+ await bank.authorize(amount) // suspension
+ balance -= amount // safe?
+ }
 }
 ```
 
@@ -305,14 +291,14 @@ Two `spend(80)` calls start nearly together. What can go wrong?
 
 ```swift
 actor ImageCache {
-    var store: [URL: Data] = [:]
+ var store: [URL: Data] = [:]
 
-    func image(for url: URL) async throws -> Data {
-        if let hit = store[url] { return hit }
-        let data = try await download(url)
-        store[url] = data   // always overwrite?
-        return data
-    }
+ func image(for url: URL) async throws -> Data {
+ if let hit = store[url] { return hit }
+ let data = try await download(url)
+ store[url] = data // always overwrite?
+ return data
+ }
 }
 ```
 
@@ -340,8 +326,8 @@ Is `Box` safely Sendable? Can two tasks race?
 ```swift
 @MainActor
 final class FeedVM {
-    func decodeHugeJSON(_ data: Data) { … }  // heavy
-    func apply(_ items: [Item]) { … }        // UI
+ func decodeHugeJSON(_ data: Data) { … } // heavy
+ func apply(_ items: [Item]) { … } // UI
 }
 ```
 

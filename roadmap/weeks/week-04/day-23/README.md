@@ -1,6 +1,6 @@
 # Day 23 — DSA HashMap / Heap + Mixed Unknown-Pattern
 
-> Week 4 · Full study (self-contained) · ~4–5 hrs  
+> Week 4 · Full study (self-contained) · ~4–5 hrs 
 > Revision twin: [revision/weeks/week-04/day-23.md](../../../revision/weeks/week-04/day-23.md)
 
 ## Outcomes
@@ -19,7 +19,7 @@ By end of day, without notes, you can:
 2. [`02-deep-dive.md`](02-deep-dive.md) — catalogs, mixed classification, traps
 3. [`03-production-bridge.md`](03-production-bridge.md) — S2 / S3 / S16 honest hooks
 4. [`code/`](code/) — worked Swift (Two Sum, anagrams, prefix+K, top-K, merge-K sketch, window)
-5. [`04-questions.md`](04-questions.md) — two-layer approach scripts
+5. [`sample/07-revision-qna.md`](sample/07-revision-qna.md) — two-layer approach scripts
 6. [`05-exercises.md`](05-exercises.md) — hash/heap blocks + mixed simulation
 7. Revision twin for timed recall
 
@@ -30,7 +30,7 @@ By end of day, without notes, you can:
 | Foundations | [01-foundations.md](01-foundations.md) |
 | Deep dive | [02-deep-dive.md](02-deep-dive.md) |
 | Production bridge | [03-production-bridge.md](03-production-bridge.md) |
-| Questions | [04-questions.md](04-questions.md) |
+| Questions | [sample/07-revision-qna.md](sample/07-revision-qna.md) |
 | Exercises | [05-exercises.md](05-exercises.md) |
 | Code | [code/](code/) |
 | Sample Q&A | [sample/README.md](sample/README.md) |

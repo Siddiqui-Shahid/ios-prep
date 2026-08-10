@@ -54,7 +54,7 @@ Cancel on cell reuse; dedupe in-flight requests; match generation token before a
 | Must | [Sample Q&A](../../../weeks/week-03/day-16/sample/) | Guided cards |
 | Must | Full modules [01–03](../../../weeks/week-03/day-16/01-foundations.md) | Gaps |
 | Deepen | [social-feed.md](../../../ios-system-design/docs/social-feed.md) | Feed cache HLD |
-| Drill | [04-questions](../../../weeks/week-03/day-16/04-questions.md) | Timed answers |
+| Drill | [07-revision-qna](../../../weeks/week-03/day-16/sample/07-revision-qna.md) | Timed answers |
 
 ## 4. Map to your work
 
@@ -90,4 +90,4 @@ Cancel on cell reuse; dedupe in-flight requests; match generation token before a
 | Aces audio vs image cache | 45s |
 | BookMyShow Ads pipeline + HeroWidget lifecycle ≤20s pitch | 20s |
 
-Expand from [sample cards](../../../weeks/week-03/day-16/sample/) and [04-questions](../../../weeks/week-03/day-16/04-questions.md) answer points.
+Expand from [sample cards](../../../weeks/week-03/day-16/sample/) and [07-revision-qna](../../../weeks/week-03/day-16/sample/07-revision-qna.md) answer points.

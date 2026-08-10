@@ -3,11 +3,11 @@
 
 ## §0 Q1. What is Mock #1’s agenda and total time?
 
-Next. Q1. What is Mock #1’s agenda and total time? Answer. ~60–90 minutes: defs (10 min) → concurrency + memory deep dive (25 min) → BookMyShow synchronised dictionaries story (10 min) → Social Feed high level design (20 min) → retro (10–15 min). Opener: “Defs → concurrency + memory deep dive → BookMyShow synchronised dictionaries story → feed high level design → retro.” Interviewer may cut at 2× budget — self-correct and continue. Follow-ups. Candidate uses notes?: No — mock is closed-book.. Solo mode?: Record voice memo; score against 04-questions full answers.. Script source?: Interviewer reads 02-deep-dive.md..
+Next. Q1. What is Mock #1’s agenda and total time? Answer. ~60–90 minutes: defs (10 min) → concurrency + memory deep dive (25 min) → BookMyShow synchronised dictionaries story (10 min) → Social Feed high level design (20 min) → retro (10–15 min). Opener: “Defs → concurrency + memory deep dive → BookMyShow synchronised dictionaries story → feed high level design → retro.” Interviewer may cut at 2× budget — self-correct and continue. Follow-ups. Candidate uses notes?: No — mock is closed-book.. Solo mode?: Record voice memo; score against 07-revision-qna full answers.. Script source?: Interviewer reads 02-deep-dive.md..
 
 ## §1 Q2. How does the warm-up block work?
 
-Next. Q2. How does the warm-up block work? Answer. Ask any 5 from warm-up pool — ~45–60s each (~10 min total). Default set A: struct vs class, copy on write, weak vs unowned, serial vs concurrent, thread-safe dictionary design. Alternate set B: P O P, deadlock, actor, Sendable, cancellation. Full spoken answers in 04-questions.md — sample gives recall; 04 gives timing-grade detail. Follow-ups. How to practice?: Speak from Answer points in 04; uncover and compare full answer.. Overtime?: Agenda first — trim example, keep definition + trade-off.. Pass bar warm-up?: Not averaged separately — feeds confidence for deep dive..
+Next. Q2. How does the warm-up block work? Answer. Ask any 5 from warm-up pool — ~45–60s each (~10 min total). Default set A: struct vs class, copy on write, weak vs unowned, serial vs concurrent, thread-safe dictionary design. Alternate set B: P O P, deadlock, actor, Sendable, cancellation. Full spoken answers in 07-revision-qna.md — sample gives recall; 04 gives timing-grade detail. Follow-ups. How to practice?: Speak from Answer points in 04; uncover and compare full answer.. Overtime?: Agenda first — trim example, keep definition + trade-off.. Pass bar warm-up?: Not averaged separately — feeds confidence for deep dive..
 
 ## §2 Q3. What is in the deep dive block?
 
@@ -17,9 +17,9 @@ Next. Q3. What is in the deep dive block? Answer. 4–5 items, 90–120s each: a
 
 Next. Q4. How does the 1–5 scoring rubric work? Answer. 1 blank/wrong. 2 partial or invented claim. 3 correct core, weak structure or overtime. 4 on time, agenda, trade-off or prod hook. 5 = 4 + crisp provenance + follow-up ready. Fill scorecard after mock; average deep-dive rows; BookMyShow synchronised dictionaries ≥4 required for pass. Follow-ups. Timing guide?:../../../timing/answer-timing-guide.md. 2× budget rule?: Self-correct in one sentence — still scored for recovery.. Retro output?: Top 5 weak cards → Week 2 warm-up pin..
 
-## §4 Q5. How do I practice from “Answer points” in 04-questions?
+## §4 Q5. How do I practice from “Answer points” in 07-revision-qna?
 
-Next. Q5. How do I practice from “Answer points” in 04-questions? Answer. Exercise 2 flow: Read question only → speak from Answer points (bullets, not full prose) → uncover Full spoken answer → compare structure, provenance, time. Repeat until points match full answer shape. This is how you avoid skeleton-only prep — points are cues, not substitutes. Follow-ups. Flashcards first?: Morning Exercise 1 — ≥80% pass target on second pass.. Miss a card?: Re-speak 20s answer aloud — silent reread does not count.. Deep pool?: Same two-layer pattern — points then full answer..
+Next. Q5. How do I practice from “Answer points” in 07-revision-qna? Answer. Exercise 2 flow: Read question only → speak from Answer points (bullets, not full prose) → uncover Full spoken answer → compare structure, provenance, time. Repeat until points match full answer shape. This is how you avoid skeleton-only prep — points are cues, not substitutes. Follow-ups. Flashcards first?: Morning Exercise 1 — ≥80% pass target on second pass.. Miss a card?: Re-speak 20s answer aloud — silent reread does not count.. Deep pool?: Same two-layer pattern — points then full answer..
 
 ## §5 Q6. What are Mock #1 pass criteria?
 

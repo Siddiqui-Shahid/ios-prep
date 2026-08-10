@@ -1,6 +1,6 @@
 # Day 28 sample — guided Q&A
 
-> Separate teaching sample. Does **not** replace the main Day 28 modules.  
+> Separate teaching sample. Does **not** replace the main Day 28 modules. 
 > Use this when you want game-day taper as **question → module pointer → answer → follow-ups**.
 
 ## How to use
@@ -36,3 +36,8 @@ After the sample, run the taper protocol in [`../05-exercises.md`](../05-exercis
 ## Suggested order
 
 `01` → `02` → `03` → `04` → `05` → taper protocol in [`../05-exercises.md`](../05-exercises.md) → rest.
+
+
+## Revision
+
+Thick speak practice: [07-revision-qna.md](07-revision-qna.md) — Normal + Indirect + Tricky.

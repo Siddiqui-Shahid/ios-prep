@@ -1,6 +1,6 @@
 # Day 13 — DSA: Stack / Queue / Linked List
 
-> Week 2 · Full study (self-contained) · ~5–6 hrs  
+> Week 2 · Full study (self-contained) · ~5–6 hrs 
 > Revision twin: [revision/weeks/week-02/day-13.md](../../../revision/weeks/week-02/day-13.md)
 
 ## Outcomes
@@ -19,7 +19,7 @@ By end of day, without notes, you can:
 2. `02-deep-dive.md` — patterns, complexities, Swift pitfalls, approach scripts (**embedded** — no LeetCode required to learn)
 3. `03-production-bridge.md` — honest production bridges (refresh waiters, nav stacks)
 4. `code/` — read and narrate the Swift before modifying
-5. `04-questions.md` — cover full answers; speak from **Answer points**; compare
+5. `sample/07-revision-qna.md` — cover full answers; speak from **Answer points**; compare
 6. `05-exercises.md` — timed coding + speaking drills
 7. Revision twin for flashcards / timed recall
 
@@ -30,7 +30,7 @@ By end of day, without notes, you can:
 | Foundations | [01-foundations.md](01-foundations.md) |
 | Deep dive | [02-deep-dive.md](02-deep-dive.md) |
 | Production bridge | [03-production-bridge.md](03-production-bridge.md) |
-| Questions | [04-questions.md](04-questions.md) |
+| Questions | [sample/07-revision-qna.md](sample/07-revision-qna.md) |
 | Exercises | [05-exercises.md](05-exercises.md) |
 | Code | [code/](code/) |
 | Sample Q&A | [sample/README.md](sample/README.md) |

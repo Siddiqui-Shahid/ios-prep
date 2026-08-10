@@ -7,7 +7,7 @@ Next. Q1. Why is Swift String not like `[Int]` for indexing? Answer. Swift Strin
 
 ## §1 Q2. When should I convert to `[Character]`?
 
-Next. Q2. When should I convert to `[Character]`? Answer. When you need repeated random access by offset — palindrome two pointers, window on a string, compare s[i] and s[j] many times. let chars = Array(s) costs O(n) time and O(n) space for the copy. State that cost when you choose it; then indexing is O(1) per access. Follow-ups. One forward pass only?: Walking String.Index with formIndex can avoid the copy — more verbose.. Lowercase for compare?: Array(s.lowercased()) — another O(n) pass; say it.. [Character] vs [UInt8]?: Character preserves Unicode scalars; bytes are wrong for general Unicode..
+Next. Q2. When should I convert to `[Character]`? Answer. When you need repeated random access by offset — palindrome two pointers, window on a string, compare s[i] and s[j] many times. let chars = Array(s) costs O(n) time and O(n) space for the copy. State that cost when you choose it; then indexing is O(1) per access. Follow-ups. One forward pass only?: Walking String.Index with formIndex can avoid the copy — more verbose.. Lowercase for compare?: Array(s.lowercased) — another O(n) pass; say it.. [Character] vs [UInt8]?: Character preserves Unicode scalars; bytes are wrong for general Unicode..
 
 ## §2 Q3. What is the interview-safe line about String cost?
 
@@ -15,7 +15,7 @@ Next. Q3. What is the interview-safe line about String cost? Answer. “Swift St
 
 ## §3 Q4. Valid Palindrome — how do strings change the approach?
 
-Next. Q4. Valid Palindrome — how do strings change the approach? Answer. Two pointers from both ends on alphanumeric only, case-insensitive. In Swift: Array(s.lowercased()) or walk indices skipping non-alnum. O(n) time; O(n) extra if you copy, O(1) extra if you index carefully. Clarify charset — LeetCode is ASCII alphanumeric. Follow-ups. Skip rule?: Advance left/right while not alphanumeric.. Empty or all punctuation?: True — nothing fails comparison.. Unicode emoji?: Clarify with interviewer; default tests are ASCII..
+Next. Q4. Valid Palindrome — how do strings change the approach? Answer. Two pointers from both ends on alphanumeric only, case-insensitive. In Swift: Array(s.lowercased) or walk indices skipping non-alnum. O(n) time; O(n) extra if you copy, O(1) extra if you index carefully. Clarify charset — LeetCode is ASCII alphanumeric. Follow-ups. Skip rule?: Advance left/right while not alphanumeric.. Empty or all punctuation?: True — nothing fails comparison.. Unicode emoji?: Clarify with interviewer; default tests are ASCII..
 
 ## §4 Q5. Longest substring — string-specific traps?
 
@@ -23,7 +23,7 @@ Next. Q5. Longest substring — string-specific traps? Answer. Variable window w
 
 ## §5 Q6. What Array pitfalls matter on Day 06?
 
-Next. Q6. What Array pitfalls matter on Day 06? Answer. Avoid removeFirst in a loop — O(n) each time. Sorting is O(n log n) — say it when enabling 3Sum two pointers. Integer overflow is rare on LeetCode Swift with Int unless constraints are huge. Prefer for i in 0..<nums.count on arrays, not on strings without conversion. Follow-ups. In-place swap?: Fine on [Int] — two index variables.. nums.sorted() vs sort in place?: sorted() is O(n) extra space; sort() mutates.. Group Anagrams string key?: Sort chars or count frequency — both O(k log k) or O(k) per string..
+Next. Q6. What Array pitfalls matter on Day 06? Answer. Avoid removeFirst in a loop — O(n) each time. Sorting is O(n log n) — say it when enabling 3Sum two pointers. Integer overflow is rare on LeetCode Swift with Int unless constraints are huge. Prefer for i in 0..<nums.count on arrays, not on strings without conversion. Follow-ups. In-place swap?: Fine on [Int] — two index variables.. nums.sorted vs sort in place?: sorted is O(n) extra space; sort mutates.. Group Anagrams string key?: Sort chars or count frequency — both O(k log k) or O(k) per string..
 
 ## §6 Q7. String.Index vs `[Character]` — when to pick which?
 

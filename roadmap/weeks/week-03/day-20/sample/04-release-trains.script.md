@@ -17,9 +17,9 @@ Next. Q3. When do you pause a phased rollout (BookMyShow IMOC + crash-free at sc
 
 Next. Q4. How do feature flags decouple ship from exposure? Answer. Ship binary to App Store phased % with flag off → enable remotely for cohort → ramp. Bad behavior? Kill flag without emergency App Review for every rollback. Pair with Remote Config for S D U I kill switches. Still need CI quality — flags don’t fix crash-on-launch. Follow-ups. Flag vs phased %?: Both — binary reach vs feature exposure.. S D U I kill switch?: Disable server-driven surface; native scaffold fallback.. Flag debt?: Clean old flags — operational hygiene..
 
-## §4 Q5. Draw the 3-minute end-to-end story.
+## §4 Q5. Draw the 3-minute end-to-end story?
 
-Next. Q5. Draw the 3-minute end-to-end story Answer. Entry: Campaign https link (AASA/UL) + Airship push tap → DeepLinkParser → AppRoute → AuthGate → Coordinator (hybrid UIKit/SwiftUI) → Mixpanel screen + Airship attribution. Parallel: PR Actions → TestFlight → phased % → crash free sessions/p90 monitors → pause/I M O C. Say: “Entrypoints differ; routing and release gates are shared disciplines.” Follow-ups. Combined ≤25s line?: Grizzlies entrypoints + BMS release automation — production bridge §3.. Deeplink-only story?: Incomplete without rollout gates for senior loop.. Analytics after route?: Mixpanel on screen — not in parser..
+Next. Q5. Draw the 3-minute end-to-end story? Answer. Entry: Campaign https link (AASA/UL) + Airship push tap → DeepLinkParser → AppRoute → AuthGate → Coordinator (hybrid UIKit/SwiftUI) → Mixpanel screen + Airship attribution. Parallel: PR Actions → TestFlight → phased % → crash free sessions/p90 monitors → pause/I M O C. Say: “Entrypoints differ; routing and release gates are shared disciplines.” Follow-ups. Combined ≤25s line?: Grizzlies entrypoints + BMS release automation — production bridge §3.. Deeplink-only story?: Incomplete without rollout gates for senior loop.. Analytics after route?: Mixpanel on screen — not in parser..
 
 ## §5 Q6. BMS CI + Grizzlies Hybrid UI / deeplinks — how to tell one story?
 
@@ -27,4 +27,4 @@ Next. Q6. BMS CI + Grizzlies Hybrid UI / deeplinks — how to tell one story? An
 
 ## §6 Q7. Release train teach-back?
 
-Next. Q7. Release train teach-back? Answer. 1. UL vs scheme 2. One router for UL + push 3. Cold-start queue 4. Actions → TestFlight + pause criteria 5. Hybrid U I / deeplinks one-liner Close: “Automate the train; I M O C pauses when crash free sessions or p90 cliffs — flags decouple exposure from binary ship.” Follow-ups. Day 20 agenda opener?: “Unify UL and push into one router, cold-start queuing, Actions → TestFlight with rollout gates.”. After sample?:../04-questions.md. App sync?: See sample README bash commands..
+Next. Q7. Release train teach-back? Answer. 1. UL vs scheme 2. One router for UL + push 3. Cold-start queue 4. Actions → TestFlight + pause criteria 5. Hybrid U I / deeplinks one-liner Close: “Automate the train; I M O C pauses when crash free sessions or p90 cliffs — flags decouple exposure from binary ship.” Follow-ups. Day 20 agenda opener?: “Unify UL and push into one router, cold-start queuing, Actions → TestFlight with rollout gates.”. After sample?: 07-revision-qna.md. App sync?: See sample README bash commands..

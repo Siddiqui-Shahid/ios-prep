@@ -42,7 +42,7 @@ Term: Definition. Suspension: Async function pauses at await. may resume later w
 
 Next. 6. What “good” sounds like in an interview (preview).
 
-30s definition: “async/await lets a function suspend at await points instead of nesting callbacks. Structured concurrency keeps child tasks under a parent so cancellation propagates. Actors isolate shared mutable state. after an await inside an actor, I re-check state because. of reentrancy.” 90s production bridge: “At BookMyShow we fixed shared-dictionary races with G C D serial queues and. a closed A P I. Verified S2. For greenfield modules I’d expose the same get/set surface on a Swift actor. S2-A1. For search, debounce isn’t just a timer. you cancel the previous Task so stale responses can’t win. S3.” Full spoken answers are in 04-questions.md.
+30s definition: “async/await lets a function suspend at await points instead of nesting callbacks. Structured concurrency keeps child tasks under a parent so cancellation propagates. Actors isolate shared mutable state. after an await inside an actor, I re-check state because. of reentrancy.” 90s production bridge: “At BookMyShow we fixed shared-dictionary races with G C D serial queues and. a closed A P I. Verified S2. For greenfield modules I’d expose the same get/set surface on a Swift actor. S2-A1. For search, debounce isn’t just a timer. you cancel the previous Task so stale responses can’t win. S3.” Full spoken answers are in sample/07-revision-qna.md.
 
 ## §7 7. Self-check before deep dive
 

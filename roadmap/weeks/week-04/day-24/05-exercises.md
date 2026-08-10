@@ -1,55 +1,108 @@
-# 05 — Exercises: On-Device AI
+# 05 — Exercises: On-Device AI (Q&A)
+
+> Cover the answer, speak aloud, then check follow-ups. Simple language. Named work only — never S-codes in speech.
 
 ---
 
-## 1. Code lab (teaching sketches)
+### Q1. Code lab (teaching sketches)? `(45–60s)`
+**Answer:**
 
-| File | Role |
+> “These are learning-lab Swift sketches of concepts verified in Flutter/Dart products — not a claim the production apps are Swift.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
 |---|---|
-| [`code/BM25Ranker.swift`](code/BM25Ranker.swift) | Lexical retrieve teaching model |
-| [`code/HybridAIRouter.swift`](code/HybridAIRouter.swift) | Eligibility + fail-soft routing |
-| [`code/TFIDFFallback.swift`](code/TFIDFFallback.swift) | GymFlow-style lexical fallback |
-| [`code/DeviceAIEligibility.swift`](code/DeviceAIEligibility.swift) | Thermal / low power / capability flags |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-These are **learning-lab Swift** sketches of concepts verified in Flutter/Dart products — not a claim the production apps are Swift.
-
----
-
-## 2. Whiteboard HLD (25–30 min)
-
-Using SD timing micro: Clarify 5 + HLD 10 + fail-soft 5 + metrics 5.
-
-Prompt: “Design an on-device savings coach for iOS.”
-
-Must include: privacy invariant, BM25 retrieve, FM path, rules fallback, ops events.
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
 
 ---
 
-## 3. Verbal deep-dive (15 min)
+### Q2. Whiteboard HLD (25–30 min)? `(45–60s)`
+**Answer:**
 
-Pick **one**: FinTrack BM25 path **or** GymFlow TFLite path. Speak fail-soft matrix end-to-end.
+> “Using SD timing micro: Clarify 5 + HLD 10 + fail-soft 5 + metrics 5. Prompt: “Design an on-device savings coach for iOS.”.”
 
----
+**Follow-ups:**
 
-## 4. STAR timing
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-- S15 once at 2:30; re-cut to 2:00
-- S16 once at 2:30; re-cut to 2:00
-
----
-
-## 5. Timed Q drill
-
-3 Normal + 2 Tricky (include T1 or T4). Score vs timing guide. Architecture answers use **3–5 min** once.
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 6. Exit criteria
+### Q3. Verbal deep-dive (15 min)? `(45–60s)`
+**Answer:**
 
-- [ ] Pipeline drawn from memory
-- [ ] Fail-soft matrix recited
-- [ ] Privacy 90s script clean
-- [ ] S15 + S16 timed
-- [ ] Revision twin: [../../../revision/weeks/week-04/day-24.md](../../../revision/weeks/week-04/day-24.md)
+> “Pick one: FinTrack BM25 path or GymFlow TFLite path. Speak fail-soft matrix end-to-end. ---.”
 
-**Tomorrow:** Day 25 machine round — different muscle; keep AI flashcards weak-only if needed.
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q4. STAR timing? `(45–60s)`
+**Answer:**
+
+> “- once at 2:30; re-cut to 2:00 - once at 2:30; re-cut to 2:00 ---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q5. Timed Q drill? `(45–60s)`
+**Answer:**
+
+> “3 Normal + 2 Tricky (include T1 or T4). Score vs timing guide. Architecture answers use 3–5 min once. ---.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q6. Exit criteria? `(45–60s)`
+**Answer:**
+
+> “- [ ] Pipeline drawn from memory - [ ] Fail-soft matrix recited - [ ] Privacy 90s script clean - [ ] + timed - [ ] Revision twin: ../../../revision/weeks/week-04/day-24.md Tomorrow: Day 25 machine round — different muscle; keep AI flashcards weak-only if needed.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---

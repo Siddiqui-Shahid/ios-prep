@@ -7,7 +7,6 @@
 ---
 
 ### Q1. Interviewer: “Design On-Device LLM / AI Engine.” How do you open?
-
 **Answer:**
 
 > **Agenda (≤20s):** “I’ll take ~5 minutes clarifying scope and scale, then a four-layer client HLD with backend touchpoints and load, then API/data, two deep dives on **HybridAIRouter** and **RAG + memory/thermal**, and close on failure modes, metrics, and kill switches. Does that work?”
@@ -35,7 +34,6 @@
 ---
 
 ### Q2. After clarify — what does the optimal flow look like?
-
 **Answer:**
 
 > **Scripted outcomes for this mock:** HybridAIRouter; on-device RAG; thermal/memory guards; streaming; PII scrub before cloud; out: training.
@@ -56,8 +54,7 @@
 
 ---
 
-### Q3. Walk the HLD — client layers, backend, load.
-
+### Q3. Walk the HLD — client layers, backend, load?
 **Answer:**
 
 > UI stream ← Router ← (local ANE model + vector store) OR cloud SSE. Unmap weights on memory warning.
@@ -76,8 +73,7 @@
 
 ---
 
-### Q4. Data / API — entities, endpoints, scale.
-
+### Q4. Data / API — entities, endpoints, scale?
 **Answer:**
 
 > Local AsyncSequence tokens; cloud SSE TLS; never log raw financial text.
@@ -96,7 +92,6 @@
 ---
 
 ### Q5. Deep dive 1 — HybridAIRouter?
-
 **Answer:**
 
 > Policy: privacy class → local only; else thermal/size → cloud; mid-stream switch on thermal.
@@ -115,7 +110,6 @@
 ---
 
 ### Q6. Deep dive 2 — RAG + memory/thermal?
-
 **Answer:**
 
 > HNSW/VSS top-K; purge KV on warning; throttle gen; hard stop ~1024 tokens.
@@ -134,7 +128,6 @@
 ---
 
 ### Q7. Ops — failures, metrics, rollout, load?
-
 **Answer:**
 
 > TTFT, tok/s, memory, thermal events, cloud fallback rate. Kill generative path.
@@ -153,7 +146,6 @@
 ---
 
 ### Q8. Flow scorecard — did you hit the optimal spine?
-
 **Answer:**
 
 > **Pass bar:** clarify + agenda in ≤5; HLD shows 4 layers + backend + load; API has cursors/idempotency as needed; two deep dives; ops with kill switch and concrete metrics.
@@ -170,4 +162,3 @@
 
 **How can I relate to my case:**
 - **Concept-only — no shipped story.** Rehearse this scorecard after every timed mock.
-

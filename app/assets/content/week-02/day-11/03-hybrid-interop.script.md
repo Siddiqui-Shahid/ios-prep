@@ -23,7 +23,7 @@ Next. Q5. What is the UIHostingController containment checklist? Answer. 1) addC
 
 ## §5 Q6. How do representable `update` storms connect to SwiftUI identity?
 
-Next. Q6. How do representable `update` storms connect to SwiftUI identity? Answer. Parent identity churn or non-Equatable inputs cause updateUIViewController spam — jank and players restart. Causes: parent state churn,.id(UUID()) in body, heavy work inside update. Fixes: stabilize IDs, reduce observed state, move heavy work out, pass Equatable props where measured (Day 12 deepens). Follow-ups. Symptom in Stories S D K host?: Page resets mid-swipe — often identity, not “SwiftUI is random.”. Intentional.id reset?: Logout →.id(session) to clear forms — different from accidental UUID churn.. Mixpanel discipline?: Representable updates must not re-fire screen_view every body pass..
+Next. Q6. How do representable `update` storms connect to SwiftUI identity? Answer. Parent identity churn or non-Equatable inputs cause updateUIViewController spam — jank and players restart. Causes: parent state churn,.id(UUID) in body, heavy work inside update. Fixes: stabilize IDs, reduce observed state, move heavy work out, pass Equatable props where measured (Day 12 deepens). Follow-ups. Symptom in Stories S D K host?: Page resets mid-swipe — often identity, not “SwiftUI is random.”. Intentional.id reset?: Logout →.id(session) to clear forms — different from accidental UUID churn.. Mixpanel discipline?: Representable updates must not re-fire screen_view every body pass..
 
 ## §6 Q7. Sheet vs push — when which?
 

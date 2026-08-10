@@ -27,4 +27,4 @@ Next. Q6. What tests are “meaningful” for Brief A? Answer. Test ViewModel or
 
 ## §6 Q7. Brief A trade-offs to narrate?
 
-Next. Q7. Brief A trade-offs to narrate? Answer. SwiftUI list faster slice; UIKit shop may want Diffable — state assumption. Protocol + fake repo first — progress + tests. Real network impressive but flaky. Perfect Clean Architecture rarely fits 3 hrs. Follow-ups. BookMyShow backend-driven header & search production hook?: Pagination/debounce instincts — not claim this project is BMS.. Image loading?: Cut line.. Debrief?: Sample 04 +../04-questions.md..
+Next. Q7. Brief A trade-offs to narrate? Answer. SwiftUI list faster slice; UIKit shop may want Diffable — state assumption. Protocol + fake repo first — progress + tests. Real network impressive but flaky. Perfect Clean Architecture rarely fits 3 hrs. Follow-ups. BookMyShow backend-driven header & search production hook?: Pagination/debounce instincts — not claim this project is BMS.. Image loading?: Cut line.. Debrief?: Sample 04 + 07-revision-qna.md..

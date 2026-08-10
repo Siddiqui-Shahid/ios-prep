@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What is the BookMyShow synchronised dictionaries synchronised dictionaries hook?
-
 **Answer:**
 
 > Shared maps needed **serialized access** (GCD serial queues / RW locks) to stop races — concurrency ownership, not “I optimized Dictionary hash.” ≤20s: “In product I treat maps as shared mutable state with a concurrency boundary — same respect for keyed aggregation as hash problems, plus synchronization.”
@@ -27,7 +26,6 @@
 ---
 
 ### Q2. How does BookMyShow backend-driven header & search search relate to hash patterns?
-
 **Answer:**
 
 > Search debounce and coalesce in-flight keys — map/set of request identity. Same keyed-state thinking as window maps and last-seen counts in interviews. ≤20s: “Search coalescing is keyed state — counts and last-seen identities like window maps.”
@@ -49,7 +47,6 @@
 ---
 
 ### Q3. GymFlow GymFlow on-device AI and heap mental model?
-
 **Answer:**
 
 > Cosine **top-K** over embeddings; TF-IDF fail-soft. Heap/select is the *mental model* for “best K neighbors” — **not** a claim you shipped `CFBinaryHeap`. ≤20s: “Recommender top-K is the product cousin of heap patterns — best K under a score, with lexical fallback if model path fails.”
@@ -71,7 +68,6 @@
 ---
 
 ### Q4. What is the honesty table for today?
-
 **Answer:**
 
 > **OK:** maps for coalescing and counts; top-K similar as exercises; soft BookMyShow IMOC + crash-free at scale aggregate-by-key culture. **Not OK:** “Our search is Two Sum”; fake latency % from heap choice; invented triage metrics.
@@ -93,7 +89,6 @@
 ---
 
 ### Q5. What is the 45s production bridge script?
-
 **Answer:**
 
 > “Interview hash and heap problems train keyed aggregation and top-K selection. In production I’ve used maps for coalescing and safe shared state, and top-K style selection in an on-device recommender. I don’t force LeetCode names onto resume bullets — I reuse the complexity instincts.”
@@ -104,7 +99,7 @@
 |---|---|
 | Verified IDs? | BookMyShow synchronised dictionaries · BookMyShow backend-driven header & search · GymFlow on-device AI · learning-lab `code/`. |
 | When full STAR? | Day 26 / behavioral — not during LC narration. |
-| After sample? | [`../04-questions.md`](../04-questions.md) |
+| After sample? | [07-revision-qna.md](07-revision-qna.md) |
 
 **How can I relate to my case:**
 - **Shipped:** GymFlow on-device AI; BookMyShow synchronised dictionaries; BookMyShow backend-driven header & search
@@ -115,7 +110,6 @@
 ---
 
 ### Q6. How do hash/heap instincts connect to FinTrack/GymFlow?
-
 **Answer:**
 
 > GymFlow ranks exercises by cosine similarity — same “keep best K under a score” instinct as heap top-K. FinTrack BM25 retrieval uses keyed lexical scoring — aggregation over local index, not cloud LLM. Product AI is retrieval + rank + degrade — Day 24 expands; today stay at mental-model link only.
@@ -134,7 +128,26 @@
 - **Lab only:** N/A for this prompt.
 - **Don’t claim:** Invented metrics, sole credit for org-wide CFS, or claiming design-only work as shipped.
 
-Next: main [`../04-questions.md`](../04-questions.md)
+Next: main [07-revision-qna.md](07-revision-qna.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — How does BookMyShow backend-driven header & search search relate to hash pattern
+
+**Ask yourself:** How does BookMyShow backend-driven header & search search relate to hash patterns?
+
+**Answer:** “Search debounce and coalesce in-flight keys — map/set of request identity. Same keyed-state thinking as window maps and last-seen counts in interviews. ≤20s: “Search coalescing is keyed state — counts and last-seen identities like window maps.”
+
+### Puzzle B — GymFlow GymFlow on-device AI and heap mental model
+
+**Ask yourself:** GymFlow GymFlow on-device AI and heap mental model?
+
+**Answer:** “Cosine **top-K** over embeddings; TF-IDF fail-soft. Heap/select is the *mental model* for “best K neighbors” — **not** a claim you shipped `CFBinaryHeap`. ≤20s: “Recommender top-K is the product cousin of heap patterns — best K under a score, with lexical fallback if model path fails.”
+
+### Puzzle C — What is the honesty table for today
+
+**Ask yourself:** What is the honesty table for today?
+
+**Answer:** “**OK:** maps for coalescing and counts; top-K similar as exercises; soft BookMyShow IMOC + crash-free at scale aggregate-by-key culture. **Not OK:** “Our search is Two Sum”; fake latency % from heap choice; invented triage metrics.”

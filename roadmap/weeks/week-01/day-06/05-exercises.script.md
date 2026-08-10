@@ -30,7 +30,7 @@ Problem A: 3 min approach + 25 min code. Problem B: same. Retro: pattern mis-IDs
 
 Next. Exercise 5 — Catch-up `(45–60 min)`.
 
-Pick weakest of Days 01. 05. Redo 5 flashcards + one spoken Q from that day’s 04-questions.md. Weak topic today: _______________.
+Pick weakest of Days 01. 05. Redo 5 flashcards + one spoken Q from that day’s sample/07-revision-qna.md. Weak topic today: _______________.
 
 ## §6 Exercise 6 — SD light `(15 min)`
 

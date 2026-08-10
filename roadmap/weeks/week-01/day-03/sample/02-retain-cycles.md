@@ -1,13 +1,12 @@
 # Sample 02 — Retain cycles and classic patterns (Q&A)
 
-> Guided teaching. Say the **Answer** out loud like you’re talking to an interviewer.  
-> Each answer ends with **How can I relate to my case** using named work — never S-codes.  
+> Guided teaching. Say the **Answer** out loud like you’re talking to an interviewer. 
+> Each answer ends with **How can I relate to my case** using named work — never S-codes. 
 > **Brain puzzles** at the bottom — cover the answer, think, then check.
 
 ---
 
 ### Q1. What is a retain cycle?
-
 **Answer:**
 
 > “A retain cycle is a loop of strong references. Example: a view controller owns a closure, and that closure strongly captures the view controller. Nothing outside still needs those objects, but their retain counts never hit zero, so they never deallocate. They are still reachable from each other. That is abandoned memory — not the same as an Instruments Leak, which is memory with no live references at all.”
@@ -26,7 +25,6 @@
 ---
 
 ### Q2. How do escaping closures create cycles?
-
 **Answer:**
 
 > “If self stores an escaping closure, and that closure captures self strongly, you get self → closure → self. Non-escaping parameters usually die with the call, so they are safer. Escaping work — stored properties, async APIs, completion handlers — can outlive the call site. That’s where cycle risk lives. Break the edge from the closure back to self with a capture list.”
@@ -45,7 +43,6 @@
 ---
 
 ### Q3. Nested closures after `guard let self` — the re-strong trap?
-
 **Answer:**
 
 > “Classic pattern: outer closure captures weak self, then guard let self. Inside that scope, self is strong again. If you immediately create another escaping closure — nest a completion, store a Task block, schedule work — and that inner closure captures self without its own weak list, you’ve re-introduced a strong edge. Habit: every new escaping boundary gets its own capture list. Don’t assume the outer weak ‘covers’ nested work forever.”
@@ -63,7 +60,6 @@
 ---
 
 ### Q4. Why are delegates usually weak?
-
 **Answer:**
 
 > “A child controller or view often holds a delegate pointing back to its owner. If both sides are strong, you get a permanent loop. Make the protocol class-bound — AnyObject — and store weak var delegate. That way the owner can die, and the back-pointer does not keep it alive.”
@@ -81,7 +77,6 @@
 ---
 
 ### Q5. How does a Timer keep a target alive?
-
 **Answer:**
 
 > “Timer.scheduledTimer with target and selector strongly retains the target until you call invalidate. A repeating timer can keep a controller alive forever if you forget teardown. Always invalidate in deinit — and when leaving the screen if you intend earlier teardown. Prefer a block-based timer with weak self when you control the API — and still invalidate so the RunLoop drops the timer. Weak alone does not fix target-selector retain.”
@@ -99,7 +94,6 @@
 ---
 
 ### Q6. What must you remember about NotificationCenter block observers?
-
 **Answer:**
 
 > “The modern block API returns an observer token. Store that token. Remove it on teardown with removeObserver. Still use weak self inside the block — the center owns the block, and the block must not own self forever if self also keeps the observation alive. Forgetting the token is how you never unregister cleanly. Prefer the token API in new code for clarity.”
@@ -117,7 +111,6 @@
 ---
 
 ### Q7. Combine `AnyCancellable` store cycle?
-
 **Answer:**
 
 > “You store cancellables in a Set on self — self → Set → AnyCancellable → subscription → sink closure. If that sink strongly captures self, you close the loop. Fix: weak self in the sink, and cancel or empty the set on teardown. Same ownership idea as NotificationCenter tokens — the subscription graph must not keep the screen alive after leave.”
@@ -135,7 +128,6 @@
 ---
 
 ### Q8. How do Tasks create ownership problems?
-
 **Answer:**
 
 > “A running Task retains objects it strongly captures. If a screen starts a search task and the user leaves, that task can keep the screen alive or call into a dead UI. Prefer weak self when the task may outlive the screen. Cancel the task on disappear or deinit. Store the task so you can cancel the previous one when a new query starts.”
@@ -153,7 +145,6 @@
 ---
 
 ### Q9. Singleton forever-cache — abandoned without a two-node cycle?
-
 **Answer:**
 
 > “A singleton ImageCache or SessionStore that forever keeps ViewControllers or huge models is abandoned memory even when there is no tiny A↔B cycle. The singleton is a live root. Those objects are reachable and ‘correct’ from ARC’s point of view — they just never leave. Fix: bounded caches, eviction, never stash VCs in forever maps. Tools: Allocations growth and Memory Graph showing the singleton as owner — not Leaks.”
@@ -171,7 +162,6 @@
 ---
 
 ### Q10. What is the trap with `lazy var` closures?
-
 **Answer:**
 
 > “A lazy var initializer is a closure that runs later. If it captures self strongly while self is retaining that lazy property, you can create a surprising ownership edge. Safer patterns: avoid touching self inside lazy init when possible; compute without storing a self-capturing escaping closure; or use an explicit weak design if you truly need self.”
@@ -189,7 +179,6 @@
 ---
 
 ### Q11. What are the weekly cycle hotspots to memorize?
-
 **Answer:**
 
 > “Six patterns: escaping closure on self → weak self; strong delegate → weak var delegate; Timer target-selector → invalidate — prefer block plus weak; NotificationCenter block → store token, remove, weak capture; parent ↔ child → one side weak or unowned; Combine sink or Task → weak plus cancel. Also: singleton forever-cache can abandon without a two-node cycle. Memorize pattern and one-line fix.”
@@ -212,8 +201,8 @@
 
 ```swift
 timer = Timer.scheduledTimer(timeInterval: 1, target: self,
-                             selector: #selector(tick),
-                             userInfo: nil, repeats: true)
+ selector: #selector(tick),
+ userInfo: nil, repeats: true)
 ```
 
 You pop the VC. You never call `invalidate`. Does `deinit` run?
@@ -226,7 +215,7 @@ You pop the VC. You never call `invalidate`. Does `deinit` run?
 
 ```swift
 NotificationCenter.default.addObserver(forName: .ping, object: nil, queue: .main) { _ in
-    self.handle()
+ self.handle
 }
 ```
 
@@ -239,11 +228,11 @@ NotificationCenter.default.addObserver(forName: .ping, object: nil, queue: .main
 ### Puzzle C — Task outlives screen
 
 ```swift
-func onAppear() {
-    Task {
-        let items = try await api.load()
-        self.items = items
-    }
+func onAppear {
+ Task {
+ let items = try await api.load
+ self.items = items
+ }
 }
 ```
 
@@ -257,10 +246,10 @@ User leaves in 100ms. What can go wrong?
 
 ```swift
 hold = { [weak self] in
-    guard let self else { return }
-    self.nested = {
-        self.refresh() // strong capture of the unwrapped self
-    }
+ guard let self else { return }
+ self.nested = {
+ self.refresh // strong capture of the unwrapped self
+ }
 }
 ```
 

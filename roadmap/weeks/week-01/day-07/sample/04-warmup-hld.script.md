@@ -1,9 +1,9 @@
 # Audio script — Sample 04 — Warm-up pool & Social Feed HLD (Q&A)
 > Listen-only sample Q&A from `04-warmup-hld.md`. Spoken answers and follow-ups.
 
-## §0 Q1. Name five warm-up topics you must have ready.
+## §0 Q1. Name five warm-up topics you must have ready?
 
-Next. Q1. Name five warm-up topics you must have ready Answer. Default mock set: (1) struct vs class, (2) copy on write, (3) weak vs unowned, (4) serial vs concurrent, (5) thread-safe dictionary. Alternate: P O P in ads, main-queue deadlock, actor isolation, Sendable, Task cancellation. IDs W1–W12 in 04 — speak from Answer points, compare to full answer. Follow-ups. Budget per def?: ~45–60s; safe dict design up to 60–90s.. All 12 before mock?: Skim 04; drill misses from flashcards.. Actor isolation warm-up?: One sentence: only one task mutates actor state at a time..
+Next. Q1. Name five warm-up topics you must have ready? Answer. Default mock set: (1) struct vs class, (2) copy on write, (3) weak vs unowned, (4) serial vs concurrent, (5) thread-safe dictionary. Alternate: P O P in ads, main-queue deadlock, actor isolation, Sendable, Task cancellation. IDs W1–W12 in 04 — speak from Answer points, compare to full answer. Follow-ups. Budget per def?: ~45–60s; safe dict design up to 60–90s.. All 12 before mock?: Skim 04; drill misses from flashcards.. Actor isolation warm-up?: One sentence: only one task mutates actor state at a time..
 
 ## §1 Q2. Actor isolation — warm-up answer shape?
 

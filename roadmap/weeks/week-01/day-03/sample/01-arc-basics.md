@@ -1,13 +1,12 @@
 # Sample 01 — ARC basics (Q&A)
 
-> Guided teaching. Say the **Answer** out loud like you’re talking to an interviewer.  
-> Each answer ends with **How can I relate to my case** using named work — never S-codes.  
+> Guided teaching. Say the **Answer** out loud like you’re talking to an interviewer. 
+> Each answer ends with **How can I relate to my case** using named work — never S-codes. 
 > **Brain puzzles** at the bottom — cover the answer, think, then check.
 
 ---
 
 ### Q1. What is ARC, in plain words?
-
 **Answer:**
 
 > “ARC means Automatic Reference Counting. For class instances, Swift keeps a count of how many strong owners exist. When that count hits zero, the object is destroyed and `deinit` runs. The compiler inserts retain and release for you. It’s not a Java-style garbage collector that pauses later to scan the heap. You still must break retain cycles yourself with weak or unowned.”
@@ -26,7 +25,6 @@
 ---
 
 ### Q2. What are strong, weak, and unowned?
-
 **Answer:**
 
 > “Strong is the default — it keeps the object alive and bumps the retain count. Weak does not keep the object alive. It’s optional. When the object dies, the weak reference becomes nil, so you can safely guard let self. Unowned also does not keep the object alive, but it is not optional and is not zeroed. If you use it after the object died, you crash. Treat unowned as a sharp tool, not a default.”
@@ -45,7 +43,6 @@
 ---
 
 ### Q3. How do I choose between weak and unowned?
-
 **Answer:**
 
 > “Ask: might the other object die first, or might this work outlive the screen? If yes, use weak. Use unowned only when you can prove in one sentence that the referenced object outlives this reference — nested ownership. Default interview stance: prefer weak self for escaping async work — network, ads, timers, notifications. Reach for unowned only when the lifetime proof is clear.”
@@ -64,7 +61,6 @@
 ---
 
 ### Q4. Parent ↔ child — weak vs unowned decision?
-
 **Answer:**
 
 > “Parent strongly owns child. Child points back. If both sides are strong, neither dies. Make the back edge weak when the child might briefly outlive the parent or you’re unsure — optional and safe. Use unowned let parent only when the child’s lifetime is strictly nested under the parent by API construction and you want non-optional access — and you accept a crash if that invariant ever breaks. Under uncertainty, interview default is weak.”
@@ -83,7 +79,6 @@
 ---
 
 ### Q5. What does it mean if `deinit` never runs?
-
 **Answer:**
 
 > “It means the object still has at least one strong owner. ARC is not broken — it’s doing what the ownership graph asks. Check escaping closures, Combine, or Tasks holding self; timers not invalidated; NotificationCenter tokens still registered with a strong capture; strong parent/delegate loops; still on a navigation stack or held in a singleton cache. Then open Memory Graph and ask: who still points at me?”
@@ -101,8 +96,7 @@
 
 ---
 
-### Q6. Walk the deinit print lab in one breath
-
+### Q6. Walk the deinit print lab in one breath?
 **Answer:**
 
 > “In a learning lab I add `deinit { print(\"Gone: \\(type)\") }` on the VC or controller under test. Push, arm the suspect pattern, pop. If the print never fires, something still owns it. Fix the edge — weak capture, invalidate timer, remove observer — pop again. When the print fires and Memory Graph is clear, I’m done. That’s a five-minute habit, not a production war story.”
@@ -120,7 +114,6 @@
 ---
 
 ### Q7. How do value types relate to ARC?
-
 **Answer:**
 
 > “Value types — struct, enum, tuple — copy their data; they are not managed as ARC class instances. Class instances on the heap are. So a struct full of Ints does not get a retain count, but a struct that holds a UIView or a custom class still participates in ARC for that nested class.”
@@ -139,7 +132,6 @@
 ---
 
 ### Q8. How is ARC different from a tracing garbage collector?
-
 **Answer:**
 
 > “ARC does most work at assign and scope exit — retain and release. A tracing GC scans the heap later, with pause or concurrent mark trade-offs. ARC does not automatically reclaim cyclic garbage; you must break cycles. Deinit timing is tied to the last strong release, which is more predictable than many finalizers.”
@@ -157,7 +149,6 @@
 ---
 
 ### Q9. What should I be able to say after foundations?
-
 **Answer:**
 
 > “ARC frees class instances when the strong count hits zero. Cycles keep counts above zero even when the UI is gone — that is abandoned memory, found with Memory Graph or Allocations, not Leaks. I break cycles with weak captures, weak delegates, timer invalidation, and NotificationCenter tokens. Unowned after free is a crash, not a silent leak.”
@@ -175,8 +166,7 @@
 
 ---
 
-### Q10. Give me the 30-second interview definition
-
+### Q10. Give me the 30-second interview definition?
 **Answer:**
 
 > “ARC reference-counts class instances; deinit runs when the last strong owner is gone. Retain cycles are abandoned but still reachable — Memory Graph and Allocations, not Leaks. Prefer weak for uncertain lifetimes; unowned only with a nested lifetime proof. Timers invalidate; NotificationCenter tokens remove; Tasks cancel.”
@@ -186,7 +176,7 @@
 | Follow-up | Answer |
 |---|---|
 | Stretch with production? | “At BookMyShow we held a 99.95%+ crash-free bar at 30L+ DAU — memory and lifecycle bugs sit in that reliability conversation. For specific Graph triage I’d label Applied, not invent a BMS ticket.” |
-| Where’s the full Q bank? | [../04-questions.md](../04-questions.md) |
+| Where’s the full Q bank? | [07-revision-qna.md](07-revision-qna.md) |
 
 **How can I relate to my case:**
 - **Shipped:** BookMyShow IMOC + crash-free at scale
@@ -202,7 +192,7 @@ You write:
 
 ```swift
 api.load { [unowned self] result in
-    self.render(result)
+ self.render(result)
 }
 ```
 

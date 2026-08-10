@@ -19,7 +19,7 @@ Next. Q4. What is the honesty table for today? Answer. OK: maps for coalescing a
 
 ## §4 Q5. What is the 45s production bridge script?
 
-Next. Q5. What is the 45s production bridge script? Answer. “Interview hash and heap problems train keyed aggregation and top-K selection. In production I’ve used maps for coalescing and safe shared state, and top-K style selection in an on-device recommender. I don’t force LeetCode names onto resume bullets — I reuse the complexity instincts.” Follow-ups. Verified IDs?: BookMyShow synchronised dictionaries · BookMyShow backend-driven header & search · GymFlow on-device AI · learning-lab code/.. When full STAR?: Day 26 / behavioral — not during LC narration.. After sample?:../04-questions.md.
+Next. Q5. What is the 45s production bridge script? Answer. “Interview hash and heap problems train keyed aggregation and top-K selection. In production I’ve used maps for coalescing and safe shared state, and top-K style selection in an on-device recommender. I don’t force LeetCode names onto resume bullets — I reuse the complexity instincts.” Follow-ups. Verified IDs?: BookMyShow synchronised dictionaries · BookMyShow backend-driven header & search · GymFlow on-device AI · learning-lab code/.. When full STAR?: Day 26 / behavioral — not during LC narration.. After sample?: 07-revision-qna.md.
 
 ## §5 Q6. How do hash/heap instincts connect to FinTrack/GymFlow?
 

@@ -1,6 +1,6 @@
 # Day 26 sample — guided Q&A
 
-> Separate teaching sample. Does **not** replace the main Day 26 modules.  
+> Separate teaching sample. Does **not** replace the main Day 26 modules. 
 > Use this when you want behavioral leadership as **question → module pointer → answer → follow-ups**.
 
 ## How to use
@@ -10,7 +10,7 @@
 3. Read the **Answer** in full.
 4. Cover the follow-up answers and try to speak them, then check.
 
-After the sample, record full STAR scripts in [`../04-questions.md`](../04-questions.md) and reps in [`../05-exercises.md`](../05-exercises.md).
+After the sample, record full STAR scripts in [`../07-revision-qna.md`](../07-revision-qna.md) and reps in [`../05-exercises.md`](../05-exercises.md).
 
 ## Topic map
 
@@ -35,4 +35,4 @@ After the sample, record full STAR scripts in [`../04-questions.md`](../04-quest
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → `05` → then record S6, S8, S9, S1 in [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → then record S6, S8, S9, S1 in [`../07-revision-qna.md`](../07-revision-qna.md).

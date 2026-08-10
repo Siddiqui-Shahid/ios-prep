@@ -1,43 +1,73 @@
-# 01 — Foundations: Mock #4 Operating System
+# 01 — Foundations: Mock #4 Operating System (Q&A)
+
+> Cover the answer, speak aloud, then check follow-ups. Simple language. Named work only — never S-codes in speech.
 
 ---
 
-## 0. North star
+### Q1. North star? `(45–60s)`
+**Answer:**
 
-**Dress rehearsal. Timer visible. No notes in-frame. Agenda first every segment. Debrief ends with exactly three fix-forwards — then stop.**
+> “Dress rehearsal. Timer visible. No notes in-frame. Agenda first every segment. Debrief ends with exactly three fix-forwards — then stop. ---.”
 
----
+**Follow-ups:**
 
-## 1. Day schedule
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-| Block | Duration | Mode |
-|---|---|---|
-| Warm-up | 15 min | Weak flashcards; one STAR opener (S6 or S8) |
-| **Coding** | **45 min** | Expert or self-proctor |
-| Break | 10–15 min | Walk; no doomscroll |
-| **iOS deep dive** | **45 min** | Conceptual + production |
-| Break | 10–15 min | |
-| **System design** | **45 min** | Cheatsheet timing |
-| Debrief | 45–60 min | Scorecards + ≤3 fix-forwards; **stop** |
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 2. Openers (rehearse 30s each before segment)
+### Q2. Day schedule? `(45–60s)`
+**Answer:**
 
-**Coding:** Clarify → brute → optimize → complexity → edges → code.  
+> “---.”
 
-**Deep dive:** Definition → mechanism → trade-off → production.  
+**Follow-ups:**
 
-**System design:**  
-> “I’ll spend 5 minutes on scope, then architecture, then deep-dive and ops. Does that work?”
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-**Behavioral if pulled:**  
-> “I’ll take ~2 minutes — context, what I owned, outcome.”
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
 ---
 
-## 3. Blank recovery
+### Q3. Openers (rehearse 30s each before segment)? `(45–60s)`
+**Answer:**
 
-> Say assumption → start from requirements → draw → offer brute → recover. No apology spiral.
+> “Coding: Clarify → brute → optimize → complexity → edges → code. Deep dive: Definition → mechanism → trade-off → production.”
 
-→ [`02-deep-dive.md`](02-deep-dive.md)
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q4. Blank recovery? `(45–60s)`
+**Answer:**
+
+> “Say assumption → start from requirements → draw → offer brute → recover. No apology spiral. → 02-deep-dive.md.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---

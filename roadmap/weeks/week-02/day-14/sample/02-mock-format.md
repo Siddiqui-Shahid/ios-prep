@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What is Mock #2’s block structure and timing?
-
 **Answer:**
 
 > **Warm-ups:** 15–20 min, 4–5 Normal mixed Week 2. **Tricky:** 15–20 min, 2 deep items. **Architecture talk:** **5:00 hard stop** — Ads **or** SDUI (pick one). **STAR:** 10 min — BookMyShow Ads pipeline + HeroWidget lifecycle or BookMyShow backend-driven header & search/Audio streaming + server-driven splash (Aces) + spice BookMyShow SSL pinning + URLSession migration/District Free Parking + Clean/MVVM + AI tooling. **Retro:** 10–15 min — score timing, log gotchas tagged `week-02`. Full script in [`02-deep-dive.md`](../02-deep-dive.md) and [`code/MockTalkTracks.md`](../code/MockTalkTracks.md).
@@ -27,10 +26,9 @@
 ---
 
 ### Q2. What warm-up topics should the mix include?
-
 **Answer:**
 
-> Prefer mix: layers/DI or search cancel (Day 08 / BookMyShow backend-driven header & search); single-flight refresh (Day 09); unknown SDUI node (Day 10); HeroWidget pause **or** SwiftUI identity (BookMyShow Ads pipeline + HeroWidget lifecycle / Stories SDK (Raw / Miami Heat)); one DSA composure (Array queue **or** agenda-first). Facilitator: “45–60 seconds. Agenda first if conceptual.” Full spoken answers in [`04-questions.md`](../04-questions.md).
+> Prefer mix: layers/DI or search cancel (Day 08 / BookMyShow backend-driven header & search); single-flight refresh (Day 09); unknown SDUI node (Day 10); HeroWidget pause **or** SwiftUI identity (BookMyShow Ads pipeline + HeroWidget lifecycle / Stories SDK (Raw / Miami Heat)); one DSA composure (Array queue **or** agenda-first). Facilitator: “45–60 seconds. Agenda first if conceptual.” Full spoken answers in [`07-revision-qna.md`](07-revision-qna.md).
 
 **Follow-ups:**
 
@@ -49,7 +47,6 @@
 ---
 
 ### Q3. What are the Tricky block options?
-
 **Answer:**
 
 > Ask **2** of: refresh stampede + pin outage leadership; why not SDUI the Ads video player; hybrid deeplink dual-stack failure; debounce VM vs repository (pick a side); ran 8 minutes on architecture — how fix? These test Week 2 depth + leadership composure (BookMyShow IMOC + crash-free at scale IMOC energy without inventing incidents).
@@ -71,7 +68,6 @@
 ---
 
 ### Q4. How does the 5-minute architecture talk timing work?
-
 **Answer:**
 
 > 0:00–0:20 agenda + scope. 0:20–1:00 problem/context. 1:00–3:30 architecture beats (3–4). 3:30–4:30 failure modes / trade-offs. 4:30–5:00 stop; invite questions. **Hard rule:** if you hit 5:00 mid-sentence, stop and invite questions — re-record if over 5:30.
@@ -90,7 +86,6 @@
 ---
 
 ### Q5. What STAR stories pair with each track?
-
 **Answer:**
 
 > **Track A (Ads):** core **BookMyShow Ads pipeline + HeroWidget lifecycle** (2–3 min) + spice **BookMyShow SSL pinning + URLSession migration** opener (20s). **Track B (SDUI):** core **BookMyShow backend-driven header & search** (2–3 min) + spice **Audio streaming + server-driven splash (Aces)** opener (20–45s). Optional either: **District Free Parking + Clean/MVVM + AI tooling** AI tooling judgment (45–60s). Supporting: BookMyShow LE Bottom Sheet product metric, Stories SDK (Raw / Miami Heat)/Hybrid UI / deeplinks modular/hybrid — don’t merge into one fake epic.
@@ -112,7 +107,6 @@
 ---
 
 ### Q6. What does retro check?
-
 **Answer:**
 
 > Score each answer 1–5. Note: agenda missing? overclaim? over time? Log gotchas tagged `week-02`. Checklist: 5-min talk < 5:30 (ideal ≤ 5:00); BookMyShow Ads pipeline + HeroWidget lifecycle/BookMyShow backend-driven header & search/BookMyShow SSL pinning + URLSession migration/District Free Parking + Clean/MVVM + AI tooling openers ≤ 20–45s; refresh + unknown component clean; DSA basics not blocking.
@@ -134,7 +128,6 @@
 ---
 
 ### Q7. Why pick ONE primary architecture track?
-
 **Answer:**
 
 > POP/HeroWidget/pinning → **Track A Ads**. Schema/fallback/header/splash → **Track B SDUI**. Doing both cold → neither talk crisp. Skim the other track ~20 min **after** your recording. Ego choice of “both” costs the 5-min spine quality.
@@ -152,11 +145,10 @@
 
 ---
 
-### Q8. Deliver the BookMyShow Ads pipeline + HeroWidget lifecycle STAR talk track (condensed full)
-
+### Q8. Deliver the BookMyShow Ads pipeline + HeroWidget lifecycle STAR talk track (condensed full)?
 **Answer:**
 
-> “I’ll walk through our highest-revenue Ads refactor — protocols, generics, and video lifecycle. Situation: Ads needed a safer reusable rendering path; HeroWidget video needed correct pause/play. Action: I drove a protocol-oriented component model with generics for a type-safe pipeline; built HeroWidget with visibility and VC lifecycle pause/play; kept new ad types behind protocols so we didn’t fork; coordinated behavior with stakeholders on a revenue path. Result: a maintainable typed pipeline and fewer lifecycle glitches on a module that mattered for revenue — I’m not inventing a fill-rate percentage. Lesson: for revenue UI, POP plus generics beat inheritance trees, and lifecycle is a product contract.”  
+> “I’ll walk through our highest-revenue Ads refactor — protocols, generics, and video lifecycle. Situation: Ads needed a safer reusable rendering path; HeroWidget video needed correct pause/play. Action: I drove a protocol-oriented component model with generics for a type-safe pipeline; built HeroWidget with visibility and VC lifecycle pause/play; kept new ad types behind protocols so we didn’t fork; coordinated behavior with stakeholders on a revenue path. Result: a maintainable typed pipeline and fewer lifecycle glitches on a module that mattered for revenue — I’m not inventing a fill-rate percentage. Lesson: for revenue UI, POP plus generics beat inheritance trees, and lifecycle is a product contract.” 
 > **Provenance:** BookMyShow Ads pipeline + HeroWidget lifecycle · BookMyShow · Ads / HeroWidget
 
 **Follow-ups:**
@@ -175,11 +167,10 @@
 
 ---
 
-### Q9. Deliver the BookMyShow backend-driven header & search STAR talk track (condensed full)
-
+### Q9. Deliver the BookMyShow backend-driven header & search STAR talk track (condensed full)?
 **Answer:**
 
-> “I’ll cover our backend-driven header and search UX under MVVM. Situation: the main header needed to be CMS-driven; search needed debounce and explicit states. Action: generalised protocol-driven header implementation; search with debouncing, loading/empty/error, cancel-safe requests; backend contract so many content changes didn’t need app release; fail-soft rendering mindset for bad payloads. Result: faster header iteration and race-safer search. Lesson: SDUI is schema plus fallbacks — not just render JSON.”  
+> “I’ll cover our backend-driven header and search UX under MVVM. Situation: the main header needed to be CMS-driven; search needed debounce and explicit states. Action: generalised protocol-driven header implementation; search with debouncing, loading/empty/error, cancel-safe requests; backend contract so many content changes didn’t need app release; fail-soft rendering mindset for bad payloads. Result: faster header iteration and race-safer search. Lesson: SDUI is schema plus fallbacks — not just render JSON.” 
 > **Provenance:** BookMyShow backend-driven header & search · BookMyShow · backend-driven header / search
 
 **Follow-ups:**
@@ -198,19 +189,18 @@
 
 ---
 
-### Q10. Mixed warm-up spoken answers bank (key prompts)
-
+### Q10. Mixed warm-up spoken answers bank (key prompts)?
 **Answer:**
 
-> Speak these compressed (~30–60s each) in Block 1:  
-> **MVVM vs Clean:** MVVM for one screen; Clean UseCases when domain is shared / messy boundary (District District Free Parking + Clean/MVVM + AI tooling).  
-> **Search cancel:** Debounce in VM; cancel Task on new query; cancel ≠ error toast (BookMyShow backend-driven header & search).  
-> **Single-flight:** One refresh for N 401s; waiters share result; failure → logout fan-out.  
-> **Pinning fail:** Mismatch → TLS failures; design backup pins + break-glass (BookMyShow SSL pinning + URLSession migration / Design: pin rotation / break-glass (not shipped runbook)).  
-> **Unknown SDUI:** Skip + metric; never crash; empty root → hard fallback (BookMyShow backend-driven header & search).  
-> **Pause video:** Visibility + VC appear/disappear + reuse (BookMyShow Ads pipeline + HeroWidget lifecycle).  
-> **Identity:** Never `.id(UUID())` in body (Stories SDK (Raw / Miami Heat)).  
-> **Bottom sheet:** **30%+** fewer full-screen navs on targeted flows (BookMyShow LE Bottom Sheet).  
+> Speak these compressed (~30–60s each) in Block 1: 
+> **MVVM vs Clean:** MVVM for one screen; Clean UseCases when domain is shared / messy boundary (District District Free Parking + Clean/MVVM + AI tooling). 
+> **Search cancel:** Debounce in VM; cancel Task on new query; cancel ≠ error toast (BookMyShow backend-driven header & search). 
+> **Single-flight:** One refresh for N 401s; waiters share result; failure → logout fan-out. 
+> **Pinning fail:** Mismatch → TLS failures; design backup pins + break-glass (BookMyShow SSL pinning + URLSession migration / Design: pin rotation / break-glass (not shipped runbook)). 
+> **Unknown SDUI:** Skip + metric; never crash; empty root → hard fallback (BookMyShow backend-driven header & search). 
+> **Pause video:** Visibility + VC appear/disappear + reuse (BookMyShow Ads pipeline + HeroWidget lifecycle). 
+> **Identity:** Never `.id(UUID)` in body (Stories SDK (Raw / Miami Heat)). 
+> **Bottom sheet:** **30%+** fewer full-screen navs on targeted flows (BookMyShow LE Bottom Sheet). 
 > **AI tooling:** Context + review bar; human owns architecture (District Free Parking + Clean/MVVM + AI tooling).
 
 **Follow-ups:**
@@ -218,7 +208,7 @@
 | Follow-up | Answer |
 |---|---|
 | How many in mock? | 4–5 from the bank — not all twelve. |
-| Full text? | [`../04-questions.md`](../04-questions.md) two-layer answers. |
+| Full text? | [07-revision-qna.md](07-revision-qna.md) two-layer answers. |
 | Tricky next? | T3 leadership hybrid — see Ads sample Q8. |
 
 **How can I relate to my case:**
@@ -231,3 +221,22 @@ Next: [03-ads-architecture.md](03-ads-architecture.md) · [04-sdui-architecture.
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What warm-up topics should the mix include
+
+**Ask yourself:** What warm-up topics should the mix include?
+
+**Answer:** “Prefer mix: layers/DI or search cancel (Day 08 / BookMyShow backend-driven header & search); single-flight refresh (Day 09); unknown SDUI node (Day 10); HeroWidget pause **or** SwiftUI identity (BookMyShow Ads pipeline + HeroWidget lifecycle / Stories SDK (Raw / Miami Heat)); one DSA composure (Array queue **or** agenda-first). Facilitator: “45–60 seconds. Agenda first if conceptual.” Full spoken answers in [`07-revision-qna.md`](07-revision-qna.md).”
+
+### Puzzle B — What are the Tricky block options
+
+**Ask yourself:** What are the Tricky block options?
+
+**Answer:** “Ask **2** of: refresh stampede + pin outage leadership; why not SDUI the Ads video player; hybrid deeplink dual-stack failure; debounce VM vs repository (pick a side); ran 8 minutes on architecture — how fix? These test Week 2 depth + leadership composure (BookMyShow IMOC + crash-free at scale IMOC energy without inventing incidents).”
+
+### Puzzle C — How does the 5-minute architecture talk timing work
+
+**Ask yourself:** How does the 5-minute architecture talk timing work?
+
+**Answer:** “0:00–0:20 agenda + scope. 0:20–1:00 problem/context. 1:00–3:30 architecture beats (3–4). 3:30–4:30 failure modes / trade-offs. 4:30–5:00 stop; invite questions. **Hard rule:** if you hit 5:00 mid-sentence, stop and invite questions — re-record if over 5:30.”

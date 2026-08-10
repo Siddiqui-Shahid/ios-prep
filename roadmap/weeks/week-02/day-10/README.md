@@ -1,6 +1,6 @@
 # Day 10 — SDUI / CMS · Schema Versioning · Fallbacks
 
-> Week 2 · Full study (self-contained) · ~4–5 hrs  
+> Week 2 · Full study (self-contained) · ~4–5 hrs 
 > Revision twin: [revision/weeks/week-02/day-10.md](../../../revision/weeks/week-02/day-10.md)
 
 ## Outcomes
@@ -19,7 +19,7 @@ By end of day, without notes, you can:
 2. `02-deep-dive.md` — schema, registry, actions, cache, cold start, parity
 3. `03-production-bridge.md` — Verified S3 + S12; Applied S3-A1
 4. `code/` — `SchemaVersionGate.swift`, `ComponentRegistry.swift`, `FallbackEngine.swift`
-5. `04-questions.md` — cover full answers; speak from **Answer points**
+5. `sample/07-revision-qna.md` — cover full answers; speak from **Answer points**
 6. `05-exercises.md` — drills
 7. Revision twin for timed recall
 
@@ -31,7 +31,7 @@ By end of day, without notes, you can:
 | Deep dive | [02-deep-dive.md](02-deep-dive.md) |
 | Production bridge | [03-production-bridge.md](03-production-bridge.md) |
 | Sample Q&A | [sample/README.md](sample/README.md) |
-| Questions | [04-questions.md](04-questions.md) |
+| Questions | [sample/07-revision-qna.md](sample/07-revision-qna.md) |
 | Exercises | [05-exercises.md](05-exercises.md) |
 | Code | [code/SchemaVersionGate.swift](code/SchemaVersionGate.swift), [code/ComponentRegistry.swift](code/ComponentRegistry.swift), [code/FallbackEngine.swift](code/FallbackEngine.swift) |
 

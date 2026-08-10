@@ -15,7 +15,7 @@ Next. Q3. How does cancellation work with async URLSession? Answer. session.data
 
 ## §3 Q4. How do callback `dataTask` APIs differ for cancellation?
 
-Next. Q4. How do callback `dataTask` APIs differ for cancellation? Answer. Completion-handler dataTask does not auto-cancel when a ViewModel deinits. You must keep the URLSessionTask, call task.cancel() when U I no longer wants the result, and use a generation / request-id guard so a late completion cannot apply after a newer search started. Without the guard, slow responses overwrite newer results — the same stale race search M V V M fixes with Task cancel. Follow-ups. URLError.cancelled in completion?: Return silently — not user-facing failure.. Generation increment when?: On each new search and on explicit cancel().. Prefer which A P I style?: Modern async data(for:) with structured concurrency when you can migrate..
+Next. Q4. How do callback `dataTask` APIs differ for cancellation? Answer. Completion-handler dataTask does not auto-cancel when a ViewModel deinits. You must keep the URLSessionTask, call task.cancel when U I no longer wants the result, and use a generation / request-id guard so a late completion cannot apply after a newer search started. Without the guard, slow responses overwrite newer results — the same stale race search M V V M fixes with Task cancel. Follow-ups. URLError.cancelled in completion?: Return silently — not user-facing failure.. Generation increment when?: On each new search and on explicit cancel.. Prefer which A P I style?: Modern async data(for:) with structured concurrency when you can migrate..
 
 ## §4 Q5. How do you split HTTP cache from app cache?
 

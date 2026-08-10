@@ -53,7 +53,7 @@ Prefer **constructor injection** or a **tree of components** over service locato
 | Must | [Sample Q&A](../../../weeks/week-03/day-15/sample/) | Guided cards |
 | Must | Full modules [01–03](../../../weeks/week-03/day-15/01-foundations.md) | Gaps |
 | Deepen | [app-modularization.md](../../../ios-system-design/docs/app-modularization.md) | HLD vocabulary |
-| Drill | [04-questions](../../../weeks/week-03/day-15/04-questions.md) | Timed answers |
+| Drill | [07-revision-qna](../../../weeks/week-03/day-15/sample/07-revision-qna.md) | Timed answers |
 
 ## 4. Map to your work
 
@@ -89,4 +89,4 @@ Prefer **constructor injection** or a **tree of components** over service locato
 | Service locator vs constructor | 90s |
 | Stories SDK (Raw / Miami Heat) ≤20s pitch | 20s |
 
-Expand from [sample cards](../../../weeks/week-03/day-15/sample/) and [04-questions](../../../weeks/week-03/day-15/04-questions.md) answer points.
+Expand from [sample cards](../../../weeks/week-03/day-15/sample/) and [07-revision-qna](../../../weeks/week-03/day-15/sample/07-revision-qna.md) answer points.

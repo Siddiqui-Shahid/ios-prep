@@ -9,13 +9,13 @@ Next. Q1. Interviewer: “Design Crash Reporting SDK.” How do you open? Answer
 
 Next. Q2. After clarify — what does the optimal flow look like? Answer. Scripted outcomes for this mock: Async-signal-safe write; breadcrumbs; OOM next launch; upload; out: backend grouping deep dive. Good flow: agenda → clarify Qs → confirm → high level design (4 layers + backend + load) → A P I → two crisp dives → ops last 5. Weak flow: silent drawing, happy-path only, no QPS/TTL, invent metrics, skip ops. Follow-ups. They change scope mid-high level design?: Re-confirm in/out in 20s; adjust dives; protect ops.. Backend mesh deep-dive?: Out unless asked — sketch touchpoints, stay client-owned.. Forgot to ask offline?: State online-first + last-good cache as assumption; invite correction..
 
-## §2 Q3. Walk the HLD — client layers, backend, load.
+## §2 Q3. Walk the HLD — client layers, backend, load?
 
-Next. Q3. Walk the HLD — client layers, backend, load Answer. Handlers → mmap crash file → next launch uploader → ingest + dSYM. Constraints: signal handler — no malloc/ObjC. Init <10ms. Follow-ups. Why mmap?: Safe under crash constraints.. 99.95%+ crash free sessions?: Ops culture — BookMyShow I M O C participation — don’t claim sole ownership..
+Next. Q3. Walk the HLD — client layers, backend, load? Answer. Handlers → mmap crash file → next launch uploader → ingest + dSYM. Constraints: signal handler — no malloc/ObjC. Init <10ms. Follow-ups. Why mmap?: Safe under crash constraints.. 99.95%+ crash free sessions?: Ops culture — BookMyShow I M O C participation — don’t claim sole ownership..
 
-## §3 Q4. Data / API — entities, endpoints, scale.
+## §3 Q4. Data / API — entities, endpoints, scale?
 
-Next. Q4. Data / API — entities, endpoints, scale Answer. POST /v1/crashes/report, non-fatal endpoint. Missing dSYM hold ~7d. Follow-ups. Upload fail?: SQLite retry queue.. PII in breadcrumbs?: Redact..
+Next. Q4. Data / API — entities, endpoints, scale? Answer. POST /v1/crashes/report, non-fatal endpoint. Missing dSYM hold ~7d. Follow-ups. Upload fail?: SQLite retry queue.. PII in breadcrumbs?: Redact..
 
 ## §4 Q5. Deep dive 1 — Signal-safe handler?
 

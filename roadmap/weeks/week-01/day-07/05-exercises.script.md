@@ -12,7 +12,7 @@ Full../../../flashcards/week-01.md. Second pass on misses only. Target ≥80%.
 
 Next. Exercise 2 — Warm-up speaking `(30–40 min)`.
 
-Record set A from 04-questions (W1 W2 W3 W4 W6). Cover Full answers. speak from Answer points. compare.
+Record set A from 07-revision-qna (W1 W2 W3 W4 W6). Cover Full answers. speak from Answer points. compare.
 
 ## §3 Exercise 3 — Full Mock #1 `(70–90 min)`
 

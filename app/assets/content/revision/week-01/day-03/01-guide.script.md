@@ -39,4 +39,4 @@ Next. 5. Flash prompts. 1. A R C in 30s — retain count, deinit, not GC 2. weak
 
 ## §9 6. Timed drills
 
-Next. 6. Timed drills. Expand from sample cards and 04-questions answer points.
+Next. 6. Timed drills. Expand from sample cards and 07-revision-qna answer points.

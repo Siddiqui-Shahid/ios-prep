@@ -9,13 +9,13 @@ Next. Q1. Interviewer: “Design Mobile Payment Checkout.” How do you open? An
 
 Next. Q2. After clarify — what does the optimal flow look like? Answer. Scripted outcomes for this mock: Tokenized checkout; Idempotency-Key; payment FSM + SQLite recovery; poll status; 3DS; out: acquiring internals. Search = follow-up only. Good flow: agenda → clarify Qs → confirm → high level design (4 layers + backend + load) → A P I → two crisp dives → ops last 5. Weak flow: silent drawing, happy-path only, no QPS/TTL, invent metrics, skip ops. Follow-ups. They change scope mid-high level design?: Re-confirm in/out in 20s; adjust dives; protect ops.. Backend mesh deep-dive?: Out unless asked — sketch touchpoints, stay client-owned.. Forgot to ask offline?: State online-first + last-good cache as assumption; invite correction..
 
-## §2 Q3. Walk the HLD — client layers, backend, load.
+## §2 Q3. Walk the HLD — client layers, backend, load?
 
-Next. Q3. Walk the HLD — client layers, backend, load Answer. Checkout U I → Payment VM (FSM) → Repository (SQLite intent) → Merchant A P I → PSP (Stripe/Adyen). Pinning on payment hosts. Load: Idempotency TTL 24h; A P I timeout 30s; poll ≤5m every 5s; never double-charge on retry. Sister: Search debounce/cancel if interviewer switches — don’t mix into payment high level design. Follow-ups. PCI?: No raw PAN on device if tokenized — Apple Pay/PSP fields.. Ads Mock #2?: Architecture talk may be Ads/S D U I — this card is Payment SD spine..
+Next. Q3. Walk the HLD — client layers, backend, load? Answer. Checkout U I → Payment VM (FSM) → Repository (SQLite intent) → Merchant A P I → PSP (Stripe/Adyen). Pinning on payment hosts. Load: Idempotency TTL 24h; A P I timeout 30s; poll ≤5m every 5s; never double-charge on retry. Sister: Search debounce/cancel if interviewer switches — don’t mix into payment high level design. Follow-ups. PCI?: No raw PAN on device if tokenized — Apple Pay/PSP fields.. Ads Mock #2?: Architecture talk may be Ads/S D U I — this card is Payment SD spine..
 
-## §3 Q4. Data / API — entities, endpoints, scale.
+## §3 Q4. Data / API — entities, endpoints, scale?
 
-Next. Q4. Data / API — entities, endpoints, scale Answer. POST /v1/payments/initiate + Idempotency-Key. GET /v1/payments/{id}/status. 3DS challenge URL handling. Follow-ups. Retry POST?: Same Idempotency-Key — never new key on unknown outcome.. 4xx vs 5xx?: 4xx no retry charge; 5xx → poll status..
+Next. Q4. Data / API — entities, endpoints, scale? Answer. POST /v1/payments/initiate + Idempotency-Key. GET /v1/payments/{id}/status. 3DS challenge URL handling. Follow-ups. Retry POST?: Same Idempotency-Key — never new key on unknown outcome.. 4xx vs 5xx?: 4xx no retry charge; 5xx → poll status..
 
 ## §4 Q5. Deep dive 1 — Idempotency exactly-once?
 

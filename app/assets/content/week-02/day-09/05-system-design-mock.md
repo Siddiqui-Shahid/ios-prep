@@ -7,7 +7,6 @@
 ---
 
 ### Q1. Interviewer: “Design Networking Layer / HTTP Client.” How do you open?
-
 **Answer:**
 
 > **Agenda (≤20s):** “I’ll take ~5 minutes clarifying scope and scale, then a four-layer client HLD with backend touchpoints and load, then API/data, two deep dives on **Interceptor pipeline** and **Single-flight 401 refresh**, and close on failure modes, metrics, and kill switches. Does that work?”
@@ -35,7 +34,6 @@
 ---
 
 ### Q2. After clarify — what does the optimal flow look like?
-
 **Answer:**
 
 > **Scripted outcomes for this mock:** URLSession APIClient; auth interceptor; single-flight refresh; SPKI pinning; retries on idempotent GET; out: GraphQL/WS, image SDK.
@@ -56,8 +54,7 @@
 
 ---
 
-### Q3. Walk the HLD — client layers, backend, load.
-
+### Q3. Walk the HLD — client layers, backend, load?
 **Answer:**
 
 > Features → APIClient (build→intercept→execute→decode→map errors) → Auth/Retry/Tracing → URLSession + SPKI + allowlist → URLCache/Keychain.
@@ -77,8 +74,7 @@
 
 ---
 
-### Q4. Data / API — entities, endpoints, scale.
-
+### Q4. Data / API — entities, endpoints, scale?
 **Answer:**
 
 > `APIEndpoint` + `request(_:) async throws`. 401 → refresh coordinator; retry 408/429/5xx on idempotent GET only; never blind-retry charge POST.
@@ -97,7 +93,6 @@
 ---
 
 ### Q5. Deep dive 1 — Interceptor pipeline?
-
 **Answer:**
 
 > Ordered interceptors: auth header → retry → tracing. Decode Codable on background; map to domain errors.
@@ -116,7 +111,6 @@
 ---
 
 ### Q6. Deep dive 2 — Single-flight 401 refresh?
-
 **Answer:**
 
 > N parallel 401s → one actor-owned refresh; waiters await; success retries once; failure → logout clear Keychain.
@@ -135,7 +129,6 @@
 ---
 
 ### Q7. Ops — failures, metrics, rollout, load?
-
 **Answer:**
 
 > p50/p90/p99, 5xx rate, refresh fail→logout, pin fail metrics. Kill: loosen retries; break-glass pin design (label design vs shipped).
@@ -154,7 +147,6 @@
 ---
 
 ### Q8. Flow scorecard — did you hit the optimal spine?
-
 **Answer:**
 
 > **Pass bar:** clarify + agenda in ≤5; HLD shows 4 layers + backend + load; API has cursors/idempotency as needed; two deep dives; ops with kill switch and concrete metrics.
@@ -171,4 +163,3 @@
 
 **How can I relate to my case:**
 - **Concept-only — no shipped story.** Rehearse this scorecard after every timed mock.
-

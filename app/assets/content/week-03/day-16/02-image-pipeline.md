@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What does the image loader HLD look like?
-
 **Answer:**
 
 > UIImageView talks to an **ImageLoader Coordinator** that checks L1 memory, then L2 disk, then network — with an in-flight dedupe map, cancel tokens, and **ImageIO downsample** off the main thread. API shape for interviews: `load(url:targetSize:) async throws -> UIImage` and `cancel(id:)`. Sketch: [`../code/ImageCacheTiers.swift`](../code/ImageCacheTiers.swift).
@@ -27,7 +26,6 @@
 ---
 
 ### Q2. How do you downsample correctly?
-
 **Answer:**
 
 > Use **ImageIO**: `CGImageSourceCreateWithData` or URL, `CGImageSourceCreateThumbnailAtIndex`, set `kCGImageSourceThumbnailMaxPixelSize` and `kCGImageSourceCreateThumbnailFromImageAlways`. **Never** `UIImage(data:)` full decode then `draw` scaled on main for feed thumbnails. Disk can store original bytes once (derive sizes on miss) or per targetSize — either is fine if L1 key includes size.
@@ -46,7 +44,6 @@
 ---
 
 ### Q3. How do dedup and cancellation work together?
-
 **Answer:**
 
 > `inflight[key] = Task` with attached observers. On complete → fan-out to observers → clear inflight. On cancel (reuse or last observer policy) → cancel Task. Cell reuse: `prepareForReuse` clears image and cancels; capture expected URL/token; ignore stale completions. SwiftUI: `.task(id: url)` — still validate identity on fast list updates.
@@ -65,7 +62,6 @@
 ---
 
 ### Q4. What are prefetch footguns and fixes?
-
 **Answer:**
 
 > Prefetch warms L1/L2 for upcoming cells — good for predictable lists. Footguns: decode storms on fast fling, bandwidth waste, starving visible cells. **Fix:** bound concurrency; cancel prefetch when scroll direction changes; prioritize visible indexPaths; lower QoS for prefetch vs visible work.
@@ -84,7 +80,6 @@
 ---
 
 ### Q5. What is the memory pressure playbook for images?
-
 **Answer:**
 
 > On memory warning / jetsam risk: (1) trim L1 — `NSCache` helps; custom LRU must listen for warnings; (2) pause non-visible video and decode work; (3) keep L2 disk — recreatable; (4) don’t wipe user Documents; (5) avoid main-thread purge storms. **NSCache** is not strict deterministic LRU — say that honestly in interviews.
@@ -103,7 +98,6 @@
 ---
 
 ### Q6. What failure modes map to which fixes?
-
 **Answer:**
 
 > Wrong image in cell → missing cancel/token. RAM spike → full-res L1 / no downsample. Scroll hitch → main-thread decode. Off-screen ad audio/video → missing HeroWidget lifecycle contract. Audio dies on phone call → missing AVAudioSession interruption handler. Same URL avatar+hero wrong → keyed by URL only.
@@ -122,7 +116,6 @@
 ---
 
 ### Q7. Should Stories SDK embed Kingfisher?
-
 **Answer:**
 
 > **No** — inject `ImageLoading` from host (Day 15 Stories SDK (Raw / Miami Heat)). Portfolio apps share one loader, cache policy, and memory behavior. SDK stays reusable; hosts upgrade/downsample rules without forking the SDK.
@@ -144,7 +137,6 @@
 ---
 
 ### Q8. How do you handle GIFs / animated images?
-
 **Answer:**
 
 > Animated formats need a **separate decoder** and a **higher memory budget** — frame buffers are not the same as a single downsampled still. In system-design interviews, **call them out of scope unless asked**, rather than pretending the JPEG/ImageIO thumbnail pipeline handles GIF or animated WebP frames the same way.
@@ -164,3 +156,22 @@ Next: [03-video-audio-media.md](03-video-audio-media.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — How do you downsample correctly
+
+**Ask yourself:** How do you downsample correctly?
+
+**Answer:** “Use **ImageIO**: `CGImageSourceCreateWithData` or URL, `CGImageSourceCreateThumbnailAtIndex`, set `kCGImageSourceThumbnailMaxPixelSize` and `kCGImageSourceCreateThumbnailFromImageAlways`. **Never** `UIImage(data:)` full decode then `draw` scaled on main for feed thumbnails. Disk can store original bytes once (derive sizes on miss) or per targetSize — either is fine if L1 key includes size.”
+
+### Puzzle B — How do dedup and cancellation work together
+
+**Ask yourself:** How do dedup and cancellation work together?
+
+**Answer:** “`inflight[key] = Task` with attached observers. On complete → fan-out to observers → clear inflight. On cancel (reuse or last observer policy) → cancel Task. Cell reuse: `prepareForReuse` clears image and cancels; capture expected URL/token; ignore stale completions. SwiftUI: `.task(id: url)` — still validate identity on fast list updates.”
+
+### Puzzle C — What are prefetch footguns and fixes
+
+**Ask yourself:** What are prefetch footguns and fixes?
+
+**Answer:** “Prefetch warms L1/L2 for upcoming cells — good for predictable lists. Footguns: decode storms on fast fling, bandwidth waste, starving visible cells. **Fix:** bound concurrency; cancel prefetch when scroll direction changes; prioritize visible indexPaths; lower QoS for prefetch vs visible work.”

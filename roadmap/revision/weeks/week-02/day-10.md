@@ -51,7 +51,7 @@ Registry is a type→factory map. Actions are **allowlisted** (deeplink, dismiss
 |---|---|---|
 | Must | [Sample Q&A](../../../weeks/week-02/day-10/sample/) | Guided cards |
 | Must | Full modules [01–03](../../../weeks/week-02/day-10/01-foundations.md) | Gaps |
-| Drill | [04-questions](../../../weeks/week-02/day-10/04-questions.md) | Timed answers |
+| Drill | [07-revision-qna](../../../weeks/week-02/day-10/sample/07-revision-qna.md) | Timed answers |
 
 Suggested sample order: `01-sdui-foundations` → `02-schema-version-fallbacks` → `03-registry-actions-splash` → `04-production-s3-s12`.
 
@@ -86,4 +86,4 @@ Suggested sample order: `01-sdui-foundations` → `02-schema-version-fallbacks` 
 | BookMyShow backend-driven header & search ≤20s pitch | 20s |
 | BookMyShow backend-driven header & search full STAR | 2–3 min |
 
-Expand from [sample cards](../../../weeks/week-02/day-10/sample/) and [04-questions](../../../weeks/week-02/day-10/04-questions.md) answer points.
+Expand from [sample cards](../../../weeks/week-02/day-10/sample/) and [07-revision-qna](../../../weeks/week-02/day-10/sample/07-revision-qna.md) answer points.

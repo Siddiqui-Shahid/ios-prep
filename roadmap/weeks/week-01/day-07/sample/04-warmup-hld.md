@@ -4,8 +4,7 @@
 
 ---
 
-### Q1. Name five warm-up topics you must have ready.
-
+### Q1. Name five warm-up topics you must have ready?
 **Answer:**
 
 > Default mock set: (1) struct vs class, (2) COW, (3) weak vs unowned, (4) serial vs concurrent, (5) thread-safe dictionary. Alternate: POP in ads, main-queue deadlock, actor isolation, Sendable, Task cancellation. IDs W1–W12 in 04 — speak from Answer points, compare to full answer.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. Actor isolation — warm-up answer shape?
-
 **Answer:**
 
 > An **actor** serializes access to its mutable state — callers use `await`. Compiler enforces isolation instead of manual queue discipline. Contrast with GCD SafeDict: external serial queue vs language-supported isolation. Mention reentrancy only if follow-up asks.
@@ -43,7 +41,6 @@
 ---
 
 ### Q3. Sendable — what do you say in 45s?
-
 **Answer:**
 
 > **Sendable** marks types safe to share across concurrency domains — no unsynchronized mutable shared state. Value types often auto-Sendable; classes need careful design. `@unchecked Sendable` is an escape hatch — ethics question in deep pool. Tie to passing data into Tasks and actors.
@@ -62,7 +59,6 @@
 ---
 
 ### Q4. Social Feed HLD — what is the prompt?
-
 **Answer:**
 
 > “Design the **client side** of a social/listing feed for a large consumer app — BookMyShow-scale. Clarify first, then high-level design only — no full LLD.” 20 min block. Honesty: design skill exercise; tie ads slots to **BookMyShow Ads pipeline + HeroWidget lifecycle instinct** only; cite **BookMyShow IMOC + crash-free at scale** for scale when asked “how big.”
@@ -84,7 +80,6 @@
 ---
 
 ### Q5. What clarifying questions should you ask?
-
 **Answer:**
 
 > Ask ~4–6 before drawing boxes: organic vs **ads mixing** rules? **Pagination** (cursor vs offset)? **Offline / stale** content OK? Image/video **autoplay**? Realtime invalidation vs pull-to-refresh? Approximate **DAU / latency** targets? (May cite 30L+ DAU as Verified **BookMyShow IMOC + crash-free at scale** scale — do not invent new numbers.)
@@ -106,7 +101,6 @@
 ---
 
 ### Q6. HLD bullets — caching and scroll?
-
 **Answer:**
 
 > **API:** cursor pagination request/response. **Caching:** memory + disk tiers; TTL / invalidation sketch. **Images:** prefetch ahead; **cancel in-flight** when cell scrolls off screen. **Concurrency:** never block main; debounce/cancel duplicate fetches. **Failure:** empty, error, retry states. **Ads:** inject slots without duplicating entire feed pipeline.
@@ -128,7 +122,6 @@
 ---
 
 ### Q7. Task cancellation — warm-up tie-in?
-
 **Answer:**
 
 > Swift Tasks cancel **cooperatively** — check `Task.isCancelled` at await boundaries; propagate cancellation to URLSession work. Feed use case: user scrolls fast → cancel stale image loads. Do not claim a specific BMS metric — describe the pattern.
@@ -148,3 +141,22 @@ Back to: [README.md](README.md) · Full mock: [`../02-deep-dive.md`](../02-deep-
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — Actor isolation — warm-up answer shape
+
+**Ask yourself:** Actor isolation — warm-up answer shape?
+
+**Answer:** “An **actor** serializes access to its mutable state — callers use `await`. Compiler enforces isolation instead of manual queue discipline. Contrast with GCD SafeDict: external serial queue vs language-supported isolation. Mention reentrancy only if follow-up asks.”
+
+### Puzzle B — Sendable — what do you say in 45s
+
+**Ask yourself:** Sendable — what do you say in 45s?
+
+**Answer:** “**Sendable** marks types safe to share across concurrency domains — no unsynchronized mutable shared state. Value types often auto-Sendable; classes need careful design. `@unchecked Sendable` is an escape hatch — ethics question in deep pool. Tie to passing data into Tasks and actors.”
+
+### Puzzle C — Social Feed HLD — what is the prompt
+
+**Ask yourself:** Social Feed HLD — what is the prompt?
+
+**Answer:** “Design the **client side** of a social/listing feed for a large consumer app — BookMyShow-scale. Clarify first, then high-level design only — no full LLD.” 20 min block. Honesty: design skill exercise; tie ads slots to **BookMyShow Ads pipeline + HeroWidget lifecycle instinct** only; cite **BookMyShow IMOC + crash-free at scale** for scale when asked “how big.”

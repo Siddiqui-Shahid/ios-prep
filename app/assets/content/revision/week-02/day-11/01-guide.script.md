@@ -39,4 +39,4 @@ Next. 5. Flash prompts. 1. viewDidLoad vs viewWillAppear — tab bar trap 2. Wro
 
 ## §9 6. Timed drills
 
-Next. 6. Timed drills. Expand from sample cards and 04-questions answer points.
+Next. 6. Timed drills. Expand from sample cards and 07-revision-qna answer points.

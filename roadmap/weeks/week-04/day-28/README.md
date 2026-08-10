@@ -1,6 +1,6 @@
 # Day 28 — Game Day Taper
 
-> Week 4 · Taper / interview readiness (self-contained) · **~2–3 hrs max** then rest  
+> Week 4 · Taper / interview readiness (self-contained) · **~2–3 hrs max** then rest 
 > Revision twin: [revision/weeks/week-04/day-28.md](../../../revision/weeks/week-04/day-28.md)
 
 ## Outcomes
@@ -19,7 +19,7 @@
 1. [`01-foundations.md`](01-foundations.md) — taper rules
 2. [`02-deep-dive.md`](02-deep-dive.md) — checklist + opener cards (retrieval only)
 3. [`03-production-bridge.md`](03-production-bridge.md) — metric trio + honesty
-4. [`04-questions.md`](04-questions.md) — light two-layer only (max ~5)
+4. [`sample/07-revision-qna.md`](sample/07-revision-qna.md) — light two-layer only (max ~5)
 5. [`05-exercises.md`](05-exercises.md) — timed taper protocol + **story run-through scripts**
 6. No `code/`
 

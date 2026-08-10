@@ -19,7 +19,7 @@ CHAPTER_TITLES = {
     "01-foundations": "01 Foundations",
     "02-deep-dive": "02 Deep Dive",
     "03-production-bridge": "03 Production Bridge",
-    "04-questions": "04 Questions",
+    "07-revision-qna": "04 Questions",
     "05-exercises": "05 Exercises",
 }
 

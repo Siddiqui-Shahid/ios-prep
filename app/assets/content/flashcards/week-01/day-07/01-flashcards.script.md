@@ -23,4 +23,4 @@ Next. No invention? Answer. Zero fake fill-rate / crash-% ownership.
 
 ## §5 Q6. Full answers
 
-Next. Full answers? Answer. Warm-up/deep Answer points live in ../04-questions.md.
+Next. Full answers? Answer. Warm-up/deep Answer points live in 07-revision-qna.md.

@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What is the image loading pipeline, in plain words?
-
 **Answer:**
 
 > Showing a remote image is a pipeline, not `Data(contentsOf:)`. Ask for a URL at a **target pixel size**. Check **memory (L1)** for a decoded image already sized. Else check **disk (L2)** for bytes → decode/downsample off main. Else **download**, downsample, store, display. If the cell scrolled away — **cancel** and ignore late results. Video adds: don’t play when invisible. Live audio adds: session interruptions — not bitmap TTL.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. What are L1, L2, and L3?
-
 **Answer:**
 
 > **L1** is memory cache of **decoded** images (`NSCache` or custom LRU actor). **L2** is disk cache of **encoded bytes** under `Caches/`. **L3** is network/CDN (+ optional HTTP `URLCache` for raw bytes). L1 keys must include **url + targetSize**. L1 evicts on memory warning and cost limits; L2 uses LRU + TTL (~7d) — OS may purge; that’s OK for images.
@@ -43,7 +41,6 @@
 ---
 
 ### Q3. What decoded-size math must you quote?
-
 **Answer:**
 
 > A 1000×1000 ARGB8888 image is roughly **4 MB decoded** (1000 × 1000 × 4 bytes). Thirty full-res feed thumbnails in L1 is catastrophe. Always downsample to display size and key L1 by **url + targetSize** — not URL alone (avatar vs hero would collide or waste RAM).
@@ -62,7 +59,6 @@
 ---
 
 ### Q4. Why is URLCache alone insufficient?
-
 **Answer:**
 
 > `URLCache` may store response **bytes**, but UI still needs downsampled decode, memory pressure policy, dedupe across image views, and cancellation on cell reuse. Senior line: **“HTTP cache ≠ UIImage cache.”** L3 complements L1/L2 — it does not replace them.
@@ -81,7 +77,6 @@
 ---
 
 ### Q5. What is scroll-safe loading in five rules?
-
 **Answer:**
 
 > (1) Cancel when off-screen. (2) Dedup same cache key — one in-flight fetch, N observers. (3) Priority: visible cells > prefetch. (4) Cap prefetch on fast fling. (5) Never decode JPEG on main — stay under ~16ms frame budget at 60Hz.
@@ -100,7 +95,6 @@
 ---
 
 ### Q6. What are dedup and generation tokens?
-
 **Answer:**
 
 > **Dedup:** one in-flight fetch per cache key; multiple image views attach as observers; fan-out on complete. **Generation / token:** on cell reuse, increment or replace token; when async work completes, ignore result if token doesn’t match — prevents wrong image in cell even if cancel raced.
@@ -119,7 +113,6 @@
 ---
 
 ### Q7. What should I say after foundations?
-
 **Answer:**
 
 > “Draw L1 memory decoded, L2 disk bytes, L3 network. Quote ~4MB for 1000×1000 decoded. Key by url + targetSize. URLCache is not UIImage cache. Scroll-safe: cancel, dedup, prioritize visible, cap prefetch, decode off main. HeroWidget pauses video when off-screen — different contract from image TTL.”
@@ -139,3 +132,22 @@ Next: [02-image-pipeline.md](02-image-pipeline.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What are L1, L2, and L3
+
+**Ask yourself:** What are L1, L2, and L3?
+
+**Answer:** “**L1** is memory cache of **decoded** images (`NSCache` or custom LRU actor). **L2** is disk cache of **encoded bytes** under `Caches/`. **L3** is network/CDN (+ optional HTTP `URLCache` for raw bytes). L1 keys must include **url + targetSize**. L1 evicts on memory warning and cost limits; L2 uses LRU + TTL (~7d) — OS may purge; that’s OK for images.”
+
+### Puzzle B — What decoded-size math must you quote
+
+**Ask yourself:** What decoded-size math must you quote?
+
+**Answer:** “A 1000×1000 ARGB8888 image is roughly **4 MB decoded** (1000 × 1000 × 4 bytes). Thirty full-res feed thumbnails in L1 is catastrophe. Always downsample to display size and key L1 by **url + targetSize** — not URL alone (avatar vs hero would collide or waste RAM).”
+
+### Puzzle C — Why is URLCache alone insufficient
+
+**Ask yourself:** Why is URLCache alone insufficient?
+
+**Answer:** “`URLCache` may store response **bytes**, but UI still needs downsampled decode, memory pressure policy, dedupe across image views, and cancellation on cell reuse. Senior line: **“HTTP cache ≠ UIImage cache.”** L3 complements L1/L2 — it does not replace them.”

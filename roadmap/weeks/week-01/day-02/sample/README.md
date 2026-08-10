@@ -1,7 +1,7 @@
 # Day 02 sample — guided Q&A
 
-> Separate teaching sample. Does **not** replace the main Day 02 modules.  
-> Use this when you want concepts as **question → spoken answer → follow-ups → brain puzzles**.  
+> Separate teaching sample. Does **not** replace the main Day 02 modules. 
+> Use this when you want concepts as **question → spoken answer → follow-ups → brain puzzles**. 
 > Samples now also fold in leftovers from foundations, deep dive, production bridge, questions, and exercises.
 
 ## How to use
@@ -10,7 +10,7 @@
 2. Say the **Answer** out loud like you’re in an interview.
 3. Cover follow-ups, try to answer, then check.
 4. Do **Brain puzzles** at the bottom of each file.
-5. Finish with [06-module-drills.md](06-module-drills.md), then [`../04-questions.md`](../04-questions.md) and [`../05-exercises.md`](../05-exercises.md).
+5. Finish with [06-module-drills.md](06-module-drills.md), then [`../07-revision-qna.md`](../07-revision-qna.md) and [`../05-exercises.md`](../05-exercises.md).
 
 ## Topic map
 
@@ -40,7 +40,7 @@
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → `05` → `06` → [`../04-questions.md`](../04-questions.md) (T1–T10) → coding in [`../05-exercises.md`](../05-exercises.md).
+`01` → `02` → `03` → `04` → `05` → `06` → [`../07-revision-qna.md`](../07-revision-qna.md) (T1–T10) → coding in [`../05-exercises.md`](../05-exercises.md).
 
 ## App
 

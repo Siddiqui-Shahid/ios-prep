@@ -3,7 +3,7 @@
 
 ## §0 Q1. What is DispatchGroup for?
 
-Next. Q1. What is DispatchGroup for? Answer. “A DispatchGroup tracks in-flight async work. Call enter before starting work and leave when done — counts must balance. Use notify to run a completion when all work finishes — typical pattern: fan-out downloads on background queues, merge results on main. Use case: prefetch multiple URLs, then update U I once all complete.” Follow-ups. Classic trap?: “Forget leave — notify never fires; group stuck forever.”. Safe pattern?: “group.enter(); defer { group.leave() } immediately after enter.”. Where to notify for U I?: “DispatchQueue.main for the merge/update block.”.
+Next. Q1. What is DispatchGroup for? Answer. “A DispatchGroup tracks in-flight async work. Call enter before starting work and leave when done — counts must balance. Use notify to run a completion when all work finishes — typical pattern: fan-out downloads on background queues, merge results on main. Use case: prefetch multiple URLs, then update U I once all complete.” Follow-ups. Classic trap?: “Forget leave — notify never fires; group stuck forever.”. Safe pattern?: “group.enter; defer { group.leave } immediately after enter.”. Where to notify for U I?: “DispatchQueue.main for the merge/update block.”.
 
 ## §1 Q2. What are common DispatchGroup pitfalls?
 

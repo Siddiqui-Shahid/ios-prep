@@ -1,6 +1,6 @@
 # Day 12 sample — guided Q&A
 
-> Separate teaching sample. Does **not** replace the main Day 12 modules.  
+> Separate teaching sample. Does **not** replace the main Day 12 modules. 
 > Use this when you want concepts explained as **question → module pointer → answer → follow-ups**.
 
 ## How to use
@@ -10,7 +10,7 @@
 3. Read the **Answer** in full.
 4. Cover the follow-up answers and try to speak them, then check.
 
-After the sample, practice interview timing in [`../04-questions.md`](../04-questions.md) and drills in [`../05-exercises.md`](../05-exercises.md).
+After the sample, practice interview timing in [`../07-revision-qna.md`](../07-revision-qna.md) and drills in [`../05-exercises.md`](../05-exercises.md).
 
 ## Topic map
 
@@ -28,14 +28,14 @@ After the sample, practice interview timing in [`../04-questions.md`](../04-ques
 |---|---|
 | `@State` | View-local **ephemeral** UI — not every toggle in VM |
 | `@Observable` | iOS **17+** — still explain `ObservableObject` for legacy |
-| Identity | `@State` lifetime follows identity — `.id(UUID())` in body resets everything |
+| Identity | `@State` lifetime follows identity — `.id(UUID)` in body resets everything |
 | Lists | `List` / `LazyVStack` for large data — not eager `VStack` of thousands |
 | S10 | Reusable SDK = **public API + host isolation** — not hardcoded networking |
 | Trap | UUID in `.id` → text fields clear, representables remake (Day 11 pain) |
 
 ## Suggested order
 
-`01` → `02` → `03` → `04` → `05` → then main [`../04-questions.md`](../04-questions.md).
+`01` → `02` → `03` → `04` → `05` → then main [`../07-revision-qna.md`](../07-revision-qna.md).
 
 ## App
 

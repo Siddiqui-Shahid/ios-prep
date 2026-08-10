@@ -100,4 +100,4 @@ Suggested sample order: `01-week2-synthesis` → `02-mock-format` → `03-ads-ar
 | Mock #2 full run | 60–90 min |
 | Retro: top 5 weak cards | 10 min |
 
-Expand from [sample cards](../../../weeks/week-02/day-14/sample/), [Week2Warmups](../../../weeks/week-02/day-14/code/Week2Warmups.md), and [04-questions](../../../weeks/week-02/day-14/04-questions.md).
+Expand from [sample cards](../../../weeks/week-02/day-14/sample/), [Week2Warmups](../../../weeks/week-02/day-14/code/Week2Warmups.md), and [07-revision-qna](../../../weeks/week-02/day-14/sample/07-revision-qna.md).

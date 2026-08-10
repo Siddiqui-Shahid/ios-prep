@@ -5,7 +5,6 @@
 ---
 
 ### Q1. Why does UITableView/UICollectionView reuse cells?
-
 **Answer:**
 
 > Only a small number of cells exist on screen at once. The system dequeues recycled views for new index paths instead of allocating thousands. When the user scrolls, the cell goes to a reuse pool, gets reset, and binds a new model. Without reset, yesterday’s poster shows on today’s movie.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. What must `prepareForReuse` do?
-
 **Answer:**
 
 > Cancel image and network tasks. Clear image, text, highlighted state. Nil out closures and targets that capture the view controller. Reset swipe/gesture transient UI. Invalidate display tokens or generation IDs. Never configure a recycled cell without this cleanup path.
@@ -46,7 +44,6 @@
 ---
 
 ### Q3. How does the “wrong image” bug happen?
-
 **Answer:**
 
 > Cell binds movie A and starts download A. User scrolls; cell reuses for movie B and starts download B. Download A completes later and sets the image without checking which model owns the cell → wrong poster. Fix: store `expectedID` on the cell; completion checks ID; cancel task on reuse.
@@ -65,7 +62,6 @@
 ---
 
 ### Q4. What is prefetching and when does it cancel?
-
 **Answer:**
 
 > The system hints upcoming index paths so you can warm data or images before they scroll on screen. Cancel when `cancelPrefetchingForItemsAt` fires — do not download off-screen forever. Bound concurrency to protect network and battery. Respect Low Data Mode. Tune prefetch distance — aggressive is not always better.
@@ -84,7 +80,6 @@
 ---
 
 ### Q5. What are Diffable Data Source benefits and remaining duties?
-
 **Answer:**
 
 > Identity-based updates with animated diffs when IDs are stable — fewer `reloadData` footguns. You still need **stable Hashable IDs** from your model. Unstable or regenerated IDs cause flicker and reorder chaos. prepareForReuse and async token checks remain mandatory.
@@ -103,7 +98,6 @@
 ---
 
 ### Q6. What prefetch rules protect users and App Store reviews?
-
 **Answer:**
 
 > Cancel on cancelPrefetching. Bound concurrent warm operations. Respect Low Data Mode. Tune distance — do not prefetch the entire catalog. Coalesce prefetch and cell fetches through one repository so the same URL is not fetched twice in flight.
@@ -122,7 +116,6 @@
 ---
 
 ### Q7. What is the cell + prefetch decision card?
-
 **Answer:**
 
 > Cells: reset + cancel in prepareForReuse; token-check async completions. Prefetch: warm + cancel + bound concurrency + Low Data Mode. Diffable: stable IDs. Never configure without a reuse reset path. Wrong image = missing cancel or missing ID check.
@@ -141,7 +134,6 @@
 ---
 
 ### Q8. What causes self-sizing collection jank?
-
 **Answer:**
 
 > Self-sizing jank usually comes from **ambiguous Auto Layout**, **estimated sizes far from reality**, **images changing height after bind**, or **heavy main-thread work during bind**. Fix estimates, prefetch images so heights stabilize earlier, use stable heights when product allows, and keep cell bind cheap — profile layout with Time Profiler / Core Animation rather than guessing “switch to SwiftUI List.”
@@ -161,3 +153,22 @@ Next: [03-hybrid-interop.md](03-hybrid-interop.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What must `prepareForReuse` do
+
+**Ask yourself:** What must `prepareForReuse` do?
+
+**Answer:** “Cancel image and network tasks. Clear image, text, highlighted state. Nil out closures and targets that capture the view controller. Reset swipe/gesture transient UI. Invalidate display tokens or generation IDs. Never configure a recycled cell without this cleanup path.”
+
+### Puzzle B — How does the “wrong image” bug happen
+
+**Ask yourself:** How does the “wrong image” bug happen?
+
+**Answer:** “Cell binds movie A and starts download A. User scrolls; cell reuses for movie B and starts download B. Download A completes later and sets the image without checking which model owns the cell → wrong poster. Fix: store `expectedID` on the cell; completion checks ID; cancel task on reuse.”
+
+### Puzzle C — What is prefetching and when does it cancel
+
+**Ask yourself:** What is prefetching and when does it cancel?
+
+**Answer:** “The system hints upcoming index paths so you can warm data or images before they scroll on screen. Cancel when `cancelPrefetchingForItemsAt` fires — do not download off-screen forever. Bound concurrency to protect network and battery. Respect Low Data Mode. Tune prefetch distance — aggressive is not always better.”

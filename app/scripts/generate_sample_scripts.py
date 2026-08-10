@@ -69,10 +69,11 @@ def md_to_speech_body(text: str) -> str:
 
 
 def parse_questions(md: str) -> list[tuple[str, str]]:
-    parts = re.split(r"(?=^### Q\d+\.)", md, flags=re.M)
+    # Include Normal (Q), Indirect (I), and Tricky (T) revision cards.
+    parts = re.split(r"(?=^### [QIT]\d+\.)", md, flags=re.M)
     out: list[tuple[str, str]] = []
     for part in parts:
-        m = re.match(r"^### (Q\d+\.\s+.+)$", part, flags=re.M)
+        m = re.match(r"^### ([QIT]\d+\.\s+.+)$", part, flags=re.M)
         if not m:
             continue
         title = m.group(1).strip()
@@ -80,7 +81,7 @@ def parse_questions(md: str) -> list[tuple[str, str]]:
         rest = re.sub(r"\*\*Points to:\*\*[^\n]*\n*", "", rest)
         # Keep listen scripts focused on answer + follow-ups (relate / puzzles are read-mode).
         rest = re.sub(
-            r"\*\*How can I relate to my case:\*\*[\s\S]*$",
+            r"\*\*How can I relate to my case:\*\*[\s\S]*?(?=\n---|\n### |\n## |\Z)",
             "",
             rest,
         )
@@ -91,6 +92,8 @@ def parse_questions(md: str) -> list[tuple[str, str]]:
             flags=re.M,
         )
         rest = re.sub(r"\*\*Answer:\*\*\s*", "Answer. ", rest)
+        rest = re.sub(r"\*\*Full spoken answer:\*\*\s*", "Answer. ", rest, flags=re.I)
+        rest = re.sub(r"\*\*Answer points:\*\*[\s\S]*?(?=\*\*|$)", "", rest, flags=re.I)
         rest = re.sub(r"\*\*Follow-ups:\*\*\s*", "Follow-ups. ", rest)
         body = md_to_speech_body(rest)
         if body:

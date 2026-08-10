@@ -1,13 +1,21 @@
-# 03 — Production Bridge: Provenance Walls
+# 03 — Production Bridge: Provenance Walls (Q&A)
 
-| Story | Allowed | Forbidden |
-|---|---|---|
-| S1 | POP, generics, HeroWidget lifecycle, revenue-critical | Invented fill-rate % |
-| S6 | **30%+** fewer full-screen navs on targeted flows | “All of BMS nav −30%” overclaim |
-| S8 | **30L+ DAU**, **99.95%+ CFS**, IMOC P0/P1 | Sole ownership of all CFS |
-| S9 | Context engineering, AI-assisted tests/reviews, Clean/MVVM | “AI wrote the app” |
-| S15/S16 | Only if asked product AI | Mixing into tooling answer |
+> Cover the answer, speak aloud, then check follow-ups. Simple language. Named work only — never S-codes in speech.
 
-Bank: [story-bank.md](../../../stories/story-bank.md)
+---
 
-→ [`04-questions.md`](04-questions.md)
+### Q1. Summarize 03 — Production Bridge: Provenance Walls (Q&A)? `(60s)`
+**Answer:**
+
+> “# 03 — Production Bridge: Provenance Walls Bank: story-bank.md → sample/07-revision-qna.md.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Say the core idea in one clear sentence. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Use this as vocabulary; hook a named case only if asked.
+
+---

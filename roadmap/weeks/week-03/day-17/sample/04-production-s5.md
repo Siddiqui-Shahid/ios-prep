@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What can you claim under BookMyShow Firebase Performance traces?
-
 **Answer:**
 
 > Instrumented **Firebase Performance** traces around **listing, checkout, and search**. Reported **p50 and p90**, not averages — tails on weak devices and peak traffic stayed visible. Used traces to prioritise optimisation with PM and backend. Treated traces as **observability across releases**. You may **not** claim in-house APM SDK, invented ms SLAs, or “Leaks showed retain cycles” as Verified BMS workflow.
@@ -26,8 +25,7 @@
 
 ---
 
-### Q2. Walk the BookMyShow Firebase Performance traces STAR spine
-
+### Q2. Walk the BookMyShow Firebase Performance traces STAR spine?
 **Answer:**
 
 > **Opener:** Journey-level observability with Firebase Performance. **S/T:** Data-driven latency visibility on business-critical journeys — desk anecdotes insufficient at scale. **Action:** Traces on listing/checkout/search; p50/p90 reporting; PM/backend prioritisation; regression watch across releases. **Result:** Observability layer grounded in percentiles. **Lesson:** p90 > average for user-perceived pain; lab attributes, field decides priority.
@@ -49,7 +47,6 @@
 ---
 
 ### Q3. Journey traces vs interceptor spans (BookMyShow Firebase Performance traces-A1)?
-
 **Answer:**
 
 > **Journey-level traces** for product SLIs and PM conversations — clear start/stop tied to user outcome. **Per-request interceptor spans** for debugging API chatter — carefully, with cardinality hygiene. Label **Design: BookMyShow Firebase Performance traces-A1** when describing placement judgment beyond Verified Firebase journey work.
@@ -71,7 +68,6 @@
 ---
 
 ### Q4. How do Audio streaming + server-driven splash (Aces), BookMyShow LE Bottom Sheet, and BookMyShow backend-driven header & search hook adjacent?
-
 **Answer:**
 
 > **Audio streaming + server-driven splash (Aces) Verified:** server-driven splash / cold-start product — TTI mindset, no fake ms. **BookMyShow LE Bottom Sheet Verified:** LE Bottom Sheet — **30%+** flows fewer full-screen navigations — UX performance. **BookMyShow backend-driven header & search Verified:** search debounce/cancel — pair with search journey traces. Keep BookMyShow Firebase Performance traces as hero observability story; adjacent hooks answer pivots.
@@ -93,7 +89,6 @@
 ---
 
 ### Q5. What Instruments correctness do you say in perf interviews?
-
 **Answer:**
 
 > “For abandoned VCs / retain cycles I use Memory Graph and Allocations. Leaks is for unreachable memory — cycles usually won’t show there.” Label as **technical correctness** — Applied/Learning when implying personal BMS triage unless you add evidence. Do not claim Leaks found cycles at BMS as Verified.
@@ -115,7 +110,6 @@
 ---
 
 ### Q6. What anti-patterns must you refuse?
-
 **Answer:**
 
 > Average-only wins. FPS vanity without hitch rate/device class. Time Profiler on wait-bound latency. Single “performance score” instead of SLI set. Invented cold-start ms or internal alert thresholds as Verified facts.
@@ -136,8 +130,7 @@
 
 ---
 
-### Q7. Give a full honest BookMyShow Firebase Performance traces + correctness answer
-
+### Q7. Give a full honest BookMyShow Firebase Performance traces + correctness answer?
 **Answer:**
 
 > “I instrumented Firebase Performance on listing, checkout, and search with p50/p90 (BookMyShow Firebase Performance traces) — release and optimisation discussions followed tails, not averages. In lab, I attribute CPU with Time Profiler and hitches; for memory cycles I’d use Memory Graph and Allocations, not Leaks (Applied correctness). Field percentiles decide priority; Instruments names the bottleneck class.”
@@ -148,7 +141,7 @@
 |---|---|
 | Verified portion? | Firebase traces, three journeys, p50/p90. |
 | Applied portion? | Memory tool order when cycles suspected. |
-| After this sample? | [`../04-questions.md`](../04-questions.md), [`../05-exercises.md`](../05-exercises.md). |
+| After this sample? | [07-revision-qna.md](07-revision-qna.md), [`../05-exercises.md`](../05-exercises.md). |
 
 **How can I relate to my case:**
 - **Shipped:** BookMyShow Firebase Performance traces
@@ -159,8 +152,27 @@
 ## After this sample
 
 1. Skim [`../code/JourneyTrace.swift`](../code/JourneyTrace.swift) and [`../code/InstrumentsToolMap.swift`](../code/InstrumentsToolMap.swift).
-2. Time BookMyShow Firebase Performance traces STAR from [`../04-questions.md`](../04-questions.md).
+2. Time BookMyShow Firebase Performance traces STAR from [07-revision-qna.md](07-revision-qna.md).
 3. Practice tool-selection drills in [`../05-exercises.md`](../05-exercises.md).
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — Walk the BookMyShow Firebase Performance traces STAR spine
+
+**Ask yourself:** Walk the BookMyShow Firebase Performance traces STAR spine?
+
+**Answer:** “**Opener:** Journey-level observability with Firebase Performance. **S/T:** Data-driven latency visibility on business-critical journeys — desk anecdotes insufficient at scale. **Action:** Traces on listing/checkout/search; p50/p90 reporting; PM/backend prioritisation; regression watch across releases. **Result:** Observability layer grounded in percentiles. **Lesson:** p90 > average for user-perceived pain; lab attributes, field decides priority.”
+
+### Puzzle B — Journey traces vs interceptor spans (BookMyShow Firebase Performance traces-A1)
+
+**Ask yourself:** Journey traces vs interceptor spans (BookMyShow Firebase Performance traces-A1)?
+
+**Answer:** “**Journey-level traces** for product SLIs and PM conversations — clear start/stop tied to user outcome. **Per-request interceptor spans** for debugging API chatter — carefully, with cardinality hygiene. Label **Design: BookMyShow Firebase Performance traces-A1** when describing placement judgment beyond Verified Firebase journey work.”
+
+### Puzzle C — How do Audio streaming + server-driven splash (Aces), BookMyShow LE Bottom Sheet
+
+**Ask yourself:** How do Audio streaming + server-driven splash (Aces), BookMyShow LE Bottom Sheet, and BookMyShow backend-driven header & search hook adjacent?
+
+**Answer:** “**Audio streaming + server-driven splash (Aces) Verified:** server-driven splash / cold-start product — TTI mindset, no fake ms. **BookMyShow LE Bottom Sheet Verified:** LE Bottom Sheet — **30%+** flows fewer full-screen navigations — UX performance. **BookMyShow backend-driven header & search Verified:** search debounce/cancel — pair with search journey traces. Keep BookMyShow Firebase Performance traces as hero observability story; adjacent hooks answer pivots.”

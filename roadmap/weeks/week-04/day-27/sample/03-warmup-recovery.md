@@ -5,10 +5,9 @@
 ---
 
 ### Q1. How will you open the coding round?
-
 **Answer:**
 
-> “I restate the problem, clarify constraints, give a one-line brute force, name the optimized pattern — hash, heap, window, or tree — state complexity and edges, then code. I narrate throughout and leave a few minutes for edges.”  
+> “I restate the problem, clarify constraints, give a one-line brute force, name the optimized pattern — hash, heap, window, or tree — state complexity and edges, then code. I narrate throughout and leave a few minutes for edges.” 
 > **30–45s** — then execute on the clock.
 
 **Follow-ups:**
@@ -25,7 +24,6 @@
 ---
 
 ### Q2. You misclassified the pattern at minute five — what now?
-
 **Answer:**
 
 > Say the **new classification aloud**, keep any reusable helpers, rewrite the core loop. **Communication of the pivot scores**; silent thrashing through the whole file doesn’t. Example: “This is really a hash map problem, not two pointers — I’ll keep the frequency map and rewrite the scan.”
@@ -44,7 +42,6 @@
 ---
 
 ### Q3. GCD serial queue vs actor — 45s?
-
 **Answer:**
 
 > “A serial queue serializes work on shared state; we used that pattern around synchronised dictionaries at BookMyShow. A Swift actor is a reference type with isolated state and `await` at the boundary — I’d prefer it for greenfield shared maps. Actors can reenter across `await` — I design for that.”
@@ -66,7 +63,6 @@
 ---
 
 ### Q4. SDUI unknown type — 45s?
-
 **Answer:**
 
 > “Unknown components render a placeholder, emit a coarse analytics event, and never force-unwrap. Schema version gates fail closed. Same instinct as backend-driven header work — resilience over assuming perfect CMS.”
@@ -88,7 +84,6 @@
 ---
 
 ### Q5. How will you open system design?
-
 **Answer:**
 
 > “I’ll spend five minutes clarifying scope, DAU, offline needs, and latency expectations, then draw a four-layer client HLD, deep-dive two hard subsystems, and reserve the last five for failure modes, metrics, and kill switches.”
@@ -107,7 +102,6 @@
 ---
 
 ### Q6. Name three production proofs?
-
 **Answer:**
 
 > “**30L+ DAU** context, **99.95%+ crash-free**, **30%+** LE navigation reduction — plus I’ll keep one specialty loaded: SDUI, pinning, SDK, or on-device AI depending on the prompt.”
@@ -129,7 +123,6 @@
 ---
 
 ### Q7. SD deep dive running long — what do you cut?
-
 **Answer:**
 
 > Summarize and **park the third deep dive**. Seniors protect the **last five minutes** for failure modes, metrics, and rollout. Happy-path forever is a mid signal. Say: “I’ll table caching details and cover kill switch and degrade paths.”
@@ -148,7 +141,6 @@
 ---
 
 ### Q8. They ask on-device AI but you prepared SDUI?
-
 **Answer:**
 
 > Pivot cleanly: privacy constraints, local retrieval, on-device inference, fail-soft matrix. **FinTrack BM25** and **GymFlow MiniLM** as proof. Still use four-layer client sketch; slightly shorter HLD is fine if clarify was strong.
@@ -170,7 +162,6 @@
 ---
 
 ### Q9. Pool E — retain cycle in 30s?
-
 **Answer:**
 
 > “A retain cycle is a **strong reference loop** keeping objects alive. Closures capturing `self` are the usual UIKit suspect — I break them with **`weak self`** and verify with Allocations/Leaks when needed.”
@@ -189,10 +180,9 @@
 ---
 
 ### Q10. Pool E — SSL pinning one-liner + BookMyShow SSL pinning + URLSession migration?
-
 **Answer:**
 
-> “**ATS** is system TLS policy; **pinning** is an app-level identity check on the certificate or **SPKI**. On Ads we moved Alamofire to **URLSession** with HTTPS, pinning, and host whitelist.”  
+> “**ATS** is system TLS policy; **pinning** is an app-level identity check on the certificate or **SPKI**. On Ads we moved Alamofire to **URLSession** with HTTPS, pinning, and host whitelist.” 
 > **Provenance:** BookMyShow SSL pinning + URLSession migration
 
 **Follow-ups:**
@@ -212,10 +202,9 @@
 ---
 
 ### Q11. Pool E — why p50 / p90?
-
 **Answer:**
 
-> “Averages hide pain. **p50 and p90** on listing, checkout, and search traces show typical and **tail** experience — we instrumented those with **Firebase Performance**.”  
+> “Averages hide pain. **p50 and p90** on listing, checkout, and search traces show typical and **tail** experience — we instrumented those with **Firebase Performance**.” 
 > **Provenance:** BookMyShow Firebase Performance traces
 
 **Follow-ups:**
@@ -235,10 +224,9 @@
 ---
 
 ### Q12. Pool E — fail-soft AI in 30s?
-
 **Answer:**
 
-> “If the model path can’t run, **FinTrack** falls to **deterministic rules** and **GymFlow** to **TF-IDF** — useful degrade, not a blank crash.”  
+> “If the model path can’t run, **FinTrack** falls to **deterministic rules** and **GymFlow** to **TF-IDF** — useful degrade, not a blank crash.” 
 > **Provenance:** FinTrack on-device AI · GymFlow on-device AI
 
 **Follow-ups:**
@@ -259,3 +247,22 @@ Next: [04-fix-forwards.md](04-fix-forwards.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — You misclassified the pattern at minute five — what now
+
+**Ask yourself:** You misclassified the pattern at minute five — what now?
+
+**Answer:** “Say the **new classification aloud**, keep any reusable helpers, rewrite the core loop. **Communication of the pivot scores**; silent thrashing through the whole file doesn’t. Example: “This is really a hash map problem, not two pointers — I’ll keep the frequency map and rewrite the scan.”
+
+### Puzzle B — GCD serial queue vs actor — 45s
+
+**Ask yourself:** GCD serial queue vs actor — 45s?
+
+**Answer:** “A serial queue serializes work on shared state; we used that pattern around synchronised dictionaries at BookMyShow. A Swift actor is a reference type with isolated state and `await` at the boundary — I’d prefer it for greenfield shared maps. Actors can reenter across `await` — I design for that.”
+
+### Puzzle C — SDUI unknown type — 45s
+
+**Ask yourself:** SDUI unknown type — 45s?
+
+**Answer:** “Unknown components render a placeholder, emit a coarse analytics event, and never force-unwrap. Schema version gates fail closed. Same instinct as backend-driven header work — resilience over assuming perfect CMS.”

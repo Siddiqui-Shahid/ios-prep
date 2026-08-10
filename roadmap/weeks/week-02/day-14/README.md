@@ -1,6 +1,6 @@
 # Day 14 — Week 2 Revision + Mock #2 (Ads or SDUI)
 
-> Week 2 · Full study (self-contained) · ~5–6 hrs  
+> Week 2 · Full study (self-contained) · ~5–6 hrs 
 > Revision twin: [revision/weeks/week-02/day-14.md](../../../revision/weeks/week-02/day-14.md)
 
 ## Outcomes
@@ -19,7 +19,7 @@ By end of day, without notes, you can:
 2. `02-deep-dive.md` — full Ads + SDUI 5-min spines (embedded; no required external doc read)
 3. `03-production-bridge.md` — Verified story map + honest provenance
 4. `code/MockTalkTracks.md` + `code/Week2Warmups.md` — speak aloud
-5. `04-questions.md` — warm-up bank (two-layer)
+5. `sample/07-revision-qna.md` — warm-up bank (two-layer)
 6. `05-exercises.md` — run Mock #2 with timer
 7. Revision twin for flashcard recall
 
@@ -30,7 +30,7 @@ By end of day, without notes, you can:
 | Foundations | [01-foundations.md](01-foundations.md) |
 | Deep dive | [02-deep-dive.md](02-deep-dive.md) |
 | Production bridge | [03-production-bridge.md](03-production-bridge.md) |
-| Questions | [04-questions.md](04-questions.md) |
+| Questions | [sample/07-revision-qna.md](sample/07-revision-qna.md) |
 | Exercises | [05-exercises.md](05-exercises.md) |
 | Talk tracks | [code/MockTalkTracks.md](code/MockTalkTracks.md) |
 | Sample Q&A | [sample/README.md](sample/README.md) |
@@ -52,10 +52,10 @@ Do **not** invent fill-rate %, splash ms, or “I shipped the pin runbook.”
 
 ## Agenda opener — pick one track tonight
 
-**Ads:**  
+**Ads:** 
 > “I’ll cover revenue Ads scope, POP+generics pipeline, HeroWidget lifecycle, URLSession pinning/whitelist, and trade-offs vs SDUI for media.”
 
-**SDUI:**  
+**SDUI:** 
 > “I’ll cover SDUI scope, schema/versioning, registry+actions, fail-soft fallback, BMS header / Aces splash, and limits vs native Ads.”
 
 ## Time budget

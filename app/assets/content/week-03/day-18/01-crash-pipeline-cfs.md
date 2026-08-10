@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What is the crash SDK pipeline end to end?
-
 **Answer:**
 
 > **Init** (fast, ~10ms class) → register handlers → breadcrumb ring on happy path. On **crash** (signal / uncaught / fatalError path): **async-signal-safe** write to preallocated mmap/disk → terminate. **Next launch:** discover report → upload → server **symbolicates** with matching **dSYM**. No malloc, ObjC, or network inside the signal handler.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. What is crash-free sessions (CFS)?
-
 **Answer:**
 
 > **CFS:** sessions without a **fatal crash** (vendor definitions vary slightly — say Crashlytics sessions). **BookMyShow IMOC + crash-free at scale:** sustained **99.95%+** at **30+ lakh DAU**. Non-fatals ≠ crashes — still triage if user-impacting. **OOM/jetsam** often lacks clean client stack. **Hangs** may not count against CFS — users still churn.
@@ -46,7 +44,6 @@
 ---
 
 ### Q3. Why must BookMyShow synchronised dictionaries and BookMyShow IMOC + crash-free at scale stay separate in speech?
-
 **Answer:**
 
 > **BookMyShow IMOC + crash-free at scale** = CFS + Crashlytics triage + **IMOC** (system of reliability at scale). **BookMyShow synchronised dictionaries** = synchronised dictionaries fixed **races on a shared-state path** — one engineering input among many. **BookMyShow synchronised dictionaries ⊂ reliability work, but BookMyShow synchronised dictionaries ⇏ “I alone made 99.95% CFS.”** Say: dictionaries removed intermittent race crashes on that path; CFS was sustained by triage, incident process, and many fixes.
@@ -67,8 +64,7 @@
 
 ---
 
-### Q4. Crash vs OOM vs hang — compare briefly
-
+### Q4. Crash vs OOM vs hang — compare briefly?
 **Answer:**
 
 > **Crash:** fatal signal/exception — often clean stack if handlers work — **moves CFS**. **OOM/jetsam:** SIGKILL from memory pressure — often heuristic, not normal catchable path — vendor-dependent CFS impact. **Hang:** main blocked — hang detector / MetricKit — often **does not** move CFS. All three hurt users; only fatal crashes fit the classic CFS story cleanly.
@@ -87,7 +83,6 @@
 ---
 
 ### Q5. What is the triage workflow in six steps?
-
 **Answer:**
 
 > (1) **Detect** — spike / CFS drop alert. (2) **Classify** — new vs regressed; top stacks; version %; journey tags. (3) **Reproduce** — symbolicated stack + breadcrumbs + device/OS matrix. (4) **Mitigate** — flag off, pause rollout, hotfix path. (5) **Fix** — root cause + regression test. (6) **Write-up** — blameless postmortem for P0/P1.
@@ -106,7 +101,6 @@
 ---
 
 ### Q6. What is IMOC in one breath?
-
 **Answer:**
 
 > As **IMOC**, coordinate **iOS + backend + QA** on **P0/P1** during high-traffic events. Pillars: **single owner**, **blast radius** (feature, %, geo, payment path), **mitigate first**, **cadenced comms**, **handoff + postmortem** with actionable follow-ups (alerts, tests, runbooks).
@@ -125,7 +119,6 @@
 ---
 
 ### Q7. What should the teach-back checklist cover?
-
 **Answer:**
 
 > Pipeline: capture → persist → upload → symbolicate. Async-signal-safe one-liner. CFS definition + 99.95% / 30L context (BookMyShow IMOC + crash-free at scale). **BookMyShow synchronised dictionaries contributes; does not solely cause CFS.** IMOC pillars. Hang gap vs CFS. Next: signal safety and OOM honesty in sample 02.
@@ -148,3 +141,22 @@ Next: [02-signal-safety-oom.md](02-signal-safety-oom.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What is crash-free sessions (CFS)
+
+**Ask yourself:** What is crash-free sessions (CFS)?
+
+**Answer:** “**CFS:** sessions without a **fatal crash** (vendor definitions vary slightly — say Crashlytics sessions). **BookMyShow IMOC + crash-free at scale:** sustained **99.95%+** at **30+ lakh DAU**. Non-fatals ≠ crashes — still triage if user-impacting. **OOM/jetsam** often lacks clean client stack. **Hangs** may not count against CFS — users still churn.”
+
+### Puzzle B — Why must BookMyShow synchronised dictionaries and BookMyShow IMOC + crash-free a
+
+**Ask yourself:** Why must BookMyShow synchronised dictionaries and BookMyShow IMOC + crash-free at scale stay separate in speech?
+
+**Answer:** “**BookMyShow IMOC + crash-free at scale** = CFS + Crashlytics triage + **IMOC** (system of reliability at scale). **BookMyShow synchronised dictionaries** = synchronised dictionaries fixed **races on a shared-state path** — one engineering input among many. **BookMyShow synchronised dictionaries ⊂ reliability work, but BookMyShow synchronised dictionaries ⇏ “I alone made 99.95% CFS.”** Say: dictionaries removed intermittent race crashes on that path; CFS was sustained by triage, incident process, and many fixes.”
+
+### Puzzle C — Crash vs OOM vs hang — compare briefly
+
+**Ask yourself:** Crash vs OOM vs hang — compare briefly?
+
+**Answer:** “**Crash:** fatal signal/exception — often clean stack if handlers work — **moves CFS**. **OOM/jetsam:** SIGKILL from memory pressure — often heuristic, not normal catchable path — vendor-dependent CFS impact. **Hang:** main blocked — hang detector / MetricKit — often **does not** move CFS. All three hurt users; only fatal crashes fit the classic CFS story cleanly.”

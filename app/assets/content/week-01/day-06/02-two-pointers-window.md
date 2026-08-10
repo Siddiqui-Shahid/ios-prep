@@ -5,7 +5,6 @@
 ---
 
 ### Q1. How do I tell two pointers from sliding window?
-
 **Answer:**
 
 > **Two pointers:** two indices move to satisfy a relation — often both ends inward, or fast/slow. **Sliding window:** maintain a contiguous range; expand right to include, shrink left when an invariant breaks. Both use an **invariant** — say that word either way. Window = contiguous + length/subarray constraint; opposite ends = sorted/palindrome/max-area from ends.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. What signals “opposite ends” two pointers?
-
 **Answer:**
 
 > Sorted array pair problems, palindrome check from both ends, max area/volume from left and right indices. Target complexity O(n) after any sort cost. Classic Week 1: Valid Palindrome, Container With Most Water, 3Sum (after sort).
@@ -43,7 +41,6 @@
 ---
 
 ### Q3. What signals a variable sliding window?
-
 **Answer:**
 
 > “Longest/shortest substring or subarray with a constraint” — no repeats, sum at least K, at most K distinct, etc. Expand `right` to grow; while invariant breaks, shrink `left`. Each index moves at most once → O(n). Track best length or minimum window while shrinking.
@@ -62,7 +59,6 @@
 ---
 
 ### Q4. What is a write pointer (in-place two pointers)?
-
 **Answer:**
 
 > One index reads, one writes the next valid position — compact in place without extra array. Move Zeroes, remove duplicates in sorted array. O(n) time, O(1) extra space. Say “write pointer” so the interviewer knows you will not allocate a copy.
@@ -81,7 +77,6 @@
 ---
 
 ### Q5. How does Kadane relate to “window” thinking?
-
 **Answer:**
 
 > Kadane is a one-pass running state, not a literal left/right window — but it asks “extend current subarray or restart?” Running max of `max(x, running + x)`; track global max. O(n)/O(1). All-negative: answer is the largest single element.
@@ -100,7 +95,6 @@
 ---
 
 ### Q6. What is the off-by-one checklist for windows?
-
 **Answer:**
 
 > Is the window `[left, right]` inclusive on both ends? When do you update best — on expand or after shrink? Empty window allowed? Initialize `left = 0`, `best = 0` vs `1` correctly. Dry-run a tiny string like `"abc"` and `"aaa"` before coding.
@@ -119,7 +113,6 @@
 ---
 
 ### Q7. Pattern ID: which approach for these prompts?
-
 **Answer:**
 
 > Valid Palindrome → opposite pointers. Container Water → opposite ends, move shorter. Longest Substring Without Repeating → variable window + last-seen map. Move Zeroes → write pointer. Max Subarray → Kadane. If two patterns fit, match the **output** shape (indices vs length vs sum).
@@ -139,3 +132,22 @@ Next: [03-strings-swift.md](03-strings-swift.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What signals “opposite ends” two pointers
+
+**Ask yourself:** What signals “opposite ends” two pointers?
+
+**Answer:** “Sorted array pair problems, palindrome check from both ends, max area/volume from left and right indices. Target complexity O(n) after any sort cost. Classic Week 1: Valid Palindrome, Container With Most Water, 3Sum (after sort).”
+
+### Puzzle B — What signals a variable sliding window
+
+**Ask yourself:** What signals a variable sliding window?
+
+**Answer:** “Longest/shortest substring or subarray with a constraint” — no repeats, sum at least K, at most K distinct, etc. Expand `right` to grow; while invariant breaks, shrink `left`. Each index moves at most once → O(n). Track best length or minimum window while shrinking.
+
+### Puzzle C — What is a write pointer (in-place two pointers)
+
+**Ask yourself:** What is a write pointer (in-place two pointers)?
+
+**Answer:** “One index reads, one writes the next valid position — compact in place without extra array. Move Zeroes, remove duplicates in sorted array. O(n) time, O(1) extra space. Say “write pointer” so the interviewer knows you will not allocate a copy.”

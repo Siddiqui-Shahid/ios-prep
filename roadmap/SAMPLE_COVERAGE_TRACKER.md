@@ -13,7 +13,7 @@ Track topics present in day modules (`01`–`05`) that are **missing** or **thin
 | **P0** | High — fill first if sample / audiobook is the primary study path |
 | **P1** | Medium |
 | **P2** | Low / optional polish |
-| **By design** | Intentionally deferred to `04-questions.md` / deep dive — not a defect unless you study sample-only |
+| **By design** | Intentionally deferred to `sample/07-revision-qna.md` / deep dive — not a defect unless you study sample-only |
 
 **How to close a row:** add a sample Q (or thicken a follow-up) in the suggested file, keep matching `.script.md` in sync, then check the box. *(All rows below were closed in the fill pass.)*
 
@@ -29,7 +29,7 @@ Track topics present in day modules (`01`–`05`) that are **missing** or **thin
 | Empty/stub samples | None |
 | Daily SD mock (`05-system-design-mock.md`) | Days 01–28 — from `ios-system-design/docs/` via `roadmap/scripts/generate_sd_mock_samples.py` |
 
-Core day outcomes are mostly covered. Gaps below are secondary module topics, tricky `04-questions` items, and pointer-only mock/revision days.
+Core day outcomes are mostly covered. Gaps below are secondary module topics, tricky `07-revision-qna` items, and pointer-only mock/revision days.
 
 ### Day status rollup
 
@@ -43,7 +43,7 @@ Core day outcomes are mostly covered. Gaps below are secondary module topics, tr
 
 | Day | Note |
 |---|---|
-| 07, 14, 21, 26, 27 | Mock/revision days keep full talk tracks / deep pools in `04-questions.md` + deep dive |
+| 07, 14, 21, 26, 27 | Mock/revision days keep full talk tracks / deep pools in `sample/07-revision-qna.md` + deep dive |
 | 25–28 | Day `03-production-bridge.md` files are lean by design; samples are often richer than those modules |
 
 Promote a **By design** item to P0/P1 only if audiobook-only study must stand alone.
@@ -54,14 +54,14 @@ Promote a **By design** item to P0/P1 only if audiobook-only study must stand al
 
 ### Day 03 — ARC / retain cycles
 
-Sources: [`02-deep-dive.md`](weeks/week-01/day-03/02-deep-dive.md) · [`04-questions.md`](weeks/week-01/day-03/04-questions.md)  
+Sources: [`02-deep-dive.md`](weeks/week-01/day-03/02-deep-dive.md) · [`sample/07-revision-qna.md`](weeks/week-01/day-03/sample/07-revision-qna.md)  
 Target: [`sample/02-retain-cycles.md`](weeks/week-01/day-03/sample/02-retain-cycles.md) or [`sample/03-tools-and-leaks.md`](weeks/week-01/day-03/sample/03-tools-and-leaks.md)
 
 - [x] **Missing:** Autorelease pools (`04` Q9 / deep dive) — add dedicated sample Q
 
 ### Day 06 — DSA arrays / strings / windows
 
-Sources: [`02-deep-dive.md`](weeks/week-01/day-06/02-deep-dive.md) · [`04-questions.md`](weeks/week-01/day-06/04-questions.md)  
+Sources: [`02-deep-dive.md`](weeks/week-01/day-06/02-deep-dive.md) · [`sample/07-revision-qna.md`](weeks/week-01/day-06/sample/07-revision-qna.md)  
 Target: [`sample/01-approach-scripts.md`](weeks/week-01/day-06/sample/01-approach-scripts.md) · [`sample/02-two-pointers-window.md`](weeks/week-01/day-06/sample/02-two-pointers-window.md)
 
 - [x] **Thin:** Container With Most Water — full 60–90s approach Q (not pattern signal only)
@@ -71,14 +71,14 @@ Target: [`sample/01-approach-scripts.md`](weeks/week-01/day-06/sample/01-approac
 
 ### Day 07 — Week 1 mock
 
-Sources: [`04-questions.md`](weeks/week-01/day-07/04-questions.md)  
+Sources: [`sample/07-revision-qna.md`](weeks/week-01/day-07/sample/07-revision-qna.md)  
 Target: [`sample/03-mock-interview.md`](weeks/week-01/day-07/sample/03-mock-interview.md) · [`sample/04-warmup-hld.md`](weeks/week-01/day-07/sample/04-warmup-hld.md)
 
-- [x] **Thin / missing in sample:** Deep-pool D1–D8 condensed spoken answers (today sample only indexes → `04-questions`)
+- [x] **Thin / missing in sample:** Deep-pool D1–D8 condensed spoken answers (today sample only indexes → `07-revision-qna`)
 
 ### Day 13 — Stack / queue / linked list
 
-Sources: [`02-deep-dive.md`](weeks/week-02/day-13/02-deep-dive.md) · [`04-questions.md`](weeks/week-02/day-13/04-questions.md)  
+Sources: [`02-deep-dive.md`](weeks/week-02/day-13/02-deep-dive.md) · [`sample/07-revision-qna.md`](weeks/week-02/day-13/sample/07-revision-qna.md)  
 Target: [`sample/01-stack-queue-basics.md`](weeks/week-02/day-13/sample/01-stack-queue-basics.md) · [`sample/02-monotonic-patterns.md`](weeks/week-02/day-13/sample/02-monotonic-patterns.md)
 
 - [x] **Missing:** Hit-counter / recent-requests design
@@ -86,7 +86,7 @@ Target: [`sample/01-stack-queue-basics.md`](weeks/week-02/day-13/sample/01-stack
 
 ### Day 17 — Performance / Instruments
 
-Sources: [`02-deep-dive.md`](weeks/week-03/day-17/02-deep-dive.md) · [`04-questions.md`](weeks/week-03/day-17/04-questions.md)  
+Sources: [`02-deep-dive.md`](weeks/week-03/day-17/02-deep-dive.md) · [`sample/07-revision-qna.md`](weeks/week-03/day-17/sample/07-revision-qna.md)  
 Target: [`sample/02-instruments-metrickit.md`](weeks/week-03/day-17/sample/02-instruments-metrickit.md) · [`sample/03-startup-scrolling.md`](weeks/week-03/day-17/sample/03-startup-scrolling.md)
 
 - [x] **Missing:** Binary size vs performance (`04` Q9)
@@ -95,21 +95,21 @@ Target: [`sample/02-instruments-metrickit.md`](weeks/week-03/day-17/sample/02-in
 
 ### Day 19 — Security / pinning
 
-Sources: [`03-production-bridge.md`](weeks/week-03/day-19/03-production-bridge.md) · [`04-questions.md`](weeks/week-03/day-19/04-questions.md)  
+Sources: [`03-production-bridge.md`](weeks/week-03/day-19/03-production-bridge.md) · [`sample/07-revision-qna.md`](weeks/week-03/day-19/sample/07-revision-qna.md)  
 Target: new `sample/04-production-s4.md` (or expand [`sample/02-ssl-pinning-spki.md`](weeks/week-03/day-19/sample/02-ssl-pinning-spki.md)); today [`sample/04-persistence-tree.md`](weeks/week-03/day-19/sample/04-persistence-tree.md) prioritizes persistence over STAR
 
 - [x] **Thin:** Full timed S4 STAR spine (Opener / S / T / Action / Result / Lesson) as dedicated sample
 
 ### Day 23 — HashMap / Heap
 
-Sources: [`04-questions.md`](weeks/week-04/day-23/04-questions.md) · [`02-deep-dive.md`](weeks/week-04/day-23/02-deep-dive.md)  
+Sources: [`sample/07-revision-qna.md`](weeks/week-04/day-23/sample/07-revision-qna.md) · [`02-deep-dive.md`](weeks/week-04/day-23/02-deep-dive.md)  
 Target: [`sample/01-hashmap-patterns.md`](weeks/week-04/day-23/sample/01-hashmap-patterns.md)
 
 - [x] **Missing:** O(1) insert / delete / `getRandom`
 
 ### Day 25 — Machine round debrief
 
-Sources: [`04-questions.md`](weeks/week-04/day-25/04-questions.md)  
+Sources: [`sample/07-revision-qna.md`](weeks/week-04/day-25/sample/07-revision-qna.md)  
 Target: [`sample/04-debrief-structure.md`](weeks/week-04/day-25/sample/04-debrief-structure.md)
 
 - [x] **Missing:** Tricky debrief T1 — stale prices defend
@@ -132,7 +132,7 @@ Target: [`sample/01-value-types.md`](weeks/week-01/day-01/sample/01-value-types.
 
 ### Day 02
 
-Sources: [`01-foundations.md`](weeks/week-01/day-02/01-foundations.md) · [`04-questions.md`](weeks/week-01/day-02/04-questions.md)  
+Sources: [`01-foundations.md`](weeks/week-01/day-02/01-foundations.md) · [`sample/07-revision-qna.md`](weeks/week-01/day-02/sample/07-revision-qna.md)  
 Target: [`sample/01-pop-and-generics.md`](weeks/week-01/day-02/sample/01-pop-and-generics.md) · [`sample/02-associated-types-erasure.md`](weeks/week-01/day-02/sample/02-associated-types-erasure.md)
 
 - [x] **Missing:** Conditional conformance
@@ -140,14 +140,14 @@ Target: [`sample/01-pop-and-generics.md`](weeks/week-01/day-02/sample/01-pop-and
 
 ### Day 08
 
-Sources: [`02-deep-dive.md`](weeks/week-02/day-08/02-deep-dive.md) · [`04-questions.md`](weeks/week-02/day-08/04-questions.md)  
+Sources: [`02-deep-dive.md`](weeks/week-02/day-08/02-deep-dive.md) · [`sample/07-revision-qna.md`](weeks/week-02/day-08/sample/07-revision-qna.md)  
 Target: [`sample/01-layer-stack-di.md`](weeks/week-02/day-08/sample/01-layer-stack-di.md) · [`sample/02-mvvm-clean-mvi.md`](weeks/week-02/day-08/sample/02-mvvm-clean-mvi.md)
 
 - [x] **Thin:** Navigation ownership (Coordinator vs Router vs `NavigationPath`) as full Q
 
 ### Day 09
 
-Sources: [`02-deep-dive.md`](weeks/week-02/day-09/02-deep-dive.md) · [`04-questions.md`](weeks/week-02/day-09/04-questions.md)  
+Sources: [`02-deep-dive.md`](weeks/week-02/day-09/02-deep-dive.md) · [`sample/07-revision-qna.md`](weeks/week-02/day-09/sample/07-revision-qna.md)  
 Target: [`sample/01-networking-layer.md`](weeks/week-02/day-09/sample/01-networking-layer.md) · [`sample/04-production-s4.md`](weeks/week-02/day-09/sample/04-production-s4.md)
 
 - [x] **Thin:** Networking debug workflow
@@ -155,7 +155,7 @@ Target: [`sample/01-networking-layer.md`](weeks/week-02/day-09/sample/01-network
 
 ### Day 11
 
-Sources: [`02-deep-dive.md`](weeks/week-02/day-11/02-deep-dive.md) · [`04-questions.md`](weeks/week-02/day-11/04-questions.md)  
+Sources: [`02-deep-dive.md`](weeks/week-02/day-11/02-deep-dive.md) · [`sample/07-revision-qna.md`](weeks/week-02/day-11/sample/07-revision-qna.md)  
 Target: [`sample/02-cells-reuse-prefetch.md`](weeks/week-02/day-11/sample/02-cells-reuse-prefetch.md) · [`sample/04-production-s13-s6.md`](weeks/week-02/day-11/sample/04-production-s13-s6.md)
 
 - [x] **Thin:** Self-sizing collection jank causes
@@ -164,7 +164,7 @@ Target: [`sample/02-cells-reuse-prefetch.md`](weeks/week-02/day-11/sample/02-cel
 
 ### Day 15
 
-Sources: [`04-questions.md`](weeks/week-03/day-15/04-questions.md) · [`02-deep-dive.md`](weeks/week-03/day-15/02-deep-dive.md)  
+Sources: [`sample/07-revision-qna.md`](weeks/week-03/day-15/sample/07-revision-qna.md) · [`02-deep-dive.md`](weeks/week-03/day-15/02-deep-dive.md)  
 Target: [`sample/01-modularization-basics.md`](weeks/week-03/day-15/sample/01-modularization-basics.md) · [`sample/02-spm-di-graphs.md`](weeks/week-03/day-15/sample/02-spm-di-graphs.md)
 
 - [x] **Missing:** Binary size as interview topic
@@ -172,21 +172,21 @@ Target: [`sample/01-modularization-basics.md`](weeks/week-03/day-15/sample/01-mo
 
 ### Day 16
 
-Sources: [`04-questions.md`](weeks/week-03/day-16/04-questions.md)  
+Sources: [`sample/07-revision-qna.md`](weeks/week-03/day-16/sample/07-revision-qna.md)  
 Target: [`sample/02-image-pipeline.md`](weeks/week-03/day-16/sample/02-image-pipeline.md) · [`sample/03-video-audio-media.md`](weeks/week-03/day-16/sample/03-video-audio-media.md)
 
 - [x] **Missing:** GIFs / animated images
 
 ### Day 18
 
-Sources: [`04-questions.md`](weeks/week-03/day-18/04-questions.md)  
+Sources: [`sample/07-revision-qna.md`](weeks/week-03/day-18/sample/07-revision-qna.md)  
 Target: [`sample/02-signal-safety-oom.md`](weeks/week-03/day-18/sample/02-signal-safety-oom.md)
 
 - [x] **Missing:** Name OSLog / logging inside signal handler as an explicit trap
 
 ### Day 21
 
-Sources: [`02-deep-dive.md`](weeks/week-03/day-21/02-deep-dive.md) · [`04-questions.md`](weeks/week-03/day-21/04-questions.md)  
+Sources: [`02-deep-dive.md`](weeks/week-03/day-21/02-deep-dive.md) · [`sample/07-revision-qna.md`](weeks/week-03/day-21/sample/07-revision-qna.md)  
 Target: [`sample/02-clarify-phase.md`](weeks/week-03/day-21/sample/02-clarify-phase.md) · [`sample/03-cache-scroll.md`](weeks/week-03/day-21/sample/03-cache-scroll.md)
 
 - [x] **Thin:** SDUI action-routing worked sample Q
@@ -194,7 +194,7 @@ Target: [`sample/02-clarify-phase.md`](weeks/week-03/day-21/sample/02-clarify-ph
 
 ### Day 22
 
-Sources: [`02-deep-dive.md`](weeks/week-04/day-22/02-deep-dive.md) · [`04-questions.md`](weeks/week-04/day-22/04-questions.md)  
+Sources: [`02-deep-dive.md`](weeks/week-04/day-22/02-deep-dive.md) · [`sample/07-revision-qna.md`](weeks/week-04/day-22/sample/07-revision-qna.md)  
 Target: [`sample/02-tree-patterns-skeletons.md`](weeks/week-04/day-22/sample/02-tree-patterns-skeletons.md)
 
 - [x] **Thin:** Construct tree from preorder + inorder as full Q
@@ -202,7 +202,7 @@ Target: [`sample/02-tree-patterns-skeletons.md`](weeks/week-04/day-22/sample/02-
 
 ### Day 24
 
-Sources: [`04-questions.md`](weeks/week-04/day-24/04-questions.md) · [`02-deep-dive.md`](weeks/week-04/day-24/02-deep-dive.md)  
+Sources: [`sample/07-revision-qna.md`](weeks/week-04/day-24/sample/07-revision-qna.md) · [`02-deep-dive.md`](weeks/week-04/day-24/02-deep-dive.md)  
 Target: [`sample/01-on-device-primer.md`](weeks/week-04/day-24/sample/01-on-device-primer.md) · [`sample/03-gymflow-embeddings.md`](weeks/week-04/day-24/sample/03-gymflow-embeddings.md)
 
 - [x] **Thin:** Stream tokens to UI without jank (dedicated Q)
@@ -210,7 +210,7 @@ Target: [`sample/01-on-device-primer.md`](weeks/week-04/day-24/sample/01-on-devi
 
 ### Day 27
 
-Sources: [`04-questions.md`](weeks/week-04/day-27/04-questions.md)  
+Sources: [`sample/07-revision-qna.md`](weeks/week-04/day-27/sample/07-revision-qna.md)  
 Target: [`sample/03-warmup-recovery.md`](weeks/week-04/day-27/sample/03-warmup-recovery.md)
 
 - [x] **Thin:** Pool E rapid defs — retain cycle 30s
@@ -233,7 +233,7 @@ Target: [`sample/01-queues-sync-async.md`](weeks/week-01/day-04/sample/01-queues
 
 ### Day 05
 
-Sources: [`04-questions.md`](weeks/week-01/day-05/04-questions.md) · [`02-deep-dive.md`](weeks/week-01/day-05/02-deep-dive.md)  
+Sources: [`sample/07-revision-qna.md`](weeks/week-01/day-05/sample/07-revision-qna.md) · [`02-deep-dive.md`](weeks/week-01/day-05/02-deep-dive.md)  
 Target: [`sample/02-structured-concurrency.md`](weeks/week-01/day-05/sample/02-structured-concurrency.md) · [`sample/03-actors-sendable.md`](weeks/week-01/day-05/sample/03-actors-sendable.md)
 
 - [x] **Thin:** Task priority / QoS
@@ -243,7 +243,7 @@ Target: [`sample/02-structured-concurrency.md`](weeks/week-01/day-05/sample/02-s
 
 ### Day 10
 
-Sources: [`04-questions.md`](weeks/week-02/day-10/04-questions.md)  
+Sources: [`sample/07-revision-qna.md`](weeks/week-02/day-10/sample/07-revision-qna.md)  
 Target: [`sample/02-schema-version-fallbacks.md`](weeks/week-02/day-10/sample/02-schema-version-fallbacks.md) · [`sample/03-registry-actions-splash.md`](weeks/week-02/day-10/sample/03-registry-actions-splash.md)
 
 - [x] **Thin:** Personalized SDUI cache privacy leak as full Q
@@ -252,7 +252,7 @@ Target: [`sample/02-schema-version-fallbacks.md`](weeks/week-02/day-10/sample/02
 
 ### Day 12
 
-Sources: [`02-deep-dive.md`](weeks/week-02/day-12/02-deep-dive.md) · [`04-questions.md`](weeks/week-02/day-12/04-questions.md)  
+Sources: [`02-deep-dive.md`](weeks/week-02/day-12/02-deep-dive.md) · [`sample/07-revision-qna.md`](weeks/week-02/day-12/sample/07-revision-qna.md)  
 Target: [`sample/02-identity-traps.md`](weeks/week-02/day-12/sample/02-identity-traps.md) · [`sample/03-lists-performance.md`](weeks/week-02/day-12/sample/03-lists-performance.md)
 
 - [x] **Thin:** Equatable View micro-opt as dedicated Q
@@ -261,7 +261,7 @@ Target: [`sample/02-identity-traps.md`](weeks/week-02/day-12/sample/02-identity-
 
 ### Day 14
 
-Sources: [`03-production-bridge.md`](weeks/week-02/day-14/03-production-bridge.md) · [`04-questions.md`](weeks/week-02/day-14/04-questions.md)  
+Sources: [`03-production-bridge.md`](weeks/week-02/day-14/03-production-bridge.md) · [`sample/07-revision-qna.md`](weeks/week-02/day-14/sample/07-revision-qna.md)  
 Target: [`sample/02-mock-format.md`](weeks/week-02/day-14/sample/02-mock-format.md) · [`sample/03-ads-architecture.md`](weeks/week-02/day-14/sample/03-ads-architecture.md)
 
 - [x] **Thin (by design):** Full S1 / S3 STAR talk tracks embedded in sample
@@ -270,7 +270,7 @@ Target: [`sample/02-mock-format.md`](weeks/week-02/day-14/sample/02-mock-format.
 
 ### Day 20
 
-Sources: [`04-questions.md`](weeks/week-03/day-20/04-questions.md)  
+Sources: [`sample/07-revision-qna.md`](weeks/week-03/day-20/sample/07-revision-qna.md)  
 Target: [`sample/01-deep-links.md`](weeks/week-03/day-20/sample/01-deep-links.md)
 
 - [x] **Thin:** “Two routers drifted” as first-class failure story
@@ -278,7 +278,7 @@ Target: [`sample/01-deep-links.md`](weeks/week-03/day-20/sample/01-deep-links.md
 
 ### Day 26
 
-Sources: [`04-questions.md`](weeks/week-04/day-26/04-questions.md)  
+Sources: [`sample/07-revision-qna.md`](weeks/week-04/day-26/sample/07-revision-qna.md)  
 Target: [`sample/01-star-rhythm.md`](weeks/week-04/day-26/sample/01-star-rhythm.md) · [`sample/03-mentorship-ai.md`](weeks/week-04/day-26/sample/03-mentorship-ai.md)
 
 - [x] **Thin (by design):** Full 2–3 min spoken STAR scripts in sample (spines today; full text in `04`)

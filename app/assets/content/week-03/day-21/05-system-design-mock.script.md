@@ -9,13 +9,13 @@ Next. Q1. Interviewer: “Design Networking Layer + SSL Pinning.” How do you o
 
 Next. Q2. After clarify — what does the optimal flow look like? Answer. Scripted outcomes for this mock: Networking+pinning 45‑min mock; refresh actor; pin rotation design; S D U I is the other prompt — pick one live. Good flow: agenda → clarify Qs → confirm → high level design (4 layers + backend + load) → A P I → two crisp dives → ops last 5. Weak flow: silent drawing, happy-path only, no QPS/TTL, invent metrics, skip ops. Follow-ups. They change scope mid-high level design?: Re-confirm in/out in 20s; adjust dives; protect ops.. Backend mesh deep-dive?: Out unless asked — sketch touchpoints, stay client-owned.. Forgot to ask offline?: State online-first + last-good cache as assumption; invite correction..
 
-## §2 Q3. Walk the HLD — client layers, backend, load.
+## §2 Q3. Walk the HLD — client layers, backend, load?
 
-Next. Q3. Walk the HLD — client layers, backend, load Answer. Features → protocols → APIClient → interceptors → URLSession + SPKI + allowlist → URLCache/Keychain/reachability. Prefer URLSession when owning trust. Load: HTTP/2, gzip, timeout 30s, pin rotate ≤90d. Follow-ups. S D U I instead?: If Prompt A chosen, switch cards — don’t mix mid-draw.. Four layers?: Yes + data flow arrows..
+Next. Q3. Walk the HLD — client layers, backend, load? Answer. Features → protocols → APIClient → interceptors → URLSession + SPKI + allowlist → URLCache/Keychain/reachability. Prefer URLSession when owning trust. Load: HTTP/2, gzip, timeout 30s, pin rotate ≤90d. Follow-ups. S D U I instead?: If Prompt A chosen, switch cards — don’t mix mid-draw.. Four layers?: Yes + data flow arrows..
 
-## §3 Q4. Data / API — entities, endpoints, scale.
+## §3 Q4. Data / API — entities, endpoints, scale?
 
-Next. Q4. Data / API — entities, endpoints, scale Answer. APIEndpoint async throws; 401 refresh coordinator; retry only transient on idempotent GET; pin challenge. Follow-ups. Charge POST retry?: Never blind — idempotency or poll.. Backup pins?: Ship before rotate; break-glass design labeled..
+Next. Q4. Data / API — entities, endpoints, scale? Answer. APIEndpoint async throws; 401 refresh coordinator; retry only transient on idempotent GET; pin challenge. Follow-ups. Charge POST retry?: Never blind — idempotency or poll.. Backup pins?: Ship before rotate; break-glass design labeled..
 
 ## §4 Q5. Deep dive 1 — Single-flight refresh?
 

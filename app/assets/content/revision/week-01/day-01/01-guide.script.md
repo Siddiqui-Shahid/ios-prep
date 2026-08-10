@@ -43,4 +43,4 @@ Next. 5. Flash prompts. 1. Struct vs class in one sentence + one Book My Show ex
 
 ## §10 6. Timed drills
 
-Next. 6. Timed drills. Expand from sample cards and 04-questions answer points.
+Next. 6. Timed drills. Expand from sample cards and 07-revision-qna answer points.

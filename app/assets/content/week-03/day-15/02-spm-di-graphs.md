@@ -5,7 +5,6 @@
 ---
 
 ### Q1. How does SPM map to Interface / Impl / Core?
-
 **Answer:**
 
 > Each feature gets at least two targets: `CheckoutInterface` (leaf — protocols, DTOs, builders) and `Checkout` (Impl — depends on CheckoutInterface + peer Interfaces + CoreNetwork). Core packages hold shared abstractions. Splitting Interface from Impl lets Impls compile in parallel when Interfaces are stable, prevents cycles at package resolve time, and limits rebuild blast radius when UI changes.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. SPM vs CocoaPods — what do you say in an interview?
-
 **Answer:**
 
 > SPM is the default for greenfield Apple-first work — native Xcode integration, no Ruby pods repo, strong parallelism. CocoaPods still has legacy gravity and sometimes solves binary or resource edge cases SPM struggles with. **Senior line:** packaging ≠ architecture. A clean module boundary can live in either system; a messy SPM soup is still messy.
@@ -46,7 +44,6 @@
 ---
 
 ### Q3. How do you do DI without hidden globals?
-
 **Answer:**
 
 > Prefer **constructor injection** or a **typed component tree** (Needle-style). Each feature defines a dependency protocol (`CheckoutDependency`) with the services it needs. A feature component takes that protocol in `init` and builds VCs/VMs. App’s root component fulfills all dependency protocols and registers builders. No `NetworkManager.shared` inside feature modules.
@@ -65,7 +62,6 @@
 ---
 
 ### Q4. What are the main DI anti-patterns?
-
 **Answer:**
 
 > `NetworkManager.shared` inside feature modules; a god `AppDelegate` with dozens of singletons; Interface targets that secretly import Impl; service locators that resolve optional dependencies and fail late. Each hides the true dependency graph and makes testing and reuse hard.
@@ -84,7 +80,6 @@
 ---
 
 ### Q5. Static vs dynamic linking — when which?
-
 **Answer:**
 
 > **Static** (default for internal app modules) links code into the app binary at build time — usually better launch than many dylibs. **Dynamic** frameworks help when App and Extension must share code at runtime — but each dylib adds dyld load cost. Too many tiny modules is ego-splitting: measure Build Timing Summary before celebrating 80 targets.
@@ -103,7 +98,6 @@
 ---
 
 ### Q6. What failure modes show up in real modularization?
-
 **Answer:**
 
 > Impl↔Impl imports (fix: depend on Interface; App wires). Interface targets importing UIKit heavily (keep lean; factory returns opaque VC). SDK hardcoding host branding (inject theme). SDK owning Kingfisher forever (inject `ImageLoading` — Day 16 bridge). Juniors blocked without templates and lint.
@@ -122,7 +116,6 @@
 ---
 
 ### Q7. How do trade-offs summarize for staff interviews?
-
 **Answer:**
 
 > Interface/Impl split when multi-team or large features — cost is more targets. Constructor/tree DI for new modules — boilerplate at App. Service locator for legacy glue — runtime surprises. SPM for greenfield — some vendor binaries awkward. Folders-only for tiny spikes — no enforcement. SDK reuse (Stories SDK (Raw / Miami Heat)) when portfolio parity matters — versioning discipline required.
@@ -144,7 +137,6 @@
 ---
 
 ### Q8. How do you prevent circular dependencies?
-
 **Answer:**
 
 > Cycles usually mean two **Impls import each other**. Break them by depending only on **Interfaces** and letting **App register builders**. SPM/Xcode **fails resolution early** instead of giving mysterious runtime loops. “Import Impl just this once” is the wrong answer — it recreates the cycle under a different name.
@@ -163,7 +155,6 @@
 ---
 
 ### Q9. Is binary size an interview topic for modularization?
-
 **Answer:**
 
 > Yes — modules don’t magically shrink binaries. **Dead-code stripping** helps, but **duplicate symbols** and **unused dynamic frameworks** hurt download/install size. Put a **size budget in CI** and watch diffs per release. Metric: compressed download / install size — not “more packages = smaller app.”
@@ -183,3 +174,22 @@ Next: [03-stories-sdk.md](03-stories-sdk.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — SPM vs CocoaPods — what do you say in an interview
+
+**Ask yourself:** SPM vs CocoaPods — what do you say in an interview?
+
+**Answer:** “SPM is the default for greenfield Apple-first work — native Xcode integration, no Ruby pods repo, strong parallelism. CocoaPods still has legacy gravity and sometimes solves binary or resource edge cases SPM struggles with. **Senior line:** packaging ≠ architecture. A clean module boundary can live in either system; a messy SPM soup is still messy.”
+
+### Puzzle B — How do you do DI without hidden globals
+
+**Ask yourself:** How do you do DI without hidden globals?
+
+**Answer:** “Prefer **constructor injection** or a **typed component tree** (Needle-style). Each feature defines a dependency protocol (`CheckoutDependency`) with the services it needs. A feature component takes that protocol in `init` and builds VCs/VMs. App’s root component fulfills all dependency protocols and registers builders. No `NetworkManager.shared` inside feature modules.”
+
+### Puzzle C — What are the main DI anti-patterns
+
+**Ask yourself:** What are the main DI anti-patterns?
+
+**Answer:** “`NetworkManager.shared` inside feature modules; a god `AppDelegate` with dozens of singletons; Interface targets that secretly import Impl; service locators that resolve optional dependencies and fail late. Each hides the true dependency graph and makes testing and reuse hard.”

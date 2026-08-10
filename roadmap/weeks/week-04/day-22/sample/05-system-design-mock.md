@@ -7,7 +7,6 @@
 ---
 
 ### Q1. Interviewer: “Design Collaborative Document Editor.” How do you open?
-
 **Answer:**
 
 > **Agenda (≤20s):** “I’ll take ~5 minutes clarifying scope and scale, then a four-layer client HLD with backend touchpoints and load, then API/data, two deep dives on **OT transform engine** and **Pending queue + desync**, and close on failure modes, metrics, and kill switches. Does that work?”
@@ -33,7 +32,6 @@
 ---
 
 ### Q2. After clarify — what does the optimal flow look like?
-
 **Answer:**
 
 > **Scripted outcomes for this mock:** OT transforms; WS sequencer; offline op queue; presence; out: rich ACLs/folders.
@@ -53,8 +51,7 @@
 
 ---
 
-### Q3. Walk the HLD — client layers, backend, load.
-
+### Q3. Walk the HLD — client layers, backend, load?
 **Answer:**
 
 > Editor UI → OT engine → pending op queue → WS → server sequencer. Snapshot store periodically.
@@ -72,8 +69,7 @@
 
 ---
 
-### Q4. Data / API — entities, endpoints, scale.
-
+### Q4. Data / API — entities, endpoints, scale?
 **Answer:**
 
 > `GET /docs/{id}/snapshot`; WS `submit_ops` / `apply_ops` / `presence`.
@@ -91,7 +87,6 @@
 ---
 
 ### Q5. Deep dive 1 — OT transform engine?
-
 **Answer:**
 
 > Transform local vs remote ops against revision; apply optimistically; ACK revisions.
@@ -109,7 +104,6 @@
 ---
 
 ### Q6. Deep dive 2 — Pending queue + desync?
-
 **Answer:**
 
 > Queue offline; replay on reconnect; if >1000 ops warn/compact; desync → snapshot.
@@ -127,7 +121,6 @@
 ---
 
 ### Q7. Ops — failures, metrics, rollout, load?
-
 **Answer:**
 
 > Sync latency, desync rate, OT CPU. Kill: read-only mode.
@@ -145,7 +138,6 @@
 ---
 
 ### Q8. Flow scorecard — did you hit the optimal spine?
-
 **Answer:**
 
 > **Pass bar:** clarify + agenda in ≤5; HLD shows 4 layers + backend + load; API has cursors/idempotency as needed; two deep dives; ops with kill switch and concrete metrics.
@@ -162,4 +154,3 @@
 
 **How can I relate to my case:**
 - **Concept-only — no shipped story.** Rehearse this scorecard after every timed mock.
-

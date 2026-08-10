@@ -1,8 +1,8 @@
 # Sample 05 — System-design mock: Offline-First Sync Engine (Q&A)
 
-> Guided **mock interview** flow. Speak answers aloud against a 45‑min timer.  
-> **Source:** `[ios-system-design/docs/offline-sync-engine.md](../../../../ios-system-design/docs/offline-sync-engine.md)` · timing: `[cheatsheet.md](../../../../ios-system-design/docs/cheatsheet.md)`  
-> **Angle:** Day 04 — **queues / concurrency** (GCD & thread-safety parallel).  
+> Guided **mock interview** flow. Speak answers aloud against a 45‑min timer. 
+> **Source:** `[ios-system-design/docs/offline-sync-engine.md](../../../../ios-system-design/docs/offline-sync-engine.md)` · timing: `[cheatsheet.md](../../../../ios-system-design/docs/cheatsheet.md)` 
+> **Angle:** Day 04 — **queues / concurrency** (GCD & thread-safety parallel). 
 > **Brain puzzles** at the bottom — cover → think → check.
 >
 > **How to use:** Say the **Answer** blocks out loud. Words in parentheses are reminders for you — skip them when speaking.
@@ -10,7 +10,6 @@
 ---
 
 ### Q1. Interviewer: “Design an Offline-First Sync Engine.” How do you open?
-
 **Answer:**
 
 > “I’ll take about five minutes to clarify scope and scale. Then I’ll draw a simple client high-level design in four layers, plus how we talk to the backend and rough load. Then API and data. Then two deep dives: first the SyncEngine actor and dirty flags, second background tasks and last-write-wins conflicts. I’ll close with failures, metrics, and a kill switch. Does that plan work for you?”
@@ -30,7 +29,6 @@
 ---
 
 ### Q2. What clarifying questions do you ask before drawing?
-
 **Answer:**
 
 > “Before I draw, a few questions: What entities sync — notes, cart, settings, or something else? For conflicts, is last-write-wins okay, or do we need fancy merge like OT or CRDT? Rough DAU, and at peak how many local unsynced changes per user — the dirty-queue depth? Do we need background refresh with BGAppRefresh, or only sync when the app is open? Is auth in scope, or can I assume tokens already exist? I’d like to put rich media upload — photos and videos — out of scope. Is that okay?”
@@ -60,7 +58,6 @@
 ---
 
 ### Q3. After clarify — what did we agree, and what is the good interview flow?
-
 **Answer:**
 
 > “For this mock I’ll assume: SQLite is the source of truth on device. We push local changes first, then pull server changes. Conflicts use last-write-wins. We sync in batches of at most 50 records. Background work gets about 30 seconds. Out of scope: Google-Docs-style merge, and rich media upload. Good flow for me: agenda, clarify, confirm assumptions, high-level design, API, two deep dives, then last five minutes on ops. I’ll avoid: drawing in silence, only happy path, inventing QPS as fact, and skipping ops.”
@@ -79,8 +76,7 @@
 
 ---
 
-### Q4. Walk the high-level design — client layers.
-
+### Q4. Walk the high-level design — client layers?
 **Answer:**
 
 > “Four client layers. Top: Feature screens and ViewModels. They only read and write the local database. The UI never talks to the network directly for sync. Next: Local store — SQLite is the source of truth. Creates, edits, deletes land here first. We mark changed rows dirty. Next: SyncEngine as a Swift actor. It is the single place that runs sync. It pushes dirty rows, then pulls server changes. Only one sync runs at a time. Bottom: Network — authenticated calls to push and pull. Data flow: user edits → SQLite plus dirty flag → SyncEngine push → then pull → update SQLite → UI refreshes from local data.”
@@ -100,7 +96,6 @@
 ---
 
 ### Q5. Backend touchpoints and load — what do you say?
-
 **Answer:**
 
 > “Backend touchpoints are simple: POST /sync/push to upload dirty records, and GET /sync/pull?since=… with a sync token cursor to download changes since last sync. Load notes: batch at most 50 records per request. Background refresh about every 15 minutes at minimum, not constantly. Local database reads and writes should stay under about 50 milliseconds. Never block the UI thread — same queue discipline as Day 04. From DAU I’ll give a labeled QPS estimate, not invent a fake exact number.”
@@ -120,7 +115,6 @@
 ---
 
 ### Q6. Data / API — what endpoints and rules?
-
 **Answer:**
 
 > “Push: POST /v1/sync/push. Body is dirty records plus client timestamps. Pull: GET /v1/sync/pull?since=TOKEN&limit=100. Response is server changes plus a new sync token. Deletes use tombstones — a ‘this id was deleted’ marker — so other devices learn about deletes. Record ids are idempotent — if we retry the same push, the server must not create duplicates.”
@@ -140,7 +134,6 @@
 ---
 
 ### Q7. Deep dive 1 — SyncEngine actor and dirty flags?
-
 **Answer:**
 
 > “SyncEngine is a Swift actor, so only one sync pipeline runs at a time — single-flight. Many things can request a sync: app foreground, network comes back, user pulls to refresh. I coalesce those triggers into one run instead of starting five syncs. User flow: UI writes to SQLite first, marks the row dirty, updates the screen from local data, and sync goes async. After a successful push ACK, clear dirty. After pull, apply server rows into SQLite.”
@@ -160,7 +153,6 @@
 ---
 
 ### Q8. Deep dive 2 — Background tasks and LWW conflicts?
-
 **Answer:**
 
 > “For background: BGAppRefresh gives a short budget, about 30 seconds. In that window I push a batch, pull a batch, save a checkpoint — meaning update the sync token and dirty flags — then stop cleanly if time is almost up. For conflicts: last-write-wins using the server timestamp. If product needs a ‘your edit was overwritten’ banner, we can show it — but default is quiet LWW. Deletes stay as tombstones until pull confirms other devices have the delete.”
@@ -180,7 +172,6 @@
 ---
 
 ### Q9. Ops — failures, metrics, kill switch?
-
 **Answer:**
 
 > “Targets I’d track: sync success rate above 99.5%, p99 sync under 5 seconds, dirty-queue length alerts if the backlog grows, and background task completion rate. Kill switch: remotely pause sync. App stays read-only on local SQLite so users can still open content. If everyone comes online after an outage: reconnect with jitter and exponential backoff so we don’t thundering-herd the server.”
@@ -200,7 +191,6 @@
 ---
 
 ### Q10. Time scorecard — did you hit the good path?
-
 **Answer:**
 
 > “Timing spine: minutes 0–5 clarify, 5–15 high-level design, 15–25 API, 25–40 two deep dives, 40–45 ops. Pass bar: agenda and clarify in five; HLD shows four layers plus backend plus load; API has cursor and idempotency; two deep dives; ops with real metrics and a kill switch. Anti-patterns: offset pagination on changing data; SQLite or JSON decode on the main thread; inventing QPS as fact; never reaching ops; a vague architecture blob with no data flow.”
@@ -232,7 +222,7 @@ Interviewer: “Why is SyncEngine an actor instead of letting every ViewModel pu
 
 ### Puzzle B — Two syncs stampede
 
-Foreground + reachability + pull-to-refresh all call `sync()` at once without single-flight.
+Foreground + reachability + pull-to-refresh all call `sync` at once without single-flight.
 
 **Ask yourself:** What breaks?
 

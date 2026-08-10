@@ -1,6 +1,6 @@
 # Day 18 — Crash Reporting, Observability & Incident Response (IMOC)
 
-> Week 3 · Full study (self-contained) · ~4–5 hrs  
+> Week 3 · Full study (self-contained) · ~4–5 hrs 
 > Revision twin: [revision/weeks/week-03/day-18.md](../../../revision/weeks/week-03/day-18.md)
 
 ## Outcomes
@@ -19,7 +19,7 @@ By end of day, without notes, you can:
 2. [`02-deep-dive.md`](02-deep-dive.md)
 3. [`03-production-bridge.md`](03-production-bridge.md) — S8 STAR + S2 honesty bound
 4. [`code/`](code/) — breadcrumb ring + signal-safety notes
-5. [`04-questions.md`](04-questions.md) — Answer points → Full spoken
+5. [`sample/07-revision-qna.md`](sample/07-revision-qna.md) — Answer points → Full spoken
 6. [`05-exercises.md`](05-exercises.md)
 7. Revision twin
 
@@ -30,7 +30,7 @@ By end of day, without notes, you can:
 | Foundations | [01-foundations.md](01-foundations.md) |
 | Deep dive | [02-deep-dive.md](02-deep-dive.md) |
 | Production bridge | [03-production-bridge.md](03-production-bridge.md) |
-| Questions | [04-questions.md](04-questions.md) |
+| Questions | [sample/07-revision-qna.md](sample/07-revision-qna.md) |
 | Exercises | [05-exercises.md](05-exercises.md) |
 | Code | [code/BreadcrumbRing.swift](code/BreadcrumbRing.swift), [code/CrashReportNotes.swift](code/CrashReportNotes.swift) |
 | Sample Q&A | [sample/README.md](sample/README.md) |

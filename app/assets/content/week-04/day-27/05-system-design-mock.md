@@ -7,7 +7,6 @@
 ---
 
 ### Q1. Interviewer: “Design Auth: OAuth2 PKCE + Biometrics.” How do you open?
-
 **Answer:**
 
 > **Agenda (≤20s):** “I’ll take ~5 minutes clarifying scope and scale, then a four-layer client HLD with backend touchpoints and load, then API/data, two deep dives on **PKCE exchange** and **Single-flight refresh**, and close on failure modes, metrics, and kill switches. Does that work?”
@@ -34,7 +33,6 @@
 ---
 
 ### Q2. After clarify — what does the optimal flow look like?
-
 **Answer:**
 
 > **Scripted outcomes for this mock:** PKCE; Keychain tokens; actor refresh; Face ID step-up; logout revoke; out: IdP internals.
@@ -55,8 +53,7 @@
 
 ---
 
-### Q3. Walk the HLD — client layers, backend, load.
-
+### Q3. Walk the HLD — client layers, backend, load?
 **Answer:**
 
 > Login UI → AuthService → ASWebAuth session → Keychain → APIClient interceptors.
@@ -76,8 +73,7 @@
 
 ---
 
-### Q4. Data / API — entities, endpoints, scale.
-
+### Q4. Data / API — entities, endpoints, scale?
 **Answer:**
 
 > PKCE authorize→token; refresh grant; logout revoke. Biometric gate before revealing refresh token usage for step-up.
@@ -96,7 +92,6 @@
 ---
 
 ### Q5. Deep dive 1 — PKCE exchange?
-
 **Answer:**
 
 > code_verifier/challenge; no client secret in public app; state CSRF.
@@ -115,7 +110,6 @@
 ---
 
 ### Q6. Deep dive 2 — Single-flight refresh?
-
 **Answer:**
 
 > Same as networking dive — actor; waiters; one refresh; failure logout.
@@ -134,7 +128,6 @@
 ---
 
 ### Q7. Ops — failures, metrics, rollout, load?
-
 **Answer:**
 
 > Refresh success, login funnel, biometric fail rate. Kill: force re-login; disable SSO provider.
@@ -153,7 +146,6 @@
 ---
 
 ### Q8. Flow scorecard — did you hit the optimal spine?
-
 **Answer:**
 
 > **Pass bar:** clarify + agenda in ≤5; HLD shows 4 layers + backend + load; API has cursors/idempotency as needed; two deep dives; ops with kill switch and concrete metrics.
@@ -170,4 +162,3 @@
 
 **How can I relate to my case:**
 - **Concept-only — no shipped story.** Rehearse this scorecard after every timed mock.
-

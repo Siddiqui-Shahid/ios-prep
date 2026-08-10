@@ -7,7 +7,6 @@
 ---
 
 ### Q1. Interviewer: “Design App Performance Monitoring.” How do you open?
-
 **Answer:**
 
 > **Agenda (≤20s):** “I’ll take ~5 minutes clarifying scope and scale, then a four-layer client HLD with backend touchpoints and load, then API/data, two deep dives on **Cold start measurement** and **Hang watchdog**, and close on failure modes, metrics, and kill switches. Does that work?”
@@ -33,7 +32,6 @@
 ---
 
 ### Q2. After clarify — what does the optimal flow look like?
-
 **Answer:**
 
 > **Scripted outcomes for this mock:** APM client: cold start, hang>250ms, network templates, MetricKit; crash separate; batch gzip upload.
@@ -53,8 +51,7 @@
 
 ---
 
-### Q3. Walk the HLD — client layers, backend, load.
-
+### Q3. Walk the HLD — client layers, backend, load?
 **Answer:**
 
 > Instrumentation SDK → ring buffers → batch uploader → ingest/TSDB. Never block main.
@@ -72,8 +69,7 @@
 
 ---
 
-### Q4. Data / API — entities, endpoints, scale.
-
+### Q4. Data / API — entities, endpoints, scale?
 **Answer:**
 
 > `POST /v1/metrics/batch` gzip. Local persistence if offline.
@@ -91,7 +87,6 @@
 ---
 
 ### Q5. Deep dive 1 — Cold start measurement?
-
 **Answer:**
 
 > process start/sysctl → first frame; break pre-main vs post-main. Target cold <1.2s class from spec.
@@ -109,7 +104,6 @@
 ---
 
 ### Q6. Deep dive 2 — Hang watchdog?
-
 **Answer:**
 
 > Main-thread ping; >250ms hang candidate; stack capture carefully; don’t deadlock in handler.
@@ -127,7 +121,6 @@
 ---
 
 ### Q7. Ops — failures, metrics, rollout, load?
-
 **Answer:**
 
 > Upload success; cold p90; hang rate; network p99. Kill APM if self-hurting.
@@ -145,7 +138,6 @@
 ---
 
 ### Q8. Flow scorecard — did you hit the optimal spine?
-
 **Answer:**
 
 > **Pass bar:** clarify + agenda in ≤5; HLD shows 4 layers + backend + load; API has cursors/idempotency as needed; two deep dives; ops with kill switch and concrete metrics.
@@ -162,4 +154,3 @@
 
 **How can I relate to my case:**
 - **Concept-only — no shipped story.** Rehearse this scorecard after every timed mock.
-

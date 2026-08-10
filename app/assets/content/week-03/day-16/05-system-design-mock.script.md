@@ -9,13 +9,13 @@ Next. Q1. Interviewer: “Design Image Loading Library.” How do you open? Answ
 
 Next. Q2. After clarify — what does the optimal flow look like? Answer. Scripted outcomes for this mock: Image pipeline deep; video-feed-streaming as follow-up if pulled; HeroWidget pause separate media contract. Good flow: agenda → clarify Qs → confirm → high level design (4 layers + backend + load) → A P I → two crisp dives → ops last 5. Weak flow: silent drawing, happy-path only, no QPS/TTL, invent metrics, skip ops. Follow-ups. They change scope mid-high level design?: Re-confirm in/out in 20s; adjust dives; protect ops.. Backend mesh deep-dive?: Out unless asked — sketch touchpoints, stay client-owned.. Forgot to ask offline?: State online-first + last-good cache as assumption; invite correction..
 
-## §2 Q3. Walk the HLD — client layers, backend, load.
+## §2 Q3. Walk the HLD — client layers, backend, load?
 
-Next. Q3. Walk the HLD — client layers, backend, load Answer. Image pipeline as Day 03/spec; place beside feed repository. Video: AVPlayerPool sister doc if asked. CDN Cache-Control; downsample; cancel on reuse. Follow-ups. Video in scope suddenly?: Switch dive to player pool — don’t pretend ImageIO handles GIF frames.. Audio?: Aces audio — separate session category..
+Next. Q3. Walk the HLD — client layers, backend, load? Answer. Image pipeline as Day 03/spec; place beside feed repository. Video: AVPlayerPool sister doc if asked. CDN Cache-Control; downsample; cancel on reuse. Follow-ups. Video in scope suddenly?: Switch dive to player pool — don’t pretend ImageIO handles GIF frames.. Audio?: Aces audio — separate session category..
 
-## §3 Q4. Data / API — entities, endpoints, scale.
+## §3 Q4. Data / API — entities, endpoints, scale?
 
-Next. Q4. Data / API — entities, endpoints, scale Answer. Image GET + library cancelable load. Video: feed cursor + stream URLs if pulled. Follow-ups. Thumb vs full?: List thumbs; detail full — separate cache keys.. Prefetch policy?: Next page thumbs only..
+Next. Q4. Data / API — entities, endpoints, scale? Answer. Image GET + library cancelable load. Video: feed cursor + stream URLs if pulled. Follow-ups. Thumb vs full?: List thumbs; detail full — separate cache keys.. Prefetch policy?: Next page thumbs only..
 
 ## §4 Q5. Deep dive 1 — Downsample + cache tiers?
 

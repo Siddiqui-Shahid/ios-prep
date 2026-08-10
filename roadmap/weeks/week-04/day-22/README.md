@@ -1,6 +1,6 @@
 # Day 22 — DSA Trees: BFS / DFS Patterns
 
-> Week 4 · Full study (self-contained) · ~4–5 hrs  
+> Week 4 · Full study (self-contained) · ~4–5 hrs 
 > Revision twin: [revision/weeks/week-04/day-22.md](../../../revision/weeks/week-04/day-22.md)
 
 ## Outcomes
@@ -19,7 +19,7 @@ By end of day, without notes, you can:
 2. [`02-deep-dive.md`](02-deep-dive.md) — pattern catalog, skeletons, traps, complexity scripts
 3. [`03-production-bridge.md`](03-production-bridge.md) — Verified hooks (S3 / S10 / S13) + interview lines
 4. [`code/`](code/) — worked Swift solutions (BFS, DFS, BST, diameter, LCA, serialize)
-5. [`04-questions.md`](04-questions.md) — cover **Full spoken answer**; speak from **Answer points**; compare
+5. [`sample/07-revision-qna.md`](sample/07-revision-qna.md) — cover **Full spoken answer**; speak from **Answer points**; compare
 6. [`05-exercises.md`](05-exercises.md) — problem set + timed drills
 7. Revision twin for flashcards / timed recall day-of
 
@@ -30,7 +30,7 @@ By end of day, without notes, you can:
 | Foundations | [01-foundations.md](01-foundations.md) | Intern → mid mental model |
 | Deep dive | [02-deep-dive.md](02-deep-dive.md) | Pattern triggers, skeletons, trade-offs |
 | Production bridge | [03-production-bridge.md](03-production-bridge.md) | SDUI / nav / SDK trees — honest mapping |
-| Questions | [04-questions.md](04-questions.md) | Two-layer Q&A (normal + tricky) |
+| Questions | [sample/07-revision-qna.md](sample/07-revision-qna.md) | Two-layer Q&A (normal + tricky) |
 | Exercises | [05-exercises.md](05-exercises.md) | Solve log + speaking drills |
 | Code | [code/](code/) | Runnable interview-style Swift |
 | Sample Q&A | [sample/README.md](sample/README.md) |

@@ -39,4 +39,4 @@ Next. 5. Flash prompts. 1. 45-min spine — timeboxes aloud 2. Clarify phase —
 
 ## §9 6. Timed drills
 
-Next. 6. Timed drills. Run the full mock from 05-exercises. Score with 04-questions Part II.
+Next. 6. Timed drills. Run the full mock from 05-exercises. Score with 07-revision-qna Part II.

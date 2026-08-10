@@ -5,13 +5,12 @@
 ---
 
 ### Q1. What are the agenda openers for each segment?
-
 **Answer:**
 
-> **Coding:** Clarify → brute → optimize → complexity → edges → code.  
-> **Deep dive:** Definition → mechanism → trade-off → production.  
-> **System design:** “5 min scope, then HLD, deep dives, ops — sound good?”  
-> **Behavioral:** “I’ll take ~2 minutes — context, what I owned, outcome.”  
+> **Coding:** Clarify → brute → optimize → complexity → edges → code. 
+> **Deep dive:** Definition → mechanism → trade-off → production. 
+> **System design:** “5 min scope, then HLD, deep dives, ops — sound good?” 
+> **Behavioral:** “I’ll take ~2 minutes — context, what I owned, outcome.” 
 > Read once today — **retrieval**, not re-learning.
 
 **Follow-ups:**
@@ -28,7 +27,6 @@
 ---
 
 ### Q2. Pre-interview checklist — environment?
-
 **Answer:**
 
 > Quiet room / headphones tested · camera, lighting, neutral background · charger; notifications DND · water; notepad + pen if allowed · backup network known. Failures here are avoidable — don’t discover them at join time.
@@ -47,7 +45,6 @@
 ---
 
 ### Q3. Pre-interview checklist — materials?
-
 **Answer:**
 
 > Calendar link / login works · IDE ready **only** if machine round — else closed · resume PDF synced with story metrics · mental budgets: **45s / 2m / 5m / 45m SD**. No cram notes on desk.
@@ -66,7 +63,6 @@
 ---
 
 ### Q4. Pre-interview checklist — content (retrieval only)?
-
 **Answer:**
 
 > Metric trio **once** · BookMyShow LE Bottom Sheet, BookMyShow IMOC + crash-free at scale, District Free Parking + Clean/MVVM + AI tooling **once** (minimum) · coding + SD openers **once** · weak flashcards **capped**. Check boxes — don’t re-open full modules.
@@ -88,10 +84,9 @@
 ---
 
 ### Q5. What is the metric trio for retrieval?
-
 **Answer:**
 
-> “I’ve owned features on BookMyShow at **30L+ DAU**, helped drive **99.95%+ crash-free** discipline on my paths, and shipped UX like the LE bottom sheet that cut full-screen navigations by **30%+** on targeted flows.”  
+> “I’ve owned features on BookMyShow at **30L+ DAU**, helped drive **99.95%+ crash-free** discipline on my paths, and shipped UX like the LE bottom sheet that cut full-screen navigations by **30%+** on targeted flows.” 
 > Say **once aloud** today — honest scope on each number.
 
 **Follow-ups:**
@@ -111,7 +106,6 @@
 ---
 
 ### Q6. What body and sleep rules apply?
-
 **Answer:**
 
 > Real meal; light movement · sleep **7–8h**; alarm set · **no new coffee experiment**. Body state affects recall and pacing — taper includes physical prep, not just cards.
@@ -130,7 +124,6 @@
 ---
 
 ### Q7. What are mental time budgets to hold?
-
 **Answer:**
 
 > **45s** — quick defs and openers. **2m** — STAR behavioral. **5m** — SD clarify + HLD sketch start. **45m** — full SD segment with ops protected. These are anchors — not new learning, just rhythm recall.
@@ -150,3 +143,22 @@ Next: [03-story-retrieval.md](03-story-retrieval.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — Pre-interview checklist — environment
+
+**Ask yourself:** Pre-interview checklist — environment?
+
+**Answer:** “Quiet room / headphones tested · camera, lighting, neutral background · charger; notifications DND · water; notepad + pen if allowed · backup network known. Failures here are avoidable — don’t discover them at join time.”
+
+### Puzzle B — Pre-interview checklist — materials
+
+**Ask yourself:** Pre-interview checklist — materials?
+
+**Answer:** “Calendar link / login works · IDE ready **only** if machine round — else closed · resume PDF synced with story metrics · mental budgets: **45s / 2m / 5m / 45m SD**. No cram notes on desk.”
+
+### Puzzle C — Pre-interview checklist — content (retrieval only)
+
+**Ask yourself:** Pre-interview checklist — content (retrieval only)?
+
+**Answer:** “Metric trio **once** · BookMyShow LE Bottom Sheet, BookMyShow IMOC + crash-free at scale, District Free Parking + Clean/MVVM + AI tooling **once** (minimum) · coding + SD openers **once** · weak flashcards **capped**. Check boxes — don’t re-open full modules.”

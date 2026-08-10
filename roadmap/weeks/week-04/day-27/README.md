@@ -1,6 +1,6 @@
 # Day 27 — Expert Mock #4 (Full Loop)
 
-> Week 4 · Full loop dress rehearsal (self-contained) · ~4.5–5.5 hrs  
+> Week 4 · Full loop dress rehearsal (self-contained) · ~4.5–5.5 hrs 
 > Revision twin: [revision/weeks/week-04/day-27.md](../../../revision/weeks/week-04/day-27.md)
 
 ## Outcomes
@@ -15,7 +15,7 @@
 1. [`01-foundations.md`](01-foundations.md) — schedule + openers
 2. [`02-deep-dive.md`](02-deep-dive.md) — segment playbooks + scorecards
 3. [`03-production-bridge.md`](03-production-bridge.md) — proof trio + pivot rules
-4. [`04-questions.md`](04-questions.md) — **warm-up two-layer Q pools**
+4. [`sample/07-revision-qna.md`](sample/07-revision-qna.md) — **warm-up two-layer Q pools**
 5. [`05-exercises.md`](05-exercises.md) — run the mock + debrief (adapted)
 6. No new topics; no `code/` kit — fresh DSA problem day-of
 

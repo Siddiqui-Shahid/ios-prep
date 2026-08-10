@@ -39,4 +39,4 @@ Next. 5. Flash prompts. 1. B F S vs D F S — three trigger phrases each 2. Leve
 
 ## §9 6. Timed drills
 
-Next. 6. Timed drills. Expand from sample cards and 04-questions answer points.
+Next. 6. Timed drills. Expand from sample cards and 07-revision-qna answer points.

@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What is the 60–90s “say this first” script?
-
 **Answer:**
 
 > Before typing, say: constraints (sorted? duplicates? mutate in place?), brute force and its complexity, the optimized pattern and why it works, time and space, then edge cases (empty, single element, all same). End with “coding the optimized version now.” If you skip this in practice, restart the problem.
@@ -24,7 +23,6 @@
 ---
 
 ### Q2. What should I clarify before choosing a pattern?
-
 **Answer:**
 
 > Ask: input size, sorted or not, duplicates allowed, return indices or values, can I mutate the array, empty input allowed, negative numbers, guaranteed unique answer. These answers pick hash map vs two pointers vs window vs Kadane. Say them out loud so the interviewer can steer you early.
@@ -43,7 +41,6 @@
 ---
 
 ### Q3. How do I present brute force without sounding weak?
-
 **Answer:**
 
 > Brute force is not failure — it is the baseline. Say “brute would be … O(?)” to show you understand the search space, then “I can do better because …” and name the pattern. Seniors always anchor optimal against brute so complexity trade-offs are obvious.
@@ -62,7 +59,6 @@
 ---
 
 ### Q4. What edge cases should I mention every time?
-
 **Answer:**
 
 > Empty input, single element, all duplicates, all same value, all negative (Kadane), strictly decreasing (max profit → 0), no valid pair, unicode vs ASCII (strings). You do not need to code every edge — naming them shows you will not ship a fragile solution.
@@ -81,7 +77,6 @@
 ---
 
 ### Q5. When must I state time and space complexity?
-
 **Answer:**
 
 > Right after you name the optimized approach — every time. Pair the pattern with “O(n) time, O(n) space” (or O(1) extra). If output array is excluded from space by convention, say so. Omitting complexity is a common reason strong code still scores low.
@@ -100,7 +95,6 @@
 ---
 
 ### Q6. What senior phrases signal good communication?
-
 **Answer:**
 
 > “I’d clarify whether we can mutate the input.” “Brute is clear; here’s why we can do better.” “I’ll dry-run on this example before coding further.” “If you need O(1) space, we can discuss trade-offs.” These show you think like a teammate, not a silent solver.
@@ -118,8 +112,7 @@
 
 ---
 
-### Q7. Walk through say-this-first on Two Sum.
-
+### Q7. Walk through say-this-first on Two Sum?
 **Answer:**
 
 > “Constraints? Duplicates? Guaranteed one answer? Brute: all pairs O(n²). Sorting loses original indices unless I store pairs. I’ll scan once: for each value look up `target - value` in a dictionary of value→index, else store current. Time O(n), space O(n). Edges: empty, no pair, negatives, duplicates. Coding now.”
@@ -137,8 +130,7 @@
 
 ---
 
-### Q8. Walk through say-this-first on Container With Most Water.
-
+### Q8. Walk through say-this-first on Container With Most Water?
 **Answer:**
 
 > “Area is min of the two heights times the distance between indices. Brute checks all pairs O(n²). I’ll start at both ends for maximum width and move the shorter pointer inward, because width always shrinks and only a taller short side can improve the min height. Time O(n), space O(1). Edges: exactly two lines; all heights equal. Coding that.”
@@ -156,8 +148,7 @@
 
 ---
 
-### Q9. Walk through say-this-first on Move Zeroes.
-
+### Q9. Walk through say-this-first on Move Zeroes?
 **Answer:**
 
 > “I’ll keep a write index. Scan left to right, and whenever I see a non-zero I write it at the write index and advance. Then fill the tail with zeroes. That keeps relative order and uses O(1) extra space. Edges: no zeroes, all zeroes, already compacted.”
@@ -175,8 +166,7 @@
 
 ---
 
-### Q10. Walk through say-this-first on Min Size Subarray Sum.
-
+### Q10. Walk through say-this-first on Min Size Subarray Sum?
 **Answer:**
 
 > “Assuming positive numbers, I’ll expand a right pointer adding to a running sum; while the sum is at least target I’ll shrink from the left and track the minimum window length. If I never reach the target, return zero. Each pointer moves at most n times so O(n), space O(1). If negatives were allowed, this shrink logic would break and I’d switch strategies.”
@@ -194,8 +184,7 @@
 
 ---
 
-### Q11. Walk through say-this-first on Group Anagrams.
-
+### Q11. Walk through say-this-first on Group Anagrams?
 **Answer:**
 
 > “Anagrams share a sorted character key or a 26-length count signature. I’ll map key to a list of strings and return the buckets. Sorted keys are O(n·k log k); count signatures are O(n·k). Edges: empty strings, single characters, already identical inputs.”
@@ -215,3 +204,22 @@ Next: [02-two-pointers-window.md](02-two-pointers-window.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — What should I clarify before choosing a pattern
+
+**Ask yourself:** What should I clarify before choosing a pattern?
+
+**Answer:** “Ask: input size, sorted or not, duplicates allowed, return indices or values, can I mutate the array, empty input allowed, negative numbers, guaranteed unique answer. These answers pick hash map vs two pointers vs window vs Kadane. Say them out loud so the interviewer can steer you early.”
+
+### Puzzle B — How do I present brute force without sounding weak
+
+**Ask yourself:** How do I present brute force without sounding weak?
+
+**Answer:** “Brute force is not failure — it is the baseline. Say “brute would be … O(?)” to show you understand the search space, then “I can do better because …” and name the pattern. Seniors always anchor optimal against brute so complexity trade-offs are obvious.”
+
+### Puzzle C — What edge cases should I mention every time
+
+**Ask yourself:** What edge cases should I mention every time?
+
+**Answer:** “Empty input, single element, all duplicates, all same value, all negative (Kadane), strictly decreasing (max profit → 0), no valid pair, unicode vs ASCII (strings). You do not need to code every edge — naming them shows you will not ship a fragile solution.”

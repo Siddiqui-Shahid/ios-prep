@@ -1,151 +1,261 @@
-# 01 — Foundations: Lifecycle, Cells, Hybrid — Mental Model
+# 01 — Foundations: Lifecycle, Cells, Hybrid — Mental Model (Q&A)
 
-> Intern → mid. Read before deep dive.
+> Cover the answer, speak aloud, then check follow-ups. Simple language. Named work only — never S-codes in speech.
 
-## 1. Plain-English mental model
+---
 
-UIKit screens are **objects with a lifetime**. If you start a video in `viewDidLoad` and never pause, it plays in the graveyard behind another tab. If you bind an image in a cell and ignore reuse, yesterday’s poster smiles on today’s movie.
+### Q1. Plain-English mental model? `(45–60s)`
+**Answer:**
 
-**Hybrid UI** means SwiftUI and UIKit share one product. Each side has rules; bolting `UIHostingController` without ownership is how deeplinks double-present and state resets.
+> “UIKit screens are objects with a lifetime. If you start a video in viewDidLoad and never pause, it plays in the graveyard behind another tab. If you bind an image in a cell and ignore reuse, yesterday’s poster smiles on today’s movie. Hybrid UI means SwiftUI and UIKit share one product. Each side has rules; bolting UIHostingController without ownership is how deeplinks double-present and state resets.”
 
-Restaurant metaphor:
+**Follow-ups:**
 
-| Metaphor | UIKit idea |
+| Follow-up | Answer |
 |---|---|
-| Open restaurant | `viewDidLoad` — one-time setup |
-| Seat guests | `viewWillAppear` / `viewDidAppear` |
-| Clear table between guests | `prepareForReuse` |
-| Call ahead for ingredients | Prefetch |
-| Two kitchens, one ticket system | Hybrid + single router |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-## 2. Glossary
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
-| Term | Meaning |
+---
+
+### Q2. Glossary? `(45–60s)`
+**Answer:**
+
+> “See the notes for this topic and speak the core idea in simple words.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
 |---|---|
-| **UIViewController lifecycle** | Callbacks from load → appear → layout → disappear → deinit |
-| **viewIsAppearing** | iOS 17+ appear-phase hook |
-| **Cell reuse** | Table/collection recycles views for different indexPaths |
-| **prepareForReuse** | Reset UI + cancel async before new bind |
-| **Diffable Data Source** | Identity-based list updates / animated diffs |
-| **Prefetching** | Warm data/images for near-viewport paths |
-| **UIHostingController** | Embed SwiftUI in UIKit |
-| **UIViewControllerRepresentable** | Embed UIKit VC in SwiftUI |
-| **UIViewRepresentable** | Embed UIKit view in SwiftUI |
-| **Coordinator** | Glue for delegates inside representables |
-| **Structural vs explicit identity** | How SwiftUI decides “same view” (Day 12 deepens) |
-| **Deeplink intent** | Typed navigation request from URL |
-| **Bottom sheet** | Modal lightweight surface; preserves context |
-| **Detents** | Sheet heights (medium/large/custom) |
-| **Visibility threshold** | How much of an ad must show to play |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-## 3. Lifecycle order (say aloud)
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
-`init` → `loadView` → `viewDidLoad` → `viewWillAppear` → `viewIsAppearing` (iOS 17+) → `viewDidAppear` → layout callbacks → `viewWillDisappear` → `viewDidDisappear` → `deinit`
+---
 
-| Hook | Put here | Avoid |
-|---|---|---|
-| `viewDidLoad` | One-time setup, bindings | Assuming final bounds; repeat network forever |
-| `viewWillAppear` | Refresh on-screen state | Heavy sync I/O |
-| `viewDidAppear` | Analytics “seen”; start players | Assuming visible forever |
-| `viewWillDisappear` | Pause video; cancel tasks | Forgetting ads pause |
-| `deinit` | Prove no retain cycle | Relying on it for critical cleanup |
+### Q3. Lifecycle order (say aloud)? `(45–60s)`
+**Answer:**
 
-**Ads link (S1):** HeroWidget pause/play tied to visibility / VC lifecycle — lifecycle is part of the revenue contract.
+> “init → loadView → viewDidLoad → viewWillAppear → viewIsAppearing (iOS 17+) → viewDidAppear → layout callbacks → viewWillDisappear → viewDidDisappear → deinit.”
 
-## 4. Cells — intern path
+**Follow-ups:**
 
-1. `cellForItem` dequeues recycled cell.
-2. Bind model for indexPath; start image task with ID token.
-3. User scrolls; cell goes to reuse pool.
-4. `prepareForReuse` cancels task, clears image, clears handlers.
-5. Rebound for new model — no stale poster.
-
-**Wrong image bug:** Async completion after reuse assigns old image unless you check ID / cancel.
-
-## 5. Prefetch — intern path
-
-System hints upcoming indexPaths → start warm fetches → cancel when `cancelPrefetchingForItemsAt` fires. Bound concurrency. Not unlimited download.
-
-## 6. Hybrid — intern path
-
-| Direction | API |
+| Follow-up | Answer |
 |---|---|
-| SwiftUI in UIKit | `UIHostingController` as child VC |
-| UIKit in SwiftUI | Representable + Coordinator |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-**One navigation owner.** Deeplinks write to that owner only (S13).
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
-## 7. LE Bottom Sheet — product picture (S6)
+---
 
-Lightweight event overview sheet reduced **full-screen navigations for 30%+ of user flows**. Prefer sheet when overview depth is shallow; push when hierarchy is deep. Cross-functional API/content contracts with PM/Design/Backend.
+### Q4. Cells — intern path? `(45–60s)`
+**Answer:**
 
-## 8. Production anchors
+> “1. cellForItem dequeues recycled cell. 2. Bind model for indexPath; start image task with ID token. 3. User scrolls; cell goes to reuse pool. 4. prepareForReuse cancels task, clears image, clears handlers. 5. Rebound for new model — no stale poster. Wrong image bug: Async completion after reuse assigns old image unless you check ID / cancel.”
 
-- **S13 Grizzlies:** Hybrid architecture; deeplinks; Mixpanel; Airship — interop designed, not bolted.
-- **S6 BMS:** LE Bottom Sheet; **30%+** nav reduction metric from resume.
-- **S1:** Ads video lifecycle.
+**Follow-ups:**
 
-## 9. Self-check
-
-1. Appear vs load distinction  
-2. prepareForReuse duties  
-3. Prefetch cancel  
-4. Why dual nav stacks fail  
-5. Sheet vs push product rule + 30%+
-
-## 10. Flash preview
-
-| Front | Back |
+| Follow-up | Answer |
 |---|---|
-| Pause video | willDisappear / offscreen |
-| Reuse | prepareForReuse reset |
-| Prefetch | Warm + cancel + budget |
-| SwiftUI⊂UIKit | UIHostingController |
-| UIKit⊂SwiftUI | Representable |
-| S6 | 30%+ fewer full-screen navs |
-| S13 | Hybrid + deeplink owner |
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
-## 11. Appearance vs load — tab example
+---
 
-```text
-User opens Tab A  → load + didLoad + appear
-User switches B   → A disappear; B load (first time) + appear
-User back to A    → A appear ONLY (didLoad does not rerun)
-```
+### Q5. Prefetch — intern path? `(45–60s)`
+**Answer:**
 
-If Tab A fetched only in `viewDidLoad`, data is stale forever. Throttle refresh on appear (e.g. if older than N seconds).
+> “System hints upcoming indexPaths → start warm fetches → cancel when cancelPrefetchingForItemsAt fires. Bound concurrency. Not unlimited download.”
 
-## 12. Cell bind sequence (memorize)
+**Follow-ups:**
 
-```text
-dequeue → prepareForReuse (previous owner cleanup)
-       → configure(model)
-       → start async with token
-       → on complete: if token matches → apply
-```
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-Never configure without a reuse reset path.
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
-## 13. Hybrid containment checklist (UIHostingController)
+---
 
-1. `addChild(hosting)`  
-2. Add `hosting.view` constraints  
-3. `hosting.didMove(toParent: self)`  
-4. Forward appearance if needed for nested players  
-5. On remove: `willMove`, remove view, `removeFromParent`  
+### Q6. Hybrid — intern path? `(45–60s)`
+**Answer:**
 
-Skipping containment breaks rotation, safe area, and appearance forwarding.
+> “One navigation owner. Deeplinks write to that owner only.”
 
-## 14. Sheet product heuristics
+**Follow-ups:**
 
-| Signal | Lean sheet | Lean push |
-|---|---|---|
-| Depth | 1–2 actions | Multi-step wizard |
-| Context | Keep list underneath | Replace context |
-| Frequency | High overview taps | Rare deep tools |
-| Metric story | S6 30%+ | — |
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
 
-## 15. 90-second teaching script
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
 
-> “UIKit lifecycle separates one-time load from every-show appear work — pause and cancel on disappear. Cells must reset and cancel in prepareForReuse; prefetch must cancel and bound concurrency. Hybrid UI needs one navigation owner for deeplinks and push taps. On Grizzlies I designed SwiftUI↔UIKit interop that way; on BookMyShow the LE Bottom Sheet cut full-screen navigations for 30%+ of flows.”
+---
+
+### Q7. LE Bottom Sheet — product picture (S6)? `(45–60s)`
+**Answer:**
+
+> “Lightweight event overview sheet reduced full-screen navigations for 30%+ of user flows. Prefer sheet when overview depth is shallow; push when hierarchy is deep. Cross-functional API/content contracts with PM/Design/Backend.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q8. Production anchors? `(45–60s)`
+**Answer:**
+
+> “- Grizzlies: Hybrid architecture; deeplinks; Mixpanel; Airship — interop designed, not bolted. - BMS: LE Bottom Sheet; 30%+ nav reduction metric from resume. - : Ads video lifecycle.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q9. Self-check? `(45–60s)`
+**Answer:**
+
+> “1. Appear vs load distinction 2. prepareForReuse duties 3. Prefetch cancel 4. Why dual nav stacks fail 5. Sheet vs push product rule + 30%+.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q10. Flash preview? `(45–60s)`
+**Answer:**
+
+> “See the notes for this topic and speak the core idea in simple words.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q11. Appearance vs load — tab example? `(45–60s)`
+**Answer:**
+
+> “text User opens Tab A → load + didLoad + appear User switches B → A disappear; B load (first time) + appear User back to A → A appear ONLY (didLoad does not rerun) If Tab A fetched only in viewDidLoad, data is stale forever. Throttle refresh on appear (e.g. if older than N seconds).”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q12. Cell bind sequence (memorize)? `(45–60s)`
+**Answer:**
+
+> “text dequeue → prepareForReuse (previous owner cleanup) → configure(model) → start async with token → on complete: if token matches → apply Never configure without a reuse reset path.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q13. Hybrid containment checklist (UIHostingController)? `(45–60s)`
+**Answer:**
+
+> “1. addChild(hosting) 2. Add hosting.view constraints 3. hosting.didMove(toParent: self) 4. Forward appearance if needed for nested players 5. On remove: willMove, remove view, removeFromParent Skipping containment breaks rotation, safe area, and appearance forwarding.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q14. Sheet product heuristics? `(45–60s)`
+**Answer:**
+
+> “See the notes for this topic and speak the core idea in simple words.”
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Concept-only — no shipped story.** Hook BookMyShow / District / Raw only if the interviewer asks for production proof.
+
+---
+
+### Q15. 90-second teaching script? `(45–60s)`
+**Answer:**
+
+> “UIKit lifecycle separates one-time load from every-show appear work — pause and cancel on disappear. Cells must reset and cancel in prepareForReuse; prefetch must cancel and bound concurrency. Hybrid UI needs one navigation owner for deeplinks and push taps. On Grizzlies I designed SwiftUI↔UIKit interop that way; on BookMyShow the LE Bottom Sheet cut full-screen navigations for 30%+ of flows.”.
+
+**Follow-ups:**
+
+| Follow-up | Answer |
+|---|---|
+| One-sentence opener? | Lead with the core rule in one sentence. |
+| Common trap? | Name the usual mistake and how you avoid it. |
+
+**How can I relate to my case:**
+- **Shipped / Verified when honest:** Use named work only if this section cites it.
+- **Don’t claim:** Metrics or files you didn’t ship.
+
+---

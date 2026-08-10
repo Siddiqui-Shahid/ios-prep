@@ -5,7 +5,6 @@
 ---
 
 ### Q1. What problem does GymFlow solve?
-
 **Answer:**
 
 > Workout recommendations **without** cloud LLM cost, latency, or privacy drag. On-device ranking over exercise catalog with trainer routine as RAG-style context.
@@ -23,8 +22,7 @@
 
 ---
 
-### Q2. Defend the GymFlow architecture.
-
+### Q2. Defend the GymFlow architecture?
 **Answer:**
 
 > **(1)** INT8 **MiniLM TFLite** + WordPiece tokenizer (Dart in shipped app). **(2)** Embed query/user context; **cosine similarity** over exercise catalog; trainer routine as retrieval context. **(3)** Fail-soft: **TF-IDF** lexical fallback if TFLite missing, slow, or thermal-limited. Principle: retrieval + ranking + degradation — not “call an LLM.”
@@ -46,7 +44,6 @@
 ---
 
 ### Q3. How does cosine top-K work?
-
 **Answer:**
 
 > `score(a,b) = dot(a,b) / (|a| |b|)`. Rank exercises by score; take **top-K**. Same “best K under a score” instinct as Day 23 heap patterns — mental model only unless verified heap shipped.
@@ -65,7 +62,6 @@
 ---
 
 ### Q4. When does TF-IDF fallback kick in?
-
 **Answer:**
 
 > TFLite model missing, load/checksum fail, thermal `.serious`, Low Power, or memory warning → **TF-IDF** lexical similarity. Hide or downgrade embedding-powered UI chrome. User still gets recommendations — less “magical,” set expectations.
@@ -84,7 +80,6 @@
 ---
 
 ### Q5. Trade-offs: BM25/lexical vs MiniLM/vector?
-
 **Answer:**
 
 > **BM25/lexical:** offline, explainable, no embedder — weaker paraphrase. **MiniLM/vector:** semantic paraphrase — model size, tokenizer bugs, main-thread jank if careless. **On-device LLM generate:** privacy/latency — quality, thermal, coverage cost. **Rules/TF-IDF fail-soft:** always-on, less magical.
@@ -103,7 +98,6 @@
 ---
 
 ### Q6. Map portfolio to generic on-device HLD?
-
 **Answer:**
 
 > Local RAG/index: FinTrack BM25; GymFlow MiniLM+cosine. Quantized runtime: GymFlow INT8 TFLite; FinTrack Apple FM path. Hybrid router + thermal: eligibility checks (`code/DeviceAIEligibility.swift`). Streaming UI: partial updates. Memory/jetsam: unload on warning. Privacy: FinTrack no-sync.
@@ -122,7 +116,6 @@
 ---
 
 ### Q7. Hybrid router — speak the design?
-
 **Answer:**
 
 > If !eligible || thermal || lowPower → rulesOrTfIdf. Else retrieve (BM25 or embeddings). If ctx empty → emptyState. If canLocalGenerate → streamLocal. Else if cloudAllowed && consented → streamCloud(sanitize). Else rulesOrTfIdf. See `code/HybridAIRouter.swift`.
@@ -145,3 +138,22 @@ Next: [04-production-s15-s16.md](04-production-s15-s16.md)
 
 ---
 
+## Brain puzzles (cover → think → check)
+
+### Puzzle A — Defend the GymFlow architecture
+
+**Ask yourself:** Defend the GymFlow architecture?
+
+**Answer:** “**(1)** INT8 **MiniLM TFLite** + WordPiece tokenizer (Dart in shipped app). **(2)** Embed query/user context; **cosine similarity** over exercise catalog; trainer routine as retrieval context. **(3)** Fail-soft: **TF-IDF** lexical fallback if TFLite missing, slow, or thermal-limited. Principle: retrieval + ranking + degradation — not “call an LLM.”
+
+### Puzzle B — How does cosine top-K work
+
+**Ask yourself:** How does cosine top-K work?
+
+**Answer:** “`score(a,b) = dot(a,b) / (|a| |b|)`. Rank exercises by score; take **top-K**. Same “best K under a score” instinct as Day 23 heap patterns — mental model only unless verified heap shipped.”
+
+### Puzzle C — When does TF-IDF fallback kick in
+
+**Ask yourself:** When does TF-IDF fallback kick in?
+
+**Answer:** “TFLite model missing, load/checksum fail, thermal `.serious`, Low Power, or memory warning → **TF-IDF** lexical similarity. Hide or downgrade embedding-powered UI chrome. User still gets recommendations — less “magical,” set expectations.”
