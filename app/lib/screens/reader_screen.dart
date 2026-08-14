@@ -19,12 +19,14 @@ class ReaderScreen extends StatefulWidget {
     required this.player,
     required this.initialSection,
     required this.initialMode,
+    required this.initialComplete,
     required this.onBookmark,
     required this.onSpeedChanged,
     required this.onAccentChanged,
     required this.onModeChanged,
     required this.onSectionProgress,
     required this.onChapterCompleted,
+    required this.onSetComplete,
   });
 
   final WeekRef week;
@@ -35,12 +37,14 @@ class ReaderScreen extends StatefulWidget {
   final TtsPlayerService player;
   final int initialSection;
   final ReaderMode initialMode;
+  final bool initialComplete;
   final Future<void> Function(int sectionIndex) onBookmark;
   final Future<void> Function(double speed) onSpeedChanged;
   final Future<void> Function(VoiceAccent accent) onAccentChanged;
   final Future<void> Function(ReaderMode mode) onModeChanged;
   final Future<void> Function(int sectionIndex) onSectionProgress;
   final Future<void> Function() onChapterCompleted;
+  final Future<void> Function(bool complete) onSetComplete;
 
   @override
   State<ReaderScreen> createState() => _ReaderScreenState();
@@ -48,17 +52,20 @@ class ReaderScreen extends StatefulWidget {
 
 class _ReaderScreenState extends State<ReaderScreen> {
   late ReaderMode _mode;
+  late bool _complete;
 
   @override
   void initState() {
     super.initState();
     _mode = widget.initialMode;
+    _complete = widget.initialComplete;
     widget.player.onSectionChanged = () {
       widget.onSectionProgress(widget.player.sectionIndex);
       if (mounted) setState(() {});
     };
     widget.player.onChapterCompleted = () {
       widget.onChapterCompleted();
+      if (mounted) setState(() => _complete = true);
     };
     // Load sections into the player immediately so Play is enabled on first frame.
     // ignore: unawaited_futures
@@ -108,6 +115,14 @@ class _ReaderScreenState extends State<ReaderScreen> {
           appBar: AppBar(
             title: Text(widget.chapter.title),
             actions: [
+              IconButton(
+                tooltip: _complete ? 'Mark as unread' : 'Mark as read',
+                onPressed: _toggleComplete,
+                icon: Icon(
+                  _complete ? Icons.check_circle : Icons.check_circle_outline,
+                  color: _complete ? const Color(0xFF0B6E4F) : null,
+                ),
+              ),
               if (widget.day.codeFiles.isNotEmpty)
                 IconButton(
                   tooltip: 'Lesson code',
@@ -124,6 +139,36 @@ class _ReaderScreenState extends State<ReaderScreen> {
                 tooltip: 'Jump to section',
                 onPressed: () => _showSectionPicker(context),
                 icon: const Icon(Icons.list_alt),
+              ),
+              PopupMenuButton<String>(
+                tooltip: 'Progress',
+                onSelected: (value) async {
+                  if (value == 'read') {
+                    await _setComplete(true);
+                  } else if (value == 'unread') {
+                    await _setComplete(false);
+                  }
+                },
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    value: 'read',
+                    enabled: !_complete,
+                    child: const ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      leading: Icon(Icons.check_circle_outline),
+                      title: Text('Mark as read'),
+                    ),
+                  ),
+                  PopupMenuItem(
+                    value: 'unread',
+                    enabled: _complete,
+                    child: const ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      leading: Icon(Icons.radio_button_unchecked),
+                      title: Text('Mark as unread'),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -304,6 +349,18 @@ class _ReaderScreenState extends State<ReaderScreen> {
                         ),
                         const SizedBox(width: 8),
                         Expanded(
+                          child: OutlinedButton.icon(
+                            onPressed: _toggleComplete,
+                            icon: Icon(
+                              _complete
+                                  ? Icons.check_circle
+                                  : Icons.check_circle_outline,
+                            ),
+                            label: Text(_complete ? 'Unread' : 'Mark read'),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
                           child: FilledButton.icon(
                             style: FilledButton.styleFrom(
                               backgroundColor: const Color(0xFF0B6E4F),
@@ -334,6 +391,20 @@ class _ReaderScreenState extends State<ReaderScreen> {
       },
     );
   }
+
+  Future<void> _setComplete(bool complete) async {
+    await widget.onSetComplete(complete);
+    if (!mounted) return;
+    setState(() => _complete = complete);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(complete ? 'Marked as read' : 'Marked as unread'),
+        duration: const Duration(seconds: 1),
+      ),
+    );
+  }
+
+  Future<void> _toggleComplete() => _setComplete(!_complete);
 
   Widget _highlightedSentence(String sentence, String word) {
     if (word.isEmpty) {
@@ -417,6 +488,12 @@ class _ReaderScreenState extends State<ReaderScreen> {
       await widget.onSectionProgress(chosen);
       if (_mode == ReaderMode.read) {
         await widget.player.pause();
+        // Manual read-through: reaching the last section counts as read.
+        if (widget.sections.isNotEmpty &&
+            chosen >= widget.sections.length - 1 &&
+            !_complete) {
+          await _setComplete(true);
+        }
       }
     }
   }

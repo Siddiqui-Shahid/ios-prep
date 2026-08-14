@@ -32,7 +32,7 @@ class ProgressScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               const SizedBox(height: 8),
-              ..._weekCards(weeks, initiallyExpandFirst: true),
+              ..._weekCards(context, weeks, initiallyExpandFirst: true),
               if (revisionWeeks.isNotEmpty) ...[
                 const SizedBox(height: 8),
                 Text(
@@ -40,7 +40,7 @@ class ProgressScreen extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(height: 8),
-                ..._weekCards(revisionWeeks, initiallyExpandFirst: false),
+                ..._weekCards(context, revisionWeeks, initiallyExpandFirst: false),
               ],
               if (flashcardWeeks.isNotEmpty) ...[
                 const SizedBox(height: 8),
@@ -49,7 +49,7 @@ class ProgressScreen extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(height: 8),
-                ..._weekCards(flashcardWeeks, initiallyExpandFirst: false),
+                ..._weekCards(context, flashcardWeeks, initiallyExpandFirst: false),
               ],
             ],
           ),
@@ -59,6 +59,7 @@ class ProgressScreen extends StatelessWidget {
   }
 
   List<Widget> _weekCards(
+    BuildContext context,
     List<WeekRef> source, {
     required bool initiallyExpandFirst,
   }) {
@@ -99,16 +100,46 @@ class ProgressScreen extends StatelessWidget {
                     );
                     return ListTile(
                       dense: true,
-                      leading: Icon(
-                        done
-                            ? Icons.check_circle
-                            : Icons.radio_button_unchecked,
-                        color: done ? const Color(0xFF0B6E4F) : null,
+                      leading: IconButton(
+                        tooltip: done ? 'Mark as unread' : 'Mark as read',
+                        icon: Icon(
+                          done
+                              ? Icons.check_circle
+                              : Icons.radio_button_unchecked,
+                          color: done ? const Color(0xFF0B6E4F) : null,
+                        ),
+                        onPressed: () async {
+                          await progress.setChapterComplete(
+                            week.id,
+                            day.id,
+                            c.id,
+                            complete: !done,
+                          );
+                          if (!context.mounted) return;
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                done ? 'Marked unread' : 'Marked as read',
+                              ),
+                              duration: const Duration(seconds: 1),
+                            ),
+                          );
+                        },
                       ),
                       title: Text(c.title),
                       subtitle: Text(
-                        done ? 'Complete' : 'Section ${section + 1}',
+                        done
+                            ? 'Complete · tap check to unread'
+                            : 'Section ${section + 1} · tap to mark read',
                       ),
+                      onTap: () async {
+                        await progress.setChapterComplete(
+                          week.id,
+                          day.id,
+                          c.id,
+                          complete: !done,
+                        );
+                      },
                     );
                   }).toList(),
                 );

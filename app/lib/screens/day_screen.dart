@@ -94,24 +94,66 @@ class DayScreen extends StatelessWidget {
     );
   }
 
+  Future<void> _toggleRead(
+    BuildContext context,
+    ChapterRef chapter,
+    bool currentlyDone,
+  ) async {
+    await progress.setChapterComplete(
+      week.id,
+      day.id,
+      chapter.id,
+      complete: !currentlyDone,
+    );
+    if (!context.mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          currentlyDone ? 'Marked unread' : 'Marked as read',
+        ),
+        duration: const Duration(seconds: 1),
+      ),
+    );
+  }
+
   Widget _chapterCard(BuildContext context, int index) {
     final chapter = day.chapters[index];
     final done = progress.isChapterComplete(week.id, day.id, chapter.id);
     final section = progress.sectionProgress(week.id, day.id, chapter.id);
     return Card(
       child: ListTile(
-        leading: CircleAvatar(
-          child: done ? const Icon(Icons.check) : Text('${index + 1}'),
+        leading: Tooltip(
+          message: done ? 'Mark as unread' : 'Mark as read',
+          child: InkWell(
+            customBorder: const CircleBorder(),
+            onTap: () => _toggleRead(context, chapter, done),
+            child: CircleAvatar(
+              backgroundColor: done
+                  ? const Color(0xFF0B6E4F)
+                  : Theme.of(context).colorScheme.surfaceContainerHighest,
+              foregroundColor: done
+                  ? Colors.white
+                  : Theme.of(context).colorScheme.onSurface,
+              child: done ? const Icon(Icons.check) : Text('${index + 1}'),
+            ),
+          ),
         ),
         title: Text(chapter.title),
         subtitle: Text(
           done
-              ? 'Completed'
+              ? 'Completed · tap check to unread'
               : section > 0
                   ? 'Resume section ${section + 1}'
-                  : 'Not started',
+                  : 'Not started · tap # to mark read',
         ),
-        trailing: const Icon(Icons.headphones),
+        trailing: IconButton(
+          tooltip: done ? 'Mark as unread' : 'Mark as read',
+          icon: Icon(
+            done ? Icons.check_circle : Icons.radio_button_unchecked,
+            color: done ? const Color(0xFF0B6E4F) : null,
+          ),
+          onPressed: () => _toggleRead(context, chapter, done),
+        ),
         onTap: () => onOpenChapter(
           ChapterLocation(week: week, day: day, chapter: chapter),
           section: section,

@@ -88,6 +88,30 @@ class ProgressStore extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> markChapterIncomplete(
+    String weekId,
+    String dayId,
+    String chapterId,
+  ) async {
+    final keys = completedChapterKeys
+      ..remove(chapterKey(weekId, dayId, chapterId));
+    await _prefs.setStringList(_completedKey, keys.toList());
+    notifyListeners();
+  }
+
+  Future<void> setChapterComplete(
+    String weekId,
+    String dayId,
+    String chapterId, {
+    required bool complete,
+  }) async {
+    if (complete) {
+      await markChapterComplete(weekId, dayId, chapterId);
+    } else {
+      await markChapterIncomplete(weekId, dayId, chapterId);
+    }
+  }
+
   double dayProgress(DayRef day, String weekId) {
     if (day.chapters.isEmpty) return 0;
     var done = 0;

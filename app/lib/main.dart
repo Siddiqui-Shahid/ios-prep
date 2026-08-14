@@ -318,6 +318,11 @@ class _AppShellState extends State<_AppShell> {
           initialMode: widget.progress.readerMode == 'read'
               ? ReaderMode.read
               : ReaderMode.listen,
+          initialComplete: widget.progress.isChapterComplete(
+            location.week.id,
+            location.day.id,
+            location.chapter.id,
+          ),
           onBookmark: (sectionIndex) async {
             await widget.progress.saveBookmark(
               Bookmark(
@@ -350,12 +355,28 @@ class _AppShellState extends State<_AppShell> {
                 dayTitle: location.day.title,
               ),
             );
+            // Auto-mark read when the last section is reached (listen or read).
+            if (sections.isNotEmpty && sectionIndex >= sections.length - 1) {
+              await widget.progress.markChapterComplete(
+                location.week.id,
+                location.day.id,
+                location.chapter.id,
+              );
+            }
           },
           onChapterCompleted: () async {
             await widget.progress.markChapterComplete(
               location.week.id,
               location.day.id,
               location.chapter.id,
+            );
+          },
+          onSetComplete: (complete) async {
+            await widget.progress.setChapterComplete(
+              location.week.id,
+              location.day.id,
+              location.chapter.id,
+              complete: complete,
             );
           },
         ),
