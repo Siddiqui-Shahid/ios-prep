@@ -17,7 +17,7 @@ Personalized **senior iOS** interview system for Muhammed Shahid Siddiqui (BookM
 | [roadmap/stories/story-bank.md](roadmap/stories/story-bank.md) | STAR stories |
 | [roadmap/timing/answer-timing-guide.md](roadmap/timing/answer-timing-guide.md) | Answer timing |
 | [roadmap/provenance/](roadmap/provenance/) | Verified vs Applied claims |
-| [ios-system-design/](ios-system-design/) | Optional deeper SD specs |
+| [ios-system-design/](ios-system-design/) | Optional deeper SD specs ([GitHub](https://github.com/Siddiqui-Shahid/ios-system-design), git submodule) |
 
 ```bash
 python3 roadmap/scripts/validate_roadmap.py
