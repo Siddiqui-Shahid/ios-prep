@@ -26,9 +26,9 @@ class DayScreen extends StatelessWidget {
       listenable: progress,
       builder: (context, _) {
         return Scaffold(
-          backgroundColor: const Color(0xFFF7F3EA),
+          backgroundColor: Colors.black,
           appBar: AppBar(
-            backgroundColor: const Color(0xFFF7F3EA),
+            backgroundColor: Colors.black,
             title: Text(day.title),
             actions: [
               if (day.codeFiles.isNotEmpty)
@@ -152,10 +152,10 @@ class DayScreen extends StatelessWidget {
             onTap: () => _toggleRead(context, chapter, done),
             child: CircleAvatar(
               backgroundColor: done
-                  ? const Color(0xFF0B6E4F)
+                  ? Colors.white
                   : Theme.of(context).colorScheme.surfaceContainerHighest,
               foregroundColor: done
-                  ? Colors.white
+                  ? Colors.black
                   : Theme.of(context).colorScheme.onSurface,
               child: done ? const Icon(Icons.check) : Text('${index + 1}'),
             ),
@@ -185,7 +185,7 @@ class DayScreen extends StatelessWidget {
                 tooltip: done ? 'Mark as unread' : 'Mark as read',
                 icon: Icon(
                   done ? Icons.check_circle : Icons.radio_button_unchecked,
-                  color: done ? const Color(0xFF0B6E4F) : null,
+                  color: done ? Colors.white : null,
                 ),
                 onPressed: () => _toggleRead(context, chapter, done),
               ),

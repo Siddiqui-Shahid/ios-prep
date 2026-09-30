@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
-const kActiveHighlight = Color(0xFFFFEB3B);
-const kActiveInk = Color(0xFF111111);
+const kActiveHighlight = Colors.white;
+const kActiveInk = Colors.black;
 
 class MarkdownSection {
   const MarkdownSection({required this.heading, required this.body});

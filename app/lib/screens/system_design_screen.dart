@@ -202,11 +202,11 @@ class _SystemDesignScreenState extends State<SystemDesignScreen> {
                               ),
                               leading: CircleAvatar(
                                 backgroundColor: done
-                                    ? const Color(0xFF0B6E4F)
+                                    ? Colors.white
                                     : Theme.of(
                                         context,
                                       ).colorScheme.surfaceContainerHighest,
-                                foregroundColor: done ? Colors.white : null,
+                                foregroundColor: done ? Colors.black : null,
                                 child: Icon(
                                   done ? Icons.check : _iconFor(design.day.id),
                                 ),
@@ -262,7 +262,11 @@ class _OverviewCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final progress = total == 0 ? 0.0 : completed / total;
     return Card(
-      color: const Color(0xFF0B6E4F),
+      color: Colors.black,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+        side: const BorderSide(color: Colors.white),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -301,8 +305,8 @@ class _OverviewCard extends StatelessWidget {
               const SizedBox(height: 14),
               FilledButton.icon(
                 style: FilledButton.styleFrom(
-                  backgroundColor: const Color(0xFFFFEB3B),
-                  foregroundColor: const Color(0xFF111111),
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.black,
                 ),
                 onPressed: () => onOpen(next!),
                 icon: const Icon(Icons.play_arrow),
@@ -352,7 +356,7 @@ class _FrameworkStrip extends StatelessWidget {
                   Text(
                     step.$1,
                     style: const TextStyle(
-                      color: Color(0xFF0B6E4F),
+                      color: Colors.white,
                       fontWeight: FontWeight.w900,
                     ),
                   ),

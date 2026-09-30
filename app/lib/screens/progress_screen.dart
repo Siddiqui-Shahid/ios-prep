@@ -192,7 +192,7 @@ class ProgressScreen extends StatelessWidget {
                           done
                               ? Icons.check_circle
                               : Icons.radio_button_unchecked,
-                          color: done ? const Color(0xFF0B6E4F) : null,
+                          color: done ? Colors.white : null,
                         ),
                         onPressed: () async {
                           await progress.setChapterComplete(

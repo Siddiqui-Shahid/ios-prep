@@ -12,9 +12,9 @@ import 'revision_screen.dart';
 import 'system_design_screen.dart';
 import 'track_screen.dart';
 
-const _paper = Color(0xFFF7F3EA);
-const _ink = Color(0xFF1C1917);
-const _rule = Color(0xFF0B6E4F);
+const _paper = Colors.black;
+const _ink = Colors.white;
+const _rule = Colors.white;
 const _romans = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
 
 class HomeScreen extends StatelessWidget {
@@ -360,10 +360,10 @@ class _SystemDesignCta extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: const Color(0xFFFFF7CC),
+      color: const Color(0xFF0D0D0D),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
-        side: const BorderSide(color: Color(0xFFE3C900)),
+        side: const BorderSide(color: Colors.white),
       ),
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
@@ -373,8 +373,8 @@ class _SystemDesignCta extends StatelessWidget {
           child: Row(
             children: [
               const CircleAvatar(
-                backgroundColor: Color(0xFFFFEB3B),
-                foregroundColor: Color(0xFF111111),
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black,
                 child: Icon(Icons.account_tree_outlined),
               ),
               const SizedBox(width: 14),
@@ -428,11 +428,11 @@ class _PartCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: const Color(0xFF0D0D0D),
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
-        side: const BorderSide(color: Color(0xDDCFC6B8)),
+        side: const BorderSide(color: Color(0xFF343434)),
       ),
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
@@ -512,7 +512,7 @@ class _CoverCta extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: _rule,
+      color: Colors.white,
       borderRadius: BorderRadius.circular(8),
       child: InkWell(
         onTap: onTap,
@@ -524,7 +524,7 @@ class _CoverCta extends StatelessWidget {
               Text(
                 kicker.toUpperCase(),
                 style: const TextStyle(
-                  color: Colors.white70,
+                  color: Colors.black54,
                   letterSpacing: 1.4,
                   fontSize: 11,
                   fontWeight: FontWeight.w700,
@@ -534,14 +534,14 @@ class _CoverCta extends StatelessWidget {
               Text(
                 title,
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: Colors.black,
                   fontWeight: FontWeight.w800,
                   fontSize: 18,
                   height: 1.25,
                 ),
               ),
               const SizedBox(height: 4),
-              Text(subtitle, style: const TextStyle(color: Colors.white70)),
+              Text(subtitle, style: const TextStyle(color: Colors.black54)),
             ],
           ),
         ),

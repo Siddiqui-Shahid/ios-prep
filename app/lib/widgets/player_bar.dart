@@ -43,9 +43,7 @@ class PlayerBar extends StatelessWidget {
                         : 'Section $index / $total — ${section.title}',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.labelLarge?.copyWith(color: kActiveInk),
+                    style: Theme.of(context).textTheme.labelLarge,
                   ),
                   const SizedBox(height: 6),
                   // Transport controls — one compact row
@@ -69,8 +67,8 @@ class PlayerBar extends StatelessWidget {
                       IconButton.filled(
                         tooltip: player.isPlaying ? 'Pause' : 'Play',
                         style: IconButton.styleFrom(
-                          backgroundColor: const Color(0xFF0B6E4F),
-                          foregroundColor: Colors.white,
+                          backgroundColor: Colors.white,
+                          foregroundColor: Colors.black,
                           minimumSize: const Size(52, 52),
                         ),
                         onPressed: player.sections.isEmpty
@@ -335,7 +333,7 @@ Future<void> showSpeedSheet({
                     min: 0.5,
                     max: 16.0,
                     divisions: 31,
-                    activeColor: const Color(0xFF0B6E4F),
+                    activeColor: Colors.white,
                     value: local,
                     label: '${_formatSpeed(local)}x',
                     onChanged: preview,

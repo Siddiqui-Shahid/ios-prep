@@ -24,9 +24,9 @@ class ManualCompleteButton extends StatelessWidget {
         return FilledButton.tonalIcon(
           style: FilledButton.styleFrom(
             backgroundColor: done
-                ? const Color(0xFF0B6E4F)
+                ? Colors.white
                 : Theme.of(context).colorScheme.surfaceContainerHighest,
-            foregroundColor: done ? Colors.white : null,
+            foregroundColor: done ? Colors.black : null,
           ),
           onPressed: () async {
             await progress.toggleManualComplete(id);
@@ -67,7 +67,7 @@ class ManualCompleteIcon extends StatelessWidget {
           onPressed: () => progress.toggleManualComplete(id),
           icon: Icon(
             done ? Icons.check_circle : Icons.radio_button_unchecked,
-            color: done ? const Color(0xFF0B6E4F) : null,
+            color: done ? Colors.white : null,
           ),
         );
       },

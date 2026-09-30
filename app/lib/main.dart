@@ -160,15 +160,11 @@ class _BootstrapAppState extends State<_BootstrapApp> {
 
   @override
   Widget build(BuildContext context) {
-    const seed = Color(0xFF0B6E4F);
     if (_app != null) return _app!;
 
     return MaterialApp(
       title: 'iOS Handbook',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: seed),
-        useMaterial3: true,
-      ),
+      theme: _monochromeTheme(),
       home: Scaffold(
         body: Center(
           child: Padding(
@@ -185,7 +181,7 @@ class _BootstrapAppState extends State<_BootstrapApp> {
                 : Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(Icons.error_outline, size: 40, color: seed),
+                      const Icon(Icons.error_outline, size: 40),
                       const SizedBox(height: 12),
                       Text(
                         'Could not start the app.\n$_error',
@@ -227,83 +223,101 @@ class IosPrepApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const seed = Color(0xFF0B6E4F);
-    final lightScheme = ColorScheme.fromSeed(
-      seedColor: seed,
-      brightness: Brightness.light,
-    ).copyWith(primary: seed, secondary: seed, tertiary: seed);
-    final darkScheme =
-        ColorScheme.fromSeed(
-          seedColor: seed,
-          brightness: Brightness.dark,
-        ).copyWith(
-          primary: const Color(0xFF5FBF9A),
-          secondary: const Color(0xFF5FBF9A),
-        );
-
     return AppScope(
       reminders: reminders,
       child: MaterialApp(
         title: 'iOS Handbook',
-        theme: ThemeData(
-          colorScheme: lightScheme,
-          useMaterial3: true,
-          visualDensity: VisualDensity.standard,
-          textTheme: ThemeData(brightness: Brightness.light).textTheme.apply(
-            bodyColor: const Color(0xFF1A2B24),
-            displayColor: const Color(0xFF102018),
-          ),
-          cardTheme: CardThemeData(
-            elevation: 0,
-            margin: EdgeInsets.zero,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-          ),
-          appBarTheme: const AppBarTheme(
-            centerTitle: false,
-            scrolledUnderElevation: 0,
-          ),
-          listTileTheme: const ListTileThemeData(
-            selectedColor: Color(0xFF111111),
-            selectedTileColor: Color(0xFFFFEB3B),
-            iconColor: Color(0xFF0B6E4F),
-          ),
-          progressIndicatorTheme: const ProgressIndicatorThemeData(
-            color: Color(0xFF0B6E4F),
-          ),
-          segmentedButtonTheme: SegmentedButtonThemeData(
-            style: ButtonStyle(
-              backgroundColor: WidgetStateProperty.resolveWith((states) {
-                if (states.contains(WidgetState.selected)) {
-                  return const Color(0xFFFFEB3B);
-                }
-                return null;
-              }),
-              foregroundColor: WidgetStateProperty.resolveWith((states) {
-                if (states.contains(WidgetState.selected)) {
-                  return const Color(0xFF111111);
-                }
-                return null;
-              }),
-            ),
-          ),
-        ),
-        darkTheme: ThemeData(
-          colorScheme: darkScheme,
-          useMaterial3: true,
-          listTileTheme: const ListTileThemeData(
-            selectedColor: Color(0xFF111111),
-            selectedTileColor: Color(0xFFFFEB3B),
-          ),
-          progressIndicatorTheme: const ProgressIndicatorThemeData(
-            color: Color(0xFF5FBF9A),
-          ),
-        ),
+        theme: _monochromeTheme(),
+        darkTheme: _monochromeTheme(),
+        themeMode: ThemeMode.dark,
         home: _AppShell(catalog: catalog, progress: progress, player: player),
       ),
     );
   }
+}
+
+ThemeData _monochromeTheme() {
+  const scheme = ColorScheme.dark(
+    primary: Colors.white,
+    onPrimary: Colors.black,
+    secondary: Color(0xFFD6D6D6),
+    onSecondary: Colors.black,
+    surface: Colors.black,
+    onSurface: Colors.white,
+    surfaceContainerLowest: Colors.black,
+    surfaceContainerLow: Color(0xFF080808),
+    surfaceContainer: Color(0xFF101010),
+    surfaceContainerHigh: Color(0xFF171717),
+    surfaceContainerHighest: Color(0xFF242424),
+    outline: Color(0xFF9A9A9A),
+    outlineVariant: Color(0xFF3A3A3A),
+    error: Colors.white,
+    onError: Colors.black,
+  );
+  return ThemeData(
+    brightness: Brightness.dark,
+    colorScheme: scheme,
+    scaffoldBackgroundColor: Colors.black,
+    canvasColor: Colors.black,
+    useMaterial3: true,
+    visualDensity: VisualDensity.standard,
+    textTheme: ThemeData.dark().textTheme.apply(
+      bodyColor: Colors.white,
+      displayColor: Colors.white,
+    ),
+    cardTheme: CardThemeData(
+      color: const Color(0xFF0D0D0D),
+      elevation: 0,
+      margin: EdgeInsets.zero,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+        side: const BorderSide(color: Color(0xFF343434)),
+      ),
+    ),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Colors.black,
+      foregroundColor: Colors.white,
+      centerTitle: false,
+      scrolledUnderElevation: 0,
+    ),
+    listTileTheme: const ListTileThemeData(
+      textColor: Colors.white,
+      iconColor: Colors.white,
+      selectedColor: Colors.black,
+      selectedTileColor: Colors.white,
+    ),
+    dividerColor: const Color(0xFF343434),
+    progressIndicatorTheme: const ProgressIndicatorThemeData(
+      color: Colors.white,
+      linearTrackColor: Color(0xFF343434),
+      circularTrackColor: Color(0xFF343434),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: const Color(0xFF141414),
+      hintStyle: const TextStyle(color: Color(0xFF999999)),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(color: Color(0xFF3A3A3A)),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(color: Colors.white, width: 1.5),
+      ),
+    ),
+    segmentedButtonTheme: SegmentedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: WidgetStateProperty.resolveWith((states) {
+          return states.contains(WidgetState.selected) ? Colors.white : null;
+        }),
+        foregroundColor: WidgetStateProperty.resolveWith((states) {
+          return states.contains(WidgetState.selected)
+              ? Colors.black
+              : Colors.white;
+        }),
+      ),
+    ),
+  );
 }
 
 class _AppShell extends StatefulWidget {

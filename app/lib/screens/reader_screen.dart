@@ -124,9 +124,9 @@ class _ReaderScreenState extends State<ReaderScreen> {
         final sentence = widget.player.currentSentence;
         final word = widget.player.currentWord;
         return Scaffold(
-          backgroundColor: const Color(0xFFF4EFE4),
+          backgroundColor: Colors.black,
           appBar: AppBar(
-            backgroundColor: const Color(0xFFF4EFE4),
+            backgroundColor: Colors.black,
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -163,7 +163,7 @@ class _ReaderScreenState extends State<ReaderScreen> {
                 onPressed: _toggleComplete,
                 icon: Icon(
                   _complete ? Icons.check_circle : Icons.check_circle_outline,
-                  color: _complete ? const Color(0xFF0B6E4F) : null,
+                  color: _complete ? Colors.white : null,
                 ),
               ),
               PopupMenuButton<String>(
@@ -333,7 +333,8 @@ class _ReaderScreenState extends State<ReaderScreen> {
                             Expanded(
                               child: FilledButton(
                                 style: FilledButton.styleFrom(
-                                  backgroundColor: const Color(0xFF0B6E4F),
+                                  backgroundColor: Colors.white,
+                                  foregroundColor: Colors.black,
                                 ),
                                 onPressed: _toggleComplete,
                                 child: Text(
@@ -415,7 +416,7 @@ class _ReaderScreenState extends State<ReaderScreen> {
             text: match,
             style: const TextStyle(
               color: kActiveInk,
-              backgroundColor: Color(0xFFFFC107),
+              backgroundColor: Color(0xFFBDBDBD),
               fontWeight: FontWeight.w800,
             ),
           ),
