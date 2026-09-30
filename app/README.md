@@ -1,16 +1,18 @@
-# iOS Interview Handbook
+# iOS Interview Prep
 
-Flutter reader. **Primary:** 60–90 minute Mumbai–Pune ride plan + 30 machine design questions. The old 4-week sample Q&A is **archived** in Library.
+A Markdown-first Flutter reader with two sections: **Swift Basics** and **System Designs**.
 
 ## Features
 
-- Listen while reading (chapter markdown + spoken script)
+- 28 structured Swift/iOS study days with 145 Markdown lessons
+- 37 long-form mobile system-design case studies
+- Searchable libraries and a distraction-free document reader
+- Working document contents navigation and previous/next reading
+- Listen while reading (chapter Markdown + spoken script)
 - On-device TTS with speed **0.5x–4.0x**
-- Section skip, bookmark / resume, progress tracking
+- Section skip and bookmark / resume
 - Background playback (lock screen / notification controls)
-- Study reminders (add / edit / delete)
-- Fully offline — Week 1 content is bundled
-- System Design Lab with a guided learning path, search, topic filters, and 37 long-form mobile case studies
+- Fully offline — all study content is bundled
 
 ## Run
 

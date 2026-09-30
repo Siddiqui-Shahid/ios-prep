@@ -223,15 +223,12 @@ class IosPrepApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppScope(
-      reminders: reminders,
-      child: MaterialApp(
-        title: 'iOS Handbook',
-        theme: _monochromeTheme(),
-        darkTheme: _monochromeTheme(),
-        themeMode: ThemeMode.dark,
-        home: _AppShell(catalog: catalog, progress: progress, player: player),
-      ),
+    return MaterialApp(
+      title: 'iOS Interview Prep',
+      theme: _monochromeTheme(),
+      darkTheme: _monochromeTheme(),
+      themeMode: ThemeMode.dark,
+      home: _AppShell(catalog: catalog, progress: progress, player: player),
     );
   }
 }
@@ -338,6 +335,20 @@ class _AppShell extends StatefulWidget {
 class _AppShellState extends State<_AppShell> {
   final _navKey = GlobalKey<NavigatorState>();
 
+  List<ChapterLocation> _readingSpineFor(ChapterLocation location) {
+    final source = location.week.id == 'system-design-library'
+        ? widget.catalog.systemDesignWeeks
+        : widget.catalog.weeks.any((week) => week.id == location.week.id)
+        ? widget.catalog.weeks
+        : widget.catalog.handbookWeeks;
+    return [
+      for (final week in source)
+        for (final day in week.days)
+          for (final chapter in day.chapters)
+            ChapterLocation(week: week, day: day, chapter: chapter),
+    ];
+  }
+
   Future<void> _openChapter(
     ChapterLocation location, {
     int section = 0,
@@ -359,10 +370,15 @@ class _AppShellState extends State<_AppShell> {
         .timeout(const Duration(seconds: 3), onTimeout: () {});
 
     if (!mounted) return;
-    final spine = widget.catalog.spine;
-    final idx = widget.catalog.manifest.spineIndexOf(location);
-    final prev = idx != null && idx > 0 ? spine[idx - 1] : null;
-    final next = idx != null && idx < spine.length - 1 ? spine[idx + 1] : null;
+    final spine = _readingSpineFor(location);
+    final idx = spine.indexWhere(
+      (item) =>
+          item.week.id == location.week.id &&
+          item.day.id == location.day.id &&
+          item.chapter.id == location.chapter.id,
+    );
+    final prev = idx > 0 ? spine[idx - 1] : null;
+    final next = idx >= 0 && idx < spine.length - 1 ? spine[idx + 1] : null;
     final page = MaterialPageRoute(
       builder: (_) => ReaderScreen(
         week: location.week,
@@ -372,7 +388,7 @@ class _AppShellState extends State<_AppShell> {
         sections: sections,
         player: widget.player,
         initialSection: section,
-        spineIndex: idx,
+        spineIndex: idx < 0 ? null : idx,
         spineLength: spine.length,
         previousTitle: prev?.chapter.title,
         nextTitle: next?.chapter.title,
@@ -382,9 +398,7 @@ class _AppShellState extends State<_AppShell> {
         onOpenNext: next == null
             ? null
             : () => _openChapter(next, replace: true),
-        initialMode: (kIsWeb || widget.progress.readerMode == 'read')
-            ? ReaderMode.read
-            : ReaderMode.listen,
+        initialMode: ReaderMode.read,
         initialComplete:
             widget.progress.isChapterComplete(
               location.week.id,

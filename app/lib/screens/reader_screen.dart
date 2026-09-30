@@ -145,26 +145,10 @@ class _ReaderScreenState extends State<ReaderScreen> {
               ],
             ),
             actions: [
-              if (widget.spineIndex != null)
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 8),
-                    child: Text(
-                      '${widget.spineIndex! + 1} / ${widget.spineLength}',
-                      style: const TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
               IconButton(
-                tooltip: _complete ? 'Mark as unread' : 'Mark as read',
-                onPressed: _toggleComplete,
-                icon: Icon(
-                  _complete ? Icons.check_circle : Icons.check_circle_outline,
-                  color: _complete ? Colors.white : null,
-                ),
+                tooltip: 'Document sections',
+                onPressed: () => _showSectionPicker(context),
+                icon: const Icon(Icons.list_alt),
               ),
               PopupMenuButton<String>(
                 onSelected: (value) async {
@@ -172,8 +156,6 @@ class _ReaderScreenState extends State<ReaderScreen> {
                     await _setMode(
                       value == 'listen' ? ReaderMode.listen : ReaderMode.read,
                     );
-                  } else if (value == 'sections') {
-                    await _showSectionPicker(context);
                   } else if (value == 'code' &&
                       widget.day.codeFiles.isNotEmpty) {
                     if (!context.mounted) return;
@@ -188,10 +170,6 @@ class _ReaderScreenState extends State<ReaderScreen> {
                   PopupMenuItem(
                     value: isListen ? 'read' : 'listen',
                     child: Text(isListen ? 'Read instead' : 'Listen'),
-                  ),
-                  const PopupMenuItem(
-                    value: 'sections',
-                    child: Text('Jump to section'),
                   ),
                   if (widget.day.codeFiles.isNotEmpty)
                     const PopupMenuItem(
@@ -331,15 +309,14 @@ class _ReaderScreenState extends State<ReaderScreen> {
                             ),
                             const SizedBox(width: 8),
                             Expanded(
-                              child: FilledButton(
+                              child: FilledButton.icon(
                                 style: FilledButton.styleFrom(
                                   backgroundColor: Colors.white,
                                   foregroundColor: Colors.black,
                                 ),
-                                onPressed: _toggleComplete,
-                                child: Text(
-                                  _complete ? 'Completed' : 'Mark complete',
-                                ),
+                                onPressed: () => _showSectionPicker(context),
+                                icon: const Icon(Icons.list_alt, size: 19),
+                                label: const Text('Contents'),
                               ),
                             ),
                             const SizedBox(width: 8),
@@ -379,8 +356,6 @@ class _ReaderScreenState extends State<ReaderScreen> {
       ),
     );
   }
-
-  Future<void> _toggleComplete() => _setComplete(!_complete);
 
   Widget _highlightedSentence(String sentence, String word) {
     if (word.isEmpty) {

@@ -123,7 +123,7 @@ class _SectionedMarkdownReaderState extends State<SectionedMarkdownReader> {
   }
 
   void _scrollToActive() {
-    if (!widget.highlightActive || _keys.isEmpty) return;
+    if (_keys.isEmpty) return;
     final idx = matchSectionIndex(
       markdownSections: _sections,
       scriptTitle: widget.activeScriptTitle,
@@ -144,13 +144,11 @@ class _SectionedMarkdownReaderState extends State<SectionedMarkdownReader> {
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
-    final activeIdx = widget.highlightActive
-        ? matchSectionIndex(
-            markdownSections: _sections,
-            scriptTitle: widget.activeScriptTitle,
-            scriptIndex: widget.activeScriptIndex,
-          )
-        : -1;
+    final activeIdx = matchSectionIndex(
+      markdownSections: _sections,
+      scriptTitle: widget.activeScriptTitle,
+      scriptIndex: widget.activeScriptIndex,
+    );
 
     final inactiveInk = scheme.onSurface;
     final inactiveMuted = scheme.onSurfaceVariant;
@@ -210,49 +208,37 @@ class _SectionedMarkdownReaderState extends State<SectionedMarkdownReader> {
       tableCellsDecoration: const BoxDecoration(color: activeWash),
     );
 
-    if (!widget.highlightActive) {
-      return Markdown(
-        data: widget.markdown,
-        selectable: true,
-        padding: const EdgeInsets.fromLTRB(22, 8, 22, 32),
-        styleSheet: baseSheet.copyWith(
-          p: textTheme.bodyLarge?.copyWith(
-            height: 1.65,
-            color: inactiveInk,
-            fontSize: 17.5,
-          ),
-        ),
-        onTapLink: (text, href, title) {
-          if (href == null) return;
-          widget.onCodeLink?.call(href);
-        },
-      );
-    }
-
     return ListView.builder(
-      padding: const EdgeInsets.fromLTRB(12, 8, 12, 24),
+      padding: const EdgeInsets.fromLTRB(18, 8, 18, 32),
       itemCount: _sections.length,
       itemBuilder: (context, index) {
         final section = _sections[index];
-        final active = index == activeIdx;
+        final active = widget.highlightActive && index == activeIdx;
         return Container(
           key: _keys[index],
           margin: const EdgeInsets.only(bottom: 10),
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.fromLTRB(4, 8, 4, 14),
           decoration: BoxDecoration(
             color: active ? kActiveHighlight : Colors.transparent,
             borderRadius: BorderRadius.circular(10),
-            border: Border.all(
-              color: active ? Colors.black87 : scheme.outlineVariant,
-              width: active ? 1.2 : 1,
-            ),
+            border: active
+                ? Border.all(color: Colors.black87, width: 1.2)
+                : null,
           ),
           child: MarkdownBody(
             data: section.body.trim().isEmpty
                 ? '## ${section.heading}'
                 : section.body,
             selectable: true,
-            styleSheet: active ? activeSheet : baseSheet,
+            styleSheet: active
+                ? activeSheet
+                : baseSheet.copyWith(
+                    p: textTheme.bodyLarge?.copyWith(
+                      height: 1.65,
+                      color: inactiveInk,
+                      fontSize: 17.5,
+                    ),
+                  ),
             onTapLink: (text, href, title) {
               if (href == null) return;
               final handled = widget.onCodeLink?.call(href) ?? false;
