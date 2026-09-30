@@ -2420,5 +2420,1331 @@
         }
       ]
     }
+  ],
+  "guideWeeks": [
+    {
+      "id": "trips-mumbai-pune",
+      "title": "Sequential trips (60–90 min each)",
+      "days": [
+        {
+          "id": "trip-01",
+          "title": "Trip 1 — 75 min: interview weak points + intro",
+          "chapters": [
+            {
+              "id": "trip-01",
+              "title": "Trip 1 — 75 min: interview weak points + intro",
+              "markdown": "assets/content/study-trips/trip-01.md",
+              "script": "assets/content/study-trips/trip-01.script.md"
+            }
+          ]
+        },
+        {
+          "id": "trip-02",
+          "title": "Trip 2 — 75 min: iOS memory and types (new depth)",
+          "chapters": [
+            {
+              "id": "trip-02",
+              "title": "Trip 2 — 75 min: iOS memory and types (new depth)",
+              "markdown": "assets/content/study-trips/trip-02.md",
+              "script": "assets/content/study-trips/trip-02.script.md"
+            }
+          ]
+        },
+        {
+          "id": "trip-03",
+          "title": "Trip 3 — 75 min: lists, reuse, SwiftUI identity (new)",
+          "chapters": [
+            {
+              "id": "trip-03",
+              "title": "Trip 3 — 75 min: lists, reuse, SwiftUI identity (new)",
+              "markdown": "assets/content/study-trips/trip-03.md",
+              "script": "assets/content/study-trips/trip-03.script.md"
+            }
+          ]
+        },
+        {
+          "id": "trip-04",
+          "title": "Trip 4 — 75 min: networking LLD (new)",
+          "chapters": [
+            {
+              "id": "trip-04",
+              "title": "Trip 4 — 75 min: networking LLD (new)",
+              "markdown": "assets/content/study-trips/trip-04.md",
+              "script": "assets/content/study-trips/trip-04.script.md"
+            }
+          ]
+        },
+        {
+          "id": "trip-05",
+          "title": "Trip 5 — 75 min: DSA + GSA think-aloud (new)",
+          "chapters": [
+            {
+              "id": "trip-05",
+              "title": "Trip 5 — 75 min: DSA + GSA think-aloud (new)",
+              "markdown": "assets/content/study-trips/trip-05.md",
+              "script": "assets/content/study-trips/trip-05.script.md"
+            }
+          ]
+        },
+        {
+          "id": "trip-06",
+          "title": "Trip 6 — 75 min: HLD + one of the 30 questions (new)",
+          "chapters": [
+            {
+              "id": "trip-06",
+              "title": "Trip 6 — 75 min: HLD + one of the 30 questions (new)",
+              "markdown": "assets/content/study-trips/trip-06.md",
+              "script": "assets/content/study-trips/trip-06.script.md"
+            }
+          ]
+        },
+        {
+          "id": "trip-07",
+          "title": "Trip 7 — 75 min: production, flags, crashes (new)",
+          "chapters": [
+            {
+              "id": "trip-07",
+              "title": "Trip 7 — 75 min: production, flags, crashes (new)",
+              "markdown": "assets/content/study-trips/trip-07.md",
+              "script": "assets/content/study-trips/trip-07.script.md"
+            }
+          ]
+        },
+        {
+          "id": "trip-08",
+          "title": "Trip 8 — 75 min: communication + payments HLD (new)",
+          "chapters": [
+            {
+              "id": "trip-08",
+              "title": "Trip 8 — 75 min: communication + payments HLD (new)",
+              "markdown": "assets/content/study-trips/trip-08.md",
+              "script": "assets/content/study-trips/trip-08.script.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "travel-mumbai-pune",
+      "title": "Reference: old ride chapters (LLD/HLD/basics)",
+      "days": [
+        {
+          "id": "start",
+          "title": "Start — 60–90 minute ride plan",
+          "chapters": [
+            {
+              "id": "01-how-this-guide-works",
+              "title": "How this 60–90 minute ride plan works",
+              "markdown": "assets/content/travel-guide/start/01-how-this-guide-works.md",
+              "script": "assets/content/travel-guide/start/01-how-this-guide-works.script.md"
+            },
+            {
+              "id": "02-packing-and-rules",
+              "title": "Packing list and 90-minute rules",
+              "markdown": "assets/content/travel-guide/start/02-packing-and-rules.md",
+              "script": "assets/content/travel-guide/start/02-packing-and-rules.script.md"
+            }
+          ]
+        },
+        {
+          "id": "ios-basics",
+          "title": "iOS basics — language, memory, lifecycle",
+          "chapters": [
+            {
+              "id": "01-language-memory",
+              "title": "iOS basics — language, types, and memory",
+              "markdown": "assets/content/travel-guide/ios-basics/01-language-memory.md",
+              "script": "assets/content/travel-guide/ios-basics/01-language-memory.script.md"
+            },
+            {
+              "id": "02-app-lifecycle-ui",
+              "title": "iOS basics — app lifecycle, networking intro, and quality bar",
+              "markdown": "assets/content/travel-guide/ios-basics/02-app-lifecycle-ui.md",
+              "script": "assets/content/travel-guide/ios-basics/02-app-lifecycle-ui.script.md"
+            }
+          ]
+        },
+        {
+          "id": "lld",
+          "title": "LLD — classes, sequences, iOS APIs",
+          "chapters": [
+            {
+              "id": "01-lld-framework",
+              "title": "LLD — how to run a low-level design interview",
+              "markdown": "assets/content/travel-guide/lld/01-lld-framework.md",
+              "script": "assets/content/travel-guide/lld/01-lld-framework.script.md"
+            },
+            {
+              "id": "02-lld-feed-checkout",
+              "title": "LLD — worked example: offline-first feed + checkout sketch",
+              "markdown": "assets/content/travel-guide/lld/02-lld-feed-checkout.md",
+              "script": "assets/content/travel-guide/lld/02-lld-feed-checkout.script.md"
+            }
+          ]
+        },
+        {
+          "id": "hld",
+          "title": "HLD — scale, APIs, caching, mobile constraints",
+          "chapters": [
+            {
+              "id": "01-hld-framework",
+              "title": "HLD — high-level design for mobile interviews",
+              "markdown": "assets/content/travel-guide/hld/01-hld-framework.md",
+              "script": "assets/content/travel-guide/hld/01-hld-framework.script.md"
+            },
+            {
+              "id": "02-hld-scale-sync",
+              "title": "HLD — scale, sync, and worked product sketches",
+              "markdown": "assets/content/travel-guide/hld/02-hld-scale-sync.md",
+              "script": "assets/content/travel-guide/hld/02-hld-scale-sync.script.md"
+            }
+          ]
+        },
+        {
+          "id": "prototype",
+          "title": "Prototype — 10–15 minute overflow",
+          "chapters": [
+            {
+              "id": "01-prototype-playbook",
+              "title": "Prototype — 10–15 minute overflow sketch (not a 90-minute build)",
+              "markdown": "assets/content/travel-guide/prototype/01-prototype-playbook.md",
+              "script": "assets/content/travel-guide/prototype/01-prototype-playbook.script.md"
+            },
+            {
+              "id": "02-swift-skeleton",
+              "title": "Prototype — copy-paste Swift skeleton (read even without Xcode)",
+              "markdown": "assets/content/travel-guide/prototype/02-swift-skeleton.md",
+              "script": "assets/content/travel-guide/prototype/02-swift-skeleton.script.md"
+            }
+          ]
+        },
+        {
+          "id": "trip-a",
+          "title": "Trip A — Mumbai → Pune (75 min)",
+          "chapters": [
+            {
+              "id": "01-mumbai-to-pune",
+              "title": "Trip A — Mumbai → Pune (75 minutes, LLD lean)",
+              "markdown": "assets/content/travel-guide/trip-a/01-mumbai-to-pune.md",
+              "script": "assets/content/travel-guide/trip-a/01-mumbai-to-pune.script.md"
+            }
+          ]
+        },
+        {
+          "id": "trip-b",
+          "title": "Trip B — Pune → Mumbai (75 min)",
+          "chapters": [
+            {
+              "id": "01-pune-to-mumbai",
+              "title": "Trip B — Pune → Mumbai (75 minutes, HLD lean)",
+              "markdown": "assets/content/travel-guide/trip-b/01-pune-to-mumbai.md",
+              "script": "assets/content/travel-guide/trip-b/01-pune-to-mumbai.script.md"
+            }
+          ]
+        },
+        {
+          "id": "trip-c",
+          "title": "Trip C — rotation (75 min, images)",
+          "chapters": [
+            {
+              "id": "01-rotation-images",
+              "title": "Trip C — rotation (75 minutes, images + one of the 30)",
+              "markdown": "assets/content/travel-guide/trip-c/01-rotation-images.md",
+              "script": "assets/content/travel-guide/trip-c/01-rotation-images.script.md"
+            }
+          ]
+        },
+        {
+          "id": "trip-d",
+          "title": "Trip D — LLD mock (75 min)",
+          "chapters": [
+            {
+              "id": "01-lld-heavy",
+              "title": "Trip D — 75 minutes, LLD mock",
+              "markdown": "assets/content/travel-guide/trip-d/01-lld-heavy.md",
+              "script": "assets/content/travel-guide/trip-d/01-lld-heavy.script.md"
+            }
+          ]
+        },
+        {
+          "id": "trip-e",
+          "title": "Trip E — HLD / car (75 min)",
+          "chapters": [
+            {
+              "id": "01-hld-heavy",
+              "title": "Trip E — 75 minutes, HLD / noisy car (passenger only)",
+              "markdown": "assets/content/travel-guide/trip-e/01-hld-heavy.md",
+              "script": "assets/content/travel-guide/trip-e/01-hld-heavy.script.md"
+            }
+          ]
+        },
+        {
+          "id": "interview",
+          "title": "Interview checklists and sample answers",
+          "chapters": [
+            {
+              "id": "01-checklists",
+              "title": "Interview checklists (no outside search)",
+              "markdown": "assets/content/travel-guide/interview/01-checklists.md",
+              "script": "assets/content/travel-guide/interview/01-checklists.script.md"
+            },
+            {
+              "id": "02-sample-answers",
+              "title": "Sample spoken answers (cover → speak → check)",
+              "markdown": "assets/content/travel-guide/interview/02-sample-answers.md",
+              "script": "assets/content/travel-guide/interview/02-sample-answers.script.md"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "questionWeeks": [
+    {
+      "id": "machine-design-30",
+      "title": "30 machine design questions",
+      "days": [
+        {
+          "id": "q-01-10",
+          "title": "Questions 01–10 — feeds, media, sync",
+          "chapters": [
+            {
+              "id": "01-questions-01-10",
+              "title": "Questions 01–10 — feeds, media, networking, sync",
+              "markdown": "assets/content/machine-questions/q-01-10/01-questions-01-10.md",
+              "script": "assets/content/machine-questions/q-01-10/01-questions-01-10.script.md"
+            }
+          ]
+        },
+        {
+          "id": "q-11-20",
+          "title": "Questions 11–20 — auth, commerce, realtime",
+          "chapters": [
+            {
+              "id": "02-questions-11-20",
+              "title": "Questions 11–20 — auth, growth, commerce, realtime",
+              "markdown": "assets/content/machine-questions/q-11-20/02-questions-11-20.md",
+              "script": "assets/content/machine-questions/q-11-20/02-questions-11-20.script.md"
+            }
+          ]
+        },
+        {
+          "id": "q-21-30",
+          "title": "Questions 21–30 — platform, AI, calling",
+          "chapters": [
+            {
+              "id": "03-questions-21-30",
+              "title": "Questions 21–30 — platform, observability, AI, calling",
+              "markdown": "assets/content/machine-questions/q-21-30/03-questions-21-30.md",
+              "script": "assets/content/machine-questions/q-21-30/03-questions-21-30.script.md"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "topicWeeks": [
+    {
+      "id": "study-topics",
+      "title": "Study by topic",
+      "days": [
+        {
+          "id": "communication",
+          "title": "Topic — Communication",
+          "chapters": [
+            {
+              "id": "communication",
+              "title": "Topic — Communication",
+              "markdown": "assets/content/study-topics/communication.md",
+              "script": "assets/content/study-topics/communication.script.md"
+            }
+          ]
+        },
+        {
+          "id": "dsa-gsa",
+          "title": "Topic — DSA / GSA",
+          "chapters": [
+            {
+              "id": "dsa-gsa",
+              "title": "Topic — DSA / GSA",
+              "markdown": "assets/content/study-topics/dsa-gsa.md",
+              "script": "assets/content/study-topics/dsa-gsa.script.md"
+            }
+          ]
+        },
+        {
+          "id": "ios-memory",
+          "title": "Topic — iOS memory and types",
+          "chapters": [
+            {
+              "id": "ios-memory",
+              "title": "Topic — iOS memory and types",
+              "markdown": "assets/content/study-topics/ios-memory.md",
+              "script": "assets/content/study-topics/ios-memory.script.md"
+            }
+          ]
+        },
+        {
+          "id": "lists-images",
+          "title": "Topic — Lists, reuse, images",
+          "chapters": [
+            {
+              "id": "lists-images",
+              "title": "Topic — Lists, reuse, images",
+              "markdown": "assets/content/study-topics/lists-images.md",
+              "script": "assets/content/study-topics/lists-images.script.md"
+            }
+          ]
+        },
+        {
+          "id": "networking-lld",
+          "title": "Topic — Networking LLD",
+          "chapters": [
+            {
+              "id": "networking-lld",
+              "title": "Topic — Networking LLD",
+              "markdown": "assets/content/study-topics/networking-lld.md",
+              "script": "assets/content/study-topics/networking-lld.script.md"
+            }
+          ]
+        },
+        {
+          "id": "production",
+          "title": "Topic — Production and ops",
+          "chapters": [
+            {
+              "id": "production",
+              "title": "Topic — Production and ops",
+              "markdown": "assets/content/study-topics/production.md",
+              "script": "assets/content/study-topics/production.script.md"
+            }
+          ]
+        },
+        {
+          "id": "system-design",
+          "title": "Topic — System design (HLD + the 30)",
+          "chapters": [
+            {
+              "id": "system-design",
+              "title": "Topic — System design (HLD + the 30)",
+              "markdown": "assets/content/study-topics/system-design.md",
+              "script": "assets/content/study-topics/system-design.script.md"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "weakPointWeeks": [
+    {
+      "id": "interview-weak-points",
+      "title": "Weak points from interviews",
+      "days": [
+        {
+          "id": "00-overview",
+          "title": "Weak points from your recorded interviews",
+          "chapters": [
+            {
+              "id": "00-overview",
+              "title": "Weak points from your recorded interviews",
+              "markdown": "assets/content/study-weak/00-overview.md",
+              "script": "assets/content/study-weak/00-overview.script.md"
+            }
+          ]
+        },
+        {
+          "id": "01-intro",
+          "title": "Drill — 45-second intro",
+          "chapters": [
+            {
+              "id": "01-intro",
+              "title": "Drill — 45-second intro",
+              "markdown": "assets/content/study-weak/01-intro.md",
+              "script": "assets/content/study-weak/01-intro.script.md"
+            }
+          ]
+        },
+        {
+          "id": "02-value-types",
+          "title": "Drill — struct vs class (stop saying “always faster”)",
+          "chapters": [
+            {
+              "id": "02-value-types",
+              "title": "Drill — struct vs class (stop saying “always faster”)",
+              "markdown": "assets/content/study-weak/02-value-types.md",
+              "script": "assets/content/study-weak/02-value-types.script.md"
+            }
+          ]
+        },
+        {
+          "id": "03-table-reuse",
+          "title": "Drill — UITableView reuse",
+          "chapters": [
+            {
+              "id": "03-table-reuse",
+              "title": "Drill — UITableView reuse",
+              "markdown": "assets/content/study-weak/03-table-reuse.md",
+              "script": "assets/content/study-weak/03-table-reuse.script.md"
+            }
+          ]
+        },
+        {
+          "id": "04-request-model",
+          "title": "Drill — HTTP request model vs download",
+          "chapters": [
+            {
+              "id": "04-request-model",
+              "title": "Drill — HTTP request model vs download",
+              "markdown": "assets/content/study-weak/04-request-model.md",
+              "script": "assets/content/study-weak/04-request-model.script.md"
+            }
+          ]
+        },
+        {
+          "id": "05-think-aloud",
+          "title": "Drill — think out loud (DSA / GSA)",
+          "chapters": [
+            {
+              "id": "05-think-aloud",
+              "title": "Drill — think out loud (DSA / GSA)",
+              "markdown": "assets/content/study-weak/05-think-aloud.md",
+              "script": "assets/content/study-weak/05-think-aloud.script.md"
+            }
+          ]
+        },
+        {
+          "id": "06-prod-crash",
+          "title": "Drill — crash in 1% phased release, not locally",
+          "chapters": [
+            {
+              "id": "06-prod-crash",
+              "title": "Drill — crash in 1% phased release, not locally",
+              "markdown": "assets/content/study-weak/06-prod-crash.md",
+              "script": "assets/content/study-weak/06-prod-crash.script.md"
+            }
+          ]
+        },
+        {
+          "id": "07-sendable",
+          "title": "Drill — Sendable and actors",
+          "chapters": [
+            {
+              "id": "07-sendable",
+              "title": "Drill — Sendable and actors",
+              "markdown": "assets/content/study-weak/07-sendable.md",
+              "script": "assets/content/study-weak/07-sendable.script.md"
+            }
+          ]
+        },
+        {
+          "id": "08-coordinators",
+          "title": "Drill — coordinators and Codable",
+          "chapters": [
+            {
+              "id": "08-coordinators",
+              "title": "Drill — coordinators and Codable",
+              "markdown": "assets/content/study-weak/08-coordinators.md",
+              "script": "assets/content/study-weak/08-coordinators.script.md"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "handbookWeeks": [
+    {
+      "id": "handbook",
+      "title": "The iOS interview handbook",
+      "days": [
+        {
+          "id": "part-01-front",
+          "title": "Part I — Front matter",
+          "chapters": [
+            {
+              "id": "how-this-handbook-works",
+              "title": "1. How this handbook works",
+              "markdown": "assets/content/handbook/front/how-this-handbook-works.md",
+              "script": "assets/content/handbook/front/how-this-handbook-works.script.md"
+            },
+            {
+              "id": "02-packing-and-rules",
+              "title": "2. How to sit with the book (60–90 min)",
+              "markdown": "assets/content/travel-guide/start/02-packing-and-rules.md",
+              "script": "assets/content/travel-guide/start/02-packing-and-rules.script.md"
+            }
+          ]
+        },
+        {
+          "id": "part-02-weak",
+          "title": "Part II — Weak spots from your rounds",
+          "chapters": [
+            {
+              "id": "00-overview",
+              "title": "3. Weak spots overview",
+              "markdown": "assets/content/study-weak/00-overview.md",
+              "script": "assets/content/study-weak/00-overview.script.md"
+            },
+            {
+              "id": "01-intro",
+              "title": "4. Drill — 45-second intro",
+              "markdown": "assets/content/study-weak/01-intro.md",
+              "script": "assets/content/study-weak/01-intro.script.md"
+            },
+            {
+              "id": "02-value-types",
+              "title": "5. Drill — struct vs class",
+              "markdown": "assets/content/study-weak/02-value-types.md",
+              "script": "assets/content/study-weak/02-value-types.script.md"
+            },
+            {
+              "id": "03-table-reuse",
+              "title": "6. Drill — UITableView reuse",
+              "markdown": "assets/content/study-weak/03-table-reuse.md",
+              "script": "assets/content/study-weak/03-table-reuse.script.md"
+            },
+            {
+              "id": "04-request-model",
+              "title": "7. Drill — request model vs download",
+              "markdown": "assets/content/study-weak/04-request-model.md",
+              "script": "assets/content/study-weak/04-request-model.script.md"
+            },
+            {
+              "id": "05-think-aloud",
+              "title": "8. Drill — think out loud",
+              "markdown": "assets/content/study-weak/05-think-aloud.md",
+              "script": "assets/content/study-weak/05-think-aloud.script.md"
+            },
+            {
+              "id": "06-prod-crash",
+              "title": "9. Drill — crash in a 1% rollout",
+              "markdown": "assets/content/study-weak/06-prod-crash.md",
+              "script": "assets/content/study-weak/06-prod-crash.script.md"
+            },
+            {
+              "id": "07-sendable",
+              "title": "10. Drill — Sendable and actors",
+              "markdown": "assets/content/study-weak/07-sendable.md",
+              "script": "assets/content/study-weak/07-sendable.script.md"
+            },
+            {
+              "id": "08-coordinators",
+              "title": "11. Drill — coordinators and Codable",
+              "markdown": "assets/content/study-weak/08-coordinators.md",
+              "script": "assets/content/study-weak/08-coordinators.script.md"
+            }
+          ]
+        },
+        {
+          "id": "part-03-craft",
+          "title": "Part III — iOS craft",
+          "chapters": [
+            {
+              "id": "01-language-memory",
+              "title": "12. Language, types, memory",
+              "markdown": "assets/content/travel-guide/ios-basics/01-language-memory.md",
+              "script": "assets/content/travel-guide/ios-basics/01-language-memory.script.md"
+            },
+            {
+              "id": "02-app-lifecycle-ui",
+              "title": "13. Lifecycle, networking intro, quality bar",
+              "markdown": "assets/content/travel-guide/ios-basics/02-app-lifecycle-ui.md",
+              "script": "assets/content/travel-guide/ios-basics/02-app-lifecycle-ui.script.md"
+            },
+            {
+              "id": "ios-memory",
+              "title": "14. Memory and types (depth)",
+              "markdown": "assets/content/study-topics/ios-memory.md",
+              "script": "assets/content/study-topics/ios-memory.script.md"
+            },
+            {
+              "id": "lists-images",
+              "title": "15. Lists, reuse, images",
+              "markdown": "assets/content/study-topics/lists-images.md",
+              "script": "assets/content/study-topics/lists-images.script.md"
+            },
+            {
+              "id": "networking-lld",
+              "title": "16. Networking LLD",
+              "markdown": "assets/content/study-topics/networking-lld.md",
+              "script": "assets/content/study-topics/networking-lld.script.md"
+            },
+            {
+              "id": "production",
+              "title": "17. Production and ops",
+              "markdown": "assets/content/study-topics/production.md",
+              "script": "assets/content/study-topics/production.script.md"
+            },
+            {
+              "id": "communication",
+              "title": "18. Communication",
+              "markdown": "assets/content/study-topics/communication.md",
+              "script": "assets/content/study-topics/communication.script.md"
+            },
+            {
+              "id": "dsa-gsa",
+              "title": "19. DSA / GSA think-aloud",
+              "markdown": "assets/content/study-topics/dsa-gsa.md",
+              "script": "assets/content/study-topics/dsa-gsa.script.md"
+            },
+            {
+              "id": "01-prototype-playbook",
+              "title": "20. Prototype overflow (10–15 min)",
+              "markdown": "assets/content/travel-guide/prototype/01-prototype-playbook.md",
+              "script": "assets/content/travel-guide/prototype/01-prototype-playbook.script.md"
+            },
+            {
+              "id": "02-swift-skeleton",
+              "title": "21. Swift skeleton you can read on the train",
+              "markdown": "assets/content/travel-guide/prototype/02-swift-skeleton.md",
+              "script": "assets/content/travel-guide/prototype/02-swift-skeleton.script.md"
+            }
+          ]
+        },
+        {
+          "id": "part-04-method",
+          "title": "Part IV — How to run LLD and HLD",
+          "chapters": [
+            {
+              "id": "01-lld-framework",
+              "title": "22. LLD — how to run the round",
+              "markdown": "assets/content/travel-guide/lld/01-lld-framework.md",
+              "script": "assets/content/travel-guide/lld/01-lld-framework.script.md"
+            },
+            {
+              "id": "02-lld-feed-checkout",
+              "title": "23. LLD — feed + checkout sketches",
+              "markdown": "assets/content/travel-guide/lld/02-lld-feed-checkout.md",
+              "script": "assets/content/travel-guide/lld/02-lld-feed-checkout.script.md"
+            },
+            {
+              "id": "01-hld-framework",
+              "title": "24. HLD — how to run the round",
+              "markdown": "assets/content/travel-guide/hld/01-hld-framework.md",
+              "script": "assets/content/travel-guide/hld/01-hld-framework.script.md"
+            },
+            {
+              "id": "02-hld-scale-sync",
+              "title": "25. HLD — scale, sync, product sketches",
+              "markdown": "assets/content/travel-guide/hld/02-hld-scale-sync.md",
+              "script": "assets/content/travel-guide/hld/02-hld-scale-sync.script.md"
+            },
+            {
+              "id": "system-design",
+              "title": "26. System design topic notes",
+              "markdown": "assets/content/study-topics/system-design.md",
+              "script": "assets/content/study-topics/system-design.script.md"
+            },
+            {
+              "id": "01-checklists",
+              "title": "27. Interview checklists",
+              "markdown": "assets/content/travel-guide/interview/01-checklists.md",
+              "script": "assets/content/travel-guide/interview/01-checklists.script.md"
+            },
+            {
+              "id": "02-sample-answers",
+              "title": "28. Sample spoken answers",
+              "markdown": "assets/content/travel-guide/interview/02-sample-answers.md",
+              "script": "assets/content/travel-guide/interview/02-sample-answers.script.md"
+            }
+          ]
+        },
+        {
+          "id": "part-05-samples",
+          "title": "Part V — Sample system designs",
+          "chapters": [
+            {
+              "id": "01-social-feed",
+              "title": "29. Sample — infinite social feed",
+              "markdown": "assets/content/handbook/samples/01-social-feed.md",
+              "script": "assets/content/handbook/samples/01-social-feed.script.md"
+            },
+            {
+              "id": "02-image-pipeline",
+              "title": "30. Sample — image loading library",
+              "markdown": "assets/content/handbook/samples/02-image-pipeline.md",
+              "script": "assets/content/handbook/samples/02-image-pipeline.script.md"
+            },
+            {
+              "id": "03-http-client",
+              "title": "31. Sample — HTTP client",
+              "markdown": "assets/content/handbook/samples/03-http-client.md",
+              "script": "assets/content/handbook/samples/03-http-client.script.md"
+            },
+            {
+              "id": "04-offline-sync",
+              "title": "32. Sample — offline-first sync",
+              "markdown": "assets/content/handbook/samples/04-offline-sync.md",
+              "script": "assets/content/handbook/samples/04-offline-sync.script.md"
+            },
+            {
+              "id": "05-chat",
+              "title": "33. Sample — iOS chat",
+              "markdown": "assets/content/handbook/samples/05-chat.md",
+              "script": "assets/content/handbook/samples/05-chat.script.md"
+            },
+            {
+              "id": "06-checkout",
+              "title": "34. Sample — payment checkout",
+              "markdown": "assets/content/handbook/samples/06-checkout.md",
+              "script": "assets/content/handbook/samples/06-checkout.script.md"
+            },
+            {
+              "id": "07-sdui",
+              "title": "35. Sample — Server-Driven UI",
+              "markdown": "assets/content/handbook/samples/07-sdui.md",
+              "script": "assets/content/handbook/samples/07-sdui.script.md"
+            },
+            {
+              "id": "08-short-video",
+              "title": "36. Sample — short-form video",
+              "markdown": "assets/content/handbook/samples/08-short-video.md",
+              "script": "assets/content/handbook/samples/08-short-video.script.md"
+            },
+            {
+              "id": "09-location-rides",
+              "title": "37. Sample — realtime location",
+              "markdown": "assets/content/handbook/samples/09-location-rides.md",
+              "script": "assets/content/handbook/samples/09-location-rides.script.md"
+            },
+            {
+              "id": "10-flags-crash",
+              "title": "38. Sample — flags, kill switch, crashes",
+              "markdown": "assets/content/handbook/samples/10-flags-crash.md",
+              "script": "assets/content/handbook/samples/10-flags-crash.script.md"
+            }
+          ]
+        },
+        {
+          "id": "part-06-thirty",
+          "title": "Part VI — 30 machine designs",
+          "chapters": [
+            {
+              "id": "01-questions-01-10",
+              "title": "39. Questions 01–10 — feeds, media, sync",
+              "markdown": "assets/content/machine-questions/q-01-10/01-questions-01-10.md",
+              "script": "assets/content/machine-questions/q-01-10/01-questions-01-10.script.md"
+            },
+            {
+              "id": "02-questions-11-20",
+              "title": "40. Questions 11–20 — auth, commerce, realtime",
+              "markdown": "assets/content/machine-questions/q-11-20/02-questions-11-20.md",
+              "script": "assets/content/machine-questions/q-11-20/02-questions-11-20.script.md"
+            },
+            {
+              "id": "03-questions-21-30",
+              "title": "41. Questions 21–30 — platform, AI, calling",
+              "markdown": "assets/content/machine-questions/q-21-30/03-questions-21-30.md",
+              "script": "assets/content/machine-questions/q-21-30/03-questions-21-30.script.md"
+            }
+          ]
+        },
+        {
+          "id": "part-07-sessions",
+          "title": "Part VII — Sessions (60–90 min)",
+          "chapters": [
+            {
+              "id": "trip-01",
+              "title": "Session 1 — weak spots + intro",
+              "markdown": "assets/content/study-trips/trip-01.md",
+              "script": "assets/content/study-trips/trip-01.script.md"
+            },
+            {
+              "id": "trip-02",
+              "title": "Session 2 — memory and types",
+              "markdown": "assets/content/study-trips/trip-02.md",
+              "script": "assets/content/study-trips/trip-02.script.md"
+            },
+            {
+              "id": "trip-03",
+              "title": "Session 3 — lists and identity",
+              "markdown": "assets/content/study-trips/trip-03.md",
+              "script": "assets/content/study-trips/trip-03.script.md"
+            },
+            {
+              "id": "trip-04",
+              "title": "Session 4 — networking LLD",
+              "markdown": "assets/content/study-trips/trip-04.md",
+              "script": "assets/content/study-trips/trip-04.script.md"
+            },
+            {
+              "id": "trip-05",
+              "title": "Session 5 — DSA think-aloud",
+              "markdown": "assets/content/study-trips/trip-05.md",
+              "script": "assets/content/study-trips/trip-05.script.md"
+            },
+            {
+              "id": "trip-06",
+              "title": "Session 6 — HLD + one of the 30",
+              "markdown": "assets/content/study-trips/trip-06.md",
+              "script": "assets/content/study-trips/trip-06.script.md"
+            },
+            {
+              "id": "trip-07",
+              "title": "Session 7 — production and crashes",
+              "markdown": "assets/content/study-trips/trip-07.md",
+              "script": "assets/content/study-trips/trip-07.script.md"
+            },
+            {
+              "id": "trip-08",
+              "title": "Session 8 — communication + payments",
+              "markdown": "assets/content/study-trips/trip-08.md",
+              "script": "assets/content/study-trips/trip-08.script.md"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "systemDesignWeeks": [
+    {
+      "id": "system-design-library",
+      "title": "Production mobile system-design case studies",
+      "days": [
+        {
+          "id": "ab-testing-experimentation-sdk",
+          "title": "Design a Mobile A/B Testing & Experimentation SDK",
+          "chapters": [
+            {
+              "id": "ab-testing-experimentation-sdk",
+              "title": "Design a Mobile A/B Testing & Experimentation SDK",
+              "markdown": "assets/content/system-designs/ab-testing-experimentation-sdk.md",
+              "script": "assets/content/system-designs/ab-testing-experimentation-sdk.script.md"
+            }
+          ]
+        },
+        {
+          "id": "airbnb-search-booking",
+          "title": "Design Airbnb Search & Property Booking Engine",
+          "chapters": [
+            {
+              "id": "airbnb-search-booking",
+              "title": "Design Airbnb Search & Property Booking Engine",
+              "markdown": "assets/content/system-designs/airbnb-search-booking.md",
+              "script": "assets/content/system-designs/airbnb-search-booking.script.md"
+            }
+          ]
+        },
+        {
+          "id": "analytics-sdk",
+          "title": "Mobile Analytics & Telemetry SDK",
+          "chapters": [
+            {
+              "id": "analytics-sdk",
+              "title": "Mobile Analytics & Telemetry SDK",
+              "markdown": "assets/content/system-designs/analytics-sdk.md",
+              "script": "assets/content/system-designs/analytics-sdk.script.md"
+            }
+          ]
+        },
+        {
+          "id": "app-modularization",
+          "title": "App Modularization & Dependency Injection System",
+          "chapters": [
+            {
+              "id": "app-modularization",
+              "title": "App Modularization & Dependency Injection System",
+              "markdown": "assets/content/system-designs/app-modularization.md",
+              "script": "assets/content/system-designs/app-modularization.script.md"
+            }
+          ]
+        },
+        {
+          "id": "app-performance-monitoring",
+          "title": "Design Mobile App Performance Monitoring System (APM)",
+          "chapters": [
+            {
+              "id": "app-performance-monitoring",
+              "title": "Design Mobile App Performance Monitoring System (APM)",
+              "markdown": "assets/content/system-designs/app-performance-monitoring.md",
+              "script": "assets/content/system-designs/app-performance-monitoring.script.md"
+            }
+          ]
+        },
+        {
+          "id": "authentication-oauth-biometric",
+          "title": "Design Mobile Authentication System (OAuth2 / SSO / Biometric)",
+          "chapters": [
+            {
+              "id": "authentication-oauth-biometric",
+              "title": "Design Mobile Authentication System (OAuth2 / SSO / Biometric)",
+              "markdown": "assets/content/system-designs/authentication-oauth-biometric.md",
+              "script": "assets/content/system-designs/authentication-oauth-biometric.script.md"
+            }
+          ]
+        },
+        {
+          "id": "cheatsheet",
+          "title": "Mobile System Design — Master Cheatsheet",
+          "chapters": [
+            {
+              "id": "cheatsheet",
+              "title": "Mobile System Design — Master Cheatsheet",
+              "markdown": "assets/content/system-designs/cheatsheet.md",
+              "script": "assets/content/system-designs/cheatsheet.script.md"
+            }
+          ]
+        },
+        {
+          "id": "collaborative-editor",
+          "title": "Collaborative Document Editor (Google Docs / Notion / Quip)",
+          "chapters": [
+            {
+              "id": "collaborative-editor",
+              "title": "Collaborative Document Editor (Google Docs / Notion / Quip)",
+              "markdown": "assets/content/system-designs/collaborative-editor.md",
+              "script": "assets/content/system-designs/collaborative-editor.script.md"
+            }
+          ]
+        },
+        {
+          "id": "crash-reporting-sdk",
+          "title": "Design a Mobile Crash Reporting & Observability SDK",
+          "chapters": [
+            {
+              "id": "crash-reporting-sdk",
+              "title": "Design a Mobile Crash Reporting & Observability SDK",
+              "markdown": "assets/content/system-designs/crash-reporting-sdk.md",
+              "script": "assets/content/system-designs/crash-reporting-sdk.script.md"
+            }
+          ]
+        },
+        {
+          "id": "deep-linking-universal-links",
+          "title": "Design Deep Linking & Universal Links System for iOS",
+          "chapters": [
+            {
+              "id": "deep-linking-universal-links",
+              "title": "Design Deep Linking & Universal Links System for iOS",
+              "markdown": "assets/content/system-designs/deep-linking-universal-links.md",
+              "script": "assets/content/system-designs/deep-linking-universal-links.script.md"
+            }
+          ]
+        },
+        {
+          "id": "doordash-delivery-tracker",
+          "title": "Design DoorDash / UberEats Live Delivery Order Tracking",
+          "chapters": [
+            {
+              "id": "doordash-delivery-tracker",
+              "title": "Design DoorDash / UberEats Live Delivery Order Tracking",
+              "markdown": "assets/content/system-designs/doordash-delivery-tracker.md",
+              "script": "assets/content/system-designs/doordash-delivery-tracker.script.md"
+            }
+          ]
+        },
+        {
+          "id": "e-commerce-catalog",
+          "title": "E-Commerce Product Catalog & Discovery Feed",
+          "chapters": [
+            {
+              "id": "e-commerce-catalog",
+              "title": "E-Commerce Product Catalog & Discovery Feed",
+              "markdown": "assets/content/system-designs/e-commerce-catalog.md",
+              "script": "assets/content/system-designs/e-commerce-catalog.script.md"
+            }
+          ]
+        },
+        {
+          "id": "feature-flag-system",
+          "title": "Feature Flag & Experimentation System",
+          "chapters": [
+            {
+              "id": "feature-flag-system",
+              "title": "Feature Flag & Experimentation System",
+              "markdown": "assets/content/system-designs/feature-flag-system.md",
+              "script": "assets/content/system-designs/feature-flag-system.script.md"
+            }
+          ]
+        },
+        {
+          "id": "generic-mobile-problems",
+          "title": "Generic Mobile Problems",
+          "chapters": [
+            {
+              "id": "generic-mobile-problems",
+              "title": "Generic Mobile Problems",
+              "markdown": "assets/content/system-designs/generic-mobile-problems.md",
+              "script": "assets/content/system-designs/generic-mobile-problems.script.md"
+            }
+          ]
+        },
+        {
+          "id": "google-calendar",
+          "title": "Design Google Calendar Mobile Client",
+          "chapters": [
+            {
+              "id": "google-calendar",
+              "title": "Design Google Calendar Mobile Client",
+              "markdown": "assets/content/system-designs/google-calendar.md",
+              "script": "assets/content/system-designs/google-calendar.script.md"
+            }
+          ]
+        },
+        {
+          "id": "google-meet-webrtc",
+          "title": "Design Google Meet / Zoom Mobile App (Video Calling)",
+          "chapters": [
+            {
+              "id": "google-meet-webrtc",
+              "title": "Design Google Meet / Zoom Mobile App (Video Calling)",
+              "markdown": "assets/content/system-designs/google-meet-webrtc.md",
+              "script": "assets/content/system-designs/google-meet-webrtc.script.md"
+            }
+          ]
+        },
+        {
+          "id": "history-of-agentic-loops",
+          "title": "The Complete History & Evolution of Agentic AI, Loop Engineering & ML",
+          "chapters": [
+            {
+              "id": "history-of-agentic-loops",
+              "title": "The Complete History & Evolution of Agentic AI, Loop Engineering & ML",
+              "markdown": "assets/content/system-designs/history-of-agentic-loops.md",
+              "script": "assets/content/system-designs/history-of-agentic-loops.script.md"
+            }
+          ]
+        },
+        {
+          "id": "how-ai-summarization-agents-work",
+          "title": "Under the Hood: How AI Text Summarization Agents Work",
+          "chapters": [
+            {
+              "id": "how-ai-summarization-agents-work",
+              "title": "Under the Hood: How AI Text Summarization Agents Work",
+              "markdown": "assets/content/system-designs/how-ai-summarization-agents-work.md",
+              "script": "assets/content/system-designs/how-ai-summarization-agents-work.script.md"
+            }
+          ]
+        },
+        {
+          "id": "image-loading-library",
+          "title": "Image Loading Library",
+          "chapters": [
+            {
+              "id": "image-loading-library",
+              "title": "Image Loading Library",
+              "markdown": "assets/content/system-designs/image-loading-library.md",
+              "script": "assets/content/system-designs/image-loading-library.script.md"
+            }
+          ]
+        },
+        {
+          "id": "messaging-chat",
+          "title": "Instant Messaging & Chat App (WhatsApp / Slack / iMessage)",
+          "chapters": [
+            {
+              "id": "messaging-chat",
+              "title": "Instant Messaging & Chat App (WhatsApp / Slack / iMessage)",
+              "markdown": "assets/content/system-designs/messaging-chat.md",
+              "script": "assets/content/system-designs/messaging-chat.script.md"
+            }
+          ]
+        },
+        {
+          "id": "mobile-ci-cd-pipeline",
+          "title": "Design a Mobile CI/CD Pipeline & Release Engineering System",
+          "chapters": [
+            {
+              "id": "mobile-ci-cd-pipeline",
+              "title": "Design a Mobile CI/CD Pipeline & Release Engineering System",
+              "markdown": "assets/content/system-designs/mobile-ci-cd-pipeline.md",
+              "script": "assets/content/system-designs/mobile-ci-cd-pipeline.script.md"
+            }
+          ]
+        },
+        {
+          "id": "mobile-platform-engineering-em",
+          "title": "Mobile Platform Engineering, Release & Engineering Management Guide",
+          "chapters": [
+            {
+              "id": "mobile-platform-engineering-em",
+              "title": "Mobile Platform Engineering, Release & Engineering Management Guide",
+              "markdown": "assets/content/system-designs/mobile-platform-engineering-em.md",
+              "script": "assets/content/system-designs/mobile-platform-engineering-em.script.md"
+            }
+          ]
+        },
+        {
+          "id": "mobile-security-privacy-engine",
+          "title": "Mobile Security, Cryptography & Zero-Trust Engine",
+          "chapters": [
+            {
+              "id": "mobile-security-privacy-engine",
+              "title": "Mobile Security, Cryptography & Zero-Trust Engine",
+              "markdown": "assets/content/system-designs/mobile-security-privacy-engine.md",
+              "script": "assets/content/system-designs/mobile-security-privacy-engine.script.md"
+            }
+          ]
+        },
+        {
+          "id": "networking-layer",
+          "title": "Networking Layer / HTTP Client SDK Architecture",
+          "chapters": [
+            {
+              "id": "networking-layer",
+              "title": "Networking Layer / HTTP Client SDK Architecture",
+              "markdown": "assets/content/system-designs/networking-layer.md",
+              "script": "assets/content/system-designs/networking-layer.script.md"
+            }
+          ]
+        },
+        {
+          "id": "offline-sync-engine",
+          "title": "Offline-First Data Sync Engine (Notes / Tasks / Drive)",
+          "chapters": [
+            {
+              "id": "offline-sync-engine",
+              "title": "Offline-First Data Sync Engine (Notes / Tasks / Drive)",
+              "markdown": "assets/content/system-designs/offline-sync-engine.md",
+              "script": "assets/content/system-designs/offline-sync-engine.script.md"
+            }
+          ]
+        },
+        {
+          "id": "on-device-llm-ai-engine",
+          "title": "On-Device LLM & Mobile AI Assistant Engine",
+          "chapters": [
+            {
+              "id": "on-device-llm-ai-engine",
+              "title": "On-Device LLM & Mobile AI Assistant Engine",
+              "markdown": "assets/content/system-designs/on-device-llm-ai-engine.md",
+              "script": "assets/content/system-designs/on-device-llm-ai-engine.script.md"
+            }
+          ]
+        },
+        {
+          "id": "payment-checkout",
+          "title": "Mobile Payment Checkout Flow",
+          "chapters": [
+            {
+              "id": "payment-checkout",
+              "title": "Mobile Payment Checkout Flow",
+              "markdown": "assets/content/system-designs/payment-checkout.md",
+              "script": "assets/content/system-designs/payment-checkout.script.md"
+            }
+          ]
+        },
+        {
+          "id": "push-notification-system",
+          "title": "Design a Mobile Push Notification System",
+          "chapters": [
+            {
+              "id": "push-notification-system",
+              "title": "Design a Mobile Push Notification System",
+              "markdown": "assets/content/system-designs/push-notification-system.md",
+              "script": "assets/content/system-designs/push-notification-system.script.md"
+            }
+          ]
+        },
+        {
+          "id": "realtime-location-tracking",
+          "title": "Real-Time Geospatial Tracking & Ride Tracking (Uber / Lyft / DoorDash)",
+          "chapters": [
+            {
+              "id": "realtime-location-tracking",
+              "title": "Real-Time Geospatial Tracking & Ride Tracking (Uber / Lyft / DoorDash)",
+              "markdown": "assets/content/system-designs/realtime-location-tracking.md",
+              "script": "assets/content/system-designs/realtime-location-tracking.script.md"
+            }
+          ]
+        },
+        {
+          "id": "sdui-engine",
+          "title": "Server-Driven UI (SDUI) Engine & Dynamic Layout Framework",
+          "chapters": [
+            {
+              "id": "sdui-engine",
+              "title": "Server-Driven UI (SDUI) Engine & Dynamic Layout Framework",
+              "markdown": "assets/content/system-designs/sdui-engine.md",
+              "script": "assets/content/system-designs/sdui-engine.script.md"
+            }
+          ]
+        },
+        {
+          "id": "search-autocomplete",
+          "title": "Design Mobile Search with Autocomplete & Offline Index",
+          "chapters": [
+            {
+              "id": "search-autocomplete",
+              "title": "Design Mobile Search with Autocomplete & Offline Index",
+              "markdown": "assets/content/system-designs/search-autocomplete.md",
+              "script": "assets/content/system-designs/search-autocomplete.script.md"
+            }
+          ]
+        },
+        {
+          "id": "slack-channel-sync",
+          "title": "Design Slack Mobile App — Multi-Workspace Channel Sync",
+          "chapters": [
+            {
+              "id": "slack-channel-sync",
+              "title": "Design Slack Mobile App — Multi-Workspace Channel Sync",
+              "markdown": "assets/content/system-designs/slack-channel-sync.md",
+              "script": "assets/content/system-designs/slack-channel-sync.script.md"
+            }
+          ]
+        },
+        {
+          "id": "social-feed",
+          "title": "Infinite Social Feed",
+          "chapters": [
+            {
+              "id": "social-feed",
+              "title": "Infinite Social Feed",
+              "markdown": "assets/content/system-designs/social-feed.md",
+              "script": "assets/content/system-designs/social-feed.script.md"
+            }
+          ]
+        },
+        {
+          "id": "spotify-audio-player",
+          "title": "Design Spotify / Apple Music Audio Player with Offline Mode",
+          "chapters": [
+            {
+              "id": "spotify-audio-player",
+              "title": "Design Spotify / Apple Music Audio Player with Offline Mode",
+              "markdown": "assets/content/system-designs/spotify-audio-player.md",
+              "script": "assets/content/system-designs/spotify-audio-player.script.md"
+            }
+          ]
+        },
+        {
+          "id": "user-analytics-event-pipeline",
+          "title": "Design User Analytics Event Pipeline",
+          "chapters": [
+            {
+              "id": "user-analytics-event-pipeline",
+              "title": "Design User Analytics Event Pipeline",
+              "markdown": "assets/content/system-designs/user-analytics-event-pipeline.md",
+              "script": "assets/content/system-designs/user-analytics-event-pipeline.script.md"
+            }
+          ]
+        },
+        {
+          "id": "video-feed-streaming",
+          "title": "Short-form Video Feed (TikTok / Instagram Reels / YouTube Shorts)",
+          "chapters": [
+            {
+              "id": "video-feed-streaming",
+              "title": "Short-form Video Feed (TikTok / Instagram Reels / YouTube Shorts)",
+              "markdown": "assets/content/system-designs/video-feed-streaming.md",
+              "script": "assets/content/system-designs/video-feed-streaming.script.md"
+            }
+          ]
+        },
+        {
+          "id": "video-streaming-player",
+          "title": "Long-form Video Streaming App (Netflix / Disney+ / Hotstar / Apple TV+)",
+          "chapters": [
+            {
+              "id": "video-streaming-player",
+              "title": "Long-form Video Streaming App (Netflix / Disney+ / Hotstar / Apple TV+)",
+              "markdown": "assets/content/system-designs/video-streaming-player.md",
+              "script": "assets/content/system-designs/video-streaming-player.script.md"
+            }
+          ]
+        }
+      ]
+    }
   ]
 }

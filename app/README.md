@@ -1,6 +1,6 @@
-# iOS Prep Audiobook
+# iOS Interview Handbook
 
-Flutter audiobook + reader for Week 1 of the interview prep roadmap. Runs on **iOS** and **Android**.
+Flutter reader. **Primary:** 60–90 minute Mumbai–Pune ride plan + 30 machine design questions. The old 4-week sample Q&A is **archived** in Library.
 
 ## Features
 
@@ -10,6 +10,7 @@ Flutter audiobook + reader for Week 1 of the interview prep roadmap. Runs on **i
 - Background playback (lock screen / notification controls)
 - Study reminders (add / edit / delete)
 - Fully offline — Week 1 content is bundled
+- System Design Lab with a guided learning path, search, topic filters, and 37 long-form mobile case studies
 
 ## Run
 
@@ -18,6 +19,7 @@ cd app
 ./scripts/sync_content.sh   # refresh assets from roadmap/
 flutter pub get
 flutter run                 # pick an iOS simulator or Android emulator
+flutter run -d chrome       # web viewer (same content)
 ```
 
 ## Regenerate spoken scripts

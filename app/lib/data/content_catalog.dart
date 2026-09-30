@@ -21,6 +21,22 @@ class ContentCatalog {
 
   List<WeekRef> get weeks => manifest.weeks;
 
+  List<WeekRef> get handbookWeeks => manifest.handbookWeeks;
+
+  WeekRef? get handbook => manifest.handbook;
+
+  List<ChapterLocation> get spine => manifest.spine;
+
+  List<WeekRef> get guideWeeks => manifest.guideWeeks;
+
+  List<WeekRef> get topicWeeks => manifest.topicWeeks;
+
+  List<WeekRef> get weakPointWeeks => manifest.weakPointWeeks;
+
+  List<WeekRef> get questionWeeks => manifest.questionWeeks;
+
+  List<WeekRef> get systemDesignWeeks => manifest.systemDesignWeeks;
+
   List<WeekRef> get revisionWeeks => manifest.revisionWeeks;
 
   List<WeekRef> get flashcardWeeks => manifest.flashcardWeeks;

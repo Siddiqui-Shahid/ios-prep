@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../data/progress_store.dart';
 import '../models/models.dart';
+import '../widgets/progress_ring.dart';
 import 'day_screen.dart';
 
 /// Revision day guides — outcome, concept refresh, map-to-work, flash prompts.
@@ -16,7 +17,7 @@ class RevisionScreen extends StatelessWidget {
   final List<WeekRef> weeks;
   final ProgressStore progress;
   final Future<void> Function(ChapterLocation location, {int section})
-      onOpenChapter;
+  onOpenChapter;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +66,7 @@ class _RevisionWeekSection extends StatelessWidget {
   final ProgressStore progress;
   final bool initiallyExpanded;
   final Future<void> Function(ChapterLocation location, {int section})
-      onOpenChapter;
+  onOpenChapter;
 
   @override
   Widget build(BuildContext context) {
@@ -92,24 +93,12 @@ class _RevisionWeekSection extends StatelessWidget {
                   final dayPct = progress.dayProgress(day, week.id);
                   return Card(
                     elevation: 0,
-                    color: Theme.of(context)
-                        .colorScheme
-                        .surfaceContainerHighest
+                    color: Theme.of(context).colorScheme.surfaceContainerHighest
                         .withValues(alpha: 0.45),
                     child: ListTile(
                       title: Text(day.title),
-                      subtitle: Text(
-                        '${(dayPct * 100).round()}% · day guide',
-                      ),
-                      trailing: SizedBox(
-                        width: 36,
-                        height: 36,
-                        child: CircularProgressIndicator(
-                          value: dayPct == 0 ? null : dayPct,
-                          strokeWidth: 3,
-                          color: const Color(0xFF0B6E4F),
-                        ),
-                      ),
+                      subtitle: Text('${(dayPct * 100).round()}% · day guide'),
+                      trailing: ProgressRing(value: dayPct),
                       onTap: () {
                         if (day.chapters.length == 1) {
                           final chapter = day.chapters.first;

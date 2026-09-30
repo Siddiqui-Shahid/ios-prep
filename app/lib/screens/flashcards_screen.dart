@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../data/progress_store.dart';
 import '../models/models.dart';
+import '../widgets/progress_ring.dart';
 import 'day_screen.dart';
 
 /// Front/back flashcard packs — same Q&A reader as sample study.
@@ -16,7 +17,7 @@ class FlashcardsScreen extends StatelessWidget {
   final List<WeekRef> weeks;
   final ProgressStore progress;
   final Future<void> Function(ChapterLocation location, {int section})
-      onOpenChapter;
+  onOpenChapter;
 
   @override
   Widget build(BuildContext context) {
@@ -65,15 +66,12 @@ class _FlashcardWeekSection extends StatelessWidget {
   final ProgressStore progress;
   final bool initiallyExpanded;
   final Future<void> Function(ChapterLocation location, {int section})
-      onOpenChapter;
+  onOpenChapter;
 
   @override
   Widget build(BuildContext context) {
     final pct = progress.weekProgress(week);
-    final packCount = week.days.fold<int>(
-      0,
-      (n, d) => n + d.chapters.length,
-    );
+    final packCount = week.days.fold<int>(0, (n, d) => n + d.chapters.length);
     return Card(
       margin: const EdgeInsets.only(top: 12),
       clipBehavior: Clip.antiAlias,
@@ -99,24 +97,14 @@ class _FlashcardWeekSection extends StatelessWidget {
                       : '${day.chapters.length} chapters';
                   return Card(
                     elevation: 0,
-                    color: Theme.of(context)
-                        .colorScheme
-                        .surfaceContainerHighest
+                    color: Theme.of(context).colorScheme.surfaceContainerHighest
                         .withValues(alpha: 0.45),
                     child: ListTile(
                       title: Text(day.title),
                       subtitle: Text(
                         '${(dayPct * 100).round()}% · $cardsLabel',
                       ),
-                      trailing: SizedBox(
-                        width: 36,
-                        height: 36,
-                        child: CircularProgressIndicator(
-                          value: dayPct == 0 ? null : dayPct,
-                          strokeWidth: 3,
-                          color: const Color(0xFF0B6E4F),
-                        ),
-                      ),
+                      trailing: ProgressRing(value: dayPct),
                       onTap: () {
                         if (day.chapters.length == 1) {
                           final chapter = day.chapters.first;

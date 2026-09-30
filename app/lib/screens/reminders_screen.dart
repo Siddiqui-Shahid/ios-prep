@@ -23,7 +23,9 @@ class RemindersScreen extends StatelessWidget {
           ),
           body: items.isEmpty
               ? const Center(
-                  child: Text('No reminders yet. Add one to study offline on a schedule.'),
+                  child: Text(
+                    'No reminders yet. Add one to study offline on a schedule.',
+                  ),
                 )
               : ListView.separated(
                   padding: const EdgeInsets.all(16),
@@ -140,10 +142,8 @@ class RemindersScreen extends StatelessWidget {
                     ),
                     items: ReminderRepeat.values
                         .map(
-                          (e) => DropdownMenuItem(
-                            value: e,
-                            child: Text(e.name),
-                          ),
+                          (e) =>
+                              DropdownMenuItem(value: e, child: Text(e.name)),
                         )
                         .toList(),
                     onChanged: (v) {

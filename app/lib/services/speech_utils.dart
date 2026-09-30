@@ -106,9 +106,7 @@ String insertQaStructuralPauses(String text) {
 List<String> speechUnitsForSection(String body) {
   final sanitized = sanitizeForSpeech(body);
   final paced = insertQaStructuralPauses(sanitized);
-  return splitSentences(paced)
-      .where((s) => s.trim().isNotEmpty)
-      .toList();
+  return splitSentences(paced).where((s) => s.trim().isNotEmpty).toList();
 }
 
 String applyPronunciation(String text) {

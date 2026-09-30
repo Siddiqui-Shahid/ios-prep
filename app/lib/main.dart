@@ -1,4 +1,5 @@
 import 'package:audio_service/audio_service.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -13,6 +14,7 @@ import 'models/models.dart';
 import 'screens/home_screen.dart';
 import 'screens/reader_screen.dart';
 import 'services/tts_player_service.dart';
+import 'widgets/progress_ring.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,36 +36,57 @@ class _BootstrapAppState extends State<_BootstrapApp> {
   @override
   void initState() {
     super.initState();
+    if (kIsWeb) {
+      WidgetsBinding.instance.ensureSemantics();
+    }
     _boot();
   }
 
   Future<void> _boot() async {
     try {
-      tz_data.initializeTimeZones();
-      try {
-        tz.setLocalLocation(tz.getLocation('Asia/Kolkata'));
-      } catch (_) {
-        // Fall back to local if Asia/Kolkata isn't available.
-        tz.setLocalLocation(tz.local);
-      }
+      await _bootInner().timeout(const Duration(seconds: 12));
+    } catch (e, st) {
+      debugPrint('Bootstrap failed: $e\n$st');
+      if (!mounted) return;
+      setState(() => _error = e);
+    }
+  }
 
-      final prefs = await SharedPreferences.getInstance();
-      final notifications = FlutterLocalNotificationsPlugin();
+  Future<void> _bootInner() async {
+    tz_data.initializeTimeZones();
+    try {
+      tz.setLocalLocation(tz.getLocation('Asia/Kolkata'));
+    } catch (_) {
+      // Fall back to local if Asia/Kolkata isn't available.
+      tz.setLocalLocation(tz.local);
+    }
 
-      // Don't block first paint on permission dialogs.
-      await notifications.initialize(
-        settings: const InitializationSettings(
-          android: AndroidInitializationSettings('@mipmap/ic_launcher'),
-          iOS: DarwinInitializationSettings(
-            requestAlertPermission: false,
-            requestBadgePermission: false,
-            requestSoundPermission: false,
-          ),
-        ),
-      );
+    final prefs = await SharedPreferences.getInstance().timeout(
+      const Duration(seconds: 4),
+    );
+    final notifications = FlutterLocalNotificationsPlugin();
+
+    // Don't block first paint on permission dialogs. Time out so web never
+    // sits on an infinite spinner if a plugin has no implementation.
+    try {
+      await notifications
+          .initialize(
+            settings: const InitializationSettings(
+              android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+              iOS: DarwinInitializationSettings(
+                requestAlertPermission: false,
+                requestBadgePermission: false,
+                requestSoundPermission: false,
+              ),
+            ),
+          )
+          .timeout(const Duration(seconds: 3));
+    } catch (_) {}
+    try {
       await notifications
           .resolvePlatformSpecificImplementation<
-              AndroidFlutterLocalNotificationsPlugin>()
+            AndroidFlutterLocalNotificationsPlugin
+          >()
           ?.createNotificationChannel(
             const AndroidNotificationChannel(
               'study_reminders',
@@ -72,8 +95,56 @@ class _BootstrapAppState extends State<_BootstrapApp> {
               importance: Importance.high,
             ),
           );
+    } catch (_) {}
 
-      final player = await AudioService.init(
+    // AudioService.init can hang forever on web/Chrome. Never block catalog.
+    final catalog = await ContentCatalog.load();
+    final player = await _createPlayer();
+    final progress = ProgressStore(prefs);
+    final reminders = ReminderStore(prefs, notifications);
+
+    // Preferences / TTS voice can be slow on Android — don't hang boot.
+    final accent = progress.voiceAccent == 'gb'
+        ? VoiceAccent.gb
+        : VoiceAccent.us;
+    await player
+        .configurePreferences(speed: progress.playbackSpeed, accent: accent)
+        .timeout(const Duration(seconds: 4), onTimeout: () {});
+
+    // Fire-and-forget: permissions + reminder reschedule after UI is up.
+    Future<void>(() async {
+      try {
+        await notifications
+            .resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin
+            >()
+            ?.requestNotificationsPermission();
+        await notifications
+            .resolvePlatformSpecificImplementation<
+              IOSFlutterLocalNotificationsPlugin
+            >()
+            ?.requestPermissions(alert: true, badge: true, sound: true);
+        await reminders.rescheduleAll();
+      } catch (_) {}
+    });
+
+    if (!mounted) return;
+    setState(() {
+      _app = IosPrepApp(
+        catalog: catalog,
+        progress: progress,
+        reminders: reminders,
+        player: player,
+      );
+    });
+  }
+
+  static Future<TtsPlayerService> _createPlayer() async {
+    if (kIsWeb) {
+      return TtsPlayerService();
+    }
+    try {
+      return await AudioService.init(
         builder: TtsPlayerService.new,
         config: const AudioServiceConfig(
           androidNotificationChannelId: 'com.iosprep.audiobook.tts',
@@ -81,50 +152,9 @@ class _BootstrapAppState extends State<_BootstrapApp> {
           androidNotificationOngoing: true,
           androidStopForegroundOnPause: true,
         ),
-      );
-
-      final catalog = await ContentCatalog.load();
-      final progress = ProgressStore(prefs);
-      final reminders = ReminderStore(prefs, notifications);
-
-      // Preferences / TTS voice can be slow on Android — don't hang boot.
-      final accent =
-          progress.voiceAccent == 'gb' ? VoiceAccent.gb : VoiceAccent.us;
-      await player
-          .configurePreferences(
-            speed: progress.playbackSpeed,
-            accent: accent,
-          )
-          .timeout(const Duration(seconds: 4), onTimeout: () {});
-
-      // Fire-and-forget: permissions + reminder reschedule after UI is up.
-      Future<void>(() async {
-        try {
-          await notifications
-              .resolvePlatformSpecificImplementation<
-                  AndroidFlutterLocalNotificationsPlugin>()
-              ?.requestNotificationsPermission();
-          await notifications
-              .resolvePlatformSpecificImplementation<
-                  IOSFlutterLocalNotificationsPlugin>()
-              ?.requestPermissions(alert: true, badge: true, sound: true);
-          await reminders.rescheduleAll();
-        } catch (_) {}
-      });
-
-      if (!mounted) return;
-      setState(() {
-        _app = IosPrepApp(
-          catalog: catalog,
-          progress: progress,
-          reminders: reminders,
-          player: player,
-        );
-      });
-    } catch (e, st) {
-      debugPrint('Bootstrap failed: $e\n$st');
-      if (!mounted) return;
-      setState(() => _error = e);
+      ).timeout(const Duration(seconds: 4));
+    } catch (_) {
+      return TtsPlayerService();
     }
   }
 
@@ -134,7 +164,7 @@ class _BootstrapAppState extends State<_BootstrapApp> {
     if (_app != null) return _app!;
 
     return MaterialApp(
-      title: 'iOS Prep Audiobook',
+      title: 'iOS Handbook',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: seed),
         useMaterial3: true,
@@ -147,9 +177,9 @@ class _BootstrapAppState extends State<_BootstrapApp> {
                 ? const Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      CircularProgressIndicator(color: seed),
+                      ProgressRing(value: 0.35, size: 48),
                       SizedBox(height: 16),
-                      Text('Loading iOS Prep…'),
+                      Text('Opening the handbook…'),
                     ],
                   )
                 : Column(
@@ -201,26 +231,39 @@ class IosPrepApp extends StatelessWidget {
     final lightScheme = ColorScheme.fromSeed(
       seedColor: seed,
       brightness: Brightness.light,
-    ).copyWith(
-      primary: seed,
-      secondary: seed,
-      tertiary: seed,
-    );
-    final darkScheme = ColorScheme.fromSeed(
-      seedColor: seed,
-      brightness: Brightness.dark,
-    ).copyWith(
-      primary: const Color(0xFF5FBF9A),
-      secondary: const Color(0xFF5FBF9A),
-    );
+    ).copyWith(primary: seed, secondary: seed, tertiary: seed);
+    final darkScheme =
+        ColorScheme.fromSeed(
+          seedColor: seed,
+          brightness: Brightness.dark,
+        ).copyWith(
+          primary: const Color(0xFF5FBF9A),
+          secondary: const Color(0xFF5FBF9A),
+        );
 
     return AppScope(
       reminders: reminders,
       child: MaterialApp(
-        title: 'iOS Prep Audiobook',
+        title: 'iOS Handbook',
         theme: ThemeData(
           colorScheme: lightScheme,
           useMaterial3: true,
+          visualDensity: VisualDensity.standard,
+          textTheme: ThemeData(brightness: Brightness.light).textTheme.apply(
+            bodyColor: const Color(0xFF1A2B24),
+            displayColor: const Color(0xFF102018),
+          ),
+          cardTheme: CardThemeData(
+            elevation: 0,
+            margin: EdgeInsets.zero,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+          ),
+          appBarTheme: const AppBarTheme(
+            centerTitle: false,
+            scrolledUnderElevation: 0,
+          ),
           listTileTheme: const ListTileThemeData(
             selectedColor: Color(0xFF111111),
             selectedTileColor: Color(0xFFFFEB3B),
@@ -257,11 +300,7 @@ class IosPrepApp extends StatelessWidget {
             color: Color(0xFF5FBF9A),
           ),
         ),
-        home: _AppShell(
-          catalog: catalog,
-          progress: progress,
-          player: player,
-        ),
+        home: _AppShell(catalog: catalog, progress: progress, player: player),
       ),
     );
   }
@@ -288,15 +327,16 @@ class _AppShellState extends State<_AppShell> {
   Future<void> _openChapter(
     ChapterLocation location, {
     int section = 0,
+    bool replace = false,
   }) async {
     final markdown = await widget.catalog.loadMarkdownWithEmbeddedCode(
       location.chapter,
       location.day,
     );
-    final sections =
-        await widget.catalog.loadScriptSections(location.chapter);
-    final accent =
-        widget.progress.voiceAccent == 'gb' ? VoiceAccent.gb : VoiceAccent.us;
+    final sections = await widget.catalog.loadScriptSections(location.chapter);
+    final accent = widget.progress.voiceAccent == 'gb'
+        ? VoiceAccent.gb
+        : VoiceAccent.us;
     await widget.player
         .configurePreferences(
           speed: widget.progress.playbackSpeed,
@@ -305,83 +345,115 @@ class _AppShellState extends State<_AppShell> {
         .timeout(const Duration(seconds: 3), onTimeout: () {});
 
     if (!mounted) return;
-    await _navKey.currentState?.push(
-      MaterialPageRoute(
-        builder: (_) => ReaderScreen(
-          week: location.week,
-          day: location.day,
-          chapter: location.chapter,
-          markdown: markdown,
-          sections: sections,
-          player: widget.player,
-          initialSection: section,
-          initialMode: widget.progress.readerMode == 'read'
-              ? ReaderMode.read
-              : ReaderMode.listen,
-          initialComplete: widget.progress.isChapterComplete(
-            location.week.id,
-            location.day.id,
-            location.chapter.id,
-          ),
-          onBookmark: (sectionIndex) async {
-            await widget.progress.saveBookmark(
-              Bookmark(
-                weekId: location.week.id,
-                dayId: location.day.id,
-                chapterId: location.chapter.id,
-                sectionIndex: sectionIndex,
-                updatedAt: DateTime.now(),
-                chapterTitle: location.chapter.title,
-                dayTitle: location.day.title,
-              ),
-            );
-          },
-          onSpeedChanged: widget.progress.setPlaybackSpeed,
-          onAccentChanged: (a) => widget.progress.setVoiceAccent(
-            a == VoiceAccent.gb ? 'gb' : 'us',
-          ),
-          onModeChanged: (mode) => widget.progress.setReaderMode(
-            mode == ReaderMode.read ? 'read' : 'listen',
-          ),
-          onSectionProgress: (sectionIndex) async {
-            await widget.progress.saveBookmark(
-              Bookmark(
-                weekId: location.week.id,
-                dayId: location.day.id,
-                chapterId: location.chapter.id,
-                sectionIndex: sectionIndex,
-                updatedAt: DateTime.now(),
-                chapterTitle: location.chapter.title,
-                dayTitle: location.day.title,
-              ),
-            );
-            // Auto-mark read when the last section is reached (listen or read).
-            if (sections.isNotEmpty && sectionIndex >= sections.length - 1) {
-              await widget.progress.markChapterComplete(
-                location.week.id,
-                location.day.id,
-                location.chapter.id,
-              );
-            }
-          },
-          onChapterCompleted: () async {
+    final spine = widget.catalog.spine;
+    final idx = widget.catalog.manifest.spineIndexOf(location);
+    final prev = idx != null && idx > 0 ? spine[idx - 1] : null;
+    final next = idx != null && idx < spine.length - 1 ? spine[idx + 1] : null;
+    final page = MaterialPageRoute(
+      builder: (_) => ReaderScreen(
+        week: location.week,
+        day: location.day,
+        chapter: location.chapter,
+        markdown: markdown,
+        sections: sections,
+        player: widget.player,
+        initialSection: section,
+        spineIndex: idx,
+        spineLength: spine.length,
+        previousTitle: prev?.chapter.title,
+        nextTitle: next?.chapter.title,
+        onOpenPrevious: prev == null
+            ? null
+            : () => _openChapter(prev, replace: true),
+        onOpenNext: next == null
+            ? null
+            : () => _openChapter(next, replace: true),
+        initialMode: (kIsWeb || widget.progress.readerMode == 'read')
+            ? ReaderMode.read
+            : ReaderMode.listen,
+        initialComplete:
+            widget.progress.isChapterComplete(
+              location.week.id,
+              location.day.id,
+              location.chapter.id,
+            ) ||
+            widget.progress.isChapterManuallyComplete(
+              location.week.id,
+              location.day.id,
+              location.chapter.id,
+            ),
+        onBookmark: (sectionIndex) async {
+          await widget.progress.saveBookmark(
+            Bookmark(
+              weekId: location.week.id,
+              dayId: location.day.id,
+              chapterId: location.chapter.id,
+              sectionIndex: sectionIndex,
+              updatedAt: DateTime.now(),
+              chapterTitle: location.chapter.title,
+              dayTitle: location.day.title,
+            ),
+          );
+        },
+        onSpeedChanged: widget.progress.setPlaybackSpeed,
+        onAccentChanged: (a) =>
+            widget.progress.setVoiceAccent(a == VoiceAccent.gb ? 'gb' : 'us'),
+        onModeChanged: (mode) => widget.progress.setReaderMode(
+          mode == ReaderMode.read ? 'read' : 'listen',
+        ),
+        onSectionProgress: (sectionIndex) async {
+          await widget.progress.saveBookmark(
+            Bookmark(
+              weekId: location.week.id,
+              dayId: location.day.id,
+              chapterId: location.chapter.id,
+              sectionIndex: sectionIndex,
+              updatedAt: DateTime.now(),
+              chapterTitle: location.chapter.title,
+              dayTitle: location.day.title,
+            ),
+          );
+          // Auto-mark read when the last section is reached (listen or read).
+          if (sections.isNotEmpty && sectionIndex >= sections.length - 1) {
             await widget.progress.markChapterComplete(
               location.week.id,
               location.day.id,
               location.chapter.id,
             );
-          },
-          onSetComplete: (complete) async {
-            await widget.progress.setChapterComplete(
+          }
+        },
+        onChapterCompleted: () async {
+          await widget.progress.markChapterComplete(
+            location.week.id,
+            location.day.id,
+            location.chapter.id,
+          );
+        },
+        onSetComplete: (complete) async {
+          await widget.progress.setChapterComplete(
+            location.week.id,
+            location.day.id,
+            location.chapter.id,
+            complete: complete,
+          );
+          await widget.progress.setManualComplete(
+            ProgressStore.chapterCompleteId(
               location.week.id,
               location.day.id,
               location.chapter.id,
-              complete: complete,
-            );
-          },
-        ),
+            ),
+            complete: complete,
+          );
+        },
       ),
     );
+    final nav = _navKey.currentState;
+    if (nav == null) return;
+    if (replace) {
+      await nav.pushReplacement(page);
+    } else {
+      await nav.push(page);
+    }
   }
 
   @override

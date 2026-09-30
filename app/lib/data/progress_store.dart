@@ -49,6 +49,48 @@ class ProgressStore extends ChangeNotifier {
     notifyListeners();
   }
 
+  static const _manualKey = 'manual_complete';
+
+  Set<String> get manualCompleteKeys {
+    final list = _prefs.getStringList(_manualKey) ?? const [];
+    return list.toSet();
+  }
+
+  bool isManualComplete(String id) => manualCompleteKeys.contains(id);
+
+  Future<void> setManualComplete(String id, {required bool complete}) async {
+    final keys = manualCompleteKeys;
+    if (complete) {
+      keys.add(id);
+    } else {
+      keys.remove(id);
+    }
+    await _prefs.setStringList(_manualKey, keys.toList());
+    notifyListeners();
+  }
+
+  Future<void> toggleManualComplete(String id) async {
+    await setManualComplete(id, complete: !isManualComplete(id));
+  }
+
+  static String dayCompleteId(String weekId, String dayId) =>
+      'day:$weekId/$dayId';
+
+  static String chapterCompleteId(
+    String weekId,
+    String dayId,
+    String chapterId,
+  ) => 'chapter:$weekId/$dayId/$chapterId';
+
+  bool isDayManuallyComplete(String weekId, String dayId) =>
+      isManualComplete(dayCompleteId(weekId, dayId));
+
+  bool isChapterManuallyComplete(
+    String weekId,
+    String dayId,
+    String chapterId,
+  ) => isManualComplete(chapterCompleteId(weekId, dayId, chapterId));
+
   Set<String> get completedChapterKeys {
     final list = _prefs.getStringList(_completedKey) ?? const [];
     return list.toSet();

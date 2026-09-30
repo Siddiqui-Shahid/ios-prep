@@ -1,0 +1,77 @@
+# Audio script — Mobile Analytics & Telemetry SDK
+
+## §0 Introduction
+
+<[Problem Title] Mobile Analytics & Telemetry SDK
+
+## §1 Overview
+
+Designing a mobile analytics SDK (like Firebase Analytics, Amplitude, or Mixpanel) is a heavy infrastructure and platform question. The focus is entirely on thread safety, persistent storage, batching, minimizing battery/network impact, and ensuring zero main-thread block time. The SDK must be completely invisible to the host app's performance.
+
+## §2 Target Companies & Frequency
+
+| Company | Why They Ask | Frequency | | :--- | :--- | :--- | | Google / Firebase | Core product of the Firebase platform team | ★★★★★ | | Uber | Telemetry and platform teams need highly robust event logging | ★★★★☆ | | Meta | App infrastructure teams handling massive data pipelines | ★★★★☆ | | Airbnb | Platform engineering roles handling observability | ★★★★☆ |
+
+## §3 Scope Definition
+
+In Scope - Thread-safe event ingestion (non-blocking). - Persistent local storage of events (SQLite). - Batch uploading with compression (GZIP). - Retry mechanisms and exponential backoff. - Network condition and battery state awareness. - Session management. - Dynamic sampling configurations from the server. Out of Scope - UI event auto-tracking (swizzling views). - Backend data lake architecture (Kafka/Hadoop). - Dashboard visualization. - Crash reporting (e.g., symbolication, stack traces).
+
+## §4 Requirements
+
+Functional Requirements 1. Ingest Events : Accept arbitrary JSON properties attached to an event name. 2. Persist Events : Save events locally so they survive app crashes or terminations. 3. Batch and Upload : Send events in batches to save network overhead. 4. Retry : If upload fails, keep events and retry later. Non-Functional Requirements | Requirement | Target | Source / Justification | | :--- | :--- | :--- | | Main Thread Block Time | ~0ms (Lock-free) | Calling track() should never block the UI | | Battery Impact | < 1% of total drain | Wake the radio as little as possible | | Network Usage | GZIP compressed payloads | JSON compresses well (up to 80% reduction) | | Max Local Storage | 10MB or 10,000 events | Prevents SDK from eating user storage | | Batch Size | ~100 events | Optimal size for standard REST payloads |
+
+## §5 High-Level Architecture (HLD)
+
+Component Diagram ascii +-------------------+ +--------------------+ +-------------------+ | | | | | | | Host App | ---- | AnalyticsManager | ---- | Ring Buffer | | (Any Thread) | | (Singleton) | | (Memory Queue) | | | | | | | +-------------------+ +--------------------+ +-------------------+ | Background Flush (Every 500ms) | v +--------------------+ +-------------------+ | | | | | BatchUploader | <---- | SQLite Store | | (NetworkLayer) | | (Persistence) | | | | | +--------------------+ +-------------------+ | Upload (GZIP, POST) | v +--------------------+ | | | Analytics Server | | | +--------------------+ Component Responsibilities | Component | Responsibility | iOS Implementation | | :--- | :--- | :--- | | AnalyticsManager | Public API surface, handles fast ingestion | Swift Actor or Serial Dispatch Queue | | Ring Buffer | Holds events in memory temporarily to return instantly to caller | Fixed-size Array or Queue | | SQLite Store | Safely stores events on disk | SQLite3 C-API or GRDB | | BatchUploader | Reads events from DB, POSTs them, deletes on success | URLSession background tasks | | EnvironmentMonitor| Listens for reachability, battery mode, and app lifecycle | NWPathMonitor, ProcessInfo | Data Flow 1. App calls Analytics.shared.track("button tap", props: ["id": 1]) from any thread. 2. AnalyticsManager immediately appends the event to a lock-free memory structure (Ring Buffer) and returns. 3. A background timer (every 500ms) or size threshold (100 items) flushes the Ring Buffer to SQLite Store . 4. The BatchUploader triggers a network upload if conditions are met (e.g., 50 events in DB, WiFi connected). 5. Events are converted to JSON, GZIP compressed, and POSTed. 6. Upon HTTP 200 OK, the successfully uploaded events are deleted from the SQLite Store .
+
+## §6 Data Models
+
+Core Entities swift import Foundation struct AnalyticsEvent: Codable { let id: String // UUID let name: String // e.g., "checkout completed" let properties: Data? // JSON encoded payload let timestamp: TimeInterval // UNIX epoch let sessionId: String init(name: String, properties: [String: Any]?) { self.id = UUID().uuidString self.name = name self.timestamp = Date().timeIntervalSince1970 self.sessionId = SessionManager.shared.currentSessionId if let props = properties { self.properties = try? JSONSerialization.data(withJSONObject: props) } else { self.properties = nil } } } Database Schema sql CREATE TABLE IF NOT EXISTS events ( id TEXT PRIMARY KEY, name TEXT NOT NULL, properties BLOB, timestamp REAL NOT NULL, session id TEXT NOT NULL, retry count INTEGER DEFAULT 0 ); -- Index for efficient batch querying CREATE INDEX idx timestamp ON events(timestamp ASC);
+
+## §7 API Design
+
+Endpoints POST /v1/events/batch - Headers : - Content-Type : application/json - Content-Encoding : gzip - Authorization : Bearer {sdk api key} - Request Body (Uncompressed Example) : json { "device info": { "os": "iOS 17.0", "model": "iPhone 15 Pro" }, "events": [ { "id": "abc-123", "name": "login success", "timestamp": 1700000000.0, "properties": { "method": "apple id" } } ] } - Response : 200 OK (Indicates SDK can delete these events locally).
+
+## §8 Client Architecture Deep-Dives
+
+[Subsystem 1 — Thread-safe Lock-free Event Collection] The track() method will be called thousands of times from various threads. Using standard locks ( NSLock ) can cause priority inversion and block the main thread. We use a Swift Actor to serialize access asynchronously, ensuring zero blocking. swift import Foundation actor EventQueue { private var buffer: [AnalyticsEvent] = [] private let flushThreshold = 50 private let store: SQLiteEventStore init(store: SQLiteEventStore) { self.store = store } // Called by the public SDK wrapper func enqueue( event: AnalyticsEvent) { buffer.append(event) if buffer.count = flushThreshold { flushToDisk() } } func flushToDisk() { guard !buffer.isEmpty else { return } let eventsToSave = buffer buffer.removeAll(keepingCapacity: true) // Prevent memory re-allocation // Detach disk I/O to a background task Task.detached(priority: .background) { await self.store.insert(events: eventsToSave) } } } class Analytics { static let shared = Analytics() private let queue = EventQueue(store: SQLiteEventStore()) // Public API - Fire and forget func track( name: String, properties: [String: Any]? = nil) { let event = AnalyticsEvent(name: name, properties: properties) Task { await queue.enqueue(event) } } } [Subsystem 2 — Persistent Storage & App Lifecycle] Memory is volatile. If the app crashes, items in the buffer are lost. We hook into UIApplication.willResignActiveNotification to immediately flush the buffer to SQLite before the OS suspends the app. swift import UIKit extension Analytics { func setupLifecycleObservers() { NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: nil) { [weak self] in guard let self = self else { return } // Force flush immediately on backgrounding Task { await self.queue.flushToDisk() // Optionally trigger a background task to upload await self.triggerBackgroundUpload() } } } private func triggerBackgroundUpload() async { // Begin UIBackgroundTaskIdentifier to get ~30s of execution time from OS var backgroundTask: UIBackgroundTaskIdentifier = .invalid backgroundTask = UIApplication.shared.beginBackgroundTask { UIApplication.shared.endBackgroundTask(backgroundTask) } await BatchUploader.shared.uploadPendingEvents() UIApplication.shared.endBackgroundTask(backgroundTask) } } [Subsystem 3 — Network & Battery Awareness] Radios consume massive battery power when powering up. We should batch uploads, and alter our behavior based on the environment. swif End of section.
+
+## §9 Performance & Optimizations
+
+| Optimization | Technique | Benchmark/Impact | | :--- | :--- | :--- | | Compression | gzip the JSON body | Reduces 100KB payload to ~15-20KB | | Serialization | Avoid JSONSerialization on main thread | Enqueue raw dictionaries, serialize to Data on background task | | Database Writes | SQLite Transactions BEGIN / COMMIT | Inserting 100 items takes 2ms in a transaction vs 100ms individually | | Memory Allocations | removeAll(keepingCapacity: true) | Reuses buffer memory, preventing ARC thrashing |
+
+## §10 Failure Modes & Fallbacks
+
+| Failure Scenario | Detection | Fallback Strategy | | :--- | :--- | :--- | | API Rejects Payload (400)| HTTP Status Code | Drop the batch permanently to prevent infinite loops (malformed data). | | Network Timeout (500)| HTTP Status / URLError | Keep events in SQLite, increment retry count , use exponential backoff. | | Database Corruption | SQLite throws fatal error | Delete the SQLite file entirely and recreate it. Data loss is acceptable for telemetry over a crash. | | Disk Space Full | DB write fails | Drop events. Do not crash the host app. |
+
+## §11 Trade-off Analysis
+
+| Decision | Option A | Option B | Chosen | Why | | :--- | :--- | :--- | :--- | :--- | | Memory Queue | DispatchQueue.sync | Swift Actor | Swift Actor | DispatchQueue.sync on a singleton can easily cause deadlocks in complex apps. Actors provide safe, non-blocking asynchronous access. | | Persistence | CoreData | SQLite C-API / GRDB | SQLite / GRDB | CoreData has huge memory overhead and context merging complexities. Analytics requires raw, fast, append-only logs. | | Upload Trigger | Every Event | Batched | Batched | Turning on the cellular radio for every single event drains the battery massively. Batching is strictly required by Apple guidelines. |
+
+## §12 Observability & Metrics
+
+- SDK Crash Rate : Must be strictly 0.00%. The host app will uninstall the SDK if it causes crashes. - Delivery Rate : Events created vs Events received by server. Target 98%. - Average Payload Size : Monitor to ensure GZIP is effective. - DB Size on Disk : Monitor 99th percentile to ensure cleanup logic is working and we aren't eating gigabytes of user storage.
+
+## §13 Production Benchmarks Reference
+
+| Metric | Target | Source / Justification | | :--- | :--- | :--- | | Batch Size (Firebase) | ~1 hour or 100 events | Firebase Analytics public documentation | | Event Size | ~200-500 bytes | Average JSON representation | | HTTP Request Overhead | ~500 bytes | TCP/TLS handshake overhead makes single-event sending horribly inefficient |
+
+## §14 Interview Tips
+
+- Zero Impact Rule : Stress heavily that an Analytics SDK is a guest in the host app. It must NEVER block the main thread and NEVER crash the host app. - Fail Gracefully : If the database is corrupted, delete it and lose the data. Do not crash. - GZIP Compression : Always mention this. It shows senior-level awareness of mobile network constraints. - Low Power/Data Mode : Showing awareness of isLowPowerModeEnabled and NWPathMonitor ( .isConstrained ) separates staff engineers from seniors.
+
+## §15 Mermaid Architecture Diagram
+
+mermaid graph TD A[Analytics.track] -- B[EventQueue Actor] B -- C[ring buffer] C -- |every 500ms| D[(SQLiteEventStore)] D -- E[BatchUploader] F[NWPathMonitor] -.- |gate upload| E Trigger1[100 events] -- E Trigger2[30s timer] -- E Trigger3[willResignActive] -- E E -- G[POST /v1/events/batch] G -- 200 OK -- H[delete sent events from SQLite]
+
+## §16 Common Mistakes
+
+- Calling Analytics.track() and doing disk I/O synchronously (main thread block) - Not persisting events to disk before crash (event loss) - Retrying failed batch uploads infinitely (event duplication) - Not compressing batch payloads (large network requests) - Uploading on constrained network (user data plan waste)
+
+## §17 Mock Interview Q&A
+
+- Q: How do you ensure no events are lost if the app crashes mid-batch? A: We only delete events from SQLite after receiving a 200 OK from the server. If a crash happens mid-upload, the events are still in SQLite and will be retried on next launch. - Q: A user is in Low Data Mode. What happens to analytics? A: NWPathMonitor detects constrained networks. We halt background uploads and accumulate events in SQLite, waiting for an unconstrained connection. - Q: How do you handle 100 events firing simultaneously without blocking the UI? A: Analytics.track() delegates work asynchronously to an Actor which maintains a pre-allocated ring buffer, avoiding lock contention and main thread blocking. - Q: What happens if the SQLite database gets full? A: We set a hard limit (e.g., 10MB or 10k events). If reached, we drop the oldest events (FIFO) to prevent consuming all of the user's local storage. - Q: How does the SDK behave when the app moves to the background? A: We listen to willResignActive and immediately flush the ring buffer to disk. We may also request background task time to flush pending events to the network.
+
+## §18 Related Specs
+
+| Spec | Relationship | | :--- | :--- | | Networking Layer | Batch uploads require handling retries, backoff, and network errors gracefully. | | Social Feed | Impression events from the feed are sent to this analytics SDK for batching. |

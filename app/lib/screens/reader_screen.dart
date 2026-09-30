@@ -19,6 +19,12 @@ class ReaderScreen extends StatefulWidget {
     required this.player,
     required this.initialSection,
     required this.initialMode,
+    this.spineIndex,
+    this.spineLength = 0,
+    this.previousTitle,
+    this.nextTitle,
+    this.onOpenPrevious,
+    this.onOpenNext,
     required this.initialComplete,
     required this.onBookmark,
     required this.onSpeedChanged,
@@ -36,6 +42,12 @@ class ReaderScreen extends StatefulWidget {
   final List<ScriptSection> sections;
   final TtsPlayerService player;
   final int initialSection;
+  final int? spineIndex;
+  final int spineLength;
+  final String? previousTitle;
+  final String? nextTitle;
+  final Future<void> Function()? onOpenPrevious;
+  final Future<void> Function()? onOpenNext;
   final ReaderMode initialMode;
   final bool initialComplete;
   final Future<void> Function(int sectionIndex) onBookmark;
@@ -112,9 +124,40 @@ class _ReaderScreenState extends State<ReaderScreen> {
         final sentence = widget.player.currentSentence;
         final word = widget.player.currentWord;
         return Scaffold(
+          backgroundColor: const Color(0xFFF4EFE4),
           appBar: AppBar(
-            title: Text(widget.chapter.title),
+            backgroundColor: const Color(0xFFF4EFE4),
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.day.title,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Text(
+                  widget.chapter.title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
             actions: [
+              if (widget.spineIndex != null)
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: Text(
+                      '${widget.spineIndex! + 1} / ${widget.spineLength}',
+                      style: const TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
               IconButton(
                 tooltip: _complete ? 'Mark as unread' : 'Mark as read',
                 onPressed: _toggleComplete,
@@ -123,100 +166,44 @@ class _ReaderScreenState extends State<ReaderScreen> {
                   color: _complete ? const Color(0xFF0B6E4F) : null,
                 ),
               ),
-              if (widget.day.codeFiles.isNotEmpty)
-                IconButton(
-                  tooltip: 'Lesson code',
-                  onPressed: () {
+              PopupMenuButton<String>(
+                onSelected: (value) async {
+                  if (value == 'listen' || value == 'read') {
+                    await _setMode(
+                      value == 'listen' ? ReaderMode.listen : ReaderMode.read,
+                    );
+                  } else if (value == 'sections') {
+                    await _showSectionPicker(context);
+                  } else if (value == 'code' &&
+                      widget.day.codeFiles.isNotEmpty) {
+                    if (!context.mounted) return;
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (_) => CodeLabScreen(day: widget.day),
                       ),
                     );
-                  },
-                  icon: const Icon(Icons.code),
-                ),
-              IconButton(
-                tooltip: 'Jump to section',
-                onPressed: () => _showSectionPicker(context),
-                icon: const Icon(Icons.list_alt),
-              ),
-              PopupMenuButton<String>(
-                tooltip: 'Progress',
-                onSelected: (value) async {
-                  if (value == 'read') {
-                    await _setComplete(true);
-                  } else if (value == 'unread') {
-                    await _setComplete(false);
                   }
                 },
                 itemBuilder: (context) => [
                   PopupMenuItem(
-                    value: 'read',
-                    enabled: !_complete,
-                    child: const ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      leading: Icon(Icons.check_circle_outline),
-                      title: Text('Mark as read'),
-                    ),
+                    value: isListen ? 'read' : 'listen',
+                    child: Text(isListen ? 'Read instead' : 'Listen'),
                   ),
-                  PopupMenuItem(
-                    value: 'unread',
-                    enabled: _complete,
-                    child: const ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      leading: Icon(Icons.radio_button_unchecked),
-                      title: Text('Mark as unread'),
-                    ),
+                  const PopupMenuItem(
+                    value: 'sections',
+                    child: Text('Jump to section'),
                   ),
+                  if (widget.day.codeFiles.isNotEmpty)
+                    const PopupMenuItem(
+                      value: 'code',
+                      child: Text('Lesson code'),
+                    ),
                 ],
               ),
             ],
           ),
           body: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(12, 8, 12, 4),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: SegmentedButton<ReaderMode>(
-                    style: ButtonStyle(
-                      visualDensity: VisualDensity.compact,
-                      backgroundColor: WidgetStateProperty.resolveWith((
-                        states,
-                      ) {
-                        if (states.contains(WidgetState.selected)) {
-                          return kActiveHighlight;
-                        }
-                        return null;
-                      }),
-                      foregroundColor: WidgetStateProperty.resolveWith((
-                        states,
-                      ) {
-                        if (states.contains(WidgetState.selected)) {
-                          return kActiveInk;
-                        }
-                        return null;
-                      }),
-                    ),
-                    segments: const [
-                      ButtonSegment(
-                        value: ReaderMode.listen,
-                        label: Text('Listen'),
-                        icon: Icon(Icons.headphones, size: 18),
-                      ),
-                      ButtonSegment(
-                        value: ReaderMode.read,
-                        label: Text('Read'),
-                        icon: Icon(Icons.menu_book, size: 18),
-                      ),
-                    ],
-                    selected: {_mode},
-                    onSelectionChanged: (set) {
-                      if (set.isNotEmpty) _setMode(set.first);
-                    },
-                  ),
-                ),
-              ),
               if (isListen)
                 Material(
                   color: kActiveHighlight,
@@ -257,18 +244,6 @@ class _ReaderScreenState extends State<ReaderScreen> {
                           ),
                         ),
                       ],
-                    ),
-                  ),
-                )
-              else
-                Material(
-                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
-                  child: const ListTile(
-                    dense: true,
-                    leading: Icon(Icons.menu_book),
-                    title: Text('Read mode'),
-                    subtitle: Text(
-                      'Audio is off. Read the full chapter here.',
                     ),
                   ),
                 ),
@@ -338,48 +313,48 @@ class _ReaderScreenState extends State<ReaderScreen> {
                   top: false,
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
-                    child: Row(
+                    child: Column(
                       children: [
-                        Expanded(
-                          child: OutlinedButton.icon(
-                            onPressed: () => _showSectionPicker(context),
-                            icon: const Icon(Icons.list_alt),
-                            label: const Text('Sections'),
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: OutlinedButton.icon(
-                            onPressed: _toggleComplete,
-                            icon: Icon(
-                              _complete
-                                  ? Icons.check_circle
-                                  : Icons.check_circle_outline,
+                        Row(
+                          children: [
+                            Expanded(
+                              child: OutlinedButton(
+                                onPressed: widget.onOpenPrevious,
+                                child: Text(
+                                  widget.previousTitle == null
+                                      ? 'Previous'
+                                      : widget.previousTitle!,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
                             ),
-                            label: Text(_complete ? 'Unread' : 'Mark read'),
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: FilledButton.icon(
-                            style: FilledButton.styleFrom(
-                              backgroundColor: const Color(0xFF0B6E4F),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: FilledButton(
+                                style: FilledButton.styleFrom(
+                                  backgroundColor: const Color(0xFF0B6E4F),
+                                ),
+                                onPressed: _toggleComplete,
+                                child: Text(
+                                  _complete ? 'Completed' : 'Mark complete',
+                                ),
+                              ),
                             ),
-                            onPressed: () async {
-                              await widget.onBookmark(
-                                widget.player.sectionIndex,
-                              );
-                              if (context.mounted) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text('Bookmark saved'),
-                                  ),
-                                );
-                              }
-                            },
-                            icon: const Icon(Icons.bookmark_add_outlined),
-                            label: const Text('Bookmark'),
-                          ),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: FilledButton.tonal(
+                                onPressed: widget.onOpenNext,
+                                child: Text(
+                                  widget.nextTitle == null
+                                      ? 'Next page'
+                                      : widget.nextTitle!,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -432,7 +407,10 @@ class _ReaderScreenState extends State<ReaderScreen> {
     return Text.rich(
       TextSpan(
         children: [
-          TextSpan(text: before, style: const TextStyle(color: kActiveInk)),
+          TextSpan(
+            text: before,
+            style: const TextStyle(color: kActiveInk),
+          ),
           TextSpan(
             text: match,
             style: const TextStyle(
@@ -441,7 +419,10 @@ class _ReaderScreenState extends State<ReaderScreen> {
               fontWeight: FontWeight.w800,
             ),
           ),
-          TextSpan(text: after, style: const TextStyle(color: kActiveInk)),
+          TextSpan(
+            text: after,
+            style: const TextStyle(color: kActiveInk),
+          ),
         ],
       ),
       maxLines: 4,

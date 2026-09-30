@@ -83,11 +83,7 @@ CodeFileRef? codeFileForLink(DayRef day, String href) {
 }
 
 class WeekRef {
-  const WeekRef({
-    required this.id,
-    required this.title,
-    required this.days,
-  });
+  const WeekRef({required this.id, required this.title, required this.days});
 
   final String id;
   final String title;
@@ -107,19 +103,63 @@ class WeekRef {
 class ContentManifest {
   const ContentManifest({
     required this.weeks,
+    this.handbookWeeks = const [],
+    this.guideWeeks = const [],
+    this.topicWeeks = const [],
+    this.weakPointWeeks = const [],
+    this.questionWeeks = const [],
+    this.systemDesignWeeks = const [],
     this.revisionWeeks = const [],
     this.flashcardWeeks = const [],
   });
 
+  /// Single serialized handbook (parts → pages). Primary spine.
+  final List<WeekRef> handbookWeeks;
+
+  /// Archived 4-week sample Q&A (kept in the app, not the primary flow).
   final List<WeekRef> weeks;
+
+  /// Sequential ride trips (Trip 1, Trip 2, …).
+  final List<WeekRef> guideWeeks;
+
+  /// Study by topic, independent of trip order.
+  final List<WeekRef> topicWeeks;
+
+  /// Weak points distilled from interview recordings.
+  final List<WeekRef> weakPointWeeks;
+
+  /// 30 machine / mobile system-design questions.
+  final List<WeekRef> questionWeeks;
+
+  /// Long-form, production-grade mobile system-design case studies.
+  final List<WeekRef> systemDesignWeeks;
   final List<WeekRef> revisionWeeks;
   final List<WeekRef> flashcardWeeks;
 
   factory ContentManifest.fromJson(Map<String, dynamic> json) {
     return ContentManifest(
-      weeks: (json['weeks'] as List<dynamic>)
+      weeks: (json['weeks'] as List<dynamic>? ?? const [])
           .map((e) => WeekRef.fromJson(e as Map<String, dynamic>))
           .toList(),
+      handbookWeeks: (json['handbookWeeks'] as List<dynamic>? ?? const [])
+          .map((e) => WeekRef.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      guideWeeks: (json['guideWeeks'] as List<dynamic>? ?? const [])
+          .map((e) => WeekRef.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      topicWeeks: (json['topicWeeks'] as List<dynamic>? ?? const [])
+          .map((e) => WeekRef.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      weakPointWeeks: (json['weakPointWeeks'] as List<dynamic>? ?? const [])
+          .map((e) => WeekRef.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      questionWeeks: (json['questionWeeks'] as List<dynamic>? ?? const [])
+          .map((e) => WeekRef.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      systemDesignWeeks:
+          (json['systemDesignWeeks'] as List<dynamic>? ?? const [])
+              .map((e) => WeekRef.fromJson(e as Map<String, dynamic>))
+              .toList(),
       revisionWeeks: (json['revisionWeeks'] as List<dynamic>? ?? const [])
           .map((e) => WeekRef.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -129,7 +169,37 @@ class ContentManifest {
     );
   }
 
+  WeekRef? get handbook => handbookWeeks.isEmpty ? null : handbookWeeks.first;
+
+  List<ChapterLocation> get spine {
+    final book = handbook;
+    if (book == null) return const [];
+    return [
+      for (final day in book.days)
+        for (final chapter in day.chapters)
+          ChapterLocation(week: book, day: day, chapter: chapter),
+    ];
+  }
+
+  int? spineIndexOf(ChapterLocation loc) {
+    for (var i = 0; i < spine.length; i++) {
+      final p = spine[i];
+      if (p.week.id == loc.week.id &&
+          p.day.id == loc.day.id &&
+          p.chapter.id == loc.chapter.id) {
+        return i;
+      }
+    }
+    return null;
+  }
+
   Iterable<WeekRef> get allTracks sync* {
+    yield* handbookWeeks;
+    yield* guideWeeks;
+    yield* topicWeeks;
+    yield* weakPointWeeks;
+    yield* questionWeeks;
+    yield* systemDesignWeeks;
     yield* weeks;
     yield* revisionWeeks;
     yield* flashcardWeeks;
@@ -203,14 +273,14 @@ class Bookmark {
   final String dayTitle;
 
   Map<String, dynamic> toJson() => {
-        'weekId': weekId,
-        'dayId': dayId,
-        'chapterId': chapterId,
-        'sectionIndex': sectionIndex,
-        'updatedAt': updatedAt.toIso8601String(),
-        'chapterTitle': chapterTitle,
-        'dayTitle': dayTitle,
-      };
+    'weekId': weekId,
+    'dayId': dayId,
+    'chapterId': chapterId,
+    'sectionIndex': sectionIndex,
+    'updatedAt': updatedAt.toIso8601String(),
+    'chapterTitle': chapterTitle,
+    'dayTitle': dayTitle,
+  };
 
   factory Bookmark.fromJson(Map<String, dynamic> json) {
     return Bookmark(
@@ -218,7 +288,8 @@ class Bookmark {
       dayId: json['dayId'] as String,
       chapterId: json['chapterId'] as String,
       sectionIndex: json['sectionIndex'] as int? ?? 0,
-      updatedAt: DateTime.tryParse(json['updatedAt'] as String? ?? '') ??
+      updatedAt:
+          DateTime.tryParse(json['updatedAt'] as String? ?? '') ??
           DateTime.now(),
       chapterTitle: json['chapterTitle'] as String? ?? '',
       dayTitle: json['dayTitle'] as String? ?? '',
@@ -264,13 +335,13 @@ class StudyReminder {
   }
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'label': label,
-        'hour': hour,
-        'minute': minute,
-        'repeat': repeat.name,
-        'enabled': enabled,
-      };
+    'id': id,
+    'label': label,
+    'hour': hour,
+    'minute': minute,
+    'repeat': repeat.name,
+    'enabled': enabled,
+  };
 
   factory StudyReminder.fromJson(Map<String, dynamic> json) {
     return StudyReminder(

@@ -1,0 +1,77 @@
+# Audio script — Server-Driven UI (SDUI) Engine & Dynamic Layout Framework
+
+## §0 Introduction
+
+Server-Driven UI (SDUI) Engine & Dynamic Layout Framework
+
+## §1 Overview
+
+Server-Driven UI (SDUI) allows backend services to dictate the UI structure, layout, and content without requiring app updates. It is heavily asked in FAANG/Top-tier interviews because it tests complex state management, generic parsing, fallback strategies, and component registries while keeping the client lightweight and robust.
+
+## §2 Target Companies & Frequency
+
+| Company | Why They Ask | Frequency | |---------|--------------|-----------| | Uber | Core to their dynamic home feed and ride-booking flows. | ★★★★★ | | Meta | Used heavily in Instagram Shop and Facebook Feed. | ★★★★★ | | Google | Used in Google Pay (Tez) and Play Store. | ★★★★☆ | | Grab | Central to their super-app modularity. | ★★★★★ |
+
+## §3 Scope Definition
+
+In Scope - SDUI component schema design (JSON contract with versioning). - Dynamic ComponentRegistry mapping string types to native SwiftUI views. - LayoutResolver for handling flex/stack configurations from the server. - FallbackEngine for offline support using disk caching. - ActionHandler for deep links, native routing, and web fallbacks. - Schema versioning strategy and compatibility checks. - Analytics injection via server-defined payload. - Caching strategy with TTL and force-refresh mechanisms. Out of Scope - Backend implementation details of the CMS generating the SDUI. - Complex nested list pagination within a single SDUI component (handled by standard pagination). - Full declarative language execution on client (e.g., executing JavaScript inside SDUI).
+
+## §4 Requirements
+
+Functional Requirements 1. Client must fetch and render UI dynamically based on server JSON schema. 2. Unrecognized components must be safely ignored without crashing the app. 3. App must gracefully handle network failures by displaying a cached layout. 4. UI components must trigger native or web actions as specified by the server. 5. Client must enforce schema version compatibility (skip unsupported major versions). Non-Functional Requirements | Requirement | Target | Source | |-------------|--------|--------| | Schema Parsing | < 16ms (avoid frame drop) | Apple WWDC Core Animation | | Cache Retrieval | < 50ms | Uber SDUI Blog | | Component Render | < 8ms per cell | Meta Feed Optimizations | | Crash-free Sessions | 99.9% | Firebase Crashlytics standard | | Payload Size | < 50KB gzip | Industry average |
+
+## §5 High-Level Architecture (HLD)
+
+Component Diagram text [ SDUI Backend / CMS ] | (JSON Schema over HTTPS) v [ API Gateway & CDN ] | v +-----------------------------------------------------------+ | iOS Client | | | | [ Network Layer ] <--- [ FallbackEngine / DiskCache ] | | | | | v | | [ Schema Parser ] --- [ Version Compatibility Check ] | | | | | v | | [ SDUI ViewModel ] | | | | | +--- [ ComponentRegistry ] | | | | | +--- [ LayoutResolver ] | | | | | v | | [ SwiftUI Views ] --- [ ActionHandler & Analytics ] | +-----------------------------------------------------------+ Component Responsibilities | Component | Responsibility | iOS Implementation | |-----------|----------------|--------------------| | Network Layer | Fetch JSON payload, handle headers, caching | URLSession, Combine/async-await | | FallbackEngine | Store and retrieve last-known-good schema | FileManager, SQLite/CoreData | | Parser | Decode JSON to Swift structures | JSONDecoder | | ComponentRegistry | Map component type to native view | Dictionary of Type - AnyView builder | | ActionHandler | Route interactions (deeplink, API call) | URLRouter, NotificationCenter | Data Flow 1. User opens app : SDUI ViewModel requests screen payload from Network Layer. 2. Network request : Network layer fetches data, respecting HTTP caching/TTL. If offline, FallbackEngine loads from disk. 3. Parsing : JSONDecoder decodes payload into generic SDUIComponent tree. 4. Validation : Version checker verifies major version compatibility. 5. Rendering : ViewModel iterates through components, asking ComponentRegistry for SwiftUI views. LayoutResolver wraps them in Stacks/Grids. 6. Interaction : User taps a component, triggering ActionHandler. ActionHandler fires analytics event and executes routing.
+
+## §6 Data Models
+
+Core Entities swift import Foundation /// Represents the top-level SDUI Response struct SDUIScreenResponse: Codable { let screenId: String let version: Int let refreshTtl: TimeInterval let layout: SDUILayout } /// Layout definitions struct SDUILayout: Codable { let type: String // e.g., "v stack", "h stack", "grid" let spacing: CGFloat? let children: [SDUIComponent] } /// Generic component definition struct SDUIComponent: Codable, Identifiable { let id: String let type: String let props: SDUIProps let action: SDUIAction? let analytics: [String: String]? } /// Type-erased properties allowing flexible JSON decoding struct SDUIProps: Codable { let title: String? let subtitle: String? let imageUrl: String? let textColor: String? // Decoding dynamic keys omitted for brevity (Custom init with Decoder) } struct SDUIAction: Codable { let type: String // "deeplink", "api call", "web" let url: String } Database Schema sql -- For FallbackEngine Disk Cache CREATE TABLE IF NOT EXISTS sdui cache ( screen id TEXT PRIMARY KEY, payload BLOB NOT NULL, version INTEGER NOT NULL, updated at TIMESTAMP DEFAULT CURRENT TIMESTAMP, ttl INTEGER NOT NULL ); CREATE INDEX idx screen id ON sdui cache(screen id);
+
+## §7 API Design
+
+Endpoints GET /v1/screens/{screenId} Fetches the UI schema. Headers: - Client-Version: 2.1.0 - Accept: application/json Response Body (200 OK): json { "screen id": "home main", "version": 2, "refresh ttl": 3600, "layout": { "type": "v stack", "spacing": 16, "children": [ { "id": "hero 1", "type": "hero banner", "props": { "title": "Welcome to Pro", "image url": "https://cdn.example.com/hero.jpg" }, "action": { "type": "deeplink", "url": "app://upgrade" }, "analytics": { "event name": "hero banner impression", "campaign": "q3 pro upgrade" } }, { "id": "grid actions 1", "type": "quick actions grid", "props": { "items": [ {"icon": "wallet", "label": "Send Money"}, {"icon": "scan", "label": "Scan QR"} ] } } ] } } Pagination Strategy Typically, SDUI top-level screens are not paginated, but lists inside SDUI are. json { "type": "infinite list", "action": { "type": "fetch more", "url": "/v1/components/feed?cursor=abcd" } }
+
+## §8 Client Architecture Deep-Dives
+
+Component Registry (The Hardest Part) The core pattern is avoiding crashes on unknown types while maintaining a clean SwiftUI integration. swift import SwiftUI class ComponentRegistry { static let shared = ComponentRegistry() // Maps component string identifier to a view builder private var registeredComponents: [String: (SDUIComponent) - AnyView] = [:] private init() { registerDefaultComponents() } func register(type: String, builder: @escaping (SDUIComponent) - AnyView) { registeredComponents[type] = builder } func view(for component: SDUIComponent) - AnyView { guard let builder = registeredComponents[component.type] else { // Unrecognized type = skip and log, never crash print("⚠️ Unknown component type: \(component.type)") return AnyView(EmptyView()) } return builder(component) } private func registerDefaultComponents() { register(type: "hero banner") { component in AnyView(HeroBannerView(props: component.props)) } register(type: "quick actions grid") { component in AnyView(QuickActionsGridView(props: component.props)) } } } Fallback Engine & Caching Ensures high availability even on flakey networks. swift class FallbackEngine { private let db: DatabaseManager // Abstracted SQLite wrapper func saveLayout(screenId: String, data: Data, version: Int, ttl: TimeInterval) { let query = """ INSERT OR REPLACE INTO sdui cache (screen id, payload, version, ttl) VALUES (?, ?, ?, ?) """ db.execute(query, arguments: [screenId, data, version, ttl]) } func loadCachedLayout(screenId: String) - Data? { let query = "SELECT payload, updated at, ttl FROM sdui cache WHERE screen id = ?" guard let result = db.fetchOne(query, arguments: [screenId]) else { return nil } // TTL Check let updatedAt = result["updated at"] as! Date let ttl = result["ttl"] as! TimeInterval if Date().timeIntervalSince(updatedAt) ttl { // Cache expired, but might still use as stale-while-revalidate fallback print("Cache expired, but returning stale data as fallback") } return result["payload"] as? Data } } SDUI ViewModel & LayoutResolver Drives the SwiftUI rendering tree. swift @MainActor class SDUIViewModel: ObservableObject { @Published var layout: SDUILayout? @Published var isLoading = true private let networkLayer: NetworkService private let fallbackEngine: FallbackEngine init(networkLayer: NetworkService, fallbackEngine: FallbackEngine) { self.networkLayer = networkLayer self.fallbackEngine = fallbackEngine } func loadScreen(id: String) async { isLoading = true do { let data = try await networkL End of section.
+
+## §9 Performance & Optimizations
+
+| Optimization | Technique | Benchmark/Impact | |--------------|-----------|------------------| | Payload Size | Protobuf vs JSON | Protobuf reduces payload size by ~40-50% (Uber engineering blog). JSON is easier for debugging, often gzip is sufficient. | | Parse Time | Decodable vs Manual Parsing | JSONDecoder can be slow for massive trees. Avoid deeply nested AnyCodable/Type Erasures where possible. | | Over-rendering | Equatable Views | Conform SwiftUIs View to Equatable so unaffected components don't redraw. | | Cache Policy | Stale-while-revalidate | Show cached layout instantly (< 50ms), background fetch, update UI transparently. |
+
+## §10 Failure Modes & Fallbacks
+
+| Failure Scenario | Detection | Fallback Strategy | |------------------|-----------|-------------------| | Network timeout | URLSession throws URLError.timedOut | Read from FallbackEngine (SQLite disk cache). | | Unknown component type | Type not found in ComponentRegistry | Render EmptyView() , log to analytics/Crashlytics. Never crash. | | Unsupported Schema Version | Server sends version: 3 , client is 2 | Show cached version 2 or force app update prompt. | | Missing properties | JSON decode fails for specific props | Provide default values in SDUIProps custom init. |
+
+## §11 Trade-off Analysis
+
+| Decision | Option A | Option B | Chosen | Why | |----------|----------|----------|--------|-----| | Payload Format | JSON | Protobuf | JSON (usually) | Faster iteration, easier debugging. Use Protobuf only at massive scale (e.g., Uber/Meta) for performance. | | Render Tech | SwiftUI | UIKit (UICollectionView) | SwiftUI | SDUI trees map 1:1 perfectly to SwiftUI declarative syntax. Code volume is 5x smaller. | | Action Handling | Closures per component | Central Notification / Delegate | Central Router | Easier to inject global dependencies (analytics, navigation logic) than passing closures everywhere. |
+
+## §12 Observability & Metrics
+
+- sdui schema fetch latency : Target < 200ms. - sdui cache hit rate : Monitor offline/fast-load usage. Target 60%. - sdui unknown component rendered : Tracks backend sending types iOS hasn't implemented. Should be 0 on stable releases. - sdui render time : View rendering performance. Target < 16ms per screen update.
+
+## §13 Production Benchmarks Reference
+
+| Metric | Value | Source | |--------|-------|--------| | Target Frame Render Time | < 16ms (60fps) | Apple WWDC | | Protobuf Size Reduction | ~40-50% vs JSON | Uber Engineering Blog | | Gzip JSON Reduction | ~60-70% | Common Web Standards | | Crash-free sessions | 99.9% | Firebase Crashlytics |
+
+## §14 Interview Tips
+
+- Crucial Pattern : Emphasize that the app should never crash when encountering a new, unrecognized string in type . The ComponentRegistry pattern skipping unknown types is the most critical feature. - Protocol versioning : Interviewers want to know how you prevent a backend deploy from breaking old app versions. Discuss min supported version headers and payload version checks. - State Management : Keep state local to components if possible. Only pass global state (like user login status) via EnvironmentObject in SwiftUI. - Analytics : Don't hardcode event names. Show how analytics: ["event name": "hero tapped"] is passed back from the server so product managers can change tracking without app updates.
+
+## §15 Architecture Diagram
+
+mermaid flowchart TD A[SDUI Backend / CMS] -- |JSON Schema| B[Network Layer] B -- C{Offline or Error?} C -- |Yes| D[Fallback Engine] C -- |No| E[Schema Fetcher] D -- E E -- F[SDUI ViewModel] F -- G[Layout Resolver] G -- H[Component Registry] H -- I[Component Catalog] I -- J[SwiftUI Views] J -- K[ActionHandler & Analytics]
+
+## §16 Common Mistakes
+
+❌ Mistake : Crashing when the server sends an unknown component type. ✅ Correct : Map unknown types to an EmptyView and log a non-fatal error. The Component Registry must safely ignore unhandled strings. ❌ Mistake : Not caching the last-known-good schema. ✅ Correct : Cache the parsed layout in SQLite so the app can render immediately on launch or gracefully fallback offline. ❌ Mistake : Hardcoding layout properties like fonts or padding in the client. ✅ Correct : Design the schema to pass generic properties (e.g. type: "primary button" ) and let the client's Design System resolve the exact pixel values, keeping SDUI semantic. ❌ Mistake : Tying analytics event tracking to client releases. ✅ Correct : Include the analytics payload [String: String] directly in the SDUI component schema from the server, firing it dynamically on interaction. ❌ Mistake : Forgetting schema versioning. ✅ Correct : Pass Client-Version in headers and check supported version in the payload. Ignore or upgrade if the server sends a breaking v3 schema to a v2 client.
+
+## §17 Mock Interview Q&A
+
+Q: How do you handle a new component type your app doesn't know about? A: We use a ComponentRegistry pattern. The JSON decoder maps the component type to a string. The registry looks up a registered SwiftUI ViewBuilder for that string. If the type is missing (e.g., the backend shipped a new feature but the user hasn't updated the app), the registry safely returns an EmptyView() and fires a non-fatal error to Crashlytics. This guarantees a 99.9% crash-free rate despite dynamic payloads. 🔍 Interviewer follow-up: How would you version the schema to avoid breaking old clients entirely? A: We pass a Supported-SDUI-Version: 2 header in the API request. The backend filters the layout, stripping v3 components or replacing them with v2 fallbacks. Alternatively, the client checks the root version field in the response; if it's unsupported, we fallback to our disk cache or force an app update prompt. Q: How do you handle deep links or actions from these dynamic views? A: We define an action object in the JSON with a type (e.g., deeplink , api call ). When a user taps the SwiftUI view, we pass this object to a central ActionHandler . For deep links, it hands the URL to the app's routing layer. This prevents business logic from leaking into our generic UI components.
+
+## §18 Related Specs
+
+| Related Spec | Why It's Related | | :--- | :--- | | Video Feed Streaming | Uses similar caching and generic cell recycling strategies for dynamic content. | | Payment Checkout | Requires dynamic UI rendering based on server state (e.g., 3DS challenge rendering). |

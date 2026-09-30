@@ -58,8 +58,9 @@ class ReminderStore extends ChangeNotifier {
   }
 
   Future<void> update(StudyReminder reminder) async {
-    final next =
-        reminders.map((r) => r.id == reminder.id ? reminder : r).toList();
+    final next = reminders
+        .map((r) => r.id == reminder.id ? reminder : r)
+        .toList();
     await _persist(next);
     await _notifications.cancel(id: reminder.id.hashCode);
     if (reminder.enabled) {

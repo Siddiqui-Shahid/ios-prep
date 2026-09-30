@@ -50,6 +50,7 @@ done
 
 python3 "$(dirname "$0")/patch_manifest_code.py"
 python3 "$(dirname "$0")/sync_revision.py"
+python3 "$(dirname "$0")/sync_travel_guide.py"
 
 echo "Synced sample + code + revision content to $DEST_ROOT"
 find "$DEST_ROOT" -type f \( -name '*.md' -o -name '*.swift' \) | wc -l | xargs echo "content files:"

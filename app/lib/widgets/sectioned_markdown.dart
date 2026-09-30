@@ -35,8 +35,7 @@ List<MarkdownSection> splitMarkdownSections(String markdown) {
       continue;
     }
     sawContent = true;
-    if (line.startsWith('## ') ||
-        RegExp(r'^###\s+[QIT]\d+\.').hasMatch(line)) {
+    if (line.startsWith('## ') || RegExp(r'^###\s+[QIT]\d+\.').hasMatch(line)) {
       flush();
       heading = line.replaceFirst(RegExp(r'^#{2,3}\s+'), '').trim();
       buf.writeln(line);
@@ -161,16 +160,14 @@ class _SectionedMarkdownReaderState extends State<SectionedMarkdownReader> {
       h1: textTheme.headlineSmall?.copyWith(color: inactiveInk),
       h2: textTheme.titleLarge?.copyWith(color: inactiveInk),
       h3: textTheme.titleMedium?.copyWith(color: inactiveInk),
-      p: textTheme.bodyLarge?.copyWith(height: 1.45, color: inactiveInk),
-      listBullet: TextStyle(color: inactiveInk),
-      a: TextStyle(
-        color: scheme.primary,
-        decoration: TextDecoration.underline,
-      ),
-      code: TextStyle(
-        backgroundColor: inactiveCodeBg,
+      p: textTheme.bodyLarge?.copyWith(
+        height: 1.55,
         color: inactiveInk,
+        fontSize: 17,
       ),
+      listBullet: TextStyle(color: inactiveInk),
+      a: TextStyle(color: scheme.primary, decoration: TextDecoration.underline),
+      code: TextStyle(backgroundColor: inactiveCodeBg, color: inactiveInk),
       codeblockDecoration: BoxDecoration(
         color: inactiveCodeBg,
         borderRadius: BorderRadius.circular(8),
@@ -197,29 +194,40 @@ class _SectionedMarkdownReaderState extends State<SectionedMarkdownReader> {
         color: kActiveInk,
         decoration: TextDecoration.underline,
       ),
-      code: const TextStyle(
-        backgroundColor: activeWash,
-        color: kActiveInk,
-      ),
+      code: const TextStyle(backgroundColor: activeWash, color: kActiveInk),
       codeblockDecoration: BoxDecoration(
         color: activeWash,
         borderRadius: BorderRadius.circular(8),
       ),
       blockquoteDecoration: const BoxDecoration(
         color: activeWash,
-        border: Border(
-          left: BorderSide(color: Color(0x66000000), width: 3),
-        ),
+        border: Border(left: BorderSide(color: Color(0x66000000), width: 3)),
       ),
       blockquote: textTheme.bodyLarge?.copyWith(color: kActiveInk),
       tableHead: textTheme.titleSmall?.copyWith(color: kActiveInk),
       tableBody: textTheme.bodyMedium?.copyWith(color: kActiveInk),
-      tableBorder: TableBorder.all(
-        color: const Color(0x66000000),
-        width: 0.8,
-      ),
+      tableBorder: TableBorder.all(color: const Color(0x66000000), width: 0.8),
       tableCellsDecoration: const BoxDecoration(color: activeWash),
     );
+
+    if (!widget.highlightActive) {
+      return Markdown(
+        data: widget.markdown,
+        selectable: true,
+        padding: const EdgeInsets.fromLTRB(22, 8, 22, 32),
+        styleSheet: baseSheet.copyWith(
+          p: textTheme.bodyLarge?.copyWith(
+            height: 1.65,
+            color: inactiveInk,
+            fontSize: 17.5,
+          ),
+        ),
+        onTapLink: (text, href, title) {
+          if (href == null) return;
+          widget.onCodeLink?.call(href);
+        },
+      );
+    }
 
     return ListView.builder(
       padding: const EdgeInsets.fromLTRB(12, 8, 12, 24),

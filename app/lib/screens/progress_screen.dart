@@ -2,17 +2,30 @@ import 'package:flutter/material.dart';
 
 import '../data/progress_store.dart';
 import '../models/models.dart';
+import '../widgets/manual_complete.dart';
 
 class ProgressScreen extends StatelessWidget {
   const ProgressScreen({
     super.key,
     required this.weeks,
     required this.progress,
+    this.handbookWeeks = const [],
+    this.guideWeeks = const [],
+    this.topicWeeks = const [],
+    this.weakPointWeeks = const [],
+    this.questionWeeks = const [],
+    this.systemDesignWeeks = const [],
     this.revisionWeeks = const [],
     this.flashcardWeeks = const [],
   });
 
   final List<WeekRef> weeks;
+  final List<WeekRef> handbookWeeks;
+  final List<WeekRef> guideWeeks;
+  final List<WeekRef> topicWeeks;
+  final List<WeekRef> weakPointWeeks;
+  final List<WeekRef> questionWeeks;
+  final List<WeekRef> systemDesignWeeks;
   final List<WeekRef> revisionWeeks;
   final List<WeekRef> flashcardWeeks;
   final ProgressStore progress;
@@ -27,12 +40,73 @@ class ProgressScreen extends StatelessWidget {
           body: ListView(
             padding: const EdgeInsets.all(16),
             children: [
+              if (handbookWeeks.isNotEmpty) ...[
+                Text(
+                  'Handbook',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                const SizedBox(height: 8),
+                ..._weekCards(
+                  context,
+                  handbookWeeks,
+                  initiallyExpandFirst: true,
+                ),
+              ],
+              if (guideWeeks.isNotEmpty) ...[
+                Text(
+                  'Trips (legacy lists)',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                const SizedBox(height: 8),
+                ..._weekCards(context, guideWeeks, initiallyExpandFirst: true),
+              ],
+              if (weakPointWeeks.isNotEmpty) ...[
+                Text(
+                  'Weak points',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                const SizedBox(height: 8),
+                ..._weekCards(
+                  context,
+                  weakPointWeeks,
+                  initiallyExpandFirst: false,
+                ),
+              ],
+              if (topicWeeks.isNotEmpty) ...[
+                Text('Topics', style: Theme.of(context).textTheme.titleMedium),
+                const SizedBox(height: 8),
+                ..._weekCards(context, topicWeeks, initiallyExpandFirst: false),
+              ],
+              if (questionWeeks.isNotEmpty) ...[
+                Text(
+                  '30 machine design questions',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                const SizedBox(height: 8),
+                ..._weekCards(
+                  context,
+                  questionWeeks,
+                  initiallyExpandFirst: false,
+                ),
+              ],
+              if (systemDesignWeeks.isNotEmpty) ...[
+                Text(
+                  'System Design Lab',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                const SizedBox(height: 8),
+                ..._weekCards(
+                  context,
+                  systemDesignWeeks,
+                  initiallyExpandFirst: false,
+                ),
+              ],
               Text(
-                'Sample Q&A',
+                'Archived 4-week sample Q&A',
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               const SizedBox(height: 8),
-              ..._weekCards(context, weeks, initiallyExpandFirst: true),
+              ..._weekCards(context, weeks, initiallyExpandFirst: false),
               if (revisionWeeks.isNotEmpty) ...[
                 const SizedBox(height: 8),
                 Text(
@@ -40,7 +114,11 @@ class ProgressScreen extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(height: 8),
-                ..._weekCards(context, revisionWeeks, initiallyExpandFirst: false),
+                ..._weekCards(
+                  context,
+                  revisionWeeks,
+                  initiallyExpandFirst: false,
+                ),
               ],
               if (flashcardWeeks.isNotEmpty) ...[
                 const SizedBox(height: 8),
@@ -49,7 +127,11 @@ class ProgressScreen extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(height: 8),
-                ..._weekCards(context, flashcardWeeks, initiallyExpandFirst: false),
+                ..._weekCards(
+                  context,
+                  flashcardWeeks,
+                  initiallyExpandFirst: false,
+                ),
               ],
             ],
           ),
@@ -87,6 +169,10 @@ class ProgressScreen extends StatelessWidget {
                 return ExpansionTile(
                   title: Text(day.title),
                   subtitle: Text('${(pct * 100).round()}%'),
+                  leading: ManualCompleteIcon(
+                    progress: progress,
+                    id: ProgressStore.dayCompleteId(week.id, day.id),
+                  ),
                   children: day.chapters.map((c) {
                     final done = progress.isChapterComplete(
                       week.id,

@@ -59,17 +59,16 @@ class TtsPlayerService extends BaseAudioHandler with ChangeNotifier {
 
   Future<void> _doInit() async {
     try {
-      final session = await AudioSession.instance
-          .timeout(const Duration(seconds: 3));
+      final session = await AudioSession.instance.timeout(
+        const Duration(seconds: 3),
+      );
       await session
           .configure(const AudioSessionConfiguration.speech())
           .timeout(const Duration(seconds: 3));
     } catch (_) {}
     try {
       await _tts.setSharedInstance(true).timeout(const Duration(seconds: 3));
-      await _tts
-          .awaitSpeakCompletion(true)
-          .timeout(const Duration(seconds: 2));
+      await _tts.awaitSpeakCompletion(true).timeout(const Duration(seconds: 2));
       await _tts.setVolume(1.0).timeout(const Duration(seconds: 2));
       await _tts.setPitch(1.0).timeout(const Duration(seconds: 2));
       try {
@@ -116,9 +115,7 @@ class TtsPlayerService extends BaseAudioHandler with ChangeNotifier {
     _speed = speed.clamp(0.5, 16.0);
     _accent = accent;
     try {
-      await _tts.setLanguage(
-        _accent == VoiceAccent.us ? 'en-US' : 'en-GB',
-      );
+      await _tts.setLanguage(_accent == VoiceAccent.us ? 'en-US' : 'en-GB');
       await _applyRate();
     } catch (_) {}
     notifyListeners();
@@ -129,9 +126,7 @@ class TtsPlayerService extends BaseAudioHandler with ChangeNotifier {
   Future<void> setAccent(VoiceAccent accent) async {
     _accent = accent;
     try {
-      await _tts.setLanguage(
-        _accent == VoiceAccent.us ? 'en-US' : 'en-GB',
-      );
+      await _tts.setLanguage(_accent == VoiceAccent.us ? 'en-US' : 'en-GB');
     } catch (_) {}
     // ignore: unawaited_futures
     _pickPreferredVoice();
@@ -161,7 +156,8 @@ class TtsPlayerService extends BaseAudioHandler with ChangeNotifier {
         final name = '${map['name'] ?? ''}'.toLowerCase();
         final loc = '${map['locale'] ?? map['localeId'] ?? ''}'.toLowerCase();
         final isUs = loc.contains('en-us') || loc.contains('en_us');
-        final isGb = loc.contains('en-gb') ||
+        final isGb =
+            loc.contains('en-gb') ||
             loc.contains('en_gb') ||
             loc.contains('en-uk') ||
             loc.contains('en_uk');
@@ -197,8 +193,7 @@ class TtsPlayerService extends BaseAudioHandler with ChangeNotifier {
     _title = title;
     _subtitle = subtitle;
     _sections = sections;
-    _sectionIndex =
-        startSection.clamp(0, (sections.length - 1).clamp(0, 9999));
+    _sectionIndex = startSection.clamp(0, (sections.length - 1).clamp(0, 9999));
     _speed = speed.clamp(0.5, 16.0);
     _reloadSentences(resetSentence: true);
     _updateMediaItem();
@@ -234,8 +229,8 @@ class TtsPlayerService extends BaseAudioHandler with ChangeNotifier {
     _currentSentence = _sentences.isEmpty
         ? ''
         : _sentences
-            .skip(_sentenceIndex)
-            .firstWhere((s) => !isSpeechPauseCue(s), orElse: () => '');
+              .skip(_sentenceIndex)
+              .firstWhere((s) => !isSpeechPauseCue(s), orElse: () => '');
     _currentWord = '';
   }
 
@@ -406,8 +401,8 @@ class TtsPlayerService extends BaseAudioHandler with ChangeNotifier {
       final gapMs = _speed >= 2.0
           ? 0
           : _speed >= 1.25
-              ? 15
-              : (80 / _speed).round().clamp(20, 120);
+          ? 15
+          : (80 / _speed).round().clamp(20, 120);
       if (gapMs > 0) {
         await Future<void>.delayed(Duration(milliseconds: gapMs));
       }
@@ -459,7 +454,7 @@ class TtsPlayerService extends BaseAudioHandler with ChangeNotifier {
     await _tts.stop();
     final deltaWords =
         wordsForDuration(seconds: seconds.abs(), speed: _speed) *
-            (seconds < 0 ? -1 : 1);
+        (seconds < 0 ? -1 : 1);
 
     if (_sentences.isEmpty) _reloadSentences(resetSentence: false);
 
@@ -469,7 +464,10 @@ class TtsPlayerService extends BaseAudioHandler with ChangeNotifier {
       wordDelta: deltaWords,
     );
 
-    if (seconds < 0 && target == 0 && _sentenceIndex == 0 && _sectionIndex > 0) {
+    if (seconds < 0 &&
+        target == 0 &&
+        _sentenceIndex == 0 &&
+        _sectionIndex > 0) {
       _sectionIndex--;
       _reloadSentences(resetSentence: false);
       _sentenceIndex = (_sentences.length - 1).clamp(0, 9999);

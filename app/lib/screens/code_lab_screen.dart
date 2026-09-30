@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -6,11 +8,7 @@ import '../models/models.dart';
 import '../widgets/sectioned_markdown.dart';
 
 class CodeLabScreen extends StatefulWidget {
-  const CodeLabScreen({
-    super.key,
-    required this.day,
-    this.initialFileId,
-  });
+  const CodeLabScreen({super.key, required this.day, this.initialFileId});
 
   final DayRef day;
   final String? initialFileId;
@@ -42,7 +40,9 @@ class _CodeLabScreenState extends State<CodeLabScreen> {
       _error = null;
     });
     try {
-      final raw = await rootBundle.loadString(_selected.asset);
+      final raw = await rootBundle
+          .loadString(_selected.asset)
+          .timeout(const Duration(seconds: 5));
       if (!mounted) return;
       setState(() {
         _source = raw;
@@ -69,9 +69,9 @@ class _CodeLabScreenState extends State<CodeLabScreen> {
     if (text == null) return;
     await Clipboard.setData(ClipboardData(text: text));
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Copied ${_selected.title}')),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text('Copied ${_selected.title}')));
   }
 
   @override
@@ -122,32 +122,29 @@ class _CodeLabScreenState extends State<CodeLabScreen> {
             child: _loading
                 ? const Center(child: CircularProgressIndicator())
                 : _error != null
-                    ? Center(child: Text(_error!))
-                    : isMarkdown
-                        ? Markdown(
-                            data: _source ?? '',
-                            selectable: true,
-                            padding: const EdgeInsets.all(16),
-                          )
-                        : Container(
-                            color: scheme.surfaceContainerLowest,
-                            child: SingleChildScrollView(
-                              padding: const EdgeInsets.all(16),
-                              child: SelectableText(
-                                _source ?? '',
-                                style: TextStyle(
-                                  fontFamily: 'Menlo',
-                                  fontFamilyFallback: const [
-                                    'Courier',
-                                    'monospace',
-                                  ],
-                                  fontSize: 13.5,
-                                  height: 1.45,
-                                  color: scheme.onSurface,
-                                ),
-                              ),
-                            ),
-                          ),
+                ? Center(child: Text(_error!))
+                : isMarkdown
+                ? Markdown(
+                    data: _source ?? '',
+                    selectable: true,
+                    padding: const EdgeInsets.all(16),
+                  )
+                : Container(
+                    color: scheme.surfaceContainerLowest,
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.all(16),
+                      child: SelectableText(
+                        _source ?? '',
+                        style: TextStyle(
+                          fontFamily: 'Menlo',
+                          fontFamilyFallback: const ['Courier', 'monospace'],
+                          fontSize: 13.5,
+                          height: 1.45,
+                          color: scheme.onSurface,
+                        ),
+                      ),
+                    ),
+                  ),
           ),
         ],
       ),
@@ -163,10 +160,7 @@ Future<void> openCodeLab(
 }) {
   return Navigator.of(context).push(
     MaterialPageRoute(
-      builder: (_) => CodeLabScreen(
-        day: day,
-        initialFileId: initialFileId,
-      ),
+      builder: (_) => CodeLabScreen(day: day, initialFileId: initialFileId),
     ),
   );
 }

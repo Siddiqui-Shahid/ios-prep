@@ -4,9 +4,10 @@ Personalized **senior iOS** interview system for Muhammed Shahid Siddiqui (BookM
 
 ## Start here
 
-→ **[roadmap/README.md](roadmap/README.md)** — two tracks: Full study + Revision  
-→ **[roadmap/weeks/week-01/day-01/README.md](roadmap/weeks/week-01/day-01/README.md)** — Day 01 full chapter  
-→ **[app/README.md](app/README.md)** — Flutter audiobook + reader (iOS & Android, Week 1)  
+→ **In the app:** **60–90 minute Mumbai–Pune ride plan** (primary) plus **30 machine design questions**. The old Days 01–28 weekly sample Q&A is **archived** in Library.  
+→ **[roadmap/travel-guide/](roadmap/travel-guide/)** — source for that guide (iOS basics, LLD, HLD, prototype, trip variants)  
+→ **[roadmap/README.md](roadmap/README.md)** — full study + revision (archived weekly still lives here)  
+→ **[app/README.md](app/README.md)** — Flutter reader (iOS, Android, web)  
 → **[roadmap/pdf/interview-prep-roadmap.pdf](roadmap/pdf/interview-prep-roadmap.pdf)** — full handbook PDF  
 
 | Path | Purpose |

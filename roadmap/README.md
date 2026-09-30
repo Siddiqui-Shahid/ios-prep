@@ -13,7 +13,8 @@ Personalized 4-week senior iOS system. **Full chapters are self-contained in Cur
 | **Full study** | [`weeks/week-XX/day-YY/README.md`](weeks/week-01/day-01/README.md) | First time learning a topic |
 | **Sample Q&A** | [`weeks/.../day-YY/sample/`](weeks/week-01/day-01/sample/README.md) | Guided teaching cards (also what the audiobook app plays) |
 | **Revision** | [`revision/weeks/`](revision/README.md) | After sample/full study — timed drills only |
-| **Audiobook app** | [`../app/README.md`](../app/README.md) | Listen + read Days 01–28 sample Q&A offline (iOS & Android) |
+| **Travel guide (primary in the app)** | [`travel-guide/`](travel-guide/start/01-how-this-guide-works.md) | 60–90 min Mumbai–Pune ride plan: basics, LLD, HLD, one of 30 questions |
+| **Audiobook app** | [`../app/README.md`](../app/README.md) | Reader: travel guide first; Days 01–28 sample Q&A archived |
 
 ### How to study a day
 

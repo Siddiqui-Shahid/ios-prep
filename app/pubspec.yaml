@@ -69,6 +69,26 @@ flutter:
 
   assets:
     - assets/content/manifest.json
+    - assets/content/handbook/front/
+    - assets/content/handbook/samples/
+    - assets/content/travel-guide/start/
+    - assets/content/travel-guide/ios-basics/
+    - assets/content/travel-guide/lld/
+    - assets/content/travel-guide/hld/
+    - assets/content/travel-guide/prototype/
+    - assets/content/travel-guide/trip-a/
+    - assets/content/travel-guide/trip-b/
+    - assets/content/travel-guide/trip-c/
+    - assets/content/travel-guide/trip-d/
+    - assets/content/travel-guide/trip-e/
+    - assets/content/travel-guide/interview/
+    - assets/content/machine-questions/q-01-10/
+    - assets/content/machine-questions/q-11-20/
+    - assets/content/machine-questions/q-21-30/
+    - assets/content/study-trips/
+    - assets/content/study-topics/
+    - assets/content/study-weak/
+    - assets/content/system-designs/
     - assets/content/week-01/day-01/
     - assets/content/week-01/day-02/
     - assets/content/week-01/day-03/

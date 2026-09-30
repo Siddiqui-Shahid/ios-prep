@@ -43,9 +43,9 @@ class PlayerBar extends StatelessWidget {
                         : 'Section $index / $total — ${section.title}',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                          color: kActiveInk,
-                        ),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.labelLarge?.copyWith(color: kActiveInk),
                   ),
                   const SizedBox(height: 6),
                   // Transport controls — one compact row
@@ -106,15 +106,17 @@ class PlayerBar extends StatelessWidget {
                           style: ButtonStyle(
                             visualDensity: VisualDensity.compact,
                             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                            foregroundColor:
-                                WidgetStateProperty.resolveWith((states) {
+                            foregroundColor: WidgetStateProperty.resolveWith((
+                              states,
+                            ) {
                               if (states.contains(WidgetState.selected)) {
                                 return kActiveInk;
                               }
                               return null;
                             }),
-                            backgroundColor:
-                                WidgetStateProperty.resolveWith((states) {
+                            backgroundColor: WidgetStateProperty.resolveWith((
+                              states,
+                            ) {
                               if (states.contains(WidgetState.selected)) {
                                 return kActiveHighlight;
                               }
@@ -344,34 +346,40 @@ Future<void> showSpeedSheet({
                     spacing: 8,
                     runSpacing: 8,
                     alignment: WrapAlignment.center,
-                    children: [
-                      0.5,
-                      1.0,
-                      1.5,
-                      2.0,
-                      3.0,
-                      4.0,
-                      6.0,
-                      8.0,
-                      12.0,
-                      16.0,
-                    ].map((s) {
-                      final selected = (local - s).abs() < 0.01;
-                      return ActionChip(
-                        label: Text('${_formatSpeed(s)}x'),
-                        backgroundColor:
-                            selected ? kActiveHighlight : Colors.black12,
-                        labelStyle: TextStyle(
-                          color: kActiveInk,
-                          fontWeight:
-                              selected ? FontWeight.w800 : FontWeight.w500,
-                        ),
-                        side: selected
-                            ? const BorderSide(color: kActiveInk, width: 1.2)
-                            : BorderSide.none,
-                        onPressed: () => commit(s),
-                      );
-                    }).toList(),
+                    children:
+                        [
+                          0.5,
+                          1.0,
+                          1.5,
+                          2.0,
+                          3.0,
+                          4.0,
+                          6.0,
+                          8.0,
+                          12.0,
+                          16.0,
+                        ].map((s) {
+                          final selected = (local - s).abs() < 0.01;
+                          return ActionChip(
+                            label: Text('${_formatSpeed(s)}x'),
+                            backgroundColor: selected
+                                ? kActiveHighlight
+                                : Colors.black12,
+                            labelStyle: TextStyle(
+                              color: kActiveInk,
+                              fontWeight: selected
+                                  ? FontWeight.w800
+                                  : FontWeight.w500,
+                            ),
+                            side: selected
+                                ? const BorderSide(
+                                    color: kActiveInk,
+                                    width: 1.2,
+                                  )
+                                : BorderSide.none,
+                            onPressed: () => commit(s),
+                          );
+                        }).toList(),
                   ),
                 ],
               ),
